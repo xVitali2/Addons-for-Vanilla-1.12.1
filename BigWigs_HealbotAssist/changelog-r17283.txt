@@ -1,0 +1,254 @@
+------------------------------------------------------------------------
+r17283 | rabbit | 2006-11-17 10:47:12 -0500 (Fri, 17 Nov 2006) | 1 line
+
+BigWigs_HealbotAssist: New name format.
+------------------------------------------------------------------------
+r17267 | ammo | 2006-11-17 10:03:28 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_HealbotAssist: OnInitialize -> OnRegister and X-BigWigsModule removed
+
+------------------------------------------------------------------------
+r17252 | ammo | 2006-11-17 09:46:39 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_HealbotAssist: set .external for external modules
+
+------------------------------------------------------------------------
+r16997 | saroz | 2006-11-14 14:32:06 -0500 (Tue, 14 Nov 2006) | 1 line
+
+BigWigs_HealbotAssist: Don't need this anymore
+------------------------------------------------------------------------
+r16996 | saroz | 2006-11-14 14:22:30 -0500 (Tue, 14 Nov 2006) | 1 line
+
+BigWigs_HealbotAssist: Optionally set raid icons on the players in the group that is suppose to grab a spore
+------------------------------------------------------------------------
+r16994 | saroz | 2006-11-14 14:01:39 -0500 (Tue, 14 Nov 2006) | 1 line
+
+BigWigs_HealbotAssist: Use the sync LoathebSporeSpawn2 to detect the number of spores, parsing the messages breaks after 16 spores (go figure) - this fixes that
+------------------------------------------------------------------------
+r16839 | ammo | 2006-11-13 09:05:28 -0500 (Mon, 13 Nov 2006) | 2 lines
+
+BigWigs_HealbotAssist: LoD now, bigwigs will handle loading
+
+------------------------------------------------------------------------
+r16822 | fenlis | 2006-11-13 02:16:38 -0500 (Mon, 13 Nov 2006) | 1 line
+
+BigWigs_HealbotAssist: Update locals koKR
+------------------------------------------------------------------------
+r16049 | nevcairiel | 2006-11-05 17:53:33 -0500 (Sun, 05 Nov 2006) | 2 lines
+
+BigWigs_HealbotAssist: 
+- Healing Rotation after Broadcast should display in the right order now, but may inverse order for the leader :)
+------------------------------------------------------------------------
+r16048 | saroz | 2006-11-05 17:47:42 -0500 (Sun, 05 Nov 2006) | 1 line
+
+BigWigs_HealbotAssist: Okay, that wasn't how BigWigs_SetRaidIcon worked
+------------------------------------------------------------------------
+r16047 | saroz | 2006-11-05 17:09:32 -0500 (Sun, 05 Nov 2006) | 6 lines
+
+BigWigs_HealbotAssist: 
+- Don't whisper people in the healing rotation, to grab spores.
+- Set star icon on a group member of spore group
+- Highlight your spot on the healing list better
+- Reset inHealbotRotation when importing the list
+
+------------------------------------------------------------------------
+r16042 | saroz | 2006-11-05 15:59:27 -0500 (Sun, 05 Nov 2006) | 1 line
+
+BigWigs_HealbotAssist: For some reason, this is bad
+------------------------------------------------------------------------
+r16029 | saroz | 2006-11-05 13:57:10 -0500 (Sun, 05 Nov 2006) | 3 lines
+
+BigWigs_HealbotAssist:
+- Add option to locally alert people when to heal. Alerts are sent through sync.
+- Fixed people not correctly being removed from an already existing heal list, when broadcasting the list
+------------------------------------------------------------------------
+r16022 | cwdg | 2006-11-05 11:53:18 -0500 (Sun, 05 Nov 2006) | 1 line
+
+BigWigs_HealbotAssist: fix toc file erorr.
+------------------------------------------------------------------------
+r16021 | cwdg | 2006-11-05 11:46:11 -0500 (Sun, 05 Nov 2006) | 1 line
+
+BigWigs_HealbotAssist: Update zhCN local.
+------------------------------------------------------------------------
+r15564 | rabbit | 2006-10-30 17:55:01 -0500 (Mon, 30 Oct 2006) | 1 line
+
+BigWigs_HealbotAssist: Unbreak.
+------------------------------------------------------------------------
+r15536 | rabbit | 2006-10-30 10:11:30 -0500 (Mon, 30 Oct 2006) | 1 line
+
+BigWigs_HealbotAssist: Fix once-in-a-lifetime nil error on line 665.
+------------------------------------------------------------------------
+r15108 | fenlis | 2006-10-24 15:38:07 -0400 (Tue, 24 Oct 2006) | 1 line
+
+BigWigs_HealbotAssist : Added localization koKR
+------------------------------------------------------------------------
+r15020 | saroz | 2006-10-23 19:54:40 -0400 (Mon, 23 Oct 2006) | 1 line
+
+BigWigs_HealbotAssist: Revert 14699, table.setn fucked it all up
+------------------------------------------------------------------------
+r14699 | rabbit | 2006-10-21 17:54:24 -0400 (Sat, 21 Oct 2006) | 1 line
+
+BigWigs_HealbotAssist: remove table.setn
+------------------------------------------------------------------------
+r14550 | rabbit | 2006-10-20 19:38:03 -0400 (Fri, 20 Oct 2006) | 1 line
+
+BigWigs_HealbotAssist: Silly events.
+------------------------------------------------------------------------
+r14298 | rabbit | 2006-10-18 21:01:08 -0400 (Wed, 18 Oct 2006) | 1 line
+
+BigWigs_HealbotAssist: AceLocale-2.2.
+------------------------------------------------------------------------
+r14201 | rabbit | 2006-10-17 21:13:04 -0400 (Tue, 17 Oct 2006) | 1 line
+
+BigWigs_HealbotAssist: Fix the healer rotation regexp.
+------------------------------------------------------------------------
+r14162 | rabbit | 2006-10-17 08:23:19 -0400 (Tue, 17 Oct 2006) | 1 line
+
+BigWigs_HealbotAssist: Insanely experimental healer list sync'ing as broadcasted via raid chat.
+------------------------------------------------------------------------
+r14149 | rabbit | 2006-10-17 06:34:50 -0400 (Tue, 17 Oct 2006) | 1 line
+
+BigWigs_HealbotAssist: Experimental spore rotation. When a spore is summoned, it whispers group |mod(sporeNumber, 8) == 0 and 8 or mod(sporeNumber, 8)| to "Kill spore!" and group + 1 to "Get ready for spore!".
+------------------------------------------------------------------------
+r14101 | flyflame | 2006-10-16 17:19:14 -0400 (Mon, 16 Oct 2006) | 1 line
+
+BigWigs_HealbotAssist: added zhCN locales
+------------------------------------------------------------------------
+r12587 | rabbit | 2006-10-01 20:17:12 -0400 (Sun, 01 Oct 2006) | 1 line
+
+BigWigs_HealbotAssist: And now for the real fix.
+------------------------------------------------------------------------
+r12586 | rabbit | 2006-10-01 20:16:20 -0400 (Sun, 01 Oct 2006) | 1 line
+
+BigWigs_HealbotAssist: Fixing healing rotation getting stuck on dead/offline player if everyone has debuff.
+------------------------------------------------------------------------
+r12212 | nevcairiel | 2006-09-29 10:08:37 -0400 (Fri, 29 Sep 2006) | 1 line
+
+Changed externals to the new path.
+------------------------------------------------------------------------
+r12048 | nevcairiel | 2006-09-26 11:55:04 -0400 (Tue, 26 Sep 2006) | 1 line
+
+Updated Externals in BW and additional BW addons
+------------------------------------------------------------------------
+r11366 | rabbit | 2006-09-19 09:43:35 -0400 (Tue, 19 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Disable when Loatheb dies.
+------------------------------------------------------------------------
+r10972 | rabbit | 2006-09-15 05:42:20 -0400 (Fri, 15 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Add the ignore target and re-scan options to people who are not promoted/leaders as well, since we don't sync the healer list now. It's on the TODO!
+------------------------------------------------------------------------
+r10912 | rabbit | 2006-09-12 06:35:06 -0400 (Tue, 12 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Update readme a bit, someone make it better for me please :/
+------------------------------------------------------------------------
+r10911 | rabbit | 2006-09-12 06:32:46 -0400 (Tue, 12 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Fix error when trying to ignore someone not in your raid.
+------------------------------------------------------------------------
+r10886 | rabbit | 2006-09-12 00:18:10 -0400 (Tue, 12 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Added 3 commands to the tablet for leaders: print rotation (to raid chat), ignore target (toggle) and re-scan healers.
+------------------------------------------------------------------------
+r10885 | rabbit | 2006-09-11 23:37:10 -0400 (Mon, 11 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Now shows "Dead" or "Offline" in the status column when appropriate.
+------------------------------------------------------------------------
+r10884 | rabbit | 2006-09-11 23:20:45 -0400 (Mon, 11 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist/SEEA-2.0-Events-Only: Now, where did I put that coffee?
+------------------------------------------------------------------------
+r10883 | rabbit | 2006-09-11 23:08:40 -0400 (Mon, 11 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist/SEEA-2.0-Events-Only: Oops?
+------------------------------------------------------------------------
+r10882 | rabbit | 2006-09-11 22:51:50 -0400 (Mon, 11 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist/SEEA-2.0-Events-Only: Fix syntax error.
+------------------------------------------------------------------------
+r10872 | rabbit | 2006-09-11 20:55:33 -0400 (Mon, 11 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist/SEEA-2.0-Events-Only: More unused code removed.
+------------------------------------------------------------------------
+r10871 | rabbit | 2006-09-11 20:52:51 -0400 (Mon, 11 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Alright, fuck SEEA. Ripped out what we need and package it as a library locally.
+------------------------------------------------------------------------
+r10849 | rabbit | 2006-09-11 15:20:21 -0400 (Mon, 11 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Fix second round of rotation when everyone has debuff - should whisper "Get Ready" to the correct person now.
+------------------------------------------------------------------------
+r10847 | rabbit | 2006-09-11 14:47:53 -0400 (Mon, 11 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Should actually work now.
+------------------------------------------------------------------------
+r10842 | rabbit | 2006-09-11 13:28:22 -0400 (Mon, 11 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Use the "find next healer" logic for the next person in rotation (who gets the "Get Ready!" message) as well. And color names in the tablet by class.
+------------------------------------------------------------------------
+r10603 | rabbit | 2006-09-09 07:10:14 -0400 (Sat, 09 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Add readme.
+------------------------------------------------------------------------
+r10489 | rabbit | 2006-09-08 04:03:56 -0400 (Fri, 08 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Get a new ZIP up.
+------------------------------------------------------------------------
+r10465 | rabbit | 2006-09-07 19:21:04 -0400 (Thu, 07 Sep 2006) | 6 lines
+
+BigWigs_HealbotAssist:
+ - Add channel support for notifying about heals.
+ - Sort the tablet display in correct order.
+ - Highlight yourself in the tablet.
+ - Other changes.
+ - The ZIP from this will NOT work because SEEA has been reverted.
+------------------------------------------------------------------------
+r10233 | rabbit | 2006-09-05 13:01:32 -0400 (Tue, 05 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Notify the raid when someone heals about who is next.
+------------------------------------------------------------------------
+r10194 | rabbit | 2006-09-05 08:20:09 -0400 (Tue, 05 Sep 2006) | 6 lines
+
+BigWigs_HealbotAssist:
+ - Now option for whispering or not. OFF by default.
+ - Properly show the debuff bar for player.
+ - Take into account dead, ghost or offline healers in rotation whispering.
+ - Clean unused code.
+ - Show and hide the tablet automatically when the mod is enabled/disabled.
+------------------------------------------------------------------------
+r10023 | rabbit | 2006-09-03 23:47:03 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: This should be a working version.
+------------------------------------------------------------------------
+r9972 | rabbit | 2006-09-03 16:18:18 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Use the actual debuff name, not SW:P.
+------------------------------------------------------------------------
+r9940 | rabbit | 2006-09-03 11:19:20 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Don't initialize the roster or aura libraries before we actually need them.
+------------------------------------------------------------------------
+r9872 | rabbit | 2006-09-02 20:36:56 -0400 (Sat, 02 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: "Big Wigs", not "BigWigs".
+------------------------------------------------------------------------
+r9838 | rabbit | 2006-09-02 15:48:21 -0400 (Sat, 02 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Update for recent RosterLib changes.
+------------------------------------------------------------------------
+r9829 | rabbit | 2006-09-02 13:02:14 -0400 (Sat, 02 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Don't update the healer list in combat.
+------------------------------------------------------------------------
+r9827 | rabbit | 2006-09-02 12:41:36 -0400 (Sat, 02 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Message people before the fight that they are the second and first healers.
+------------------------------------------------------------------------
+r9826 | rabbit | 2006-09-02 12:34:20 -0400 (Sat, 02 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Set externals and fix 2 regexps.
+------------------------------------------------------------------------
+r9825 | rabbit | 2006-09-02 12:29:38 -0400 (Sat, 02 Sep 2006) | 1 line
+
+BigWigs_HealbotAssist: Initial import. Healing rotation addon for Loatheb - not tested yet.
+------------------------------------------------------------------------

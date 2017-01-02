@@ -1,0 +1,19 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="vQueue.lua"/>
+	<!-- 								Main Frame										-->
+	<Frame name="vQueue">
+		<Scripts>
+			<OnLoad>
+				vQueue_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				vQueue_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				vQueue_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+	<!-- Tags below add a visual element to the frame. -->
+	</Frame>
+</Ui>		

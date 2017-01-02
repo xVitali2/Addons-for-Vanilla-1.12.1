@@ -1,0 +1,63 @@
+------------------------------------------------------------------------
+r17301 | rabbit | 2006-11-17 11:14:09 -0500 (Fri, 17 Nov 2006) | 1 line
+
+BigWigs_ZombieFood: LoadWithCore.
+------------------------------------------------------------------------
+r17289 | rabbit | 2006-11-17 10:48:43 -0500 (Fri, 17 Nov 2006) | 1 line
+
+BigWigs_ZombieFood: New name format.
+------------------------------------------------------------------------
+r17274 | ammo | 2006-11-17 10:09:44 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_ZombieFood: no more X-BigWigs-Module
+
+------------------------------------------------------------------------
+r17262 | ammo | 2006-11-17 09:55:54 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_ZombieFood: external true
+
+------------------------------------------------------------------------
+r14304 | rabbit | 2006-10-18 21:01:55 -0400 (Wed, 18 Oct 2006) | 1 line
+
+BigWigs_ZombieFood: AceLocale-2.2.
+------------------------------------------------------------------------
+r12465 | kebinusan | 2006-10-01 07:21:15 -0400 (Sun, 01 Oct 2006) | 1 line
+
+Trunk: Fixing www.wowace.com externals ... A-B
+------------------------------------------------------------------------
+r12048 | nevcairiel | 2006-09-26 11:55:04 -0400 (Tue, 26 Sep 2006) | 1 line
+
+Updated Externals in BW and additional BW addons
+------------------------------------------------------------------------
+r10689 | rabbit | 2006-09-09 19:21:54 -0400 (Sat, 09 Sep 2006) | 1 line
+
+BigWigs_ZombieFood: Can now be turned off.
+------------------------------------------------------------------------
+r10391 | rabbit | 2006-09-07 03:21:45 -0400 (Thu, 07 Sep 2006) | 1 line
+
+BigWigs_ZombieFood: Don't warn for pets and crap.
+------------------------------------------------------------------------
+r9967 | rabbit | 2006-09-03 15:51:02 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_ZombieFood: Silence a nil error.
+------------------------------------------------------------------------
+r9952 | rabbit | 2006-09-03 12:36:21 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_ZombieFood: Throttle warnings and don't initialize SEEmbedAura until it's needed.
+------------------------------------------------------------------------
+r9942 | rabbit | 2006-09-03 11:21:35 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_ZombieFood: Add GratuityLib to OptionalDeps.
+------------------------------------------------------------------------
+r9877 | rabbit | 2006-09-02 20:53:41 -0400 (Sat, 02 Sep 2006) | 1 line
+
+BigWigs_ZombieFood: Also needs Gratuity-2.0.
+------------------------------------------------------------------------
+r9876 | rabbit | 2006-09-02 20:51:47 -0400 (Sat, 02 Sep 2006) | 1 line
+
+BigWigs_ZombieFood: BW2/Ace2 version, finally.
+------------------------------------------------------------------------
+r5823 | rabbit | 2006-07-26 18:35:31 -0400 (Wed, 26 Jul 2006) | 1 line
+
+BigWigs_ZombieFood: Initial import. Adds raid warnings when people get Dazed. BW1/Ace1 version, very rough, will break and eats your children. BW2/Ace2 version (coming 'soon') should be better.
+------------------------------------------------------------------------

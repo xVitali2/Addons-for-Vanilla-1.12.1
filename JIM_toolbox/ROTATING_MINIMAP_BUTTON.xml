@@ -1,0 +1,36 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="ROTATING_MINIMAP_BUTTON.lua"/>
+
+	<Button name="ROTATING_MINIMAP_BUTTON" frameStrata="LOW" enableMouse="true" virtual="true" parent="Minimap">
+		<Scripts>
+			<OnUpdate>		ROTATING_MINIMAP_BUTTON_OnLoad()		</OnUpdate>
+			<OnDragStart>	ROTATING_MINIMAP_BUTTON_OnDragStart()	</OnDragStart>
+			<OnDragStop>	ROTATING_MINIMAP_BUTTON_OnDragStop()	</OnDragStop>
+		</Scripts>
+		
+		<Size>	<AbsDimension x="32" y="32"/>	</Size>
+		
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+		
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parent_Icon">
+					<Size>	<AbsDimension x="19" y="19"/>	</Size>
+					
+					<Anchors>
+						<Anchor point="CENTER">	<Offset>	<AbsDimension x="-0.5" y="1.5"/>	</Offset>	</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			
+			<Layer level="OVERLAY">
+				<Texture name="$parent_Border" file="Interface\Minimap\MiniMap-TrackingBorder">
+					<Size>	<AbsDimension x="52" y="52"/>	</Size>
+					
+					<Anchors>	<Anchor point="TOPLEFT"/>	</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Button>
+
+</Ui>

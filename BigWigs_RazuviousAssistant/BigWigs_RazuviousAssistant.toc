@@ -1,0 +1,21 @@
+﻿## Interface: 11200
+
+## Title: Big Wigs |cffff0000+|r|cffffffffRazuvious Assistant|r
+## Notes: Additional timers usefull in the Instructor Razuvious encounter.
+## Notes-ruRU: Дополнительные таймеры на Инструкторе Разувии.
+## Author: Shyva and Rabbit
+## X-Build: $Rev: 17286 $
+## X-ReleaseDate: $Date: 2006-11-17 10:47:54 -0500 (Fri, 17 Nov 2006) $
+## X-Email: Shyvaa@gmail.com, rabbit.magtheridon@gmail.com
+## X-Category: Raid
+## LoadOnDemand: 1
+## X-BigWigs-LoadInZone: Naxxramas
+
+## Dependencies: BigWigs, !!!Libs
+## OptionalDeps: Ace2, GratuityLib, SpecialEventsEmbed
+
+## SavedVariables: BigWigsRazuviousAssistantDB
+
+libs\SpecialEvents-Aura-2.0\SpecialEvents-Aura-2.0.lua
+
+BigWigs_RazuviousAssistant.lua

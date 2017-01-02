@@ -1,0 +1,166 @@
+------------------------------------------------------------------------
+r17303 | snelf | 2014-05-16 14:37:28 +0200 (Fri, 16 May 2014) | 20 lines
+
+BigWigs_CommonAuras: Oops, we're not in TBC yet.
+------------------------------------------------------------------------
+r17302 | rabbit | 2006-11-17 11:15:05 -0500 (Fri, 17 Nov 2006) | 1 line
+
+BigWigs_CommonAuras: Oops, we're not in TBC yet.
+------------------------------------------------------------------------
+r17300 | rabbit | 2006-11-17 11:12:53 -0500 (Fri, 17 Nov 2006) | 1 line
+
+BigWigs_CommonAuras: LoadWithCore.
+------------------------------------------------------------------------
+r17290 | rabbit | 2006-11-17 10:49:45 -0500 (Fri, 17 Nov 2006) | 1 line
+
+BigWigs_CommonAuras: New name format.
+------------------------------------------------------------------------
+r17266 | ammo | 2006-11-17 10:01:52 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_CommonAuras: X-BigWigsmodule nolonger needed
+
+------------------------------------------------------------------------
+r17261 | ammo | 2006-11-17 09:53:50 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_CommonAuras: external true
+
+------------------------------------------------------------------------
+r16823 | fenlis | 2006-11-13 02:17:07 -0500 (Mon, 13 Nov 2006) | 1 line
+
+BigWigs_CommonAuras : Update locals koKR
+------------------------------------------------------------------------
+r15105 | fenlis | 2006-10-24 15:30:32 -0400 (Tue, 24 Oct 2006) | 1 line
+
+BigWigs_CommonAuras : Added localization koKR
+------------------------------------------------------------------------
+r14644 | rabbit | 2006-10-21 10:27:48 -0400 (Sat, 21 Oct 2006) | 1 line
+
+BigWigs_CommonAuras: AceHook-2.1.
+------------------------------------------------------------------------
+r14590 | rabbit | 2006-10-21 00:08:13 -0400 (Sat, 21 Oct 2006) | 1 line
+
+BigWigs_CommonAuras: Touch to get the new spellstatus in.
+------------------------------------------------------------------------
+r14537 | rabbit | 2006-10-20 15:47:33 -0400 (Fri, 20 Oct 2006) | 1 line
+
+BigWigs_CommonAuras: Should fix mage portals.
+------------------------------------------------------------------------
+r14379 | kebinusan | 2006-10-19 01:35:03 -0400 (Thu, 19 Oct 2006) | 2 lines
+
+BigWigs_CommonAuras: Touch the TOC to zip up libs
+
+------------------------------------------------------------------------
+r14296 | rabbit | 2006-10-18 21:00:45 -0400 (Wed, 18 Oct 2006) | 1 line
+
+BigWigs_CommonAuras: AceLocale-2.2.
+------------------------------------------------------------------------
+r14243 | rabbit | 2006-10-18 13:56:45 -0400 (Wed, 18 Oct 2006) | 1 line
+
+BigWigs_CommonAuras: Added frFR translation of "Portal".
+------------------------------------------------------------------------
+r14191 | rabbit | 2006-10-17 16:57:16 -0400 (Tue, 17 Oct 2006) | 1 line
+
+BigWigs_CommonAuras: Portal syncs should work across locales now.
+------------------------------------------------------------------------
+r14177 | rabbit | 2006-10-17 14:14:21 -0400 (Tue, 17 Oct 2006) | 1 line
+
+BigWigs_CommonAuras: Use Babble-Spell.
+------------------------------------------------------------------------
+r13397 | rabbit | 2006-10-09 00:48:46 -0400 (Mon, 09 Oct 2006) | 1 line
+
+BigWigs_CommonAuras: Complete deDE translation, thanks Gailly!
+------------------------------------------------------------------------
+r12667 | rabbit | 2006-10-02 10:14:42 -0400 (Mon, 02 Oct 2006) | 1 line
+
+BigWigs_CommonAuras: Mostly a TOC update.
+------------------------------------------------------------------------
+r12465 | kebinusan | 2006-10-01 07:21:15 -0400 (Sun, 01 Oct 2006) | 1 line
+
+Trunk: Fixing www.wowace.com externals ... A-B
+------------------------------------------------------------------------
+r12048 | nevcairiel | 2006-09-26 11:55:04 -0400 (Tue, 26 Sep 2006) | 1 line
+
+Updated Externals in BW and additional BW addons
+------------------------------------------------------------------------
+r12010 | rabbit | 2006-09-25 11:00:44 -0400 (Mon, 25 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: We need a low throttle to prevent double messages locally.
+------------------------------------------------------------------------
+r12006 | rabbit | 2006-09-25 09:56:27 -0400 (Mon, 25 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: No more sync throttling for this, since we only get 1 sync per ability anyway, any throttling might make us miss something.
+------------------------------------------------------------------------
+r12005 | rabbit | 2006-09-25 09:29:21 -0400 (Mon, 25 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Fixed shield wall timer.
+------------------------------------------------------------------------
+r11740 | rabbit | 2006-09-23 06:15:42 -0400 (Sat, 23 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Can now click the shield wall/CS/CR bars to target the user.
+------------------------------------------------------------------------
+r11677 | rabbit | 2006-09-22 11:59:26 -0400 (Fri, 22 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Clarify Broadcast description.
+------------------------------------------------------------------------
+r11674 | rabbit | 2006-09-22 11:10:11 -0400 (Fri, 22 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Fix SW timer.
+------------------------------------------------------------------------
+r11670 | rabbit | 2006-09-22 10:13:40 -0400 (Fri, 22 Sep 2006) | 3 lines
+
+BigWigs_CommonAuras:
+ * Disable all the hooks for Fear Ward, they are just confusing. It will report your current target.
+ * Add support for Imp. Shield Wall.
+------------------------------------------------------------------------
+r10732 | rabbit | 2006-09-10 08:28:32 -0400 (Sun, 10 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Attempt to fix reporting spells that were aborted and Fear Ward target detection.
+------------------------------------------------------------------------
+r10601 | rabbit | 2006-09-09 06:42:23 -0400 (Sat, 09 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Add readme.
+------------------------------------------------------------------------
+r10415 | rabbit | 2006-09-07 11:41:20 -0400 (Thu, 07 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Can now target the last person that used CS or CR.
+------------------------------------------------------------------------
+r10192 | rabbit | 2006-09-05 07:20:07 -0400 (Tue, 05 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Update externals for SpellCache and SpellStatus.
+------------------------------------------------------------------------
+r10038 | rabbit | 2006-09-04 04:48:53 -0400 (Mon, 04 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Assumes you are selfcasting FW if you do not have a target.
+------------------------------------------------------------------------
+r10012 | rabbit | 2006-09-03 20:23:14 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Fixed portal icons.
+------------------------------------------------------------------------
+r10010 | rabbit | 2006-09-03 20:18:02 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Regexp fixed.
+------------------------------------------------------------------------
+r10007 | rabbit | 2006-09-03 20:10:26 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Untested attempt at supporting mage portals.
+------------------------------------------------------------------------
+r10002 | rabbit | 2006-09-03 19:38:42 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Actually trigger CR.
+------------------------------------------------------------------------
+r9995 | rabbit | 2006-09-03 19:22:55 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Add Challenging Roar.
+------------------------------------------------------------------------
+r9975 | rabbit | 2006-09-03 16:43:22 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: You now have to explicitly turn on broadcasting to raid.
+------------------------------------------------------------------------
+r9970 | rabbit | 2006-09-03 16:04:03 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Set externals.
+------------------------------------------------------------------------
+r9969 | rabbit | 2006-09-03 16:01:44 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_CommonAuras: Shows warnings and bars for Fear Ward, Shield Wall and Challenging Shout. Don't use this stuff yet. For it to warn, the player must have this module, it does not parse any combat log messages or whatever.
+------------------------------------------------------------------------

@@ -1,0 +1,29 @@
+------------------------------------------------------------------------
+r14436 | schelli | 2006-10-19 18:44:52 -0400 (Thu, 19 Oct 2006) | 1 line
+
+FuBar_TrackerFu.toc : just small adjustment to show revision and date
+------------------------------------------------------------------------
+r13560 | ammo | 2006-10-10 19:09:51 -0400 (Tue, 10 Oct 2006) | 1 line
+
+FuBar_TrackerFu: Hide the minimap trackingicon more consistently if told to.
+------------------------------------------------------------------------
+r13422 | schelli | 2006-10-09 09:06:24 -0400 (Mon, 09 Oct 2006) | 1 line
+
+fixed error where tracking change would not be updated
+------------------------------------------------------------------------
+r13279 | schelli | 2006-10-07 17:57:52 -0400 (Sat, 07 Oct 2006) | 1 line
+
+TrackerFuLocals.lua : minor cleanup of unused vars
+------------------------------------------------------------------------
+r13202 | schelli | 2006-10-06 21:42:58 -0400 (Fri, 06 Oct 2006) | 1 line
+
+further code cleanup and improvement
+------------------------------------------------------------------------
+r13198 | schelli | 2006-10-06 19:58:58 -0400 (Fri, 06 Oct 2006) | 1 line
+
+added externals
+------------------------------------------------------------------------
+r13197 | schelli | 2006-10-06 19:56:25 -0400 (Fri, 06 Oct 2006) | 1 line
+
+converted to ace2 by schelli, check out readme
+------------------------------------------------------------------------

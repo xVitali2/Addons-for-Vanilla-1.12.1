@@ -1,0 +1,420 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+    ..\..\..\FrameXML\UI.xsd">
+	
+	<StatusBar name="DPSMate_Bar" virtual="true">
+		<Size y="12" />
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Name" inherits="TextStatusBarText" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT" />
+						<Anchor point="BOTTOMRIGHT" />
+					</Anchors>
+				</FontString>
+				<FontString name="$parent_Value" inherits="TextStatusBarText" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset x="-3" y="0" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture name="$parent_BG">
+					<Anchors>
+						<Anchor point="TOPLEFT" />
+						<Anchor point="BOTTOMRIGHT" />
+					</Anchors>
+					<Color r="0" g="0" b="0" />
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture name="$parent_Icon" file="Interface\AddOns\DPSMate\images\class\hunter" hidden="true">
+					<Size x="13" y="13" />
+					<Anchors>
+						<Anchor point="LEFT" />
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</StatusBar>
+	
+	<StatusBar name="DPSMate_StatusBar" inherits="DPSMate_Bar" virtual="true">
+		<Scripts>
+			<OnLoad>
+				this:SetMinMaxValues(1,100)
+				this:SetValue(100)
+				getglobal(this:GetName().."_BG"):SetAlpha(0.5)
+			</OnLoad>
+			<OnMouseUp>
+				if arg1 == "LeftButton" then
+					DPSMate.Options:UpdateDetails(this)
+				else
+					DPSMate.Options:InializePlayerDewDrop(this)
+					DPSMate.Options:OpenMenu(4, this)
+				end
+			</OnMouseUp>
+			<OnEnter>
+				DPSMate.Options:ShowTooltip()
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+	</StatusBar>
+	
+	<StatusBar name="DPSMate_StatusBarTotal" inherits="DPSMate_Bar" virtual="true">
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "TOPLEFT")
+				GameTooltip:AddLine(DPSMate.L["leftclickopend"])
+				GameTooltip:Show()
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide()
+			</OnLeave>
+			<OnMouseUp>
+				DPSMate.Options:UpdateTotalDetails(this)
+			</OnMouseUp>
+		</Scripts>
+	</StatusBar>
+	
+	<Frame name="DPSMate_Statusframe" parent="UIParent" movable="true" enablemouse="true" resizable="true" frameStrata="low" virtual="true">
+		<Size x="150" y="100" />
+		<ResizeBounds>
+			<minResize x="100" y="100"/>
+			<maxResize x="400" y="600"/>
+		</ResizeBounds>
+		<Anchors>
+			<Anchor point="CENTER" />
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:SetClampedToScreen(true)
+			</OnLoad>
+			<OnSizeChanged>
+				if getglobal(this:GetName().."_ScrollFrame") then
+					getglobal(this:GetName().."_ScrollFrame_Child"):SetWidth(this:GetWidth())
+					getglobal(this:GetName().."_ScrollFrame"):SetHeight(this:GetHeight()-16)
+				end
+			</OnSizeChanged>
+		</Scripts>
+		<Frames>
+			<Frame name="$parent_Border" frameStrata="BACKGROUND">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="-4" y="4" />
+					</Anchor>
+					<Anchor point="TOPRIGHT">
+						<Offset x="4" y="4" />
+					</Anchor>
+					<Anchor point="BOTTOMLEFT">
+						<Offset x="-4" y="-4" />
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset x="4" y="-4" />
+					</Anchor>
+				</Anchors>
+				<Backdrop edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<BackgroundInsets left="5" right="5" top="3" bottom="1" />
+					<TileSize val="12" />
+					<EdgeSize val="4" />
+					<Color r="0.157" g="0.08" b="0.06" a="1" />
+				</Backdrop>
+			</Frame>
+			<Button name="$parent_Resize" frameStrata="HIGH">
+				<Size x="14" y="14" />
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT" />
+				</Anchors>
+				<Scripts>
+					<OnMouseDown>
+						this:GetParent():StartSizing()
+					</OnMouseDown>
+					<OnMouseUp>
+						this:GetParent():StopMovingOrSizing()
+						DPSMateSettings["windows"][this:GetParent().Key]["savsize"] = {}
+						DPSMateSettings["windows"][this:GetParent().Key]["savsize"][1] = this:GetParent():GetWidth()
+						DPSMateSettings["windows"][this:GetParent().Key]["savsize"][2] = this:GetParent():GetHeight()
+					</OnMouseUp>
+				</Scripts>
+				<NormalTexture file="Interface\AddOns\DPSMate\images\UI-ChatIM-SizeGrabber-Up"/>
+				<PushedTexture file="Interface\AddOns\DPSMate\images\UI-ChatIM-SizeGrabber-Down"/>
+				<HighlightTexture file="Interface\AddOns\DPSMate\images\UI-ChatIM-SizeGrabber-Highlight" alphaMode="ADD"/>
+			</Button>
+			<Frame name="$parent_Head">
+				<Size y="16" />
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="TOPRIGHT"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parent_Background">
+							<Color r="1" g="0.82" b="0"/>
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+								<Anchor point="BOTTOMRIGHT"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString name="$parent_Font" inherits="GameFontNormalSmall" justifyH="LEFT">
+							<Size x="200" y="16" />
+							<Anchors>
+								<Anchor point="LEFT" />
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "TOPLEFT")
+						GameTooltip:AddLine(DPSMate.L["rcchangemode"])
+						GameTooltip:Show()
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide()
+					</OnLeave>
+					<OnMouseDown>
+						if arg1 == "LeftButton" and not DPSMateSettings.lock then
+							this:GetParent():StartMoving()
+						end
+					</OnMouseDown>
+					<OnMouseUp>
+						if arg1 == "RightButton" then
+							DPSMate.Options:OpenMenu(1, this:GetParent())
+						else
+							this:GetParent():StopMovingOrSizing()
+							local point, _, _, xOfs, yOfs = this:GetParent():GetPoint()
+							DPSMateSettings["windows"][this:GetParent().Key]["position"] = {}
+							DPSMateSettings["windows"][this:GetParent().Key]["position"][1] = point
+							DPSMateSettings["windows"][this:GetParent().Key]["position"][2] = xOfs
+							DPSMateSettings["windows"][this:GetParent().Key]["position"][3] = yOfs
+						end
+					</OnMouseUp>
+				</Scripts>
+				<Frames>
+					<Button name="$parent_Config">
+						<Size x="16" y="16" />
+						<Scripts>
+							<OnEnter>
+								GameTooltip:SetOwner(this, "TOPLEFT")
+								GameTooltip:AddLine(DPSMate.L["config"])
+								GameTooltip:Show()
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+							<OnMouseUp>
+								DPSMate.Options:OpenMenu(3, this:GetParent():GetParent())
+							</OnMouseUp>
+						</Scripts>
+						<HighlightTexture file="Interface\AddOns\DPSMate\images\icon-config" alphaMode="ADD"/>
+ 						<NormalTexture file="Interface\AddOns\DPSMate\images\icon-config"/>
+						<PushedTexture file="Interface\AddOns\DPSMate\images\icon-config"/>
+					</Button>
+					<Button name="$parent_Reset">
+						<Size x="14" y="14" />
+						<Scripts>
+							<OnEnter>
+								GameTooltip:SetOwner(this, "TOPLEFT")
+								GameTooltip:AddLine(DPSMate.L["reset"])
+								GameTooltip:Show()
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+							<OnClick>
+								DPSMate_PopUp:Show()
+							</OnClick>
+						</Scripts>
+						<HighlightTexture file="Interface\AddOns\DPSMate\images\icon-reset" alphaMode="ADD"/>
+						<NormalTexture file="Interface\AddOns\DPSMate\images\icon-reset"/>
+						<PushedTexture file="Interface\AddOns\DPSMate\images\icon-reset"/>
+					</Button>
+					<Button name="$parent_Segments">
+						<Size x="14" y="14" />
+						<Scripts>
+							<OnEnter>
+								GameTooltip:SetOwner(this, "TOPLEFT")
+								GameTooltip:AddLine(DPSMate.L["segment"])
+								GameTooltip:Show()
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+							<OnMouseUp>
+								DPSMate.Options:OpenMenu(2, this:GetParent():GetParent())
+							</OnMouseUp>
+						</Scripts>
+						<HighlightTexture file="Interface\AddOns\DPSMate\images\UI-GuildButton-PublicNote-Up" alphaMode="ADD"/>
+						<NormalTexture file="Interface\AddOns\DPSMate\images\UI-GuildButton-PublicNote-Up"/>
+						<PushedTexture file="Interface\AddOns\DPSMate\images\UI-GuildButton-PublicNote-Up"/>
+					</Button>
+					<Button name="$parent_Filter">
+						<Size x="14" y="14" />
+						<Scripts>
+							<OnEnter>
+								GameTooltip:SetOwner(this, "TOPLEFT")
+								GameTooltip:AddLine(DPSMate.L["filter"])
+								GameTooltip:Show()
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+							<OnMouseUp>
+								DPSMate.Options:OpenMenu(5, this:GetParent():GetParent())
+							</OnMouseUp>
+						</Scripts>
+						<HighlightTexture file="Interface\AddOns\DPSMate\images\UI-GuildButton-PublicNote-Up" alphaMode="ADD"/>
+						<NormalTexture file="Interface\AddOns\DPSMate\images\UI-GuildButton-PublicNote-Up"/>
+						<PushedTexture file="Interface\AddOns\DPSMate\images\UI-GuildButton-PublicNote-Up"/>
+					</Button>
+					<Button name="$parent_Report">
+						<Size x="14" y="14" />
+						<Scripts>
+							<OnEnter>
+								GameTooltip:SetOwner(this, "TOPLEFT")
+								GameTooltip:AddLine(DPSMate.L["report"])
+								GameTooltip:Show()
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+							<OnClick>
+								DPSMate_Report.PaKey=this:GetParent():GetParent().Key 
+								DPSMate_Report:Show()
+							</OnClick>
+						</Scripts>
+						<HighlightTexture file="Interface\AddOns\DPSMate\images\UI-GuildButton-MOTD-Up" alphaMode="ADD"/>
+						<NormalTexture file="Interface\AddOns\DPSMate\images\UI-GuildButton-MOTD-Up"/>
+						<PushedTexture file="Interface\AddOns\DPSMate\images\UI-GuildButton-MOTD-Up"/>
+					</Button>
+					<Button name="$parent_Sync">
+						<Size x="14" y="14" />
+						<Scripts>
+							<OnEnter>
+								GameTooltip:SetOwner(this, "TOPLEFT")
+								GameTooltip:AddLine(DPSMate.L["sync"])
+								GameTooltip:Show()
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+							<OnClick>
+								DPSMate.Options:ToggleSync()
+							</OnClick>
+						</Scripts>
+						<HighlightTexture file="Interface\AddOns\DPSMate\images\sync" alphaMode="ADD"/>
+						<NormalTexture file="Interface\AddOns\DPSMate\images\sync"/>
+						<PushedTexture file="Interface\AddOns\DPSMate\images\sync"/>
+					</Button>
+					<Checkbutton name="$parent_Enable" inherits="UICheckButtonTemplate">
+						<Size x="18" y="18" />
+						<Scripts>
+							<OnEnter>
+								GameTooltip:SetOwner(this, "TOPLEFT")
+								GameTooltip:AddLine(DPSMate.L["enabledisable"])
+								GameTooltip:Show()
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide()
+							</OnLeave>
+							<OnClick>
+								DPSMate.Options:ToggleState()
+							</OnClick>
+						</Scripts>
+					</Checkbutton>
+				</Frames>
+			</Frame>
+			<ScrollFrame name="$parent_ScrollFrame">
+				<Size y="84" />
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_Head" relativePoint="BOTTOMLEFT">
+						<Offset x="0.5" y="0" />
+					</Anchor>
+					<Anchor point="TOPRIGHT" relativeTo="$parent_Head" relativePoint="BOTTOMRIGHT" />
+				</Anchors>
+				<Layers>
+					<Layer leve="BACKGROUND">
+						<Texture name="$parent_Background" file="Interface\Tooltips\UI-Tooltip-Background">
+							<Color r="1" g="1" b="1"/>
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+								<Anchor point="BOTTOMRIGHT"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetVerticalScroll(0)
+					</OnLoad>
+					<OnMouseWheel>
+						DPSMate.Options:OnVerticalScroll(this, arg1)
+					</OnMouseWheel>
+				</Scripts>
+				<ScrollChild>
+					<Frame name="$parent_Child">
+						<Size x="400" />
+						<Frames>
+							<StatusBar name="$parent_Total" inherits="DPSMate_StatusBarTotal" />
+							<StatusBar name="$parent_StatusBar1" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar2" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar3" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar4" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar5" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar6" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar7" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar8" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar9" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar10" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar11" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar12" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar13" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar14" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar15" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar16" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar17" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar18" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar19" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar20" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar21" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar22" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar23" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar24" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar25" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar26" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar27" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar28" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar29" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar30" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar31" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar32" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar33" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar34" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar35" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar36" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar37" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar38" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar39" inherits="DPSMate_StatusBar" />
+							<StatusBar name="$parent_StatusBar40" inherits="DPSMate_StatusBar" />
+						</Frames>
+					</Frame>
+				</ScrollChild>
+			</ScrollFrame>
+		</Frames>
+	</Frame>
+	
+	<GameTooltip name="DPSMate_Tooltip" frameStrata="TOOLTIP" hidden="false" parent="UIParent" inherits="GameTooltipTemplate">
+		<Scripts>
+			<Onload>
+				this:SetOwner(WorldFrame, "ANCHOR_NONE")
+			</Onload>
+	   </Scripts>
+	</GameTooltip>
+</Ui>

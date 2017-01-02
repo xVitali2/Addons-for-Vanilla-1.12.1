@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Bindings>
+   <Binding name="RECIPERADAR_TOGGLE" header="RECIPERADAR_HEADER">
+      RecipeRadar_Toggle()
+   </Binding>
+</Bindings>

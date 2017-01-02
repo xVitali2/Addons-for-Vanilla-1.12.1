@@ -1,0 +1,45 @@
+------------------------------------------------------------------------
+r17284 | rabbit | 2006-11-17 10:47:28 -0500 (Fri, 17 Nov 2006) | 1 line
+
+BigWigs_KLHTMTarget: New name format.
+------------------------------------------------------------------------
+r17268 | ammo | 2006-11-17 10:04:37 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_KLHTMTarget: no more X-BigWigsModule required
+
+------------------------------------------------------------------------
+r15075 | xinsonic | 2006-10-24 09:17:20 -0400 (Tue, 24 Oct 2006) | 2 lines
+
+BigWigs_KLHTMTarget: Added zhTW, thanks to hmj.
+
+------------------------------------------------------------------------
+r14299 | rabbit | 2006-10-18 21:01:16 -0400 (Wed, 18 Oct 2006) | 1 line
+
+BigWigs_KLHTMTarget: AceLocale-2.2.
+------------------------------------------------------------------------
+r13486 | rabbit | 2006-10-09 22:35:22 -0400 (Mon, 09 Oct 2006) | 3 lines
+
+BigWigs_KLHTMTarget: Crap guildmates forcing me to fix this ..
+ * Works when you're not in a raid now.
+ * Also fixed it so that it works at all. Previously it checked if the module was active or not, but there's no guarantee for either.
+------------------------------------------------------------------------
+r12826 | rabbit | 2006-10-03 12:32:26 -0400 (Tue, 03 Oct 2006) | 1 line
+
+BigWigs_KLHTMTarget: Set svn keywords.
+------------------------------------------------------------------------
+r12825 | rabbit | 2006-10-03 12:31:45 -0400 (Tue, 03 Oct 2006) | 1 line
+
+BigWigs_KLHTMTarget: Don't do anything if we're not promoted/leader.
+------------------------------------------------------------------------
+r12819 | rabbit | 2006-10-03 11:27:12 -0400 (Tue, 03 Oct 2006) | 1 line
+
+BigWigs_KLHTMTarget: This mod is ORPHANED. Noone cares about it and you shouldn't ask questions about it. Fix it yourself.
+------------------------------------------------------------------------
+r12818 | rabbit | 2006-10-03 11:17:33 -0400 (Tue, 03 Oct 2006) | 1 line
+
+BigWigs_KLHTMTarget: svn:keywords
+------------------------------------------------------------------------
+r12817 | rabbit | 2006-10-03 11:16:31 -0400 (Tue, 03 Oct 2006) | 1 line
+
+BigWigs_KLHTMTarget: Initial import. Sets the KLH Threat Meter main target when a bigwigs boss module is enabled. May cause insanity if used in BWL.
+------------------------------------------------------------------------

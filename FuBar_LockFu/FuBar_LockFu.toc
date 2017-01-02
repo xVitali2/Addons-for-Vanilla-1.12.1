@@ -1,0 +1,18 @@
+## Interface: 11200
+## Title: FuBar - |cffffffffLock|r|cff00ff00Fu|r
+## Notes: FuBar Lock for Chat & ActionBar
+## Notes-ruRU: FuBar блокировка для чата и панелей действий
+## Author: fenlis
+## X-eMail: fenlis@naver.com
+## X-Website: 
+## X-Category: Others
+## Dependencies: !!!Libs
+## OptionalDeps: FuBar
+## Version: 2.2
+## SavedVariables: LockFuDB
+
+LockFuLocals_enUS.lua
+LockFuLocals_ruRU.lua
+LockFuLocals_koKR.lua
+LockFuLocals_deDE.lua
+LockFu.lua

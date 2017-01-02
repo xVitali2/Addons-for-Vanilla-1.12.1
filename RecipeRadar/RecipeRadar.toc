@@ -1,0 +1,19 @@
+## Interface: 11200
+## Version: 1.12
+## Title: Recipe Radar
+## Title-ruRU: Радар рецептов
+## Author: Jay Miller
+## Notes: Locates vendors who sell recipes in the current region or by profession.
+## Notes-ruRU: Показывает вендоров, которые продают рецепты в данной территории или все свитки профессии.
+## Notes-deDE: Lokalisiert H�ndler, die Rezepte im Strombereich oder durch Beruf verkaufen.
+## Notes-frFR: Localise les marchands qui vendent des recettes dans la r�gion courante ou par profession.
+## SavedVariables: RecipeRadar_SkillDB RecipeRadar_NameCache
+## SavedVariablesPerCharacter: RecipeRadar_Options RecipeRadar_Filters
+Localization.lua
+Globals.lua
+FrameTemplates.xml
+Maps.xml
+MinimapButton.xml
+AvailabilityTooltip.xml
+RecipeRadar.xml
+OptionsFrame.xml

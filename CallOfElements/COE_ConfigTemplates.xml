@@ -1,0 +1,340 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="COE_Config.lua"/>
+
+	<!-- config panel template -->
+	<Frame name="COE_ConfigPanelTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="360" y="440"/>
+		</Size>
+		<Backdrop name="$parentBackdrop" bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor( 1, 1, 1 );
+				this:SetBackdropColor( 0.1, 0.1, 0.1 );
+				COE_Config:OnConfigElementLoad( getglobal( this:GetName().."TitleBoxText" ) );
+			</OnLoad>
+		</Scripts>
+		<Frames>
+			<Frame name="$parentTitleBox" inherits="OptionFrameBoxTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="-5"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-5" y="-45"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentText" inherits="GameFontNormalLarge" text="Blah">
+							<Anchors>
+								<Anchor point="TOP" relativeTo="$parentTitleBox" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+								<Anchor point="BOTTOM" relativeTo="$parentTitleBox" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+	</Frame>
+
+
+	<!-- config sub panel template -->
+	<Frame name="COE_ConfigSubPanelTemplate" inherits="OptionFrameBoxTemplate" virtual="true">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="5" y="-115"/>
+				</Offset>
+			</Anchor>
+			<Anchor point="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor( 0.5, 0.5, 0.5 );
+				this:SetBackdropColor( 0.1, 0.1, 0.1 );
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<!-- config tab button -->
+	<CheckButton name="COE_ConfigPanelButtonTemplate" inherits="ActionButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="40" y="40"/>
+		</Size>
+		<Scripts>
+			<OnClick>
+				COE_Config:OnTabButtonClick();
+			</OnClick>
+			<OnEnter>
+				COE_Config:OnConfigElementEnter();
+			</OnEnter>
+			<OnLeave>
+				COE_Config:OnConfigElementLeave();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+
+	<!-- config sub tab button -->
+	<CheckButton name="COE_ConfigSubPanelButtonTemplate" inherits="GameMenuButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="100" y="30"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				COE_Config:OnConfigElementLoad( this );
+			</OnLoad>
+			<OnClick>
+				COE_Config:OnSubTabButtonClick( this );
+			</OnClick>
+			<OnEnter>
+				COE_Config:OnConfigElementEnter();
+			</OnEnter>
+			<OnLeave>
+				COE_Config:OnConfigElementLeave();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+
+	<!-- check button template -->
+	<CheckButton name="COE_ConfigCheckButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				COE_Config:OnConfigElementLoad( getglobal( this:GetName() .. "Text" ) );
+			</OnLoad>
+			<OnShow>
+				COE_Config:OnCheckBoxShow();
+			</OnShow>
+			<OnClick>
+				COE_Config:OnCheckBoxClick();
+			</OnClick>
+			<OnEnter>
+				COE_Config:OnConfigElementEnter();
+			</OnEnter>
+			<OnLeave>
+				COE_Config:OnConfigElementLeave();
+			</OnLeave>
+		</Scripts>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+		<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+		<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+	</CheckButton>
+	
+	<Frame name="COE_ConfigComboBoxTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="180" y="20"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				COE_Config:OnConfigElementLoad( getglobal( this:GetName() .. "LeftText" ) );
+			</OnLoad>
+		</Scripts>
+		<Frames>
+			<Button name="$parentCB" inherits="UIDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetID( this:GetParent():GetID() );
+					</OnLoad>
+					<OnShow>
+						COE_Config:OnComboBoxShow();
+					</OnShow>
+					<OnEnter>
+						COE_Config:OnConfigElementEnter();
+					</OnEnter>
+					<OnLeave>
+						COE_Config:OnConfigElementLeave();
+					</OnLeave>
+				</Scripts>
+			</Button>
+			<Frame name="$parentLeft">
+				<Size>
+					<AbsDimension x="50" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentCB" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="120" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentText" inherits="GameFontNormal" text="">
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+	</Frame>
+	
+	<!-- totem set config button -->
+	<CheckButton name="COE_ConfigSetButtonTemplate" inherits="GameMenuButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="150" y="30"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				COE_Config:OnConfigElementLoad( this );
+			</OnLoad>
+		</Scripts>
+	</CheckButton>
+
+	<!-- totem set edit box -->
+	<EditBox name="COE_ConfigEditTemplate" historyLines="0" multiline="false" autoFocus="false" numeric="false" virtual="true">
+		<Size>
+			<AbsDimension x="124" y="32"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\ChatFrame\UI-ChatInputBorder-Left">
+					<Size>
+						<AbsDimension x="70" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="-8" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\ChatFrame\UI-ChatInputBorder-Right">
+					<Size>
+						<AbsDimension x="70" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT">
+							<Offset>
+								<AbsDimension x="8" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<FontString inherits="ChatFontNormal"/>
+	</EditBox>
+
+	<!-- cast order template -->
+	<Button name="COE_ConfigOrderTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="120" y="25"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" justifyH="LEFT" inherits="ChatFontNormal">
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="10" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentMoveDown" inherits="UIPanelScrollDownButtonTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="RIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						COE_Config:DoCastOrder( false );
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentMoveUp" inherits="UIPanelScrollUpButtonTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parentMoveDown" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						COE_Config:DoCastOrder( true );
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Button>
+	
+	<!-- cast order template -->
+	<Slider name="COE_ConfigSliderTemplate" inherits="OptionsSliderTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="130" y="15"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				COE_Config:OnConfigElementLoad( getglobal( this:GetName() .. "Text" ) );
+			</OnLoad>
+			<OnShow>
+				COE_Config:OnSliderShow();
+			</OnShow>
+			<OnValueChanged>
+				COE_Config:OnSliderChange();
+			</OnValueChanged>
+		</Scripts>
+	</Slider>
+	
+</Ui>

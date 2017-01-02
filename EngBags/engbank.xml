@@ -1,0 +1,1012 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="default_items.lua"/>
+	<Script file="tooltip.lua"/>
+	<Script file="support_funcs.lua"/> 
+	<Script file="engbags.lua"/>
+	<Script file="eb_config.lua"/>
+	<Script file="chat_cmd_handler.lua"/> 
+	<Script file="EngBank.lua"/> 
+	<Script file="hooks.lua"/>
+	<Script file="localization.lua"/>
+	<Script file="engcrafts.lua"/>
+
+
+	<GameTooltip name="EngBank_tt" frameStrata="TOOLTIP" hidden="true" parent="UIParent" inherits="GameTooltipTemplate">
+		<Scripts>
+			<OnLoad>
+				this:SetOwner(UIParent, "ANCHOR_NONE");
+			</OnLoad>
+		</Scripts>
+	</GameTooltip>
+
+	<FontString name="EngBank_BigFont"  font="Interface\AddOns\EngBags\DAB_CooldownFont.ttf" virtual="true">
+		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+		<FontHeight>
+			<AbsValue val="16"/>
+		</FontHeight>
+		<Color r="1" g="0" b="0.25"/>
+	</FontString>
+
+	<Texture name="EngBank_ButtonBackgroundTemplate" file="Interface\AddOns\EngBags\skin\button_background" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="64" y="64"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+	</Texture>	
+
+	<Button name="EngBank_ItemButtonTemplate" inherits="ItemButtonTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="40" y="40"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Model name="$parent_Cooldown" inherits="CooldownFrameTemplate"/>
+		</Frames>
+		<Scripts>
+			<OnClick>
+				EngBank_ItemButton_OnClick(arg1);
+			</OnClick>
+			<OnDragStart>
+				EngBank_ItemButton_OnClick("LeftButton", 1);
+			</OnDragStart>
+			<OnReceiveDrag>
+				EngBank_ItemButton_OnClick("LeftButton", 1);
+			</OnReceiveDrag>
+			<OnLoad>
+		        this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+				this:RegisterForDrag("LeftButton");
+			</OnLoad>
+			<OnHide>
+				if ( this.hasStackSplit and (this.hasStackSplit == 1) ) then
+					StackSplitFrame:Hide();
+				end
+			</OnHide>
+			<OnEnter>
+				EngBank_ItemButton_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				EngBank_ItemButton_OnLeave();
+			</OnLeave>
+			<OnUpdate>
+				EngBank_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Button>
+
+	<Button name="EngBank_SlotTargetTemplate" inherits="ItemButtonTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="40" y="40"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parent_BigText" inherits="EngBank_BigFont" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="LEFT">
+							<Offset><AbsDimension x="-2" y="0"/></Offset>
+						</Anchor>
+						<Anchor point="RIGHT" relativePoint="RIGHT">
+							<Offset><AbsDimension x="2" y="0"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				EngBank_SlotTargetButton_OnClick(arg1);
+			</OnClick>
+			<OnDragStart>
+				EngBank_SlotTargetButton_OnClick("LeftButton", 1);
+			</OnDragStart>
+			<OnReceiveDrag>
+				EngBank_SlotTargetButton_OnClick("LeftButton", 1);
+			</OnReceiveDrag>
+			<OnLoad>
+		        this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+				this:RegisterForDrag("LeftButton");
+			</OnLoad>
+			<OnHide>
+				if ( this.hasStackSplit and (this.hasStackSplit == 1) ) then
+					StackSplitFrame:Hide();
+				end
+			</OnHide>
+			<OnEnter>
+				EngBank_SlotTargetButton_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				EngBank_SlotTargetButton_OnLeave();
+			</OnLeave>
+			<OnUpdate>
+				EngBank_SlotTargetButton_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Button>
+
+	<Frame name="EngBank_frame_bar_Template" toplevel="false" frameStrata="MEDIUM" movable="false" enableMouse="false" hidden="true" virtual="true"> 
+		<Size><AbsDimension x="200" y="46"/></Size>
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="8"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="8"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="2" right="2" top="2" bottom="2"/>
+			</BackgroundInsets>
+		</Backdrop>
+	</Frame>
+
+	<Frame name="EngBank_frame" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="UIParent"> 
+		<Size><AbsDimension x="500" y="500"/></Size>
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+			<!--<EdgeSize>
+			 	<AbsValue val="8"/>
+			</EdgeSize>
+			-->
+			<TileSize>
+				<AbsValue val="8"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="4" right="4" top="4" bottom="4"/>
+			</BackgroundInsets>
+		</Backdrop>
+
+		<Layers>
+
+			<Layer level="ARTWORK">
+				<Texture name="$parentPortrait" hidden="true" file="Interface\AddOns\EngBags\Skin\EngPortait" >
+					<Size><AbsDimension x="58" y="58"/></Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset><AbsDimension x="-7" y="2"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+							
+				<Texture name="$parentTextureTopLeft" file="Interface\AddOns\EngBags\Skin\EngTopLeft" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset><AbsDimension x="-67" y="60"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureTopRight" file="Interface\AddOns\EngBags\Skin\EngTopRight" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT"> 
+							<Offset><AbsDimension x="36" y="60"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureTopCenter" file="Interface\AddOns\EngBags\Skin\EngTopCenter" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentTextureTopLeft" relativePoint="BOTTOMRIGHT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentTextureTopRight" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+
+				<Texture name="$parentTextureBottomLeft" file="Interface\AddOns\EngBags\Skin\EngBottomLeft" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset><AbsDimension x="-67" y="-60"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureBottomRight" file="Interface\AddOns\EngBags\Skin\EngBottomRight" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT"> 
+							<Offset><AbsDimension x="36" y="-60"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureBottomCenter" file="Interface\AddOns\EngBags\Skin\EngBottomCenter" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextureBottomLeft" relativePoint="TOPRIGHT"/>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextureBottomRight" relativePoint="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+
+				<Texture name="$parentTextureLeft" file="Interface\AddOns\EngBags\Skin\EngLeft" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextureTopLeft" relativePoint="BOTTOMRIGHT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentTextureBottomLeft" relativePoint="TOPRIGHT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureRight" file="Interface\AddOns\EngBags\Skin\EngRight" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextureTopRight" relativePoint="BOTTOMLEFT"/>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentTextureBottomRight" relativePoint="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+<!--
+				<Texture name="$parentTextureCenter" file="Interface\AddOns\EngBags\Skin\EngCenter" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextureTopCenter" relativePoint="BOTTOMLEFT"/>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextureTopCenter" relativePoint="BOTTOMRIGHT"/>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentTextureBottomCenter" relativePoint="TOPLEFT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentTextureBottomCenter" relativePoint="TOPRIGHT"/>
+					</Anchors>
+				</Texture>
+
+
+			</Layer>
+
+			<Layer level="ARTWORK">
+-->
+				<FontString name="EngBankFrameTitleText" inherits="GameFontHighlight">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="70" y="-9"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+
+				<Texture name="EngBank_frame_Item_1_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_2_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_3_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_4_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_5_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_6_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_7_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_8_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_9_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_10_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_11_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_12_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_13_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_14_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_15_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_16_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_17_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_18_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_19_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_20_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_21_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_22_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_23_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_24_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_25_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_26_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_27_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_28_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_29_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_30_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_31_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_32_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_33_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_34_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_35_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_36_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_37_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_38_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_39_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_40_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_41_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_42_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_43_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_44_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_45_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_46_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_47_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_48_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_49_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_50_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_51_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_52_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_53_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_54_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_55_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_56_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_57_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_58_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_59_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_60_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_61_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_62_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_63_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_64_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_65_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_66_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_67_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_68_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_69_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_70_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_71_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_72_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_73_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_74_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_75_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_76_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_77_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_78_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_79_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_80_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_81_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_82_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_83_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_84_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_85_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_86_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_87_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_88_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_89_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_90_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_91_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_92_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_93_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_94_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_95_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_96_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_97_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_98_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_99_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_100_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_101_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_102_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_103_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_104_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_105_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_106_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_107_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_108_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_109_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_110_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_111_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_112_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_113_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_114_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_115_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_116_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_117_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_118_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_119_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_120_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_121_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_122_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_123_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_124_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_125_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_126_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_127_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_128_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_129_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_130_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_131_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_132_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_133_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_134_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_135_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_136_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_137_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_138_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_139_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_140_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_141_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_142_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_143_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_Item_144_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+
+
+
+				<Texture name="EngBank_frame_SlotTarget_1_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_2_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_3_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_4_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_5_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_6_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_7_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_8_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_9_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_10_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_11_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_12_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_13_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_14_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+				<Texture name="EngBank_frame_SlotTarget_15_bkgr" inherits="EngBank_ButtonBackgroundTemplate"/>
+			</Layer>
+		</Layers>
+
+		<Frames>
+
+
+			<Button name="EngBank_Button_ChangeEditMode" inherits="GameMenuButtonTemplate" text="Edit">
+				<Size><AbsDimension x="85" y="25"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="EngBank_Button_HighlightToggle" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EngBank_Button_ChangeEditMode_OnClick();
+					</OnClick>
+					<OnEnter>
+						GameTooltip_AddNewbieTip(EBLocal["EngBank_Button_ChangeEditMode_tooltip_title"], 1.0, 1.0, 1.0, EBLocal["EngBank_Button_ChangeEditMode_tooltip"]);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="EngBank_Button_ColumnsAdd" inherits="GameMenuButtonTemplate" text="++">
+				<Size><AbsDimension x="120" y="25"/></Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="-2" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn");
+						EngBank_IncreaseColumns();
+					</OnClick>
+
+					<OnEnter>
+						GameTooltip_AddNewbieTip(
+							EBLocal["EngBank_Button_ColumnsAdd_tooltip_title"],
+							1.0, 1.0, 1.0,
+							EBLocal["EngBank_Button_ColumnsAdd_tooltip"] );
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="EngBank_Button_ColumnsDel" inherits="GameMenuButtonTemplate" text="--">
+				<Size><AbsDimension x="120" y="25"/></Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="2" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn");
+						EngBank_DecreaseColumns();
+					</OnClick>
+
+					<OnEnter>
+						GameTooltip_AddNewbieTip(
+							EBLocal["EngBank_Button_ColumnsDel_tooltip_title"],
+							1.0, 1.0, 1.0,
+							EBLocal["EngBank_Button_ColumnsDel_tooltip"] );
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+
+			<Button name="EngBank_Button_Close" inherits="GameMenuButtonTemplate" text="X">
+				<Size><AbsDimension x="22" y="25"/></Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-4" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EngBank_frame:Hide();
+						CloseBankFrame();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="EngBank_Button_MoveLockToggle" inherits="GameMenuButtonTemplate" text="-">
+				<Size><AbsDimension x="22" y="25"/></Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="EngBank_Button_Close" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EngBank_Button_MoveLockToggle_OnClick();
+					</OnClick>
+					<OnEnter>
+						if (EngBankConfig["moveLock"] == 0) then
+							GameTooltip_AddNewbieTip("Window Dragging: Off", 1.0, 1.0, 1.0, "Window is currently locked in place.");
+						else
+							GameTooltip_AddNewbieTip("Window Dragging: On", 1.0, 1.0, 1.0, "Window is currently unlocked.");
+						end
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+
+			<Button name="EngBank_Button_HighlightToggle" inherits="GameMenuButtonTemplate" text="Hilight New: OFF">
+				<Size><AbsDimension x="150" y="25"/></Size>
+				<Anchors>
+				<Anchor point="TOPRIGHT" relativeTo="EngBank_Button_Close" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-25" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EngBank_Button_HighlightToggle_OnClick();
+					</OnClick>
+					<OnEnter>
+						if (EngBank_hilight_new == 0) then
+							GameTooltip_AddNewbieTip(EBLocal["EngBank_Button_HighlightToggle_off"], 1.0, 1.0, 1.0, EBLocal["EngBank_Button_HighlightToggle_off_tooltip"]);
+						else
+							GameTooltip_AddNewbieTip(EBLocal["EngBank_Button_HighlightToggle_on"], 1.0, 1.0, 1.0, EBLocal["EngBank_Button_HighlightToggle_on_tooltip"]);
+						end
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="B4nkFrameBag1" inherits="BankItemButtonBagTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="7" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="B4nkFrameBag2" inherits="BankItemButtonBagTemplate" id="6">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="B4nkFrameBag1" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="B4nkFrameBag3" inherits="BankItemButtonBagTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="B4nkFrameBag2" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="B4nkFrameBag4" inherits="BankItemButtonBagTemplate" id="8">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="B4nkFrameBag3" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="B4nkFrameBag5" inherits="BankItemButtonBagTemplate" id="9">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="B4nkFrameBag4" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="B4nkFrameBag6" inherits="BankItemButtonBagTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="B4nkFrameBag5" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+
+			<Frame name="EngBags_UserDropdown" inherits="UIDropDownMenuTemplate" enableMouse="true">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-4" y="-33"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="$parentLabel" inherits="GameFontNormalSmall" text="Select Player::">
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="-70" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnShow>
+						EngBags_UserDropdown_OnLoad();
+					</OnShow>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
+						GameTooltip:SetText(this.tooltip, nil, nil, nil, nil, 1);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Frame>
+
+			<Frame name="EngBank_MoneyFrame" inherits="SmallMoneyFrameTemplate" hidden="true">
+			<Size><AbsDimension x="22" y="25"/></Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+
+			<Button name="EngBank_PurchaseButton" inherits="UIPanelButtonTemplate" virtual="true" text="BANKSLOTPURCHASE" hidden="false">
+				<Size>
+					<AbsDimension x="124" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-23"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOption");
+						PurchaseSlot();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Frame name="EngBank_SlotCostFrame" inherits="SmallMoneyFrameTemplate" hidden="false">
+			<Size><AbsDimension x="22" y="25"/></Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-115" y="-25"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad();
+						MoneyFrame_SetType("STATIC");
+					</OnLoad>
+				</Scripts>
+			</Frame>
+
+			<Frame name="EngBank_frame_bar_1" inherits="EngBank_frame_bar_Template"/> 
+			<Frame name="EngBank_frame_bar_2" inherits="EngBank_frame_bar_Template"/> 
+			<Frame name="EngBank_frame_bar_3" inherits="EngBank_frame_bar_Template"/>
+
+			<Frame name="EngBank_frame_bar_4" inherits="EngBank_frame_bar_Template"/> 
+			<Frame name="EngBank_frame_bar_5" inherits="EngBank_frame_bar_Template"/> 
+			<Frame name="EngBank_frame_bar_6" inherits="EngBank_frame_bar_Template"/> 
+
+			<Frame name="EngBank_frame_bar_7" inherits="EngBank_frame_bar_Template"/>
+			<Frame name="EngBank_frame_bar_8" inherits="EngBank_frame_bar_Template"/> 
+			<Frame name="EngBank_frame_bar_9" inherits="EngBank_frame_bar_Template"/>
+
+			<Frame name="EngBank_frame_bar_10" inherits="EngBank_frame_bar_Template"/> 
+			<Frame name="EngBank_frame_bar_11" inherits="EngBank_frame_bar_Template"/> 
+			<Frame name="EngBank_frame_bar_12" inherits="EngBank_frame_bar_Template"/>
+
+			<Frame name="EngBank_frame_bar_13" inherits="EngBank_frame_bar_Template"/> 
+			<Frame name="EngBank_frame_bar_14" inherits="EngBank_frame_bar_Template"/> 
+			<Frame name="EngBank_frame_bar_15" inherits="EngBank_frame_bar_Template"/>
+
+			<Button name="EngBank_frame_SlotTarget_1" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_2" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_3" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_4" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_5" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_6" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_7" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_8" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_9" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_10" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_11" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_12" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_13" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_14" inherits="EngBank_SlotTargetTemplate"/>
+			<Button name="EngBank_frame_SlotTarget_15" inherits="EngBank_SlotTargetTemplate"/>
+
+			<Button name="EngBank_frame_Item_1" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_2" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_3" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_4" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_5" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_6" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_7" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_8" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_9" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_10" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_11" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_12" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_13" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_14" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_15" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_16" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_17" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_18" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_19" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_20" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_21" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_22" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_23" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_24" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_25" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_26" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_27" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_28" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_29" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_30" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_31" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_32" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_33" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_34" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_35" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_36" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_37" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_38" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_39" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_40" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_41" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_42" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_43" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_44" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_45" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_46" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_47" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_48" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_49" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_50" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_51" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_52" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_53" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_54" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_55" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_56" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_57" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_58" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_59" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_60" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_61" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_62" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_63" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_64" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_65" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_66" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_67" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_68" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_69" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_70" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_71" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_72" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_73" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_74" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_75" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_76" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_77" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_78" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_79" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_80" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_81" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_82" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_83" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_84" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_85" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_86" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_87" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_88" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_89" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_90" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_91" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_92" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_93" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_94" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_95" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_96" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_97" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_98" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_99" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_100" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_101" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_102" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_103" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_104" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_105" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_106" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_107" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_108" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_109" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_109" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_110" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_111" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_112" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_113" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_114" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_115" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_116" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_117" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_118" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_119" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_120" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_121" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_122" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_123" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_124" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_125" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_126" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_127" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_128" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_129" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_130" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_131" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_132" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_133" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_134" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_135" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_136" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_137" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_138" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_139" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_140" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_141" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_142" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_143" inherits="EngBank_ItemButtonTemplate"/>
+			<Button name="EngBank_frame_Item_144" inherits="EngBank_ItemButtonTemplate"/>
+
+
+			<Frame name="$parent_RightClickMenu" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+				<Scripts>
+					<OnLoad>
+						this:RegisterEvent("VARIABLES_LOADED");
+					</OnLoad>
+					<OnEvent>
+						EngBank_frame_RightClickMenu_OnLoad();
+					</OnEvent>
+				</Scripts>
+			</Frame>
+		</Frames>
+
+		<Scripts>
+			<OnLoad> 
+				this:RegisterEvent("VARIABLES_LOADED"); 
+				this:RegisterEvent("BANKFRAME_OPENED");
+				this:RegisterEvent("BANKFRAME_CLOSED");
+			</OnLoad> 
+			<OnEvent> 
+				if (event == "VARIABLES_LOADED") then 
+					EngBank_init();
+					this:RegisterEvent("BAG_UPDATE");
+					this:RegisterEvent("BAG_UPDATE_COOLDOWN");
+					this:RegisterEvent("ITEM_LOCK_CHANGED");
+					this:RegisterEvent("UPDATE_INVENTORY_ALERTS");
+
+					this:RegisterEvent("PLAYERBANKSLOTS_CHANGED");
+					this:RegisterEvent("PLAYERBANKBAGSLOTS_CHANGED");
+					-- this:RegisterEvent("BAG_UPDATE");
+
+					this:RegisterEvent("PLAYER_MONEY");
+		
+					this:RegisterEvent("CRAFT_SHOW");
+					this:RegisterEvent("TRADE_SKILL_SHOW");
+				else
+					EngBank_OnEvent(event);
+				end
+			</OnEvent> 
+			<OnMouseDown>
+				EngBank_OnMouseDown(arg1, this);
+			</OnMouseDown>
+			<OnMouseUp>
+				EngBank_StopMoving(this);
+			</OnMouseUp>
+			<OnDragStart>
+				EngBank_StartMoving(this);
+			</OnDragStart>
+			<OnDragStop>
+				EngBank_StopMoving(this);
+			</OnDragStop>
+			<OnShow>
+				PlaySound("igBackPackOpen");
+				EngBank_UpdateWindow();
+				EngBank_UpdateBagState();
+			</OnShow>
+			<OnHide>
+				PlaySound("igBackPackClose");
+				EngBank_UpdateBagState();
+				EngBank_StopMoving(this);
+			</OnHide>
+		</Scripts>
+
+	</Frame>
+<GameTooltip name="EngHiddenTooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true" />
+</Ui>

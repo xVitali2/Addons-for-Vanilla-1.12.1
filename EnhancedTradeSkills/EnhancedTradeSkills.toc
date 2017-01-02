@@ -1,0 +1,11 @@
+## Interface: 11200
+## Title: EnhancedTradeSkills
+## Notes: Includes information about bank contents when showing what can be crafted  |cffff7c0aOriginal version by Pinky & Romualdo modified by Triadian
+## Author: Triadian
+## Version: 1.16.8
+## Dependencies: Blizzard_CraftUI, Blizzard_TradeSkillUI
+## OptionalDeps: myAddOns 
+## SavedVariables: Pinky_BankContents, Pinky_Filters, Pinky_Display
+PinkyTradeSkillFrame.xml
+PinkyConfigFrame.xml
+

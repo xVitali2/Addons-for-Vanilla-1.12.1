@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<UI xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+   <Script file="MinimapButton.lua"/>
+
+   <Frame name="RecipeRadarMinimapButtonFrame" parent="Minimap" enableMouse="true" hidden="false" frameStrata="LOW">
+
+      <Size>
+         <AbsDimension x="32" y="32"/>
+      </Size>
+      <Anchors>
+         <Anchor point="TOPLEFT" relativeTo="Minimap" relativePoint="RIGHT">
+            <Offset>
+               <AbsDimension x="2" y="0"/>
+            </Offset>
+         </Anchor>
+      </Anchors>
+
+      <Frames>
+
+         <Frame name="RecipeRadarMinimapButtonHighlightFrame" hidden="true">
+            <Size>
+               <AbsDimension x="32" y="32"/>
+            </Size>
+            <Anchors>
+               <Anchor point="TOPLEFT">
+                  <Offset>
+                     <AbsDimension x="0" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Layers>
+               <Layer level="OVERLAY">
+                  <Texture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+               </Layer>
+            </Layers>
+         </Frame>
+
+         <Button name="RecipeRadarMinimapButton">
+            <Size>
+               <AbsDimension x="32" y="32"/>
+            </Size>
+            <Anchors>
+               <Anchor point="TOPLEFT">
+                  <Offset>
+                     <AbsDimension x="0" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <NormalTexture file="Interface\AddOns\RecipeRadar\Images\Misc\MinimapButtonUp"/>
+            <PushedTexture file="Interface\AddOns\RecipeRadar\Images\Misc\MinimapButtonDown"/>
+            <HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+            <Scripts>
+               <OnLoad>
+                  this.total = 0
+                  this.cntr = 0
+                  this.sign = 1
+                  RECIPERADAR_FLASH_MINIMAP_BUTTON = false
+               </OnLoad>
+               <OnClick>
+                  RecipeRadar_MinimapButton_OnClick()
+               </OnClick>
+               <OnUpdate>
+                  RecipeRadar_MinimapButton_OnUpdate(arg1)
+               </OnUpdate>
+               <OnEnter>
+                  GameTooltip_SetDefaultAnchor(GameTooltip, UIParent)
+                  GameTooltip:SetText(RRS("Recipe Radar"))
+               </OnEnter>
+               <OnLeave>
+                  GameTooltip:Hide()
+               </OnLeave>
+            </Scripts>
+         </Button>
+
+      </Frames>
+
+   </Frame>
+</UI>

@@ -1,0 +1,76 @@
+<!--
+Name: Prat_KeyBindings
+Revision: $Revision: 13965 $
+Author(s): Curney (asml8ed@gmail.com)
+           Krtek (krtek4@gmail.com)
+Website: http://www.wowace.com/files/index.php?path=Prat/
+Documentation: http://www.wowace.com/wiki/Prat/Integrated_Modules#KeyBindings
+SVN: http://svn.wowace.com/wowace/trunk/Prat/
+Description: Module for Prat that adds keybindings for modules.
+Dependencies: Prat
+-->
+
+<Bindings>
+	<!-- ChannelNames -->
+    <Binding name="officer" header="Prat_ChannelNames">
+		ChatFrame_OpenChat("/o");
+	</Binding>
+	<Binding name="guild" >
+		ChatFrame_OpenChat("/g");
+	</Binding>
+ 	<Binding name="party" >
+		ChatFrame_OpenChat("/p");
+	</Binding>
+	<Binding name="raid" >
+		ChatFrame_OpenChat("/raid");
+	</Binding>
+	<Binding name="raidwarn" >
+		ChatFrame_OpenChat("/rw");
+	</Binding>
+	<Binding name="battleground" >
+		ChatFrame_OpenChat("/bg");
+	</Binding>
+	<Binding name="say" >
+		ChatFrame_OpenChat("/say");
+	</Binding>
+	<Binding name="yell" >
+		ChatFrame_OpenChat("/yell");
+	</Binding>
+	<Binding name="whisper" >
+		ChatFrame_OpenChat("/w");
+	</Binding>
+	<Binding name="one">
+		ChatFrame_OpenChat("/1");
+	</Binding>
+	<Binding name="two">
+		ChatFrame_OpenChat("/2");
+	</Binding>
+	<Binding name="three">
+		ChatFrame_OpenChat("/3");
+	</Binding>
+	<Binding name="four">
+		ChatFrame_OpenChat("/4");
+	</Binding>
+	<Binding name="five">
+		ChatFrame_OpenChat("/5");
+	</Binding>
+	<Binding name="six">
+		ChatFrame_OpenChat("/6");
+	</Binding>
+	<Binding name="seven">
+		ChatFrame_OpenChat("/7");
+	</Binding>
+	<Binding name="eight">
+		ChatFrame_OpenChat("/8");
+	</Binding>
+  	<Binding name="nine">
+		ChatFrame_OpenChat("/9");
+	</Binding>
+  	<Binding name="ten">
+		ChatFrame_OpenChat("/10");
+	</Binding>
+	<!-- TellTarget -->
+	<Binding name="TellTarget" header="Prat_TellTarget">
+		Prat_TellTarget:TellTarget();
+	</Binding>
+</Bindings>

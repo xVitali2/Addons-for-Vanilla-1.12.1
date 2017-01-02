@@ -1,0 +1,327 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<!--the other files for the addon-->
+	<Include file="DoTimer_Menu.xml"></Include>
+	<Script file="DoTimer_Data.lua"></Script>
+	<Script file="DoTimer.lua"></Script>
+	<Script file="DoTimer_Menu.lua"></Script>
+	<!--a simple frame; it just handles the onload and onevent for the entire addon-->
+	<Frame name="DoTimerFrame">
+		<Scripts>
+			<OnLoad> DoTimer_OnLoad(); </OnLoad>
+			<OnEvent> DoTimer_OnEvent(event); </OnEvent>
+		</Scripts>
+	</Frame>
+	<!--a bunch of frames i use to delay certain actions for a few seconds-->
+	<Frame name="DoTimerDelayFrame"/>
+	<Frame name="DoTimerIconFrame"/>
+	<Frame name="DoTimerPetFrame"/>
+	<Frame name="DoTimerPetDelayFrame"/>
+	<Frame name="DoTimerPetIconFrame"/>
+	<Frame name="DoTimerCombatFrame"/>
+	<Frame name="DoTimerPreTimerFrame"/>
+	<Frame name="DoTimerHealDelayFrame"/>
+	<Frame name="DoTimerDeathFrame"/>
+	<!--used to parse tooltips for spell information-->
+	<GameTooltip name="DoTimerScanningFrame" inherits="GameTooltipTemplate">
+		<Scripts>
+			<OnLoad> this:SetOwner(this,"ANCHOR_NONE"); </OnLoad>
+		</Scripts>
+	</GameTooltip>
+	<!--the monstrosity behind the debuff icon/time string-->
+	<Frame name="DoTimerDebuffTemplate" virtual="true">
+		<Frames>
+			<!--this frame is shrunken based on the debuff scale; it -just- fits the icon+time string-->
+			<Frame name="$parentDisplayed">
+				<Size>
+					<AbsDimension x="64" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				<Frames>
+					<!-- the button that contains the artwork for the debuff icon-->
+					<Button name="$parentTexture" enableMouse="false" hidden="true">
+						<Size>
+							<AbsDimension x="32" y="32"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent"/>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<!-- the actual icon-->
+								<Texture name="$parentIcon">
+									<Size>
+										<AbsDimension x="32" y="32"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent"/>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<HighlightTexture alphaMode="ADD" file="Interface\Buttons\CheckButtonHilight"/>
+						<Scripts>
+							<OnLoad> this:RegisterForClicks("LeftButtonUp","RightButtonUp"); </OnLoad>
+							<OnClick> 
+								if arg1 == "LeftButton" then
+									DoTimer_ButtonClicked(this:GetParent():GetParent():GetParent():GetID(),this:GetParent():GetParent():GetID())
+								else
+									DoTimer_RemoveTimer(this:GetParent():GetParent():GetParent():GetID(),this:GetParent():GetParent():GetID())
+								end
+							</OnClick> 
+							<OnEnter>
+								if this.spell then
+									GameTooltip:SetOwner(this,"ANCHOR_RIGHT")
+									local extra = "\n"..this.rank
+									if this.rank == "" then extra = "" end
+									GameTooltip:SetText(this.spell..extra)
+									GameTooltip:Show()
+								end
+							</OnEnter>
+							<OnLeave> GameTooltip:Hide(); </OnLeave>
+						</Scripts>
+					</Button>
+					<Button name="$parentIcon" hidden="true">
+						<Size>
+							<AbsDimension x="17" y="17"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent"/>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<!-- the actual icon-->
+								<Texture name="$parentTexture">
+									<Size>
+										<AbsDimension x="17" y="17"/>
+									</Size>
+									<Anchors>
+										<Anchor point="CENTER" relativePoint="CENTER" relativeTo="$parent"/>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<HighlightTexture alphaMode="ADD" file="Interface\Buttons\CheckButtonHilight"/>
+						<Scripts>
+							<OnLoad> this:RegisterForClicks("LeftButtonUp","RightButtonUp"); </OnLoad>
+							<OnClick> 
+								if arg1 == "LeftButton" then
+									DoTimer_ButtonClicked(this:GetParent():GetParent():GetParent():GetID(),this:GetParent():GetParent():GetID())
+								else
+									DoTimer_RemoveTimer(this:GetParent():GetParent():GetParent():GetID(),this:GetParent():GetParent():GetID())
+								end
+							</OnClick> 
+							<OnEnter>
+								if this.spell then
+									GameTooltip:SetOwner(this,"ANCHOR_RIGHT")
+									local extra = "\n"..this.rank
+									if this.rank == "" then extra = "" end
+									GameTooltip:SetText(this.spell..extra)
+									GameTooltip:Show()
+								end
+							</OnEnter>
+							<OnLeave> GameTooltip:Hide(); </OnLeave>
+						</Scripts>
+					</Button>
+					<Frame name="$parentStatus" hidden="true">
+						<Size>
+							<AbsDimension x="155" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentIcon">
+								<Offset>
+									<AbsDimension x="3" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Backdrop edgeFile="Interface\Tooltips\UI-Tooltip-Border">
+							<EdgeSize>
+								<AbsValue val="10"/>
+							</EdgeSize>
+						</Backdrop>
+						<Frames>
+							<StatusBar name="$parentBar" enableMouse="false">
+								<Size>
+									<AbsDimension x="150" y="12"/>
+								</Size>
+								<Anchors>
+									<Anchor point="CENTER" relativePoint="CENTER" relativeTo="$parent"/>
+								</Anchors>
+								<Layers>
+									<Layer level="ARTWORK">
+										<!-- the bar text-->
+										<FontString name="$parentText" inherits="GameFontNormal" justifyH="LEFT" justifyV="CENTER">
+											<Size>
+												<AbsDimension x="150" y="12"/>
+											</Size>
+											<Anchors>
+												<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent"/>
+											</Anchors>
+											<Color r="1.0" g="1.0" b="1.0"/>
+										</FontString>
+									</Layer>
+								</Layers>
+								<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>				
+							</StatusBar>
+							<Button name="$parentButton">
+								<Size>
+									<AbsDimension x="150" y="12"/>
+								</Size>
+								<Anchors>
+									<Anchor point="CENTER" relativePoint="CENTER" relativeTo="$parent"/>
+								</Anchors>
+								<Scripts>
+									<OnLoad> this:RegisterForClicks("LeftButtonUp","RightButtonUp"); </OnLoad>
+									<OnClick> 
+										if arg1 == "LeftButton" then
+											DoTimer_ButtonClicked(this:GetParent():GetParent():GetParent():GetParent():GetID(),this:GetParent():GetParent():GetParent():GetID())
+										else
+											DoTimer_RemoveTimer(this:GetParent():GetParent():GetParent():GetParent():GetID(),this:GetParent():GetParent():GetParent():GetID())
+										end
+									</OnClick>
+									<OnEnter>
+										if this.spell then
+											GameTooltip:SetOwner(this,"ANCHOR_RIGHT")
+											local extra = "\n"..this.rank
+											if this.rank == "" then extra = "" end
+											GameTooltip:SetText(this.spell..extra)
+											GameTooltip:Show()
+										end
+									</OnEnter>
+									<OnLeave> GameTooltip:Hide(); </OnLeave>
+								</Scripts>	
+							</Button>
+						</Frames>
+					</Frame>
+				</Frames>
+				<Layers>
+					<Layer level="ARTWORK">
+						<!-- displays the time: how much is remaining-->
+						<FontString name="$parentTime" text="0:00" inherits="GameFontNormal" justifyH="CENTER" justifyV="CENTER" hidden="true"/>			
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+	</Frame>
+	<!-- the template for a target; it just has the debuffs and a target name string-->
+	<Frame name="DoTimerTargetTemplate" virtual="true">
+		<!-- the 20 debuffs per target-->
+		<Frames>
+			<Button name="$parentName" enableMouse="false">
+				<Layers>
+					<Layer level="ARTWORK">
+						<!-- the target name string-->
+						<FontString name="$parentText" text="name" inherits="GameFontNormal" justifyH="CENTER" justifyV="TOP">
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad> this:RegisterForClicks("LeftButtonUp","RightButtonUp"); </OnLoad>
+					<OnClick> 
+						if arg1 == "LeftButton" then
+							DoTimer_TargetClicked(this:GetParent():GetID())
+						else
+							DoTimer_RemoveTarget(this:GetParent():GetID())
+						end
+					</OnClick>
+					<OnEnter>
+						if this.target then
+							GameTooltip:SetOwner(this,"ANCHOR_RIGHT")
+							GameTooltip:SetText("["..this.level.."]" ..this.target)
+						end
+					</OnEnter>
+					<OnLeave> GameTooltip:Hide(); </OnLeave>
+				</Scripts>
+			</Button>
+			<Frame name="$parentDebuff1" inherits="DoTimerDebuffTemplate" id="1"/>
+			<Frame name="$parentDebuff2" inherits="DoTimerDebuffTemplate" id="2"/>
+			<Frame name="$parentDebuff3" inherits="DoTimerDebuffTemplate" id="3"/>
+			<Frame name="$parentDebuff4" inherits="DoTimerDebuffTemplate" id="4"/>
+			<Frame name="$parentDebuff5" inherits="DoTimerDebuffTemplate" id="5"/>
+			<Frame name="$parentDebuff6" inherits="DoTimerDebuffTemplate" id="6"/>
+			<Frame name="$parentDebuff7" inherits="DoTimerDebuffTemplate" id="7"/>
+			<Frame name="$parentDebuff8" inherits="DoTimerDebuffTemplate" id="8"/>
+			<Frame name="$parentDebuff9" inherits="DoTimerDebuffTemplate" id="9"/>
+			<Frame name="$parentDebuff10" inherits="DoTimerDebuffTemplate" id="10"/>
+			<Frame name="$parentDebuff11" inherits="DoTimerDebuffTemplate" id="11"/>
+			<Frame name="$parentDebuff12" inherits="DoTimerDebuffTemplate" id="12"/>
+			<Frame name="$parentDebuff13" inherits="DoTimerDebuffTemplate" id="13"/>
+			<Frame name="$parentDebuff14" inherits="DoTimerDebuffTemplate" id="14"/>
+			<Frame name="$parentDebuff15" inherits="DoTimerDebuffTemplate" id="15"/>
+			<Frame name="$parentDebuff16" inherits="DoTimerDebuffTemplate" id="16"/>
+			<Frame name="$parentDebuff17" inherits="DoTimerDebuffTemplate" id="17"/>
+			<Frame name="$parentDebuff18" inherits="DoTimerDebuffTemplate" id="18"/>
+			<Frame name="$parentDebuff19" inherits="DoTimerDebuffTemplate" id="19"/>
+			<Frame name="$parentDebuff20" inherits="DoTimerDebuffTemplate" id="20"/>
+		</Frames>
+	</Frame>
+	<!-- the drag button, also defines the position of the timers-->
+	<Button name="DoTimerAnchorFrame" parent="UIParent" enableMouse="true" movable="true" frameStrata="MEDIUM" toplevel="true">
+		<Size>
+			<AbsDimension x="15" y="15"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\AddOns\DoTimer\Extras\DragButton"/>
+				<FontString name="$parentFirstUse" text="blah" inherits="GameFontNormal" justifyH="CENTER" justifyV="TOP" hidden="true">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad> this:RegisterForDrag("LeftButton"); this:RegisterForClicks("LeftButtonUp","RightButtonUp"); </OnLoad>
+			<OnDragStart> if DoTimerAnchorFrameFirstUse:IsVisible() then DoTimerAnchorFrameFirstUse:Hide() end; this:StartMoving(); </OnDragStart>
+			<OnDragStop> this:StopMovingOrSizing(); </OnDragStop>
+			<OnClick> if (arg1 == "RightButton") or (IsShiftKeyDown()) then DoTimer_RemoveAllTimers() end; </OnClick>
+		</Scripts>
+	</Button>
+	<!-- the main frame is shown if the UI is visible; hidden if UI is not (based on the user setting), also defines the scale-->
+	<Frame name="DoTimerMainFrame" parent="UIParent">
+		<Anchors>
+			<Anchor point="CENTER" relativePoint="CENTER" relativeTo="DoTimerAnchorFrame"/>
+		</Anchors>
+		<Size>
+			<AbsDimension x="1" y="1"/>
+		</Size>
+	</Frame>
+	<!-- the 10 targets!-->
+	<Frame name="DoTimerTarget1" inherits="DoTimerTargetTemplate" parent="DoTimerMainFrame" id="1"/>
+	<Frame name="DoTimerTarget2" inherits="DoTimerTargetTemplate" parent="DoTimerMainFrame" id="2"/>
+	<Frame name="DoTimerTarget3" inherits="DoTimerTargetTemplate" parent="DoTimerMainFrame" id="3"/>
+	<Frame name="DoTimerTarget4" inherits="DoTimerTargetTemplate" parent="DoTimerMainFrame" id="4"/>
+	<Frame name="DoTimerTarget5" inherits="DoTimerTargetTemplate" parent="DoTimerMainFrame" id="5"/>
+	<Frame name="DoTimerTarget6" inherits="DoTimerTargetTemplate" parent="DoTimerMainFrame" id="6"/>
+	<Frame name="DoTimerTarget7" inherits="DoTimerTargetTemplate" parent="DoTimerMainFrame" id="7"/>
+	<Frame name="DoTimerTarget8" inherits="DoTimerTargetTemplate" parent="DoTimerMainFrame" id="8"/>
+	<Frame name="DoTimerTarget9" inherits="DoTimerTargetTemplate" parent="DoTimerMainFrame" id="9"/>
+	<Frame name="DoTimerTarget10" inherits="DoTimerTargetTemplate" parent="DoTimerMainFrame" id="10"/>
+	<!-- used when i normalize the spacing of the targets to account for long target names, so they dont overlap most likely-->
+	<Frame name="DoTimerFontTest" parent="DoTimerMainFrame" hidden="true">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" text="0:00" inherits="GameFontNormal" justifyH="CENTER" justifyV="CENTER">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="LEFT" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>			
+			</Layer>
+		</Layers>
+	</Frame>
+</Ui>

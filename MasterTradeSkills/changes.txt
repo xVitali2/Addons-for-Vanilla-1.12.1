@@ -1,0 +1,41 @@
+v1.12.3 (2006/10/29 - 11200 )
+	added Healpoints Compatibility
+v1.12.2 (2006/09/30 - 11200)
+	added a large localization file for frFR client - ( Thanks to Tigaa )
+v1.12.1c (2006/09/17 - 11200)
+	update to deDE Localization
+v1.12.1 (2006/08/30 -11200)
+	included compatibility with Link Wrangler
+	added localisation fix for deDE 
+	added AltNames to RecipeList to match filter
+v1.12 (2006/08/24 - 11200)
+	updated TOC to patch 1.12
+	fixed a bug involving non-english clients
+	fixed a bug affecting all small items
+	added a large localization file for deDE client - ( Thanks to Farook )
+	added option to hide minimap recipes
+	added option to move unknown recipes to bottom
+	added option to hide alt character names
+	added window displaying all recipes with no filters use /MTS Show
+v1.11.2 (2006/08/18 - 11000)
+	added a realm and faction check to alts known recipes 
+	added recipe info to chat link popups
+	added german localization - Thanks Farook
+v1.11.1a (2006/08/16 - 11000)
+	small update fixing a silly error 
+	added a few more mining ores
+v1.11.1 (2006/08/16 - 11000)
+	added alts to list if not known by current char
+	added tooltips to mouseovers on any useful mouseovers I could find
+v1.11 (2006/08/09 - 11000)  - updated by Triadian
+     	added bindings file so that the config screen can be bound to a key
+     	added loads more config options for filtering out by skill level
+     	added max number of lines to show in tooltip
+     	added reverse sorting options
+1.09.1b
+	Fixed a few bugs
+	No more errors with pet training window
+	Should give no more nil errors at MasterTradeSkills.lua:439
+	Fixed a typo
+v1.09.1a (Release From DaDaemon)
+    	initial release

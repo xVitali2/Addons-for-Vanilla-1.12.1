@@ -1,0 +1,429 @@
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<title>Cooldown Pulse</title>
+<style>
+<!--
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:"MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;
+	mso-font-alt:"\FF2D\FF33 \660E\671D";
+	mso-font-charset:128;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 134676480 16 0 131072 0;}
+@font-face
+	{font-family:"\@MS Mincho";
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:128;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 134676480 16 0 131072 0;}
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-noshow:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-noshow:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	font-family:Arial;
+	mso-font-kerning:16.0pt;}
+h3
+	{mso-style-noshow:yes;
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:13.0pt;
+	font-family:Arial;}
+a:link, span.MsoHyperlink
+	{mso-style-noshow:yes;
+	color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p.RevActualRevisionsChar, li.RevActualRevisionsChar, div.RevActualRevisionsChar
+	{mso-style-name:"Rev\: Actual Revisions Char";
+	mso-style-link:"Rev\: Actual Revisions Char Char";
+	mso-style-next:"Rev\: Actual Revisions \(extended text\)";
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:35.7pt;
+	margin-bottom:.0001pt;
+	text-indent:-17.85pt;
+	mso-pagination:widow-orphan;
+	mso-list:l11 level1 lfo1;
+	tab-stops:list 18.15pt 35.7pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"MS Mincho";}
+p.RevActualRevisionsextendedtext, li.RevActualRevisionsextendedtext, div.RevActualRevisionsextendedtext
+	{mso-style-name:"Rev\: Actual Revisions \(extended text\)";
+	mso-style-parent:"Rev\: Actual Revisions Char";
+	mso-style-link:"Rev\: Actual Revisions \(extended text\) Char";
+	mso-style-next:"Rev\: Actual Revisions Char";
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:35.7pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:list 35.7pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"MS Mincho";}
+p.RevNumber, li.RevNumber, div.RevNumber
+	{mso-style-name:"Rev\: Number\,Timestamp\,& Author";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:17.85pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"MS Mincho";
+	color:navy;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.RevSectionandTitle, li.RevSectionandTitle, div.RevSectionandTitle
+	{mso-style-name:"Rev\: Section and Title";
+	mso-style-next:"Rev\: Actual Revisions Char";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:35.85pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:117.0pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"MS Mincho";
+	color:#003300;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.RevFileAffected, li.RevFileAffected, div.RevFileAffected
+	{mso-style-name:"Rev\: File Affected";
+	mso-style-parent:"Rev\: Number\,Timestamp\,& Author";
+	mso-style-next:"Rev\: Section and Title";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:117.1pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"MS Mincho";
+	color:#339966;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	text-decoration:underline;
+	text-underline:single;}
+span.RevRevisionQuotation
+	{mso-style-name:"Rev\: Revision Quotation";
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:16.0pt;
+	color:#4D4D4D;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+span.RevMaterialSource
+	{mso-style-name:"Rev\: Material Source";
+	mso-style-parent:"Rev\: Revision Quotation";
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:16.0pt;
+	color:teal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+span.RevActualRevisionsCharChar
+	{mso-style-name:"Rev\: Actual Revisions Char Char";
+	mso-style-link:"Rev\: Actual Revisions Char";
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"MS Mincho";
+	mso-fareast-font-family:"MS Mincho";
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	mso-bidi-language:AR-SA;}
+span.RevActualRevisionsextendedtextChar
+	{mso-style-name:"Rev\: Actual Revisions \(extended text\) Char";
+	mso-style-parent:"Rev\: Actual Revisions Char Char";
+	mso-style-link:"Rev\: Actual Revisions \(extended text\)";
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"MS Mincho";
+	mso-fareast-font-family:"MS Mincho";
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;
+	mso-bidi-language:AR-SA;}
+p.RevActualRevisions, li.RevActualRevisions, div.RevActualRevisions
+	{mso-style-name:"Rev\: Actual Revisions";
+	mso-style-next:Normal;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:35.7pt;
+	margin-bottom:.0001pt;
+	text-indent:-17.85pt;
+	mso-pagination:widow-orphan;
+	tab-stops:list 18.15pt 35.7pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"MS Mincho";}
+@page Section1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:35.4pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ @list l0
+	{mso-list-id:-132;
+	mso-list-type:simple;
+	mso-list-template-ids:1155666728;}
+@list l0:level1
+	{mso-level-tab-stop:74.6pt;
+	mso-level-number-position:left;
+	margin-left:74.6pt;
+	text-indent:-18.0pt;}
+@list l1
+	{mso-list-id:-131;
+	mso-list-type:simple;
+	mso-list-template-ids:-2092283744;}
+@list l1:level1
+	{mso-level-tab-stop:60.45pt;
+	mso-level-number-position:left;
+	margin-left:60.45pt;
+	text-indent:-18.0pt;}
+@list l2
+	{mso-list-id:-130;
+	mso-list-type:simple;
+	mso-list-template-ids:601919736;}
+@list l2:level1
+	{mso-level-tab-stop:46.3pt;
+	mso-level-number-position:left;
+	margin-left:46.3pt;
+	text-indent:-18.0pt;}
+@list l3
+	{mso-list-id:-129;
+	mso-list-type:simple;
+	mso-list-template-ids:162147628;}
+@list l3:level1
+	{mso-level-tab-stop:32.15pt;
+	mso-level-number-position:left;
+	margin-left:32.15pt;
+	text-indent:-18.0pt;}
+@list l4
+	{mso-list-id:-128;
+	mso-list-type:simple;
+	mso-list-template-ids:1557440748;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:74.6pt;
+	mso-level-number-position:left;
+	margin-left:74.6pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l5
+	{mso-list-id:-127;
+	mso-list-type:simple;
+	mso-list-template-ids:1469644572;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:60.45pt;
+	mso-level-number-position:left;
+	margin-left:60.45pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l6
+	{mso-list-id:-126;
+	mso-list-type:simple;
+	mso-list-template-ids:587657532;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:46.3pt;
+	mso-level-number-position:left;
+	margin-left:46.3pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l7
+	{mso-list-id:-125;
+	mso-list-type:simple;
+	mso-list-template-ids:-835663878;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:32.15pt;
+	mso-level-number-position:left;
+	margin-left:32.15pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l8
+	{mso-list-id:-120;
+	mso-list-type:simple;
+	mso-list-template-ids:2074488724;}
+@list l8:level1
+	{mso-level-tab-stop:18.0pt;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;}
+@list l9
+	{mso-list-id:-119;
+	mso-list-type:simple;
+	mso-list-template-ids:-837909836;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:18.0pt;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l10
+	{mso-list-id:1047874421;
+	mso-list-type:hybrid;
+	mso-list-template-ids:775839320 1729801410 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l10:level1
+	{mso-level-tab-stop:53.7pt;
+	mso-level-number-position:left;
+	margin-left:53.7pt;
+	text-indent:-18.0pt;}
+@list l11
+	{mso-list-id:1479229400;
+	mso-list-type:hybrid;
+	mso-list-template-ids:800891938 -632234570 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-style-link:"Rev\: Actual Revisions Char";
+	mso-level-text:o;
+	mso-level-tab-stop:18.15pt;
+	mso-level-number-position:left;
+	margin-left:18.15pt;
+	text-indent:-18.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";
+	color:gray;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" link=blue vlink=purple style='tab-interval:36.0pt' lang=EN-US>
+<div class=Section1>
+  <h1 align=center style='text-align:center'>Cooldown Pulse</h1>
+  <h3>Acknowledgements</h3>
+  <p class=MsoNormal>&nbsp;</p>
+  <p class=MsoNormal>It would appear that quite a few people have downloaded my stuff.<span style='mso-spacerun:yes'>  </span>I may never know you, but I think you’re pretty cool all the same.<span style='mso-spacerun:yes'>  </span>Every JIM history file mentions people and sources that had an influence on the related AddOn.</p>
+  <p class=MsoNormal>&nbsp;</p>
+  <p class=RevNumber>Sarf</p>
+  <p class=RevActualRevisionsChar><span style='font-family:
+"Courier New";mso-fareast-font-family:"Courier New";color:gray'><span
+style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>Creator of “Cooldown Count”.<span
+style='mso-spacerun:yes'>  </span>I may be trying to replace him with this effort, but he really deserves a lot of credit for developing an <i
+style='mso-bidi-font-style:normal'>essential </i>AddOn.<span
+style='mso-spacerun:yes'>  </span>It’s freakin’ complicated too!<span
+style='mso-spacerun:yes'>  </span>Have you seen the code?<span
+style='mso-spacerun:yes'>  </span>Sarf, we love you!</p>
+  <p class=RevActualRevisionsextendedtext>&nbsp;</p>
+  <p class=RevNumber>Zibba of Destromath (retired)</p>
+  <p class=RevActualRevisionsChar><span style='font-family:
+"Courier New";mso-fareast-font-family:"Courier New";color:gray'><span
+style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>Have you seen the “<a
+href="http://www.warcraftmovies.com/viewauthor.php?id=490">Huntering</a>” PvP videos that this talented player produced?<span style='mso-spacerun:yes'>  </span>Part of his genius can be observed in the placement of his action buttons: They are right where he’s fighting.<span style='mso-spacerun:yes'>  </span>Zibba is well-attuned to ability cooldowns.</p>
+  <p class=RevActualRevisionsextendedtext>&nbsp;</p>
+  <p class=RevNumber>Acoustica (<a href="http://www.acoustica.com/sounds.htm">http://www.acoustica.com/sounds.htm</a>)</p>
+  <p class=RevActualRevisionsChar><span style='font-family:
+"Courier New";mso-fareast-font-family:"Courier New";color:gray'><span
+style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>Huge thanks go to this site for hosting a really GOOD heartbeat series for download.<span style='mso-spacerun:yes'>  </span>Right alongside the link to heartbeat.wav is “bigfart.wav” – also loopable, for those that want to impress people at parties.</p>
+  <p class=RevActualRevisionsextendedtext>&nbsp;</p>
+  <p class=RevNumber>Mindonfire, <span class=GramE>And, Quiksmage, <i
+style='mso-bidi-font-style:normal'>Halictuz</i>, Codex, <i style='mso-bidi-font-style:
+normal'>Earmaster</i>, Vekk, <i style='mso-bidi-font-style:normal'>Garrum</i>, bruteMax, Dexter, Qreed, <i style='mso-bidi-font-style:normal'>biogon</i>, <i
+style='mso-bidi-font-style:normal'>Gaijarus</i>, Tekkub, <span class=SpellE>DraXon</span>, <span class=SpellE><i style='mso-bidi-font-style:normal'>Nemesi</i></span><i
+style='mso-bidi-font-style:normal'>$</i></span>, <span class=SpellE><i
+style='mso-bidi-font-style:normal'>Reaper_DFB</i></span><i style='mso-bidi-font-style:
+normal'>, Gabriel</i>,<i style='mso-bidi-font-style:normal'> Bartleby</i>,<i
+style='mso-bidi-font-style:normal'> <span class=SpellE>Belatar</span></i>,<i
+style='mso-bidi-font-style:normal'> Paul2200</i></p>
+  <p class=RevActualRevisionsChar><span style='font-family:
+"Courier New";mso-fareast-font-family:"Courier New";color:gray'><span
+style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>Requests, feedback, and bug reports.</p>
+  <p class=RevActualRevisionsextendedtext>&nbsp;</p>
+  <p class=RevNumber><span class=SpellE>AddOn</span> hosting</p>
+  <p class=RevActualRevisionsChar><span style='font-family:
+"Courier New";mso-fareast-font-family:"Courier New";color:gray'><span
+style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>Extra thanks always go to Curse-Gaming.com and WoWInterface (listed in the order I joined them).<span
+style='mso-spacerun:yes'>  </span>Let’s hear no criticisms of these sites.<span
+style='mso-spacerun:yes'>  </span>Without them, AddOn work would be cast adrift in a noisy sea.</p>
+  <h3>History</h3>
+  <p class=MsoNormal>&nbsp;</p>
+  <p class=RevNumber>1.10.26 – 04 / 03 / 2006 – JIM the Inventor</p>
+  <p class=RevNumber>&nbsp;</p>
+  <p class=RevActualRevisionsChar><span style='font-family:
+"Courier New";mso-fareast-font-family:"Courier New";color:gray'><span
+style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>The previous version misplaced the Choose Effects window.<span style='mso-spacerun:yes'>  </span>This has been fixed.</p>
+  <p class=RevActualRevisions style='mso-list:l11 level1 lfo1;tab-stops:list 35.7pt'><span
+style='font-family:"Courier New";mso-fareast-font-family:"Courier New";
+color:gray'><span style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>Pulse is the third JIM <span class=SpellE>AddOn</span> to feature “Load <span class=GramE>On</span> Demand Configuration”.</p>
+  <p class=RevActualRevisionsextendedtext>* Players may notice that the <span
+class=SpellE>AddOn</span> loads faster and takes up less memory.</p>
+  <p class=RevActualRevisionsextendedtext>* <span class=SpellE>AddOn</span> authors should check out <span class=SpellE>JIM_toolbox\LoadOnDemandConfig.lua</span> if they are curious about this technique.</p>
+  <p class=RevActualRevisionsChar><span style='font-family:
+"Courier New";mso-fareast-font-family:"Courier New";color:gray'><span
+style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>JIM gets artistic!<span
+style='mso-spacerun:yes'>  </span>Pulse’s icon has changed once again.<span
+style='mso-spacerun:yes'>  </span>The new style will be reflected in all of <span
+class=SpellE>JIM’s</span> future <span class=SpellE>AddOns</span>.</p>
+  <p class=RevActualRevisionsChar><span style='font-family:
+"Courier New";mso-fareast-font-family:"Courier New";color:gray'><span
+style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>The “legacy code” that updates version 1.9.16 to 1.9.17-1.10.25 has been removed.<span style='mso-spacerun:yes'>  </span>If you have a version that pre-dates 1.9.17, please run version 1.9.17 before downloading any more recent versions.<span style='mso-spacerun:yes'>  </span>This change only affects Choose Effects, so if you don’t understand any of this, it’s no big deal. :-)</p>
+  <p class=RevNumber>&nbsp;</p>
+  <p class=RevNumber>1.10.25 – 03 / 28 / 2006 – JIM the Inventor</p>
+  <p class=RevNumber>&nbsp;</p>
+  <p class=RevActualRevisionsChar><span style='font-family:
+"Courier New";mso-fareast-font-family:"Courier New";color:gray'><span
+style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>Updated the TOC number to 11000 (latest version of <span class=SpellE>WoW</span>).</p>
+  <p class=RevActualRevisionsChar><span style='font-family:
+"Courier New";mso-fareast-font-family:"Courier New";color:gray'><span
+style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span>Fixed a bug that thought all your bags were the same size as the second one.<span style='mso-spacerun:yes'>  </span>(This could cause problems with item use.)</p>
+  <p class=RevNumber>&nbsp;</p>
+</div>
+</body>
+</html>

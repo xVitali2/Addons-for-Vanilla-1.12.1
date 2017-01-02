@@ -1,0 +1,14 @@
+﻿# Do not delete the following line!
+## Interface: 11200
+## Title: SpecialTalentUI
+## Notes: Improved Talent Frame. You can see and interact with all three talent trees at once. Summary of your learned and planned talent points at the top. Plan your alts' templates.
+## Notes-ruRU: Улучшенный фрейм талантов. Вы можете видеть и взаимодействовать со всеми тремя ветками сразу. Так же, возможно составить план для изучения талантов.
+## LoadOnDemand: 1
+## SavedVariables: SpecialTalentPlannedSaved SpecialTalentFrameSaved SpecialTalentLearnedSaved
+## First created: Apr 2006
+SpecialTalentData.lua
+SpecialTalentDataRU.lua
+SpecialTalentDataDE.lua
+SpecialTalentDataFR.lua
+localization.lua
+SpecialTalentUI.xml

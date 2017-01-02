@@ -1,0 +1,826 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<UI xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+   <Script file="RegionData.lua"/>
+   <Script file="RecipeData.lua"/>
+   <Script file="RecipeRadar.lua"/>
+   <Script file="RadarTab.lua"/>
+   <Script file="RecipesTab.lua"/>
+   <Script file="MainFrame.lua"/>
+   <Script file="DropDowns.lua"/>
+
+   <Frame name="RecipeRadarFrame" toplevel="true" movable="true" parent="UIParent" enableMouse="true" hidden="true">
+      <Size>
+         <AbsDimension x="452" y="648"/>
+      </Size>
+      <Anchors>
+         <Anchor point="TOPLEFT">
+            <Offset>
+               <AbsDimension x="0" y="-104"/>
+            </Offset>
+         </Anchor>
+      </Anchors>
+      <HitRectInsets>
+         <AbsInset left="0" right="34" top="0" bottom="75"/>
+      </HitRectInsets>
+
+      <Layers>
+         <Layer level="BACKGROUND">
+            <Texture file = "Interface\FriendsFrame\FriendsFrameScrollIcon">
+               <Size>
+                  <AbsDimension x="60" y="60"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="TOPLEFT">
+                     <Offset>
+                        <AbsDimension x="7" y="-6"/>
+                     </Offset>
+                  </Anchor>
+               </Anchors>
+            </Texture>
+         </Layer>
+         <Layer level="BORDER">
+            <Texture file="Interface\Addons\RecipeRadar\Images\Frame\FrameTopLeft">
+               <Size>
+                  <AbsDimension x="256" y="256"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="TOPLEFT"/>
+               </Anchors>
+            </Texture>
+            <Texture file="Interface\Addons\RecipeRadar\Images\Frame\FrameTopRight">
+               <Size>
+                  <AbsDimension x="256" y="256"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="TOPRIGHT"/>
+               </Anchors>
+            </Texture>
+            <Texture name="RecipeRadarFrameBottomLeft" file="Interface\Addons\RecipeRadar\Images\Frame\FrameBottomLeft">
+               <Size>
+                  <AbsDimension x="256" y="512"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="BOTTOMLEFT"/>
+               </Anchors>
+            </Texture>
+            <Texture name="RecipeRadarFrameBottomRight" file="Interface\Addons\RecipeRadar\Images\Frame\FrameBottomRight">
+               <Size>
+                  <AbsDimension x="256" y="512"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="BOTTOMRIGHT"/>
+               </Anchors>
+            </Texture>
+
+            <FontString name="TitleBarText" inherits="GameFontNormal">
+               <Anchors>
+                  <Anchor point="TOP" relativeTo="RecipeRadarFrame" relativePoint="TOP">
+                     <Offset>
+                        <AbsDimension x="-7" y="-17"/>
+                     </Offset>
+                  </Anchor>
+               </Anchors>
+            </FontString>
+            <FontString inherits="GameFontNormalSmall" text="RECIPERADAR_VERSION">
+               <Color r="0.4" g="0.4" b="0.4"/>
+               <Anchors>
+                  <Anchor point="TOPRIGHT">
+                     <Offset>
+                        <AbsDimension x="-83" y="-19"/>
+                     </Offset>
+                  </Anchor>
+               </Anchors>
+            </FontString>
+
+         </Layer>
+         <Layer level="ARTWORK">
+
+            <!-- Upper horizontal bar -->
+            <Texture file="Interface\Addons\RecipeRadar\Images\Frame\HorizontalBarLeft">
+               <Size>
+                  <AbsDimension x="256" y="16"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="TOPLEFT">
+                     <Offset>
+                        <AbsDimension x="15" y="-221"/>
+                     </Offset>
+                  </Anchor>
+               </Anchors>
+            </Texture>
+            <Texture file="Interface\Addons\RecipeRadar\Images\Frame\HorizontalBarRight">
+               <Size>
+                  <AbsDimension x="256" y="16"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="TOPRIGHT">
+                     <Offset>
+                        <AbsDimension x="-39" y="-221"/>
+                     </Offset>
+                  </Anchor>
+               </Anchors>
+            </Texture>
+
+            <!-- The lower horizontal bar is down with the RecipeRadarMapFrame -->
+
+         </Layer>
+      </Layers>
+
+      <Frames>
+
+         <!-- This is the little X button in the top-right corner. -->
+         <Button name="RecipeRadarExitButton" inherits="UIPanelCloseButton">
+            <Anchors>
+               <Anchor point="TOPRIGHT" relativeTo="RecipeRadarFrame" relativePoint="TOPRIGHT">
+                  <Offset>
+                     <AbsDimension x="-30" y="-8"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Button>
+
+         <!-- This is the little lock button in the top-right corner. -->
+         <Button name="RecipeRadarLockButton">
+            <Size>
+               <AbsDimension x="32" y="32"/>
+            </Size>
+            <Anchors>
+               <Anchor point="RIGHT" relativeTo="RecipeRadarExitButton" relativePoint="LEFT">
+                  <Offset>
+                     <AbsDimension x="11" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnClick>
+                  RecipeRadar_ToggleLock();
+               </OnClick>
+            </Scripts>
+            <NormalTexture name="RecipeRadarLockNormal"/>
+            <PushedTexture name="RecipeRadarLockPushed"/>
+            <HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" AlphaMode="ADD"/>
+         </Button>
+
+         <!-- These are the two tabs at the top of the scroll frame. -->
+         <Button name="RecipeRadarRadarTabFrame" inherits="RecipeRadarTabButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT">
+                  <Offset>
+                     <AbsDimension x="15" y="-69"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnLoad>
+                  this.ScrollValue = 0
+                  this:SetNormalTexture(RECIPERADAR_IMAGE_ROOT .. "Misc\\Radar")
+                  getglobal(this:GetName() .. "Highlight"):SetTexture(RECIPERADAR_IMAGE_ROOT .. "Icons\\Highlight")
+                  getglobal(this:GetName() .. "Middle"):SetPoint("TOPLEFT", this:GetName() .. "Left", "TOPRIGHT", 0, 6)
+               </OnLoad>
+               <OnClick>
+                  RecipeRadar_RadarTab_OnClick()
+               </OnClick>
+            </Scripts>
+         </Button>
+         <Button name="RecipeRadarRecipesTabFrame" inherits="RecipeRadarTabButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT" relativeTo="RecipeRadarRadarTabFrame" relativePoint="TOPRIGHT"/>
+            </Anchors>
+            <Scripts>
+               <OnLoad>
+                  this.ScrollValue = 0
+                  getglobal(this:GetName() .. "Highlight"):SetTexture(RECIPERADAR_IMAGE_ROOT .. "Icons\\Highlight")
+                  getglobal(this:GetName() .. "Left"):SetTexture(RECIPERADAR_IMAGE_ROOT .. "Frame\\Tab-Right")
+                  getglobal(this:GetName() .. "Left"):SetPoint("TOPLEFT", "RecipeRadarRadarTabFrameRight", "TOPRIGHT")
+               </OnLoad>
+               <OnClick>
+                  RecipeRadar_RecipesTab_OnClick()
+               </OnClick>
+            </Scripts>
+         </Button>
+
+         <!-- Dropdown combo boxes with multicheck (order is important here). -->
+         <Frame name="RecipeRadar_PersonAvailDropDown" inherits="UIDropDownMenuTemplate" hidden="true">
+            <Anchors>
+               <Anchor point="TOPRIGHT" relativeTo="RecipeRadarFrame" relativePoint="TOPRIGHT">
+                  <Offset>
+                     <AbsDimension x="-27" y="-37"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Frame>
+         <Frame name="RecipeRadar_Prof1DropDown" inherits="UIDropDownMenuTemplate">
+            <Anchors>
+               <Anchor point="TOPRIGHT" relativeTo="RecipeRadar_PersonAvailDropDown" relativePoint="BOTTOMRIGHT">
+                  <Offset>
+                     <AbsDimension x="0" y="4"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Frame>
+         <Frame name="RecipeRadar_TeamDropDown" inherits="UIDropDownMenuTemplate">
+            <Anchors>
+               <Anchor point="TOPRIGHT" relativeTo="RecipeRadar_Prof1DropDown" relativePoint="TOPLEFT">
+                  <Offset>
+                     <AbsDimension x="30" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Frame>
+         <Frame name="RecipeRadar_RealmAvailDropDown" inherits="UIDropDownMenuTemplate" hidden="true">
+            <Anchors>
+               <Anchor point="TOPRIGHT" relativeTo="RecipeRadar_PersonAvailDropDown" relativePoint="TOPRIGHT">
+                  <Offset>
+                     <AbsDimension x="0" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Frame>
+         <Frame name="RecipeRadar_Prof2DropDown" inherits="UIDropDownMenuTemplate">
+            <Anchors>
+               <Anchor point="TOPRIGHT" relativeTo="RecipeRadar_PersonAvailDropDown" relativePoint="BOTTOMRIGHT">
+                  <Offset>
+                     <AbsDimension x="0" y="4"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Frame>
+
+         <!-- Contains the collapsable list of vendors and recipes -->
+         <ScrollFrame name="RecipeRadarListScrollFrame" inherits="RecipeRadarListScrollFrameTemplate">
+            <Size>
+               <AbsDimension x="365" y="130"/>
+            </Size>
+            <Anchors>
+               <Anchor point="TOPRIGHT" relativeTo="RecipeRadarFrame" relativePoint="TOPRIGHT">
+                  <Offset>
+                     <AbsDimension x="-67" y="-96"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Layers>
+               <Layer level="BACKGROUND">
+                  <FontString name="VendorNameDummyText" inherits="GameFontNormal" hidden="true">
+                     <Size>
+                        <AbsDimension x="0" y="16"/>
+                     </Size>
+                  </FontString>
+                  <FontString name="VendorNameDummySubText" inherits="GameFontNormalSmall" hidden="true">
+                     <Size>
+                        <AbsDimension x="0" y="16"/>
+                     </Size>
+                  </FontString>
+               </Layer>
+            </Layers>
+            <Scripts>
+               <OnVerticalScroll>
+                  RecipeRadarAvailabilityTooltip:Hide()
+                  FauxScrollFrame_OnVerticalScroll(RECIPERADAR_VENDOR_HEIGHT, RecipeRadar_FrameUpdate)
+                  if (RecipeRadar_Options.ActiveTab == 1) then
+                     RecipeRadarRadarTabFrame.ScrollValue = getglobal(this:GetName() .. "ScrollBar"):GetValue()
+                  else
+                     RecipeRadarRecipesTabFrame.ScrollValue = getglobal(this:GetName() .. "ScrollBar"):GetValue()
+                  end
+               </OnVerticalScroll>
+            </Scripts>
+         </ScrollFrame>
+
+         <!-- Radio button indicating a mapped vendor -->
+         <Frame name="RecipeRadarMapVendorIndicatorFrame" enableMouse="true">
+            <Size>
+               <AbsDimension x="20" y="20"/>
+            </Size>
+            <Anchors>
+               <Anchor point="TOPLEFT">
+                  <Offset>
+                     <AbsDimension x="75" y="-40"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <HitRectInsets>
+               <AbsInset left="0" right="-80" top="0" bottom="0"/>
+            </HitRectInsets>
+            <Layers>
+               <Layer level="BACKGROUND">
+                  <FontString name="RecipeRadarMapVendorIndicatorText" inherits="GameFontHighlightSmall">
+                     <Anchors>
+                        <Anchor point="LEFT" relativePoint="RIGHT">
+                           <Offset>
+                              <AbsDimension x="0" y="0"/>
+                           </Offset>
+                        </Anchor>
+                     </Anchors>
+                  </FontString>
+                  <Texture file="Interface\Buttons\UI-RadioButton">
+                     <TexCoords left="0" right="0.25" top="0" bottom="1"/>
+                  </Texture>
+                  <Texture name="RecipeRadarMapVendorIndicator" file="Interface\Buttons\UI-RadioButton">
+                     <TexCoords left="0.25" right="0.5" top="0" bottom="1"/>
+                  </Texture>
+               </Layer>
+            </Layers>
+            <Scripts>
+               <OnLoad>
+                  RecipeRadarMapVendorIndicator:SetVertexColor(1.0, 0, 0)
+               </OnLoad>
+               <OnEnter>
+                  GameTooltip:SetOwner(this, "ANCHOR_RIGHT")
+                  GameTooltip:SetText(RRS("Shift-click a vendor to add or remove her location on the world map."), nil, nil, nil, nil, 1)
+               </OnEnter>
+               <OnLeave>
+                  GameTooltip:Hide()
+               </OnLeave>
+            </Scripts>
+         </Frame>
+
+         <Button name="RecipeRadarVendor1" inherits="RecipeRadarVendorButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT" relativeTo="RecipeRadarFrame">
+                  <Offset>
+                     <AbsDimension x="22" y="-96"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Button>
+         <Button name="RecipeRadarVendor2" inherits="RecipeRadarVendorButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT" relativeTo="RecipeRadarVendor1" relativePoint="BOTTOMLEFT">
+                  <Offset>
+                     <AbsDimension x="0" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Button>
+         <Button name="RecipeRadarVendor3" inherits="RecipeRadarVendorButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT" relativeTo="RecipeRadarVendor2" relativePoint="BOTTOMLEFT">
+                  <Offset>
+                     <AbsDimension x="0" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Button>
+         <Button name="RecipeRadarVendor4" inherits="RecipeRadarVendorButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT" relativeTo="RecipeRadarVendor3" relativePoint="BOTTOMLEFT">
+                  <Offset>
+                     <AbsDimension x="0" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Button>
+         <Button name="RecipeRadarVendor5" inherits="RecipeRadarVendorButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT" relativeTo="RecipeRadarVendor4" relativePoint="BOTTOMLEFT">
+                  <Offset>
+                     <AbsDimension x="0" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Button>
+         <Button name="RecipeRadarVendor6" inherits="RecipeRadarVendorButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT" relativeTo="RecipeRadarVendor5" relativePoint="BOTTOMLEFT">
+                  <Offset>
+                     <AbsDimension x="0" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Button>
+         <Button name="RecipeRadarVendor7" inherits="RecipeRadarVendorButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT" relativeTo="RecipeRadarVendor6" relativePoint="BOTTOMLEFT">
+                  <Offset>
+                     <AbsDimension x="0" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Button>
+         <Button name="RecipeRadarVendor8" inherits="RecipeRadarVendorButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT" relativeTo="RecipeRadarVendor7" relativePoint="BOTTOMLEFT">
+                  <Offset>
+                     <AbsDimension x="0" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Button>
+         <Button name="RecipeRadarVendor9" inherits="RecipeRadarVendorButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT" relativeTo="RecipeRadarVendor8" relativePoint="BOTTOMLEFT">
+                  <Offset>
+                     <AbsDimension x="0" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Button>
+
+         <Frame name="RecipeRadarHighlightFrame" hidden="true">
+            <Size>
+               <AbsDimension x="452" y="16"/>
+            </Size>
+            <Anchors>
+               <Anchor point="TOPLEFT"/>
+            </Anchors>
+            <Layers>
+               <Layer level="ARTWORK">
+                  <Texture name="RecipeRadarHighlight" file="Interface\AddOns\RecipeRadar\Images\Misc\RecipeHighlight"/>
+               </Layer>
+            </Layers>
+         </Frame>
+
+         <Frame name="RecipeRadarDetailFrame">
+            <Size>
+               <AbsDimension x="393" y="176"/>
+            </Size>
+            <Anchors>
+               <Anchor point="TOPLEFT" relativeTo="RecipeRadarListScrollFrame" relativePoint="BOTTOMLEFT">
+                  <Offset>
+                     <AbsDimension x="0" y="-8"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Layers>
+               <Layer level="BACKGROUND">
+                  <FontString name="RecipeDetailName" inherits="GameFontNormal" justifyH="LEFT">
+                     <Size>
+                        <AbsDimension x="393" y="0"/>
+                     </Size>
+                     <Anchors>
+                        <Anchor point="TOPLEFT">
+                           <Offset>
+                              <AbsDimension x="46" y="-2"/>
+                           </Offset>
+                        </Anchor>
+                     </Anchors>
+                  </FontString>
+                  <FontString name="RecipeDetailSubText" inherits="GameFontNormal" justifyH="LEFT">
+                     <Size>
+                        <AbsDimension x="0" y="0"/>
+                     </Size>
+                     <Anchors>
+                        <Anchor point="LEFT" relativeTo="RecipeDetailName" relativePoint="RIGHT">
+                           <Offset>
+                              <AbsDimension x="5" y="0"/>
+                           </Offset>
+                        </Anchor>
+                     </Anchors>
+                  </FontString>
+                  <FontString name="RecipeDetailCostText" inherits="GameFontNormalSmall" justifyH="LEFT" text="COSTS_LABEL">
+                     <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="RecipeDetailName" relativePoint="BOTTOMLEFT">
+                           <Offset>
+                              <AbsDimension x="0" y="-4"/>
+                           </Offset>
+                        </Anchor>
+                     </Anchors>
+                  </FontString>
+                  <FontString name="RecipeDetailNoteText" inherits="GameFontNormalSmall" justifyH="LEFT" text="NOTE_COLON">
+                     <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="RecipeDetailCostText" relativePoint="BOTTOMLEFT">
+                           <Offset>
+                              <AbsDimension x="0" y="-4"/>
+                           </Offset>
+                        </Anchor>
+                     </Anchors>
+                  </FontString>
+                  <FontString name="RecipeDetailRequirements" inherits="GameFontHighlightSmall" justifyH="LEFT">
+                     <Size>
+                        <AbsDimension x="393" y="0"/>
+                     </Size>
+                     <Anchors>
+                        <Anchor point="LEFT" relativeTo="RecipeDetailNoteText" relativePoint="RIGHT">
+                           <Offset>
+                              <AbsDimension x="5" y="0"/>
+                           </Offset>
+                        </Anchor>
+                     </Anchors>
+                  </FontString>
+               </Layer>
+            </Layers>
+            <Frames>
+               <Button name="RecipeDetailIcon">
+                  <Size>
+                     <AbsDimension x="37" y="37"/>
+                  </Size>
+                  <Anchors>
+                     <Anchor point="TOPLEFT">
+                        <Offset>
+                           <AbsDimension x="5" y="-4"/>
+                        </Offset>
+                     </Anchor>
+                  </Anchors>
+                  <Layers>
+                     <Layer level="BACKGROUND">
+                        <Texture file="Interface\Buttons\UI-EmptySlot">
+                           <Size>
+                              <AbsDimension x="64" y="64"/>
+                           </Size>
+                           <Anchors>
+                              <Anchor point="TOPLEFT">
+                                 <Offset>
+                                    <AbsDimension x="-13" y="13"/>
+                                 </Offset>
+                              </Anchor>
+                           </Anchors>
+                        </Texture>
+                     </Layer>
+                  </Layers>
+                  <Scripts>
+                     <OnClick>
+                        if (IsShiftKeyDown() and arg1 == "LeftButton" and ChatFrameEditBox:IsVisible()) then
+                           ChatFrameEditBox:Insert(RecipeDetailIcon.Hyperlink)
+                        end
+                     </OnClick>
+                     <OnEnter>
+                        RecipeRadar_RecipeDetailIcon_ShowToolTip()
+                     </OnEnter>
+                     <OnLeave>
+                        if (RecipeDetailIcon.NeedsUpdate) then
+                           RecipeRadar_FrameUpdate()
+                           RecipeDetailIcon.NeedsUpdate = false
+                        end
+                        GameTooltip:Hide()
+                     </OnLeave>
+                  </Scripts>
+               </Button>
+               <Frame name="RecipeDetailMoneyFrame" inherits="SmallMoneyFrameTemplate">
+                  <Anchors>
+                     <Anchor point="LEFT" relativeTo="RecipeDetailCostText" relativePoint="RIGHT">
+                        <Offset>
+                           <AbsDimension x="5" y="0"/>
+                        </Offset>
+                     </Anchor>
+                  </Anchors>
+                  <Scripts>
+                     <OnLoad>
+                        SmallMoneyFrame_OnLoad()
+                        MoneyFrame_SetType("STATIC")
+                     </OnLoad>
+                  </Scripts>
+               </Frame>
+            </Frames>
+         </Frame>
+
+         <Frame name="RecipeRadarMapFrame">
+            <Size>
+               <AbsDimension x="386" y="257"/>
+            </Size>
+            <Anchors>
+               <Anchor point="BOTTOMLEFT" relativeTo="RecipeRadarFrame" relativePoint="BOTTOMLEFT">
+                  <Offset>
+                     <AbsDimension x="21" y="104"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Layers>
+               <Layer level="BACKGROUND">
+                  <!-- Placeholder for showing our maps via the code -->
+                  <Texture name="RecipeRadarRegionMap">
+                     <Size>
+                        <AbsDimension x="386" y="386"/>
+                     </Size>
+                     <Anchors>
+                        <Anchor point="BOTTOMLEFT" relativeTo="RecipeRadarMapFrame" relativePoint="BOTTOMLEFT">
+                           <Offset>
+                              <AbsDimension x="0" y="0"/>
+                           </Offset>
+                        </Anchor>
+                     </Anchors>
+                  </Texture>
+               </Layer>
+
+               <Layer level="OVERLAY">
+                  <!-- Lower horizontal bar, all the way down here because
+                       it wasn't overlaying the map otherwise! -->
+                  <Texture file="Interface\Addons\RecipeRadar\Images\Frame\HorizontalBarLeft">
+                     <Size>
+                        <AbsDimension x="256" y="16"/>
+                     </Size>
+                     <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="RecipeRadarFrame" relativePoint="TOPLEFT">
+                           <Offset>
+                              <AbsDimension x="15" y="-276"/>
+                           </Offset>
+                        </Anchor>
+                     </Anchors>
+                  </Texture>
+                  <Texture file="Interface\Addons\RecipeRadar\Images\Frame\HorizontalBarRight">
+                     <Size>
+                        <AbsDimension x="256" y="16"/>
+                     </Size>
+                     <Anchors>
+                        <Anchor point="TOPRIGHT" relativeTo="RecipeRadarFrame" relativePoint="TOPRIGHT">
+                           <Offset>
+                              <AbsDimension x="-39" y="-276"/>
+                           </Offset>
+                        </Anchor>
+                     </Anchors>
+                  </Texture>
+               </Layer>
+            </Layers>
+         </Frame>
+
+         <Button name="RecipeRadarScroll1" Inherits="RecipeRadarScrollTemplate"/>
+         <Button name="RecipeRadarScroll2" Inherits="RecipeRadarScrollTemplate"/>
+         <Button name="RecipeRadarScroll3" Inherits="RecipeRadarScrollTemplate"/>
+         <Button name="RecipeRadarScroll4" Inherits="RecipeRadarScrollTemplate"/>
+         <Button name="RecipeRadarScroll5" Inherits="RecipeRadarScrollTemplate"/>
+         <Button name="RecipeRadarScroll6" Inherits="RecipeRadarScrollTemplate"/>
+
+         <!-- Bottom row, with money and buttons. -->
+         <Frame name="RecipeRadarMoneyFrame" inherits="SmallMoneyFrameTemplate">
+            <Anchors>
+               <Anchor point="BOTTOMRIGHT" relativeTo="RecipeRadarFrame" relativePoint="BOTTOMLEFT">
+                  <Offset>
+                     <AbsDimension x="180" y="86"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+         </Frame>
+
+         <Button name="RecipeRadarOptionsButton" inherits="OptionsButtonTemplate">
+            <Size>
+               <AbsDimension x="80" y="22"/>
+            </Size>
+            <Anchors>
+               <Anchor point="CENTER" relativeTo="RecipeRadarFrame" relativePoint="BOTTOMRIGHT">
+                  <Offset>
+                     <AbsDimension x="-162" y="91"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnClick>
+                  PlaySound("igMainMenuOption")
+                  RecipeRadar_OptionsFrame_Toggle()
+               </OnClick>
+            </Scripts>
+         </Button>
+         <Button name="RecipeRadarCloseButton" inherits="UIPanelButtonTemplate" text="CLOSE">
+            <Size>
+               <AbsDimension x="80" y="22"/>
+            </Size>
+            <Anchors>
+               <Anchor point="CENTER" relativeTo="RecipeRadarOptionsButton" relativePoint="CENTER">
+                  <Offset>
+                     <AbsDimension x="80" y="0"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnClick>
+                  HideUIPanel(this:GetParent())
+               </OnClick>
+            </Scripts>
+         </Button>
+
+         <Frame name="RadarTabDropDown" inherits="UIDropDownMenuTemplate" hidden="true">
+            <Size>
+               <AbsDimension x="10" y="10"/>
+            </Size>
+            <Anchors>
+               <Anchor point="TOP">
+                  <Offset>
+                     <AbsDimension x="-10" y="-50"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnLoad>
+                  --RecipeRadar_RadarTab_ContextMenuOnLoad()
+               </OnLoad>
+            </Scripts>
+         </Frame>
+      
+         <Frame name="RecipesTabDropDown" inherits="UIDropDownMenuTemplate" hidden="true">
+            <Size>
+               <AbsDimension x="10" y="10"/>
+            </Size>
+            <Anchors>
+               <Anchor point="TOP">
+                  <Offset>
+                     <AbsDimension x="-10" y="-50"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnLoad>
+                  --RecipeRadar_RecipesTab_ContextMenuOnLoad()
+               </OnLoad>
+            </Scripts>
+         </Frame>
+      
+      </Frames>
+
+      <Scripts>
+         <OnLoad>
+            RecipeRadar_OnLoad()
+         </OnLoad>
+         <OnEvent>
+            RecipeRadar_OnEvent()
+         </OnEvent>
+         <OnShow>
+            RecipeRadar_OnShow()
+         </OnShow>
+         <OnHide>
+            RecipeRadar_OnHide()
+         </OnHide>
+         <OnDragStart>
+            if(arg1 == "LeftButton") then RecipeRadar_StartMoving() end
+         </OnDragStart>
+         <OnDragStop>
+            RecipeRadarFrame:StopMovingOrSizing()
+         </OnDragStop>
+         <OnMouseUp>
+            RecipeRadarFrame:StopMovingOrSizing()
+         </OnMouseUp>
+      </Scripts>
+   </Frame>
+</UI>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

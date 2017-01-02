@@ -1,0 +1,8 @@
+﻿# Do not delete the following line!
+## Interface: 11200
+## Title: SpecialTalent
+## Notes: Needed to load SpecialTalentUI, an improved talent frame.
+## Notes-ruRU: Необходим для загрузки SpecialTalentUI, улучшенный фрейм талантов.
+## SavedVariables: 
+## First created: Apr 2006
+SpecialTalent.lua

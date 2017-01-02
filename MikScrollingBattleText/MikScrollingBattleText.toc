@@ -1,0 +1,19 @@
+## Interface: 11200
+## Version: 4.42
+## Title: Mik's Scrolling Battle Text |cff7fff7f -Ace2-|r
+## Notes: Scrolls battle information around the character model.
+## RequiredDeps:!!!Libs
+## OptionalDeps: SW_FixLogStrings
+## SavedVariables: MikSBT_Save
+
+MikScrollingBattleText-enUS.lua
+MikScrollingBattleText-ruRU.lua
+MikScrollingBattleText-frFR.lua
+MikScrollingBattleText-deDE.lua
+
+localization.lua
+MikTableRecyclerObject.lua
+MikCombatEventHelper.lua
+MikScrollingBattleText.lua
+MikCombatEventHelper.xml
+MikScrollingBattleText.xml

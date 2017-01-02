@@ -1,0 +1,13 @@
+## Interface: 11200
+## Title: HealComm |cff7fff7f -Ace2-|r
+## Notes: Visual representation of incoming heals
+## Notes-ruRU: Визуальное отображение входящего исцеления
+## Author: Avi
+## OptionalDeps: Blizzard_RaidUI, RosterLib, HealComm
+## RequiredDeps:!!!Libs
+
+#Libs
+libs\RosterLib-2.0\RosterLib-2.0.lua
+libs\HealComm-1.0\HealComm-1.0.lua
+#Main
+HealComm.lua

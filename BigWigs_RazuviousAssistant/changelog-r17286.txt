@@ -1,0 +1,73 @@
+------------------------------------------------------------------------
+r17286 | rabbit | 2006-11-17 10:47:54 -0500 (Fri, 17 Nov 2006) | 1 line
+
+BigWigs_RazuviousAssistant: New name format.
+------------------------------------------------------------------------
+r17270 | ammo | 2006-11-17 10:06:33 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_RazuviousAssistant: no more X-BigWigsModuule
+
+------------------------------------------------------------------------
+r17256 | ammo | 2006-11-17 09:49:42 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_RazuviousAssistant: set external to true
+
+------------------------------------------------------------------------
+r16857 | ammo | 2006-11-13 11:19:29 -0500 (Mon, 13 Nov 2006) | 2 lines
+
+BigWigs_RazuviousAssistant: now LoD with new BigWigs stuffs.
+
+------------------------------------------------------------------------
+r15107 | fenlis | 2006-10-24 15:35:45 -0400 (Tue, 24 Oct 2006) | 1 line
+
+BigWigs_RazuviousAssistant : Added localization koKR
+------------------------------------------------------------------------
+r15074 | xinsonic | 2006-10-24 09:15:04 -0400 (Tue, 24 Oct 2006) | 2 lines
+
+BigWigs_RazuviousAssistant: Added zhTW, thanks to hmj.
+
+------------------------------------------------------------------------
+r14301 | rabbit | 2006-10-18 21:01:31 -0400 (Wed, 18 Oct 2006) | 1 line
+
+BigWigs_RazuviousAssistant: AceLocale-2.2.
+------------------------------------------------------------------------
+r14046 | rabbit | 2006-10-15 20:28:17 -0400 (Sun, 15 Oct 2006) | 1 line
+
+BigWigs_RazuviousAssistant: frFR and part deDE translations.
+------------------------------------------------------------------------
+r12465 | kebinusan | 2006-10-01 07:21:15 -0400 (Sun, 01 Oct 2006) | 1 line
+
+Trunk: Fixing www.wowace.com externals ... A-B
+------------------------------------------------------------------------
+r12158 | rabbit | 2006-09-28 17:05:10 -0400 (Thu, 28 Sep 2006) | 1 line
+
+BigWigs_RazuviousAssistant: Raid target icons ninjaed from sano's rti addon, thanks!
+------------------------------------------------------------------------
+r12048 | nevcairiel | 2006-09-26 11:55:04 -0400 (Tue, 26 Sep 2006) | 1 line
+
+Updated Externals in BW and additional BW addons
+------------------------------------------------------------------------
+r11365 | rabbit | 2006-09-19 09:41:19 -0400 (Tue, 19 Sep 2006) | 1 line
+
+BigWigs_RazuviousAssistant: D'oh, fix boss dead detection.
+------------------------------------------------------------------------
+r10676 | rabbit | 2006-09-09 17:05:00 -0400 (Sat, 09 Sep 2006) | 1 line
+
+BigWigs_RazuviousAssistant: Work around the icon thing for now, we need some CandyBar changes for it to work, I think.
+------------------------------------------------------------------------
+r10539 | rabbit | 2006-09-08 17:00:31 -0400 (Fri, 08 Sep 2006) | 1 line
+
+BigWigs_RazuviousAssistant: Make sure to disable the mod when Raz dies.
+------------------------------------------------------------------------
+r9943 | rabbit | 2006-09-03 11:25:15 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_RazuviousAssistant: Forgot to load the libs in the TOC.
+------------------------------------------------------------------------
+r9941 | rabbit | 2006-09-03 11:21:05 -0400 (Sun, 03 Sep 2006) | 1 line
+
+BigWigs_RazuviousAssistant: Rewrite with SEEmbedAura. Shows timer bars for Mind Exhaustion and Taunt.
+------------------------------------------------------------------------
+r6956 | shyva | 2006-08-05 07:55:25 -0400 (Sat, 05 Aug 2006) | 1 line
+
+BigWigs_RazuviousAssistant - Initial commit.
+------------------------------------------------------------------------

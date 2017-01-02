@@ -1,0 +1,21 @@
+﻿## Interface: 11200
+## Title: Big Wigs |cffff0000+|r|cffffffffZombie Food|r
+## Notes: Notifies the raid when someone is Dazed.
+## Notes-ruRU: Сообщает в рейд если кто-то ошеломлен.
+## Author: Rabbit
+## X-Website: http://www.wowace.com
+## X-eMail: rabbit.magtheridon@gmail.com
+## X-Build: $Revision: 17301 $
+## X-ReleaseDate: $Date: 2006-11-17 11:14:09 -0500 (Fri, 17 Nov 2006) $
+## X-Category: Raid
+## Version: 2
+## Dependencies: BigWigs, !!!Libs
+## OptionalDeps: Ace2, SpecialEventsEmbed, GratuityLib
+## X-Embeds: GratuityLib, SpecialEventsEmbed
+## SavedVariables: BigWigsZombieFoodDB
+
+## X-BigWigs-LoadWithCore: 1
+
+libs\SpecialEvents-Aura-2.0\SpecialEvents-Aura-2.0.lua
+
+ZombieFood.lua

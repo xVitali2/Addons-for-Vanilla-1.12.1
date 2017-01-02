@@ -1,0 +1,103 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="JIM_CooldownPulse.lua"/>
+	
+<!-- MINIMAP BUTTON -->
+
+	<Button name="Pulse_MinimapButton" inherits="ROTATING_MINIMAP_BUTTON">
+		<Scripts>
+			<OnLoad>
+				Pulse_MinimapButton_Icon:SetTexture( "Interface\\AddOns\\JIM_toolbox\\JIMLogo256" )
+				Pulse_MinimapButton_Icon:SetWidth( 36 )
+				Pulse_MinimapButton_Icon:SetHeight( 36 )
+				Pulse_MinimapButton_Icon:SetBlendMode( "ADD" )
+				
+				Pulse_MinimapButton_Border:SetTexture( "Interface\\AddOns\\JIM_CooldownPulse\\CDPIcon32" )
+				Pulse_MinimapButton_Border:ClearAllPoints()
+				Pulse_MinimapButton_Border:SetPoint( "CENTER", Pulse_MinimapButton )
+				Pulse_MinimapButton_Border:SetWidth( 24 )
+				Pulse_MinimapButton_Border:SetHeight( 24 )
+
+				if ( ButtonHole ) then
+					ButtonHole.application.RegisterMod( {
+						id				= "JIM_PULSE_BH_ID", 
+						name			= "JIM's Cooldown Pulse", 
+						tooltip			= "Get visual and audial reminders when spells cool down.", 
+						buttonFrame		= "Pulse_MinimapButton", 
+						updateFunction	= "ROTATING_MINIMAP_BUTTON_Move"
+					} )
+				end
+				
+				SLASH_JIM_COOLDOWNPULSE1 = "/cooldownpulse"
+				SLASH_JIM_COOLDOWNPULSE2 = "/pulse"
+				SLASH_JIM_COOLDOWNPULSE3 = "/cdp"
+				SlashCmdList[ "JIM_COOLDOWNPULSE" ] = function()
+					LoadOnDemandConfig( "Pulse_Config" )
+				end
+				this:SetScript( "OnClick", SlashCmdList[ "JIM_COOLDOWNPULSE" ] )
+			</OnLoad>
+		</Scripts>
+	</Button>
+
+<!-- PULSE IMAGE LAYOUT CONTROLS -->
+
+	<Button name="MOVE_ANYTHING_HANDLE" virtual="true">
+		<Size>	<AbsDimension x="16" y="16"/>	</Size>
+
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>	<AbsValue val="4"/>	</EdgeSize>
+			
+			<TileSize>	<AbsValue val="8"/>	</TileSize>
+			
+			<BackgroundInsets>	<AbsInset left="2" right="2" top="2" bottom="2"/>	</BackgroundInsets>
+		</Backdrop>
+	</Button>
+	
+	<!-- You know the big image that gives this AddOn its name?
+		The following frames allow you to move it and resize it.
+	-->
+	<Button name="Pulse_MovingButton" inherits="MOVE_ANYTHING_HANDLE" movable="true" hidden="true">
+		<TitleRegion setAllPoints="true"/>
+
+		<Anchors>	<Anchor point="CENTER" relativeTo="UIParent"/>	</Anchors>
+		
+		<Frames>			
+			<Button name="Pulse_ScalingButton" inherits="MOVE_ANYTHING_HANDLE">
+				<Scripts>
+					<OnDragStart>
+						assert( "Pulse_ScalingButton.OnDragStart" )
+						this:SetScript( "OnUpdate", Pulse_Scale )
+					</OnDragStart>
+					
+					<OnDragStop>
+						assert( "Pulse_ScalingButton.OnDragStop" )
+						this:SetScript( "OnUpdate", nil )
+					</OnDragStop>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Button>
+	
+	<!-- This is the signature frame of the AddOn:
+		a large-scale image of whatever effect has just completed cooldown.
+	-->
+	<Button name="Pulse_Image" frameStrata="TOOLTIP" hidden="true" parent="UIParent">
+		<Anchors>	<Anchor point="CENTER" relativeTo="Pulse_MovingButton"/>	</Anchors>
+		
+		<NormalTexture name="$parentIcon">
+			<Anchors>	<Anchor point="TOPLEFT"/>	<Anchor point="BOTTOMRIGHT"/>	</Anchors>
+		</NormalTexture>
+		
+		<Scripts>
+			<OnLoad>
+				Pulse_Image:EnableMouse( false )
+				Pulse_Image:SetScript( "OnUpdate", Pulse_Animate )
+				Pulse_Animate = nil
+				
+				Pulse_Image:RegisterEvent( "VARIABLES_LOADED" )
+				Pulse_Image:SetScript( "OnEvent", Pulse_LoadVariables )
+				Pulse_LoadVariables = nil
+			</OnLoad>
+		</Scripts>
+	</Button>
+					
+</Ui>

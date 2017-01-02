@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<UI xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+   <Script file="Maps.lua"/>
+   <Script file="Minimap.lua"/>
+   <Script file="Worldmap.lua"/>
+
+   <Button name="RecipeRadarMinimapIconTemplate" hidden="true" parent="Minimap" virtual="true">
+      <Size>
+         <AbsDimension x="12" y="12"/>
+      </Size>
+      <Scripts>
+         <OnLoad>
+            this:RegisterForClicks("RightButtonUp")
+         </OnLoad>
+         <OnUpdate>
+            RecipeRadar_Minimap_OnUpdate(arg1)
+         </OnUpdate>
+         <OnEnter>
+            RecipeRadar_Maps_SetTooltip(GameTooltip, this)
+         </OnEnter>
+         <OnLeave>
+            GameTooltip:Hide()
+         </OnLeave>
+         <OnClick>
+            if (arg1 and arg1 == "RightButton") then
+               HideDropDownMenu(1)
+               RecipeRadar_ContextMenuGlobal.Vendor = this.Vendor
+               ToggleDropDownMenu(1, nil, UnmapVendorDropDown, this:GetName(), 6, 6)
+            end
+         </OnClick>
+      </Scripts>
+      <NormalTexture file="Interface\Addons\RecipeRadar\Images\Misc\Scroll"/>
+   </Button>
+
+   <Button name="RecipeRadarMinimapIcon1" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon2" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon3" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon4" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon5" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon6" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon7" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon8" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon9" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon10" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon11" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon12" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon13" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon14" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon15" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon16" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon17" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon18" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon19" inherits="RecipeRadarMinimapIconTemplate"/>
+   <Button name="RecipeRadarMinimapIcon20" inherits="RecipeRadarMinimapIconTemplate"/>
+
+   <Button name="RecipeRadarWorldmapIconTemplate" hidden="true" parent="WorldMapFrame" virtual="true">
+      <Size>
+         <AbsDimension x="16" y="16"/>
+      </Size>
+      <Scripts>
+         <OnLoad>
+            this:SetFrameLevel(this:GetFrameLevel() + 2)
+            this:RegisterForClicks("RightButtonUp")
+         </OnLoad>
+         <OnEnter>
+            RecipeRadar_Maps_SetTooltip(WorldMapTooltip, this)
+         </OnEnter>
+         <OnLeave>
+            WorldMapTooltip:Hide()
+         </OnLeave>
+         <OnClick>
+            if (arg1 and arg1 == "RightButton") then
+               HideDropDownMenu(1)
+               RecipeRadar_ContextMenuGlobal.Vendor = this.Vendor
+               ToggleDropDownMenu(1, nil, UnmapVendorDropDown, this:GetName(), 6, 6)
+            end
+         </OnClick>
+      </Scripts>
+      <NormalTexture setAllPoints="true" file="Interface\Addons\RecipeRadar\Images\Misc\Scroll"/>
+   </Button>
+
+   <Button name="RecipeRadarWorldmapIcon1" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon2" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon3" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon4" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon5" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon6" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon7" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon8" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon9" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon10" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon11" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon12" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon13" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon14" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon15" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon16" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon17" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon18" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon19" inherits="RecipeRadarWorldmapIconTemplate"/>
+   <Button name="RecipeRadarWorldmapIcon20" inherits="RecipeRadarWorldmapIconTemplate"/>
+
+   <Frame name="UnmapVendorDropDown" inherits="UIDropDownMenuTemplate" hidden="true">
+      <Size>
+         <AbsDimension x="10" y="10"/>
+      </Size>
+      <Anchors>
+         <Anchor point="TOP">
+            <Offset>
+               <AbsDimension x="-10" y="-50"/>
+            </Offset>
+         </Anchor>
+      </Anchors>
+      <Scripts>
+         <OnLoad>
+            RecipeRadar_Maps_ContextMenuOnLoad()
+         </OnLoad>
+      </Scripts>
+   </Frame>
+
+</UI>

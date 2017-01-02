@@ -1,0 +1,1026 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Frame name="EVTFrameCreatePopup" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" parent="UIParent" hidden="true" enableKeyboard="true">
+		<Size>
+			<AbsDimension x="400" y="285"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="CreateEventFrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="EVTFrameCreatePopupTitle" inherits="GameFontNormal" text="Create Event">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="EVTFrameCreatePopup">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="EVTFrameCreatePopupCancel" inherits="GameMenuButtonTemplate" text="CANCEL">
+				<Size>
+					<AbsDimension x="100" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-16" y="16"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("gsTitleOptionExit");
+						HideUIPanel(EVTFrameCreatePopup);
+						HideUIPanel(EVTFrameOverlay);
+						EVTClearFrame();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="EVTFrameCreatePopupAccept" inherits="GameMenuButtonTemplate" text="Accept">
+				<Size>
+					<AbsDimension x="100" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="16" y="16"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+				<Scripts>
+					<OnClick>
+						EVTFrameAcceptBtn_OnClick();
+						PlaySound("gsTitleOptionExit");
+						HideUIPanel(EVTFrameCreatePopup);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<EditBox name="EVTFrameNameEditBox" inherits="InputBoxTemplate" autoFocus="false" frameStrata="DIALOG" historyLines="0">
+				<Size>
+					<AbsDimension x="175" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrameCreatePopup" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-25"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString inherits="GameFontNormalSmall" text="Name:">
+							<Color r="0.8" g="0.8" b="0.1"/>
+							<Anchors>
+								<Anchor point="RIGHT" relativeTo="EVTFrameNameEditBox" relativePoint="LEFT">
+									<Offset>
+										<AbsDimension x="-8" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEditFocusLost>
+						EVTCheckComplete();
+					</OnEditFocusLost>
+					<OnShow>
+						this:ClearFocus();
+					</OnShow>
+					<OnEnterPressed>
+						this:ClearFocus();
+					</OnEnterPressed>
+					<OnEscapePressed>
+						this:ClearFocus();
+					</OnEscapePressed>
+				</Scripts>
+				<FontString inherits="ChatFontNormal" bytes="32"/>
+			</EditBox>
+			<EditBox name="EVTFrameCreatorEditBox" inherits="InputBoxTemplate" autoFocus="false" frameStrata="DIALOG" historyLines="0">
+				<Size>
+					<AbsDimension x="175" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrameNameEditBox" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString inherits="GameFontNormalSmall" text="Created By:">
+							<Color r="0.8" g="0.8" b="0.1"/>
+							<Anchors>
+								<Anchor point="RIGHT" relativeTo="EVTFrameCreatorEditBox" relativePoint="LEFT">
+									<Offset>
+										<AbsDimension x="-8" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnShow>
+						this:ClearFocus();
+					</OnShow>
+					<OnEnterPressed>
+						this:ClearFocus();
+					</OnEnterPressed>
+					<OnEscapePressed>
+						this:ClearFocus();
+					</OnEscapePressed>
+				</Scripts>
+				<FontString inherits="ChatFontNormal" bytes="32"/>
+			</EditBox>
+			<EditBox name="EVTFrameNoteEditBox" inherits="InputBoxTemplate" autoFocus="false" frameStrata="DIALOG" historyLines="0">
+				<Size>
+					<AbsDimension x="175" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrameCreatorEditBox" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-100"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString inherits="GameFontNormalSmall" text="Note:">
+							<Color r="0.8" g="0.8" b="0.1"/>
+							<Anchors>
+								<Anchor point="RIGHT" relativeTo="EVTFrameNoteEditBox" relativePoint="LEFT">
+									<Offset>
+										<AbsDimension x="-7" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnShow>
+						this:ClearFocus();
+					</OnShow>
+					<OnEnterPressed>
+						this:ClearFocus();
+					</OnEnterPressed>
+					<OnEscapePressed>
+						this:ClearFocus();
+					</OnEscapePressed>
+				</Scripts>
+				<FontString inherits="ChatFontNormal" bytes="32"/>
+			</EditBox>
+			<Frame name="EVTFrameFromTime" inherits="UIDropDownMenuTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="EVTFrameCreatorEditBox">
+						<Offset>
+							<AbsDimension x="-23" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString inherits="GameFontNormalSmall" text="From: ">
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset>
+										<AbsDimension x="-10" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						EVTFrameFromTime_OnLoad();
+					</OnLoad>
+					<OnShow>
+					</OnShow>
+				</Scripts>
+			</Frame>
+			<Frame name="EVTFrameToTime" inherits="UIDropDownMenuTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOP" relativePoint="BOTTOM" relativeTo="EVTFrameFromTime">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString inherits="GameFontNormalSmall" text="To: ">
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset>
+										<AbsDimension x="2" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						EVTFrameToTime_OnLoad();
+					</OnLoad>
+					<OnShow>
+					</OnShow>
+				</Scripts>
+			</Frame>
+			<Frame name="EVTFrameAMPM1" inherits="UIDropDownMenuTemplate" id="3">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="EVTFrameFromTime">
+						<Offset>
+							<AbsDimension x="-35" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						EVTFrameAMPM1_OnLoad();
+					</OnLoad>
+					<OnShow>
+					</OnShow>
+				</Scripts>
+			</Frame>
+			<Frame name="EVTFrameAMPM2" inherits="UIDropDownMenuTemplate" id="4">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="EVTFrameToTime">
+						<Offset>
+							<AbsDimension x="-35" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						EVTFrameAMPM2_OnLoad();
+					</OnLoad>
+					<OnShow>
+					</OnShow>
+				</Scripts>
+			</Frame>
+			<Frame name="EVTFrameType" inherits="UIDropDownMenuTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="EVTFrameToTime">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString inherits="GameFontNormalSmall" text="Type: ">
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset>
+										<AbsDimension x="-10" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						EVTFrameType_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="EVTFrameSubType" inherits="UIDropDownMenuTemplate" hidden="true" id="6">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="EVTFrameType">
+						<Offset>
+							<AbsDimension x="-35" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						EVTFrameSubType_OnLoad();
+					</OnLoad>
+					<OnShow>
+					</OnShow>
+				</Scripts>
+			</Frame>
+			<CheckButton name="EVTFrameMando" inherits="UICheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrameCreatorEditBox" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="7" y="-123"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentText" inherits="GameFontNormalSmall" text="Mandatory:">
+							<Anchors>
+								<Anchor point="RIGHT" relativePoint="LEFT">
+									<Offset>
+										<AbsDimension x="3" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			</Frames>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForDrag("LeftButton");
+			</OnLoad>
+			<OnShow>
+				EVTFrameCreatePopup_OnLoad();
+			</OnShow>
+			<OnDragStart>
+				if CalendarOptions["frameDrag"] then
+					EVTFrameCreatePopup:StartMoving();
+				end
+			</OnDragStart>
+			<OnDragStop>
+				EVTFrameCreatePopup:StopMovingOrSizing();
+			</OnDragStop>
+			<OnMouseUp>
+				EVTFrameCreatePopup:StopMovingOrSizing();
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+	<Frame name="EVTFrameInvitePopup" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" parent="UIParent" hidden="true" enableKeyboard="true">
+		<Size>
+			<AbsDimension x="400" y="225"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="InviteEventFrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="Invite">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="InviteEventFrameHeader">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="EVTFrameInvitePopupCancel" inherits="GameMenuButtonTemplate" text="CANCEL">
+				<Size>
+					<AbsDimension x="100" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-16" y="16"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("gsTitleOptionExit");
+						EVTClearInviteFrame();
+						HideUIPanel(EVTFrameInvitePopup);
+						HideUIPanel(EVTFrameOverlay);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="EVTFrameInvitePopupAccept" inherits="GameMenuButtonTemplate" text="Accept">
+				<Size>
+					<AbsDimension x="100" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="16" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EVTFrameInvitePopupAccept_OnClick();
+						PlaySound("gsTitleOptionExit");
+						HideUIPanel(EVTFrameInvitePopup);
+						HideUIPanel(EVTFrameOverlay);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Frame name="EVTFrameInviteMenu" inherits="UIDropDownMenuTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrameInvitePopup" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString inherits="GameFontNormalSmall" text="Send to:">
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset>
+										<AbsDimension x="-25" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						EVTFrameInviteMenu_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<EditBox name="EVTFrameInviteNameEditBox" inherits="InputBoxTemplate" autoFocus="false" frameStrata="DIALOG" historyLines="0">
+				<Size>
+					<AbsDimension x="133" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="EVTFrameInviteMenu">
+						<Offset>
+							<AbsDimension x="25" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString inherits="GameFontNormalSmall" text="(Optional) Name:">
+							<Color r="0.8" g="0.8" b="0.1"/>
+							<Anchors>
+								<Anchor point="RIGHT" relativeTo="EVTFrameInviteNameEditBox" relativePoint="LEFT">
+									<Offset>
+										<AbsDimension x="-8" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontNormalSmall" text="***Personal invites only work if the player is your party/raid/guild!***">
+							<Color r="1" g="1" b="1"/>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="EVTFrameInviteNameEditBox" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnShow>
+						this:ClearFocus();
+					</OnShow>
+					<OnEnterPressed>
+						this:ClearFocus();
+					</OnEnterPressed>
+					<OnEscapePressed>
+						this:ClearFocus();
+					</OnEscapePressed>
+				</Scripts>
+				<FontString inherits="ChatFontNormal" bytes="16"/>
+			</EditBox>
+			<Frame name="EVTFrameInviteLockMenu" inherits="UIDropDownMenuTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrameInviteMenu" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-100"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString inherits="GameFontNormalSmall" text="Invite Lock:">
+							<Anchors>
+								<Anchor point="LEFT">
+									<Offset>
+										<AbsDimension x="-43" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontNormalSmall" text="***An invite lock only allows those above to invite to this event.***">
+							<Color r="1" g="1" b="1"/>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="EVTFrameInviteLockMenu" relativePoint="BOTTOM">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						EVTFrameInviteLockMenu_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForDrag("LeftButton");
+			</OnLoad>
+			<OnDragStart>
+				if CalendarOptions["frameDrag"] then
+					EVTFrameInvitePopup:StartMoving();
+				end
+			</OnDragStart>
+			<OnDragStop>
+				EVTFrameInvitePopup:StopMovingOrSizing();
+			</OnDragStop>
+			<OnMouseUp>
+				EVTFrameInvitePopup:StopMovingOrSizing();
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+	<Frame name="EVTFrameInviteQueue" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" parent="UIParent" hidden="true" enableKeyboard="true">
+		<Size>
+			<AbsDimension x="400" y="245"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="InviteQueueFrameHeader" inherits="GameFontNormal" text="Invite Queue">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="EVTFrameInviteQueue">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="EVTFrameInviteQString" inherits="GameFontNormal" text="">
+					<Color r="1" g="1" b="1"/>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-35"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="EVTFrameInviteDString" inherits="GameFontNormal" text="">
+					<Color r="1" g="1" b="1"/>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-66"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString inherits="GameFontNormalSmall" text="Event Name:">
+					<Color r="0.8" g="0.8" b="0.1"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="EVTFrameInviteQueue" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="90" y="-90"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString inherits="GameFontNormalSmall" text="Time:">
+					<Color r="0.8" g="0.8" b="0.1"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="EVTFrameInviteQueue" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="90" y="-118"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString inherits="GameFontNormalSmall" text="Type:">
+					<Color r="0.8" g="0.8" b="0.1"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="EVTFrameInviteQueue" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="90" y="-146"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString inherits="GameFontNormalSmall" text="Mandatory:">
+					<Color r="0.8" g="0.8" b="0.1"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="EVTFrameInviteQueue" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="90" y="-174"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="EVTQueueDetailsName" inherits="GameFontNormal" text="">
+					<Color r="1" g="1" b="1"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="EVTFrameInviteQueue" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-104"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="EVTQueueDetailsTime" inherits="GameFontNormal" text="">
+					<Color r="1" g="1" b="1"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="EVTFrameInviteQueue" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-132"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="EVTQueueDetailsType" inherits="GameFontNormal" text="">
+					<Color r="1" g="1" b="1"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="EVTFrameInviteQueue" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-160"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="EVTQueueDetailsMando" inherits="GameFontNormal" text="">
+					<Color r="1" g="1" b="1"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="EVTFrameInviteQueue" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-188"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="EVTFrameInviteQueueDecline" inherits="GameMenuButtonTemplate" text="Decline">
+				<Size>
+					<AbsDimension x="100" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-16" y="16"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+				<Scripts>
+					<OnClick>
+						EVTFrameInviteQueueDecline_OnClick();
+						PlaySound("gsTitleOptionExit");
+						HideUIPanel(EVTFrameInviteQueue);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="EVTFrameInviteQueueAccept" inherits="GameMenuButtonTemplate" text="Accept">
+				<Size>
+					<AbsDimension x="100" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="16" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EVTFrameInviteQueueAccept_OnClick()
+						PlaySound("gsTitleOptionExit");
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForDrag("LeftButton");
+			</OnLoad>
+			<OnHide>
+				EVTFrameInviteQueue:StopMovingOrSizing();
+			</OnHide>
+			<OnDragStart>
+				if CalendarOptions["frameDrag"] then
+					EVTFrameInviteQueue:StartMoving();
+				end
+			</OnDragStart>
+			<OnDragStop>
+				EVTFrameInviteQueue:StopMovingOrSizing();
+			</OnDragStop>
+			<OnMouseUp>
+				EVTFrameInviteQueue:StopMovingOrSizing();
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+	<Frame name="EVTFrameOptions" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" parent="UIParent" hidden="true" enableKeyboard="true">
+		<Size>
+			<AbsDimension x="250" y="345"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="OptionsFrameHeader" inherits="GameFontNormal" text="Options">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="EVTFrameOptions">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="EVTFrameOptionsCancel" inherits="GameMenuButtonTemplate" text="Cancel">
+				<Size>
+					<AbsDimension x="100" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-16" y="16"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("gsTitleOptionExit");
+						HideUIPanel(EVTFrameOptions);
+						HideUIPanel(EVTFrameOverlay);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="EVTFrameOptionsAccept" inherits="GameMenuButtonTemplate" text="Accept">
+				<Size>
+					<AbsDimension x="100" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="16" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EVTFrameOptionsAccept_OnClick();
+						PlaySound("gsTitleOptionExit");
+						HideUIPanel(EVTFrameOptions);
+						HideUIPanel(EVTFrameOverlay);						
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="EVTFrameOptionsReset" inherits="GameMenuButtonTemplate" text="Reset">
+				<Size>
+					<AbsDimension x="100" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="92"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EVTFrameOptionsReset_OnClick()
+						PlaySound("gsTitleOptionExit");
+						HideUIPanel(EVTFrameOverlay);						
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="EVTFrameOptionsLock" inherits="UICheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrameOptions" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="-75" y="-50"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentText" inherits="GameFontNormalSmall" text="Enable Popup Dragging">
+							<Anchors>
+								<Anchor point="LEFT" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="3" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="EVTFrameOptionsEvents" inherits="UICheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrameOptions" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="-75" y="-75"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentText" inherits="GameFontNormalSmall" text="Automatically Accept Events">
+							<Anchors>
+								<Anchor point="LEFT" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="3" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="EVTFrameOptionsConfirm" inherits="UICheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrameOptions" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="-75" y="-100"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentText" inherits="GameFontNormalSmall" text="Automatically Confirm Events">
+							<Anchors>
+								<Anchor point="LEFT" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="3" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="EVTFrameOptions24h" inherits="UICheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrameOptions" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="-75" y="-25"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="$parentText" inherits="GameFontNormalSmall" text="24 Hour Format">
+							<Anchors>
+								<Anchor point="LEFT" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="3" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForDrag("LeftButton");
+			</OnLoad>
+			<OnHide>
+				EVTFrameOptions:StopMovingOrSizing();
+			</OnHide>
+			<OnDragStart>
+				if CalendarOptions["frameDrag"] then
+					EVTFrameOptions:StartMoving();
+				end
+			</OnDragStart>
+			<OnDragStop>
+				EVTFrameOptions:StopMovingOrSizing();
+			</OnDragStop>
+			<OnMouseUp>
+				EVTFrameOptions:StopMovingOrSizing();
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+</Ui>

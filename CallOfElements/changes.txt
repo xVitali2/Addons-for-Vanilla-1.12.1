@@ -1,0 +1,541 @@
+v2.7
+ADDITIONS:
+-save positions
+-ruRU localization
+
+v2.6
+
+ADDITIONS:
+
+- Korean localization
+  LeeEui-ho recently sent me the Korean translation and thus completed the
+  currently supported languages (at least until WoW is available in Spain as well ;-) )
+  
+CHANGES:
+
+- Performance upgrade
+  There were some major memory leaks and COE consumed too much overall processor
+  time. I changed the way the element frames are updated and now they should no
+  longer use up a noticeable amount of memory and call the update routines only
+  when really necessary.
+  
+FIXES:
+
+- Disappearing element frames
+  Whenever the totems were reloaded in "Timers Only" mode, depending on the currently
+  active totems, a totem frame could have disappeared and would only show up again when 
+  throwing a totem of the same element from your spellbook.
+  This has been fixed and the timers will now reset properly when your totems are reloaded.
+  Note that this means, that you will lose active timers upon zoning but in most cases
+  you wouldn't need them anymore anyway.
+
+=============================================================================================
+
+v2.5
+
+IMPORTANT NOTE:
+Please use http://coe.wyverex-cave.net/ for further bug reports and suggestions.
+Thank you
+
+ADDITIONS:
+
+- Chinese (simplified) localization
+  Thanks to windger a chinese translation is available as well.
+  Note though, that I have no way to test if it is correct or if it even
+  works at all! Please drop a comment at http://coe.wyverex-cave.net/ if
+  there are any issues
+  
+- Totems sets for named targets
+  Whenever you target a hostile unit, COE will now check if there is a
+  custom set with this unit's name available. If it finds one, that set
+  is activated. That also takes precedence over the PVP sets.
+  NOTE: The check is case-sensitive, so make sure you spell the name right.
+  
+- Tremor totem advisor
+  Added Druid's Slumber (need translations, though)
+  
+- Change anchor totem with CTRL
+  When pressing the CTRL-key while clicking a totem button, this totem replaces
+  the anchor totem for this element if it isn't already the anchor totem and
+  you have the Customize or Active Set mode activated. Furthermore, in Active Set
+  mode, it will also make the clicked totem part of the current set.
+
+CHANGES:
+
+- Prevent trinket pickup
+  You can no longer pickup the trinket by shift-dragging the totem button.
+  This didn't work in 2.4 and wasn't meant to be available anyway, since
+  the trinket doesn't have spell slot like a totem.
+  
+- Removed set restart modifier key
+  Until 2.4 you could assign a modifier key to automatically restart a set
+  while clicking a totem and pressing that key. This feature didn't work well
+  in most cases and it's also quite uselesse since you can also create a
+  /coe restartset macro (and most players already do this).
+  
+- When expanding a flex bar by mousing over it, currently docked totems 
+  (i.e. active or advised totems or those in cooldown) will now show first
+  independent of their actual ordering. This makes it possible to mouse over
+  a docked totem and click it right away. Before, if the docked totem had a
+  high ordering, it would suddenly change its position when opening the bar
+  and you had to move the mouse again.
+
+FIXES:
+
+- /coe restartset
+  Due to a change in the last release this command didn't work anymore
+  This has been fixed
+  
+
+=============================================================================================
+
+v2.4
+
+IMPORTANT NOTE:
+Please use http://coe.wyverex-cave.net/ for further bug reports and suggestions.
+Thank you
+
+ADDITIONS:
+
+- Added trinket support
+  The Enamored Water Spirit trinket is now supported as part of the water element bar.
+  It behaves just like any other totem with the exception that you have to equip the
+  trinket to actually make it usable. Note that the trinket button will always show
+  up in the water element bar as long as you possess at least one water totem
+  but you can choose to make it invisible like any other totem until you got the trinket.
+  
+- French localization
+  Thanks to mcoaua a french localization is finally available now and will be continued
+  in further releases
+  Also thanks to Foussa for previous efforts
+  
+
+CHANGES:
+
+- Lag-dependent timer activation
+  In order to decide whether to really activate a totem timer after trying to
+  throw a totem, COE will now take the current network lag value into account. 
+  Timers would not activate properly with lag values of 1000ms or more before.
+  This should now work as expected
+  
+- Still active totem timers will now reset when you die
+
+
+FIXES:
+
+- When in Customize mode, a set element would not be properly reset after expiration, 
+  if it was a dynamic button (i.e. when inactive only showing up when mousing over the bar).
+  First when opening the bar again, COE would notice that this element in the current
+  set had already expired and should be thrown again.
+  This has been fixed
+
+- When switching totem sets, sometimes only the currently active totems would be thrown
+  again when issuing the next throwset command. This has been fixed
+  
+- When switching totem sets using the Customization Dialog, the currently active set
+  was not reset. The current set will now reset upon switching
+  
+- When switching from Customize to Timers Only or Active Set mode while totems were
+  active, sometimes an active totem showed up twice in its bar afterwards. This will
+  no longer happen
+  
+- The healing module didn't do anything in the german version because the healing spell
+  localizations were wrong. This has been fixed
+
+=============================================================================================
+
+v2.3
+
+ADDITIONS:
+
+- The "/coe priorset" command lets you cycle backwards through your configured sets now
+  
+- Added the option to show the active timers ONLY in the separate timer frame
+  Note that this means you get no timers at all if you choose to disable the timer frame
+  
+
+CHANGES:
+
+- When the "Autoswitch sets in PVP" option is enabled, COE will automatically switch
+  back to the last active non-pvp set upon targeting an enemy mob
+  This should make switching between PVP and PVE more convenient
+  
+- COE should no longer try to heal dead or offline targets
+
+
+FIXES:
+
+- Fixed the german timers. Yes, really :)
+
+- Fixed another one of those niggling typos with the disease totem advisor
+
+- On some systems there was a COE_TotemData:485 nil error
+  Since this error never appeared on my own system I cannot tell for sure but
+  it should be more unlikely now that this error appears again.
+  If it should, please drop a comment for me
+
+=============================================================================================
+
+v2.2
+
+NOTES:
+- This is merely a hotfix for 1.10 and is taken right out of development
+  Chances are that you encounter some problems related to the healing module.
+  Also, there are features missing I promised for the next release and the
+  french localization is also not included yet.
+  But I guess for everyone of you it is more important that COE works again
+  than getting the new features :) 
+
+ADDITIONS:
+
+- Added a basic healing module
+  A very basic form of healing module has finally found its way into COE.
+  There are two healing modes that you can trigger by assigning a key binding
+  in your key bindings dialog.
+  BATTLE HEAL
+  	When hitting the battle heal key, COE will target the party member with the
+	lowest health ratio and heal him with the most appropriate spell using as 
+	less casting time as possible (which always results in using the Lesser
+	Healing Wave actually)
+	It will only use the rank it really needs and thus helps conserving mana
+	
+  BEST HEAL
+    Works just like battle heal but also uses the Healing Wave if it has a better
+	mana/effect efficiency. So, outside of combat, use best heal and when in combat
+	use battle heal if healing must be quick or you are in danger of losing casting time
+	
+  NOTE
+    I am totally aware that the chain heal and effects like Nature's Swiftness
+	are not taken into account yet. This primarily results of the fact that I don't
+	possess any of those spells with my shaman yet. Furthermore I don't have an idea
+	yet when to use the chain heal in an automated way. 
+	I am grateful for every kind of input regarding possible options and enhancements
+	to the healing module.
+	Just drop a comment at http://ui.worldofwar.net/ui.php?id=2126 or
+	http://www.curse-gaming.com/mod.php?addid=3407
+	
+
+FIXES:
+
+- Fixed COE for 1.10
+  As far as I have tested, COE should now work properly with patch 1.10
+  Fortunately, Blizzard didn't prevent any of the functions COE uses from
+  being called in contrast to some unlucky mods out there...
+
+- German timers
+  Hopefully, the german timers should now display the correct totem durations
+  Drop a comment for me if not
+
+=============================================================================================
+
+v2.11
+
+FIXES:
+
+- COE_TotemVisual:167 nil error
+  Errors in the COE_DisplayedTotems structure will now mostly be
+  fixed when entering the game. This should eliminate that niggling
+  error.
+  I have still no clue, why it happens in the first place, though.
+  I have ideas but nothing that really explains it.
+  Basically it seems that the error occurs only when training a totem
+  skill and don't already possess the corresponding totem.
+  
+  If you get that error again, you can either relog or reset the
+  whole totem ordering with the "/coe resetordering" command
+
+=============================================================================================
+
+v2.1
+
+NOTES:
+
+- Thanks to Foussa of Hyjal, a french translation is in progress
+  and will hopefully be available soon
+
+ADDITIONS:
+
+- Rank 1 totems
+  You can now define a key modifier that throws the rank 1 totem
+  instead of the maximum rank when you click on a totem button. 
+  Possible modifiers are Shift, Alt and Ctrl
+  
+- Added slash command "/coe reload"
+  This command does the same as the button in the configuration dialog,
+  i.e. it reloads all totems and sets
+  
+- Added slash command "/coe reset"
+  Resets all currently active timers and sets. While "/coe restartset"
+  only resets the active set so you can throw the same totems again,
+  "/coe reset" will also deactivate all active timers, i.e. you won't
+  be notified when still active totems expire
+  
+- Added slash command "/coe resetframes"
+  Returns all element bars to the screen center. This is quite handy
+  if you somehow accidentally moved one of your bars out of the screen
+  
+- Added bar grouping
+  Upon enabling the "Move bars as group" option, all element bars will
+  retain their relative positions when you drag one of them
+  I know you've all desperately waited for this one :)
+  
+- Spell pickup
+  When dragging a totem button with the Shift key held down, you will
+  pickup the spell instead and can drag it to one of your standard
+  action buttons
+  If you hold down the Ctrl key additionally, you will pick up the
+  corresponding rank 1 totem
+  
+
+CHANGES:
+
+- When configuring the active set in "Active Set" bar mode, the active 
+  totem of an element is now immediately made the first totem when you 
+  click it. In v2.0 this was done only when you exited the configuration 
+  mode and that caused a little confusion
+  
+- Advisor pet scanning
+  The totem advisor now also scans your party member's pets for debuffs
+  that can be cured by one of your totems 
+
+- When the next totem that would be thrown in your active set is still
+  in cooldown, COE will skip to the next totem of the active set instead
+  of giving a "Spell not ready yet" error message
+  
+- All messages from COE in the chat frame will now begin with [COE] and
+  will have their own color
+  
+
+FIXES:
+
+- When setting the scale to the maximum of 1.2, opening the configuration
+  dialog decreased the scale by 0.01 up to a somehow arbitrary maximum
+  value where the scale rested then
+  This has been fixed
+
+- When you didn't have all totem elements yet, the empty element bars
+  were nevertheless "visible" and prevented interaction with game elements
+  behind them. Empty bars will now be invisible
+  
+- Sometimes an expiring totem gave a nil-error message when also using the
+  separate timer frame. This should be fixed now
+
+
+=============================================================================================
+
+v2.0
+
+CHANGES:
+
+- I separated the visual and logical parts of the totem module and rewrote the 
+  whole visual part. It now has much more customization options than before.
+  Each element now has its own totem bar and each totem bar is fully customizable
+  on its own. The former "Display Mode" now controls which totem is shown in the 
+  "anchor button" of each totem bar, which is either your choice ("Customize"),
+  the (last) active totem ("Timers Only") or the member of the active set ("Active Set").
+   
+  The bar extends from the anchor button in the direction you choose (Up, Down, Left, Right).
+  Furthermore, with the bar mode you can control whether only the anchor button ("Closed")
+  or all configured totems ("Open") should be shown. If you choose the "Flex" mode, only
+  the anchor button is shown until you mouse over it which will temporarily show all
+  other totems as well and hide them again after a short delay when the mouse leaves.
+  By setting the static button count to a value of greater than one, you can also have
+  a mix of the "Open" and the "Flex" mode, showing a number of totems by default and the
+  rest when mousing over.
+  Finally, you can also hide the whole element bar by setting "Hidden" as the bar mode.
+  
+  Note, that you can still adjust which totems each element bar possesses and in which
+  order they appear. The anchor totem is always shown, though, thus removing it from the
+  bar while in "Configure Bar" mode has no effect as long as it is the anchor totem.
+  The configured totem order is retained whenever possible, that is, when a totem becomes the
+  anchor totem, e.g. by switching the active set in "Active Set" mode, it is now the first
+  totem in the bar but all other totems retain their relative ordering.
+  
+  Also note that while in "Flex" or "Closed" mode, active and advised totems and totems
+  with an active cooldown will be temporarily shown just as if you were mousing over the bar.
+
+- Made the configuration dialog draggable with the mouse  
+
+
+ADDITIONS:
+
+- You can now activate a separate timer window that only shows totems that are currently active
+  and drag it where you want it on your screen. I added this feature because I noticed that
+  although having the timers in the bar and the notifications on the screen, it can happen in 
+  instances that you lose track of your active totems. By dragging the timer frame somewhere
+  to your screen center you just need a quick look to see how long each of your totems will
+  be active.
+  In the configuration dialog you can choose the totem alignment (2x2 Box, Vertical, Horizontal).
+  
+- COE now has a scaling bar separate from the rest of your UI so that you can adjust the totem
+  bar sizes to your likings. The default value of 1.0 means COE scales just as the rest of your
+  UI does.
+
+FIXES:
+
+- Fixed a typo in the advisor output for the Disease Cleansing Totem  
+  
+=============================================================================================
+
+v1.82
+
+NOTE:
+
+- When assigning a new talent point you should reload the totems in the
+  configuration dialog if this talent changed mana cost or totem durations.
+  There is no way to know ingame when you assign a talent point so you
+  have to do this manually.
+  When you log in next time, reload your interface or learn a new skill, 
+  the changes are automatically updated, though.
+
+FIXES:
+
+- Throwing the mana tide totem resulted in an error since the introduction of the
+  cooldown timers. This should be fixed now
+  
+- Fixed a typo in the disease totem advisor
+  The advisor should now correctly suggest throwing the Disease Cleansing Totem
+  
+- Fixed some more issues with the German localization
+  All totems should now properly keep track of their health and notify you when
+  they are destroyed by enemies
+  
+
+=============================================================================================
+
+v1.81
+
+FIXES:
+
+- Hotfix for non-shaman classes
+  I accidentally made the totem bar visible for other classes in the last release
+
+=============================================================================================
+
+v1.8
+
+ADDITIONS:
+
+- Totems with a cooldown now display it in red digits when their timer is
+  no longer active but they are still cooling down. 
+  This should give you more exact information on when you can cast the
+  totem again than the default cooldown texture. For better readability
+  I also removed the cooldown texture for those totems
+
+- You now can restart casting of the active set at any time while in the previous
+  version you could only throw the set again when one or all of its totems
+  had already timed out.
+  Either assign a key binding or create a macro with the command "/coe restartset"
+  or assign a "Restart set modifier" in the configuration dialog. If you press
+  this modifier key while attempting to throw the active set, it will first restart
+  the set.
+  Note, that this only really works if you click a throwset macro or have the key
+  binding on your mouse because WOW thinks that the modifier you pressed belongs
+  to the key binding you want to execute. So if you bound throwing the active set to
+  your T key for example, you won't be able to restart the set by assigning the ALT
+  modifier and pressing ALT+T because WOW thinks you want to execute the ALT+T key binding.
+  Don't know if there is any way to bypass this yet.
+
+CHANGES:
+
+- Removed the totem bar backdrop and the config button
+  I guess most users didn't use the button anyway and the always
+  popping in backdrop got on people's nerves :)
+  You can now drag the totem bar by dragging any of the totem buttons
+  
+- Put the totem bar on a lower frame layer to minimize impact on mods
+  which rely on getting themselves on top of the rest like bag mods, for example
+  
+- The totem advisor no longer checks the raid group for debuffs now.
+  Since totems only have an effect on members of your party and not the
+  whole raid as I initially supposed, it is just wasted time and misleading
+  to check the raid as well
+  
+FIXES:
+
+- Fixed a bug with the key binding display on the totem buttons.
+  All totem buttons should now display their appropriate key binding
+
+- While in "Active Set" mode and configuring the active set, the red
+  borders around the set totems didn't show. This has been fixed
+  
+- There seemed to be a typo bug in the SavedVariables repair function of v1.7
+  Your saved variables will be once again repaired when your first load v1.8
+  
+- The mana costs of different ranks of the same totem were not read properly and
+  thus the totem bar sometimes showed a "usable" totem while the player still
+  didn't have enough mana. This has been fixed 
+
+- Fixed some issues with the German localization
+
+=============================================================================================
+
+v1.7
+
+- Added an option to fix the totem bar position to prevent dragging it accidentally
+
+- The shell command "/coe list" now shows all available shell commands
+
+- In the German version the default totem set and the class sets could not be thrown
+  due to a localization bug. Also the cast order was not localized.
+  This has been fixed. Your saved variables should be fixed automatically when first
+  loading v1.7
+  Thanks to Shinzhu for pointing me in the right direction
+  
+- In "Customize" display mode, the totem order is now customizable for each 
+  element separately. Just click on the "Configure Order" button and swap two
+  totems of the same element by clicking them one after the other. You cannot
+  swap totems of different elements, though, and this won't be implemented in
+  a further release because that would break the whole structure of the mod,
+  so don't bother asking :)
+  Note, that upon first loading v1.7 all totems appear in reverse order due to
+  an internal change in the ordering data structures
+  
+- In "Customize"/"Horizontal" and "Customize"/"Vertical" display modes, a small
+  gap is inserted between totems of different elements to group them visually
+
+
+=============================================================================================
+
+v1.6
+
+- Added some more spells for the tremor totem advisor
+  Still need the german translations though
+
+- The totem frame should now have the proper width when not all totems are
+  shown in "Customize"/"Box" mode
+  
+- Added the "Disabled" option in the "Tooltip Alignment" drop down menu.
+  This disables the tooltips for the totem buttons
+  
+- The currently active set did no longer show the red borders in the totem bar
+  This has been fixed
+  
+- When disabling autoswitching sets in PVP, configuration did not work properly
+  This has been fixed
+
+=============================================================================================
+
+v1.5
+
+- "All Totems" mode has been renamed to "Customize" mode.
+  You can now customize which totems should be displayed in "Customize" mode
+  To start configuration click the "Configure Bar" button in the config dialog.
+  Configuration works exactly like the totem set configuration. Each totem that
+  should be visible has a green border while configuring.
+
+- Totem button alignment now also works in "Customize" mode. You can align the
+  buttons either in a box, where totems of one element occupy a single row, or
+  you can display all totems horizontally or vertically
+  
+- By adding the seventh air totem in the last patch I accidentally removed the
+  sixth water totem :)
+  The "COE_Totem.lua:199" error should be fixed now
+
+=============================================================================================
+
+v1.4
+
+- Added a seventh air totem button. Must have missed this one before. 
+  COE should now load properly when having all seven air totems
+

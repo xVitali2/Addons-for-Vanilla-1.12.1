@@ -1,0 +1,190 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="Postal.lua"/>
+	<Script file="Localization.lua"/>
+	
+	<Button name="PostalAutoCompleteButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="120" y="14"/>
+		</Size>
+		<Scripts>
+			<OnClick>
+				Postal.SelectMatch(this:GetID())
+			</OnClick>
+			<OnTabPressed>
+				Postal.NextMatch()
+			</OnTabPressed>
+		</Scripts>
+		<NormalFont inherits="GameFontNormal"/>
+		<HighlightFont inherits="GameFontHighlight"/>
+		<DisabledFont inherits="GameFontDisable"/>
+		<HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+	</Button>
+	<Frame name="PostalAutoCompleteBox" parent="SendMailNameEditBox" frameStrata="DIALOG" hidden="true">
+		<Size>
+			<AbsDimension x="5" y="5"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"><Offset><AbsDimension x="0" y="3"/></Offset></Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="PostalAutoCompleteInstructions" inherits="GameFontDisableSmall">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="15" y="10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="PostalAutoCompleteButton1" inherits="PostalAutoCompleteButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<!--This 10 is a magic number used in PostalAutoComplete_Update when checking whether the PostalAutoComplete box should be above or below the EditBox. Please update the number there if you change it here-->
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="PostalAutoCompleteButton2" inherits="PostalAutoCompleteButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="PostalAutoCompleteButton1" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="PostalAutoCompleteButton3" inherits="PostalAutoCompleteButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="PostalAutoCompleteButton2" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="PostalAutoCompleteButton4" inherits="PostalAutoCompleteButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="PostalAutoCompleteButton3" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Button>
+			<Button name="PostalAutoCompleteButton5" inherits="PostalAutoCompleteButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="PostalAutoCompleteButton4" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				POSTAL_AUTOCOMPLETE_MAX_BUTTONS = 5
+				this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b)
+				this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b)
+				this.maxHeight = POSTAL_AUTOCOMPLETE_MAX_BUTTONS * PostalAutoCompleteButton1:GetHeight()
+				PostalAutoCompleteInstructions:SetText(POSTAL_PRESS_TAB)
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Button name="PostalAttachment" virtual="true">
+		<Size>
+			<AbsDimension x="37" y="37"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\Buttons\UI-Slot-Background">
+					<Size>
+						<AbsDimension x="39" y="39"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-1" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0" right="0.640625" top="0" bottom="0.640625"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentCount" inherits="NumberFontNormal" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture parentKey="IconBorder" file="Interface\Common\WhiteIconFrame" hidden="true">
+					<Size>
+						<AbsDimension x="37" y="37"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
+				this:RegisterForDrag('LeftButton')
+			</OnLoad>
+			<OnReceiveDrag>
+				Postal.AttachmentButton_OnClick()
+			</OnReceiveDrag>
+			<OnDragStart>
+				Postal.AttachmentButton_OnClick()
+			</OnDragStart>
+			<OnClick>
+				Postal.AttachmentButton_OnClick()
+				this:GetScript'OnEnter'()
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, 'ANCHOR_RIGHT')
+				if this.item then
+					GameTooltip:SetBagItem(unpack(this.item))
+				else
+					GameTooltip:SetText(ATTACHMENT_TEXT, 1.0, 1.0, 1.0)
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+		<HighlightTexture alphaMode="ADD" file="Interface\Buttons\ButtonHilight-Square"/>
+	</Button>
+
+	<Button name="PostalAttachment1" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment2" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment3" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment4" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment5" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment6" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment7" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment8" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment9" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment10" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment11" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment12" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment13" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment14" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment15" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment16" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment17" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment18" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment19" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment20" parent="SendMailFrame" inherits="PostalAttachment"/>
+	<Button name="PostalAttachment21" parent="SendMailFrame" inherits="PostalAttachment"/>
+</Ui>

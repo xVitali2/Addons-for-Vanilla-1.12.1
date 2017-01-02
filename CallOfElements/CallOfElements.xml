@@ -1,0 +1,29 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<script file="Localization.lua"/>
+	<script file="Localization.ru.lua"/>
+	<script file="Localization.de.lua"/>
+	<script file="Localization.fr.lua"/>
+	<script file="Localization.cn.lua"/>
+	<script file="Localization.ko.lua"/>
+	<script file="CallOfElements.lua"/>
+ 
+	<!-- Invisible MainFrame for script loading -->
+	<Frame name="COEMainFrame" frameStrata="LOW" enableMouse="false" hidden="true">
+		<Scripts>
+			<OnLoad>
+				COE:Init();
+			</OnLoad>
+			<OnEvent>
+				COE:OnEvent( event );
+			</OnEvent>
+		</Scripts>
+	</Frame>	
+
+	<GameTooltip name="COETotemTT" inherits="GameTooltipTemplate" frameSTRATA="TOOLTIP">
+		<Scripts>
+			<OnLoad>
+				this:SetOwner(UIParent, "ANCHOR_NONE");
+			</OnLoad>
+		</Scripts>
+	</GameTooltip>
+</Ui>

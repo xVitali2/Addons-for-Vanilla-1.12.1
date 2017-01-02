@@ -1,0 +1,18 @@
+## Interface: 11200
+
+## Title: Big Wigs |cffff0000+|r|cffffffffLoatheb Tactical|r
+## Notes: Spore and Consumable warnings for Loatheb.
+## Notes-ruRU: Предупреждение Спор для Лотхиба.
+## Author: Beerke
+## X-Build: $Rev: 17705 $
+## X-ReleaseDate: $LastChangedDate: 2006-11-21 17:46:50 -0500 (Tue, 21 Nov 2006) $
+## X-Email: albert@simenon.nl
+## X-Category: Raid
+## X-Credits: Usz (www.caelum.ws), Wydrian
+## X-BigWigs-LoadInZone: Naxxramas
+## LoadOnDemand: 1
+
+## Dependencies: BigWigs
+## OptionalDeps: Ace2
+
+BigWigs_LoathebTactical.lua

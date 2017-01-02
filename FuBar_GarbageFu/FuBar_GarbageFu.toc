@@ -1,0 +1,22 @@
+## Interface: 11200
+## Title: FuBar - |cffffffffGarbage|r|cff00ff00Fu|r
+## Notes: Drops the least valuable item in your bags to make space.
+## Author: wmrojer
+## X-Category: Inventory
+## Dependencies: FuBar
+## OptionalDeps: Ace2, FuBarPlugin-2.0, DewdropLib, TabletLib, AbacusLib
+## SavedVariables: GarbageFuDB
+## Version: 1.0.$Revision: 9990 $
+## LoadOnDemand: 1
+
+#libs
+libs\Abacus-2.0\Abacus-2.0.lua
+
+PeriodicTable\Core\PTEmbed.lua
+PeriodicTable\Elements\Misc\PTEmbedElemMisc.lua
+PeriodicTable\Elements\Food\PTEmbedElemFood.lua
+PeriodicTable\Elements\Tradeskills\PTEmbedElemTradeskill.lua
+
+GarbageFuLocale-enUS.lua
+
+GarbageFu.lua

@@ -1,0 +1,17 @@
+<Bindings>
+  <Binding name="SMARTBUFF_BIND_TRIGGER" header="SMARTBUFF">
+    SMARTBUFF_Check(0);
+  </Binding>
+  <Binding name="SMARTBUFF_BIND_TARGET">
+    if (SMARTBUFF_PreCheck(0)) then
+      SMARTBUFF_checkBlacklist();
+      SMARTBUFF_BuffUnit("target", 0, 0);
+    end    
+  </Binding>
+  <Binding name="SMARTBUFF_BIND_OPTIONS">
+    SMARTBUFF_OptionsFrame_Toggle();
+  </Binding>
+  <Binding name="SMARTBUFF_BIND_RESETBUFFTIMERS">
+    SMARTBUFF_ResetBuffTimers(0);
+  </Binding>
+</Bindings>

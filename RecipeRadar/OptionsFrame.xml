@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<UI xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+   <Script file="OptionsFrame.lua"/>
+
+   <Frame name="RecipeRadarOptionsFrame" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" parent="UIParent" enableKeyboard="true">
+
+      <Size>
+         <AbsDimension x="300" y="360"/>
+      </Size>
+      <Anchors>
+         <Anchor point="CENTER"/>
+      </Anchors>
+      <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+         <BackgroundInsets>
+            <AbsInset left="11" right="12" top="12" bottom="11"/>
+         </BackgroundInsets>
+         <TileSize>
+            <AbsValue val="32"/>
+         </TileSize>
+         <EdgeSize>
+            <AbsValue val="32"/>
+         </EdgeSize>
+      </Backdrop>
+      <Layers>
+
+         <Layer level="ARTWORK">
+            <Texture name="RecipeRadarOptionsFrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+               <Size>
+                  <AbsDimension x="256" y="64"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="TOP">
+                     <Offset>
+                        <AbsDimension x="0" y="12"/>
+                     </Offset>
+                  </Anchor>
+               </Anchors>
+            </Texture>
+            <FontString name="RecipeRadarOptionsFrameHeaderText" inherits="GameFontNormal">
+               <Anchors>
+                  <Anchor point="TOP" relativeTo="RecipeRadarOptionsFrameHeader">
+                     <Offset>
+                        <AbsDimension x="0" y="-14"/>
+                     </Offset>
+                  </Anchor>
+               </Anchors>
+            </FontString>
+         </Layer>
+
+      </Layers>
+      <Frames>
+
+         <!-- Check availability for alts checkbox -->
+         <CheckButton name="RecipeRadarRealmAvailability" inherits="OptionsCheckButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT">
+                  <Offset>
+                     <AbsDimension x="40" y="-40"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnLoad>
+                  getglobal(this:GetName() .. "Text"):SetText(RRS("Check Availability for Alts"))
+               </OnLoad>
+               <OnClick>
+                  if (this:GetChecked()) then
+                     PlaySound("igMainMenuOptionCheckBoxOn")
+                  else
+                     PlaySound("igMainMenuOptionCheckBoxOff")
+                  end
+                  RecipeRadar_Availability_Toggle()
+               </OnClick>
+            </Scripts>
+         </CheckButton>
+
+         <!-- Show minimap button checkbox -->
+         <CheckButton name="RecipeRadarShowMinimapButton" inherits="OptionsCheckButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT">
+                  <Offset>
+                     <AbsDimension x="40" y="-80"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnLoad>
+                  getglobal(this:GetName() .. "Text"):SetText(RRS("Show Minimap Button"))
+               </OnLoad>
+               <OnClick>
+                  if (this:GetChecked()) then
+                     PlaySound("igMainMenuOptionCheckBoxOn")
+                  else
+                     PlaySound("igMainMenuOptionCheckBoxOff")
+                  end
+                  RecipeRadar_MinimapButton_Toggle()
+               </OnClick>
+            </Scripts>
+         </CheckButton>
+
+         <!-- Minimap button position slider -->
+         <Slider name="RecipeRadarMinimapButtonPositionSlider" inherits="OptionsSliderTemplate">
+            <Size>
+               <AbsDimension x="220" y="16"/>
+            </Size>
+            <Anchors>
+               <Anchor point="TOP">
+                  <Offset>
+                     <AbsDimension x="0" y="-130"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnLoad>
+                  getglobal(this:GetName() .. "Text"):SetText(RRS("Minimap Button Position"))
+                  getglobal(this:GetName() .. "High"):SetText()
+                  getglobal(this:GetName() .. "Low"):SetText()
+                  RecipeRadarMinimapButtonPositionSlider:SetMinMaxValues(0, 360)
+                  RecipeRadarMinimapButtonPositionSlider:SetValueStep(1)
+               </OnLoad>
+               <OnValueChanged>
+                  RecipeRadar_Options.MinimapButtonPosition = this:GetValue()
+                  RecipeRadar_MinimapButton_UpdatePosition()
+               </OnValueChanged>
+            </Scripts>
+         </Slider>
+
+         <!-- Auto-select region checkbox -->
+         <CheckButton name="RecipeRadarAutoSelectRegionButton" inherits="OptionsCheckButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT">
+                  <Offset>
+                     <AbsDimension x="40" y="-160"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnLoad>
+                  getglobal(this:GetName() .. "Text"):SetText(RRS("Auto-select Current Region"))
+               </OnLoad>
+               <OnClick>
+                  RecipeRadar_OptionsFrame_AutoSelectRegion_OnClick()
+               </OnClick>
+            </Scripts>
+         </CheckButton>
+
+         <!-- Region selection dropdowns -->
+         <Frame name="RecipeRadar_ContinentDropDown" inherits="UIDropDownMenuTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT">
+                  <Offset>
+                     <AbsDimension x="50" y="-197"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnLoad>
+                  RecipeRadar_ContinentDropDown_OnLoad()
+               </OnLoad>
+            </Scripts>
+         </Frame>
+         <Frame name="RecipeRadar_RegionDropDown" inherits="UIDropDownMenuTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT" relativeTo="RecipeRadar_ContinentDropDown" relativePoint="BOTTOMLEFT">
+                  <Offset>
+                     <AbsDimension x="0" y="-2"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnLoad>
+                  RecipeRadar_RegionDropDown_OnLoad()
+               </OnLoad>
+            </Scripts>
+         </Frame>
+
+         <!-- Auto-select region checkbox -->
+         <CheckButton name="RecipeRadarAutoMapVendorsButton" inherits="OptionsCheckButtonTemplate">
+            <Anchors>
+               <Anchor point="TOPLEFT">
+                  <Offset>
+                     <AbsDimension x="40" y="-270"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnLoad>
+                  getglobal(this:GetName() .. "Text"):SetText(RRS("Auto-map Contributive Vendors"))
+               </OnLoad>
+               <OnClick>
+                  if (this:GetChecked()) then
+                     PlaySound("igMainMenuOptionCheckBoxOn")
+                     RecipeRadar_Options.AutoMapVendors = true
+                     RecipeRadar_InitVendorFilters()
+                     RecipeRadar_FrameUpdate()
+                  else
+                     PlaySound("igMainMenuOptionCheckBoxOff")
+                     RecipeRadar_Options.AutoMapVendors = false
+                  end
+               </OnClick>
+            </Scripts>
+         </CheckButton>
+
+         <!-- Okay/done button -->
+         <Button inherits="OptionsButtonTemplate" text="OKAY">
+            <Anchors>
+               <Anchor point="BOTTOM">
+                  <Offset>
+                     <AbsDimension x="0" y="20"/>
+                  </Offset>
+               </Anchor>
+            </Anchors>
+            <Scripts>
+               <OnClick>
+                  PlaySound("gsTitleOptionOK")
+                  RecipeRadar_OptionsFrame_Toggle()
+               </OnClick>
+            </Scripts>
+         </Button>
+
+      </Frames>
+      <Scripts>
+         <OnLoad>
+            RecipeRadar_OptionsFrame_OnLoad()
+         </OnLoad>
+         <OnShow>
+            RecipeRadar_OptionsFrame_OnShow()
+         </OnShow>
+         <OnKeyDown>
+            if (arg1 == "ESCAPE") then
+               RecipeRadar_OptionsFrame_Toggle()
+            end
+         </OnKeyDown>
+      </Scripts>
+
+   </Frame>
+</UI>

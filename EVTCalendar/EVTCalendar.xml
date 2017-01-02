@@ -1,0 +1,892 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+	<Button name="EventFrameButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="240" y="15"/>
+		</Size>
+		<Frames>
+		</Frames>
+		<Layers>
+			<Layer level="BORDER">
+				<FontString name="$parentInfo" inherits="GameFontHighlightSmall" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentNameLocation" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				PlaySound("igMainMenuOptionCheckBoxOn");
+				EVT_EventButton_OnClick(this);
+			</OnClick>
+		</Scripts>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
+	</Button>
+	<Frame name="EVTFrame" toplevel="true" enableMouse="true" movable="true" parent="UIParent" hidden="true">
+		<Size>
+			<AbsDimension x="828" y="524"/>
+		</Size>
+		<Anchors>
+ 			<Anchor point="TOPLEFT">
+ 				<Offset>
+ 					<AbsDimension x="355" y="-106"/>
+ 				</Offset>
+ 			</Anchor>
+ 		</Anchors>
+		<Backdrop bgFile="Interface\AddOns\EVTCalendar\Images\EVTFrameBackground-Dark" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="0" right="0" top="15" bottom="5"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+		</Backdrop>
+		<Frames>
+			<Frame name="EVTFrameEventList" inherits="OptionFrameBoxTemplate">
+				<Size>
+					<AbsDimension x="250" y="95"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-153" y="-75"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<ScrollFrame name="EventListScrollFrame" inherits="FauxScrollFrameTemplate">
+						<Size>
+							<AbsDimension x="250" y="95"/>
+						</Size>
+						<Anchors>
+							<Anchor point="RIGHT">
+								<Offset>
+									<AbsDimension x="-7" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnVerticalScroll>
+								FauxScrollFrame_OnVerticalScroll(20, EVT_UpdateScrollBar); 
+							</OnVerticalScroll>
+							<OnShow>
+								EVT_UpdateScrollBar();
+							</OnShow>
+						</Scripts>
+					</ScrollFrame>
+					<Button name="EventButton1" inherits="EventFrameButtonTemplate" id="1" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="5" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="EventButton2" inherits="EventFrameButtonTemplate" id="2" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EventButton1" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="EventButton3" inherits="EventFrameButtonTemplate" id="3" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EventButton2" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="EventButton4" inherits="EventFrameButtonTemplate" id="4" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EventButton3" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="EventButton5" inherits="EventFrameButtonTemplate" id="5" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EventButton4" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString inherits="GameFontNormalSmall" text="Events">
+							<Color r="0.8" g="0.8" b="0.1"/>
+							<Anchors>
+								<Anchor point="TOP" relativeTo="EVTFrameEventList" relativePoint="TOP">
+									<Offset>
+										<AbsDimension x="8" y="14"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Frame name="EVTFrameDetailsList" hidden="true">
+				<Size>
+					<AbsDimension x="250" y="300"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrameEventList" relativePoint="Bottom">
+						<Offset>
+							<AbsDimension x="0" y="-22"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="EVTFrameInviteButton" inherits="UIPanelButtonTemplate" text="Invite">
+						<Size>
+							<AbsDimension x="85" y="21"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EVTFrameEventList" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-323"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								PlaySoundFile("Sound\\interface\\iUiInterfaceButtonA.wav");
+								EVTFrameInviteButton_Toggle();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="EVTFrameConfirmButton" inherits="UIPanelButtonTemplate" text="Confirm">
+						<Size>
+							<AbsDimension x="85" y="21"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOP" relativeTo="EVTFrameEventList" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="-323"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								EVT_EventConfirmButton_OnClick();
+								PlaySoundFile("Sound\\interface\\iUiInterfaceButtonA.wav");
+							</OnClick>
+						</Scripts>
+					</Button>
+					</Frames>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString inherits="GameFontNormalSmall" text="Event Name:">
+							<Color r="0.8" g="0.8" b="0.1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="10" y="-14"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontNormalSmall" text="Created by: ">
+							<Color r="0.8" g="0.8" b="0.1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="10" y="-42"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontNormalSmall" text="Time:">
+							<Color r="0.8" g="0.8" b="0.1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="10" y="-70"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontNormalSmall" text="Type:">
+							<Color r="0.8" g="0.8" b="0.1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="10" y="-98"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontNormalSmall" text="Notes:">
+							<Color r="0.8" g="0.8" b="0.1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="10" y="-126"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString inherits="GameFontNormalSmall" text="Mandatory:">
+							<Color r="0.8" g="0.8" b="0.1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="10" y="-154"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="EVTDetailsStatusLabel" hidden="true" inherits="GameFontNormalSmall" text="Status:">
+							<Color r="0.8" g="0.8" b="0.1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="10" y="-180"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>	
+						<FontString name="EVTDetailsName" inherits="GameFontNormal" text="">
+							<Color r="1" g="1" b="1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="30" y="-28"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="EVTDetailsCreated" inherits="GameFontNormal" text="">
+							<Color r="1" g="1" b="1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="30" y="-56"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="EVTDetailsTime" inherits="GameFontNormal" text="">
+							<Color r="1" g="1" b="1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="30" y="-84"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="EVTDetailsType" inherits="GameFontNormal" text="">
+							<Color r="1" g="1" b="1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="30" y="-112"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="EVTDetailsNotes" inherits="GameFontNormal" text="">
+							<Color r="1" g="1" b="1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="30" y="-140"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="EVTDetailsMando" inherits="GameFontNormal" text="">
+							<Color r="1" g="1" b="1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="30" y="-168"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="EVTDetailsStatus" hidden="true" inherits="GameFontNormal" text="Unconfirmed">
+							<Color r="1" g="0.1" b="0.1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="30" y="-196"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Frame name="EVTFrameConfirmedList" hidden="true" inherits="OptionFrameBoxTemplate">
+				<Size>
+					<AbsDimension x="250" y="95"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-153" y="-385"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<ScrollFrame name="ConfirmedScrollFrame" inherits="FauxScrollFrameTemplate">
+						<Size>
+							<AbsDimension x="250" y="95"/>
+						</Size>
+						<Anchors>
+							<Anchor point="RIGHT">
+								<Offset>
+									<AbsDimension x="-7" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnVerticalScroll>
+								FauxScrollFrame_OnVerticalScroll(20, EVT_UpdateConfirmedScrollBar); 
+							</OnVerticalScroll>
+							<OnShow>
+								EVT_UpdateConfirmedScrollBar();
+							</OnShow>
+						</Scripts>
+					</ScrollFrame>
+				</Frames>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString inherits="GameFontNormalSmall" text="Confirmed:">
+							<Color r="0.8" g="0.8" b="0.1"/>
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="EVTFrameDetailsList" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="10" y="-180"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="ConfirmedText1" inherits="GameFontNormalSmall" justifyH="LEFT" text="1">
+							<Color r="1" g="1" b="1"/>
+							<Size>
+								<AbsDimension x="240" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="5" y="-6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="ConfirmedText2" inherits="GameFontNormalSmall" justifyH="LEFT" text="2">
+							<Color r="1" g="1" b="1"/>
+							<Size>
+								<AbsDimension x="240" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="ConfirmedText1" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="ConfirmedText3" inherits="GameFontNormalSmall" justifyH="LEFT" text="3">
+							<Color r="1" g="1" b="1"/>
+							<Size>
+								<AbsDimension x="240" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="ConfirmedText2" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="ConfirmedText4" inherits="GameFontNormalSmall" justifyH="LEFT" text="4">
+							<Color r="1" g="1" b="1"/>
+							<Size>
+								<AbsDimension x="240" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="ConfirmedText3" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="ConfirmedText5" inherits="GameFontNormalSmall" justifyH="LEFT" text="5">
+							<Color r="1" g="1" b="1"/>
+							<Size>
+								<AbsDimension x="240" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="ConfirmedText4" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropColor(0.1, 0.1, 0.1);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Button name="EVTFrameCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="EVTFrame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="-7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="EVTFrameOptionsButton">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="EVTFrame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-17" y="-7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EVTFrameOptions_OnClick();
+						ShowUIPanel(EVTFrameOverlay);
+						PlaySoundFile("Sound\\interface\\iUiInterfaceButtonA.wav");
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Addons\EVTCalendar\Images\EVTButtonOptions-Up"/>
+				<PushedTexture file="Interface\Addons\EVTCalendar\Images\EVTButtonOptions-Down"/>
+				<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+			</Button>
+			<Button name="EVTFrameUpButton">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrame" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="-90" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EVT_IncMonth();
+						PlaySoundFile("Sound\\interface\\iQuestLogCloseA.wav");
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
+				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+			</Button>
+			<Button name="EVTFrameDownButton">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrame" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="68" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EVT_DecMonth();
+						PlaySoundFile("Sound\\interface\\iQuestLogOpenA.wav");
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
+				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+			</Button>
+			<Button name="EVTFrameCreateButton" inherits="UIPanelButtonTemplate" text="Create">
+				<Size>
+					<AbsDimension x="85" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="EVTFrameEventList" relativePoint="BOTTOMLEFT">
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySoundFile("Sound\\interface\\iUiInterfaceButtonA.wav");
+						EVTFrameCreateButton_Toggle();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="EVTFrameModifyButton" inherits="UIPanelButtonTemplate" text="Modify">
+				<Size>
+					<AbsDimension x="85" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="EVTFrameEventList" relativePoint="BOTTOM">
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EVTFrameModifyButton_Toggle()
+						PlaySoundFile("Sound\\interface\\iUiInterfaceButtonA.wav");
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="EVTFrameDeleteButton" inherits="UIPanelButtonTemplate" text="Delete">
+				<Size>
+					<AbsDimension x="85" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="EVTFrameEventList" relativePoint="BOTTOMRIGHT">
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EVT_FrameDeleteButton_OnClick();
+						PlaySoundFile("Sound\\interface\\iUiInterfaceButtonA.wav");
+					</OnClick>
+				</Scripts>
+			</Button>
+			</Frames>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture file="Interface\AddOns\EVTCalendar\Images\EVTFrameTopRight">
+					<Size>
+						<AbsDimension x="512" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="188" y="-12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\AddOns\EVTCalendar\Images\EVTFrameTopLeft">
+					<Size>
+						<AbsDimension x="512" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-316" y="-12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="EVTMonthSelect" file="Interface\AddOns\EVTCalendar\Images\EVTFrameTop">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-273" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\AddOns\EVTCalendar\Images\EVTFrameRight">
+					<Size>
+						<AbsDimension x="32" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="11" y="-33"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\AddOns\EVTCalendar\Images\EVTFrameLeft">
+					<Size>
+						<AbsDimension x="32" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-807" y="-33"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\AddOns\EVTCalendar\Images\EVTFrameRight">
+					<Size>
+						<AbsDimension x="32" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="11" y="-250"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture file="Interface\AddOns\EVTCalendar\Images\EVTFrameLeft">
+					<Size>
+						<AbsDimension x="32" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-807" y="-250"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> 
+				<Texture file="Interface\AddOns\EVTCalendar\Images\EVTFrameBottomL">
+					<Size>
+						<AbsDimension x="530" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-304" y="-503"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> 
+				<Texture file="Interface\AddOns\EVTCalendar\Images\EVTFrameBottomR">
+					<Size>
+						<AbsDimension x="530" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="6" y="-503"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> 
+				<Texture name="EVTSunday" file="Interface\AddOns\EVTCalendar\Images\EVTFrameDay">
+					<Size>
+						<AbsDimension x="80" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-740" y="-24"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="EVTMonday" file="Interface\AddOns\EVTCalendar\Images\EVTFrameDay">
+					<Size>
+						<AbsDimension x="80" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-663" y="-24"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="EVTTuesday" file="Interface\AddOns\EVTCalendar\Images\EVTFrameDay">
+					<Size>
+						<AbsDimension x="80" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-586" y="-24"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="EVTWednesday" file="Interface\AddOns\EVTCalendar\Images\EVTFrameDay">
+					<Size>
+						<AbsDimension x="80" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-509" y="-24"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="EVTThursday" file="Interface\AddOns\EVTCalendar\Images\EVTFrameDay">
+					<Size>
+						<AbsDimension x="80" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-432" y="-24"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="EVTFriday" file="Interface\AddOns\EVTCalendar\Images\EVTFrameDay">
+					<Size>
+						<AbsDimension x="80" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-355" y="-24"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="EVTSaturday" file="Interface\AddOns\EVTCalendar\Images\EVTFrameDay">		
+					<Size>
+						<AbsDimension x="80" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-278" y="-24"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="EVTMonthDisplay" inherits="GameFontNormal" text="January 2016">
+					<Color r="1" g="1" b="1"/>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="EVTMonthSelect">
+							<Offset>
+								<AbsDimension x="-22" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString inherits="GameFontNormal" text="Sunday">
+					<Color r="0.8" g="0.8" b="0.1"/>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="EVTSunday">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+				<FontString inherits="GameFontNormal" text="Monday">
+					<Color r="0.8" g="0.8" b="0.1"/>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="EVTMonday">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+				<FontString inherits="GameFontNormal" text="Tuesday">
+					<Color r="0.8" g="0.8" b="0.1"/>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="EVTTuesday">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+				<FontString inherits="GameFontNormal" text="Wednesday">
+					<Color r="0.8" g="0.8" b="0.1"/>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="EVTWednesday">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+				<FontString inherits="GameFontNormal" text="Thursday">
+					<Color r="0.8" g="0.8" b="0.1"/>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="EVTThursday">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+				<FontString inherits="GameFontNormal" text="Friday">
+					<Color r="0.8" g="0.8" b="0.1"/>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="EVTFriday">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString inherits="GameFontNormal" text="Saturday">
+					<Color r="0.8" g="0.8" b="0.1"/>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="EVTSaturday">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+				<FontString name="EVTDate" inherits="GameFontNormal" text="Wednesday, November 13, 2016">
+					<Color r="1" g="1" b="1"/>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="EVTFrame" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-145" y="-40"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				EVT_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				EVT_OnEvent();
+			</OnEvent>
+			<OnShow>
+
+			</OnShow>
+			<OnHide>
+				HideUIPanel(EVTFrameOverlay);
+			</OnHide>
+		</Scripts>
+	</Frame>
+	<Frame name="EVTFrameOverlay" enableMouse="true" hidden="true" frameStrata="HIGH">
+		<Scripts>
+			<OnLoad>
+				this:SetAllPoints("EVTFrame");
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui> 

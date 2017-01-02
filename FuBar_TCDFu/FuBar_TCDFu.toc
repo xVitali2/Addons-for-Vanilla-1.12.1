@@ -1,0 +1,17 @@
+## Interface: 11200
+## Title: FuBar - |cffffffffTradeCooldown|r|cff00ff00Fu|r
+## Notes: Lists tradeskill cooldowns across all characters.
+## Author: smuggles
+## Version: 2.1
+
+## X-Category: Interface Enhancements
+## X-Website: http://www.wowinterface.com/downloads/info5009-Fubar_-_TradeCooldownFu.html
+
+## Dependencies: FuBar
+## OptionalDeps: Ace2
+## LoadOnDemand: 1
+## SavedVariables: Fubar_TradeCooldownDB,FTC_Save
+
+
+TradeCooldownFuLocals.lua
+FuBar_TradeCooldownFu.lua

@@ -1,0 +1,11 @@
+<Bindings>
+	<Binding name="Toggle TrinketMenu" description="Toggle TrinketMenu" header="TRINKETMENU">
+		TrinketMenu.ToggleFrame(TrinketMenuOptions.DisableToggle=="ON" and TrinketMenu_OptFrame or TrinketMenu_MainFrame)
+	</Binding>
+	<Binding name="Use Top Trinket" description="Use Top Trinket">
+		UseInventoryItem(13)
+	</Binding>
+	<Binding name="Use Bottom Trinket" description="Use Bottom Trinket">
+		UseInventoryItem(14)
+	</Binding>
+</Bindings>

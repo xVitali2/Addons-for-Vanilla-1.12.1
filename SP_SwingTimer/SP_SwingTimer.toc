@@ -1,0 +1,11 @@
+## Interface: 11200
+## Title: SP_|cffa050ffSwingTimer|r
+## Author: Bulldozer@Emerald Dream
+## Version: 1.2
+## Notes: Auto-Attack Swing Timer. Parry support. Slam support. In-battle Weapon swap support. Chat command: |cffa050ff/st|r
+## Dependencies:
+## OptionalDeps:
+## SavedVariablesPerCharacter: 
+## SavedVariables: SP_ST_GS
+SP_SwingTimer.xml
+SP_SwingTimer.lua

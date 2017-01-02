@@ -1,0 +1,32 @@
+## Interface: 11200
+## Title: Questie |cff7fff7f -Ace2-|r
+## Author: Aero/Schaka/Logonz/Dyaxler/everyone else
+## Notes: A standalone Vanilla QuestHelper
+## Version: 3.5
+## RequiredDeps:!!!Libs
+## OptionalDeps: Cartographer, MetaMap, EQL3, ShaguQuest
+## SavedVariables:
+## SavedVariablesPerCharacter: QuestieSeenQuests, QuestieTrackedQuests, QuestieConfig, QuestieTrackerVariables
+
+#Libs
+Libs\AceComm-2.0\AceComm-2.0.lua
+Libs\Tourist-2.0\Tourist-2.0.lua
+
+# Questie Database
+Database\items.lua
+Database\monsters.lua
+Database\events.lua
+Database\zone.lua
+Database\hash.lua
+Database\finishers.lua
+Database\objects.lua
+Database\addendum.lua
+Astrolabe\Astrolabe.lua
+
+# Questie
+Questie.lua
+Modules\QuestieNotes.lua
+Modules\QuestieQuest.lua
+Modules\QuestieTracker.lua
+Modules\QuestieArrow.lua
+Questie.xml

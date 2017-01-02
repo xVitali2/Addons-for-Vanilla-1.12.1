@@ -1,0 +1,28 @@
+## Interface: 11200
+## Title: FuBar - |cffffffffLocation|r|cff00ff00Fu|r
+## Notes: Keeps track of your current location.
+## Notes-ruRU: ќтслеживание вашего текущего местоположени€.
+## Author: ckknight
+## X-eMail: ckknight@gmail.com
+## X-Website: http://ckknight.wowinterface.com/
+## X-Category: Map
+## Dependencies: FuBar
+## OptionalDeps: Ace2, JostleLib, BabbleLib, TouristLib, FuBarPlugin-2.0, DewdropLib, TabletLib
+## SavedVariables: LocationFuDB
+## Version: 2.1
+## LoadOnDemand: 1
+
+#libs
+libs\Babble-Zone-2.0\Babble-Zone-2.0.lua
+libs\Jostle-2.0\Jostle-2.0.lua
+libs\Tourist-2.0\Tourist-2.0.lua
+
+LocationFuLocale-enUS.lua
+LocationFuLocale-ruRU.lua
+LocationFuLocale-deDE.lua
+LocationFuLocale-frFR.lua
+LocationFuLocale-koKR.lua
+LocationFuLocale-zhCN.lua
+LocationFuLocale-zhTW.lua
+
+LocationFu.lua

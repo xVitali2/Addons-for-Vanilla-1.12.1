@@ -1,0 +1,56 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="SP_SwingTimer.lua"/>
+	<Frame name="SP_ST_Frame" parent="UIParent" hidden="true" frameStrata="BACKGROUND">
+		<Scripts>
+			<OnLoad>
+				SP_ST_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				SP_ST_OnEvent();
+			</OnEvent>
+			<OnUpdate>
+				SP_ST_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+		
+		<Size>
+			<AbsDimension x="251" y="11" />
+		</Size>
+		
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background">
+		    <Color r="0" g="0" b="0" a="0" />
+		</Backdrop>
+		
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="SP_ST_FrameTime">
+					<Size>
+						<AbsDimension x="251" y="11" />
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="SP_ST_FrameText" font="Fonts\FRIZQT__.TTF" text="">
+					<Color r="1" g="1" b="1" a="1" />
+					<Shadow>
+						<Offset x="1" y="1" />
+						<Color r="0" g="0" b="0" />
+					</Shadow>
+					<FontHeight val="15"/>
+					<Size>
+						<AbsDimension x="251" y="11" />
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+</Ui>

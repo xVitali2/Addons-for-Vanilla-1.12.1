@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<UI xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+   <Button name="RecipeRadarVendorButtonTemplate" hidden="true" virtual="true">
+      <Size>
+         <AbsDimension x="393" y="16"/>
+      </Size>
+      <Layers>
+         <Layer level="BACKGROUND">
+            <FontString name="$parentSubText" inherits="GameFontNormalSmall" justifyH="LEFT"/>
+            <Texture name="$parentCheck" file="Interface\Buttons\UI-CheckBox-Check" hidden="true">
+               <Size>
+                  <AbsDimension x="16" y="16"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="LEFT">
+                     <Offset>
+                        <AbsDimension x="50" y="0"/>
+                     </Offset>
+                  </Anchor>
+               </Anchors>
+            </Texture>
+         </Layer>
+      </Layers>
+      <Scripts>
+         <OnLoad>
+            this:SetFrameLevel(this:GetFrameLevel() + 1)
+            this:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+         </OnLoad>
+         <OnClick>
+            RecipeRadar_VendorButton_OnClick(arg1)
+         </OnClick>
+         <OnEnter>
+            if (this.r) then
+               getglobal(this:GetName() .. "SubText"):SetTextColor(this.r + RecipeRadar_Colors.Highlight, this.g + RecipeRadar_Colors.Highlight, this.b + RecipeRadar_Colors.Highlight)
+            end
+            if (RecipeRadar_Options.RealmAvailability and this.Recipe) then
+               RecipeRadar_Availability_CreateTooltip(this.Recipe)
+               RecipeRadar_AvailabilityTooltip_Show(this)
+            end
+         </OnEnter>
+         <OnLeave>
+            getglobal(this:GetName() .. "SubText"):SetTextColor(this.r, this.g, this.b)
+            RecipeRadarAvailabilityTooltip:Hide()
+         </OnLeave>
+         <OnMouseDown>
+            getglobal(this:GetName() .. "SubText"):SetPoint("LEFT", this:GetName() .. "Text", "RIGHT", 11, -1)
+         </OnMouseDown>
+         <OnMouseUp>
+            getglobal(this:GetName() .. "SubText"):SetPoint("LEFT", this:GetName() .. "Text", "RIGHT", 10, 0)
+         </OnMouseUp>
+      </Scripts>
+      <NormalTexture>
+         <Size>
+            <AbsDimension x="16" y="16"/>
+         </Size>
+         <Anchors>
+            <Anchor point="LEFT">
+               <Offset>
+                  <AbsDimension x="3" y="0"/>
+               </Offset>
+            </Anchor>
+         </Anchors>
+      </NormalTexture>
+      <HighlightTexture name="$parentHighlight" alphaMode="ADD">
+         <Size>
+            <AbsDimension x="16" y="16"/>
+         </Size>
+         <Anchors>
+            <Anchor point="LEFT">
+               <Offset>
+                  <AbsDimension x="3" y="0"/>
+               </Offset>
+            </Anchor>
+         </Anchors>
+      </HighlightTexture>
+      <DisabledTexture file="Interface\Buttons\UI-PlusButton-Disabled">
+         <Size>
+            <AbsDimension x="16" y="16"/>
+         </Size>
+         <Anchors>
+            <Anchor point="LEFT">
+               <Offset>
+                  <AbsDimension x="3" y="0"/>
+               </Offset>
+            </Anchor>
+         </Anchors>
+      </DisabledTexture>
+      <NormalText name="$parentText" inherits="GameFontNormal" justifyH="LEFT">
+         <Size>
+            <AbsDimension x="0" y="0"/>
+         </Size>
+         <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentHighlight" relativePoint="RIGHT">
+               <Offset>
+                  <AbsDimension x="2" y="1"/>
+               </Offset>
+            </Anchor>
+         </Anchors>
+      </NormalText>
+      <HighlightText name="$parentHighlightText" inherits="GameFontHighlight" justifyH="LEFT">
+         <Size>
+            <AbsDimension x="0" y="0"/>
+         </Size>
+         <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentHighlight" relativePoint="RIGHT">
+               <Offset>
+                  <AbsDimension x="2" y="1"/>
+               </Offset>
+            </Anchor>
+         </Anchors>
+      </HighlightText>
+      <DisabledText name="$parentDisabledText" inherits="GameFontDisable" justifyH="LEFT">
+         <Size>
+            <AbsDimension x="0" y="0"/>
+         </Size>
+         <Anchors>
+            <Anchor point="LEFT" relativeTo="$parentHighlight" relativePoint="RIGHT">
+               <Offset>
+                  <AbsDimension x="2" y="1"/>
+               </Offset>
+            </Anchor>
+         </Anchors>
+      </DisabledText>
+   </Button>
+
+   <Button name="RecipeRadarScrollTemplate" hidden="true" virtual="true">
+      <Size>
+         <AbsDimension x="16" y="16"/>
+      </Size>
+      <Anchors>
+         <Anchor point="CENTER" relativeTo="RecipeRadarMapFrame" relativePoint="TOPLEFT"/>
+      </Anchors>
+      <Scripts>
+         <OnEnter>
+            RecipeRadar_Maps_SetTooltip(GameTooltip, this)
+         </OnEnter>
+         <OnLeave>
+            GameTooltip:Hide()
+         </OnLeave>
+      </Scripts>
+      <NormalTexture file="Interface\Addons\RecipeRadar\Images\Misc\Scroll"/>
+   </Button>
+
+   <ScrollFrame name="RecipeRadarDetailScrollFrameTemplate" inherits="UIPanelScrollFrameTemplate" virtual="true">
+      <Layers>
+         <Layer level="BACKGROUND">
+            <Texture name="$parentTop" file="Interface\RecipeRadarFrame\UI-RecipeRadar-ScrollBar">
+               <Size>
+                  <AbsDimension x="30" y="123"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+                     <Offset>
+                        <AbsDimension x="-2" y="5"/>
+                     </Offset>
+                  </Anchor>
+               </Anchors>
+               <TexCoords left="0" right="0.46875" top="0" bottom="0.9609375"/>
+            </Texture>
+            <Texture name="$parentBottom" file="Interface\RecipeRadarFrame\UI-RecipeRadar-ScrollBar">
+               <Size>
+                  <AbsDimension x="30" y="123"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
+                     <Offset>
+                        <AbsDimension x="-2" y="-1"/>
+                     </Offset>
+                  </Anchor>
+               </Anchors>
+               <TexCoords left="0.53125" right="1.0" top="0.03125" bottom="1.0"/>
+            </Texture>
+         </Layer>
+      </Layers>
+      <Scripts>
+         <OnLoad>
+            ScrollFrame_OnLoad()
+            this.scrollBarHideable = 1
+         </OnLoad>
+      </Scripts>
+   </ScrollFrame>
+
+   <ScrollFrame name="RecipeRadarListScrollFrameTemplate" inherits="FauxScrollFrameTemplate" virtual="true">
+      <Layers>
+         <Layer level="BACKGROUND">
+            <Texture file="Interface\ClassTrainerFrame\UI-ClassTrainer-ScrollBar">
+               <Size>
+                  <AbsDimension x="30" y="120"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+                     <Offset>
+                        <AbsDimension x="-3" y="2"/>
+                     </Offset>
+                  </Anchor>
+               </Anchors>
+               <TexCoords left="0" right="0.46875" top="0.0234375" bottom="0.9609375"/>
+            </Texture>
+            <Texture file="Interface\ClassTrainerFrame\UI-ClassTrainer-ScrollBar">
+               <Size>
+                  <AbsDimension x="30" y="123"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
+                     <Offset>
+                        <AbsDimension x="-3" y="-2"/>
+                     </Offset>
+                  </Anchor>
+               </Anchors>
+               <TexCoords left="0.53125" right="1.0" top="0.03125" bottom="1.0"/>
+            </Texture>
+         </Layer>
+      </Layers>
+   </ScrollFrame>
+
+   <Button name="RecipeRadarTabButtonTemplate" virtual="true">
+      <Size>
+         <AbsDimension x="53" y="29"/>
+      </Size>
+      <Scripts>
+         <OnMouseDown>
+            getglobal(this:GetName() .. "Normal"):SetPoint("LEFT", 21, 1)
+            getglobal(this:GetName() .. "Highlight"):SetPoint("LEFT", 21, 1)
+         </OnMouseDown>
+         <OnMouseUp>
+            getglobal(this:GetName() .. "Normal"):SetPoint("LEFT", 20, 2)
+            getglobal(this:GetName() .. "Highlight"):SetPoint("LEFT", 20, 2)
+         </OnMouseUp>
+      </Scripts>
+      <Layers>
+         <Layer level="BACKGROUND">
+            <Texture name="$parentLeft" file="Interface\ClassTrainerFrame\UI-ClassTrainer-ExpandTab-Left">
+               <Size>
+                  <AbsDimension x="8" y="33"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="TOPLEFT"/>
+               </Anchors>
+            </Texture>
+            <Texture name="$parentMiddle" file="Interface\QuestFrame\UI-QuestLogSortTab-Middle">
+               <Size>
+                  <AbsDimension x="38" y="33"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="TOPLEFT" relativeTo="$parentLeft" relativePoint="TOPRIGHT"/>
+               </Anchors>
+            </Texture>
+            <Texture name="$parentRight" file="Interface\QuestFrame\UI-QuestLogSortTab-Right">
+               <Size>
+                  <AbsDimension x="8" y="33"/>
+               </Size>
+               <Anchors>
+                  <Anchor point="TOPLEFT" relativeTo="$parentMiddle" relativePoint="TOPRIGHT"/>
+               </Anchors>
+            </Texture>
+         </Layer>
+      </Layers>
+      <NormalTexture name="$parentNormal">
+         <Size>
+            <AbsDimension x="16" y="16"/>
+         </Size>
+         <Anchors>
+            <Anchor point="LEFT">
+               <Offset>
+                  <AbsDimension x="19" y="2"/>
+               </Offset>
+            </Anchor>
+         </Anchors>
+      </NormalTexture>
+      <HighlightTexture name="$parentHighlight" alphaMode="ADD">
+         <Size>
+            <AbsDimension x="16" y="16"/>
+         </Size>
+         <Anchors>
+            <Anchor point="LEFT">
+               <Offset>
+                  <AbsDimension x="19" y="2"/>
+               </Offset>
+            </Anchor>
+         </Anchors>
+      </HighlightTexture>
+   </Button>
+
+</UI>

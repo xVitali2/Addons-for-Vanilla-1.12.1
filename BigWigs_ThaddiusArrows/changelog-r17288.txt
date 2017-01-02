@@ -1,0 +1,146 @@
+------------------------------------------------------------------------
+r17288 | rabbit | 2006-11-17 10:48:27 -0500 (Fri, 17 Nov 2006) | 1 line
+
+BigWigs_ThaddiusArrows: New name format.
+------------------------------------------------------------------------
+r17276 | rabbit | 2006-11-17 10:16:15 -0500 (Fri, 17 Nov 2006) | 3 lines
+
+BigWigs_ThaddiusArrows:
+ * Attempt to make strategy broadcast language-neutral.
+ * Should speed up the strategy checking on BW_Message a tiny bit.
+------------------------------------------------------------------------
+r17273 | ammo | 2006-11-17 10:08:59 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_ThaddiusArrows: OnInit -> OnRegister, X-BigWigsmodule removed
+
+------------------------------------------------------------------------
+r17257 | ammo | 2006-11-17 09:51:02 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_ThaddiusArrows: set .external to true
+
+------------------------------------------------------------------------
+r16837 | ammo | 2006-11-13 09:04:13 -0500 (Mon, 13 Nov 2006) | 2 lines
+
+BigWigs_ThaddiusArrows: now LoD with the new LoD stuff in BigWigs.
+
+------------------------------------------------------------------------
+r15600 | rabbit | 2006-10-31 01:35:42 -0500 (Tue, 31 Oct 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Add information to the readme about what alert methods are available.
+------------------------------------------------------------------------
+r15106 | fenlis | 2006-10-24 15:34:21 -0400 (Tue, 24 Oct 2006) | 1 line
+
+BigWigs_ThaddiusArrows : Added localization koKR
+------------------------------------------------------------------------
+r14442 | rabbit | 2006-10-19 20:18:09 -0400 (Thu, 19 Oct 2006) | 1 line
+
+BigWigs_ThaddiusArrows: AL-2.2 bugfix.
+------------------------------------------------------------------------
+r14303 | rabbit | 2006-10-18 21:01:47 -0400 (Wed, 18 Oct 2006) | 1 line
+
+BigWigs_ThaddiusArrows: AceLocale-2.2.
+------------------------------------------------------------------------
+r13645 | rabbit | 2006-10-11 19:54:24 -0400 (Wed, 11 Oct 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Don't print about strategy broadcasts if you're already set to the broadcasted strategy.
+------------------------------------------------------------------------
+r11687 | saroz | 2006-09-22 16:31:42 -0400 (Fri, 22 Sep 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Don't broadcast local text messages to the raid
+------------------------------------------------------------------------
+r11529 | ammo | 2006-09-20 11:31:14 -0400 (Wed, 20 Sep 2006) | 3 lines
+
+BigWigs_ThaddiusArrows:
+* Place the across arrow in a slighty more friendly position
+
+------------------------------------------------------------------------
+r11364 | kebinusan | 2006-09-19 09:34:52 -0400 (Tue, 19 Sep 2006) | 1 line
+
+BigWigs_ThaddiusArrows:  Most likely fixed module not disabling after Thaddius dies.
+------------------------------------------------------------------------
+r10971 | rabbit | 2006-09-15 05:38:31 -0400 (Fri, 15 Sep 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Now tells you who sent the strategy sync.
+------------------------------------------------------------------------
+r10881 | kebinusan | 2006-09-11 22:33:25 -0400 (Mon, 11 Sep 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Fix for run through strategy.
+------------------------------------------------------------------------
+r10457 | rabbit | 2006-09-07 18:26:16 -0400 (Thu, 07 Sep 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Make sure to hide the arrows when the mod is disabled.
+------------------------------------------------------------------------
+r9881 | rabbit | 2006-09-02 22:01:17 -0400 (Sat, 02 Sep 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Less spam when getting strategy broadcast.
+------------------------------------------------------------------------
+r9873 | rabbit | 2006-09-02 20:38:15 -0400 (Sat, 02 Sep 2006) | 1 line
+
+BigWigs_ThaddiusArrows: "Big Wigs".
+------------------------------------------------------------------------
+r9725 | rabbit | 2006-09-01 08:34:14 -0400 (Fri, 01 Sep 2006) | 1 line
+
+BigWigs_ThaddiusArrows: The raid leader/officers can now broadcast their strategy to the raid. Untested.
+------------------------------------------------------------------------
+r9658 | rabbit | 2006-08-31 13:14:50 -0400 (Thu, 31 Aug 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Identifies incorrect strategies and resets, also tells you what strategy you have enabled and to make sure that you have the same one as the rest of the raid.
+------------------------------------------------------------------------
+r9637 | rabbit | 2006-08-31 06:28:06 -0400 (Thu, 31 Aug 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Fixed the module revision and rearrange some code.
+------------------------------------------------------------------------
+r9536 | rabbit | 2006-08-30 05:40:55 -0400 (Wed, 30 Aug 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Can now reverse the circular strategy. This can be a bit confusing, so I'm open to ideas on how to make it easier.
+------------------------------------------------------------------------
+r9388 | kebinusan | 2006-08-28 07:23:39 -0400 (Mon, 28 Aug 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Added straight arrow and a couple minor tweaks
+------------------------------------------------------------------------
+r9287 | kebinusan | 2006-08-27 11:44:59 -0400 (Sun, 27 Aug 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Added missing syctoken, thanks FtH|eagle
+------------------------------------------------------------------------
+r9274 | rabbit | 2006-08-27 06:57:42 -0400 (Sun, 27 Aug 2006) | 2 lines
+
+BigWigs_ThaddiusArrows: There's no XML file, just remove the TOC reference.
+
+------------------------------------------------------------------------
+r9270 | rabbit | 2006-08-27 06:29:26 -0400 (Sun, 27 Aug 2006) | 2 lines
+
+BigWigs_ThaddiusArrows: Fixed first warning if you use the RunThrough strategy.
+
+------------------------------------------------------------------------
+r9269 | rabbit | 2006-08-27 06:21:29 -0400 (Sun, 27 Aug 2006) | 5 lines
+
+BigWigs_ThaddiusArrows:
+ * Add SVN keywords.
+ * Clean up space usage.
+ * Some other cleanups and a bugfix or two.
+
+------------------------------------------------------------------------
+r9268 | kebinusan | 2006-08-27 05:54:27 -0400 (Sun, 27 Aug 2006) | 1 line
+
+BigWigs_ThaddiusArrows: More cleanup, added info to readme.txt
+------------------------------------------------------------------------
+r9265 | kebinusan | 2006-08-27 05:15:20 -0400 (Sun, 27 Aug 2006) | 1 line
+
+BigWigs_ThaddiusArrows:  Now hooks BigWigs_Message to avoid duplication with existing Thaddius module. Thanks Vhaarr
+------------------------------------------------------------------------
+r9204 | kebinusan | 2006-08-26 10:03:21 -0400 (Sat, 26 Aug 2006) | 1 line
+
+Bigwigs_ThaddiusArrows:  Added readme file and sound file that will be used later
+------------------------------------------------------------------------
+r9203 | kebinusan | 2006-08-26 09:57:46 -0400 (Sat, 26 Aug 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Cleaned up a little, updated toc, still untested damn server
+------------------------------------------------------------------------
+r8568 | kebinusan | 2006-08-21 00:31:45 -0400 (Mon, 21 Aug 2006) | 1 line
+
+BigWigs_ThaddiusArrows:  A small mod based off rabbit's thaddius module to display a strategy specific move left/right indicators based on polarity. *Untested *Untidy *Quickly thrown together
+------------------------------------------------------------------------
+r8567 | kebinusan | 2006-08-21 00:30:15 -0400 (Mon, 21 Aug 2006) | 1 line
+
+BigWigs_ThaddiusArrows: Creating folder for initial import
+------------------------------------------------------------------------

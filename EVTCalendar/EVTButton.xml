@@ -1,0 +1,76 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Frame name="EVTButtonFrame" parent="UIParent" movable="true" enableMouse="true" hidden="false" frameStrata="HIGH">
+		<Size>
+			<AbsDimension x="48" y="48"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="Minimap" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="-5" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="EVTButton">
+				<Size>
+					<AbsDimension x="48" y="48"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="Interface\AddOns\EVTCalendar\Images\EVTButtonUp"/>
+				<PushedTexture file="Interface\AddOns\EVTCalendar\Images\EVTButtonDown"/>
+				<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="EVTButtonDay" inherits="GameFontBlack" text="1" justifyH="CENTER">
+							<Size>
+								<AbsDimension x="20" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER" relativeTo="EVTButton">
+									<Offset>
+										<AbsDimension x="0" y="-3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:RegisterForDrag("RightButton");
+					</OnLoad>
+					<OnDragStart> 
+						EVTButton_StartMoving();
+					</OnDragStart> 
+					<OnDragStop>
+						EVTButtonFrame:StopMovingOrSizing();
+					</OnDragStop>
+					<OnClick>
+						EVTButton_OnClick();
+					</OnClick>
+					<OnEnter>
+						EVTButton_OnEnter();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnMouseUp>
+						EVTButtonFrame:StopMovingOrSizing();
+					</OnMouseUp>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnEvent>
+				EVTButton_UpdatePosition();
+			</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

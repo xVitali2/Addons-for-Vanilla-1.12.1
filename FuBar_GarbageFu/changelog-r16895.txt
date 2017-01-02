@@ -1,0 +1,142 @@
+------------------------------------------------------------------------
+r16895 | wmrojer | 2006-11-13 15:32:09 -0500 (Mon, 13 Nov 2006) | 1 line
+
+FuBar_GarbageFu : Typo in the toc
+------------------------------------------------------------------------
+r16894 | wmrojer | 2006-11-13 15:29:21 -0500 (Mon, 13 Nov 2006) | 1 line
+
+FuBar_GarbageFu : TBC Compatibility fix. Upgraded to AceLocal-2.2 and AceHook-2.1
+------------------------------------------------------------------------
+r16166 | wmrojer | 2006-11-06 16:43:27 -0500 (Mon, 06 Nov 2006) | 1 line
+
+FuBar_GarbageFu : Removed the reference to AceModuleCore from GarbageFu.lua. It was never used
+------------------------------------------------------------------------
+r16125 | wmrojer | 2006-11-06 07:08:57 -0500 (Mon, 06 Nov 2006) | 2 lines
+
+FuBar_GarbageFu : Bug fix for trac ticket #120
+Fixed bugs in damjau's updates. If you add translations strings, you need to add them to all locales.
+------------------------------------------------------------------------
+r14673 | damjau | 2006-10-21 13:23:16 -0400 (Sat, 21 Oct 2006) | 1 line
+
+FuBar_GarbageFu - add koKR
+------------------------------------------------------------------------
+r14247 | wmrojer | 2006-10-18 14:27:44 -0400 (Wed, 18 Oct 2006) | 1 line
+
+FuBar_GarbageFu : Shorter German translation for 'No items to drop'
+------------------------------------------------------------------------
+r14033 | tekkub | 2006-10-15 16:31:22 -0400 (Sun, 15 Oct 2006) | 1 line
+
+FuBar_GarbageFu - Now properly updates auction prices OnFullyInitialized
+------------------------------------------------------------------------
+r14030 | tekkub | 2006-10-15 16:19:54 -0400 (Sun, 15 Oct 2006) | 1 line
+
+FuBar_GarbageFu - Fixed a nil bug on reloadui
+------------------------------------------------------------------------
+r13718 | wmrojer | 2006-10-12 11:58:02 -0400 (Thu, 12 Oct 2006) | 2 lines
+
+FuBar_GarbageFu : Changed initialization of Vendor and auction price addons to happen at AceEvent_FullyInitialized.
+Added French translation.
+------------------------------------------------------------------------
+r13341 | kemayo | 2006-10-08 09:13:14 -0400 (Sun, 08 Oct 2006) | 1 line
+
+FuBar_GarbageFu: Fix vendor-price typo.
+------------------------------------------------------------------------
+r13301 | wmrojer | 2006-10-07 22:10:13 -0400 (Sat, 07 Oct 2006) | 2 lines
+
+FuBarFuBar_GarbageFu : Fixed bug where sell items wheren't respecting grey items that where marked for keep.
+Added quality threshold for when to use auction price for items. (Does not work for caching auctioneer prices)
+------------------------------------------------------------------------
+r13240 | kemayo | 2006-10-07 11:02:19 -0400 (Sat, 07 Oct 2006) | 1 line
+
+FuBar_GarbageFu: Add support for ColaLight as an item price source.
+------------------------------------------------------------------------
+r13164 | kemayo | 2006-10-06 06:46:50 -0400 (Fri, 06 Oct 2006) | 1 line
+
+FuBar_GarbageFu: Make FuBar optional.
+------------------------------------------------------------------------
+r12742 | caldar | 2006-10-02 20:55:30 -0400 (Mon, 02 Oct 2006) | 1 line
+
+GarbageFu: correct a missed external
+------------------------------------------------------------------------
+r12739 | caldar | 2006-10-02 20:44:25 -0400 (Mon, 02 Oct 2006) | 1 line
+
+GarbageFu: externals updated
+------------------------------------------------------------------------
+r12312 | krtek | 2006-09-30 03:09:35 -0400 (Sat, 30 Sep 2006) | 2 lines
+
+FuBar_GarbageFu : Adding externals root dir to svn
+
+------------------------------------------------------------------------
+r12057 | nevcairiel | 2006-09-26 13:04:50 -0400 (Tue, 26 Sep 2006) | 1 line
+
+Externals: All F, all FuBar plugins, i guess that was half of all addons.
+------------------------------------------------------------------------
+r11917 | wmrojer | 2006-09-24 13:45:54 -0400 (Sun, 24 Sep 2006) | 1 line
+
+FuBar_GarbageFu : Fixed nil bug in call to Abacus
+------------------------------------------------------------------------
+r11684 | wmrojer | 2006-09-22 13:19:51 -0400 (Fri, 22 Sep 2006) | 2 lines
+
+FuBar_GarbageFu : 
+Fixed a stupid init bug. Or is it an Ace2 bug! Time will tell.
+------------------------------------------------------------------------
+r11635 | wmrojer | 2006-09-22 02:47:59 -0400 (Fri, 22 Sep 2006) | 3 lines
+
+FuBar_GarbageFu : 
+Update for Lua 5.1
+Made addon load on demand again. (Forgot to change it back after testing it standalone)
+------------------------------------------------------------------------
+r11384 | wmrojer | 2006-09-19 11:42:17 -0400 (Tue, 19 Sep 2006) | 1 line
+
+FuBar_GarbageFu : Added bag slots display (Total/Used/Free). Added Recipes to auction set. Double-click to open bags. Fixed issue with settings not being saved in the right profile. Added German translation.
+------------------------------------------------------------------------
+r10989 | wmrojer | 2006-09-15 07:18:39 -0400 (Fri, 15 Sep 2006) | 1 line
+
+FuBar_GarbageFu : Added support for auction prices. Supported addons are Actioneer, KC_Items and WoWEcon. Added Item Types base on type and subtype from GetItemInfo
+------------------------------------------------------------------------
+r10349 | wmrojer | 2006-09-06 14:24:19 -0400 (Wed, 06 Sep 2006) | 1 line
+
+FuBar_GarbageFu : Added support for ItemSync. Fixed Sell All Items button to only show when there are items to sell. Added total value of items to sell to the tooltip of sell all items button.
+------------------------------------------------------------------------
+r9990 | wmrojer | 2006-09-03 19:05:40 -0400 (Sun, 03 Sep 2006) | 1 line
+
+FuBar_GarbageFu : Added option to only sell grey items. Added support for it's own vendor price database (seperate load on demand addon). Reverted back to AceLocale-2.0. Fixed various bugs. Addon is no longer considers in beta stage.
+------------------------------------------------------------------------
+r9819 | wmrojer | 2006-09-02 08:39:00 -0400 (Sat, 02 Sep 2006) | 1 line
+
+FuBar_GarbageFu : Added option to show items icon instead of Trashcan, options to disable Sell All Button on merchant frame. Moved Drop Threshold to Options menu
+------------------------------------------------------------------------
+r9816 | kergoth | 2006-09-02 06:08:27 -0400 (Sat, 02 Sep 2006) | 1 line
+
+FuBar_GarbageFu: Add support for pulling prices from Ludwig_SellValue, an uberminimal sellvalue addon.
+------------------------------------------------------------------------
+r9766 | tekkub | 2006-09-01 18:22:05 -0400 (Fri, 01 Sep 2006) | 2 lines
+
+FuBar_GarbageFu
+- TOC tweaks
+------------------------------------------------------------------------
+r9764 | wmrojer | 2006-09-01 17:47:04 -0400 (Fri, 01 Sep 2006) | 1 line
+
+FuBar_GarbageFu : Added support for price asking from PriceMaster and WoWEcon
+------------------------------------------------------------------------
+r9690 | wmrojer | 2006-08-31 19:42:23 -0400 (Thu, 31 Aug 2006) | 1 line
+
+FuBar_GarbageFu : First working version. 
+------------------------------------------------------------------------
+r9547 | wmrojer | 2006-08-30 08:14:15 -0400 (Wed, 30 Aug 2006) | 2 lines
+
+FFuBar_GarbageFu : Added svn:properties Rev Date
+
+------------------------------------------------------------------------
+r9531 | wmrojer | 2006-08-30 03:39:19 -0400 (Wed, 30 Aug 2006) | 1 line
+
+FuBar_GarbageFu : Removed excessive file
+------------------------------------------------------------------------
+r9530 | wmrojer | 2006-08-30 03:35:48 -0400 (Wed, 30 Aug 2006) | 1 line
+
+FuBar_GarbageFu : Added svn:externals
+------------------------------------------------------------------------
+r9529 | wmrojer | 2006-08-30 03:21:36 -0400 (Wed, 30 Aug 2006) | 1 line
+
+FuBar_GarbageFu : First version. BETA VERSION
+------------------------------------------------------------------------

@@ -1,0 +1,739 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="Localization.lua" /> 
+	<Script file="Localization_deDE.lua" />
+ 	<Script file="Localization_frFR.lua" /> 
+	<Script file="MasterTradeSkills.lua" /> 
+	<Frame name="MasterTradeSkillsFrame" parent="GameTooltip" hidden="false">
+		<Scripts>
+			<OnLoad>
+				MasterTradeSkills_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				MasterTradeSkills_OnEvent(event);
+			</OnEvent>
+			<OnShow>
+				MasterTradeSkills_OnShow();
+			</OnShow>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="MTS_OptionsFrame" enableMouse="true" movable="true" parent="UIParent" hidden="true" inherits="DialogBoxFrame">
+		<Size>
+			<AbsDimension x="400" y="450"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+ 					<AbsDimension x="0" y="0"/>
+ 				</Offset>
+			</Anchor>
+		</Anchors>
+		
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="450" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentHeaderText" inherits="GameFontNormal" text="MTS_TITLE">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentHeader" relativePoint="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_Enabled" inherits="GameFontNormal" text="MTS_OPT_ENABLE">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_ShowLearned" inherits="GameFontNormal" text="MTS_OPT_SHOWLEARNED">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-55" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_ShowNotLearned" inherits="GameFontNormal" text="MTS_OPT_SHOWNOTLEARNED">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-80" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_ShowTradeSkills" inherits="GameFontNormal" text="MTS_OPT_SHOWTRADESKILLS">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-105" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+
+				<FontString name="$parentText_ShowTradeSkills1" inherits="GameFontNormal" text="MTS_TRADESKILLS[1]">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-130" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_ShowTradeSkills2" inherits="GameFontNormal" text="MTS_TRADESKILLS[2]">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-155" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_ShowTradeSkills3" inherits="GameFontNormal" text="MTS_TRADESKILLS[3]">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-180" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_ShowTradeSkills4" inherits="GameFontNormal" text="MTS_TRADESKILLS[4]">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-205" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_ShowTradeSkills5" inherits="GameFontNormal" text="MTS_TRADESKILLS[5]">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-230" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_ShowTradeSkills6" inherits="GameFontNormal" text="MTS_TRADESKILLS[1]">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="260" y="-130" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_ShowTradeSkills7" inherits="GameFontNormal" text="MTS_TRADESKILLS[2]">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="260" y="-155" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_ShowTradeSkills8" inherits="GameFontNormal" text="MTS_TRADESKILLS[3]">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="260" y="-180" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_ShowTradeSkills9" inherits="GameFontNormal" text="MTS_TRADESKILLS[4]">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="260" y="-205" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_ShowTradeSkills10" inherits="GameFontNormal" text="MTS_TRADESKILLS[5]">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="260" y="-230" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_NumToShow" inherits="GameFontNormal" text="MTS_NUMTOSHOW_TIP">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-255" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_NumToShow" inherits="GameFontNormal" text="MTS_REVERSE">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-335" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_NumToShow" inherits="GameFontNormal" text="MTS_DIF1">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-285" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_NumToShow" inherits="GameFontNormal" text="MTS_DIF2">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-310" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_NumToShow" inherits="GameFontNormal" text="MTS_DIF3">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="260" y="-285" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_NumToShow" inherits="GameFontNormal" text="MTS_DIF4">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="260" y="-310" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_NumToShow" inherits="GameFontNormal" text="MTS_DIF5">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="260" y="-335" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_NumToShow" inherits="GameFontNormal" text="MTS_OPT_UNKNOWNTOBOT">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-360" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_NumToShow" inherits="GameFontNormal" text="MTS_OPT_ALTNAME">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="260" y="-360" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText_NumToShow" inherits="GameFontNormal" text="MTS_OPT_NOMINIMAP">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+							<Offset>
+								<AbsDimension x="50" y="-385" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+			</Layer>
+		</Layers>	
+		
+		<Frames>
+			<CheckButton name="$parentCheck_Enabled" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="20" y="-20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_Toggle();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_ShowLearned" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="20" y="-45"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowLearned();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_ShowNotLearned" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="20" y="-70"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowNotLearned();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			
+			-- Tradeskill buttons
+			<CheckButton name="$parentCheck_ShowTradeSkills1" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="20" y="-120"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowTradeSkills(this:GetName(), 1);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_ShowTradeSkills2" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="20" y="-145"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowTradeSkills(this:GetName(), 2);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_ShowTradeSkills3" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="20" y="-170"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowTradeSkills(this:GetName(), 3);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_ShowTradeSkills4" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="20" y="-195"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowTradeSkills(this:GetName(), 4);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_ShowTradeSkills5" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="20" y="-220"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowTradeSkills(this:GetName(), 5);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_ShowTradeSkills6" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="230" y="-120"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowTradeSkills(this:GetName(), 6);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_ShowTradeSkills7" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="230" y="-145"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowTradeSkills(this:GetName(), 7);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_ShowTradeSkills8" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="230" y="-170"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowTradeSkills(this:GetName(), 8);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_ShowTradeSkills9" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="230" y="-195"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowTradeSkills(this:GetName(), 9);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_ShowTradeSkills10" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="230" y="-220"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowTradeSkills(this:GetName(), 10);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<EditBox name="$parentText_ShowNumToShow" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+				<Size>
+					<AbsDimension x="20" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="30" y="-250"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnTextChanged>
+						MTS_NumToShow();
+					</OnTextChanged>
+				</Scripts>
+			</EditBox>
+			<CheckButton name="$parentCheck_ReverseOrder" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="20" y="-325"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowRev();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_Show_Dif1" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="20" y="-275"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowDif(1);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_Show_Dif2" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="20" y="-300"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowDif(2);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_Show_Dif3" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="230" y="-275"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowDif(3);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_Show_Dif4" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="230" y="-300"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowDif(4);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_Show_Dif5" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="230" y="-325"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleShowDif(5);
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_UnknownToBot" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="20" y="-350"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleUnknown();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_AltName" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="230" y="-350"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleAltName();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck_NoMinimap" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MTS_OptionsFrame">
+						<Offset>
+							<AbsDimension x="20" y="-375"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						MTS_Options_ToggleMinimap();
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			
+
+			
+
+		</Frames>
+		
+		<Scripts>
+			<OnMouseUp>
+				if ( this.isMoving ) then
+					this:StopMovingOrSizing();
+					this.isMoving = false;
+				end
+			</OnMouseUp>
+			<OnMouseDown>
+				if ( ( ( not this.isLocked ) or ( this.isLocked == 0 ) ) and ( arg1 == "LeftButton" ) ) then
+					this:StartMoving();
+					this.isMoving = true;
+				end
+			</OnMouseDown>
+			<OnHide>
+				if ( this.isMoving ) then
+					this:StopMovingOrSizing();
+					this.isMoving = false;
+				end
+			</OnHide>
+		</Scripts>
+
+
+	</Frame>
+	
+	<Frame name="MTS_RecipeFrame" enableMouse="true" movable="true" parent="UIParent" hidden="true"> 
+		<Anchors>
+			<Anchor point="LEFT"/>
+		</Anchors>
+		<Size>
+			<AbsDimension x="400" y="480"/>
+		</Size>
+		<TitleRegion setAllPoints="true"/>
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="450" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="16" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentHeaderText" inherits="GameFontNormal" text="MTS_TITLE">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parentHeader" relativePoint="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<ScrollingMessageFrame name="MTS_RecipeList" displayDuration="604800.0" maxLines="500">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="7" y="-7"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-8" y="9"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts> 
+					<OnLoad> 
+					</OnLoad> 
+				</Scripts> 
+				<FontString inherits="ChatFontNormal" justifyH="LEFT"/>
+			</ScrollingMessageFrame>
+			<Button name="$parentButtonClose" inherits="UIPanelCloseButton">
+				<Size>
+					<AbsDimension x="28" y="28"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="2" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick> MTS_RecipeFrame:Hide(); </OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentButtonRecurse" toplevel="true" inherits="UIPanelButtonTemplate" parent="MTS_RecipeFrame" text="MTS_RECURSEALL">
+				<Size>
+					<AbsDimension x="40" y="14"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="4" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick> MTS_Recurse(); </OnClick>
+				</Scripts>
+			</Button>
+
+		</Frames>
+		<Scripts> 
+			<OnLoad> 
+				-- set our default colors
+				this:SetBackdropBorderColor(0.6, 0.6, 0.6);
+				this:SetBackdropColor(0, 0, 0);
+			</OnLoad> 
+		</Scripts> 
+	</Frame> 
+</Ui>

@@ -1,0 +1,14 @@
+## Interface: 11200
+## Title: EngBags
+## Notes: AutoSorting Bags
+## RequiredDeps: 
+## OptionalDeps: lootlink, auctioneer, equipcompare
+## SavedVariables: EngBagsItems, EngBagsConfig
+## SavedVariablesPerCharacter:
+## Version: 1.56
+## Dependencies: 
+## LoadOnDemand: 0
+EngBank.xml
+eb_options.xml
+EngInventory.xml
+ei_options.xml

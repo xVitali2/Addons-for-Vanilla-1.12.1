@@ -1,0 +1,18 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<script file="COE_HealData.lua"/>
+	<script file="COE_Heal.lua"/>
+
+	<!-- Invisible HealFrame for script loading -->
+	<Frame name="COEHealFrame" frameStrata="LOW" enableMouse="false" hidden="true">
+		<Scripts>
+			<OnLoad>
+				COE_Heal:Init();
+			</OnLoad>
+			<OnEvent>
+				COE_Heal:OnEvent( event );
+			</OnEvent>
+		</Scripts>
+	</Frame>	
+
+	
+</Ui>

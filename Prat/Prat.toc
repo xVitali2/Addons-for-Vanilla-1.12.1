@@ -1,0 +1,46 @@
+﻿## Interface: 11200
+## Title: Prat |cff7fff7f -Ace2-|r
+## Title-zhCN: |cff7fff7f-Ace2-|r Prat 
+## Notes: A framework for chat frame modules.
+## Notes-ruRU: Фреймворк для чата.
+## Notes-frFR: Framework pour des modules concernant les fentres de discussion
+## Version: 1.0.$Revision: 16704 $
+## Author: Prat Development Team
+## RequiredDeps:!!!Libs
+## X-Category: Chat/Communication
+## X-Website: http://www.wowace.com/mediawiki/index.php?title=Prat
+## X-Credits: Industrial, Ammo, Cirk, Yris, Leuchtturm, AnduinLothar, Satrina, <CWDG>昏睡墨鱼&月色狼影
+## SavedVariables: PratDB
+
+#Libs
+libs\Babble-Class-2.2\Babble-Class-2.2.lua
+libs\AceTab-2.0\AceTab-2.0.lua
+
+
+Prat.lua
+
+modules\Buttons.lua
+modules\ChannelNames.lua
+modules\ChannelSeparator.lua
+modules\ChannelColorMemory.lua
+modules\ChatLink.lua
+modules\ChatFrames.lua
+modules\Fading.lua
+modules\FontSize.lua
+modules\Editbox.lua
+modules\Highlight.lua
+modules\History.lua
+modules\Justify.lua
+modules\KeyBindings.lua
+modules\Notification.lua
+modules\PlayerNames.lua
+modules\PopupMessage.lua
+modules\Scroll.lua
+modules\StickyChannels.lua
+modules\TellTarget.lua
+modules\Timestamps.lua
+modules\UrlCopy.lua
+modules\Who.lua
+
+frames\who.xml
+frames\popup.xml

@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name='Raid Marker' header='BETTER_RAIDMARKER' runOnUp='true'>
+		Better_RaidMarker_HotkeyPressed(keystate)
+	</Binding>
+</Bindings>

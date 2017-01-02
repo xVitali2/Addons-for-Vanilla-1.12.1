@@ -1,0 +1,14 @@
+## Interface: 11200
+## Title: FuBar - |cffffffffBag|r|cff00ff00Fu|r
+## Notes: Keeps track of space left in your bags.
+## Author: phyber
+## OptionalDeps: FuBar
+## SavedVariables: BagFuDB
+## Version: 2
+## X-Category: Inventory
+
+#libs
+Libs\Crayon-2.0\Crayon-2.0.lua
+
+BagFuLocals.lua
+BagFu.lua

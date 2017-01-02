@@ -1,0 +1,899 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+	<Script file="Localization.lua"/>
+	<Script file="Localization.ruRU.lua"/>
+
+	<Slider name="DoTimerSliderTemplate" virtual="true" orientation="HORIZONTAL" enableMouse="true">
+		<Size>
+			<AbsDimension x="128" y="17"/>
+		</Size>
+		<HitRectInsets>
+			<AbsInset left="0" right="0" top="-10" bottom="-10"/>
+		</HitRectInsets>
+		<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="8"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="8"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="3" right="3" top="6" bottom="6"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="BOTTOM" relativePoint="TOP"/>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLow" inherits="GameFontHighlightSmall" text="LOW">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="2" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentHigh" inherits="GameFontHighlightSmall" text="HIGH">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentValue" inherits="GameFontHighlightSmall" text="VALUE">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="3" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnValueChanged> 
+				local value = this:GetValue()
+				local formatstring
+				if math.floor(value) == value then 
+					formatstring = "%2d"
+				else
+					formatstring = "%.2f"
+				end
+				getglobal(this:GetName().."Value"):SetText(string.format(formatstring,value)); 
+			</OnValueChanged>
+		</Scripts>
+		<ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+			<Size>
+				<AbsDimension x="32" y="32"/>
+			</Size>
+		</ThumbTexture>
+	</Slider>
+	<CheckButton name="DoTimerCheckButtonTemplate" virtual="true">
+		<HitRectInsets>
+			<AbsInset left="0" right="-100" top="0" bottom="0"/>
+		</HitRectInsets>
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+		<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+		<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+		<Scripts>
+			<OnClick>
+				if this:GetChecked() then
+					PlaySound("igMainMenuOptionCheckBoxOn");
+					this:SetChecked(1)
+				else
+					PlaySound("igMainMenuOptionCheckBoxOff");
+					this:SetChecked(0)
+				end
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+	<Button name="DoTimerButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="140" y="21"/>
+		</Size>
+		<ButtonText name="$parentText"/>
+		<NormalFont inherits="GameFontNormal"/>
+		<HighlightFont inherits="GameFontHighlight"/>
+		<DisabledFont inherits="GameFontDisable"/>
+		<NormalTexture inherits="UIPanelButtonUpTexture"/>
+		<PushedTexture inherits="UIPanelButtonDownTexture"/>
+		<DisabledTexture inherits="UIPanelButtonDisabledTexture"/>
+		<HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+		<Scripts>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>			
+	</Button>
+	<EditBox name="DoTimerEditBoxTemplate" enableMouse="true" virtual="true" autoFocus="false">
+		<Size>
+			<AbsDimension x="100" y="30"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+					<Size>
+						<AbsDimension x="8" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="-5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0" right="0.0625" top="0" bottom="0.625"/>
+				</Texture>
+				<Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+					<Size>
+						<AbsDimension x="8" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.9375" right="1.0" top="0" bottom="0.625"/>
+				</Texture>
+				<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+					<Size>
+						<AbsDimension x="10" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT"/>
+						<Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT"/>
+					</Anchors>
+					<TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625"/>
+				</Texture>
+				<FontString name="$parentText" inherits="GameFontNormalSmall" text="VALUE">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="3" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEscapePressed>
+				this:SetText(this.text); this:ClearFocus()
+			</OnEscapePressed>
+			<OnEditFocusLost>
+				this:HighlightText(0, 0)
+			</OnEditFocusLost>
+			<OnEditFocusGained>
+				this:SetText(this.text); this:HighlightText();
+			</OnEditFocusGained>
+			<OnEnterPressed>
+				this.text = this:GetText(); this:ClearFocus()
+			</OnEnterPressed>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<FontString inherits="ChatFontNormal"/>
+	</EditBox>
+	<Frame name="DoTimerMenuFrame" hidden="true" parent="UIParent" enableMouse="true" movable="true" frameStrata="DIALOG">
+		<TitleRegion setAllPoints="true"/>
+		<Size>
+			<AbsDimension x="580" y="465"/>
+		</Size>
+		<Anchors> 
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentTitle" inherits="GameFontHighlight" text="DOTIMER_MENU_TITLE">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="9" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Frames>
+			<Slider name="DoTimerScaleSlider" inherits="DoTimerSliderTemplate">
+				<Anchors>
+					<Anchor point="TOP" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="0" y="-20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_SCALE_TOOLTIP;
+						DoTimerScaleSliderText:SetText(DOTIMER_MENU_SCALE); 
+						DoTimerScaleSliderLow:SetText("0.5"); 
+						DoTimerScaleSliderHigh:SetText("1.5"); 
+						this:SetMinMaxValues(0.5,1.5); 
+						this:SetValueStep(.05);		
+					</OnLoad>
+				</Scripts>
+			</Slider>
+			<Slider name="DoTimerButtonScaleSlider" inherits="DoTimerSliderTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="DoTimerScaleSlider">
+						<Offset>
+							<AbsDimension x="0" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_BUTTON_SCALE_TOOLTIP;
+						DoTimerButtonScaleSliderText:SetText(DOTIMER_MENU_BUTTON_SCALE); 
+						DoTimerButtonScaleSliderLow:SetText("0.5"); 
+						DoTimerButtonScaleSliderHigh:SetText("1.5"); 
+						this:SetMinMaxValues(0.5,1.5); 
+						this:SetValueStep(.05);		
+					</OnLoad>
+				</Scripts>
+			</Slider>
+			<Slider name="DoTimerMaxTargetsSlider" inherits="DoTimerSliderTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="DoTimerButtonScaleSlider">
+						<Offset>
+							<AbsDimension x="0" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_MAX_TARGETS_TOOLTIP;
+						DoTimerMaxTargetsSliderText:SetText(DOTIMER_MENU_MAX_TARGETS); 
+						DoTimerMaxTargetsSliderLow:SetText("1"); 
+						DoTimerMaxTargetsSliderHigh:SetText("10"); 
+						this:SetMinMaxValues(1,10); 
+						this:SetValueStep(1);		
+					</OnLoad>
+				</Scripts>
+			</Slider>
+			<Slider name="DoTimerMaxDebuffsSlider" inherits="DoTimerSliderTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="DoTimerMaxTargetsSlider">
+						<Offset>
+							<AbsDimension x="0" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_MAX_DEBUFFS_TOOLTIP;
+						DoTimerMaxDebuffsSliderText:SetText(DOTIMER_MENU_MAX_DEBUFFS); 
+						DoTimerMaxDebuffsSliderLow:SetText("1"); 
+						DoTimerMaxDebuffsSliderHigh:SetText("20"); 
+						this:SetMinMaxValues(1,20); 
+						this:SetValueStep(1);		
+					</OnLoad>
+				</Scripts>
+			</Slider>
+			<Slider name="DoTimerFormatSlider" inherits="DoTimerSliderTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="DoTimerMaxDebuffsSlider">
+						<Offset>
+							<AbsDimension x="0" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_TIMER_FORMAT_TOOLTIP;
+						DoTimerFormatSliderText:SetText(DOTIMER_MENU_TIMER_FORMAT); 
+						DoTimerFormatSliderLow:SetText(DOTIMER_MENU_BARS); 
+						DoTimerFormatSliderHigh:SetText(DOTIMER_MENU_ICONS); 
+						this:SetMinMaxValues(1,2); 
+						this:SetValueStep(1);		
+						this.values = {[1] = "bars",[2] = "icons",["bars"] = 1,["icons"] = 2,}
+					</OnLoad>
+					<OnValueChanged> DoTimerFormatSliderValue:SetText(this.values[this:GetValue()]); </OnValueChanged>
+				</Scripts>
+			</Slider>
+			<Slider name="DoTimerTargetLayoutSlider" inherits="DoTimerSliderTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="DoTimerFormatSlider">
+						<Offset>
+							<AbsDimension x="0" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_TARGET_LAYOUT_TOOLTIP;
+						DoTimerTargetLayoutSliderText:SetText(DOTIMER_MENU_TARGET_LAYOUT); 
+						DoTimerTargetLayoutSliderLow:SetText(DOTIMER_MENU_UP); 
+						DoTimerTargetLayoutSliderHigh:SetText(DOTIMER_MENU_RIGHT); 
+						this:SetMinMaxValues(1,4); 
+						this:SetValueStep(1);	
+						this.values = {[1] = "up",[2] = "down",[3] = "left",[4] = "right",["up"] = 1,["down"] = 2,["left"] = 3,["right"] = 4,}
+					</OnLoad>
+					<OnValueChanged> DoTimerTargetLayoutSliderValue:SetText(this.values[this:GetValue()]); </OnValueChanged>
+				</Scripts>
+			</Slider>
+			<Slider name="DoTimerDebuffLayoutSlider" inherits="DoTimerSliderTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="DoTimerTargetLayoutSlider">
+						<Offset>
+							<AbsDimension x="0" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_DEBUFF_LAYOUT_TOOLTIP;
+						DoTimerDebuffLayoutSliderText:SetText(DOTIMER_MENU_DEBUFF_LAYOUT); 
+						DoTimerDebuffLayoutSliderLow:SetText(DOTIMER_MENU_UP); 
+						DoTimerDebuffLayoutSliderHigh:SetText(DOTIMER_MENU_RIGHT); 
+						this:SetMinMaxValues(1,4); 
+						this:SetValueStep(1);	
+						this.values = {[1] = "up",[2] = "down",[3] = "left",[4] = "right",["up"] = 1,["down"] = 2,["left"] = 3,["right"] = 4,}
+					</OnLoad>
+					<OnValueChanged> DoTimerDebuffLayoutSliderValue:SetText(this.values[this:GetValue()]); </OnValueChanged>
+				</Scripts>
+			</Slider>
+			<Slider name="DoTimerDebuffSortSlider" inherits="DoTimerSliderTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="DoTimerDebuffLayoutSlider">
+						<Offset>
+							<AbsDimension x="0" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_DEBUFF_SORT_TOOLTIP;
+						DoTimerDebuffSortSliderText:SetText(DOTIMER_MENU_DEBUFF_SORT); 
+						DoTimerDebuffSortSliderLow:SetText(DOTIMER_MENU_ADDED); 
+						DoTimerDebuffSortSliderHigh:SetText(DOTIMER_MENU_REMAINING); 
+						this:SetMinMaxValues(1,2); 
+						this:SetValueStep(1);	
+						this.values = {[1] = "added",[2] = "remaining",["added"] = 1,["remaining"] = 2,}
+					</OnLoad>
+					<OnValueChanged> DoTimerDebuffSortSliderValue:SetText(this.values[this:GetValue()]); </OnValueChanged>
+				</Scripts>
+			</Slider>
+			<Slider name="DoTimerBarLengthSlider" inherits="DoTimerSliderTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="DoTimerDebuffSortSlider">
+						<Offset>
+							<AbsDimension x="0" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_BAR_LENGHT_TOOLTIP;
+						DoTimerBarLengthSliderText:SetText(DOTIMER_MENU_BAR_LENGHT); 
+						DoTimerBarLengthSliderLow:SetText("50"); 
+						DoTimerBarLengthSliderHigh:SetText("250"); 
+						this:SetMinMaxValues(50,250); 
+						this:SetValueStep(5);	
+					</OnLoad>
+				</Scripts>
+			</Slider>
+			<Editbox name="DoTimerDebugEditBox" inherits="DoTimerEditBoxTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerBarLengthSlider">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.text = ""
+						this.tooltipText = DOTIMER_MENU_DEBUGGING_TOOLTIP;
+						DoTimerDebugEditBoxText:SetText(DOTIMER_MENU_DEBUGGING); 
+					</OnLoad>
+				</Scripts>
+			</Editbox>
+			<Editbox name="DoTimerPreventImmolEditBox" inherits="DoTimerEditBoxTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerDebugEditBox">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.text = ""
+						this.tooltipText = DOTIMER_MENU_PREVENT_IMMOLATE_TOOLTIP;
+						DoTimerPreventImmolEditBoxText:SetText(DOTIMER_MENU_PREVENT_IMMOLATE); 
+					</OnLoad>
+					<OnEnter>
+						local text = this.tooltipText
+						for index,value in pairs(DoTimer_Settings.preventimmol) do text = text.."\n"..index end
+						GameTooltip:SetOwner(this,"ANCHOR_RIGHT")
+						GameTooltip:SetText(text,nil,nil,nil,nil,1)
+						GameTooltip:Show()
+					</OnEnter>
+					<OnEscapePressed>
+						local text = this:GetText()
+						if text then DoTimer_Settings.preventimmol[text] = nil end
+						this:ClearFocus()
+					</OnEscapePressed>
+					<OnEnterPressed>
+						local text = this:GetText()
+						if text then DoTimer_Settings.preventimmol[text] = 1 end
+						this:ClearFocus()
+					</OnEnterPressed>
+				</Scripts>
+			</Editbox>
+			<Editbox name="DoTimerLifeTapEditBox" inherits="DoTimerEditBoxTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerPreventImmolEditBox">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.text = ""
+						this.tooltipText = DOTIMER_MENU_LIFE_TAP_RANK_TOOLTIP;
+						DoTimerLifeTapEditBoxText:SetText(DOTIMER_MENU_LIFE_TAP_RANK); 
+					</OnLoad>
+				</Scripts>
+			</Editbox>
+			<CheckButton name="DoTimerEnabledCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="10" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_ENABLED_TOOLTIP;
+						DoTimerEnabledCheckButtonText:SetText(DOTIMER_MENU_ENABLED); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="DoTimerVisibleCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"  relativeTo="DoTimerEnabledCheckButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_VISIBLE_UI_TOOLTIP;
+						DoTimerVisibleCheckButtonText:SetText(DOTIMER_MENU_VISIBLE_UI); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="DoTimerLockedCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"  relativeTo="DoTimerVisibleCheckButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_LOCKED_TOOLTIP;
+						DoTimerLockedCheckButtonText:SetText(DOTIMER_MENU_LOCKED); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="DoTimerNamesCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerLockedCheckButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_SHOWING_TARGET_NAMES_TOOLTIP;
+						DoTimerNamesCheckButtonText:SetText(DOTIMER_MENU_SHOWING_TARGET_NAMES); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="DoTimerLevelsCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerNamesCheckButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_SHOWING_TARGET_LEVELS_TOOLTIP;
+						DoTimerLevelsCheckButtonText:SetText(DOTIMER_MENU_SHOWING_TARGET_LEVELS); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="DoTimerExpAlertCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerLevelsCheckButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_EXPIRATION_ALERTS_TOOLTIP;
+						DoTimerExpAlertCheckButtonText:SetText(DOTIMER_MENU_EXPIRATION_ALERTS); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="DoTimerClickableCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerExpAlertCheckButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_CLICKABLE_DEBUFFS_TOOLTIP;
+						DoTimerClickableCheckButtonText:SetText(DOTIMER_MENU_CLICKABLE_DEBUFFS); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="DoTimerDepCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerClickableCheckButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_DEPRECIATED_TIMERS_TOOLTIP;
+						DoTimerDepCheckButtonText:SetText(DOTIMER_MENU_DEPRECIATED_TIMERS); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="DoTimerProbableCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerDepCheckButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_INCLUDE_PORTABLE_TIMERS_TOOLTIP;
+						DoTimerProbableCheckButtonText:SetText(DOTIMER_MENU_INCLUDE_PORTABLE_TIMERS); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="DoTimerManaCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerProbableCheckButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_MANA_CHECK_TOOLTIP;
+						DoTimerManaCheckButtonText:SetText(DOTIMER_MENU_MANA_CHECK); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="DoTimerOnlyTargetCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerManaCheckButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_SHOW_ONLY_TARGET_TOOLTIP;
+						DoTimerOnlyTargetCheckButtonText:SetText(DOTIMER_MENU_SHOW_ONLY_TARGET); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="DoTimerPlaySoundsCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerOnlyTargetCheckButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_PLAY_SOUNDS_TOOLTIP;
+						DoTimerPlaySoundsCheckButtonText:SetText(DOTIMER_MENU_PLAY_SOUNDS); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<Button name="DoTimerResetButton" inherits="DoTimerButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-10" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_RESET_TOOLTIP 
+						DoTimerResetButtonText:SetText(DOTIMER_MENU_RESET); 
+					</OnLoad>
+					<OnClick> DoTimer_Commands("reset"); </OnClick>
+				</Scripts>
+			</Button>
+			<Button name="DoTimerResetPositionButton" inherits="DoTimerButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="DoTimerResetButton">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_RESET_POSITION_TOOLTIP 
+						DoTimerResetPositionButtonText:SetText(DOTIMER_MENU_RESET_POSITION); 
+					</OnLoad>
+					<OnClick> DoTimer_Commands("reset position"); </OnClick>
+				</Scripts>
+			</Button>
+			<Button name="DoTimerOtherCommandsButton" inherits="DoTimerButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="DoTimerResetPositionButton">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_OTHER_CMD_TOOLTIP
+						DoTimerOtherCommandsButtonText:SetText(DOTIMER_MENU_OTHER_CMD); 
+					</OnLoad>
+					<OnClick> DoTimer_Commands("help other cmds"); </OnClick>
+				</Scripts>
+			</Button>
+			<Button name="DoTimerAuthorInfoButton" inherits="DoTimerButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="DoTimerOtherCommandsButton">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_AUTHOR_INFO_TOOLTIP 
+						DoTimerAuthorInfoButtonText:SetText(DOTIMER_MENU_AUTHOR_INFO); 
+					</OnLoad>
+					<OnClick> DoTimer_Commands("help version"); </OnClick>
+				</Scripts>
+			</Button>
+			<Button name="DoTimerInformationButton" inherits="DoTimerButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="DoTimerAuthorInfoButton">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_INFORMATION_TOOLTIP 
+						DoTimerInformationButtonText:SetText(DOTIMER_MENU_INFORMATION); 
+					</OnLoad>
+					<OnClick> DoTimer_Commands("help info"); </OnClick>
+				</Scripts>
+			</Button>
+			<Button name="DoTimerBeginnerButton" inherits="DoTimerButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="DoTimerInformationButton">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_BEGINNERS_TOOLTIP
+						DoTimerBeginnerButtonText:SetText(DOTIMER_MENU_BEGINNERS); 
+					</OnLoad>
+					<OnClick> DoTimer_Commands("help new"); </OnClick>
+				</Scripts>
+			</Button>
+			<Button name="DoTimerExampleMacrosButton" inherits="DoTimerButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT" relativeTo="DoTimerBeginnerButton">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_EXAMPLE_MACROS_TOOLTIP 
+						DoTimerExampleMacrosButtonText:SetText(DOTIMER_MENU_EXAMPLE_MACROS); 
+					</OnLoad>
+					<OnClick> DoTimer_Commands("help macros"); </OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="DoTimerSepGhostCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerExampleMacrosButton">
+						<Offset>
+							<AbsDimension x="-20" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_SEP_GHOSTS_TOOLTIP;
+						DoTimerSepGhostCheckButtonText:SetText(DOTIMER_MENU_SEP_GHOSTS); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>			
+			<CheckButton name="DoTimerAllGhostCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerSepGhostCheckButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_AUTO_GHOSTS_TOOLTIP;
+						DoTimerAllGhostCheckButtonText:SetText(DOTIMER_MENU_AUTO_GHOSTS); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="DoTimerForceConflagCheckButton" inherits="DoTimerCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="DoTimerAllGhostCheckButton">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_GHOST_CONFLAG_TOOLTIP;
+						DoTimerForceConflagCheckButtonText:SetText(DOTIMER_MENU_GHOST_CONFLAG); 
+					</OnLoad>
+				</Scripts>
+			</CheckButton>		
+			<Button name="DoTimerDoneButton" inherits="DoTimerButtonTemplate">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-10" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_DONE_TOOLTIP 
+						DoTimerDoneButtonText:SetText(DOTIMER_MENU_DONE); 
+					</OnLoad>
+					<OnClick> DoTimer_ParseMenuData(); DoTimerMenuFrame:Hide(); </OnClick>
+				</Scripts>
+			</Button>
+			<Button name="DoTimerCancelButton" inherits="DoTimerButtonTemplate">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT" relativeTo="DoTimerDoneButton">
+						<Offset>
+							<AbsDimension x="0" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_CANCEL_TOOLTIP
+						DoTimerCancelButtonText:SetText(DOTIMER_MENU_CANCEL); 
+					</OnLoad>
+					<OnClick> DoTimerMenuFrame:Hide(); </OnClick>
+				</Scripts>
+			</Button>
+			<Button name="DoTimerApplyButton" inherits="DoTimerButtonTemplate">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT" relativeTo="DoTimerCancelButton">
+						<Offset>
+							<AbsDimension x="0" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> 
+						this.tooltipText = DOTIMER_MENU_APPLY_TOOLTIP 
+						DoTimerApplyButtonText:SetText(DOTIMER_MENU_APPLY); 
+					</OnLoad>
+					<OnClick> DoTimer_ParseMenuData(); </OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+				this:SetBackdropColor(0.5, 0.5, 0.5);
+				table.insert(UISpecialFrames,"DoTimerMenuFrame")
+			</OnLoad>
+			<OnShow> DoTimer_SetMenuData(); </OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

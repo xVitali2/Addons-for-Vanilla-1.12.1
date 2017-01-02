@@ -1,0 +1,219 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+	<Script file="ei_options.lua"/>
+
+	<Slider name="EngInventory_SliderTemplate" orientation="HORIZONTAL" virtual="true" enableMouse="true">
+		<Size>
+			<AbsDimension x="128" y="17"/>
+		</Size>
+		<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="8"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="8"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="3" right="3" top="6" bottom="6"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Scripts>
+			<OnEnter>
+				if ( this.tooltipText ) then
+					GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+					GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+				end
+				if ( this.tooltipRequirement ) then
+					GameTooltip:AddLine(this.tooltipRequirement, "", 1.0, 1.0, 1.0);
+					GameTooltip:Show();
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnValueChanged>
+				EngInventory_Opts_ControlValueChanged(arg1);
+				getglobal(this:GetName().."_disp_text"):SetText( this:GetValue() );
+			</OnValueChanged>
+		</Scripts>
+		<ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+			<Size><AbsDimension x="32" y="32"/></Size>
+		</ThumbTexture>
+		<Layers level="OVERLAY">
+			<Layer>
+				<FontString name="$parent_disp_text" inherits="GameFontNormalSmall"/>
+			</Layer>
+		</Layers>
+	</Slider>
+
+	<EditBox name="EngInventory_InputBoxTemplate" inherits="InputBoxTemplate" virtual="true" autoFocus="false">
+		<Scripts>
+			<OnTabPressed>
+				this:ClearFocus();
+			</OnTabPressed>
+			<OnEnterPressed>
+				this:ClearFocus();
+			</OnEnterPressed>
+			<OnTextChanged>
+				EngInventory_Opts_ControlValueChanged(this:GetText());
+			</OnTextChanged>
+		</Scripts>
+	</EditBox>
+
+	<Button name="EngInventory_Opts_ButtonTemplate" inherits="GameMenuButtonTemplate" virtual="true" hidden="true">
+		<Scripts>
+			<OnClick>
+				EngInventory_Opts_ControlValueChanged();
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<Frame name="EngInventory_Opts_LineTemplate" enableMouse="true" hidden="true" virtual="true">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parent_Text_1" inherits="GameFontNormalSmall"/>
+				<FontString name="$parent_Text_2" inherits="GameFontNormalSmall"/>
+				<FontString name="$parent_Text_3" inherits="GameFontNormalSmall"/>
+				<FontString name="$parent_Text_4" inherits="GameFontNormalSmall"/>
+				<FontString name="$parent_Text_5" inherits="GameFontNormalSmall"/>
+				<FontString name="$parent_Text_6" inherits="GameFontNormalSmall"/>
+				<FontString name="$parent_Text_7" inherits="GameFontNormalSmall"/>
+				<FontString name="$parent_Text_8" inherits="GameFontNormalSmall"/>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Slider name="$parent_Slider_1" inherits="EngInventory_SliderTemplate"/>
+			<Slider name="$parent_Slider_2" inherits="EngInventory_SliderTemplate"/>
+			<Slider name="$parent_Slider_3" inherits="EngInventory_SliderTemplate"/>
+			<Slider name="$parent_Slider_4" inherits="EngInventory_SliderTemplate"/>
+			<EditBox name="$parent_Edit_1" inherits="EngInventory_InputBoxTemplate"/>
+			<EditBox name="$parent_Edit_2" inherits="EngInventory_InputBoxTemplate"/>
+			<EditBox name="$parent_Edit_3" inherits="EngInventory_InputBoxTemplate"/>
+			<EditBox name="$parent_Edit_4" inherits="EngInventory_InputBoxTemplate"/>
+			<Button name="$parent_Button_1" inherits="EngInventory_Opts_ButtonTemplate"/>
+			<Button name="$parent_Button_2" inherits="EngInventory_Opts_ButtonTemplate"/>
+			<Button name="$parent_Button_3" inherits="EngInventory_Opts_ButtonTemplate"/>
+			<Button name="$parent_Button_4" inherits="EngInventory_Opts_ButtonTemplate"/>
+
+			<Button name="$parent_UpButton_1" inherits="EngInventory_Opts_ButtonTemplate">
+				<NormalTexture inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollUpButton-Up"/>
+				<PushedTexture inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollUpButton-Down"/>
+				<DisabledTexture inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollUpButton-Disabled"/>
+				<HighlightTexture inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollUpButton-Highlight" alphaMode="ADD"/>
+			</Button>
+
+			<Button name="$parent_DownButton_1" inherits="EngInventory_Opts_ButtonTemplate">
+				<NormalTexture inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Up"/>
+				<PushedTexture inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Down"/>
+				<DisabledTexture inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Disabled"/>
+				<HighlightTexture inherits="UIPanelScrollBarButton" file="Interface\Buttons\UI-ScrollBar-ScrollDownButton-Highlight" alphaMode="ADD"/>
+			</Button>
+
+		</Frames>
+	</Frame>
+
+	<Frame name="EngInventory_OptsFrame" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="UIParent"> 
+		<Size><AbsDimension x="500" y="400"/></Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="8"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="8"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="2" right="2" top="2" bottom="2"/>
+			</BackgroundInsets>
+		</Backdrop>
+
+		<Frames>
+			<Slider name="EngInventory_OptsFrame_ScrollBar" inherits="UIPanelScrollBarTemplate">
+				<Scripts>
+					<OnValueChanged>
+						EngInventory_Opts_CurrentPosition = arg1;
+						EngInventory_Options_UpdateWindow();
+					</OnValueChanged>
+				</Scripts>
+			</Slider>
+			<Frame name="EngInventory_OptsFrame_Line_1" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_2" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_3" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_4" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_5" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_6" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_7" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_8" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_9" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_10" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_11" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_12" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_13" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_14" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_15" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_16" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_17" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_18" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_19" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_20" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_21" inherits="EngInventory_Opts_LineTemplate"/>
+			<Frame name="EngInventory_OptsFrame_Line_22" inherits="EngInventory_Opts_LineTemplate"/>
+
+			<Button name="EngInventory_OptsFrame_Button_Close" inherits="GameMenuButtonTemplate" text="Close">
+				<Size><AbsDimension x="50" y="25"/></Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EngInventory_OptsFrame:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+		</Frames>
+
+		<Scripts>
+			<OnMouseDown>
+				if ( arg1 == "LeftButton" ) then
+					if (not this.isMoving) then
+							this:StartMoving();
+							this.isMoving = true;
+					end
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				if (this.isMoving) then
+	                this:StopMovingOrSizing();
+	                this.isMoving = false;
+				end
+			</OnMouseUp>
+			<OnDragStart>
+				if (not this.isMoving) then
+						this:StartMoving();
+						this.isMoving = true;
+				end
+			</OnDragStart>
+			<OnDragStop>
+				if (this.isMoving) then
+	                this:StopMovingOrSizing();
+	                this.isMoving = false;
+				end
+			</OnDragStop>
+			<OnShow>
+				EngInventory_Options_InitWindow();
+			</OnShow>
+		</Scripts>
+	</Frame>
+
+</Ui>

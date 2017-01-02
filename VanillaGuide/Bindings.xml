@@ -1,0 +1,31 @@
+<Bindings>
+   <Binding name="VGUIDE_TOGGLE" description="Toggle Vanilla Guide" header="VGUIDE">
+      <!-- VGuide:ToggleMainWindow() -->
+      if VGuide.UI.fMain.tWidgets.frame_MainFrame:IsVisible() then
+         VGuide.UI.fMain.tWidgets.frame_MainFrame:Hide()
+      else
+         VGuide.UI.fMain.tWidgets.frame_MainFrame:Show()
+      end
+   </Binding>
+   <Binding name="VGUIDE_PREV_STEP" description="Go to the Prev Step">
+      <!-- VGuide:PrevStep() -->
+      VGuide.Display:PrevStep(true)
+      VGuide.UI.fMain:RefreshData()
+   </Binding>
+   <Binding name="VGUIDE_NEXT_STEP" description="Go to the Next Step">
+      <!-- VGuide:NextStep() -->
+      VGuide.Display:NextStep()
+      VGuide.UI.fMain:RefreshData()
+   </Binding>
+   <Binding name="VGUIDE_PREV_GUIDE" description="Go to the Prev Guide">
+      <!-- VGuide:PrevGuide() -->
+      VGuide.Display:PrevGuide()
+      VGuide.UI.fMain:RefreshData()
+   </Binding>
+   <Binding name="VGUIDE_NEXT_GUIDE" description="Go to the Next Guide">
+      <!-- VGuide:NextGuide() -->
+      VGuide.Display:NextGuide()
+      VGuide.UI.fMain:RefreshData()
+   </Binding>
+
+</Bindings>

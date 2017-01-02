@@ -1,0 +1,96 @@
+v1.16.8 (2006/09/25 - 11200)
+     Added OneBank Compatibility
+v1.16.7
+     Added Zoning Optimisation
+v1.16.6 (2006/07/23 - 11100)
+     Added a filter toggle for quick access to filtered out items
+     Improved communication between bags and bank
+v1.16.5 (2006/07/17- 11100)
+     Changed text width to allow for longer reagent names
+     Changed text size to allow for longer reagent names
+     Added configurable Titlebar text displaying the current settings
+     Fixed a bug in FilterTradeSkills compatibility - Please See The Readme for more info
+v1.16.4 (2006/07/14 - 11100)
+     fixed a bug implemented during the banknon update which erased all bank data everyso often
+v1.16.3 (2006/07/02 - 11100)
+     added compatibility with Chatmats v1.43 - why re-invent the wheel ??
+     added information needed for myAddons
+v1.16.2 (2006/07/02 - 11100)
+     added compatibility for FilterTradeSkill - Please See The Readme for further details
+v1.16.1 (2006/07/01 - 11100) 
+     added banknon compatibility
+v1.16 (2006/07/01 - 11100) - updated by Triadian
+     updated to work with 1.11.1 patch
+     fixed bug with the pet trainer and enchant windows
+     new update to the enchant window to show the amounts of reagents as per all other craft windows
+     changed all the slash commands from /tsf to /ets as the name changed a while ago
+     changed the default settings from 1/1/1/1 to 1/1 as I feel this is a more popular option
+     added a message to say settings have been reset after use of the /etsreset command
+v1.15 (2005/10/13 - 1800)
+     updated to work with 1.8 patch
+     new event-handler added so that there is no need to overwrite blizzard craftUI-handlers any more
+     new onload-handler added for better addon-initialsation (no dirty hack in eventhandler any more)
+     added 2 dependencies from blizzard-ui for a fast update, so it works as before but does not take advantage of load on demand
+     maybe i add support for load on demand in a future update, but i think a complete redesign would be necessary for that
+v1.14 (2005/10/03 - 1700)
+     updated so that no files are necessary in folder FrameXML
+     changed folder to "EnhancedTradeSkills", so be sure to delete the old one
+v1.13 (2005/09/24 - 1700)
+     updated to work with 1.7 patch
+     german translation
+     adjusted width of config-screen so that german translation fits
+     addon support continued by Romualdo
+v1.12 (2005/06/19 - 1500)
+     updated to work with 1.5 patch
+v1.11 (2005/03/13 - 4216)
+     added bindings file so that the config screen can be bound to a key
+     added information to the bottom panel about the number of skill items that you have in your inventory and bank
+v1.10 (2005/02/24 - 4216)
+     total reagent numbers in the bottom pane (after the reagent name, i.e., Plaguebloom [24] = have 24 total)
+v1.9 (2005/02/22 - 4216)
+     graphical configuration screen (/tsfconfig)
+     support new interface number
+     should now be compatible with European version (not translated, but buyable items should now be recognized)
+v1.8 (2005/02/18 - 4211)
+     added some significant performance improvements
+       - invalidate inventory contents and update only when needed
+       - deal with far too many TRADESKILL_UPDATE/CRAFT_UPDATE events coming in at odd times
+           - probably still need to put in a rate limiter for this event
+     fixed a few bugs in WOW base tradeskill/crafting screens
+       - over indexing a call to GetTradeSkillInfo/GetCraftInfo
+       - removed unnecessary calls to GetTradeSkillInfo/GetCraftInfo
+     added /tsfreset to reset all filters and column display settings
+     added a few missing buyable items
+     infrastructure for localization, but no localizations (that will be a bit of work...)
+v1.7 (2005/02/15 - 4211)
+     support new interface number
+     add /help and /chelp support for Cosmos (thanks to Farmbuyer)
+v1.6 (2005/2/14)
+     got rid of debugging output
+     changed 'stong flux' to 'strong flux' :) - should fix engineering and blacksmithing issues...
+     improved performance for filtering in the case of no filters
+     should not try to take over the Beast Training screen (for EN right now) - I don't have a hunter so I'm not sure if this really works...
+     cleaned up tsf dump output (thanks to Farmbuyer)
+v1.5 (2005/2/5)
+     fixed up code for updating bank contents, should work in all cases now
+v1.4 (2005/1/27)
+     added support for filtering and formating the display
+     added another column to display (inventory + vendor)
+     handle case where everything is buyable with '-' in the column
+v1.3 (2005/1/23)
+     fixed bug where the /tsf command would error out if the user had not visited the bank
+     added support for enchanting, causing further encapsulation of code
+     may have fixed poisons also...
+v1.2 (2005/1/22)
+    added command for dumping the contents of the inventory and bank
+    added loaded message
+    added additional 'have not visited bank message'
+    cleaned up the code and better encapsulated common functionality
+    alternate spelling for grey/gray :)
+    removed dead code
+v1.1 (2005/1/20)
+    removed need for ReagentList
+    added what I hope is the complete list of buyable items
+    slightly more efficient
+v1.0 (2005/1/19)
+    initial release

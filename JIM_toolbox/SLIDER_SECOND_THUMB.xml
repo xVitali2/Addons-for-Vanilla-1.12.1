@@ -1,0 +1,55 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="SLIDER_SECOND_THUMB.lua"/>
+
+	<Frame name="Slider_Second_Thumb_Dragger" hidden="true">
+		<Scripts>
+			<OnUpdate>	SLIDER_SECOND_THUMB_Drag( this:GetParent() )	</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	<Button name="SLIDER_SECOND_THUMB" virtual="true">
+		<Size>	<AbsDimension x="8" y="32"/>	</Size>
+		
+		<NormalTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+			<Size>	<AbsDimension x="32" y="32"/>	</Size>
+			
+			<Anchors>	<Anchor point="CENTER"/>	</Anchors>
+		</NormalTexture>
+		
+		<Scripts>
+			<OnLoad>	SLIDER_SECOND_THUMB_OnLoad()	</OnLoad>
+			
+			<OnClick>	this:SetValue( this:GetValue() )	</OnClick>
+			
+			<OnDragStart>
+				assert( "SLIDER_SECOND_THUMB.OnDragStart" )
+				Slider_Second_Thumb_Dragger:SetParent( this )
+				Slider_Second_Thumb_Dragger:Show()
+			</OnDragStart>
+			
+			<OnDragStop>
+				assert( "SLIDER_SECOND_THUMB.OnDragStop" )
+				Slider_Second_Thumb_Dragger:Hide()
+			</OnDragStop>
+		</Scripts>
+	</Button>
+
+	<Slider name="SINGLE_SLIDER" inherits="OptionsSliderTemplate" virtual="true">
+		<Scripts>
+			<OnLoad>	SINGLE_SLIDER_OnLoad()	</OnLoad>
+			
+			<OnValueChanged>
+				SINGLE_SLIDER_OnValueChanged()
+			</OnValueChanged>
+		</Scripts>
+	</Slider>
+
+	<Slider name="DOUBLE_SLIDER" inherits="SINGLE_SLIDER" virtual="true">
+		<Scripts>
+			<OnLoad>	DOUBLE_SLIDER_OnLoad()	</OnLoad>
+		</Scripts>
+		
+		<Frames>	<Button name="$parentSub" inherits="SLIDER_SECOND_THUMB"/>	</Frames>
+	</Slider>
+	
+</Ui>

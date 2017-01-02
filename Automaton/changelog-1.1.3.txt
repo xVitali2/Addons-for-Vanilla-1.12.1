@@ -1,0 +1,128 @@
+1.1.3
+fix for autodismount
+1.1.2
+Automaton: Added localization ruRU
+Added clam functionality
+------------------------------------------------------------------------
+r18593 | sayclub | 2006-12-02 00:53:25 -0500 (Sat, 02 Dec 2006) | 1 line
+
+Automaton: Updated localization koKR
+------------------------------------------------------------------------
+r18592 | neriak | 2006-12-02 00:46:20 -0500 (Sat, 02 Dec 2006) | 1 line
+
+Automaton:- fixed some typos in deDE
+------------------------------------------------------------------------
+r18575 | neriak | 2006-12-01 18:34:34 -0500 (Fri, 01 Dec 2006) | 1 line
+
+Automaton:fixed german locale for AutoTrade.lua
+------------------------------------------------------------------------
+r18574 | neriak | 2006-12-01 18:30:27 -0500 (Fri, 01 Dec 2006) | 1 line
+
+Automaton: -fixed german AutoGossip Locale
+------------------------------------------------------------------------
+r18464 | tazmanyak | 2006-11-30 20:58:23 -0500 (Thu, 30 Nov 2006) | 3 lines
+
+Automaton:
+ * touched frFR localization, to remove errors.
+ * will work on it soon
+------------------------------------------------------------------------
+r18239 | sayclub | 2006-11-28 02:19:01 -0500 (Tue, 28 Nov 2006) | 2 lines
+
+Automaton:
+- Malfunctioned AutoSell.lua amendment
+------------------------------------------------------------------------
+r18231 | sayclub | 2006-11-27 23:56:36 -0500 (Mon, 27 Nov 2006) | 6 lines
+
+Automaton:
+- I am sorry. There was a mistake in log recording.
+- Added AutoFilter.lua with add made by Phanx
+- Updated AutoDismount.lua with changes made by Phanx
+- Updated localization koKR
+
+------------------------------------------------------------------------
+r18194 | sayclub | 2006-11-27 12:01:29 -0500 (Mon, 27 Nov 2006) | 2 lines
+
+Automaton:
+- AutoAttack.lua fix
+------------------------------------------------------------------------
+r18159 | sayclub | 2006-11-27 02:26:08 -0500 (Mon, 27 Nov 2006) | 6 lines
+
+Automaton:
+- Added AutoFilter.lua with add made by Guardix
+- Updated AutoDismount.lua with changes made by Guardix
+- Added AutoPlates.lua with add made by Zicon
+- Added new AutoAttack.lua
+
+------------------------------------------------------------------------
+r18153 | sayclub | 2006-11-27 00:06:06 -0500 (Mon, 27 Nov 2006) | 1 line
+
+Automaton: Updated localization koKR
+------------------------------------------------------------------------
+r18147 | kergoth | 2006-11-26 23:16:29 -0500 (Sun, 26 Nov 2006) | 1 line
+
+Automaton: AutoGossip: add autoturnin for the 'Identify Plant Parts' quest for Cenarion Expedition rep in TBC.
+------------------------------------------------------------------------
+r18146 | kergoth | 2006-11-26 23:13:37 -0500 (Sun, 26 Nov 2006) | 1 line
+
+Automaton: AutoGossip: add autoturnin of stacks of thorium shells for thorium arrows (from the guy in the valley of honor in orgrimmar).
+------------------------------------------------------------------------
+r18145 | kergoth | 2006-11-26 23:07:48 -0500 (Sun, 26 Nov 2006) | 1 line
+
+Automaton: AutoSell: use gmatch or gfind, whichever exists.
+------------------------------------------------------------------------
+r16950 | sayclub | 2006-11-14 03:59:31 -0500 (Tue, 14 Nov 2006) | 1 line
+
+Automaton: typing mistake
+------------------------------------------------------------------------
+r16939 | sayclub | 2006-11-14 01:39:26 -0500 (Tue, 14 Nov 2006) | 1 line
+
+Automaton: Update koKR
+------------------------------------------------------------------------
+r16291 | weab | 2006-11-07 22:26:47 -0500 (Tue, 07 Nov 2006) | 2 lines
+
+Automaton: 1.1.1: Cleaned up options tables for DueceCommander compatibility; Cleaned up a few unecessary files.
+
+------------------------------------------------------------------------
+r16234 | weab | 2006-11-07 07:37:59 -0500 (Tue, 07 Nov 2006) | 2 lines
+
+Automaton: Core.lua somehow got screwed up in svn. Replacing with correct version.
+
+------------------------------------------------------------------------
+r16233 | weab | 2006-11-07 07:20:05 -0500 (Tue, 07 Nov 2006) | 2 lines
+
+Automaton: Add the modulecore external
+
+------------------------------------------------------------------------
+r16232 | weab | 2006-11-07 07:10:44 -0500 (Tue, 07 Nov 2006) | 2 lines
+
+Automaton: Modularize and add a multitude of new functionality: AutoGroup updates, AutoSell, AutoDismount, AutoLoner, AutoQueue, AutoRelease, and AutoWuss.
+
+------------------------------------------------------------------------
+r15894 | sayclub | 2006-11-04 01:04:10 -0500 (Sat, 04 Nov 2006) | 1 line
+
+Automaton: correct my miss typing
+------------------------------------------------------------------------
+r15893 | sayclub | 2006-11-04 00:59:32 -0500 (Sat, 04 Nov 2006) | 1 line
+
+Automaton: Added koKR
+------------------------------------------------------------------------
+r15849 | weab | 2006-11-03 19:01:03 -0500 (Fri, 03 Nov 2006) | 2 lines
+
+Automaton: Added AutoTrade, AutoRez, and AutoJoinParty
+
+------------------------------------------------------------------------
+r15739 | weab | 2006-11-02 04:54:49 -0500 (Thu, 02 Nov 2006) | 2 lines
+
+Automaton: Fixed mispelling in AbacusLib external (way to go newb)
+
+------------------------------------------------------------------------
+r15738 | weab | 2006-11-02 03:10:07 -0500 (Thu, 02 Nov 2006) | 2 lines
+
+Automaton: Initial import for new project
+
+------------------------------------------------------------------------
+r15737 | weab | 2006-11-02 03:04:44 -0500 (Thu, 02 Nov 2006) | 2 lines
+
+Automaton: New project directory
+
+------------------------------------------------------------------------

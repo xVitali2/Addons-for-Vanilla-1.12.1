@@ -1,0 +1,12 @@
+<Bindings>
+	<!-- User interface key bindings -->
+	<Binding name="PULSE_PRIORITY1" header="PULSE">
+		Pulse_Repeat(1)
+	</Binding>
+	<Binding name="PULSE_PRIORITY2">
+		Pulse_Repeat(2)
+	</Binding>
+	<Binding name="PULSE_PRIORITY3">
+		Pulse_Repeat(3)
+	</Binding>
+</Bindings>

@@ -1,0 +1,12 @@
+## Interface: 11200
+## Title: vQueue |cff7fff7f -Ace2-|r
+## Author: Devlix
+## Notes: Utility for group finding.
+## RequiredDeps:!!!Libs
+## SavedVariables: MinimapPos, vQueueOptions, notCaught
+## SavedVariablesPerCharacter: selectedRole, isFinding
+## Version: 1.2.1
+
+vQueue.lua
+vQueue.xml
+vQueueMessages.lua

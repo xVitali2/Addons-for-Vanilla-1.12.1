@@ -1,0 +1,15 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+	<Button name="CLOSE_DIALOG_BUTTON" inherits="UIPanelButtonTemplate" text="CLOSE" virtual="true">
+		<Size>	<AbsDimension x="80" y="22"/>	</Size>
+
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT">	<Offset>	<AbsDimension x="-10" y="8"/>	</Offset>	</Anchor>
+		</Anchors>
+	
+		<Scripts>
+			<OnClick>	HideUIPanel( this:GetParent() )	</OnClick>
+		</Scripts>
+	</Button>
+		
+</Ui>

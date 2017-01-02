@@ -1,0 +1,11 @@
+## Interface: 11200
+## Title : MasterTradeSkills
+## Notes: This AddOn adjusts the display of the tooltips to show which recipe is being used by the item your hovering above
+## Author: Triadian (mod CFM)
+## eMail: Triadian@Gmail.com
+## Version: 1.12
+## OptionalDeps: MyAddons
+## DefaultState: enabled
+## SavedVariables: MTS_DATA
+ReagentData.xml
+MasterTradeSkills.xml

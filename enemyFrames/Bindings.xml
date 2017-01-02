@@ -1,0 +1,12 @@
+<Bindings>
+	<Binding name="SETKT"  	header="EFKHEADER"	>setIconBind('skull')</Binding>
+	<Binding name="GETKT"  						>getKTbind()</Binding>
+	
+	<Binding name="SETMOON"  					>setIconBind('moon')</Binding>
+	<Binding name="SETSQUARE"  					>setIconBind('square')</Binding>
+	<Binding name="SETTRIANGLE"  				>setIconBind('triangle')</Binding>
+	<Binding name="SETSTAR"  					>setIconBind('star')</Binding>
+	<Binding name="SETDIAMOND"  				>setIconBind('diamond')</Binding>
+	<Binding name="SETCIRCLE"  					>setIconBind('circle')</Binding>
+	<Binding name="SETCROSS"  					>setIconBind('cross')</Binding>	
+</Bindings>

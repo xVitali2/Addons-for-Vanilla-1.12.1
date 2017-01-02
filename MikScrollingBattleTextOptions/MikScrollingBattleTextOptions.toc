@@ -1,0 +1,9 @@
+## Interface: 11200
+## Version: 4.42
+## Title: Mik's Scrolling Battle Text Options
+## Notes: Load on demand options for Mik's Scrolling Battle Text
+## Dependencies: MikScrollingBattleText
+## LoadOnDemand: 1
+localization_options.lua
+MSBTOptions.lua
+MSBTOptions.xml

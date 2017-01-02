@@ -1,0 +1,78 @@
+17.36
+--> added ruRU locale
+...
+17.22
+
+--> fixed a bug with the Bonescythe 6 piece bonus, where the threat from specials was being reduced way too much. Thanks Wodin!
+
+17.21
+
+--> sunder armour threat was not being subtracted when it missed, or was dodged or parried. As a result tank threat would be slightly overestimated, particularly for the MT.
+
+
+17.20
+
+--> added 1.25 threat multiplier for execute. This should go a long way to fixing the problems on Vael.
+
+
+17.19
+
+--> experimental 4 horsemen code. global 50% threat wipe on mark ticks.
+
+
+17.18
+
+--> from 17.17, Healing wasn't causing threat when a master target wasn't set.
+
+--> new korean localisation
+
+--> added a ## Version thingy to the toc.
+
+--> disabled target polling since it's just not working well. Clears will still be polled.
+
+17.17
+
+--> Changed the way master target network messages were handled, cause it was sucking pretty badly. When a world boss master target dies, the master target will be cleared as long as any two players in the raid are in range of the death event. This will work for automatically set targets (e.g. Razorgore phase 2) too. Also there will be less repeated messages "blah blah has blah blah'd the master target". (Implementation: the boss' death is an event like shazzrahgate / nothblink)
+
+--> Fixed lua error from Hateful Strike.
+
+
+17.16
+
+--> Heals to a hostile target won't cause threat (e.g. Ebonroc if you haven't set him to master target).
+
+--> Fixed an issue where if a mob was quite distant and someone set it to the Master Target, the mod might incorrectly set the target to "Unknown".
+
+--> Localisation: added these strings:
+
+	boss.spell.fungalbloom = "Fungal Bloom" (http://www.thotbott.com/?sp=29232)
+	boss.spell.hatefulstrike = "Hateful Strike" (http://www.thotbott.com/?sp=28308)
+	spell.hemorrhage = "Hemorrhage",
+	spell.backstab = "Backstab",
+	spell.sinisterstrike = "Sinister Strike",
+	spell.eviscerate = "Eviscerate",
+
+--> Mana Tide / Mana Spring / Blessing of Wisdom +mana effects were incorrectly increasing threat. (Added a parser for POWERGAINOTHERSELF = "You gain %d %s from %s's %s." which will do nothing)
+
+--> Added Fungal Bloom 0% threat debuff for Loatheb encounter. 
+
+--> Disabled Burning Adrenaline -threat component, it doesn't appear to exist any more.
+
+--> Disabled Time Lapse, since it doesn't remove threat any more.
+
+--> Added Hateful Strike to the list of boss abilities, but no parameters set for it yet, so the default state is that the mod will detect it but not change your threat. To simulate it as e.g. adding 1000 threat per application, run the command "/ktm boss setspell hatefulstrike default addition 1000"
+
+--> Officers will clear the master target when it was set automatically, by e.g. Razorgore phase 2.
+
+--> Fixed an issue where the master target might be cleared and then set again after a boss dies.
+
+--> Added Bonescythe 6/8 bonus.
+
+--> Generated some automatic comments above each module and variable, to show the links between files for interested addon authors.
+
+--> Following up on the Sunder change from 17.15, the method klhtm.combat.sumbitsundercast() still exists but it won't do anything. Due to the new changes, mods compatible with 17.14 or earlier will still work with 17.16+, and mods not compatible with 17.14 or earlier (i.e. that give negative threat) will now work fine with 17.16+. And as long as the user has 17.16 or higher, mods won't need to do anything for compatability with KTM.
+
+
+17.15
+
+--> Fixed Sunder Armor in macro. This means you don't need to use KLHTM_Sunder() anymore, any "/cast Sunder Armor" or /script CastSpellByName("Sunder Armor") will work fine.

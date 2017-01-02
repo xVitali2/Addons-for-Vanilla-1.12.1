@@ -1,0 +1,62 @@
+------------------------------------------------------------------------
+r17316 | ammo | 2006-11-17 15:51:32 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_CThunAssist: line 45 syntax error fixed
+
+------------------------------------------------------------------------
+r17292 | rabbit | 2006-11-17 10:54:17 -0500 (Fri, 17 Nov 2006) | 1 line
+
+BigWigs_CThunAssist: New name format.
+------------------------------------------------------------------------
+r17265 | ammo | 2006-11-17 10:00:48 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_CThunAssist: X-BigWigsModule nolonger needed
+
+------------------------------------------------------------------------
+r17251 | ammo | 2006-11-17 09:45:46 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_CThunAssist: set .external on external modules
+
+------------------------------------------------------------------------
+r16765 | ammo | 2006-11-12 12:46:42 -0500 (Sun, 12 Nov 2006) | 2 lines
+
+BigWigs_CThunAssist:
+* Now LoD. Updated .toc name as well.
+------------------------------------------------------------------------
+r15686 | ammo | 2006-11-01 06:53:19 -0500 (Wed, 01 Nov 2006) | 2 lines
+
+BigWigs_CThunAssist: limit to 5 players in the proximity alert
+
+------------------------------------------------------------------------
+r15659 | roartindon | 2006-10-31 22:46:33 -0500 (Tue, 31 Oct 2006) | 2 lines
+
+BigWigs_CThunAssist: Applied dead/ghost fix from Khelin
+
+------------------------------------------------------------------------
+r15646 | roartindon | 2006-10-31 20:31:14 -0500 (Tue, 31 Oct 2006) | 2 lines
+
+BigWigs_CThunAssist: Stopped dead/ghost players from adding to the list
+
+------------------------------------------------------------------------
+r15487 | ammo | 2006-10-29 19:53:55 -0500 (Sun, 29 Oct 2006) | 2 lines
+
+BigWigs_CThunAssist: C'Thun is in AQ40 not naxx, whoops
+
+------------------------------------------------------------------------
+r15472 | ammo | 2006-10-29 12:38:23 -0500 (Sun, 29 Oct 2006) | 1 line
+
+BigWigs_CThunAssist: only play sounds in combat. someone go test this out on the tentacle master.
+------------------------------------------------------------------------
+r15471 | ammo | 2006-10-29 12:33:00 -0500 (Sun, 29 Oct 2006) | 1 line
+
+BigWigs_CThunAssist: functional yay!
+------------------------------------------------------------------------
+r15470 | ammo | 2006-10-29 12:05:19 -0500 (Sun, 29 Oct 2006) | 2 lines
+
+BigWigs_CThunAssist: some drycode fixes and svn:props and externals
+
+------------------------------------------------------------------------
+r15469 | ammo | 2006-10-29 12:00:40 -0500 (Sun, 29 Oct 2006) | 1 line
+
+BigWigs_CThunAssist: initial import - drycoded ftw
+------------------------------------------------------------------------

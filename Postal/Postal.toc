@@ -1,0 +1,11 @@
+﻿## Interface: 11200
+## Title: Postal
+## Notes: Postal
+## Notes-ruRU: Массовая отправка почты
+## Author: shirsig
+## SavedVariablesPerCharacter: Postal_To
+## SavedVariables: Postal_Characters
+
+Postal.xml
+
+Localization.lua

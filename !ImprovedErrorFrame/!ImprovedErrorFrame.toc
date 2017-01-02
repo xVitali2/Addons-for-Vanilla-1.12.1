@@ -1,0 +1,9 @@
+## Interface: 11200
+## Title: Improved Error Frame
+## Title-deDE: Erweitertes Fehler-Fenster
+## Notes: Display errors in scrollable/selecting frame
+## Notes-ruRU: Отображение ошибок в отдельном прокручиваемом фрейме.
+## Notes-deDE: Fehler werden nicht sofort angezeigt, sondern werden in einem extra Fenster gesammelt und die Anzahl auf einem Button an der Minimap angezeigt.
+## SavedVariables: IEFMinimapButton_OffsetX, IEFMinimapButton_OffsetY, ImprovedErrorSettings
+..\..\FrameXML\ClassTrainerFrameTemplates.xml
+ImprovedErrorFrame.xml

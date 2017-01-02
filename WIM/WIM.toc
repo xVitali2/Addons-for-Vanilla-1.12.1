@@ -1,0 +1,15 @@
+## Interface: 11200
+## Title: WIM
+## Author: Pazza (Bronzebeard)
+## Version: 1.3.1
+## Notes: Give whispers an instant messenger feel.
+## eMail: johnlangone@gmail.com
+## DefaultState: Enabled
+## OptionalDeps: Titan
+## SavedVariables: WIM_Data, WIM_Alias, WIM_Filters, WIM_History
+WIM.xml
+WIM_UrlCopy.xml
+WIM_Icon.xml
+WIM_Options.xml
+WIM_History.xml
+WIM_Titan.xml

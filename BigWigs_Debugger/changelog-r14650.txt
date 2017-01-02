@@ -1,0 +1,45 @@
+------------------------------------------------------------------------
+r14650 | rabbit | 2006-10-21 10:43:52 -0400 (Sat, 21 Oct 2006) | 1 line
+
+BigWigs_Debugger: AceHook-2.1.
+------------------------------------------------------------------------
+r14297 | rabbit | 2006-10-18 21:01:00 -0400 (Wed, 18 Oct 2006) | 1 line
+
+BigWigs_Debugger: AceLocale-2.2.
+------------------------------------------------------------------------
+r13571 | rabbit | 2006-10-10 20:28:35 -0400 (Tue, 10 Oct 2006) | 1 line
+
+BigWigs_Debugger: TOC: Don't lie about embedding stuff when we don't.
+------------------------------------------------------------------------
+r11666 | rabbit | 2006-09-22 09:37:50 -0400 (Fri, 22 Sep 2006) | 1 line
+
+BigWigs_Debugger: Prints when you add/remove custom syncs.
+------------------------------------------------------------------------
+r11575 | rabbit | 2006-09-20 19:13:47 -0400 (Wed, 20 Sep 2006) | 3 lines
+
+BigWigs_Debugger:
+ * Can set the chatframe to use for debug output. Also sets what frame BigWigs uses.
+ * Check if we should print debug messages for some syncs before printing them.
+------------------------------------------------------------------------
+r11496 | rabbit | 2006-09-20 07:34:13 -0400 (Wed, 20 Sep 2006) | 1 line
+
+BigWigs_Debugger: Added BossEngaged in the default custom sync list and tweaked some output prints.
+------------------------------------------------------------------------
+r11449 | rabbit | 2006-09-19 22:20:33 -0400 (Tue, 19 Sep 2006) | 1 line
+
+BigWigs_Debugger: Module is the actual object, not the name.
+------------------------------------------------------------------------
+r11448 | rabbit | 2006-09-19 22:15:15 -0400 (Tue, 19 Sep 2006) | 1 line
+
+BigWigs_Debugger: Fix setting of some of the options.
+------------------------------------------------------------------------
+r11447 | rabbit | 2006-09-19 22:10:23 -0400 (Tue, 19 Sep 2006) | 1 line
+
+BigWigs_Debugger: Set svn:keywords.
+------------------------------------------------------------------------
+r11445 | rabbit | 2006-09-19 22:08:56 -0400 (Tue, 19 Sep 2006) | 3 lines
+
+Initial import. FuBarPlugin to assist in debugging BW bossmods and syncs/events in general.
+
+Needs work!
+------------------------------------------------------------------------

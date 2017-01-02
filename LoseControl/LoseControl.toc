@@ -1,0 +1,6 @@
+## Interface: 11200
+## Title: LoseControl
+## Author: CFM mod
+## Notes: Makes it easy to see the duration of crowd control spells by displaying them in a dedicated icon onscreen.
+## SavedVariablesPerCharacter: LoseControlDB
+LoseControl.xml

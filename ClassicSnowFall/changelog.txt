@@ -1,0 +1,17 @@
+0.5.1 (CFM)
+Added ruRU localization.
+
+0.5 (Roadblock)
+Added Pet Buttons.
+
+0.4
+Added alt self cast option
+
+0.3
+All bongos bugs quashed.
+
+0.2
+Fix for bongos hidden bars.
+
+0.1 
+Initial Release

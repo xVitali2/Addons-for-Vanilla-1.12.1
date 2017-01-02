@@ -1,0 +1,8 @@
+TODO:
+
+1) do the right thing - hook into trade skill functions, don't just replace the whole thing
+2) add a button for pasting needed reagents into chat box
+2) deep dive and look for items that make items that make items that ...
+3) make the screen wider (for German) and longer (for lots of recipes)
+4) continue to make improvements to the performance after a patch or after the WDB directory has been removed
+5) support the use of bank information for alts

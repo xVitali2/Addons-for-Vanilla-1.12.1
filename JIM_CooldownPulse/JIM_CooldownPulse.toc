@@ -1,0 +1,27 @@
+## Interface: 11200 
+## Title: JIM's Cooldown Pulse
+## Notes: |c0000ff00Version |c0000ffff1.10|c0000ff00.26|r - As spells, actions, and items become available, their icons will flash in a conspicuous place.
+## OptionalDeps: CooldownTimers
+## SavedVariables: Pulse_MinimapButton_angle, Pulse_MinimapButton_show, Pulse_lubTime, Pulse_dubTime, Pulse_minDubTime, Pulse_expiry, Pulse_maxAlpha, Pulse_cooldownSound
+## SavedVariablesPerCharacter: Pulse_size, Pulse_minCooldown, Pulse_maxCooldown, Pulse_includes, Pulse_excludes, Pulse_CDT, Pulse_history
+
+## Feature: Listens to the spells you cast, as you cast them.
+..\JIM_toolbox\SpellCast.xml
+	## Includes: ..\JIM_toolbox\GetSpellByName.lua
+		## Includes: ..\JIM_toolbox\SearchAscendingList.lua
+	## Includes: ..\JIM_toolbox\GetSpellFromTooltip.lua
+	## Includes: ..\JIM_toolbox\NoRedMessages.lua
+	## Includes: ..\JIM_toolbox\SpellCast.lua
+
+## Feature: Listens to the items you use, and you use them.
+## FeatureDep: SpellCast.xml
+..\JIM_toolbox\ItemUse.lua
+
+## Feature: Load On Demand Configuration
+..\JIM_toolbox\ROTATING_MINIMAP_BUTTON.xml
+..\JIM_toolbox\LoadOnDemandConfig.lua
+## Includes: ..\JIM_toolbox\Config2
+
+..\JIM_toolbox\JIM_AnnounceAddOn.lua
+JIM_CooldownPulse.xml
+## Includes: JIM_CooldownPulse.lua

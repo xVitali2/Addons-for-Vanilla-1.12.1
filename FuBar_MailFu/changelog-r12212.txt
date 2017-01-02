@@ -1,0 +1,126 @@
+------------------------------------------------------------------------
+r12212 | nevcairiel | 2006-09-29 10:08:37 -0400 (Fri, 29 Sep 2006) | 1 line
+
+Changed externals to the new path.
+------------------------------------------------------------------------
+r12070 | nevcairiel | 2006-09-26 16:03:26 -0400 (Tue, 26 Sep 2006) | 1 line
+
+Externals: fixed some fixes, yeah yeah typos
+------------------------------------------------------------------------
+r12047 | thiana | 2006-09-26 11:43:36 -0400 (Tue, 26 Sep 2006) | 1 line
+
+Fixed externals on FuBar_{CorkFu, DuraTek, MailFu}, PerfectTargets, tek{Prober, Support} for Tekkub
+------------------------------------------------------------------------
+r9896 | tekkub | 2006-09-03 02:09:37 -0400 (Sun, 03 Sep 2006) | 2 lines
+
+FuBar_MailFu
+- TOC tweaks
+------------------------------------------------------------------------
+r9895 | tekkub | 2006-09-03 02:07:59 -0400 (Sun, 03 Sep 2006) | 2 lines
+
+FuBar_MailFu
+- TOC tweaks
+------------------------------------------------------------------------
+r9603 | tekkub | 2006-08-30 19:13:28 -0400 (Wed, 30 Aug 2006) | 3 lines
+
+FuBar_MailFu
+- Fixed the text formatting options finally (god how long have I had issues with that crap.. since this was a Titan mod...)
+- Now uses table lookup method for locale stuff
+------------------------------------------------------------------------
+r9561 | tekkub | 2006-08-30 11:33:20 -0400 (Wed, 30 Aug 2006) | 2 lines
+
+FuBar_MailFu
+- Fixed typo in the MiniMapMailFrame:Show() hook
+------------------------------------------------------------------------
+r9519 | tekkub | 2006-08-30 00:20:48 -0400 (Wed, 30 Aug 2006) | 2 lines
+
+FuBar_MailFu
+- Just a tap so that libraries update in the auto-zip
+------------------------------------------------------------------------
+r6832 | tekkub | 2006-08-03 22:37:44 -0400 (Thu, 03 Aug 2006) | 1 line
+
+FuBar_MailFu - Updated TOC
+------------------------------------------------------------------------
+r6812 | tekkub | 2006-08-03 18:47:19 -0400 (Thu, 03 Aug 2006) | 1 line
+
+FuBar_MailFu - Now with spicy AceConsole topping!
+------------------------------------------------------------------------
+r6803 | tekkub | 2006-08-03 17:36:52 -0400 (Thu, 03 Aug 2006) | 4 lines
+
+FuBar_MailFu 
+- If this doesn't fix login info, nothing will!
+- Closes: #8 --- http://www.wowace.com/flyspray/?do=details&id=8
+
+------------------------------------------------------------------------
+r6712 | ammo | 2006-08-03 06:17:13 -0400 (Thu, 03 Aug 2006) | 3 lines
+
+FuBar_MailFu:
+* Fixed tekkub copy pasting errors
+
+------------------------------------------------------------------------
+r6678 | tekkub | 2006-08-02 20:31:26 -0400 (Wed, 02 Aug 2006) | 1 line
+
+FuBar_MailFu - Ace2/FuTu
+------------------------------------------------------------------------
+r5948 | tekkub | 2006-07-27 23:55:05 -0400 (Thu, 27 Jul 2006) | 1 line
+
+FuBar_MailFu - 'i' before 'e' except after 'c'....
+------------------------------------------------------------------------
+r1934 | tekkub | 2006-05-18 00:03:56 -0400 (Thu, 18 May 2006) | 1 line
+
+FuBar_MailFu - No longer requires FuBar to run, can be run as a standalone Minimap button
+------------------------------------------------------------------------
+r1862 | tekkub | 2006-05-16 02:43:36 -0400 (Tue, 16 May 2006) | 1 line
+
+FuBar_MailFu - More tweaks, should be fully 1.2 compatible now.
+------------------------------------------------------------------------
+r1838 | tekkub | 2006-05-15 18:21:39 -0400 (Mon, 15 May 2006) | 1 line
+
+FuBar_MailFu - Converted to 1.2 (but doesn't work with latest FuBar ATM...)
+------------------------------------------------------------------------
+r1746 | tekkub | 2006-05-12 22:33:18 -0400 (Fri, 12 May 2006) | 3 lines
+
+FuBar_MailFu - Hopefully fixes the whole "no mail on load" crap, someone please test
+http://www.wowinterface.com/portal.php?id=10&a=viewbug&bugid=848
+
+------------------------------------------------------------------------
+r1606 | tekkub | 2006-05-07 20:23:15 -0400 (Sun, 07 May 2006) | 1 line
+
+FuBar_MailFu - Tweaked how the Minimap icon is supressed, should never pop up unintentionally again!
+------------------------------------------------------------------------
+r1534 | tekkub | 2006-05-06 22:22:06 -0400 (Sat, 06 May 2006) | 1 line
+
+FuBar_MailFu - Converted to use SEEmbedMail
+------------------------------------------------------------------------
+r1267 | tekkub | 2006-05-01 03:00:41 -0400 (Mon, 01 May 2006) | 1 line
+
+FuBar_MailFu - New icons! (thanks indie for the icon and haste for GIMP to convert/edit it)
+------------------------------------------------------------------------
+r953 | tekkub | 2006-04-26 09:26:34 -0400 (Wed, 26 Apr 2006) | 1 line
+
+FuBar_MailFu - Fixed sound path
+------------------------------------------------------------------------
+r925 | tekkub | 2006-04-26 06:06:43 -0400 (Wed, 26 Apr 2006) | 1 line
+
+FuBar_MailFu - Metadata update for release
+------------------------------------------------------------------------
+r363 | tekkub | 2006-04-18 02:58:18 -0400 (Tue, 18 Apr 2006) | 1 line
+
+FuBar_Mail - Just updating metadata
+------------------------------------------------------------------------
+r194 | tekkub | 2006-04-15 20:55:55 -0400 (Sat, 15 Apr 2006) | 1 line
+
+FuBar_Mail - Updated tooltip for latest FuBar
+------------------------------------------------------------------------
+r176 | tekkub | 2006-04-13 06:37:19 -0400 (Thu, 13 Apr 2006) | 1 line
+
+FuBar_Mail - Renaming to FuBar_MailFu
+------------------------------------------------------------------------
+r175 | tekkub | 2006-04-13 06:36:21 -0400 (Thu, 13 Apr 2006) | 1 line
+
+FuBar_Mail - Renaming files to FuBar_MailFu
+------------------------------------------------------------------------
+r135 | tekkub | 2006-04-09 15:17:40 -0400 (Sun, 09 Apr 2006) | 1 line
+
+FuBar_Mail - Totally untested renamed BossPanel_Mail from Neriak
+------------------------------------------------------------------------

@@ -1,0 +1,2705 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+
+ <!-- Dropdown Template -->
+ <Frame name="MSBTDropdownTemplate" inherits="UIDropDownMenuTemplate" virtual="true">
+  <Size>
+   <AbsDimension x="128" y="16"/>
+  </Size>
+  <Layers>
+   <Layer level="BACKGROUND">
+    <FontString name="$parentLabel" inherits="GameFontNormalSmall">
+     <Anchors>
+      <Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+       <Offset>
+        <AbsDimension x="21" y="2" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+    </FontString>
+   </Layer>
+  </Layers>
+  <Scripts>
+   <OnEnter>
+    if (this.tooltipText ~= nil) then
+     GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+     GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+    end
+   </OnEnter>
+   <OnLeave>GameTooltip:Hide();</OnLeave>
+  </Scripts>
+ </Frame>
+
+ <!-- Checkbox Template -->
+ <CheckButton name="MSBTCheckTemplate" inherits="OptionsCheckButtonTemplate" virtual="true">
+  <HitRectInsets>
+   <AbsInset left="0" right="0" top="0" bottom="0" />
+  </HitRectInsets>
+  <Scripts>
+   <OnClick>
+    if (this:GetChecked()) then
+     PlaySound("igMainMenuOptionCheckBoxOff");
+    else
+     PlaySound("igMainMenuOptionCheckBoxOn");
+    end
+
+    -- Call the font settings checkbox OnClick handler.
+    MikSBTOpt.CheckboxOnClick();
+   </OnClick>
+  </Scripts>
+ </CheckButton>
+
+
+ <!-- Slider Template -->
+ <Slider name="MSBTSliderTemplate" inherits="OptionsSliderTemplate" virtual="true">
+  <Scripts>
+   <OnValueChanged>MikSBTOpt.SliderOnValueChanged();</OnValueChanged>
+  </Scripts>
+ </Slider>
+
+
+ <!-- Button Template -->
+ <Button name="MSBTButtonTemplate" inherits="UIPanelButtonTemplate" virtual="true">
+  <Scripts>
+   <OnClick>
+    PlaySound("igMainMenuOptionCheckBoxOn");
+    MikSBTOpt.ButtonOnClick();
+   </OnClick>
+   <OnEnter>
+    if (this.tooltipText ~= nil) then
+     GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+     GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+    end
+   </OnEnter>
+   <OnLeave>
+    GameTooltip:Hide();
+   </OnLeave>
+  </Scripts>
+ </Button>
+
+ <!-- Editbox Template -->
+ <EditBox name="MSBTEditboxTemplate" letters="1000" autoFocus="false" inherits="InputBoxTemplate" frameStrata="HIGH" virtual="true">
+  <FontString inherits="ChatFontNormal" font="Fonts\ARIALN.TTF">
+   <Color r="1" g="1" b="0" />
+   <FontHeight>
+    <AbsValue val="12" />
+   </FontHeight>
+  </FontString>
+  <Layers>
+   <Layer level="ARTWORK">
+    <FontString name="$parentLabel" inherits="GameFontNormalSmall">
+     <Anchors>
+      <Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+       <Offset>
+        <AbsDimension x="0" y="2" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+    </FontString>
+   </Layer>
+  </Layers>
+  <Scripts>
+   <OnEnter>
+    if (this.tooltipText ~= nil) then
+     GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+     GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+    end
+   </OnEnter>
+   <OnLeave>GameTooltip:Hide();</OnLeave>
+   <OnTextChanged>MikSBTOpt.EditboxOnTextChanged();</OnTextChanged>
+  </Scripts>
+ </EditBox>
+
+
+ <!-- Color Swatch Template -->
+ <Button name="MSBTColorswatchTemplate" hidden="false" virtual="true">
+  <Size>
+   <AbsDimension x="16" y="16" />
+  </Size>
+  <Layers>
+   <Layer level="BACKGROUND">
+    <Texture name="$parentBG">
+     <Size>
+      <AbsDimension x="14" y="14" />
+     </Size>
+     <Color r="1.0" g="1.0" b="1.0" />
+     <Anchors>
+      <Anchor point="CENTER" />
+     </Anchors>
+    </Texture>
+   </Layer>
+  </Layers>
+  <NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\ChatFrameColorSwatch" />
+  <Scripts>
+   <OnClick>MikSBTOpt.ColorSwatchOnClick();</OnClick>
+   <OnEnter>
+    if (this.tooltipText ~= nil) then
+     GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+     GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+    end
+
+    getglobal(this:GetName() .. "BG"):SetVertexColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
+   </OnEnter>
+   <OnLeave>
+    GameTooltip:Hide();
+    getglobal(this:GetName() .. "BG"):SetVertexColor(HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
+   </OnLeave>
+  </Scripts>
+ </Button>
+
+ <!-- Tab Button Template -->
+ <Button name="MSBTTabButtonTemplate" inherits="TabButtonTemplate" virtual="true">
+  <Scripts>
+   <OnClick>MikSBTOpt.TabOnClick();</OnClick>
+   <OnEnter>
+    if (this.tooltipText ~= nil) then
+     GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+     GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+    end
+   </OnEnter>
+   <OnLeave>GameTooltip:Hide();</OnLeave>
+  </Scripts>
+ </Button>
+
+ <!-- Tab Frame Template -->
+ <Frame name="MSBTTabFrameTemplate" virtual="true">
+  <Size>
+   <AbsDimension x="565" y="350" />
+  </Size>
+  <Anchors>
+   <Anchor point="TOPLEFT">
+    <Offset>
+     <AbsDimension x="25" y="-75" />
+    </Offset>
+   </Anchor>
+  </Anchors>
+ </Frame>
+ 
+
+ <!-- Event Settings Template -->
+ <Frame name="MSBTEventSettingsTemplate" virtual="true">
+  <Size>
+   <AbsDimension x="543" y="25" />
+  </Size>
+  <Frames>
+
+   <!-- Color Swatch -->
+   <Button name="$parentColorSwatch" inherits="MSBTColorSwatchTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="10" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+   
+   <!-- Show Event Checkbox -->
+   <CheckButton name="$parentShowEventCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentColorSwatch">
+      <Offset>
+       <AbsDimension x="5" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Edit Font Settings Button -->
+   <Button name="$parentEditFontSettingsButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPRIGHT">
+      <Offset>
+       <AbsDimension x="-5" y="3" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+   <!-- Sticky Event Checkbox -->
+   <CheckButton name="$parentStickyEventCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="RIGHT" relativePoint="LEFT" relativeTo="$parentEditFontSettingsButton">
+      <Offset>
+       <AbsDimension x="-5" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+
+   <!-- Output Message Label -->
+   <Button name="$parentMessage" enableMouse="true">
+    <Size>
+     <AbsDimension x="130" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="RIGHT" relativePoint="LEFT" relativeTo="$parentEditFontSettingsButton">
+      <Offset>
+       <AbsDimension x="-60" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Layers>
+     <Layer level="OVERLAY">     
+      <FontString name="$parentLabel" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+       <FontHeight>
+        <AbsValue val="10" />
+       </FontHeight>
+       <Anchors>
+        <Anchor point="LEFT" />
+       </Anchors>
+      </FontString>
+     </Layer>
+    </Layers>
+    <Scripts>
+     <OnEnter>
+      if (this.tooltipText ~= nil) then
+       GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+       GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+      end
+     </OnEnter>
+     <OnLeave>GameTooltip:Hide();</OnLeave>
+     <OnClick>MikSBTOpt.EventMessageLabelOnClick();</OnClick>
+    </Scripts>
+   </Button>
+
+  </Frames>
+ </Frame>
+
+
+ <!-- Trigger Event Settings Template -->
+ <Frame name="MSBTTriggerEventSettingsTemplate" virtual="true">
+  <Size>
+   <AbsDimension x="543" y="25" />
+  </Size>
+  <Frames>
+
+   <!-- Color Swatch -->
+   <Button name="$parentColorSwatch" inherits="MSBTColorSwatchTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="10" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+   
+   <!-- Enable Trigger Checkbox -->
+   <CheckButton name="$parentEnableTriggerCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentColorSwatch">
+      <Offset>
+       <AbsDimension x="5" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Scripts>
+     <OnClick>
+      if (this:GetChecked()) then
+       PlaySound("igMainMenuOptionCheckBoxOff");
+      else
+       PlaySound("igMainMenuOptionCheckBoxOn");
+      end
+
+      -- Call the trigger settings checkbox OnClick handler.
+      MikSBTOpt.EnableTriggerCheckboxOnClick();
+     </OnClick>
+    </Scripts>
+   </CheckButton>
+
+   <!-- Delete Trigger Button -->
+   <Button name="$parentDeleteTriggerButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPRIGHT">
+      <Offset>
+       <AbsDimension x="-5" y="3" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+
+   <!-- Edit Trigger Settings Button -->
+   <Button name="$parentEditTriggerSettingsButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="RIGHT" relativePoint="LEFT" relativeTo="$parentDeleteTriggerButton">
+      <Offset>
+       <AbsDimension x="-5" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+   <!-- Edit Font Settings Button -->
+   <Button name="$parentEditFontSettingsButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="RIGHT" relativePoint="LEFT" relativeTo="$parentEditTriggerSettingsButton">
+      <Offset>
+       <AbsDimension x="-5" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+   <!-- Sticky Event Checkbox -->
+   <CheckButton name="$parentStickyEventCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="RIGHT" relativePoint="LEFT" relativeTo="$parentEditFontSettingsButton">
+      <Offset>
+       <AbsDimension x="-5" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+
+   <!-- Output Message Label -->
+   <Button name="$parentMessage" enableMouse="true">
+    <Size>
+     <AbsDimension x="130" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentEnableTriggerCheckbox">
+      <Offset>
+       <AbsDimension x="10" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Layers>
+     <Layer level="OVERLAY">     
+      <FontString name="$parentLabel" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+       <FontHeight>
+        <AbsValue val="10" />
+       </FontHeight>
+       <Anchors>
+        <Anchor point="LEFT" />
+       </Anchors>
+      </FontString>
+     </Layer>
+    </Layers>
+    <Scripts>
+     <OnEnter>
+      if (this.tooltipText ~= nil) then
+       GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+       GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+      end
+     </OnEnter>
+     <OnLeave>GameTooltip:Hide();</OnLeave>
+     <OnClick>MikSBTOpt.TriggerMessageLabelOnClick();</OnClick>
+    </Scripts>
+   </Button>
+  </Frames>  
+ </Frame>
+
+
+ <!-- Suppression Item Settings Template -->
+ <Frame name="MSBTSuppressionItemSettingsTemplate" virtual="true">
+  <Size>
+   <AbsDimension x="543" y="25" />
+  </Size>
+  <Frames>
+
+   <!-- Enable Suppression Checkbox -->
+   <CheckButton name="$parentEnableSuppressionCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="10" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Delete Suppression Button -->
+   <Button name="$parentDeleteSuppressionButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPRIGHT">
+      <Offset>
+       <AbsDimension x="-5" y="3" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+
+   <!-- Output Message Label -->
+   <Button name="$parentMessage" enableMouse="true">
+    <Size>
+     <AbsDimension x="250" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentEnableSuppressionCheckbox">
+      <Offset>
+       <AbsDimension x="10" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Layers>
+     <Layer level="OVERLAY">     
+      <FontString name="$parentLabel" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+       <FontHeight>
+        <AbsValue val="10" />
+       </FontHeight>
+       <Anchors>
+        <Anchor point="LEFT" />
+       </Anchors>
+      </FontString>
+     </Layer>
+    </Layers>
+    <Scripts>
+     <OnEnter>
+      if (this.tooltipText ~= nil) then
+       GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+       GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+      end
+     </OnEnter>
+     <OnLeave>GameTooltip:Hide();</OnLeave>
+     <OnClick>MikSBTOpt.SuppressionMessageLabelOnClick();</OnClick>
+    </Scripts>
+   </Button>
+
+  </Frames>
+ </Frame>
+
+
+ <!-- Scroll Area Settings Template -->
+ <Frame name="MSBTScrollAreaSettingsTemplate" inherits="MSBTTabFrameTemplate" virtual="true">
+  <Layers>
+   <Layer level="OVERLAY">
+    <Texture name="$parentTextureHorizontalBarLeft" file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
+     <Size>
+      <AbsDimension x="236" y="4" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="-5" y="-90" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.078125" right="1" top="0.59765625" bottom="0.61328125" />
+    </Texture>
+    <Texture name="$parentTextureHorizontalBarMiddle" file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
+     <Size>
+      <AbsDimension x="236" y="4" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="231" y="-90" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.078125" right="1" top="0.59765625" bottom="0.61328125" />
+    </Texture>
+    <Texture name="$parentTextureHorizontalBarRight" file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
+     <Size>
+      <AbsDimension x="103" y="4" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="467" y="-90" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.078125" right="0.48046875" top="0.59765625" bottom="0.61328125" />
+    </Texture>
+   </Layer>
+  </Layers>
+  <Frames>
+
+   <!-- Show Events Checbox -->
+   <CheckButton name="$parentShowEventsCheckbox" inherits="MSBTCheckTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="20" y="-30" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+
+   <!-- Configure Scroll Area Button -->
+   <Button name="$parentConfigureScrollAreaButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPRIGHT">
+      <Offset>
+       <AbsDimension x="-20" y="-20" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+
+
+   <!-- Edit Font Settings Button -->
+   <Button name="$parentEditFontSettingsButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$parentConfigureScrollAreaButton">
+      <Offset>
+       <AbsDimension x="0" y="-5" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+   <!-- Events Scroll Frame -->
+   <ScrollFrame name="$parentEventsScrollFrame" inherits="FauxScrollFrameTemplate">
+    <Size>
+     <AbsDimension x="543" y="255" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="0" y="-100" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Layers>
+     <Layer level="ARTWORK">
+      <Texture name="$parentScrollBarTop" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+       <Size>
+        <AbsDimension x="31" y="160" />
+       </Size>
+       <Anchors>
+        <Anchor point="TOPRIGHT">
+         <Offset>
+          <AbsDimension x="29" y="5" />
+         </Offset>
+        </Anchor>
+       </Anchors>
+       <TexCoords left="0" right="0.484375" top="0" bottom="0.625" />
+      </Texture>
+      <Texture file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+       <Size>
+        <AbsDimension x="31" y="106"/>
+       </Size>
+       <Anchors>
+        <Anchor point="BOTTOMRIGHT">
+         <Offset>
+          <AbsDimension x="29" y="-2" />
+         </Offset>
+        </Anchor>
+       </Anchors>
+       <TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625" />
+      </Texture>
+     </Layer>
+    </Layers>
+    <Scripts>
+     <OnLoad>
+      local scrollbar = getglobal(this:GetName().."ScrollBar");
+      scrollbar:SetMinMaxValues(0, 1);
+      scrollbar:SetValue(1);
+     </OnLoad>
+     <OnVerticalScroll>MikSBTOpt.OnVerticalScroll();</OnVerticalScroll>
+    </Scripts>
+   </ScrollFrame>
+
+   <!-- Event 1 -->
+   <Frame name="$parentEvent1" inherits="MSBTEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="0" y="-100" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Event 2 -->
+   <Frame name="$parentEvent2" inherits="MSBTEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentEvent1">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Event 3 -->
+   <Frame name="$parentEvent3" inherits="MSBTEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentEvent2">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Event 4 -->
+   <Frame name="$parentEvent4" inherits="MSBTEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentEvent3">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Event 5 -->
+   <Frame name="$parentEvent5" inherits="MSBTEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentEvent4">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Event 6 -->
+   <Frame name="$parentEvent6" inherits="MSBTEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentEvent5">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Event 7 -->
+   <Frame name="$parentEvent7" inherits="MSBTEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentEvent6">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Event 8 -->
+   <Frame name="$parentEvent8" inherits="MSBTEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentEvent7">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Event 9 -->
+   <Frame name="$parentEvent9" inherits="MSBTEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentEvent8">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Event 10 -->
+   <Frame name="$parentEvent10" inherits="MSBTEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentEvent9">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Output Message Editbox -->
+   <EditBox name="$parentMessageEditbox" inherits="MSBTEditboxTemplate" hidden="true">
+    <Size>
+     <AbsDimension x="130" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT" />
+    </Anchors>
+    <Scripts>
+     <OnLeave>GameTooltip:Hide();</OnLeave>
+     <OnHide>
+      -- Check if there is an associated clicked label frame, set its text to the editbox's text, and show it.
+      if (this.ClickedLabelFrameName) then
+       local objLabel = getglobal(this.ClickedLabelFrameName);
+       objLabel:SetText(this:GetText());
+       objLabel:Show();
+      end
+     </OnHide>
+     <OnEscapePressed>
+      -- Make sure there is previous text and set the editbox to it.
+      if (this.PreviousText ~= nil) then
+       this:SetText(this.PreviousText);
+       MikSBTOpt.EditboxOnTextChanged();
+      end
+
+      this:Hide();
+     </OnEscapePressed>
+     <OnEnterPressed>this:Hide();</OnEnterPressed>
+    </Scripts>
+   </EditBox>
+
+  </Frames>
+ </Frame>
+
+
+ <!-- Trigger Settings Template -->
+ <Frame name="MSBTTriggerSettingsTemplate" inherits="MSBTTabFrameTemplate" virtual="true">
+  <Layers>
+   <Layer level="OVERLAY">
+    <Texture name="$parentTextureHorizontalBarLeft" file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
+     <Size>
+      <AbsDimension x="236" y="4" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="-5" y="-60" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.078125" right="1" top="0.59765625" bottom="0.61328125" />
+    </Texture>
+    <Texture name="$parentTextureHorizontalBarMiddle" file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
+     <Size>
+      <AbsDimension x="236" y="4" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="231" y="-60" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.078125" right="1" top="0.59765625" bottom="0.61328125" />
+    </Texture>
+    <Texture name="$parentTextureHorizontalBarRight" file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
+     <Size>
+      <AbsDimension x="103" y="4" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="467" y="-60" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.078125" right="0.48046875" top="0.59765625" bottom="0.61328125" />
+    </Texture>
+   </Layer>
+  </Layers>
+  <Frames>
+   <!-- Add Trigger Button -->
+   <Button name="$parentAddTriggerButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="20" y="-20" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+   <!-- Triggers Scroll Frame -->
+   <ScrollFrame name="$parentTriggersScrollFrame" inherits="FauxScrollFrameTemplate">
+    <Size>
+     <AbsDimension x="543" y="280" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="0" y="-70" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Layers>
+     <Layer level="ARTWORK">
+      <Texture name="$parentScrollBarTop" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+       <Size>
+        <AbsDimension x="31" y="190" />
+       </Size>
+       <Anchors>
+        <Anchor point="TOPRIGHT">
+         <Offset>
+          <AbsDimension x="29" y="5" />
+         </Offset>
+        </Anchor>
+       </Anchors>
+       <TexCoords left="0" right="0.484375" top="0" bottom="0.7421875" />
+      </Texture>
+      <Texture file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+       <Size>
+        <AbsDimension x="31" y="106"/>
+       </Size>
+       <Anchors>
+        <Anchor point="BOTTOMRIGHT">
+         <Offset>
+          <AbsDimension x="29" y="-2" />
+         </Offset>
+        </Anchor>
+       </Anchors>
+       <TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625" />
+      </Texture>
+     </Layer>
+    </Layers>
+    <Scripts>
+     <OnLoad>
+      local scrollbar = getglobal(this:GetName().."ScrollBar");
+      scrollbar:SetMinMaxValues(0, 1);
+      scrollbar:SetValue(1);
+     </OnLoad>
+     <OnVerticalScroll>MikSBTOpt.OnVerticalScroll();</OnVerticalScroll>
+    </Scripts>
+   </ScrollFrame>
+
+   <!-- Trigger 1 -->
+   <Frame name="$parentTrigger1" inherits="MSBTTriggerEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="0" y="-70" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Trigger 2 -->
+   <Frame name="$parentTrigger2" inherits="MSBTTriggerEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTrigger1">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Trigger 3 -->
+   <Frame name="$parentTrigger3" inherits="MSBTTriggerEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTrigger2">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Trigger 4 -->
+   <Frame name="$parentTrigger4" inherits="MSBTTriggerEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTrigger3">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Trigger 5 -->
+   <Frame name="$parentTrigger5" inherits="MSBTTriggerEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTrigger4">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Trigger 6 -->
+   <Frame name="$parentTrigger6" inherits="MSBTTriggerEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTrigger5">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Trigger 7 -->
+   <Frame name="$parentTrigger7" inherits="MSBTTriggerEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTrigger6">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Trigger 8 -->
+   <Frame name="$parentTrigger8" inherits="MSBTTriggerEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTrigger7">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Trigger 9 -->
+   <Frame name="$parentTrigger9" inherits="MSBTTriggerEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTrigger8">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Trigger 10 -->
+   <Frame name="$parentTrigger10" inherits="MSBTTriggerEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTrigger9">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Trigger 11 -->
+   <Frame name="$parentTrigger11" inherits="MSBTTriggerEventSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTrigger10">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Output Message Editbox -->
+   <EditBox name="$parentMessageEditbox" inherits="MSBTEditboxTemplate" hidden="true">
+    <Size>
+     <AbsDimension x="130" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT" />
+    </Anchors>
+    <Scripts>
+     <OnLeave>GameTooltip:Hide();</OnLeave>
+     <OnHide>
+      -- Check if there is an associated clicked label frame, set its text to the editbox's text, and show it.
+      if (this.ClickedLabelFrameName) then
+       local objLabel = getglobal(this.ClickedLabelFrameName);
+       objLabel:SetText(this:GetText());
+       objLabel:Show();
+      end
+     </OnHide>
+     <OnEscapePressed>
+      -- Make sure there is previous text and set the editbox to it.
+      if (this.PreviousText ~= nil) then
+       this:SetText(this.PreviousText);
+       MikSBTOpt.EditboxOnTextChanged();
+      end
+
+      this:Hide();
+     </OnEscapePressed>
+     <OnEnterPressed>this:Hide();</OnEnterPressed>
+    </Scripts>
+   </EditBox>
+
+  </Frames>
+ </Frame>
+
+
+ <!-- Suppression Settings Template -->
+ <Frame name="MSBTSuppressionSettingsTemplate" inherits="MSBTTabFrameTemplate" virtual="true">
+  <Layers>
+   <Layer level="OVERLAY">
+    <Texture name="$parentTextureHorizontalBarLeft" file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
+     <Size>
+      <AbsDimension x="236" y="4" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="-5" y="-60" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.078125" right="1" top="0.59765625" bottom="0.61328125" />
+    </Texture>
+    <Texture name="$parentTextureHorizontalBarMiddle" file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
+     <Size>
+      <AbsDimension x="236" y="4" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="231" y="-60" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.078125" right="1" top="0.59765625" bottom="0.61328125" />
+    </Texture>
+    <Texture name="$parentTextureHorizontalBarRight" file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
+     <Size>
+      <AbsDimension x="103" y="4" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="467" y="-60" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.078125" right="0.48046875" top="0.59765625" bottom="0.61328125" />
+    </Texture>
+   </Layer>
+  </Layers>
+  <Frames>
+   <!-- Add Suppression Button -->
+   <Button name="$parentAddSuppressionButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="20" y="-20" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+   <!-- Suppressions Scroll Frame -->
+   <ScrollFrame name="$parentSuppressionsScrollFrame" inherits="FauxScrollFrameTemplate">
+    <Size>
+     <AbsDimension x="543" y="280" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="0" y="-70" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Layers>
+     <Layer level="ARTWORK">
+      <Texture name="$parentScrollBarTop" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+       <Size>
+        <AbsDimension x="31" y="190" />
+       </Size>
+       <Anchors>
+        <Anchor point="TOPRIGHT">
+         <Offset>
+          <AbsDimension x="29" y="5" />
+         </Offset>
+        </Anchor>
+       </Anchors>
+       <TexCoords left="0" right="0.484375" top="0" bottom="0.7421875" />
+      </Texture>
+      <Texture file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+       <Size>
+        <AbsDimension x="31" y="106"/>
+       </Size>
+       <Anchors>
+        <Anchor point="BOTTOMRIGHT">
+         <Offset>
+          <AbsDimension x="29" y="-2" />
+         </Offset>
+        </Anchor>
+       </Anchors>
+       <TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625" />
+      </Texture>
+     </Layer>
+    </Layers>
+    <Scripts>
+     <OnLoad>
+      local scrollbar = getglobal(this:GetName().."ScrollBar");
+      scrollbar:SetMinMaxValues(0, 1);
+      scrollbar:SetValue(1);
+     </OnLoad>
+     <OnVerticalScroll>MikSBTOpt.OnVerticalScroll();</OnVerticalScroll>
+    </Scripts>
+   </ScrollFrame>
+
+   <!-- Suppression 1 -->
+   <Frame name="$parentSuppression1" inherits="MSBTSuppressionItemSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="0" y="-70" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Suppression 2 -->
+   <Frame name="$parentSuppression2" inherits="MSBTSuppressionItemSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentSuppression1">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Suppression 3 -->
+   <Frame name="$parentSuppression3" inherits="MSBTSuppressionItemSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentSuppression2">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Suppression 4 -->
+   <Frame name="$parentSuppression4" inherits="MSBTSuppressionItemSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentSuppression3">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Suppression 5 -->
+   <Frame name="$parentSuppression5" inherits="MSBTSuppressionItemSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentSuppression4">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Suppression 6 -->
+   <Frame name="$parentSuppression6" inherits="MSBTSuppressionItemSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentSuppression5">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Suppression 7 -->
+   <Frame name="$parentSuppression7" inherits="MSBTSuppressionItemSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentSuppression6">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Suppression 8 -->
+   <Frame name="$parentSuppression8" inherits="MSBTSuppressionItemSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentSuppression7">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Suppression 9 -->
+   <Frame name="$parentSuppression9" inherits="MSBTSuppressionItemSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentSuppression8">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Suppression 10 -->
+   <Frame name="$parentSuppression10" inherits="MSBTSuppressionItemSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentSuppression9">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Suppression 11 -->
+   <Frame name="$parentSuppression11" inherits="MSBTSuppressionItemSettingsTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentSuppression10">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Output Message Editbox -->
+   <EditBox name="$parentMessageEditbox" inherits="MSBTEditboxTemplate" hidden="true">
+    <Size>
+     <AbsDimension x="250" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT" />
+    </Anchors>
+    <Scripts>
+     <OnLeave>GameTooltip:Hide();</OnLeave>
+     <OnHide>
+      -- Check if there is an associated clicked label frame, set its text to the editbox's text, and show it.
+      if (this.ClickedLabelFrameName) then
+       local objLabel = getglobal(this.ClickedLabelFrameName);
+       objLabel:SetText(this:GetText());
+       objLabel:Show();
+      end
+     </OnHide>
+     <OnEscapePressed>
+      -- Make sure there is previous text and set the editbox to it.
+      if (this.PreviousText ~= nil) then
+       this:SetText(this.PreviousText);
+       MikSBTOpt.EditboxOnTextChanged();
+      end
+
+      this:Hide();
+     </OnEscapePressed>
+     <OnEnterPressed>this:Hide();</OnEnterPressed>
+    </Scripts>
+   </EditBox>
+
+  </Frames>
+ </Frame>
+
+
+ <!-- Scroll Area Mover Template -->
+ <Frame name="MSBTScrollAreaMoverTemplate" toplevel="true" parent="UIParent" movable="true" enableMouse="true" hidden="true" virtual="true">
+  <Size>
+   <AbsDimension x="24" y="24" />
+  </Size>
+  <Anchors>
+   <Anchor point="BOTTOM" relativePoint="CENTER" relativeTo="UIParent">
+    <Offset>
+     <AbsDimension x="0" y="0" />
+    </Offset>
+   </Anchor>
+  </Anchors>  
+  <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+   <EdgeSize>
+    <AbsValue val="16" />
+   </EdgeSize>
+   <TileSize>
+    <AbsValue val="64" />
+   </TileSize>
+   <BackgroundInsets>
+    <AbsInset left="4" right="4" top="4" bottom="4" />
+   </BackgroundInsets>
+  </Backdrop>
+  <Layers>
+   <Layer level="OVERLAY">
+    <FontString name="$parentTitle" inherits="ChatFontNormal" font="Fonts\ARIALN.TTF">
+     <Color r="1" g="1" b="0" />
+     <FontHeight>
+      <AbsValue val="12" />
+     </FontHeight>
+    </FontString>
+   </Layer>
+  </Layers>
+  <Scripts>
+   <OnEnter>
+    if (this.tooltipText ~= nil) then
+     GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+     GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+    end
+   </OnEnter>
+   <OnLeave>GameTooltip:Hide();</OnLeave>
+   <OnMouseDown>
+    -- Start moving the frame if the left mouse button is pressed.
+    if (arg1 == "LeftButton") then
+     this:StartMoving();
+    end
+   </OnMouseDown>
+   <OnMouseUp>
+    -- Stop moving the frame.
+    this:StopMovingOrSizing();
+
+    -- Save the scroll area's coordinates to the control frame.
+    MikSBTOpt.SaveScrollAreaMoverCoordinates(this:GetName());
+   </OnMouseUp>
+  </Scripts>
+ </Frame>
+
+
+ <!-- Font Settings Frame -->
+ <Frame name="MSBTFontSettingsFrame" parent="UIParent" toplevel="true" enableMouse="true" hidden="true">
+  <Size>
+   <AbsDimension x="350" y="270" />
+  </Size>
+  <Anchors>
+   <Anchor point="TOPLEFT">
+    <Offset>
+     <AbsDimension x="15" y="-200" />
+    </Offset>
+   </Anchor>
+  </Anchors>
+  <Backdrop bgFile="Interface\AddOns\MikScrollingBattleText\Artwork\PlainBackdrop.tga" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+   <EdgeSize>
+    <AbsValue val="16" />
+   </EdgeSize>
+   <TileSize>
+    <AbsValue val="16" />
+   </TileSize>
+   <BackgroundInsets>
+    <AbsInset left="4" right="4" top="4" bottom="4" />
+   </BackgroundInsets>
+  </Backdrop>
+  <TitleRegion setAllPoints="true" />
+  <Layers>
+   <Layer level="OVERLAY">
+    <FontString name="$parentTitle" inherits="GameFontNormalSmall">
+     <Anchors>
+      <Anchor point="TOP">
+       <Offset>
+        <AbsDimension x="0" y="-10" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+    </FontString>
+   </Layer>
+  </Layers>
+  <Frames>
+   <!-- Close Button -->
+   <Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+    <Anchors>
+     <Anchor point="TOPRIGHT">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+   <!-- Normal Font -->
+   <Frame name="$parentFontDropdown" inherits="MSBTDropdownTemplate" hidden="false">
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="0" y="-60" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Crit Font -->
+   <Frame name="$parentFontCritDropdown" inherits="MSBTDropdownTemplate" hidden="false">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="$parentFontDropdown">
+      <Offset>
+       <AbsDimension x="20" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Normal Font Outline -->
+   <Frame name="$parentFontOutlineDropdown" inherits="MSBTDropdownTemplate" hidden="false">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentFontDropdown">
+      <Offset>
+       <AbsDimension x="0" y="-20" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Crit Font Outline -->
+   <Frame name="$parentFontOutlineCritDropdown" inherits="MSBTDropdownTemplate" hidden="false">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentFontCritDropdown">
+      <Offset>
+       <AbsDimension x="0" y="-20" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Inherit Normal Font Size Checkbox -->
+   <CheckButton name="$parentInheritFontSizeCheckbox" inherits="MSBTCheckTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentFontOutlineDropdown">
+      <Offset>
+       <AbsDimension x="18" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>    
+   </CheckButton>
+
+   <!-- Inherit Crit Font Size Checkbox -->
+   <CheckButton name="$parentInheritFontSizeCritCheckbox" inherits="MSBTCheckTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentFontOutlineCritDropdown">
+      <Offset>
+       <AbsDimension x="18" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Normal Font Size -->
+   <Slider name="$parentFontSizeSlider" inherits="MSBTSliderTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentInheritFontSizeCheckbox">
+      <Offset>
+       <AbsDimension x="0" y="-20" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Scripts>
+     <OnValueChanged>MikSBTOpt.FontSettingsSliderOnValueChanged();</OnValueChanged>
+    </Scripts>
+   </Slider>
+
+   <!-- Crit Font Size -->
+   <Slider name="$parentFontSizeCritSlider" inherits="MSBTSliderTemplate">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentInheritFontSizeCritCheckbox">
+      <Offset>
+       <AbsDimension x="0" y="-20" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Scripts>
+     <OnValueChanged>MikSBTOpt.FontSettingsSliderOnValueChanged();</OnValueChanged>
+    </Scripts>
+   </Slider>
+
+   <!-- Normal Font Size Preview -->
+   <Frame name="$parentNormalPreview">
+    <Size>
+     <AbsDimension x="1" y="36" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$parentFontSizeSlider">
+      <Offset>
+       <AbsDimension x="0" y="-20" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Layers>
+     <Layer level="OVERLAY">
+      <FontString name="$parentText" inherits="GameFontNormalSmall">
+       <Anchors>
+        <Anchor point="TOP">
+         <Offset>
+          <AbsDimension x="0" y="0" />
+         </Offset>
+        </Anchor>
+       </Anchors>
+      </FontString>
+     </Layer>
+    </Layers>
+   </Frame>
+
+
+   <!-- Crit Font Size Preview -->
+   <Frame name="$parentCritPreview">
+    <Size>
+     <AbsDimension x="1" y="36" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOP" relativePoint="BOTTOM" relativeTo="$parentFontSizeCritSlider">
+      <Offset>
+       <AbsDimension x="0" y="-20" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Layers>
+     <Layer level="OVERLAY">
+      <FontString name="$parentText" inherits="GameFontNormalSmall">
+       <Anchors>
+        <Anchor point="TOP">
+         <Offset>
+          <AbsDimension x="0" y="0" />
+         </Offset>
+        </Anchor>
+       </Anchors>
+      </FontString>
+     </Layer>
+    </Layers>
+   </Frame>
+
+  </Frames>
+  <Scripts>
+   <OnLoad>this:SetBackdropColor(0.05, 0.05, 0.05, 1.0);</OnLoad>
+  </Scripts>
+ </Frame>
+
+
+ <!-- Scroll Area Mover Control Frame -->
+ <Frame name="MSBTScrollAreaMoverControlFrame" toplevel="true" parent="UIParent" movable="true" enableMouse="true" hidden="true">
+  <Size>
+   <AbsDimension x="180" y="500" />
+  </Size>
+  <Anchors>
+   <Anchor point="TOPRIGHT">
+    <Offset>
+     <AbsDimension x="0" y="-190" />
+    </Offset>
+   </Anchor>
+  </Anchors>
+  <TitleRegion setAllPoints="true" />
+  <Backdrop bgFile="Interface\AddOns\MikScrollingBattleText\Artwork\PlainBackdrop.tga" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+   <EdgeSize>
+    <AbsValue val="16" />
+   </EdgeSize>
+   <TileSize>
+    <AbsValue val="16" />
+   </TileSize>
+   <BackgroundInsets>
+    <AbsInset left="4" right="4" top="4" bottom="4" />
+   </BackgroundInsets>
+  </Backdrop>
+  <Layers>
+   <Layer level="OVERLAY">
+    <Texture name="$parentTextureTopHorizontalBar" file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
+     <Size>
+      <AbsDimension x="170" y="4" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="5" y="-80" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.078125" right="0.7421875" top="0.59765625" bottom="0.61328125" />
+    </Texture>
+    <Texture name="$parentTextureBottomHorizontalBar" file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
+     <Size>
+      <AbsDimension x="170" y="4" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="5" y="-400" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.078125" right="0.7421875" top="0.59765625" bottom="0.61328125" />
+    </Texture>
+   </Layer>
+  </Layers>
+  <Frames>
+   <!-- Scroll Area Dropdown -->
+   <Frame name="$parentScrollAreaDropdown" inherits="MSBTDropdownTemplate" hidden="false">
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="0" y="-30" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Animation Style Dropdown -->
+   <Frame name="$parentAnimationStyleDropdown" inherits="MSBTDropdownTemplate" hidden="false">
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="0" y="-110" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Scroll Direction Dropdown -->
+   <Frame name="$parentScrollDirectionDropdown" inherits="MSBTDropdownTemplate" hidden="false">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentAnimationStyleDropdown">
+      <Offset>
+       <AbsDimension x="0" y="-20" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Text Align Dropdown -->
+   <Frame name="$parentTextAlignDropdown" inherits="MSBTDropdownTemplate" hidden="false">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentScrollDirectionDropdown">
+      <Offset>
+       <AbsDimension x="0" y="-20" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+
+   <!-- Scroll Height Slider -->
+   <Slider name="$parentScrollHeightSlider" inherits="MSBTSliderTemplate">
+    <Anchors>
+     <Anchor point="TOP"  relativePoint="BOTTOM" relativeTo="$parentTextAlignDropdown">
+      <Offset>
+       <AbsDimension x="17" y="-20" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Scripts>
+     <OnValueChanged>MikSBTOpt.ScrollAreaMoverControlSliderOnValueChanged();</OnValueChanged>
+    </Scripts>
+   </Slider>
+
+   <!-- X Offset Editbox -->
+   <EditBox name="$parentXOffsetEditbox" inherits="MSBTEditboxTemplate">
+    <Size>
+     <AbsDimension x="50" y="22" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentScrollHeightSlider">
+      <Offset>
+       <AbsDimension x="10" y="-50" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </EditBox>
+   
+   <!-- Y Offset Editbox -->
+   <EditBox name="$parentYOffsetEditbox" inherits="MSBTEditboxTemplate">
+    <Size>
+     <AbsDimension x="50" y="22" />
+    </Size>
+    <Anchors>
+     <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentXOffsetEditbox">
+      <Offset>
+       <AbsDimension x="20" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </EditBox>
+
+
+   <!-- Cancel Button -->
+   <Button name="$parentCancelButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="BOTTOM">
+      <Offset>
+       <AbsDimension x="0" y="10" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+   <!-- Save Button -->
+   <Button name="$parentSaveButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="BOTTOM" relativePoint="TOP" relativeTo="$parentCancelButton">
+      <Offset>
+       <AbsDimension x="0" y="10" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+   
+   <!-- Preview Button -->
+   <Button name="$parentPreviewButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="BOTTOM" relativePoint="TOP" relativeTo="$parentSaveButton">
+      <Offset>
+       <AbsDimension x="0" y="10" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+
+  </Frames>
+  <Scripts>
+   <OnLoad>this:SetBackdropColor(0.05, 0.05, 0.05, 1.0);</OnLoad>
+  </Scripts>
+ </Frame>
+
+
+ <!-- Incoming Scroll Area Mover Frame -->
+ <Frame name="MSBTScrollAreaMoverIncomingFrame" inherits="MSBTScrollAreaMoverTemplate">
+ </Frame>
+
+ <!-- Outgoing Scroll Area Mover Frame -->
+ <Frame name="MSBTScrollAreaMoverOutgoingFrame" inherits="MSBTScrollAreaMoverTemplate">
+ </Frame>
+
+ <!-- Notification Scroll Area Mover Frame -->
+ <Frame name="MSBTScrollAreaMoverNotificationFrame" inherits="MSBTScrollAreaMoverTemplate">
+ </Frame>
+
+
+ <!-- Trigger Configuration Frame -->
+ <Frame name="MSBTTriggerConfigFrame" parent="UIParent" toplevel="true" enableMouse="true" hidden="true">
+  <Size>
+   <AbsDimension x="400" y="270" />
+  </Size>
+  <Anchors>
+   <Anchor point="TOPLEFT">
+    <Offset>
+     <AbsDimension x="15" y="-200" />
+    </Offset>
+   </Anchor>
+  </Anchors>
+  <Backdrop bgFile="Interface\AddOns\MikScrollingBattleText\Artwork\PlainBackdrop.tga" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+   <EdgeSize>
+    <AbsValue val="16" />
+   </EdgeSize>
+   <TileSize>
+    <AbsValue val="16" />
+   </TileSize>
+   <BackgroundInsets>
+    <AbsInset left="4" right="4" top="4" bottom="4" />
+   </BackgroundInsets>
+  </Backdrop>
+  <TitleRegion setAllPoints="true" />
+  <Layers>
+   <Layer level="OVERLAY">
+    <FontString name="$parentTitle" inherits="GameFontNormalSmall">
+     <Anchors>
+      <Anchor point="TOP">
+       <Offset>
+        <AbsDimension x="0" y="-10" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+    </FontString>
+    <FontString name="$parentTriggerClassesText" inherits="GameFontNormalSmall">
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="10" y="-35" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+    </FontString>
+
+    <Texture name="$parentTextureHorizontalBarTop" file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
+     <Size>
+      <AbsDimension x="390" y="4" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="5" y="-175" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.078125" right="1" top="0.59765625" bottom="0.61328125" />
+    </Texture>
+
+    <Texture name="$parentTextureHorizontalBarBottom" file="Interface\PaperDollInfoFrame\SkillFrame-BotLeft">
+     <Size>
+      <AbsDimension x="390" y="4" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="5" y="-287" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.078125" right="1" top="0.59765625" bottom="0.61328125" />
+    </Texture>
+
+   </Layer>
+  </Layers>
+  <Frames>
+   <!-- All classes Checkbox -->
+   <CheckButton name="$parentAllClassesCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="10" y="-50" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+   
+
+   <!-- Druid Checkbox -->
+   <CheckButton name="$parentDruidCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="LEFT" relativeTo="$parentAllClassesCheckboxText" relativePoint="RIGHT">
+      <Offset>
+       <AbsDimension x="15" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Hunter Checkbox -->
+   <CheckButton name="$parentHunterCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="LEFT" relativeTo="$parentDruidCheckboxText" relativePoint="RIGHT">
+      <Offset>
+       <AbsDimension x="10" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Mage Checkbox -->
+   <CheckButton name="$parentMageCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="LEFT" relativeTo="$parentHunterCheckboxText" relativePoint="RIGHT">
+      <Offset>
+       <AbsDimension x="10" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Paladin Checkbox -->
+   <CheckButton name="$parentPaladinCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="LEFT" relativeTo="$parentMageCheckboxText" relativePoint="RIGHT">
+      <Offset>
+       <AbsDimension x="15" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Priest Checkbox -->
+   <CheckButton name="$parentPriestCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOP" relativeTo="$parentAllClassesCheckbox" relativePoint="BOTTOM">
+      <Offset>
+       <AbsDimension x="0" y="-2" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Rogue Checkbox -->
+   <CheckButton name="$parentRogueCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOP" relativeTo="$parentDruidCheckbox" relativePoint="BOTTOM">
+      <Offset>
+       <AbsDimension x="0" y="-2" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Shaman Checkbox -->
+   <CheckButton name="$parentShamanCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOP" relativeTo="$parentHunterCheckbox" relativePoint="BOTTOM">
+      <Offset>
+       <AbsDimension x="0" y="-2" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Warlock Checkbox -->
+   <CheckButton name="$parentWarlockCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOP" relativeTo="$parentMageCheckbox" relativePoint="BOTTOM">
+      <Offset>
+       <AbsDimension x="0" y="-2" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Warrior Checkbox -->
+   <CheckButton name="$parentWarriorCheckbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOP" relativeTo="$parentPaladinCheckbox" relativePoint="BOTTOM">
+      <Offset>
+       <AbsDimension x="0" y="-2" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Trigger Type -->
+   <Frame name="$parentTriggerTypeDropdown" inherits="MSBTDropdownTemplate" hidden="false">
+    <Anchors>
+     <Anchor point="TOPLEFT" relativeTo="$parentPriestCheckbox" relativePoint="BOTTOMLEFT">
+      <Offset>
+       <AbsDimension x="-10" y="-30" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
+   
+   <!-- Icon Name Editbox -->
+   <EditBox name="$parentIconNameEditbox" inherits="MSBTEditboxTemplate">
+    <Size>
+     <AbsDimension x="180" y="22" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT" relativeTo="$parentPriestCheckbox" relativePoint="BOTTOMLEFT">
+      <Offset>
+       <AbsDimension x="190" y="-30" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </EditBox>
+
+   <!-- Threshold Slider -->
+   <Slider name="$parentThresholdSlider" inherits="MSBTSliderTemplate">
+    <Anchors>
+     <Anchor point="BOTTOM">
+      <Offset>
+       <AbsDimension x="0" y="60" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Slider>
+
+
+
+   <!-- Trigger Events Scroll Frame -->
+   <ScrollFrame name="$parentEventsScrollFrame" inherits="FauxScrollFrameTemplate">
+    <Size>
+     <AbsDimension x="355" y="100" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT" >
+      <Offset>
+       <AbsDimension x="10" y="-185" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Layers>
+     <Layer level="ARTWORK">
+      <Texture name="$parentScrollBarTop" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+       <Size>
+        <AbsDimension x="31" y="100" />
+       </Size>
+       <Anchors>
+        <Anchor point="TOPRIGHT">
+         <Offset>
+          <AbsDimension x="29" y="5" />
+         </Offset>
+        </Anchor>
+       </Anchors>
+       <TexCoords left="0" right="0.484375" top="0" bottom="0.390625" />
+      </Texture>
+      <Texture file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+       <Size>
+        <AbsDimension x="31" y="106"/>
+       </Size>
+       <Anchors>
+        <Anchor point="BOTTOMRIGHT">
+         <Offset>
+          <AbsDimension x="29" y="-2" />
+         </Offset>
+        </Anchor>
+       </Anchors>
+       <TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625" />
+      </Texture>
+     </Layer>
+    </Layers>
+    <Scripts>
+     <OnLoad>
+      local scrollbar = getglobal(this:GetName().."ScrollBar");
+      scrollbar:SetMinMaxValues(0, 1);
+      scrollbar:SetValue(1);
+     </OnLoad>
+     <OnVerticalScroll>MikSBTOpt.OnVerticalScroll();</OnVerticalScroll>
+    </Scripts>
+   </ScrollFrame>
+
+   <!-- Triger Event 1 Checkbox -->
+   <CheckButton name="$parentTriggerEvent1Checkbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="10" y="-185" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Triger Event 2 Checkbox -->
+   <CheckButton name="$parentTriggerEvent2Checkbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTriggerEvent1Checkbox">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Triger Event 3 Checkbox -->
+   <CheckButton name="$parentTriggerEvent3Checkbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTriggerEvent2Checkbox">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+   <!-- Triger Event 4 Checkbox -->
+   <CheckButton name="$parentTriggerEvent4Checkbox" inherits="MSBTCheckTemplate">
+    <Size>
+     <AbsDimension x="25" y="25" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentTriggerEvent3Checkbox">
+      <Offset>
+       <AbsDimension x="0" y="0" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </CheckButton>
+
+
+
+   <!-- Search Pattern 2 Editbox -->
+   <EditBox name="$parentSearchPattern2Editbox" inherits="MSBTEditboxTemplate">
+    <Size>
+     <AbsDimension x="250" y="22" />
+    </Size>
+    <Anchors>
+     <Anchor point="BOTTOM">
+      <Offset>
+       <AbsDimension x="0" y="40" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </EditBox>
+   
+   <!-- Search Pattern 1 Editbox -->
+   <EditBox name="$parentSearchPattern1Editbox" inherits="MSBTEditboxTemplate">
+    <Size>
+     <AbsDimension x="250" y="22" />
+    </Size>
+    <Anchors>
+     <Anchor point="BOTTOM" relativePoint="TOP" relativeTo="$parentSearchPattern2Editbox">
+      <Offset>
+       <AbsDimension x="0" y="15" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </EditBox>
+
+
+   <!-- Save Button -->
+   <Button name="$parentSaveTriggerButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="BOTTOMLEFT">
+      <Offset>
+       <AbsDimension x="20" y="10" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+   <!-- Cancel Button -->
+   <Button name="$parentCancelTriggerButton" inherits="MSBTButtonTemplate">
+    <Size>
+     <AbsDimension x="100" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="BOTTOMRIGHT">
+      <Offset>
+       <AbsDimension x="-20" y="10" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+  </Frames>
+  <Scripts>
+   <OnLoad>this:SetBackdropColor(0.05, 0.05, 0.05, 1.0);</OnLoad>
+  </Scripts>
+ </Frame>
+
+
+
+ <!-- Main Interface Frame -->
+ <Frame name="MSBTFrameOptions" toplevel="true" parent="UIParent" movable="true" enableMouse="true" hidden="true">
+  <Size>
+   <AbsDimension x="640" y="440" />
+  </Size>
+  <Anchors>
+   <Anchor point="TOP">
+    <Offset>
+     <AbsDimension x="0" y="-100" />
+    </Offset>
+   </Anchor>
+  </Anchors>
+  <HitRectInsets>
+   <AbsInset left="0" right="35" top="0" bottom="0" />
+  </HitRectInsets>
+  <Layers>
+   <Layer level="BACKGROUND">
+    <Texture file="Interface\FriendsFrame\FriendsFrameScrollIcon">
+     <Size>
+      <AbsDimension x="64" y="64" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="8" y="-3" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+    </Texture>
+   </Layer>
+   <Layer level="ARTWORK">
+    <Texture name="$parentTextureTopLeft" file="Interface\PaperDollInfoFrame\UI-Character-General-TopLeft">
+     <Size>
+      <AbsDimension x="256" y="256" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="0" y="0" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+    </Texture>
+    <Texture name="$parentTextureTopCenterLeft" file="Interface\PaperDollInfoFrame\UI-Character-General-TopLeft">
+     <Size>
+      <AbsDimension x="128" y="256" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="256" y="0" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.38" right="0.88" top="0" bottom="1.0" />
+    </Texture>
+    <Texture name="$parentTextureTopCenterRight" file="Interface\PaperDollInfoFrame\UI-Character-General-TopLeft">
+     <Size>
+      <AbsDimension x="128" y="256" />
+     </Size>
+     <Anchors>
+      <Anchor point="TOPLEFT">
+       <Offset>
+        <AbsDimension x="384" y="0" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.45" right="0.95" top="0" bottom="1.0" />
+    </Texture>
+    <Texture name="$parentTextureTopRight" file="Interface\PaperDollInfoFrame\UI-Character-General-TopRight">
+     <Size>
+      <AbsDimension x="128" y="256"/>
+     </Size>
+     <Anchors>
+      <Anchor point="TOPRIGHT">
+       <Offset>
+        <AbsDimension x="0" y="0" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+    </Texture>
+    <Texture name="$parentTextureBottomLeft" file="Interface\PaperDollInfoFrame\UI-Character-General-BottomLeft">
+     <Size>
+      <AbsDimension x="256" y="184" />
+     </Size>
+     <Anchors>
+      <Anchor point="BOTTOMLEFT">
+       <Offset>
+        <AbsDimension x="0" y="0" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0" right="1" top="0" bottom="0.71875" />
+    </Texture>
+    <Texture name="$parentTextureBottomCenterLeft" file="Interface\PaperDollInfoFrame\UI-Character-General-BottomLeft">
+     <Size>
+      <AbsDimension x="128" y="184" />
+     </Size>
+     <Anchors>
+      <Anchor point="BOTTOMLEFT">
+       <Offset>
+        <AbsDimension x="256" y="0" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.5" right="1" top="0" bottom="0.71875" />
+    </Texture>
+    <Texture name="$parentTextureBottomCenterRight" file="Interface\PaperDollInfoFrame\UI-Character-General-BottomLeft">
+     <Size>
+      <AbsDimension x="128" y="184" />
+     </Size>
+     <Anchors>
+      <Anchor point="BOTTOMLEFT">
+       <Offset>
+        <AbsDimension x="384" y="0" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0.5" right="1" top="0" bottom="0.71875" />
+    </Texture>
+    <Texture name="$parentTextureBottomRight" file="Interface\PaperDollInfoFrame\UI-Character-General-BottomRight">
+     <Size>
+      <AbsDimension x="128" y="184" />
+     </Size>
+     <Anchors>
+      <Anchor point="BOTTOMRIGHT">
+       <Offset>
+        <AbsDimension x="0" y="0" />
+       </Offset>
+      </Anchor>
+     </Anchors>
+     <TexCoords left="0" right="1" top="0" bottom="0.71875" />
+    </Texture>
+   </Layer>
+   <Layer level="OVERLAY">
+    <FontString name="$parentTitleText" inherits="GameFontNormal">
+     <Anchors>
+      <Anchor point="TOP">
+       <Offset>
+        <AbsDimension x="0" y="-18"/>
+       </Offset>
+      </Anchor>
+     </Anchors>
+    </FontString>
+   </Layer>
+  </Layers>
+  <Frames>
+   <!-- Frame used to allow the main frame to be dragged -->
+   <Frame name="$parentDrag">
+    <Size>
+     <AbsDimension x="507" y="20" />
+    </Size>
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="73" y="-15" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+    <Scripts>
+     <OnMouseDown>
+      -- Start moving the parent frame if the left mouse button is pressed.
+      if (arg1 == "LeftButton") then
+       this:GetParent():StartMoving();
+      end
+     </OnMouseDown>
+     <OnMouseUp>
+      -- Stop moving the parent frame.
+      this:GetParent():StopMovingOrSizing();
+     </OnMouseUp>
+    </Scripts>
+   </Frame>
+
+   <!-- Close Button -->
+   <Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+    <Anchors>
+     <Anchor point="TOPRIGHT">
+      <Offset>
+       <AbsDimension x="-30" y="-8" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+
+   <!-- Tabs -->
+   <Button name="$parentTab1" inherits="MSBTTabButtonTemplate" id="1">
+    <Anchors>
+     <Anchor point="TOPLEFT">
+      <Offset>
+       <AbsDimension x="75" y="-39"/>
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Button>
+   <Button name="$parentTab2" inherits="MSBTTabButtonTemplate" id="2">
+    <Anchors>
+     <Anchor point="LEFT" relativeTo="$parentTab1" relativePoint="RIGHT" />
+    </Anchors>
+   </Button>
+   <Button name="$parentTab3" inherits="MSBTTabButtonTemplate" id="3">
+    <Anchors>
+     <Anchor point="LEFT" relativeTo="$parentTab2" relativePoint="RIGHT" />
+    </Anchors>
+   </Button>
+   <Button name="$parentTab4" inherits="MSBTTabButtonTemplate" id="4">
+    <Anchors>
+     <Anchor point="LEFT" relativeTo="$parentTab3" relativePoint="RIGHT" />
+    </Anchors>
+   </Button>
+   <Button name="$parentTab5" inherits="MSBTTabButtonTemplate" id="5">
+    <Anchors>
+     <Anchor point="LEFT" relativeTo="$parentTab4" relativePoint="RIGHT" />
+    </Anchors>
+   </Button>
+   <Button name="$parentTab6" inherits="MSBTTabButtonTemplate" id="6">
+    <Anchors>
+     <Anchor point="LEFT" relativeTo="$parentTab5" relativePoint="RIGHT" />
+    </Anchors>
+   </Button>
+
+
+   <!-- General Tab Frame -->
+   <Frame name="$parentTab1Frame" inherits="MSBTTabFrameTemplate">
+    <Layers>
+     <Layer level="OVERLAY">
+      <FontString name="$parentCurrentProfileLabel" inherits="GameFontNormal" font="Fonts\FRIZQT__.TTF">
+       <FontHeight>
+        <AbsValue val="16" />
+       </FontHeight>
+       <Anchors>
+        <Anchor point="TOPLEFT">
+         <Offset>
+          <AbsDimension x="23" y="-80" />
+         </Offset>
+        </Anchor>
+       </Anchors>
+      </FontString>
+     </Layer>
+    </Layers>
+    <Frames>
+     <!-- Disable MSBT Checbox -->
+     <CheckButton name="$parentDisableCheckbox" inherits="MSBTCheckTemplate">
+      <Anchors>
+       <Anchor point="TOPLEFT">
+        <Offset>
+         <AbsDimension x="20" y="-20" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </CheckButton>
+
+     <!-- Profile Selection Dropdown -->
+     <Frame name="$parentProfileDropdown" inherits="MSBTDropdownTemplate" hidden="false">
+      <Anchors>
+       <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentCurrentProfileLabel">
+        <Offset>
+         <AbsDimension x="-20" y="-30" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </Frame>
+
+     <!-- Load Profile Button -->
+     <Button name="$parentLoadProfileButton" inherits="MSBTButtonTemplate">
+      <Size>
+       <AbsDimension x="100" y="20" />
+      </Size>
+      <Anchors>
+       <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentProfileDropdown">
+        <Offset>
+         <AbsDimension x="30" y="0" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </Button>
+
+     <!-- Delete Profile Button -->
+     <Button name="$parentDeleteProfileButton" inherits="MSBTButtonTemplate">
+      <Size>
+       <AbsDimension x="100" y="20" />
+      </Size>
+      <Anchors>
+       <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentLoadProfileButton">
+        <Offset>
+         <AbsDimension x="10" y="0" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </Button>
+
+     <!-- Reset Profile Button -->
+     <Button name="$parentResetProfileButton" inherits="MSBTButtonTemplate">
+      <Size>
+       <AbsDimension x="100" y="20" />
+      </Size>
+      <Anchors>
+       <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentDeleteProfileButton">
+        <Offset>
+         <AbsDimension x="10" y="0" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </Button>
+
+     <!-- New Profile Name Editbox -->
+     <EditBox name="$parentNewProfileNameEditbox" inherits="MSBTEditboxTemplate">
+      <Size>
+       <AbsDimension x="130" y="22" />
+      </Size>
+      <Anchors>
+       <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentProfileDropdown">
+        <Offset>
+         <AbsDimension x="23" y="-20" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </EditBox>
+
+     <!-- Create Profile Button -->
+     <Button name="$parentCreateProfileButton" inherits="MSBTButtonTemplate" disabled="true">
+      <Size>
+       <AbsDimension x="100" y="20" />
+      </Size>
+      <Anchors>
+       <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentNewProfileNameEditbox">
+        <Offset>
+         <AbsDimension x="5" y="0" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </Button>
+
+
+     <!-- Edit Master Font Settings Button -->
+     <Button name="$parentEditFontSettingsButton" inherits="MSBTButtonTemplate">
+      <Size>
+       <AbsDimension x="200" y="20" />
+      </Size>
+      <Anchors>
+       <Anchor point="BOTTOMLEFT">
+        <Offset>
+         <AbsDimension x="10" y="15" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </Button>
+	 
+	 <!-- Edit Blizzard Font Settings Button -->
+     <Button name="$parentEditBlizzardFontSettingsButton" inherits="MSBTButtonTemplate">
+      <Size>
+       <AbsDimension x="200" y="20" />
+      </Size>
+      <Anchors>
+       <Anchor point="BOTTOMLEFT">
+        <Offset>
+         <AbsDimension x="365" y="15" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </Button>
+
+
+     <!-- Show Partial Effects Checkbox -->
+     <CheckButton name="$parentShowPartialEffectsCheckbox" inherits="MSBTCheckTemplate">
+      <Anchors>
+       <Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT" relativeTo="$parentEditFontSettingsButton">
+        <Offset>
+         <AbsDimension x="0" y="15" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </CheckButton>
+
+     <!-- Use Sticky Crits Checkbox -->
+     <CheckButton name="$parentUseStickyCritsCheckbox" inherits="MSBTCheckTemplate">
+      <Anchors>
+       <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentShowPartialEffectsCheckboxText">
+        <Offset>
+         <AbsDimension x="10" y="0" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </CheckButton>
+
+     <!-- Show Overheals Checkbox -->
+     <CheckButton name="$parentShowOverhealsCheckbox" inherits="MSBTCheckTemplate">
+      <Anchors>
+       <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentUseStickyCritsCheckboxText">
+        <Offset>
+         <AbsDimension x="10" y="0" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </CheckButton>
+
+     <!-- Show Game Damage Checkbox -->
+     <CheckButton name="$parentShowGameDamageCheckbox" inherits="MSBTCheckTemplate">
+      <Anchors>
+       <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentShowOverhealsCheckboxText">
+        <Offset>
+         <AbsDimension x="10" y="0" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </CheckButton>
+	 
+	 <!-- All Mana Gains Checkbox -->
+     <CheckButton name="$parentShowAllManaGainsCheckbox" inherits="MSBTCheckTemplate">
+      <Anchors>
+       <Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT" relativeTo="$parentShowPartialEffectsCheckbox">
+        <Offset>
+         <AbsDimension x="0" y="10" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </CheckButton>
+	 
+	  <!-- Low Health Sound Checkbox -->
+     <CheckButton name="$parentLowHealthSoundCheckbox" inherits="MSBTCheckTemplate">
+      <Anchors>
+       <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentShowAllManaGainsCheckboxText">
+        <Offset>
+         <AbsDimension x="10" y="0" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </CheckButton>
+	 
+	  <!-- Low Mana Sound Checkbox -->
+     <CheckButton name="$parentLowManaSoundCheckbox" inherits="MSBTCheckTemplate">
+      <Anchors>
+       <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentLowHealthSoundCheckboxText">
+        <Offset>
+         <AbsDimension x="10" y="0" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </CheckButton>
+
+     <!-- Animation Step Slider -->
+     <Slider name="$parentAnimationStepSlider" inherits="MSBTSliderTemplate">
+      <Anchors>
+       <Anchor point="LEFT"  relativePoint="RIGHT" relativeTo="$parentEditFontSettingsButton">
+        <Offset>
+         <AbsDimension x="20" y="0" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </Slider>
+
+
+
+
+    </Frames>
+   </Frame>
+
+
+   <!-- Incoming Tab Frame -->
+   <Frame name="$parentTab2Frame" inherits="MSBTScrollAreaSettingsTemplate">
+   </Frame>
+
+   <!-- Outgoing Tab Frame -->
+   <Frame name="$parentTab3Frame" inherits="MSBTScrollAreaSettingsTemplate">
+   </Frame>
+
+   <!-- Notification Tab Frame -->
+   <Frame name="$parentTab4Frame" inherits="MSBTScrollAreaSettingsTemplate">
+   </Frame>
+
+   <!-- Trigger Tab Frame -->
+   <Frame name="$parentTab5Frame" inherits="MSBTTriggerSettingsTemplate">
+   </Frame>
+
+   <!-- Suppression Tab Frame -->
+   <Frame name="$parentTab6Frame" inherits="MSBTSuppressionSettingsTemplate">
+   </Frame>
+
+  </Frames>
+  <Scripts>
+   <OnEvent>MikSBTOpt.OnEvent();</OnEvent>
+   <OnLoad>MikSBTOpt.OnLoad();</OnLoad>
+   <OnHide>MikSBTOpt.OnHide();</OnHide>
+   <OnShow>MikSBTOpt.OnShow();</OnShow>
+  </Scripts>
+ </Frame>
+ 
+</Ui>

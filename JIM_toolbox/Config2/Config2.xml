@@ -1,0 +1,121 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Include file="..\HookUIMethod.xml"/>
+	<Include file="..\JIM_DROPDOWN.xml"/>
+	<Include file="..\SLIDER_SECOND_THUMB.xml"/>
+	<Include file="..\CLOSE_DIALOG_BUTTON.xml"/>
+
+	<Include file="..\LayoutFrame_IndexedSetPoint.xml"/>
+	<Include file="CooldownTimersGroupsForm.xml"/>
+	<Script file="Pulse_Config.lua"/>
+
+<!-- GENERAL CONFIG -->
+
+	<Frame name="TOOLTIP_STYLE_FRAME" virtual="true">
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<BackgroundInsets>	<AbsInset left="4" right="4" top="4" bottom="4" />	</BackgroundInsets>
+			
+			<TileSize>	<AbsValue val="16"/>	</TileSize>
+			
+			<EdgeSize>	<AbsValue val="16"/>	</EdgeSize>
+		</Backdrop>
+	</Frame>
+	
+	<Frame name="Pulse_Config" inherits="TOOLTIP_STYLE_FRAME" frameStrata="DIALOG" enableMouse="true" hidden="true" parent="UIParent">
+		<Size>	<AbsDimension x="304" y="56"/>	</Size>
+		
+		<Scripts>
+			<OnShow>
+				assert( "Pulse_Config.OnShow" )
+				
+				if ( Pulse_Config_Setup ) then	Pulse_Config_Setup() end	-- config layout is done here ONCE to shorten the character load process
+				
+				this.sample = { texture = PULSE_ICON }
+				
+				Pulse_MovingButton:Show()
+				Pulse_Image:SetParent( Pulse_BoundingBox )
+			</OnShow>
+			
+			<OnHide>
+				assert( "Pulse_Config.OnHide" )
+				
+				Pulse_Image:SetParent( UIParent )
+				Pulse_Image:Show()
+				Pulse_MovingButton:Hide()
+		
+				this.sample = nil
+			</OnHide>
+			
+			<!-- When the configuration window is open, it creates its own dummy pulse
+				so that people can see what changes they're making by a concrete example.
+			
+				This pulse is re-inserted into the queue the moment it becomes animated.
+			-->
+			<OnUpdate>
+				if ( not this.sample.cooledAt ) then
+					Pulse_AddEffect( this.sample, GetTime() - Pulse_minCooldown, Pulse_minCooldown, 1 )
+				end
+			</OnUpdate>
+		</Scripts>
+		
+		<Frames>
+			<Frame name="Pulse_BoundingBox" inherits="TOOLTIP_STYLE_FRAME"/>
+		
+		<!-- The Bounding Box is graphically above everything that follows this line. -->
+		
+            <Button name="Pulse_Config_Close" inherits="UIPanelCloseButton">
+                <Anchors>
+					<Anchor point="LEFT">	<Offset>	<AbsDimension x="2" y="0"/>	</Offset>	</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="Pulse_Effects" inherits="UIPanelButtonTemplate" text="PULSE_EFFECTS_LABEL">
+				<Anchors>	<Anchor point="LEFT" relativeTo="Pulse_Config_Close" relativePoint="RIGHT"/>	</Anchors>
+				
+				<Scripts>
+					<OnClick>
+						CDT_ShowGroups()
+						Pulse_Config:Hide()
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button name="Pulse_Flyouts" inherits="UIDropDownMenuTemplate">
+				<Anchors>	<Anchor point="RIGHT"/>	</Anchors>
+			</Button>
+			
+			<!-- This submenu contains all the "slider" style options,
+				and only shows when the player mouses over Options Menu.
+				It is used as a "subpanel" in JIM_DROPDOWN.lua.
+			-->
+			<Frame name="Pulse_TimeSetters" inherits="TOOLTIP_STYLE_FRAME" frameStrata="FULLSCREEN_DIALOG" hidden="true" enableMouse="true" parent="UIParent" id="2">
+				<Size>	<AbsDimension x="192" y="192"/>	</Size>
+				
+				<Frames>
+					<!-- A "restore defaults" button, of sorts. -->
+					<Button name="Pulse_ResetSliders" inherits="UIPanelButtonTemplate" text="RESET">
+						<Anchors>	<Anchor point="TOP">	<Offset>	<AbsDimension x="0" y="-8"/>	</Offset>	</Anchor>	</Anchors>
+						
+						<Scripts>
+							<OnClick>
+								Pulse_SetSliderDefaults()
+								Pulse_Slider_SetValue( Pulse_CooldownSetterSub, Pulse_minCooldown )
+								Pulse_Slider_SetValue( Pulse_CooldownSetter, Pulse_maxCooldown )
+								Pulse_Slider_SetValue( Pulse_BeatSetterSub, Pulse_lubTime )
+								Pulse_Slider_SetValue( Pulse_BeatSetter, Pulse_dubTime )
+								Pulse_Slider_SetValue( Pulse_BetweenSetter, Pulse_minDubTime )
+								Pulse_Slider_SetValue( Pulse_AlphaSetter, Pulse_maxAlpha )
+								GameTooltip:Hide()
+							</OnClick>
+						</Scripts>
+					</Button>
+					
+					<Slider name="Pulse_CooldownSetter" inherits="DOUBLE_SLIDER"/>					
+					<Slider name="Pulse_BeatSetter" inherits="DOUBLE_SLIDER"/>
+					<Slider name="Pulse_BetweenSetter" inherits="SINGLE_SLIDER"/>
+					<Slider name="Pulse_AlphaSetter" inherits="SINGLE_SLIDER"/>
+				</Frames>
+			</Frame>
+		</Frames>
+	</Frame>
+
+</Ui>

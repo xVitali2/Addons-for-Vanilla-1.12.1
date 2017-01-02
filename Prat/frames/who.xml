@@ -1,0 +1,416 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+
+					<Button name="PratWhoButtonTemplate" virtual="true">
+						<Size>
+							<AbsDimension x="300" y="16"/>
+						</Size>
+						<Frames>
+							<Frame name="$parentButtonText" setAllPoints="true">
+								<Layers>
+									<Layer level="BORDER">
+										<FontString name="$parentName" inherits="GameFontNormal">
+											<Anchors>
+												<Anchor point="TOPLEFT">
+													<Offset>
+														<AbsDimension x="10" y="-3"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+							</Frame>
+						</Frames>
+						<Scripts>
+							<OnClick>
+								Prat_Who:Button_OnClick(); 
+							</OnClick>
+						</Scripts>
+						<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
+					</Button>
+					
+
+	<Frame name="PratWhoFrame" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" parent="UIParent" enableKeyboard="true" setAllPoints="true">
+		<Size>
+			<AbsDimension x="380" y="475"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-104"/>
+				</Offset>		
+			</Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="PratWhoFrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="Prat : Who">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="PratWhoFrameHeader">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="HIGH">
+				<FontString name="PratWhoTitle" inherits="GameFontNormal" text="Loading ...">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="PratWhoFrame">
+							<Offset>
+								<AbsDimension x="0" y="-40"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="PratWhoFrameRefresh" inherits="OptionsButtonTemplate" text="Refresh">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="15" y="15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Prat_Who:RefreshFrame();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="PratWhoFrameOk" inherits="OptionsButtonTemplate" text="Close">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-15" y="15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Prat_Who:HideFrame();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="PratWhoToggleButton" inherits="OptionsButtonTemplate" text="">
+				<size>
+						<AbsDimension x="160" y="24"/>
+				</size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="27"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Prat_Who:ToggleChanListWho();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="PratWhoInviteButton" inherits="OptionsButtonTemplate" text="Invite">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="15" y="40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Prat_Who:Invite();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="PratWhoWhisperButton" inherits="OptionsButtonTemplate" text="Whisper">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-15" y="40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Prat_Who:Whisper();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+
+					<Button name="PratWhoButton1" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="PratWhoFrame">
+								<Offset>
+									<AbsDimension x="23" y="-80"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton2" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton1" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton3" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton2" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton4" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton3" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton5" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton4" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton6" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton5" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton7" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton6" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton8" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton7" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton9" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton8" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton10" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton9" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton11" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton10" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton12" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton11" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton13" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton12" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton14" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton13" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton15" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton14" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton16" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton15" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton17" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton16" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton18" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton17" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton19" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton18" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="PratWhoButton20" inherits="PratWhoButtonTemplate">
+						<Anchors>
+							<Anchor point="TOP" relativeTo="PratWhoButton19" relativePoint="BOTTOM">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<ScrollFrame name="PratWhoScrollFrame" inherits="FauxScrollFrameTemplate">
+						<Size>
+							<AbsDimension x="296" y="332"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="PratWhoFrame">
+								<Offset>
+									<AbsDimension x="-40" y="-75"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<Texture file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+									<Size>
+										<AbsDimension x="31" y="256"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="-2" y="5"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0" right="0.484375" top="0" bottom="1.0"/>
+								</Texture>
+								<Texture file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+									<Size>
+										<AbsDimension x="31" y="106"/>
+									</Size>
+									<Anchors>
+										<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
+											<Offset>
+												<AbsDimension x="-2" y="-2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625"/>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnVerticalScroll>
+								FauxScrollFrame_OnVerticalScroll(PRAT_WHO_FRAME_HEIGHT, Prat_Who_UpdateFrame); 
+							</OnVerticalScroll>
+						</Scripts>
+					</ScrollFrame>
+
+
+		</Frames>
+		<Scripts>
+			<OnDragStart>
+				PratWhoFrame:StartMoving();
+			</OnDragStart>
+			<OnDragStop>
+				PratWhoFrame:StopMovingOrSizing();
+			</OnDragStop>
+			<OnMouseUp>
+				PratWhoFrame:StopMovingOrSizing();
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+</Ui>

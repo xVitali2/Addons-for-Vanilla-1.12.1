@@ -1,0 +1,19 @@
+﻿## Interface: 11200
+
+## Title: Big Wigs |cffff0000+|r|cffffffffThaddius Arrows|r
+## Notes: Shows Arrows indicating which way to run based on your current polarity
+## Notes-ruRU: Показывает стрелки, указывающие, в какую строну бежать с текущей полярностью
+## Author: Kebinusan and Rabbit
+## X-Build: $Revision: 17288 $
+## X-ReleaseDate: $Date: 2006-11-17 10:48:27 -0500 (Fri, 17 Nov 2006) $
+## X-Email: kebinusan@gmail.com
+## X-Category: Raid
+
+## LoadOnDemand: 1
+
+## X-BigWigs-LoadInZone: Naxxramas
+
+## Dependencies: BigWigs
+## OptionalDeps: Ace2
+
+BigWigs_ThaddiusArrows.lua

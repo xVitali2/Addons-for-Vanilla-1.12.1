@@ -1,0 +1,283 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<script file="COE_TotemData.lua"/>
+	<script file="COE_TotemVisual.lua"/>
+	<script file="COE_TotemLogic.lua"/>
+
+	<!-- Template for the totem buttons -->
+	<CheckButton name="COETotemButtonTemplate" inherits="ActionButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="36" y="36"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				COE_Totem:OnTotemButtonLoad();
+			</OnLoad>
+			<OnEvent>
+				COE_Totem:OnTotemButtonEvent( event );
+			</OnEvent>
+			<OnClick>
+				COE_Totem:OnTotemButtonClick();
+			</OnClick>
+			<OnEnter>
+				COE_Totem:OnEnterTotemButton();
+			</OnEnter>
+			<OnLeave>
+				COE_Totem:OnLeaveTotemButton();
+			</OnLeave>
+			<OnUpdate>
+				COE_Totem:UpdateTotemButton( arg1 );
+			</OnUpdate>
+			<OnDragStart>
+				COE_Totem:ButtonStartDrag();
+			</OnDragStart>
+			<OnDragStop>
+				COE_Totem:ButtonStopDrag();
+			</OnDragStop>
+		</Scripts>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentOverlayTex" file="Interface\Tooltips\UI-Tooltip-Background" hidden="true">
+					<Size>
+						<AbsDimension x="34" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="-5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="GameFontNormalLarge" text="">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="-5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="1" b="1"/>
+				</FontString>
+			</Layer>
+		</Layers>
+	</CheckButton>
+	
+
+	<!-- Totem EarthFrame -->
+	<Frame name="COEEarthFrame" frameStrata="LOW" enableMouse="true" movable="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="50" y="50" />
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="-75" y="75"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+
+		<Scripts>
+			<OnLoad>
+				COE_Totem:InitFrame();
+				this.Element = "Earth";
+			</OnLoad>
+			<OnUpdate>
+				COE_Totem:UpdateFrame( arg1 );
+			</OnUpdate>
+			<OnEvent>
+				COE_Totem:OnFrameEvent( event );
+			</OnEvent>
+		</Scripts>
+
+		<Frames>
+			<!-- Create earth totem placeholders -->
+			<CheckButton name="COETotemEarth1" inherits="COETotemButtonTemplate" hidden="true" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="COETotemEarth2" inherits="COETotemButtonTemplate" hidden="true" id="2"/>
+			<CheckButton name="COETotemEarth3" inherits="COETotemButtonTemplate" hidden="true" id="3"/>
+			<CheckButton name="COETotemEarth4" inherits="COETotemButtonTemplate" hidden="true" id="4"/>
+			<CheckButton name="COETotemEarth5" inherits="COETotemButtonTemplate" hidden="true" id="5"/>
+			<CheckButton name="COETotemEarthNone" inherits="COETotemButtonTemplate" hidden="true" id="6"/>
+		</Frames>
+	</Frame>
+
+
+	<!-- Totem FireFrame -->
+	<Frame name="COEFireFrame" frameStrata="LOW" enableMouse="true" movable="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="50" y="50" />
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="75" y="75"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+
+		<Scripts>
+			<OnLoad>
+				COE_Totem:InitFrame();
+				this.Element = "Fire";
+			</OnLoad>
+			<OnUpdate>
+				COE_Totem:UpdateFrame( arg1 );
+			</OnUpdate>
+			<OnEvent>
+				COE_Totem:OnFrameEvent( event );
+			</OnEvent>
+		</Scripts>
+
+		<Frames>
+			<!-- Create Fire totem placeholders -->
+			<CheckButton name="COETotemFire1" inherits="COETotemButtonTemplate" hidden="true" id="11">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="COETotemFire2" inherits="COETotemButtonTemplate" hidden="true" id="12"/>
+			<CheckButton name="COETotemFire3" inherits="COETotemButtonTemplate" hidden="true" id="13"/>
+			<CheckButton name="COETotemFire4" inherits="COETotemButtonTemplate" hidden="true" id="14"/>
+			<CheckButton name="COETotemFire5" inherits="COETotemButtonTemplate" hidden="true" id="15"/>
+			<CheckButton name="COETotemFireNone" inherits="COETotemButtonTemplate" hidden="true" id="16"/>
+		</Frames>
+	</Frame>
+
+
+	<!-- Totem WaterFrame -->
+	<Frame name="COEWaterFrame" frameStrata="LOW" enableMouse="true" movable="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="50" y="50" />
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="-75" y="-75"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+
+		<Scripts>
+			<OnLoad>
+				COE_Totem:InitFrame();
+				this.Element = "Water";
+			</OnLoad>
+			<OnUpdate>
+				COE_Totem:UpdateFrame( arg1 );
+			</OnUpdate>
+			<OnEvent>
+				COE_Totem:OnFrameEvent( event );
+			</OnEvent>
+		</Scripts>
+
+		<Frames>
+			<!-- Create Water totem placeholders -->
+			<CheckButton name="COETotemWater1" inherits="COETotemButtonTemplate" hidden="true" id="21">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="COETotemWater2" inherits="COETotemButtonTemplate" hidden="true" id="22"/>
+			<CheckButton name="COETotemWater3" inherits="COETotemButtonTemplate" hidden="true" id="23"/>
+			<CheckButton name="COETotemWater4" inherits="COETotemButtonTemplate" hidden="true" id="24"/>
+			<CheckButton name="COETotemWater5" inherits="COETotemButtonTemplate" hidden="true" id="25"/>
+			<CheckButton name="COETotemWater6" inherits="COETotemButtonTemplate" hidden="true" id="26"/>
+			<CheckButton name="COETotemWater7" inherits="COETotemButtonTemplate" hidden="true" id="27"/>
+			<CheckButton name="COETotemWaterNone" inherits="COETotemButtonTemplate" hidden="true" id="28"/>
+		</Frames>
+	</Frame>
+
+
+	<!-- Totem AirFrame -->
+	<Frame name="COEAirFrame" frameStrata="LOW" enableMouse="true" movable="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="50" y="50" />
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="75" y="-75"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+
+		<Scripts>
+			<OnLoad>
+				COE_Totem:InitFrame();
+				this.Element = "Air";
+			</OnLoad>
+			<OnUpdate>
+				COE_Totem:UpdateFrame( arg1 );
+			</OnUpdate>
+			<OnEvent>
+				COE_Totem:OnFrameEvent( event );
+			</OnEvent>
+		</Scripts>
+
+		<Frames>
+			<!-- Create Air totem placeholders -->
+			<CheckButton name="COETotemAir1" inherits="COETotemButtonTemplate" hidden="true" id="31">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="COETotemAir2" inherits="COETotemButtonTemplate" hidden="true" id="32"/>
+			<CheckButton name="COETotemAir3" inherits="COETotemButtonTemplate" hidden="true" id="33"/>
+			<CheckButton name="COETotemAir4" inherits="COETotemButtonTemplate" hidden="true" id="34"/>
+			<CheckButton name="COETotemAir5" inherits="COETotemButtonTemplate" hidden="true" id="35"/>
+			<CheckButton name="COETotemAir6" inherits="COETotemButtonTemplate" hidden="true" id="36"/>
+			<CheckButton name="COETotemAir7" inherits="COETotemButtonTemplate" hidden="true" id="37"/>
+			<CheckButton name="COETotemAirNone" inherits="COETotemButtonTemplate" hidden="true" id="38"/>
+		</Frames>
+	</Frame>
+	
+
+	<!-- Totem MainFrame -->
+	<Frame name="COETotemFrame" frameStrata="LOW" hidden="true" parent="UIParent">
+		<Scripts>
+			<OnLoad>
+				COE_Totem:InitMainFrame();
+			</OnLoad>
+			<OnEvent>
+				COE_Totem:OnMainFrameEvent( event );
+			</OnEvent>
+		</Scripts>
+	</Frame>
+	
+	<!-- TimerFrame -->
+	<Frame name="COETimerFrame" frameStrata="LOW" enableMouse="true" movable="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="50" y="50" />
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="UIParent"/>
+		</Anchors>
+
+		<Scripts>
+			<OnLoad>
+				COE_Totem:InitTimerFrame();
+			</OnLoad>
+			<OnUpdate>
+				COE_Totem:UpdateTimerFrame( arg1 );
+			</OnUpdate>
+		</Scripts>
+
+		<Frames>
+			<!-- Create Air totem placeholders -->
+			<CheckButton name="COETimerEarth" inherits="COETotemButtonTemplate" hidden="true" id="1"/>
+			<CheckButton name="COETimerFire" inherits="COETotemButtonTemplate" hidden="true" id="2"/>
+			<CheckButton name="COETimerWater" inherits="COETotemButtonTemplate" hidden="true" id="3"/>
+			<CheckButton name="COETimerAir" inherits="COETotemButtonTemplate" hidden="true" id="4"/>
+		</Frames>
+	</Frame>
+	
+	
+</Ui>

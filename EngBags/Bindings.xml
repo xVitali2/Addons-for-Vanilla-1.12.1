@@ -1,0 +1,8 @@
+<Bindings>
+	<Binding name="EB_TOGGLE" header="EngBags">
+		EngBank_OpenOrClose("toggle");
+	</Binding>
+		<Binding name="EI_TOGGLE" header="EngBags">
+		EngInventory_OpenOrClose("toggle");
+	</Binding>
+</Bindings>

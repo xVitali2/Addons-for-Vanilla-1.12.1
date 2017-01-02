@@ -1,0 +1,115 @@
+------------------------------------------------------------------------
+r17765 | beerke | 2006-11-22 15:31:46 -0500 (Wed, 22 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+- Forgot to strip debug spam.
+------------------------------------------------------------------------
+r17764 | beerke | 2006-11-22 15:24:24 -0500 (Wed, 22 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+- Dry tested, should be fully working now.
+------------------------------------------------------------------------
+r17758 | beerke | 2006-11-22 13:18:30 -0500 (Wed, 22 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+- bug spotted and squashed
+------------------------------------------------------------------------
+r17705 | beerke | 2006-11-21 17:46:50 -0500 (Tue, 21 Nov 2006) | 5 lines
+
+BigWigs_LoathebTactical :
+- Revamped code 
+- Added sound effects (thanks to Wydrian)
+- Added graphic effects (thanks to Wydrian)
+- Changed Locales (please update)
+------------------------------------------------------------------------
+r17541 | fenlis | 2006-11-20 06:55:06 -0500 (Mon, 20 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+- Add locals koKR
+------------------------------------------------------------------------
+r17418 | beerke | 2006-11-18 18:39:59 -0500 (Sat, 18 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+- Properly add foreign locales next time please ...
+------------------------------------------------------------------------
+r17332 | flyflame | 2006-11-17 19:21:05 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+- update locals
+------------------------------------------------------------------------
+r17306 | beerke | 2006-11-17 14:02:41 -0500 (Fri, 17 Nov 2006) | 3 lines
+
+BigWigs_LoathebTactical :
+- More Localizations
+- Added option to whisper next group in line
+------------------------------------------------------------------------
+r17303 | beerke | 2006-11-17 11:40:27 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+- Note to self, don't add functionality when you are tired
+------------------------------------------------------------------------
+r17291 | rabbit | 2006-11-17 10:53:35 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+-New name format.
+------------------------------------------------------------------------
+r17269 | ammo | 2006-11-17 10:05:33 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical: no more X-BigWigsModule
+
+------------------------------------------------------------------------
+r17253 | ammo | 2006-11-17 09:47:32 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical: set external to true
+
+------------------------------------------------------------------------
+r17245 | flyflame | 2006-11-17 08:11:34 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+-missed one, oops
+------------------------------------------------------------------------
+r17244 | flyflame | 2006-11-17 08:07:42 -0500 (Fri, 17 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+-add zhCN localization
+------------------------------------------------------------------------
+r17229 | beerke | 2006-11-17 02:27:04 -0500 (Fri, 17 Nov 2006) | 3 lines
+
+BigWigs_LoathebTactical :
+- Added option to skip group 1 in spore sequence 
+- Attempt to fix reversing spore warning
+------------------------------------------------------------------------
+r17011 | beerke | 2006-11-14 15:55:31 -0500 (Tue, 14 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+- Added option to reverse the spore group sequence
+------------------------------------------------------------------------
+r17009 | saroz | 2006-11-14 15:25:14 -0500 (Tue, 14 Nov 2006) | 1 line
+
+BigWigs_LoathebTactical : Bigwigs module name format in toc
+------------------------------------------------------------------------
+r16953 | ammo | 2006-11-14 07:27:23 -0500 (Tue, 14 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical: LoD only isn't good enough, make sure bigwigs knows the zone
+
+------------------------------------------------------------------------
+r16936 | beerke | 2006-11-14 00:50:24 -0500 (Tue, 14 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+- removed double dependencies and made LoD
+------------------------------------------------------------------------
+r16932 | beerke | 2006-11-14 00:12:49 -0500 (Tue, 14 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+- Clarified readme.txt and properly credit people that helped.
+------------------------------------------------------------------------
+r16930 | beerke | 2006-11-13 23:56:05 -0500 (Mon, 13 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical :
+- Added files
+------------------------------------------------------------------------
+r16926 | beerke | 2006-11-13 23:35:30 -0500 (Mon, 13 Nov 2006) | 2 lines
+
+BigWigs_LoathebTactical: initial commit
+- Tactical Module for Loatheb with spore and consumable warning
+------------------------------------------------------------------------

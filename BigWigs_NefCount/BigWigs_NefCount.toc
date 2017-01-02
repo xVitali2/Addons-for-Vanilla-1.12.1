@@ -1,0 +1,19 @@
+## Interface: 11200
+
+## Title: Big Wigs |cffff0000+|r|cffffffffNefarian Counter|r
+## Title-zhCN: |cff7fff7f-Ace2-|r Big Wigs耐法利安龙兽计数器
+## Notes: Counts how many Drakonids have been killed to help preparing for Nefarian's landing.
+## Notes-ruRU: Подсчет кол-во убитых Драконоидов, который поможет подготовиться до приземления Нефариана.
+## Author: Grimwald
+## X-Build: $Rev: 17285 $
+## X-ReleaseDate: $Date: 2006-11-17 10:47:39 -0500 (Fri, 17 Nov 2006) $
+## X-Email: bogi788@hotmail.com
+## X-Category: Raid
+## LoadOnDemand: 1
+## X-BigWigs-LoadInZone: Blackwing Lair
+
+## Dependencies: BigWigs
+## OptionalDeps: Ace2
+
+BigWigs_CounterBars.lua
+BigWigs_NefCount.lua

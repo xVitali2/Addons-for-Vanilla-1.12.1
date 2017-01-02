@@ -1,0 +1,31 @@
+## Interface: 11200
+## Title: SmartHeal
+## Title-ruRU: Умное Лечение
+## Notes: Auto heal rank calculation and auto target healing
+## Notes-ruRU: Автоматический расчет ранга способности лечения и автоматический выбор цели лечения
+## Author: bolocos@gmail.com
+## Version: 1.26
+## SavedVariables: SmartHeal_Config,SmartHeal_DebugMsg
+## SavedVariablesPerCharacter:
+## OptionalDeps: Discord Unit Frames, Telo's SelfCast, Nymbia's Perl Unitframes, CT_RaidAssist, Sage, Nurfed UnitFrames, Nurfed_UnitFrames, PerfectRaid |cff007fff -Ace-|r
+## Dependencies:
+
+Globals.lua
+Events.lua
+Localization.lua
+LocalizationSpell.lua
+MyMinimapButton.lua
+ResizeableFrame.lua
+HealTable.lua
+SmartHeal.lua
+ClickHeal.lua
+HotList.lua
+SmartHeal.xml
+SmartHeal_Options.xml
+SmartHeal_Opt_General.xml
+SmartHeal_Opt_ClickHeal.xml
+SmartHeal_Opt_HotList.xml
+HotList.xml
+GroupIgnoreList.xml
+NamedTargetList.xml
+HealStack.xml

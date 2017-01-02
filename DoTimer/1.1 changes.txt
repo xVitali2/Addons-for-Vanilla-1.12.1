@@ -1,0 +1,49 @@
+1.1.5.1 Changes:
+- added SHAMAN
+- added ruRU
+
+1.1 Changes:
+
+- You can now right-click timers,target names, or the drag button to remove the associated timers, as an alias to shift+left-click.  
+
+- New Option: Show Only Target: when enabled, only timers for your current target will be shown.  All other timers will continue to be tracked, but they will be hidden.  If you have no target, all timers will be shown.  
+
+- New Option: Ghost Conflag: when enabled, the ghost timer for immolate and rejuvenation will cast conflagrate or swiftmend, respectively, if possible, else act like a normal ghost timer.  
+
+- New Option: Play Sounds: if enabled, a sound will be played when a timer reaches 5 seconds remaining.  The sound can be manually changed by naming a sound clip as "expalert.wav" and replacing the default one. 
+
+- New Option: Timers with bars:  Instead of as icons, the timers can be displayed as bars.  
+
+- New Option: Bar Length: the length of the previously mentioned bars can be changed.  
+
+- Changed Auto-Ghost implementation: now much smarter; a ghost timer will be created when the debuff is no longer found, and deleted when it is recast by the player.  
+
+- Depreciated timers are now .8x the size of regular timers, but full opacity.  
+
+- Ghost timers are now .5 opacity and no longer have a timer aspect.  
+
+- There is now a 3 second delay after dying before removing all timers. 
+
+- Added several new druid spells, Power Infusion, and Curse of Exhaustion.  
+
+- Fixed an issue where foreign clients did not have proper new-curse removal.  
+
+- Fixed all issues with Enslave Demon.  It now functions correctly.  
+
+- Fixed an issue where spamming a hotkey could result in incorrect data.
+
+- The Seduction ghost timer will tell the succubus to attack the target before casting, to hopefully make her automatically reseduce.  
+
+- DoTimer now runs off of an imbedded addon, SpellSystem.  This addon streamlines the spellcasting system to make spell detection far more efficient, and allows me to write new addons that use the same system.
+  
+- The displayed time is now rounded down, not up, to account for lag: this means that the timer should be removed sometime while the timer is at 0:00; after a full second there if there is no lag whatsoever.
+
+- Spell Ranks are displayed while mousing over timers now.  
+
+- The blank space between regular timers and ghost timers will no longer create a tooltip.  
+
+- New macro function - DoT_CastGhostSpell() - casts the spell of any ghost timer running on your target.
+
+- Added unitID as an optional parameter to all macro functions.  It defaults to "target".  
+
+- Minor changes and bug fixes

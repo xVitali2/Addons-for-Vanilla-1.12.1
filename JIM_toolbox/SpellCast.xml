@@ -1,0 +1,143 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="GetSpellByName.lua"/>
+	<Script file="GetSpellFromTooltip.lua"/>
+	<Script file="NoRedMessages.lua"/>
+	<Script file="SearchAscendingList.lua"/>
+	<Script file="SpellCast.lua"/>
+	
+	<!-- This tooltip can be used to quickly determine the name of invoked spells,
+		since they have been designed by Blizzard to take a spell or action
+		and process that into text (a name, range of effect, casting time, etc.).
+		
+		In the LUA file, you'll see "SpellCast_TooltipTextRight1" accessed;
+		That object was defined by Blizzard as well in the 'GameTooltipTemplate'.
+		There are as many "[...]ToolTipTexts" as there are lines displayed by the tooltip.
+		There are Left ones and Right ones, all easily recognizable in the game.
+	-->
+	<GameTooltip name="SpellCast_Tooltip" hidden="true">
+		<Scripts>
+			<OnLoad>
+				SpellCast_TooltipMoneyFrame = nil
+				
+				if ( this:GetName() ) then
+					-- These events allow this utility to know when a spell is finished - one way or the other.
+					SpellCast_Stopper:RegisterEvent( "SPELLCAST_STOP" )
+					SpellCast_Stopper:RegisterEvent( "SPELLCAST_INTERRUPTED" )
+					SpellCast_Stopper:SetScript( "OnEvent",
+						function()
+							if ( SpellCast_inProgress ) then	SpellCast_End()	end
+						end
+					)
+					
+					this:RegisterEvent( "SPELLCAST_FAILED" )
+					this:SetScript( "OnEvent", function()
+						SpellCast_Failed()
+					end )
+
+				end --[[ check for uniqueness: since multiple AddOns invoke this XML file,
+					it's vital that these events are not registered twice.
+				]]
+			</OnLoad>
+		</Scripts>
+		
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentTextLeft1" inherits="GameTooltipHeaderText" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="10" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextRight1" inherits="GameTooltipHeaderText" hidden="true">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentTextLeft1" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="40" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextLeft2" inherits="GameTooltipText" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextLeft1" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextRight2" inherits="GameTooltipText" hidden="true">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentTextLeft2" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="40" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextLeft3" inherits="GameTooltipText" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextLeft2" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextRight3" inherits="GameTooltipText" hidden="true">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentTextLeft3" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="40" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextLeft4" inherits="GameTooltipText" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextLeft3" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextRight4" inherits="GameTooltipText" hidden="true">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentTextLeft4" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="40" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextLeft5" inherits="GameTooltipText" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextLeft4" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextRight5" inherits="GameTooltipText" hidden="true">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="$parentTextLeft5" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="40" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		
+		<Frames>
+			<Frame name="SpellCast_Stopper" hidden="true"/>
+		</Frames>
+	</GameTooltip>
+
+</Ui>

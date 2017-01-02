@@ -1,0 +1,14 @@
+## Interface: 11200
+## Title: EVTCalendar
+## Notes: Calendar and planner for individuals, friends, or guilds! Communications enabled to share your events with others!
+## Version: 0.1
+## SavedVariables: CalendarOptions
+## SavedVariablesPerCharacter: CalendarData
+localization.enUS.lua
+EVTCompute.lua
+EVTCalendar.lua
+EVTCalendar.xml
+EVTPopupMenus.lua
+EVTPopupMenus.xml
+EVTButton.lua
+EVTButton.xml

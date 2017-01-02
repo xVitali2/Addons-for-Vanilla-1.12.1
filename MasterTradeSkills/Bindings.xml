@@ -1,0 +1,8 @@
+<Bindings>
+	<Binding name="MTS_TEXT" header="MTS_SEP">
+		MasterTradeSkills_Command("options");
+	 </Binding>
+	<Binding name="MTS_SHOW" header="MTS_SEP">
+		MasterTradeSkills_Command("show");
+	 </Binding>
+</Bindings>

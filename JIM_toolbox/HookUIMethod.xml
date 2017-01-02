@@ -1,0 +1,36 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Script>
+		--[[ Substitute replacementName() for widget:methodName()
+		
+			If the widget and methodName parameters are reversed, it means that
+			replacementName() is being substituted for widget(),
+			and methodName is a piece of UI that can store the displaced method.
+		]]
+		function HookUIMethod(widget, methodName, replacementName)
+			assert( "HookUIMethod:", methodName, replacementName )
+			
+			if ( type( widget ) == "string" ) then
+				if ( not methodName[ widget ] ) then
+					methodName[ widget ] = getglobal( widget )
+					setglobal( widget, getglobal( replacementName ) )
+				end
+				
+			elseif ( not widget[ replacementName ] ) then
+				widget[ methodName ], widget[ replacementName ] = getglobal( replacementName ), widget[ methodName ]
+			end
+		end
+		
+		function UnhookUIMethod(widget, methodName, replacementName)
+			if ( type( widget ) == "string" ) then
+				if ( methodName[ widget ] ) then
+					setglobal( widget, methodName[ widget ] )
+					methodName[ widget ] = nil
+				end
+				
+			elseif ( widget[ replacementName ] ) then
+				widget[ methodName ], widget[ replacementName ] = widget[ replacementName ], nil
+			end
+		end
+	</Script>
+
+</Ui>

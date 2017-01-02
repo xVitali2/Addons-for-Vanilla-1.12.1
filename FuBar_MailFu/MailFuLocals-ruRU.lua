@@ -1,0 +1,28 @@
+local L = AceLibrary("AceLocale-2.0"):new("FuBar_Mail")
+
+L:RegisterTranslations("ruRU", function() return {
+	["New"] = "Новых",
+	["Total"] = "Всего",
+	["No mail"] = "Писем нет",
+	["New Mail"] = "Новое письмо",
+	["AH Alert!"] = "",
+	["New Mail Received (%d/%d)"] = "Получено новое письмо (%d/%d)",
+	ttnew = " новые почтовые предметы",
+	tttotal = " всего почтовых предметов",
+	OUTBID = "Перекуплено: ",
+	WON = "Выиграно: ",
+	EXPIRED = "Окончено: ",
+	REMOVED = "Отменено: ",
+	SOLD = "Продано: ",
+	["Default Minimap"] = "Миникарта по умолчанию",
+	["Show Blizzard's minimap icon"] = "Показать значок миникарты Blizzard",
+	["Chat Alert"] = "Оповещения в чат",
+	["Print a chat message when mail is received"] = "Печать сообщения в чат при получении письма",
+	["Use Sound"] = "Использовать звук",
+	["Play a sound when mail is received"] = "Воспроизведение звука, когда получено новое письмо",
+	["Text Format"] = "Формат текста",
+	["Bar text formatting"] = "Панель форматирования текста",
+	both = "оба",
+	number = "номер",
+	text = "тест",
+} end)

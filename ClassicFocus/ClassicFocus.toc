@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: Classic Focus
+## Author: Vallan
+## Notes: Focus Support for Vanilla
+## Version: 0.1
+
+ClassicFocus.lua

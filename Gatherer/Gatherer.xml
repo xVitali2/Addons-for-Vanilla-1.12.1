@@ -1,0 +1,475 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+	..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="UI_localization.lua"/>
+	<Script file="GatherRegionData.lua"/>
+	<Script file="GatherIcons.lua"/>
+	<Script file="Gatherer.lua"/>
+	<Script file="GatherBase.lua"/>
+	<Script file="GatherBroadcast.lua"/>
+
+	<Frame name="Gatherer" parent="UIParent">
+		<Size>
+			<AbsDimension x="0" y="0"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				Gatherer_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				Gatherer_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				Gatherer_TimeCheck(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Button name="GatherNoteTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="12" y="12"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="MinimapBackdrop" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="-51" y="60"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnEnter>
+				if ( not (Gatherer_Settings and Gatherer_Settings.HideMiniNotes and Gatherer_Settings.HideMiniNotes == 1) ) then
+					GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");	
+					local itemIDtable =  Gatherer_MakeName(this:GetID())
+					local id;
+					GameTooltip:SetText(itemIDtable[1].name, 1.0, 0.82, 0.0, 1,1);
+					GameTooltip:AddLine("Count: "..itemIDtable[1].count, 0.82, 1.0, 0.0);
+					for id in itemIDtable do
+						if ( id ~= 1 ) then
+							GameTooltip:AddLine(itemIDtable[id].name, 1.0, 0.82, 0.0, 1,1);
+							GameTooltip:AddLine("Count: "..itemIDtable[id].count, 0.82, 1.0, 0.0);
+						end
+					end
+					GameTooltip:AddLine(itemIDtable[1].dist.." units ("..(itemIDtable[1].dist * 4).." secs)", 0.0, 0.82, 1.0);
+					GameTooltip:Show();
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnMouseUp>
+				Gatherer_OnClick();
+			</OnMouseUp>
+		</Scripts>
+		<NormalTexture name="$parentTexture" file="Interface\AddOns\Gatherer\Original\Test"/>
+	</Button>
+
+	<Button name="GatherNote1" inherits="GatherNoteTemplate" id="1" hidden="false" parent="Minimap">
+		<Scripts>
+			<OnUpdate>
+				Gatherer_OnUpdate(arg1);
+			</OnUpdate>
+			<OnLoad>
+				this:RegisterEvent("MINIMAP_UPDATE_ZOOM");
+			</OnLoad>
+			<OnEvent>
+				GatherMap_InCity = isMinimapInCity();
+			</OnEvent>
+		</Scripts>
+	</Button>		
+
+	<Button name="GatherNote2" inherits="GatherNoteTemplate" id="2" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote3" inherits="GatherNoteTemplate" id="3" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote4" inherits="GatherNoteTemplate" id="4" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote5" inherits="GatherNoteTemplate" id="5" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote6" inherits="GatherNoteTemplate" id="6" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote7" inherits="GatherNoteTemplate" id="7" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote8" inherits="GatherNoteTemplate" id="8" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote9" inherits="GatherNoteTemplate" id="9" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote10" inherits="GatherNoteTemplate" id="10" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote11" inherits="GatherNoteTemplate" id="11" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote12" inherits="GatherNoteTemplate" id="12" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote13" inherits="GatherNoteTemplate" id="13" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote14" inherits="GatherNoteTemplate" id="14" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote15" inherits="GatherNoteTemplate" id="15" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote16" inherits="GatherNoteTemplate" id="16" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote17" inherits="GatherNoteTemplate" id="17" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote18" inherits="GatherNoteTemplate" id="18" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote19" inherits="GatherNoteTemplate" id="19" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote20" inherits="GatherNoteTemplate" id="20" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote21" inherits="GatherNoteTemplate" id="21" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote22" inherits="GatherNoteTemplate" id="22" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote23" inherits="GatherNoteTemplate" id="23" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote24" inherits="GatherNoteTemplate" id="24" hidden="false" parent="Minimap"/>
+	<Button name="GatherNote25" inherits="GatherNoteTemplate" id="25" hidden="false" parent="Minimap"/>
+
+	<Frame name="GathererMapOverlayTemplate" hidden="false" virtual="true">
+		<Anchors>
+			<Anchor point="TOPLEFT" relativePoint="TOPLEFT">
+				<AbsDimension x="0" y="0"/>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:SetWidth(WorldMapDetailFrame:GetWidth());
+				this:SetHeight(WorldMapDetailFrame:GetHeight());
+				this:SetFrameLevel(WorldMapPlayer:GetFrameLevel() + 1);
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Frame name="GathererMapOverlayFrame" inherits="GathererMapOverlayTemplate" parent="WorldMapDetailFrame" hidden="false" movable="false">
+		<Frames>
+			<Frame name="GathererMapOverlayFrame1" inherits="GathererMapOverlayTemplate" hidden="false"/>
+			<Frame name="GathererMapOverlayFrame2" inherits="GathererMapOverlayTemplate" hidden="false"/>
+			<Frame name="GathererMapOverlayFrame3" inherits="GathererMapOverlayTemplate" hidden="false"/>
+			<Frame name="GathererMapOverlayFrame4" inherits="GathererMapOverlayTemplate" hidden="false"/>
+			<Frame name="GathererMapOverlayFrame5" inherits="GathererMapOverlayTemplate" hidden="false"/>
+			<Frame name="GathererMapOverlayFrame6" inherits="GathererMapOverlayTemplate" hidden="false"/>
+		</Frames>
+	</Frame>
+	
+	<Button name="GatherMainTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="12" y="12"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetParent():GetFrameLevel() + 1);
+				this:RegisterForClicks("RightButtonUp");
+				this.continent = 0;
+				this.zoneIndex = 0;
+				this.localIndex = 0;
+				this.gatherName = "none";
+			</OnLoad>
+			<OnEnter>
+				local x, y = this:GetCenter();
+				local parentX, parentY = this:GetParent():GetCenter();
+				if ( x > parentX ) then
+					WorldMapTooltip:SetOwner(this, "ANCHOR_LEFT");
+				else
+					WorldMapTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				end
+				if ( not IsAltKeyDown() ) then
+					WorldMapTooltip:SetText(this.toolTip);
+				else
+					local toolTipText, bonusInfo = Gatherer_GetMenuName(this.gatherName);
+					if (bonusInfo) then
+						toolTipText = format("%s\n%s", toolTipText, bonusInfo);
+					end
+					toolTipText = format("%s\nc:%d z:%d l:%d", toolTipText, this.continent, this.zoneIndex, this.localIndex);
+					WorldMapTooltip:SetText(toolTipText);
+				end
+				WorldMapTooltip:Show();
+			</OnEnter>
+			<OnLeave>
+				WorldMapTooltip:Hide();
+			</OnLeave>
+			<OnClick>
+				if (arg1 and arg1 == "RightButton" and IsAltKeyDown()) then
+					if (not GatherMainMapItem ) then GatherMainMapItem = {}; end
+					GatherMainMapItem.continent = this.continent;
+					GatherMainMapItem.zoneIndex = this.zoneIndex;
+					GatherMainMapItem.gatherName = this.gatherName;
+					GatherMainMapItem.localIndex = this.localIndex;
+					GatherMainMapItem.gatherType = this.gatherType;
+					GatherMainMapItem.gatherIcon = this.gatherIcon;
+					Gatherer_NodesEditFrame:Show();
+				end
+			</OnClick>
+		</Scripts>
+		<NormalTexture name="$parentTexture" file="Interface\AddOns\Gatherer\Original\Test"/>
+	</Button>
+
+	<!-- Button to show/hide icons on world map -->
+	<Button name="Gatherer_WorldMapDisplay" inherits="UIPanelButtonTemplate" text="Show items" parent="WorldMapFrame" toplevel="true">
+		<Size>
+			<AbsDimension x="100" y="25"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="WorldMapPositioningGuide" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="10" y="5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				if ( GathererMapOverlayFrame:IsShown() and this:GetText() == "Hide Items" ) then
+					GathererMapOverlayFrame:Hide()
+					this:SetText("Show Items");
+					Gatherer_Settings.useMainmap = false;
+				else
+					this:SetText("Hide Items");
+					Gatherer_Settings.useMainmap = true;
+					GatherMain_Draw();
+					GathererMapOverlayFrame:Show()
+				end
+				
+				if (Gatherer_Settings.showWorldMapFilters and Gatherer_Settings.showWorldMapFilters == 1) then
+					if ( Gatherer_Settings.useMainmap ) then
+						GathererWD_DropDownFilters:Show();
+					else
+						GathererWD_DropDownFilters:Hide();
+					end
+				end
+			</OnClick>
+			<OnShow>
+				if ( this:GetParent().GetEffectiveScale ) then
+					this:SetScale(this:GetParent():GetEffectiveScale() - 0.2);
+				else
+					this:SetScale(this:GetParent():GetScale() - 0.2);
+				end
+			</OnShow>
+		</Scripts>		
+	</Button>
+
+	<Frame name="Gatherer_NodesEditFrame" topLevel="true" hidden="true" parent="WorldMapFrame">
+		<Size>
+			<AbsDimension x="400" y="160"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="GathererUI_NodesEditHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="Edit Node(s)">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="GathererUI_NodesEditHeader">
+							<Offset>
+								<AbsDimension x="0" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:SetBackdropColor(240,240,240)
+				this:RegisterEvent("WORLD_MAP_UPDATE");
+				this:SetScale(1);
+			</OnLoad>
+			<OnShow>
+				this:SetScale(1);
+			</OnShow>			
+			<OnEvent>
+				this:Hide();
+			</OnEvent>
+		</Scripts>
+		<Frames>
+			<!-- Node modification (name, icon) -->
+			<EditBox name="Gatherer_WMNodeNameEditBox" letters="50" numeric="false" autoFocus="false" inherits="InputBoxTemplate">
+				<Size>
+					<AbsDimension x="270" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="Gatherer_NodesEditFrame" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="25" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+					</OnLoad>
+					<OnEnterPressed>
+						this:ClearFocus();
+						GatherMainMapItem.newGatherName = this:GetText();
+						if (GatherMainMapItem.newGatherName ~= "") then
+							GatherMainMapItem.oldGatherName = GatherMainMapItem.oldGatherName or GatherMainMapItem.gatherName;
+							GatherMainMapItem.gatherName = GatherMainMapItem.newGatherName;
+						else
+							GatherMainMapItem.newGatherName = nil;
+							GatherMainMapItem.gatherName = GatherMainMapItem.oldGatherName;
+						end
+					</OnEnterPressed>
+					<OnShow>
+						this:SetText(GatherMainMapItem.gatherName or "");
+					</OnShow>
+				</Scripts>
+			</EditBox>
+
+			<Frame name="Gatherer_WMDropDownGType" inherits="UIDropDownMenuTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="Gatherer_WMNodeNameEditBox" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="-20" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						UIDropDownMenu_SetWidth(100);
+					</OnLoad>
+					<OnShow>
+						UIDropDownMenu_ClearAll(this);
+						UIDropDownMenu_Initialize(this, Gatherer_WMDropDownGType_Initialize);
+					</OnShow>
+				</Scripts>
+			</Frame>
+
+			<Frame name="Gatherer_WMDropDownIcons" inherits="UIDropDownMenuTemplate" id="11">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="Gatherer_WMDropDownGType" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						UIDropDownMenu_SetWidth(100);
+					</OnLoad>
+					<OnShow>
+						UIDropDownMenu_ClearAll(this);
+						UIDropDownMenu_Initialize(this, Gatherer_WMDropDownIcons_Initialize);
+					</OnShow>
+				</Scripts>
+			</Frame>
+
+			<!-- Scope selector -->
+			<Frame name="Gatherer_WMDropDownScope" inherits="UIDropDownMenuTemplate" id="12">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="Gatherer_WMDropDownGType" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						UIDropDownMenu_SetWidth(100);
+					</OnLoad>
+					<OnShow>
+						UIDropDownMenu_ClearAll(this);
+						UIDropDownMenu_Initialize(this, Gatherer_WMDropDownScope_Initialize);
+					</OnShow>
+				</Scripts>
+			</Frame>
+			
+			<!-- Control Buttons -->
+			<Button name="Gatherer_WMItemDialog_Bugged" parent="Gatherer_NodesEditFrame" hidden="false" text="Toggle Bugged" inherits="UIPanelButtonTemplate" toplevel="true">
+				<Size>
+					<AbsDimension x="100" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="Gatherer_NodesEditFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="20" y="20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:Show();
+					</OnLoad>
+					<OnClick>
+						Gatherer_ToggleBuggedItem();
+						Gatherer_NodesEditFrame:Hide();						
+					</OnClick>
+				</Scripts>
+			</Button>
+	
+			<Button name="Gatherer_WMItemDialog_Delete" parent="Gatherer_NodesEditFrame" hidden="false" text="DELETE" inherits="UIPanelButtonTemplate" toplevel="true">
+				<Size>
+					<AbsDimension x="80" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="Gatherer_WMItemDialog_Bugged" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:Show();
+					</OnLoad>
+					<OnClick>
+						Gatherer_DeleteItem();
+						Gatherer_NodesEditFrame:Hide()
+						GatherMainMapItem = {};
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="Gatherer_WMItemDialog_Cancel" parent="Gatherer_NodesEditFrame" hidden="false" text="CANCEL" inherits="UIPanelButtonTemplate" toplevel="true">
+				<Size>
+					<AbsDimension x="80" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="Gatherer_NodesEditFrame" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:Show();
+					</OnLoad>
+					<OnClick>
+						GatherMainMapItem.newGatherName = nil;
+						Gatherer_ToggleBuggedItem();
+						Gatherer_NodesEditFrame:Hide()
+						GatherMainMapItem = {};
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button name="Gatherer_WMItemDialog_Modify" parent="Gatherer_NodesEditFrame" hidden="false" text="ACCEPT" inherits="UIPanelButtonTemplate" toplevel="true">
+				<Size>
+					<AbsDimension x="80" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="Gatherer_WMItemDialog_Cancel" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="-10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:Show();
+					</OnLoad>
+					<OnClick>
+						Gatherer_ModifyItem();
+						Gatherer_NodesEditFrame:Hide()
+						GatherMainMapItem = {};
+					</OnClick>
+				</Scripts>
+			</Button>
+
+		</Frames>
+	</Frame>
+</Ui>

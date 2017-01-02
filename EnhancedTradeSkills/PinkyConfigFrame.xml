@@ -1,0 +1,879 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+	<Script file="localization.lua"/>
+	
+	<Frame name="PinkyConfigFrame" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" parent="UIParent">
+	
+		<Size>
+			<AbsDimension x="800" y="400"/>
+		</Size>
+		
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+		
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+			
+		</Backdrop>
+		
+		<Layers>
+		
+			<Layer level="ARTWORK">
+			
+				<Texture name="PinkyConfigFrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+				
+					<Size>
+						<AbsDimension x="500" y="64"/>
+					</Size>
+					
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					
+				</Texture>
+				
+				<FontString inherits="GameFontNormal" text="Pinky's Enhanced Trade Skills">
+				
+					<Anchors>
+						<Anchor point="TOP" relativeTo="PinkyConfigFrame">
+							<Offset>
+								<AbsDimension x="0" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					
+				</FontString>
+
+			</Layer>
+			
+		</Layers>
+				
+		<Frames>
+		
+			<CheckButton name="PinkyFilterOptimal" inherits="OptionsCheckButtonTemplate" id="1">
+			
+				<Anchors>
+				
+					<Anchor point="TOPLEFT" relativeTo="PinkyConfigFrame">
+					
+						<Offset>
+						
+							<AbsDimension x="15" y="-25"/>
+							
+						</Offset>
+						
+					</Anchor>
+					
+				</Anchors>
+
+				<Layers>
+				
+					<Layer level="ARTWORK">
+					
+						<FontString inherits="GameFontNormal" text="PINKY_FILTER_OPTIMAL_BUTTON_TEXT">
+						
+							<Anchors>
+							
+								<Anchor point="LEFT">
+								
+									<Offset>
+									
+										<AbsDimension x="30" y="2"/>
+										
+									</Offset>
+									
+								</Anchor>
+								
+							</Anchors>
+							
+						</FontString>
+						
+					</Layer>
+				
+				</Layers>
+				
+				
+				<Scripts>
+				
+					<OnClick>
+					
+						if ( this:GetChecked() ) then
+							PlaySound("igMainMenuOptionCheckBoxOff");
+						else
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						end
+						
+					</OnClick>
+					
+				</Scripts>
+				
+			</CheckButton>
+			
+			<CheckButton name="PinkyFilterMedium" inherits="OptionsCheckButtonTemplate" id="2">
+			
+				<Anchors>
+				
+					<Anchor point="TOPLEFT" relativeTo="PinkyFilterOptimal">
+					
+						<Offset>
+						
+							<AbsDimension x="0" y="-25"/>
+							
+						</Offset>
+						
+					</Anchor>
+					
+				</Anchors>
+				
+				<Layers>
+				
+					<Layer level="ARTWORK">
+					
+						<FontString inherits="GameFontNormal" text="PINKY_FILTER_MEDIUM_BUTTON_TEXT">
+						
+							<Anchors>
+							
+								<Anchor point="LEFT">
+								
+									<Offset>
+									
+										<AbsDimension x="30" y="2"/>
+										
+									</Offset>
+									
+								</Anchor>
+								
+							</Anchors>
+							
+						</FontString>
+						
+					</Layer>
+				
+				</Layers>
+				
+				<Scripts>
+				
+					<OnClick>
+					
+						if ( this:GetChecked() ) then
+							PlaySound("igMainMenuOptionCheckBoxOff");
+						else
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						end
+						
+					</OnClick>
+					
+				</Scripts>
+				
+			</CheckButton>
+			
+			<CheckButton name="PinkyFilterEasy" inherits="OptionsCheckButtonTemplate" id="3">
+			
+				<Anchors>
+				
+					<Anchor point="TOPLEFT" relativeTo="PinkyFilterMedium">
+					
+						<Offset>
+						
+							<AbsDimension x="0" y="-25"/>
+							
+						</Offset>
+						
+					</Anchor>
+					
+				</Anchors>
+				
+				<Layers>
+				
+					<Layer level="ARTWORK">
+					
+						<FontString inherits="GameFontNormal" text="PINKY_FILTER_EASY_BUTTON_TEXT">
+						
+							<Anchors>
+							
+								<Anchor point="LEFT">
+								
+									<Offset>
+									
+										<AbsDimension x="30" y="2"/>
+										
+									</Offset>
+									
+								</Anchor>
+								
+							</Anchors>
+							
+						</FontString>
+						
+					</Layer>
+				
+				</Layers>
+				
+				<Scripts>
+				
+					<OnClick>
+					
+						if ( this:GetChecked() ) then
+							PlaySound("igMainMenuOptionCheckBoxOff");
+						else
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						end
+						
+					</OnClick>
+					
+				</Scripts>
+				
+			</CheckButton>
+			
+			<CheckButton name="PinkyFilterTrivial" inherits="OptionsCheckButtonTemplate" id="4">
+			
+				<Anchors>
+				
+					<Anchor point="TOPLEFT" relativeTo="PinkyFilterEasy">
+					
+						<Offset>
+						
+							<AbsDimension x="0" y="-25"/>
+							
+						</Offset>
+						
+					</Anchor>
+					
+				</Anchors>
+				
+				<Layers>
+				
+					<Layer level="ARTWORK">
+					
+						<FontString inherits="GameFontNormal" text="PINKY_FILTER_TRIVIAL_BUTTON_TEXT">
+						
+							<Anchors>
+							
+								<Anchor point="LEFT">
+								
+									<Offset>
+									
+										<AbsDimension x="30" y="2"/>
+										
+									</Offset>
+									
+								</Anchor>
+								
+							</Anchors>
+							
+						</FontString>
+						
+					</Layer>
+				
+				</Layers>
+				
+				<Scripts>
+				
+					<OnClick>
+					
+						if ( this:GetChecked() ) then
+							PlaySound("igMainMenuOptionCheckBoxOff");
+						else
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						end
+						
+					</OnClick>
+					
+				</Scripts>
+				
+			</CheckButton>
+
+			<CheckButton name="PinkyFilterInv" inherits="OptionsCheckButtonTemplate" id="5">
+			
+				<Anchors>
+				
+					<Anchor point="TOPLEFT" relativeTo="PinkyFilterTrivial">
+					
+						<Offset>
+						
+							<AbsDimension x="0" y="-25"/>
+							
+						</Offset>
+						
+					</Anchor>
+					
+				</Anchors>
+				
+				<Layers>
+				
+					<Layer level="ARTWORK">
+					
+						<FontString inherits="GameFontNormal" text="PINKY_FILTER_INV_BUTTON_TEXT">
+						
+							<Anchors>
+							
+								<Anchor point="LEFT">
+								
+									<Offset>
+									
+										<AbsDimension x="30" y="2"/>
+										
+									</Offset>
+									
+								</Anchor>
+								
+							</Anchors>
+							
+						</FontString>
+						
+					</Layer>
+				
+				</Layers>
+				
+				<Scripts>
+				
+					<OnClick>
+					
+						if ( this:GetChecked() ) then
+							PlaySound("igMainMenuOptionCheckBoxOff");
+						else
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						end
+						
+					</OnClick>
+					
+				</Scripts>
+				
+			</CheckButton>
+
+			<CheckButton name="PinkyFilterInvPlus" inherits="OptionsCheckButtonTemplate" id="6">
+			
+				<Anchors>
+				
+					<Anchor point="TOPLEFT" relativeTo="PinkyFilterInv">
+					
+						<Offset>
+						
+							<AbsDimension x="0" y="-25"/>
+							
+						</Offset>
+						
+					</Anchor>
+					
+				</Anchors>
+				
+				<Layers>
+				
+					<Layer level="ARTWORK">
+					
+						<FontString inherits="GameFontNormal" text="PINKY_FILTER_INV_PLUS_BUTTON_TEXT">
+						
+							<Anchors>
+							
+								<Anchor point="LEFT">
+								
+									<Offset>
+									
+										<AbsDimension x="30" y="2"/>
+										
+									</Offset>
+									
+								</Anchor>
+								
+							</Anchors>
+							
+						</FontString>
+						
+					</Layer>
+				
+				</Layers>
+				
+				<Scripts>
+				
+					<OnClick>
+					
+						if ( this:GetChecked() ) then
+							PlaySound("igMainMenuOptionCheckBoxOff");
+						else
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						end
+						
+					</OnClick>
+					
+				</Scripts>
+				
+			</CheckButton>
+
+			<CheckButton name="PinkyFilterTotal" inherits="OptionsCheckButtonTemplate" id="7">
+			
+				<Anchors>
+				
+					<Anchor point="TOPLEFT" relativeTo="PinkyFilterInvPlus">
+					
+						<Offset>
+						
+							<AbsDimension x="0" y="-25"/>
+							
+						</Offset>
+						
+					</Anchor>
+					
+				</Anchors>
+				
+				<Layers>
+				
+					<Layer level="ARTWORK">
+					
+						<FontString inherits="GameFontNormal" text="PINKY_FILTER_TOTAL_BUTTON_TEXT">
+						
+							<Anchors>
+							
+								<Anchor point="LEFT">
+								
+									<Offset>
+									
+										<AbsDimension x="30" y="2"/>
+										
+									</Offset>
+									
+								</Anchor>
+								
+							</Anchors>
+							
+						</FontString>
+						
+					</Layer>
+				
+				</Layers>
+				
+				<Scripts>
+				
+					<OnClick>
+					
+						if ( this:GetChecked() ) then
+							PlaySound("igMainMenuOptionCheckBoxOff");
+						else
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						end
+						
+					</OnClick>
+					
+				</Scripts>
+				
+			</CheckButton>
+
+			<CheckButton name="PinkyFilterTotalPlus" inherits="OptionsCheckButtonTemplate" id="8">
+			
+				<Anchors>
+				
+					<Anchor point="TOPLEFT" relativeTo="PinkyFilterTotal">
+					
+						<Offset>
+						
+							<AbsDimension x="0" y="-25"/>
+							
+						</Offset>
+						
+					</Anchor>
+					
+				</Anchors>
+				
+				<Layers>
+				
+					<Layer level="ARTWORK">
+					
+						<FontString inherits="GameFontNormal" text="PINKY_FILTER_TOTAL_PLUS_BUTTON_TEXT">
+						
+							<Anchors>
+							
+								<Anchor point="LEFT">
+								
+									<Offset>
+									
+										<AbsDimension x="30" y="2"/>
+										
+									</Offset>
+									
+								</Anchor>
+								
+							</Anchors>
+							
+						</FontString>
+						
+					</Layer>
+				
+				</Layers>
+				
+				<Scripts>
+				
+					<OnClick>
+					
+						if ( this:GetChecked() ) then
+							PlaySound("igMainMenuOptionCheckBoxOff");
+						else
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						end
+						
+					</OnClick>
+					
+				</Scripts>
+				
+			</CheckButton>
+
+			<CheckButton name="PinkyDisplayInv" inherits="OptionsCheckButtonTemplate" id="9">
+			
+				<Anchors>
+				
+					<Anchor point="TOPLEFT" relativeTo="PinkyFilterTotalPlus">
+					
+						<Offset>
+						
+							<AbsDimension x="0" y="-25"/>
+							
+						</Offset>
+						
+					</Anchor>
+					
+				</Anchors>
+				
+				<Layers>
+				
+					<Layer level="ARTWORK">
+					
+						<FontString inherits="GameFontNormal" text="PINKY_DISPLAY_INV_BUTTON_TEXT">
+						
+							<Anchors>
+							
+								<Anchor point="LEFT">
+								
+									<Offset>
+									
+										<AbsDimension x="30" y="2"/>
+										
+									</Offset>
+									
+								</Anchor>
+								
+							</Anchors>
+							
+						</FontString>
+						
+					</Layer>
+				
+				</Layers>
+				
+				<Scripts>
+				
+					<OnClick>
+					
+						if ( this:GetChecked() ) then
+							PlaySound("igMainMenuOptionCheckBoxOff");
+						else
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						end
+						
+					</OnClick>
+					
+				</Scripts>
+				
+			</CheckButton>
+			
+			<CheckButton name="PinkyDisplayInvPlus" inherits="OptionsCheckButtonTemplate" id="10">
+			
+				<Anchors>
+				
+					<Anchor point="TOPLEFT" relativeTo="PinkyDisplayInv">
+					
+						<Offset>
+						
+							<AbsDimension x="0" y="-25"/>
+							
+						</Offset>
+						
+					</Anchor>
+					
+				</Anchors>
+				
+				<Layers>
+				
+					<Layer level="ARTWORK">
+					
+						<FontString inherits="GameFontNormal" text="PINKY_DISPLAY_INV_PLUS_BUTTON_TEXT">
+						
+							<Anchors>
+							
+								<Anchor point="LEFT">
+								
+									<Offset>
+									
+										<AbsDimension x="30" y="2"/>
+										
+									</Offset>
+									
+								</Anchor>
+								
+							</Anchors>
+							
+						</FontString>
+						
+					</Layer>
+				
+				</Layers>
+				
+				<Scripts>
+				
+					<OnClick>
+					
+						if ( this:GetChecked() ) then
+							PlaySound("igMainMenuOptionCheckBoxOff");
+						else
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						end
+						
+					</OnClick>
+					
+				</Scripts>
+				
+			</CheckButton>
+			
+			<CheckButton name="PinkyDisplayTotal" inherits="OptionsCheckButtonTemplate" id="11">
+			
+				<Anchors>
+				
+					<Anchor point="TOPLEFT" relativeTo="PinkyDisplayInvPlus">
+					
+						<Offset>
+						
+							<AbsDimension x="0" y="-25"/>
+							
+						</Offset>
+						
+					</Anchor>
+					
+				</Anchors>
+				
+				<Layers>
+				
+					<Layer level="ARTWORK">
+					
+						<FontString inherits="GameFontNormal" text="PINKY_DISPLAY_TOTAL_BUTTON_TEXT">
+						
+							<Anchors>
+							
+								<Anchor point="LEFT">
+								
+									<Offset>
+									
+										<AbsDimension x="30" y="2"/>
+										
+									</Offset>
+									
+								</Anchor>
+								
+							</Anchors>
+							
+						</FontString>
+						
+					</Layer>
+				
+				</Layers>
+				
+				<Scripts>
+				
+					<OnClick>
+					
+						if ( this:GetChecked() ) then
+							PlaySound("igMainMenuOptionCheckBoxOff");
+						else
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						end
+						
+					</OnClick>
+					
+				</Scripts>
+				
+			</CheckButton>
+			
+			<CheckButton name="PinkyDisplayTotalPlus" inherits="OptionsCheckButtonTemplate" id="12">
+			
+				<Anchors>
+				
+					<Anchor point="TOPLEFT" relativeTo="PinkyDisplayTotal">
+					
+						<Offset>
+						
+							<AbsDimension x="0" y="-25"/>
+							
+						</Offset>
+						
+					</Anchor>
+					
+				</Anchors>
+				
+				<Layers>
+				
+					<Layer level="ARTWORK">
+					
+						<FontString inherits="GameFontNormal" text="PINKY_DISPLAY_TOTAL_PLUS_BUTTON_TEXT">
+						
+							<Anchors>
+							
+								<Anchor point="LEFT">
+								
+									<Offset>
+									
+										<AbsDimension x="30" y="2"/>
+										
+									</Offset>
+									
+								</Anchor>
+								
+							</Anchors>
+							
+						</FontString>
+						
+					</Layer>
+				
+				</Layers>
+				
+				<Scripts>
+				
+					<OnClick>
+					
+						if ( this:GetChecked() ) then
+							PlaySound("igMainMenuOptionCheckBoxOff");
+						else
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						end
+						
+					</OnClick>
+					
+				</Scripts>
+				
+			</CheckButton>
+			<CheckButton name="PinkyDisplayTitle" inherits="OptionsCheckButtonTemplate" id="13">
+			
+				<Anchors>
+				
+					<Anchor point="TOPLEFT" relativeTo="PinkyDisplayTotalPlus">
+					
+						<Offset>
+						
+							<AbsDimension x="0" y="-25"/>
+							
+						</Offset>
+						
+					</Anchor>
+					
+				</Anchors>
+				
+				<Layers>
+				
+					<Layer level="ARTWORK">
+					
+						<FontString inherits="GameFontNormal" text="PINKY_DISPLAY_TITLE_BUTTON_TEXT">
+						
+							<Anchors>
+							
+								<Anchor point="LEFT">
+								
+									<Offset>
+									
+										<AbsDimension x="30" y="2"/>
+										
+									</Offset>
+									
+								</Anchor>
+								
+							</Anchors>
+							
+						</FontString>
+						
+					</Layer>
+				
+				</Layers>
+				
+				<Scripts>
+				
+					<OnClick>
+					
+						if ( this:GetChecked() ) then
+							PlaySound("igMainMenuOptionCheckBoxOff");
+						else
+							PlaySound("igMainMenuOptionCheckBoxOn");
+						end
+						
+					</OnClick>
+					
+				</Scripts>
+				
+			</CheckButton>
+			
+			<Button name="PinkyConfigurationCancel" inherits="GameMenuButtonTemplate" text="CANCEL">
+			
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-13" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+				<Scripts>
+					<OnClick>
+						PlaySound("gsTitleOptionExit");
+						HideUIPanel(PinkyConfigFrame);
+					</OnClick>
+				</Scripts>
+				
+			</Button>
+			
+			<Button name="PinkyConfigurationOK" inherits="GameMenuButtonTemplate" text="OKAY">
+			
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="PinkyConfigurationCancel" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+				<Scripts>
+					<OnClick>
+						PlaySound("gsTitleOptionOK");
+						Pinky_ConfigurationSave();
+						HideUIPanel(PinkyConfigFrame);
+					</OnClick>
+				</Scripts>
+				
+			</Button>
+			
+                </Frames>
+				
+		<Scripts>
+		
+			<OnLoad>
+				-- TradeSkillsConfig_OnLoad();
+			</OnLoad>
+			
+			<OnEvent>
+				-- Pinky_UpdateConfigurationWindow();
+			</OnEvent>
+			
+		</Scripts>
+		
+	</Frame>
+
+
+</Ui>

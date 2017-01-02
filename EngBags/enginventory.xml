@@ -1,0 +1,769 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="default_items.lua"/>
+	<Script file="tooltip.lua"/>
+	<Script file="support_funcs.lua"/> 
+	<Script file="chat_cmd_handler.lua"/> 
+	<Script file="enginventory.lua"/> 
+	<Script file="ei_hooks.lua"/>
+	<Script file="localization.lua"/>
+
+
+	<GameTooltip name="EngInventory_tt" frameStrata="TOOLTIP" hidden="true" parent="UIParent" inherits="GameTooltipTemplate">
+		<Scripts>
+			<OnLoad>
+				this:SetOwner(UIParent, "ANCHOR_NONE");
+			</OnLoad>
+		</Scripts>
+	</GameTooltip>
+
+	<FontString name="EngInventory_BigFont"  font="Interface\AddOns\EngBags\DAB_CooldownFont.ttf" virtual="true">
+		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+		<FontHeight>
+			<AbsValue val="16"/>
+		</FontHeight>
+		<Color r="1" g="0" b="0.25"/>
+	</FontString>
+
+	<Texture name="EngInventory_ButtonBackgroundTemplate" file="Interface\AddOns\EngBags\skin\button_background" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="64" y="64"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+	</Texture>	
+
+	<Button name="EngInventory_ItemButtonTemplate" inherits="ItemButtonTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="40" y="40"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Model name="$parent_Cooldown" inherits="CooldownFrameTemplate"/>
+		</Frames>
+		<Scripts>
+			<OnClick>
+				EngInventory_ItemButton_OnClick(arg1);
+			</OnClick>
+			<OnDragStart>
+				EngInventory_ItemButton_OnClick("LeftButton", 1);
+			</OnDragStart>
+			<OnReceiveDrag>
+				EngInventory_ItemButton_OnClick("LeftButton", 1);
+			</OnReceiveDrag>
+			<OnLoad>
+		        this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+				this:RegisterForDrag("LeftButton");
+			</OnLoad>
+			<OnHide>
+				if ( this.hasStackSplit and (this.hasStackSplit == 1) ) then
+					StackSplitFrame:Hide();
+				end
+			</OnHide>
+			<OnEnter>
+				EngInventory_ItemButton_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				EngInventory_ItemButton_OnLeave();
+			</OnLeave>
+			<OnUpdate>
+				EngInventory_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Button>
+
+  <Button name="EngInventory_SlotTargetTemplate" inherits="ItemButtonTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="40" y="40"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parent_BigText" inherits="EngInventory_BigFont" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="LEFT">
+							<Offset><AbsDimension x="-2" y="0"/></Offset>
+						</Anchor>
+						<Anchor point="RIGHT" relativePoint="RIGHT">
+							<Offset><AbsDimension x="2" y="0"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				EngInventory_SlotTargetButton_OnClick(arg1);
+			</OnClick>
+			<OnDragStart>
+				EngInventory_SlotTargetButton_OnClick("LeftButton", 1);
+			</OnDragStart>
+			<OnReceiveDrag>
+				EngInventory_SlotTargetButton_OnClick("LeftButton", 1);
+			</OnReceiveDrag>
+			<OnLoad>
+		        this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+				this:RegisterForDrag("LeftButton");
+			</OnLoad>
+			<OnHide>
+				if ( this.hasStackSplit and (this.hasStackSplit == 1) ) then
+					StackSplitFrame:Hide();
+				end
+			</OnHide>
+			<OnEnter>
+				EngInventory_SlotTargetButton_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				EngInventory_SlotTargetButton_OnLeave();
+			</OnLeave>
+			<OnUpdate>
+				EngInventory_SlotTargetButton_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Button>
+
+	<Frame name="EngInventory_frame_bar_Template" toplevel="false" frameStrata="MEDIUM" movable="false" enableMouse="false" hidden="true" virtual="true"> 
+		<Size><AbsDimension x="200" y="46"/></Size>
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="8"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="8"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="2" right="2" top="2" bottom="2"/>
+			</BackgroundInsets>
+		</Backdrop>
+	</Frame>
+
+	<Frame name="EngInventory_frame" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="UIParent"> 
+		<Size><AbsDimension x="500" y="500"/></Size>
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="8"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="8"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="4" right="4" top="4" bottom="4"/>
+			</BackgroundInsets>
+		</Backdrop>
+
+		<Layers>
+
+			<Layer level="ARTWORK">
+				<Texture name="$parentPortrait" hidden="true" file="Interface\AddOns\EngBags\Skin\EngPortait" >
+					<Size><AbsDimension x="58" y="58"/></Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset><AbsDimension x="-7" y="2"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+                       
+				<Texture name="$parentTextureTopLeft" file="Interface\AddOns\EngBags\Skin\EngTopLeft" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset><AbsDimension x="-67" y="60"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureTopRight" file="Interface\AddOns\EngBags\Skin\EngTopRight" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT"> 
+							<Offset><AbsDimension x="36" y="60"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureTopCenter" file="Interface\AddOns\EngBags\Skin\EngTopCenter" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentTextureTopLeft" relativePoint="BOTTOMRIGHT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentTextureTopRight" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+
+				<Texture name="$parentTextureBottomLeft" file="Interface\AddOns\EngBags\Skin\EngBottomLeft" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset><AbsDimension x="-67" y="-60"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureBottomRight" file="Interface\AddOns\EngBags\Skin\EngBottomRight" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT"> 
+							<Offset><AbsDimension x="36" y="-60"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureBottomCenter" file="Interface\AddOns\EngBags\Skin\EngBottomCenter" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextureBottomLeft" relativePoint="TOPRIGHT"/>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextureBottomRight" relativePoint="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+
+				<Texture name="$parentTextureLeft" file="Interface\AddOns\EngBags\Skin\EngLeft" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextureTopLeft" relativePoint="BOTTOMRIGHT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentTextureBottomLeft" relativePoint="TOPRIGHT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureRight" file="Interface\AddOns\EngBags\Skin\EngRight" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextureTopRight" relativePoint="BOTTOMLEFT"/>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentTextureBottomRight" relativePoint="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+
+				<Texture name="EngInventory_frame_Item_1_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_2_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_3_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_4_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_5_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_6_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_7_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_8_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_9_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_10_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_11_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_12_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_13_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_14_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_15_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_16_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_17_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_18_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_19_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_20_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_21_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_22_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_23_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_24_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_25_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_26_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_27_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_28_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_29_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_30_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_31_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_32_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_33_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_34_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_35_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_36_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_37_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_38_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_39_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_40_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_41_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_42_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_43_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_44_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_45_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_46_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_47_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_48_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_49_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_50_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_51_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_52_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_53_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_54_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_55_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_56_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_57_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_58_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_59_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_60_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_61_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_62_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_63_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_64_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_65_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_66_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_67_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_68_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_69_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_70_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_71_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_72_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_73_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_74_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_75_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_76_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_77_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_78_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_79_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_80_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_81_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_82_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_83_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_84_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_85_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_86_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_87_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_88_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_89_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_90_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_91_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_92_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_93_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_94_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_95_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_96_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_97_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_98_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_99_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_100_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_101_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_102_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_103_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_104_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_105_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_106_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_107_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_108_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_Item_109_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+
+				<Texture name="EngInventory_frame_SlotTarget_1_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_2_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_3_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_4_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_5_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_6_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_7_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_8_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_9_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_10_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_11_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_12_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_13_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_14_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+				<Texture name="EngInventory_frame_SlotTarget_15_bkgr" inherits="EngInventory_ButtonBackgroundTemplate"/>
+			</Layer>
+		</Layers>
+
+		<Frames>
+
+
+			<Button name="EngInventory_Button_ChangeEditMode" inherits="GameMenuButtonTemplate" text="Edit">
+				<Size><AbsDimension x="85" y="25"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="EngInventory_Button_HighlightToggle" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EngInventory_Button_ChangeEditMode_OnClick();
+					</OnClick>
+					<OnEnter>
+						GameTooltip_AddNewbieTip(EILocal["EngInventory_Button_ChangeEditMode_tooltip_title"], 1.0, 1.0, 1.0, EILocal["EngInventory_Button_ChangeEditMode_tooltip"]);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="EngInventory_Button_ColumnsAdd" inherits="GameMenuButtonTemplate" text="++">
+				<Size><AbsDimension x="120" y="25"/></Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="-2" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn");
+						EngInventory_IncreaseColumns();
+					</OnClick>
+
+					<OnEnter>
+						GameTooltip_AddNewbieTip(
+							EILocal["EngInventory_Button_ColumnsAdd_tooltip_title"],
+							1.0, 1.0, 1.0,
+							EILocal["EngInventory_Button_ColumnsAdd_tooltip"] );
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="EngInventory_Button_ColumnsDel" inherits="GameMenuButtonTemplate" text="--">
+				<Size><AbsDimension x="120" y="25"/></Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="2" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn");
+						EngInventory_DecreaseColumns();
+					</OnClick>
+
+					<OnEnter>
+						GameTooltip_AddNewbieTip(
+							EILocal["EngInventory_Button_ColumnsDel_tooltip_title"],
+							1.0, 1.0, 1.0,
+							EILocal["EngInventory_Button_ColumnsDel_tooltip"] );
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+
+			<Button name="EngInventory_Button_Close" inherits="GameMenuButtonTemplate" text="X">
+				<Size><AbsDimension x="22" y="25"/></Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-6" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EngInventory_frame:Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="EngInventory_Button_MoveLockToggle" inherits="GameMenuButtonTemplate" text="-">
+				<Size><AbsDimension x="22" y="25"/></Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="EngInventory_Button_Close" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EngInventory_Button_MoveLockToggle_OnClick();
+					</OnClick>
+					<OnEnter>
+						if (EngInventoryConfig["moveLock"] == 0) then
+							GameTooltip_AddNewbieTip("Window Dragging: Off", 1.0, 1.0, 1.0, "Window is currently locked in place.");
+						else
+							GameTooltip_AddNewbieTip("Window Dragging: On", 1.0, 1.0, 1.0, "Window is currently unlocked.");
+						end
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="EngInventory_Button_HighlightToggle" inherits="GameMenuButtonTemplate" text="Hilight New: OFF">
+				<Size><AbsDimension x="150" y="25"/></Size>
+				<Anchors>
+				<Anchor point="TOPRIGHT" relativeTo="EngInventory_Button_Close" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="-25" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EngInventory_Button_HighlightToggle_OnClick();
+					</OnClick>
+					<OnEnter>
+						if (EngInventory_hilight_new == 0) then
+							GameTooltip_AddNewbieTip(EILocal["EngInventory_Button_HighlightToggle_off"], 1.0, 1.0, 1.0, EILocal["EngInventory_Button_HighlightToggle_off_tooltip"]);
+						else
+							GameTooltip_AddNewbieTip(EILocal["EngInventory_Button_HighlightToggle_on"], 1.0, 1.0, 1.0, EILocal["EngInventory_Button_HighlightToggle_on_tooltip"]);
+						end
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Frame name="EngInventory_MoneyFrame" inherits="SmallMoneyFrameTemplate" hidden="true">
+				<Size><AbsDimension x="22" y="25"/></Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="5" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+
+			<Frame name="EngInventory_frame_bar_1" inherits="EngInventory_frame_bar_Template"/> 
+			<Frame name="EngInventory_frame_bar_2" inherits="EngInventory_frame_bar_Template"/> 
+			<Frame name="EngInventory_frame_bar_3" inherits="EngInventory_frame_bar_Template"/>
+
+			<Frame name="EngInventory_frame_bar_4" inherits="EngInventory_frame_bar_Template"/> 
+			<Frame name="EngInventory_frame_bar_5" inherits="EngInventory_frame_bar_Template"/> 
+			<Frame name="EngInventory_frame_bar_6" inherits="EngInventory_frame_bar_Template"/> 
+
+			<Frame name="EngInventory_frame_bar_7" inherits="EngInventory_frame_bar_Template"/>
+			<Frame name="EngInventory_frame_bar_8" inherits="EngInventory_frame_bar_Template"/> 
+			<Frame name="EngInventory_frame_bar_9" inherits="EngInventory_frame_bar_Template"/>
+
+			<Frame name="EngInventory_frame_bar_10" inherits="EngInventory_frame_bar_Template"/> 
+			<Frame name="EngInventory_frame_bar_11" inherits="EngInventory_frame_bar_Template"/> 
+			<Frame name="EngInventory_frame_bar_12" inherits="EngInventory_frame_bar_Template"/>
+
+			<Frame name="EngInventory_frame_bar_13" inherits="EngInventory_frame_bar_Template"/> 
+			<Frame name="EngInventory_frame_bar_14" inherits="EngInventory_frame_bar_Template"/> 
+			<Frame name="EngInventory_frame_bar_15" inherits="EngInventory_frame_bar_Template"/>
+
+			<Button name="EngInventory_frame_SlotTarget_1" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_2" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_3" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_4" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_5" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_6" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_7" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_8" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_9" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_10" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_11" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_12" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_13" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_14" inherits="EngInventory_SlotTargetTemplate"/>
+			<Button name="EngInventory_frame_SlotTarget_15" inherits="EngInventory_SlotTargetTemplate"/>
+
+			<Button name="EngInventory_frame_Item_1" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_2" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_3" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_4" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_5" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_6" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_7" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_8" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_9" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_10" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_11" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_12" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_13" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_14" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_15" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_16" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_17" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_18" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_19" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_20" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_21" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_22" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_23" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_24" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_25" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_26" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_27" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_28" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_29" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_30" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_31" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_32" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_33" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_34" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_35" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_36" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_37" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_38" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_39" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_40" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_41" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_42" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_43" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_44" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_45" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_46" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_47" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_48" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_49" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_50" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_51" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_52" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_53" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_54" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_55" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_56" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_57" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_58" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_59" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_60" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_61" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_62" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_63" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_64" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_65" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_66" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_67" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_68" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_69" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_70" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_71" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_72" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_73" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_74" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_75" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_76" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_77" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_78" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_79" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_80" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_81" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_82" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_83" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_84" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_85" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_86" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_87" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_88" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_89" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_90" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_91" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_92" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_93" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_94" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_95" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_96" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_97" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_98" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_99" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_100" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_101" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_102" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_103" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_104" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_105" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_106" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_107" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_108" inherits="EngInventory_ItemButtonTemplate"/>
+			<Button name="EngInventory_frame_Item_109" inherits="EngInventory_ItemButtonTemplate"/>
+
+			<Frame name="$parent_RightClickMenu" inherits="UIDropDownMenuTemplate" id="1" hidden="true">
+				<Scripts>
+					<OnLoad>
+						this:RegisterEvent("VARIABLES_LOADED");
+					</OnLoad>
+					<OnEvent>
+						EngInventory_frame_RightClickMenu_OnLoad();
+					</OnEvent>
+				</Scripts>
+			</Frame>
+		</Frames>
+
+		<Scripts>
+			<OnLoad> 
+				this:RegisterEvent("VARIABLES_LOADED");
+				this:RegisterEvent("ADDON_LOADED");
+			</OnLoad> 
+			<OnEvent> 
+				if (event == "VARIABLES_LOADED") then 
+					this:RegisterEvent("BAG_UPDATE");
+					this:RegisterEvent("BAG_UPDATE_COOLDOWN");
+					this:RegisterEvent("ITEM_LOCK_CHANGED");
+					this:RegisterEvent("UPDATE_INVENTORY_ALERTS");
+
+					this:RegisterEvent("CRAFT_SHOW");
+					this:RegisterEvent("TRADE_SKILL_SHOW");
+					EngInventory_init();
+				else
+					EngInventory_OnEvent(event);
+				end
+			</OnEvent> 
+			<OnMouseDown>
+				EngInventory_OnMouseDown(arg1, this);
+			</OnMouseDown>
+			<OnMouseUp>
+				EngInventory_StopMoving(this);
+			</OnMouseUp>
+			<OnDragStart>
+				EngInventory_StartMoving(this);
+			</OnDragStart>
+			<OnDragStop>
+				EngInventory_StopMoving(this);
+			</OnDragStop>
+			<OnShow>
+				PlaySound("igBackPackOpen");
+				EngInventory_UpdateWindow();
+				EngInventory_UpdateBagState();
+			</OnShow>
+			<OnHide>
+				PlaySound("igBackPackClose");
+				EngInventory_UpdateBagState();
+				EngInventory_StopMoving(this);
+			</OnHide>
+		</Scripts>
+
+	</Frame> 
+</Ui>

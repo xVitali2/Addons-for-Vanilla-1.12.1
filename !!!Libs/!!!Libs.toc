@@ -1,0 +1,54 @@
+## Interface: 11200
+## Title: !Libs
+## Notes: A package of all libraries
+## Notes-koKR: ACE SVN 통합 라이브러리 패키지
+## Notes-ruRU: Пакет библиотек
+## Author: Various, CFM mod
+## Version: 1.4
+## OptionalDeps: !!Warmup, !BugGrabber, !ImprovedErrorFrame
+## X-Category: Library
+
+#1.3 added new version ace2 library, ace2 locale 2.0, bonusscanner ru version
+
+Ace\Ace.xml
+Ace\AceLocals_deDE.lua
+Ace\AceLocals_ruRU.lua
+Ace\AceLocals.lua
+Ace\Ace.lua
+Ace\AceDB.lua
+Ace\AceData.lua
+Ace\AceChatCmd.lua
+Ace\AceCommands.lua
+Ace\AceEvent.lua
+Ace\AceState.lua
+Ace\AceHook.lua
+Ace\AceModule.lua
+Ace\AceAddon.lua
+
+Ace2\AceLibrary\AceLibrary.lua
+Ace2\AceOO-2.0\AceOO-2.0.lua
+Compost-2.0\Compost-2.0.lua
+Ace2\AceEvent-2.0\AceEvent-2.0.lua
+Ace2\AceConsole-2.0\AceConsole-2.0.lua
+Ace2\AceAddon-2.0\AceAddon-2.0.lua
+Ace2\AceDB-2.0\AceDB-2.0.lua
+Ace2\AceDebug-2.0\AceDebug-2.0.lua
+Ace2\AceHook-2.0\AceHook-2.0.lua
+Ace2\AceHook-2.1\AceHook-2.1.lua
+Ace2\AceLocale-2.0\AceLocale-2.0.lua
+Ace2\AceLocale-2.2\AceLocale-2.2.lua
+Ace2\AceModuleCore-2.0\AceModuleCore-2.0.lua
+
+Deformat-2.0\Deformat-2.0.lua
+Gratuity-2.0\Gratuity-2.0.lua
+
+Babble\Babble-Boss-2.2\Babble-Boss-2.2.lua
+Babble\Babble-Spell-2.2\Babble-Spell-2.2.lua
+Babble\Babble-Zone-2.2\Babble-Zone-2.2.lua
+
+Dewdrop-2.0\Dewdrop-2.0.lua
+
+Tablet-2.0\Tablet-2.0.lua
+FuBarPlugin-2.0\FuBarPlugin-2.0.lua
+
+BonusScanner\BonusScanner.xml

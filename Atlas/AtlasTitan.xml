@@ -1,0 +1,52 @@
+<!--
+
+	Atlas, a World of Warcraft instance map browser
+	Copyright 2005 - 2008 Dan Gilbert
+	Email me at loglow@gmail.com
+
+	This file is part of Atlas.
+
+	Atlas is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2 of the License, or
+	(at your option) any later version.
+
+	Atlas is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with Atlas; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Frame parent="UIParent">
+		<Frames>
+			<Button name="TitanPanelAtlasButton" inherits="TitanPanelComboTemplate" frameStrata="FULLSCREEN" toplevel="true">
+				<Scripts>
+					<OnLoad>
+						if ( IsAddOnLoaded("Titan") ) then
+							TitanPanelAtlasButton_OnLoad();
+							TitanPanelButton_OnLoad();
+						end
+					</OnLoad>
+					<OnClick>
+						if ( arg1 == "LeftButton" ) then
+							Atlas_Toggle();
+						end
+						TitanPanelButton_OnClick(arg1, 1);
+					</OnClick>
+					<OnMouseUp>
+						if ( arg1 == "MiddleButton" ) then
+							AtlasOptions_Toggle();
+						end
+					</OnMouseUp>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

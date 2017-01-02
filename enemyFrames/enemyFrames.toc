@@ -1,0 +1,36 @@
+## Interface: 11200
+## Title: BG Enemy Frames
+## Notes: by kuurtzen (CFM mod)
+## Version: 1.24
+## SavedVariablesPerCharacter: ENEMYFRAMESPLAYERDATA
+
+globals\actionHandler.lua
+globals\spellCastingCore.lua
+globals\resources\globals.lua
+globals\resources\spells.lua
+globals\resources\buffs.lua
+globals\wsgHandler.lua
+globals\commHandler.lua
+globals\smoothBar.lua
+globals\settings\settings.lua
+globals\settings\general.lua
+globals\settings\features.lua
+globals\settings\nameplates.lua
+globals\settings\optionals.lua
+globals\class\rogue.lua
+globals\class\paladin.lua
+
+UIElements\BindingsHandler.lua
+UIElements\nameplatesHandler.lua
+UIElements\customBorder.lua
+UIElements\customCooldown.lua
+UIElements\targetframe.lua
+UIElements\playerFrame.lua
+UIElements\UIElementsTemplate.lua
+UIElements\incomingSpells.lua
+UIElements\pvpmap.lua
+UIElements\scoreBoard.lua
+UIElements\wsgUI.lua
+
+enemyFrames.lua
+enemyFramesCore.lua
