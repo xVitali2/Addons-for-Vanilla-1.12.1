@@ -13,7 +13,7 @@ pfUI:RegisterModule("actionbar", function ()
   end
 
   function ShowBonusActionBar()
-    for i=1, NUM_ACTIONBAR_BUTTONS do getglobal("ActionButton" .. i):Hide() end
+    if pfActionBar then pfActionBar:Hide() end
     if pfBonusBar then pfBonusBar:Show() end
     Hook_ShowBonusActionBar()
   end
@@ -23,7 +23,7 @@ pfUI:RegisterModule("actionbar", function ()
   end
 
   function HideBonusActionBar()
-    for i=1, NUM_ACTIONBAR_BUTTONS do getglobal("ActionButton" .. i):Show() end
+    if pfActionBar then pfActionBar:Show() end
     if pfBonusBar then pfBonusBar:Hide() end
     Hook_HideBonusActionBar()
   end
@@ -89,7 +89,7 @@ pfUI:RegisterModule("actionbar", function ()
   SlidingActionBarTexture1.Show = function () return end
 
   -- create action bar frame
-  pfUI.bars = CreateFrame("Frame",nil,UIParent)
+  pfUI.bars = CreateFrame("Frame", nil, UIParent)
   pfUI.bars:RegisterEvent("PLAYER_ENTERING_WORLD")
   pfUI.bars:RegisterEvent("CVAR_UPDATE")
   pfUI.bars:RegisterEvent("PET_BAR_UPDATE")
@@ -99,6 +99,32 @@ pfUI:RegisterModule("actionbar", function ()
   pfUI.bars:RegisterEvent("PLAYER_FARSIGHT_FOCUS_CHANGED")
   pfUI.bars:RegisterEvent("PET_BAR_SHOWGRID")
   pfUI.bars:RegisterEvent("PET_BAR_HIDEGRID")
+
+  pfUI.bars.autohide = CreateFrame("Frame", nil, UIParent)
+  pfUI.bars.autohide:RegisterEvent("PLAYER_ENTERING_WORLD")
+  pfUI.bars.autohide:SetScript("OnEvent", function()
+    if pfUI_config.bars.hide_actionmain == "1" then
+      pfUI.api:CreateAutohide(pfUI.bars.actionmain)
+    end
+    if pfUI_config.bars.hide_bottomleft == "1" then
+      pfUI.api:CreateAutohide(pfUI.bars.bottomleft)
+    end
+    if pfUI_config.bars.hide_bottomright == "1" then
+      pfUI.api:CreateAutohide(pfUI.bars.bottomright)
+    end
+    if pfUI_config.bars.hide_right == "1" then
+      pfUI.api:CreateAutohide(pfUI.bars.right)
+    end
+    if pfUI_config.bars.hide_tworight == "1" then
+      pfUI.api:CreateAutohide(pfUI.bars.tworight)
+    end
+    if pfUI_config.bars.hide_shapeshift == "1" then
+      pfUI.api:CreateAutohide(pfUI.bars.shapeshift)
+    end
+    if pfUI_config.bars.hide_pet == "1" then
+      pfUI.api:CreateAutohide(pfUI.bars.pet)
+    end
+  end)
 
   pfUI.bars.actionmain   = CreateFrame("Frame", "pfBarActionMain",  UIParent)
   pfUI.bars.shapeshift   = CreateFrame("Frame", "pfBarShapeshift",  UIParent)
@@ -135,6 +161,7 @@ pfUI:RegisterModule("actionbar", function ()
         for i=1, NUM_PET_ACTION_SLOTS do
           local b = getglobal("PetActionButton"..i)
           b:ClearAllPoints()
+          b:SetFrameLevel(pfUI.bars.pet:GetFrameLevel() + 1)
           b:SetParent(pfUI.bars.pet)
           pfUI.api:CreateBackdrop(b, default_border)
           pfUI.api:BarButtonAnchor(b, "PetActionButton", i, NUM_PET_ACTION_SLOTS, pfUI_config.bars.pet.formfactor, pfUI_config.bars.icon_size, default_border)
@@ -373,18 +400,17 @@ pfUI:RegisterModule("actionbar", function ()
   BonusActionBarFrame:SetAllPoints(pfUI.bars.actionmain)
   BonusActionBarFrame:EnableMouse(0)
 
-  do
-    local tf = getglobal("pfBonusBar") or CreateFrame("Frame","pfBonusBar", UIParent)
-    tf:SetParent(pfUI.bars.actionmain)
-    tf:SetAllPoints(pfUI.bars.actionmain)
-    for i=1, NUM_BONUS_ACTION_SLOTS do
-      local b = getglobal("BonusActionButton"..i)
-      b:ClearAllPoints()
-      b:SetParent(tf)
-      pfUI.api:CreateBackdrop(b, default_border)
-      pfUI.api:BarButtonAnchor(b, "BonusActionButton", i, NUM_BONUS_ACTION_SLOTS, pfUI_config.bars.actionmain.formfactor, pfUI_config.bars.icon_size, default_border)
-      b:SetPoint(unpack(b._anchor))
-    end
+  local tf = getglobal("pfBonusBar") or CreateFrame("Frame","pfBonusBar", UIParent)
+  tf:SetParent(pfUI.bars.actionmain)
+  tf:SetAllPoints(pfUI.bars.actionmain)
+  tf:SetFrameLevel(pfActionBar:GetFrameLevel() + 1)
+  for i=1, NUM_BONUS_ACTION_SLOTS do
+    local b = getglobal("BonusActionButton"..i)
+    b:ClearAllPoints()
+    b:SetParent(tf)
+    pfUI.api:CreateBackdrop(b, default_border)
+    pfUI.api:BarButtonAnchor(b, "BonusActionButton", i, NUM_BONUS_ACTION_SLOTS, pfUI_config.bars.actionmain.formfactor, pfUI_config.bars.icon_size, default_border)
+    b:SetPoint(unpack(b._anchor))
   end
 
   for i = 1, NUM_SHAPESHIFT_SLOTS do
@@ -450,87 +476,5 @@ pfUI:RegisterModule("actionbar", function ()
       getglobal(button..i..'Name'):SetJustifyH("CENTER")
       getglobal(button..i..'Name'):SetJustifyV("BOTTOM")
     end
-  end
-
-  local function pfEnableAutohide(frame)
-    frame.hover = CreateFrame("Frame", frame:GetName() .. "Autohide", frame)
-    frame.hover:SetParent(frame)
-    frame.hover:SetPoint("TOPLEFT", frame, "TOPLEFT", -5, 5)
-    frame.hover:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 5, -5)
-    frame.hover:SetFrameStrata("BACKGROUND")
-
-    frame.hover:RegisterEvent("CVAR_UPDATE")
-    frame.hover:SetScript("OnEvent", function()
-      this.x = nil
-    end)
-
-    frame.hover:SetScript("OnUpdate", function()
-      -- reset frame positions to UIParent
-      if not this.resetpos then
-        this:SetMovable(1)
-        this:StartMoving()
-        this:StopMovingOrSizing()
-        this:SetMovable(0)
-        this.resetpos = true
-      end
-
-      -- cache frame positions
-      if not this.x then
-        local _, _, _, fx, fy = this:GetPoint()
-        fy = GetScreenHeight() + fy
-        local fxmax = fx+this:GetWidth()
-        local fymax = fy-this:GetHeight()
-
-        this.x = fx
-        this.xmax = floor(fxmax)
-
-        this.y = fy
-        this.ymax = floor(fymax)
-      end
-
-      -- get cursor position
-      local x, y = GetCursorPosition()
-      x = x / UIParent:GetEffectiveScale()
-      y = y / UIParent:GetEffectiveScale()
-
-      if not this.activeTo then this.activeTo = GetTime() + tonumber(pfUI_config.bars.hide_time) end
-      if x > this.x and x < this.xmax and y < this.y and y > this.ymax then
-        this.activeTo = GetTime() + tonumber(pfUI_config.bars.hide_time)
-        this:GetParent():SetAlpha(1)
-      else
-        if this.activeTo < GetTime() and this:GetParent():GetAlpha() > 0 then
-          this:GetParent():SetAlpha(this:GetParent():GetAlpha() - 0.1)
-        end
-      end
-    end)
-  end
-
-  -- configure autohiding frames
-  if pfUI_config.bars.hide_actionmain == "1" then
-    pfEnableAutohide(pfUI.bars.actionmain)
-  end
-
-  if pfUI_config.bars.hide_bottomleft == "1" then
-    pfEnableAutohide(pfUI.bars.bottomleft)
-  end
-
-  if pfUI_config.bars.hide_bottomright == "1" then
-    pfEnableAutohide(pfUI.bars.bottomright)
-  end
-
-  if pfUI_config.bars.hide_right == "1" then
-    pfEnableAutohide(pfUI.bars.right)
-  end
-
-  if pfUI_config.bars.hide_tworight == "1" then
-    pfEnableAutohide(pfUI.bars.tworight)
-  end
-
-  if pfUI_config.bars.hide_shapeshift == "1" then
-    pfEnableAutohide(pfUI.bars.shapeshift)
-  end
-
-  if pfUI_config.bars.hide_pet == "1" then
-    pfEnableAutohide(pfUI.bars.pet)
   end
 end)
