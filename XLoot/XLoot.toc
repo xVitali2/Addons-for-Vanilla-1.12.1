@@ -1,0 +1,19 @@
+## Interface: 11200
+## Title: XLoot |cff7fff7f -Ace2-|r
+## Notes: A remake of the built-in lootframe. |cffff4488By Xuerian|r.
+## Version: 0.5
+## Author: Xuerian
+## RequiredDeps:!!!Libs
+## X-Category: Inventory
+## X-AceForum: 2278
+## X-eMail: sky.shell@gmail.com
+## X-Website: http://wowace.com/index.php/XLoot
+
+## OptionalDeps: oSkin
+## SavedVariables: XLootDB
+
+localization.enUS.lua
+localization.koKR.lua
+
+XLoot.lua
+XLootOptions.lua
