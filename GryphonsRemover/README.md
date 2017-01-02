@@ -1,0 +1,2 @@
+-- 	 	 This addon hides the Gryphons from the main bottom bar	        --
+-- Remade by Bázingà - v1 by Mr_Rosh - Nostalrius.org community members --

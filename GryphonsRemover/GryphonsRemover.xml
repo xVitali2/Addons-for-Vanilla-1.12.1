@@ -1,0 +1,13 @@
+<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file="GryphonsRemover.lua" />
+  <Frame name="GryphonsRemover" parent="UIParent" toplevel="true" hidden="true">
+    <Scripts>
+		<OnLoad>
+			GRH_OnLoad(this);
+		</OnLoad>
+		<OnEvent>
+			GRH_OnEvent(event)
+		</OnEvent>
+    </Scripts>
+  </Frame>
+</Ui>
