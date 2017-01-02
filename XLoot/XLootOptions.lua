@@ -1,10 +1,16 @@
-local L = AceLibrary("AceLocale-2.2"):new("XLoot")
+local L = AceLibrary("AceLocale-2.0"):new("XLoot")
 
 function XLoot:DoOptions()
 	local db = self.db.profile
+	local hcolor = "|cFF77BBFF"
 	XLoot.opts = {
 		type = "group",
 		args = {
+			header = {
+				type = "header",
+				name = hcolor..L["guiTitle"].."  |c88888888"..self.revision,
+				order = 1
+			},
 			lock = {
 				type = "toggle",
 				name = L["optLock"],
@@ -15,21 +21,31 @@ function XLoot:DoOptions()
 				set = function(v)
 					db.lock = v
 					end,
-					order = 1
+					order = 2
+			},
+			mspacer = {
+				type = "header",
+				order = 3
 			},
 			options = {
 				type = "execute",
 				name = L["optOptions"],
 				desc = L["descOptions"],
 				func = function() self.dewdrop:Open(UIParent) end,
-				order = 100
+				order = 100,
+				guiHidden = true
 			},
 			behavior = {
 				type = "group",
 				name = L["optBehavior"],
 				desc = L["descBehavior"],
-				order = 2,
+				order = 5,
 				args = {
+					bheader1 = {
+						type = "header",
+						name = hcolor..L["catSnap"],
+						order = 1
+					},
 					cursor = {
 						type = "toggle",
 						name = L["optCursor"],
@@ -70,7 +86,16 @@ function XLoot:DoOptions()
 						min = -100,
 						max = 100,
 						step = 1,
-						order = 3
+						order = 5
+					},
+					bspacer1 = {
+						type = "header",
+						order = 7
+					},
+					bheader2 = {
+						type = "header",
+						name = hcolor..L["catLoot"],
+						order = 7
 					},
 					collapse = {
 						type = "toggle",
@@ -82,7 +107,28 @@ function XLoot:DoOptions()
 						set = function(v)
 							db.collapse = v
 							end,
-						order = 4
+						order = 9
+					},
+					lootexpand = {
+						type = "toggle",
+						name = L["optLootexpand"],
+						desc = L["descLootexpand"],
+						get = function()
+							return db.lootexpand
+							end,
+						set = function(v)
+							db.lootexpand = v
+							end,
+						order = 11
+					},
+					bspacer2 = {
+						type = "header",
+						order = 13
+					},
+					bheader3 = {
+						type = "header",
+						name = hcolor..L["catFrame"],
+						order = 13
 					},
 					dragborder = {
 						type = "toggle",
@@ -95,19 +141,7 @@ function XLoot:DoOptions()
 							self.frame:EnableMouse(v)
 							db.dragborder = v
 							end,
-						order = 5
-					},
-					lootexpand = {
-						type = "toggle",
-						name = L["optLootexpand"],
-						desc = L["descLootexpand"],
-						get = function()
-							return db.lootexpand
-							end,
-						set = function(v)
-							db.lootexpand = v
-							end,
-						order = 6
+						order = 15
 					},
 					altoptions = {
 						type = "toggle",
@@ -119,7 +153,7 @@ function XLoot:DoOptions()
 						set = function(v)
 							db.altoptions = v
 							end,
-						order = 7
+						order = 17
 					},
 					swiftloot = {
 						type = "toggle",
@@ -132,7 +166,16 @@ function XLoot:DoOptions()
 							db.swiftloot = v
 							self:SwiftMouseEvents(v)
 							end,
-						order = 8
+						order = 19
+					},
+					bspacer3 = {
+						type = "header",
+						order = 21
+					},
+					bheader4 = {
+						type = "header",
+						name = hcolor..L["catInfo"],
+						order = 21
 					},
 					qualitytext = {
 						type = "toggle",
@@ -144,7 +187,7 @@ function XLoot:DoOptions()
 						set = function(v)
 							db.qualitytext = v
 							end,
-						order = 9
+						order = 23
 					},
 					infotext = {
 						type = "toggle",
@@ -156,7 +199,7 @@ function XLoot:DoOptions()
 						set = function(v)
 							db.infotext = v
 							end,
-						order = 10
+						order = 25
 					}
 				}
 			},
@@ -166,6 +209,11 @@ function XLoot:DoOptions()
 				desc = L["descAppearance"],
 				order = 7, 
 				args = {
+					aheader = {
+						type = "header",
+						name = hcolor..L["catGeneralAppearance"],
+						order = 1
+					},
 					oskin = {
 						type = "toggle",
 						name = L["optOskin"],
@@ -178,6 +226,31 @@ function XLoot:DoOptions()
 							end,
 						order = 3
 					},
+					scale = {
+						type = "range",
+						name = L["optScale"],
+						desc = L["descScale"],
+						get = function()
+							return db.scale
+							end,
+						set = function(v)
+							db.scale = v
+							self.frame:SetScale(v)
+							end,
+						min = 0.5,
+						max = 1.5,
+						step = 0.05,
+						order = 5
+					},
+					aspacer = {
+						type = "header",
+						order = 6
+					},
+					aheader1 = {
+						type = "header",
+						name = hcolor..L["catFrameAppearance"],
+						order = 7
+					},
 					qualityborder = {
 						type = "toggle",
 						name = L["optQualityborder"],
@@ -188,7 +261,7 @@ function XLoot:DoOptions()
 						set = function(v)
 							db.qualityborder = v
 							end,
-						order = 6
+						order = 9
 					},
 					qualityframe = {
 						type = "toggle",
@@ -200,23 +273,11 @@ function XLoot:DoOptions()
 						set = function(v)
 							db.qualityframe = v
 							end,
-						order = 7
-					},
-					lootqualityborder = {
-						type = "toggle",
-						name = L["optLootqualityborder"],
-						desc = L["descLootqualityborder"],
-							get = function()
-							return db.lootqualityborder
-							end,
-						set = function(v)
-							db.lootqualityborder = v
-							end,
-						order = 8
+						order = 11
 					},
 					bgcolor = {
 						type = "color",
-						name = L["optBgcolor"],
+						name = L["optBgcolor"].." ",
 						desc = L["descBgcolor"],
 						get = function()
 							return unpack(db.bgcolor)
@@ -226,7 +287,7 @@ function XLoot:DoOptions()
 							self.frame:SetBackdropColor(r, g, b, a)
 						end,
 						hasAlpha = true,
-						order = 9
+						order = 13
 					},
 					bordercolor = {
 						type = "color",
@@ -240,7 +301,40 @@ function XLoot:DoOptions()
 							self.frame:SetBackdropBorderColor(r, g, b, a)
 						end, 
 						hasAlpha = true,
-						order = 10
+						order = 14,
+					},
+					aspacer1 = {
+						type = "header",
+						order = 15,
+					},
+					aheader2 = {
+						type = "header",
+						name = hcolor..L["catLootAppearance"],
+						order = 17,
+					},
+					texcolor = {
+						type = "toggle",
+						name = L["optTexColor"],
+						desc = L["descTexColor"],
+							get = function()
+							return db.texcolor
+							end,
+						set = function(v)
+							db.texcolor = v
+							end,
+						order = 18
+					},
+					lootqualityborder = {
+						type = "toggle",
+						name = L["optLootqualityborder"],
+						desc = L["descLootqualityborder"],
+							get = function()
+							return db.lootqualityborder
+							end,
+						set = function(v)
+							db.lootqualityborder = v
+							end,
+						order = 19
 					},
 					lootbgcolor = {
 						type = "color",
@@ -257,7 +351,7 @@ function XLoot:DoOptions()
 							end
 						end,
 						hasAlpha = true,
-						order = 12
+						order = 21
 					},
 					lootbordercolor = {
 						type = "color",
@@ -274,31 +368,15 @@ function XLoot:DoOptions()
 							end
 						end, 
 						hasAlpha = true,
-						order = 13
-					}
+						order = 23
+					},
 				},
-				scale = {
-					type = "range",
-					name = L["optScale"],
-					desc = L["descScale"],
-					get = function()
-						return db.scale
-						end,
-					set = function(v)
-						db.scale = v
-						self.frame:SetScale(v)
-						end,
-					min = 0.5,
-					max = 1.5,
-					step = 0.05,
-					order = 14
-				}
 			},
 			advanced = {
 				type = "group",
 				name = L["optAdvanced"],
 				desc = L["descAdvanced"],
-				order = 100,
+				order = 80,
 				args = {
 					debug = {
 						type = "toggle",
@@ -312,14 +390,19 @@ function XLoot:DoOptions()
 							end,
 						order = 1
 					},
+					adspacer = {
+						type = "header",
+						order = 2
+					},
 					defaults = {
 						type = "execute",
-						name = L["optDefaults"],
+						name = "|cFFFF5522"..L["optDefaults"],
 						desc = L["descDefaults"],
-						func = function() self:Defaults() end
+						func = function() self:Defaults() end, 
+						order = 3
 					}
 				}
-			}
+			},
 		}
 	}
 	self:RegisterChatCommand({ "/xloot" }, self.opts)
