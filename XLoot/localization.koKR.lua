@@ -1,4 +1,4 @@
-local L = AceLibrary("AceLocale-2.2"):new("XLoot")
+local L = AceLibrary("AceLocale-2.0"):new("XLoot")
 
 L:RegisterTranslations("koKR", function()
 	return {

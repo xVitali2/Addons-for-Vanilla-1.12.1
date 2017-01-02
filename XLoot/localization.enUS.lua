@@ -1,7 +1,15 @@
-local L = AceLibrary("AceLocale-2.2"):new("XLoot")
+local L = AceLibrary("AceLocale-2.0"):new("XLoot")
 
 L:RegisterTranslations("enUS", function()
 	return {
+		catSnap = "Frame Behavior",
+		catLoot = "Loot Behavior",
+		catFrame = "Frame options",
+		catInfo = "Loot information",
+		catGeneralAppearance = "General Appearance",
+		catFrameAppearance = "Frame appearance",
+		catLootAppearance = "Loot appearance",
+		
 		optLock = "Lock XLoot frame",
 		optOptions = "Options GUI",
 		optBehavior = "Behavior options",
@@ -22,6 +30,7 @@ L:RegisterTranslations("enUS", function()
 		optLootqualityborder = "Loot border quality coloring",
 		optBgcolor = "Frame Background Color",
 		optBordercolor = "Frame Border Color",
+		optTexColor = "Loot icon quality coloring",
 		optLootbgcolor = "Loot Background Color",
 		optLootbordercolor = "Loot Border Color",
 		optScale = "Scale",
@@ -49,6 +58,7 @@ L:RegisterTranslations("enUS", function()
 		descLootqualityborder = "Colors loot borders by quality",
 		descBgcolor = "Change the background color for the loot frame itself",
 		descBordercolor = "Change the border color of the frame itself",
+		descTexColor = "Color the border of the actual item icon/texture by quality",
 		descLootbgcolor = "Change the background color for every loot item",
 		descLootbordercolor = "Change the border color of every loot item",
 		descScale = "Scale of the loot frame",
@@ -59,5 +69,7 @@ L:RegisterTranslations("enUS", function()
 		qualityQest = "Quest item",
 		
 		guiTitle = "XLoot Options",
+		
+		itemWeapon = "Weapon",
 	}
 end)
