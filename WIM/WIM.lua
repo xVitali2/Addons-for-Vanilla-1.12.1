@@ -454,7 +454,7 @@ function WIM_PostMessage(user, msg, ttype, from, raw_msg)
 			WIM_SetWindowLocation(f);
 			if(WIM_Data.characterInfo.show) then
 				if(table.getn(WIM_Split(user, "-")) == 2) then
-					-- WIM_GetBattleWhoInfo(user);
+					WIM_GetBattleWhoInfo(user);
 				else
 					WIM_WhoInfo(user, function()
 						WIM_SetWhoInfo(user)
@@ -1155,7 +1155,23 @@ function WIM_LoadDefaultFilters()
 	WIM_Filters["^YOU ARE THE BOMB!"] 		= "Ignore";
 	WIM_Filters["VOLATILE INFECTION"] 		= "Ignore";
 	WIM_Filters["^<GA"]						= "Ignore";
-	
+	WIM_Filters["USD"]						= "Ignore";
+	WIM_Filters["COM"]						= "Ignore";
+	WIM_Filters["W@W"]						= "Ignore";
+	WIM_Filters["C@M"]						= "Ignore";
+	WIM_Filters["G4"]						= "Ignore";
+	WIM_Filters["G="]						= "Ignore";
+	WIM_Filters[">>"]						= "Ignore";
+	WIM_Filters[">>>"]						= "Ignore";
+	WIM_Filters["OKO"]						= "Ignore";
+	WIM_Filters["GAMES"]					= "Ignore";
+	WIM_Filters["NOST"]						= "Ignore";
+	WIM_Filters["DOLLARS"]					= "Ignore";
+	WIM_Filters["CQM"]						= "Ignore";
+	WIM_Filters["SERVICE"]					= "Ignore";
+	WIM_Filters["CHEAP"]					= "Ignore";
+--	WIM_Filters[""]						= "Ignore";
+
 	WIM_FilteringScrollBar_Update();
 end
 
@@ -1274,25 +1290,25 @@ function WIM_Split(theString, thePattern)
 	return t
 end
 
--- function WIM_GetBattleWhoInfo(theUser)
--- 	local user, server = unpack(WIM_Split(theUser, "-"));
--- 	--[ call this function only if a "-" is in the name. Used to get cross realm info.
--- 	for i=1, GetNumRaidMembers() do 
--- 		local name, rank, subgroup, level, class, fileName, zone, online, isDead = GetRaidRosterInfo(i);
--- 		local race, raceEng = UnitRace("raid"..i);
--- 		local guildName, guildRankName, guildRankIndex = GetGuildInfo("raid"..i);
--- 		if(not guildName) then guildName=""; end
--- 		if(name == user) then
--- 			WIM_Windows[theUser].waiting_who = false;
--- 			WIM_Windows[theUser].class = class;
--- 			WIM_Windows[theUser].race = race;
--- 			WIM_Windows[theUser].guild = guildName;
--- 			WIM_Windows[theUser].level = level;
--- 			WIM_SetWhoInfo(theUser);
--- 			return;
--- 		end
--- 	end
--- end
+ function WIM_GetBattleWhoInfo(theUser)
+ 	local user, server = unpack(WIM_Split(theUser, "-"));
+ 	--[ call this function only if a "-" is in the name. Used to get cross realm info.
+	for i=1, GetNumRaidMembers() do 
+ 		local name, rank, subgroup, level, class, fileName, zone, online, isDead = GetRaidRosterInfo(i);
+ 		local race, raceEng = UnitRace("raid"..i);
+ 		local guildName, guildRankName, guildRankIndex = GetGuildInfo("raid"..i);
+ 		if(not guildName) then guildName=""; end
+ 		if(name == user) then
+ 			WIM_Windows[theUser].waiting_who = false;
+ 			WIM_Windows[theUser].class = class;
+			WIM_Windows[theUser].race = race;
+ 			WIM_Windows[theUser].guild = guildName;
+ 			WIM_Windows[theUser].level = level;
+ 			WIM_SetWhoInfo(theUser);
+ 			return;
+ 		end
+ 	end
+ end
 
 function WIM_SetTabFrameProps()
 	WIM_TabFrame:SetScale(WIM_Data.windowSize * 1);
