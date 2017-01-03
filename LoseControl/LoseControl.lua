@@ -53,60 +53,51 @@ local spellIds = {
 	
 	-- other
 	["War Stomp"] = CC, -- War Stomp
-	["Ice Blast"] = CC -- Ice Yeti
+	--CFM
+	["Ice Blast"] = CC, -- Ice Yeti
+	["Web"]=CC			-- Carrion Lurker
 }
 
-function LCPlayer_OnLoad()	
-	this:SetHeight(50)
-	this:SetWidth(50)
-	this:SetPoint("CENTER", 0, 0)
-	this:RegisterEvent("UNIT_AURA")
-	this:RegisterEvent("PLAYER_AURAS_CHANGED")
 
-	this.texture = this:CreateTexture(this, "BACKGROUND")
-	this.texture:SetAllPoints(this)
-	this.cooldown = CreateFrame("Model", "Cooldown", this, "CooldownFrameTemplate")
-	this.cooldown:SetAllPoints(this) 
-	this.maxExpirationTime = 0
-	this:Hide()
-end
-
-function LCPlayer_OnEvent()
-	local spellFound = false
-	for i=1, 16 do -- 16 is enough due to HARMFUL filter
-		local texture = UnitDebuff("player", i)
-		LCTooltip:ClearLines()
-		LCTooltip:SetUnitDebuff("player", i)
-		local buffName = LCTooltipTextLeft1:GetText()
-		
-		if spellIds[buffName] then
-			spellFound = true
-			for j=0, 31 do
-				local buffTexture = GetPlayerBuffTexture(j)
-				if texture == buffTexture then
-					local expirationTime = GetPlayerBuffTimeLeft(j)
-					this:Show()
-					this.texture:SetTexture(buffTexture)
-					this.cooldown:SetModelScale(1)
-					if this.maxExpirationTime <= expirationTime then
-						CooldownFrame_SetTimer(this.cooldown, GetTime(), expirationTime, 1)
-						this.maxExpirationTime = expirationTime
+	LCPlayer = CreateFrame("Frame", "LoseControlPlayer", ActionButtonTemplate)
+	LCPlayer:SetHeight(50)
+	LCPlayer:SetWidth(50)
+	LCPlayer:SetPoint("CENTER", 0,0)
+	LCPlayer:RegisterEvent("UNIT_AURA")
+	LCPlayer:RegisterEvent("PLAYER_AURAS_CHANGED")
+	LCPlayer.texture = LCPlayer:CreateTexture(LCPlayer, "BACKGROUND")
+	LCPlayer.texture:SetAllPoints(LCPlayer)
+	LCPlayer.cooldown = CreateFrame("Model", "Cooldown", LCPlayer, "CooldownFrameTemplate")
+	LCPlayer.cooldown:SetAllPoints(LCPlayer) 
+	LCPlayer.maxExpirationTime = 0
+	LCPlayer:Hide()
+	LCPlayer:SetScript("OnEvent", function()
+		local spellFound = false
+		for i=1, 16 do -- 16 is enough due to HARMFUL filter
+			local texture = UnitDebuff("player", i)
+			LCTooltip:ClearLines()
+			LCTooltip:SetUnitDebuff("player", i)
+			local buffName = LCTooltipTextLeft1:GetText()
+						if spellIds[buffName] then
+				spellFound = true
+				for j=0, 31 do
+					local buffTexture = GetPlayerBuffTexture(j)
+					if texture == buffTexture then
+						local expirationTime = GetPlayerBuffTimeLeft(j)
+						LCPlayer:Show()
+						LCPlayer.texture:SetTexture(buffTexture)
+						LCPlayer.cooldown:SetModelScale(1)
+						if LCPlayer.maxExpirationTime <= expirationTime then
+							CooldownFrame_SetTimer(LCPlayer.cooldown, GetTime(), expirationTime, 1)
+							LCPlayer.maxExpirationTime = expirationTime
+						end
+						return
 					end
-					return
-				end
-			end		
+				end		
+			end
 		end
-	end
-	if spellFound == false then
-		this.maxExpirationTime = 0
-		this:Hide()
-	end
-end
-
-function LCTarget_OnLoad()
-	
-end
-
-function LCTarget_OnEvent()
-	
-end
+		if spellFound == false then
+			LCPlayer.maxExpirationTime = 0
+			LCPlayer:Hide()
+		end
+	end)
