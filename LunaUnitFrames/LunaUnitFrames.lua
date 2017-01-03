@@ -7,7 +7,7 @@ LunaUF.BS = AceLibrary("Babble-Spell-2.2")
 LunaUF.Banzai = AceLibrary("Banzai-1.0")
 LunaUF.HealComm = AceLibrary("HealComm-1.0")
 LunaUF.DruidManaLib = AceLibrary("DruidManaLib-1.0")
-LunaUF.unitList = {"player", "pet", "target", "targettarget", "targettargettarget", "party", "partytarget", "partypet", "raid"}
+LunaUF.unitList = {"player", "pet", "pettarget", "target", "targettarget", "targettargettarget", "party", "partytarget", "partypet", "raid"}
 LunaUF.ScanTip = CreateFrame("GameTooltip", "LunaScanTip", nil, "GameTooltipTemplate")
 LunaUF.ScanTip:SetOwner(WorldFrame, "ANCHOR_NONE")
 LunaUF.modules = {}
@@ -34,45 +34,88 @@ function LunaUF:deepcopy(orig)
     return copy
 end
 
+function LunaUF:CastSpellByName_IgnoreSelfCast(spell, onPlayer)
+	local sc = GetCVar("AutoSelfCast")
+	SetCVar("AutoSelfCast", "0")
+	-- make sure that this call doesn't fail, otherwise the CVar may not be restored
+	pcall(CastSpellByName, spell, onPlayer)
+	SetCVar("AutoSelfCast", sc)
+end
+
+function LunaUF:isDualSpell(spell)
+	return strfind(spell,LunaUF.BS["Holy Shock"]) or strfind(spell, LunaUF.BS["Mind Vision"]) or strfind(spell, LunaUF.BS["Dispel Magic"])
+end
+
 SLASH_LUFMO1, SLASH_LUFMO2 = "/lunamo", "/lunamouseover"
 function SlashCmdList.LUFMO(msg, editbox)
 	local func = loadstring(msg)
+	SpellStopTargeting()
 	if LunaUF.db.profile.mouseover and UnitExists("mouseover") then
 		if UnitIsUnit("target", "mouseover") then
 			if func then
 				func()
 			else
-				CastSpellByName(msg)
+				LunaUF:CastSpellByName_IgnoreSelfCast(msg)
 			end
-			return
+		elseif UnitIsUnit("player", "mouseover") and not func then
+			CastSpellByName(msg, 1)
 		else
-			TargetUnit("mouseover")
-			if func then
-				func()
+			if UnitCanAttack("player", "mouseover") or LunaUF:isDualSpell(msg) then
+				LunaUF.Units.pauseUpdates = true
+				TargetUnit("mouseover")
+				LunaUF:CastSpellByName_IgnoreSelfCast(msg)
+				TargetLastTarget()
+				LunaUF.Units.pauseUpdates = nil
 			else
-				CastSpellByName(msg)
+				if UnitCanAttack("player", "target") then
+					LunaUF:CastSpellByName_IgnoreSelfCast(msg)
+					SpellTargetUnit("mouseover")
+				else
+					LunaUF.Units.pauseUpdates = true
+					TargetUnit("mouseover")
+					LunaUF:CastSpellByName_IgnoreSelfCast(msg)
+					TargetLastTarget()
+					LunaUF.Units.pauseUpdates = nil
+				end
 			end
-			TargetLastTarget()
-			return
 		end
+		if SpellIsTargeting() then
+			SpellStopTargeting()
+		end
+		return
 	end
 	if GetMouseFocus().unit then
-		if UnitIsUnit("target", GetMouseFocus().unit) then
+		local unit = GetMouseFocus().unit
+		if UnitIsUnit("target", unit) then
 			if func then
 				func()
 			else
-				CastSpellByName(msg)
+				LunaUF:CastSpellByName_IgnoreSelfCast(msg)
 			end
+		elseif UnitIsUnit("player", unit) and not func then
+			CastSpellByName(msg, 1)
 		else
-			LunaUF.Units.pauseUpdates = true
-			TargetUnit(GetMouseFocus().unit)
-			if func then
-				func()
+			if UnitCanAttack("player", unit) or LunaUF:isDualSpell(msg) then
+				LunaUF.Units.pauseUpdates = true
+				TargetUnit(unit)
+				LunaUF:CastSpellByName_IgnoreSelfCast(msg)
+				TargetLastTarget()
+				LunaUF.Units.pauseUpdates = nil
 			else
-				CastSpellByName(msg)
+				if UnitCanAttack("player", "target") then
+					LunaUF:CastSpellByName_IgnoreSelfCast(msg)
+					SpellTargetUnit(unit)
+				else
+					LunaUF.Units.pauseUpdates = true
+					TargetUnit(unit)
+					LunaUF:CastSpellByName_IgnoreSelfCast(msg)
+					TargetLastTarget()
+					LunaUF.Units.pauseUpdates = nil
+				end
 			end
-			TargetLastTarget()
-			LunaUF.Units.pauseUpdates = nil
+		end
+		if SpellIsTargeting() then
+			SpellStopTargeting()
 		end
 	else 
 		if func then
@@ -165,6 +208,7 @@ LunaUF.constants = {
 			[2] = "healthBar",
 			[3] = "powerBar",
 			[4] = "castBar",
+			[5] = "emptyBar",
 		},
 		vertical = {
 		},
@@ -176,10 +220,11 @@ LunaUF.constants = {
 				[2] = "healthBar",
 				[3] = "powerBar",
 				[4] = "castBar",
-				[5] = "druidBar",
-				[6] = "totemBar",
-				[7] = "reckStacks",
-				[8] = "xpBar",
+				[5] = "emptyBar",
+				[6] = "druidBar",
+				[7] = "totemBar",
+				[8] = "reckStacks",
+				[9] = "xpBar",
 			},
 			vertical = {
 			},
@@ -191,6 +236,7 @@ LunaUF.constants = {
 				[3] = "powerBar",
 				[4] = "castBar",
 				[5] = "xpBar",
+				[6] = "emptyBar",
 			},
 			vertical = {
 			},
@@ -202,6 +248,7 @@ LunaUF.constants = {
 				[3] = "powerBar",
 				[4] = "castBar",
 				[5] = "comboPoints",
+				[6] = "emptyBar",
 			},
 			vertical = {
 			},
@@ -210,6 +257,7 @@ LunaUF.constants = {
 			horizontal = {
 				[1] = "portrait",
 				[2] = "castBar",
+				[3] = "emptyBar",
 			},
 			vertical = {
 				[1] = "healthBar",
@@ -451,14 +499,12 @@ end
 
 function LunaUF:InitBarorder()
 	for key,unitGroup in pairs(LunaUF.db.profile.units) do
-		if not unitGroup.barorder then
+		if not unitGroup.barorder or (LunaUF.constants.specialbarorder[key] and (getn(unitGroup.barorder.horizontal) + getn(unitGroup.barorder.vertical)) < (getn(LunaUF.constants.specialbarorder[key].horizontal) + getn(LunaUF.constants.specialbarorder[key].vertical)) or (getn(unitGroup.barorder.horizontal) + getn(unitGroup.barorder.vertical)) < (getn(LunaUF.constants.barorder.horizontal) + getn(LunaUF.constants.barorder.vertical)) ) then
 			if LunaUF.constants.specialbarorder[key] then
 				unitGroup.barorder = LunaUF:deepcopy(LunaUF.constants.specialbarorder[key])
 			else
 				unitGroup.barorder = LunaUF:deepcopy(LunaUF.constants.barorder)
 			end
-		elseif key == "player" and (getn(unitGroup.barorder.horizontal) + getn(unitGroup.barorder.vertical)) < 8 then
-			tinsert(unitGroup.barorder.horizontal, "reckStacks")
 		end
 	end
 end

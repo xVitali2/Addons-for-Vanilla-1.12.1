@@ -22,12 +22,12 @@ StaticPopupDialogs["DELETE_LUNA_PROFILE"] = {
 	button1 = L["OK"],
 	button2 = L["Cancel"],
 	OnAccept = function()
-		local profile = UIDropDownMenu_GetSelectedValue(LunaOptionsFrame.pages[13].ProfileSelect)
-		UIDropDownMenu_SetSelectedValue(LunaOptionsFrame.pages[13].ProfileSelect, "Default")
-		UIDropDownMenu_SetText("Default", LunaOptionsFrame.pages[13].ProfileSelect)
+		local profile = UIDropDownMenu_GetSelectedValue(LunaOptionsFrame.pages[14].ProfileSelect)
+		UIDropDownMenu_SetSelectedValue(LunaOptionsFrame.pages[14].ProfileSelect, "Default")
+		UIDropDownMenu_SetText("Default", LunaOptionsFrame.pages[14].ProfileSelect)
 		LunaUF:SetProfile("Default")
 		LunaDB.profiles[profile] = nil
-		LunaOptionsFrame.pages[13].delete:Disable()
+		LunaOptionsFrame.pages[14].delete:Disable()
 		LunaUF:SystemMessage(LunaUF.L["The profile has been deleted and the default profile has been selected."])
 	end,
 	timeout = 0,
@@ -93,6 +93,7 @@ LunaUF.defaults = {
 			yellow = {r = 0.93, g = 0.93, b = 0.0},
 			inc = {r = 0, g = 1, b = 0},
 			enemyUnattack = {r = 0.60, g = 0.20, b = 0.20},
+			enemyCivilian = {r = 1, g = 0.90, b = 0.90},
 			hostile = {r = 0.90, g = 0.0, b = 0.0},
 			friendly = {r = 0.20, g = 0.90, b = 0.20},
 			neutral = {r = 0.93, g = 0.93, b = 0.0},
@@ -135,9 +136,10 @@ LunaUF.defaults = {
 				totemBar = { enabled = true, size = 2, hide=true },
 				druidBar = { enabled = true, size = 2 },
 				reckStacks = { enabled = true, size = 1, growth = "RIGHT", hide = true },
+				emptyBar = { enabled = false, size = 3 },
 				portrait = { enabled = true, type = "3D", side = "left", size = 6 },
 				auras = { enabled = false, AurasPerRow = 12, position = "BOTTOM", weaponbuffs = true, timertextenabled = true, timertextbigsize = 23,timertextsmallsize = 12, timerspinenabled = true },
-				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false },
+				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false, alpha = 0.6 },
 				fader = { enabled = false, inactiveAlpha = 0.2, combatAlpha = 1, speedyFade = false },
 				tags = {
 					enabled = true,
@@ -157,6 +159,9 @@ LunaUF.defaults = {
 							["center"] = "[druid:pp]/[druid:maxpp]",
 						},
 						castBar = {
+							size = 10,
+						},
+						emptyBar = {
 							size = 10,
 						},
 					},
@@ -193,9 +198,10 @@ LunaUF.defaults = {
 				enabled = true,
 				healthBar = {enabled = true, colorType = "none", reactionType = "happiness", size = 6 },
 				powerBar = { enabled = true, size = 4 },
+				emptyBar = { enabled = false, size = 3 },
 				portrait = { enabled = true, type = "3D", side = "left", size = 6 },
 				auras = { enabled = false, AurasPerRow = 12, position = "BOTTOM" },
-				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false },
+				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false, alpha = 0.6 },
 				fader = { enabled = false, inactiveAlpha = 0.2, combatAlpha = 1, speedyFade = false },
 				tags = {
 					enabled = true,
@@ -212,6 +218,9 @@ LunaUF.defaults = {
 						},
 						castBar = {
 							size = 8,
+						},
+						emptyBar = {
+							size = 10,
 						},
 					},
 				},
@@ -235,14 +244,69 @@ LunaUF.defaults = {
 					y = 30,
 				},
 			},
+			pettarget = {
+				enabled = false,
+				healthBar = { enabled = true, colorType = "class", reactionType="npc", size = 6 },
+				powerBar = { enabled = true, size = 4 },
+				emptyBar = { enabled = false, size = 3 },
+				portrait = { enabled = false, type = "3D", side = "left", size = 6 },
+				auras = { enabled = false, AurasPerRow = 8, position = "BOTTOM" },
+				highlight = { enabled = false, ontarget = false, ondebuff = true, onmouse = false, alpha = 0.6 },
+				fader = { enabled = false, inactiveAlpha = 0.2, combatAlpha = 1, speedyFade = false },
+				combatText = { enabled = false, xoffset = 0, yoffset = 0, size = 2 },
+				tags = {
+					enabled = true,
+					bartags = {
+						healthBar = {
+							size = 10,
+							["left"] = "[abbrev:name]",
+							["right"] = "[ssmarthealth]",
+						},
+						powerBar = {
+							size = 10,
+							["left"] = "[levelcolor][level][shortclassification] [classcolor][smartclass]",
+							["right"] = "[spp]/[smaxpp]",
+						},
+						castBar = {
+							size = 10,
+						},
+						emptyBar = {
+							size = 10,
+						},
+					},
+				},
+				incheal = { enabled = false, cap = 0.2 },
+				indicators = {
+					enabled = true,
+					icons = {
+						raidTarget = { enabled = true, anchorPoint = "CENTER", size = 20, x = 0, y = 0 },
+						class = { enabled = true, anchorPoint = "BOTTOMLEFT", size = 16, x = 0, y = 0 },
+						elite = { enabled = false, anchorPoint = "LEFT", size = 74, x = 14, y = 0 },
+						pvp = { enabled = false, anchorPoint = "TOPRIGHT", size = 30, x = 5, y = -25 },
+						pvprank = { enabled = false, anchorPoint = "BOTTOMLEFT", size = 8, x = 0, y = 0 },
+						status = { enabled = false, anchorPoint = "BOTTOMLEFT", size = 16, x = 20, y = -2 },
+					},
+				},
+				castBar = { enabled = true, size = 3, hide = true },
+				scale = 1,
+				position = {
+					x = 190,
+					y = -50,
+				},
+				size = {
+					x = 100,
+					y = 30,
+				},
+			},
 			target = {
 				enabled = true,
 				healthBar = { enabled = true, colorType = "class", reactionType="npc", size = 6 },
 				powerBar = { enabled = true, size = 4 },
 				comboPoints = { enabled = true, size = 1, growth = "LEFT", hide = true },
+				emptyBar = { enabled = false, size = 3 },
 				portrait = { enabled = true, type = "3D", side = "right", size = 6 },
 				auras = { enabled = true, AurasPerRow = 12, position = "BOTTOM"},
-				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false },
+				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false, alpha = 0.6 },
 				fader = { enabled = false, inactiveAlpha = 0.2, combatAlpha = 1, speedyFade = false },
 				tags = {
 					enabled = true,
@@ -258,6 +322,9 @@ LunaUF.defaults = {
 							["right"] = "[spp]/[smaxpp]",
 						},
 						castBar = {
+							size = 10,
+						},
+						emptyBar = {
 							size = 10,
 						},
 					},
@@ -294,9 +361,10 @@ LunaUF.defaults = {
 				enabled = true,
 				healthBar = { enabled = true, colorType = "class", reactionType="npc", size = 6 },
 				powerBar = { enabled = true, size = 4 },
+				emptyBar = { enabled = false, size = 3 },
 				portrait = { enabled = true, type = "3D", side = "left", size = 6 },
 				auras = { enabled = false, AurasPerRow = 8, position = "BOTTOM" },
-				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false },
+				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false, alpha = 0.6 },
 				fader = { enabled = false, inactiveAlpha = 0.2, combatAlpha = 1, speedyFade = false },
 				combatText = { enabled = false, xoffset = 0, yoffset = 0, size = 2 },
 				tags = {
@@ -313,6 +381,9 @@ LunaUF.defaults = {
 							["right"] = "[spp]/[smaxpp]",
 						},
 						castBar = {
+							size = 10,
+						},
+						emptyBar = {
 							size = 10,
 						},
 					},
@@ -347,9 +418,10 @@ LunaUF.defaults = {
 				enabled = true,
 				healthBar = { enabled = true, colorType = "class", reactionType="npc", size = 6 },
 				powerBar = { enabled = true, size = 4 },
+				emptyBar = { enabled = false, size = 3 },
 				portrait = { enabled = true, type = "3D", side = "left", size = 6 },
 				auras = { enabled = false, AurasPerRow = 8, position = "BOTTOM" },
-				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false },
+				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false, alpha = 0.6 },
 				fader = { enabled = false, inactiveAlpha = 0.2, combatAlpha = 1, speedyFade = false },
 				combatText = { enabled = false, xoffset = 0, yoffset = 0, size = 2 },
 				tags = {
@@ -366,6 +438,9 @@ LunaUF.defaults = {
 							["right"] = "[spp]/[smaxpp]",
 						},
 						castBar = {
+							size = 10,
+						},
+						emptyBar = {
 							size = 10,
 						},
 					},
@@ -406,9 +481,10 @@ LunaUF.defaults = {
 				inraid = true,
 				healthBar = { enabled = true, colorType = "class", reactionType="npc", size = 6 },
 				powerBar = { enabled = true, size = 4 },
+				emptyBar = { enabled = false, size = 3 },
 				portrait = { enabled = true, type = "3D", side = "left", size = 6 },
 				auras = { enabled = true, AurasPerRow = 11, position = "BOTTOM" },
-				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false },
+				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false, alpha = 0.6 },
 				fader = { enabled = false, inactiveAlpha = 0.2, combatAlpha = 1, speedyFade = false },
 				tags = {
 					enabled = true,
@@ -424,6 +500,9 @@ LunaUF.defaults = {
 							["right"] = "[pp]/[maxpp]",
 						},
 						castBar = {
+							size = 10,
+						},
+						emptyBar = {
 							size = 10,
 						},
 					},
@@ -467,10 +546,11 @@ LunaUF.defaults = {
 				portrait = { enabled = false, type = "3D", side = "left", size = 6 },
 				healthBar = { enabled = true, colorType = "class", reactionType="npc", size = 6, },
 				powerBar = { enabled = false, size = 4 },
+				emptyBar = { enabled = false, size = 3 },
 				castBar = { enabled = false, size = 3, hide = true },
 				incheal = { enabled = false, cap = 0.2 },
 				auras = { enabled = false, AurasPerRow = 8, position = "BOTTOM" },
-				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false },
+				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false, alpha = 0.6 },
 				fader = { enabled = false, inactiveAlpha = 0.2, combatAlpha = 1, speedyFade = false },
 				combatText = { enabled = false, xoffset = 0, yoffset = 0, size = 2 },
 				tags = {
@@ -487,6 +567,9 @@ LunaUF.defaults = {
 							["right"] = "",
 						},
 						castBar = {
+							size = 10,
+						},
+						emptyBar = {
 							size = 10,
 						},
 					},
@@ -515,9 +598,10 @@ LunaUF.defaults = {
 				healthBar = { enabled = true, colorType = "class", reactionType="npc", size = 6 },
 				powerBar = { enabled = false, size = 4 },
 				castBar = { enabled = false, size = 3, hide = true },
+				emptyBar = { enabled = false, size = 3 },
 				incheal = { enabled = false, cap = 0.2 },
 				auras = { enabled = false, AurasPerRow = 8, position = "BOTTOM" },
-				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false },
+				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false, alpha = 0.6 },
 				fader = { enabled = false, inactiveAlpha = 0.2, combatAlpha = 1, speedyFade = false },
 				combatText = { enabled = false, xoffset = 0, yoffset = 0, size = 2 },
 				tags = {
@@ -534,6 +618,9 @@ LunaUF.defaults = {
 							["right"] = "",
 						},
 						castBar = {
+							size = 10,
+						},
+						emptyBar = {
 							size = 10,
 						},
 					},
@@ -562,9 +649,10 @@ LunaUF.defaults = {
 				petgrp = false,
 				healthBar = { enabled = true, colorType = "class", reactionType="npc", size = 10, vertical = true },
 				powerBar = { enabled = true, vertical = true, size = 1 },
+				emptyBar = { enabled = false, size = 3 },
 				portrait = { enabled = false, type = "3D", side = "left", size = 6 },
 				auras = { enabled = false, AurasPerRow = 6, position = "RIGHT" },
-				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false },
+				highlight = { enabled = true, ontarget = false, ondebuff = true, onmouse = false, alpha = 0.6 },
 				fader = { enabled = false, inactiveAlpha = 0.2, combatAlpha = 1, speedyFade = false },
 				tags = {
 					enabled = true,
@@ -579,6 +667,9 @@ LunaUF.defaults = {
 						},
 						castBar = {
 							size = 8,
+						},
+						emptyBar = {
+							size = 10,
 						},
 					},
 				},
@@ -606,6 +697,7 @@ LunaUF.defaults = {
 					innersize = 20,
 					enabledebuffs = true,
 					dispellabledebuffs = false,
+					owndispdebuffs = false,
 					aggro = true,
 					aggrocolor = {r=1,g=0,b=0},
 					hottracker = true,

@@ -17,6 +17,11 @@ local function OnLeave()
 	GameTooltip:Hide()
 end
 
+local function OnClick()
+	LunaUF.clickedButton = arg1
+	this:GetParent():Click(arg1)
+end
+
 -- Format 5000 into 5,000 Thanks Shadowed! :D
 local function formatNumber(number)
 	local found
@@ -30,9 +35,12 @@ end
 
 function XP:OnEnable(frame)
 	if( not frame.xpBar ) then
-		frame.xpBar = CreateFrame("Frame", nil, frame)
+		frame.xpBar = CreateFrame("Button", nil, frame)
 		frame.xpBar:SetScript("OnEnter", OnEnter)
 		frame.xpBar:SetScript("OnLeave", OnLeave)
+		frame.xpBar:SetScript("OnClick", OnClick)
+		local click_action = LunaUF.db.profile.clickcasting.mouseDownClicks and "Down" or "Up"
+		frame.xpBar:RegisterForClicks('LeftButton' .. click_action, 'RightButton' .. click_action, 'MiddleButton' .. click_action, 'Button4' .. click_action, 'Button5' .. click_action)
 		frame.xpBar:EnableMouse(true)
 		
 		frame.xpBar.xp = LunaUF.Units:CreateBar(frame.xpBar)
@@ -40,9 +48,12 @@ function XP:OnEnable(frame)
 		frame.xpBar.xp:SetPoint("BOTTOMRIGHT", frame.xpBar)
 				
 		if( frame.unitGroup == "player" ) then
+			frame.xpBar.unit = "player"
 			frame.xpBar.rep = LunaUF.Units:CreateBar(frame.xpBar)
 			frame.xpBar.rep:SetPoint("TOPLEFT", frame.xpBar)
 			frame.xpBar.rep:SetPoint("TOPRIGHT", frame.xpBar)
+		else
+			frame.xpBar.unit = "pet"
 		end
 		
 		frame.xpBar.rested = CreateFrame("StatusBar", nil, frame.xpBar.xp)

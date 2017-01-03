@@ -14,9 +14,11 @@ local function zhCN() return {
 ["Show/hide the options menu."] = "显示/隐藏选项界面",
 ["Health bar"] = "生命条",
 ["Power bar"] = "能量条",
+["Empty Bar"] = "Empty Bar",
 ["General"] = "常用",
 ["Player"] = "玩家",
 ["Pet"] = "宠物",
+["Pet Target"] = "Pet Target",
 ["Target"] = "目标",
 ["ToT"] = "目标的目标",
 ["ToToT"] = "目标的目标的目标",
@@ -37,14 +39,6 @@ local function zhCN() return {
 ["Indicators"] = "指示器",
 ["(%a+) is now the loot master."] = "(.+)现在负责拾取并分配所有战利品",
 ["Cast bar"] = "施法条",
-["(.+) gains (.+)."] = "(.+)获得了(.+)的效果。", -- AURAADDEDOTHERHELPFUL
-["(.+) begins to cast (.+)."] = "(.+)开始施放(.+)。", -- SPELLCASTOTHERSTART
-["(.+) begins to perform (.+)."] = "(.+)开始施展(.+)。", -- SPELLPERFORMOTHERSTART
-["(.+) (.+) afflicted by (.+)."] = "(.+)受到了(.+)效果的影响。", -- AURAADDEDOTHERHARMFUL
-["Your (.+) hits (.+) for %d+\."] = "你的(.+)对(.+)造成了%d+点伤害。", -- SPELLLOGCRITSELFOTHER
-["Your (.+) crits (.+) for %d+\."] = "你的(.+)对(.+)造成%d+的致命一击伤害。", -- SPELLLOGCRITSELFOTHER
-["%a+'s (.+) hits (.+) for %d+\."] = ".+的(.+)击中(.+)造成%d+点伤害。", -- SPELLLOGOTHEROTHER
-["%a+'s (.+) crits (.+) for %d+\."] = ".+的(.+)对(.+)造成%d+点致命一击伤害。", -- SPELLLOGCRITOTHEROTHER
 ["Hearthstone"] = "炉石",
 ["Rough Copper Bomb"] = "劣质铜壳炸弹",
 ["Large Copper Bomb"] = "大型铜壳炸弹",
@@ -95,6 +89,7 @@ local function zhCN() return {
 ["yellow"] = "黄",
 ["inc"] = "接受治疗",
 ["enemyUnattack"] = "不能攻击",
+["enemyCivilian"] = "civilian",
 ["hostile"] = "敌对",
 ["friendly"] = "友善",
 ["neutral"] = "中立",
@@ -167,6 +162,7 @@ local function zhCN() return {
 ["Side"] = "位置",
 ["healthBar"] = "生命条",
 ["powerBar"] = "怒气/能量/法力条",
+["emptyBar"] = "Empty Bar",
 ["Hide when not Mana"] = "没有法力时隐藏",
 ["castBar"] = "施法条",
 ["Barorder"] = "排序",
@@ -225,6 +221,7 @@ local function zhCN() return {
 ["Shield Bash - Silenced"] = "盾击 - 沉默",
 ["Energy / mp5 ticker"] = "能量/5秒回蓝计时",
 ["Auratracker"] = "光环追踪",
+["Enable debuffs"] = "Enable debuffs",
 ["Show dispellable debuffs"] = "显示可驱散减益",
 ["Only debuffs you can dispel"] = "仅你可驱散的减益",
 ["Show aggro"] = "显示仇恨目标",
@@ -300,6 +297,7 @@ local function zhCN() return {
 ["Current subgroup of the raid"] = "小队在团队中编号",
 ["(c) when in combat"] = "战斗中的单位显示“(战)”",
 ["(c)"] = "(战)",
+["Loyalty level of your pet"] = "Loyalty level of your pet",
 ["The same as \"healerhealth\" but displays name on full health"] = "与“healerhealth”相同但满生命时显示名字",
 ["Returns the same as \"smart:healmishp\" on friendly units and hp/maxhp on enemies"] = "友方单位与“smart:healmishp”相同，敌方单位显示生命/最大生命",
 ["Returns missing hp with healing factored in. Shows status when needed (\"Dead\", \"Offline\", \"Ghost\")"] = "计算治疗后的缺失生命，死亡、离线、鬼魂时显示状态",
