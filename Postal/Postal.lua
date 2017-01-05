@@ -85,10 +85,10 @@ end
 function UI_ERROR_MESSAGE()
 	if Inbox_opening then
 		if arg1 == ERR_INV_FULL then
-			Print(POSTAL_INVENTORY_FULL, 1, 0, 0)
+			DEFAULT_CHAT_FRAME:AddMessage(POSTAL_INVENTORY_FULL, 1, 0, 0)
 			Abort()
 		elseif arg1 == ERR_ITEM_MAX_COUNT then
-			Print(POSTAL_MAXIMUM, 1, 0, 0)
+			DEFAULT_CHAT_FRAME:AddMessage(POSTAL_MAXIMUM, 1, 0, 0)
 			Inbox_skip = true
 		end
 	end
@@ -126,10 +126,6 @@ end
 function hook.OpenMail_Reply(...)
 	_G.Postal_To = nil
 	return orig.OpenMail_Reply(unpack(arg))
-end
-
-function Print(msg, r, g, b)
-	DEFAULT_CHAT_FRAME:AddMessage('Postal: ' .. msg, r, g, b)
 end
 
 function Abort()
@@ -191,7 +187,17 @@ function hook.InboxFrameItem_OnEnter()
 	GameTooltip:Show()
 end
 
-CreateFrame('Frame', InboxFrame):SetScript('OnUpdate', function() if not Inbox_opening then CheckInbox() end end)
+do
+	local x = 0
+	CreateFrame('Frame', InboxFrame):SetScript('OnUpdate', function()
+		if x > 0 then
+			x = x - 1
+		elseif not Inbox_opening then
+			x = 100
+			CheckInbox()
+		end
+	end)
+end
 
 function Inbox_Load()
 	MailItem1:SetPoint('TOPLEFT', InboxFrame, 'TOPLEFT', 48, -80)
@@ -734,7 +740,8 @@ function SendMail_Send()
 		orig.ClickSendMailItemButton()
 
 		if not GetSendMailItem() then
-            return Print(POSTAL_UNKNOWN_ERROR, 1, 0, 0)
+            DEFAULT_CHAT_FRAME:AddMessage(POSTAL_UNKNOWN_ERROR, 1, 0, 0)
+            return
 		end
 	end
 
