@@ -25,7 +25,7 @@
 						</Anchor>
 					</Anchors>
 				</Texture>
-				<FontString name="$parentTitleBar" inherits="GameFontNormal" text="Copy URL">
+				<FontString name="$parentTitleBar" inherits="GameFontNormal" text="WIM_L_URLCOPY">
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>

@@ -164,7 +164,7 @@
 					</FontHeight>
 					<Color r="0.5" g="0.5" b="0.5" />
 				</FontString>
-				<FontString name="$parentLine1" inherits="GameFontNormal" text="Conversations Menu">
+				<FontString name="$parentLine1" inherits="GameFontNormal" text="WIM_L_CONVERSATIONSMENU">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT">
 							<Offset>
@@ -177,7 +177,7 @@
 					</FontHeight>
 					<Color r="1" g="1" b="1" />
 				</FontString>
-				<FontString inherits="GameFontNormal" text="Left-Click">
+				<FontString inherits="GameFontNormal" text="WIM_L_LEFTCLICK">
 					<Anchors>
 						<Anchor point="TOP" relativeTo="$parentLine1" relativePoint="TOP" />
 						<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
@@ -191,7 +191,7 @@
 					</FontHeight>
 					<Color r="1" g="1" b="1" />
 				</FontString>
-				<FontString name="$parentLine2" inherits="GameFontNormal" text="Show New Messages">
+				<FontString name="$parentLine2" inherits="GameFontNormal" text="WIM_L_SHOWNEWMESSAGES">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentLine1" relativePoint="BOTTOMLEFT">
 							<Offset>
@@ -204,7 +204,7 @@
 					</FontHeight>
 					<Color r="1" g="1" b="1" />
 				</FontString>
-				<FontString inherits="GameFontNormal" text="Right-Click">
+				<FontString inherits="GameFontNormal" text="WIM_L_RIGHTCLICK">
 					<Anchors>
 						<Anchor point="TOP" relativeTo="$parentLine2" relativePoint="TOP" />
 						<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
@@ -218,7 +218,7 @@
 					</FontHeight>
 					<Color r="1" g="1" b="1" />
 				</FontString>
-				<FontString name="$parentLine3" inherits="GameFontNormal" text="WIM Options">
+				<FontString name="$parentLine3" inherits="GameFontNormal" text="WIM_L_WIMOPTIONS">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentLine2" relativePoint="BOTTOMLEFT">
 							<Offset>
@@ -351,7 +351,7 @@
 		</Backdrop>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString inherits="GameFontNormalSmall" text="Conversations">
+				<FontString inherits="GameFontNormalSmall" text="WIM_L_CONVERSATIONS">
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>

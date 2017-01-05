@@ -1,6 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
-
+	
 	<Script file="localization.lua"/>
+	<Script file="localization.ru.lua"/>
 	<Script file="localization.cn.lua"/>
 	<Script file="localization.de.lua"/>
 	<Script file="localization.fr.lua"/>
@@ -171,7 +172,7 @@
 					<OnEnter>
 						if(WIM_Data.showToolTips == true) then
 							GameTooltip:SetOwner(this, "ANCHOR_LEFT");
-							GameTooltip:SetText("Shift &amp; Left-Click to end conversation.");
+							GameTooltip:SetText(WIM_L_XTOOLTIP);
 							GameTooltip:SetPoint("BOTTOMRIGHT", this, "TOPRIGHT", 0, 0);
 						end
 					</OnEnter>
@@ -209,7 +210,7 @@
 					<OnEnter>
 						if(WIM_Data.showToolTips == true) then
 							GameTooltip:SetOwner(this, "ANCHOR_LEFT");
-							GameTooltip:SetText("Click to view message history.");
+							GameTooltip:SetText(WIM_L_HISTORYTOOLTIP);
 							GameTooltip:SetPoint("BOTTOMRIGHT", this, "TOPRIGHT", 0, 0);
 						end
 					</OnEnter>
@@ -555,7 +556,7 @@
 				<Scripts>
 					<OnShow>
 						PlaySound("igMainMenuOpen");
-						getglobal(this:GetName().."Text"):SetText("Are you sure you want to\nignore this user?");
+						getglobal(this:GetName().."Text"):SetText(WIM_L_RUSUREYOUWANTIGNORE);
 						getglobal(this:GetParent():GetName().."ScrollingMessageFrame"):SetFrameStrata("LOW");
 					</OnShow>
 					<OnHide>

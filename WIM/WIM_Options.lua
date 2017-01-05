@@ -12,7 +12,7 @@ function WIM_Options_OnShow()
 	
 	--[ Initialize Minimap Icon Frame 
 		WIM_OptionsMiniMapIconPosition:SetValue(WIM_Data.iconPosition);
-		WIM_OptionsMiniMapIconPositionTitle:SetText("Icon Position");
+		WIM_OptionsMiniMapIconPositionTitle:SetText(WIM_L_ICONPOSIT);
 		WIM_OptionsMiniMapEnabled:SetChecked(WIM_Data.showMiniMap);
 		WIM_OptionsMiniMapFreeMoving:SetChecked(WIM_Data.miniFreeMoving.enabled);
 	
@@ -43,11 +43,11 @@ function WIM_Options_OnShow()
 		
 		--[Sliders
 		WIM_OptionsDisplayFontSize:SetValue(WIM_Data.fontSize);
-		WIM_OptionsDisplayFontSizeTitle:SetText("Font Size");
+		WIM_OptionsDisplayFontSizeTitle:SetText(WIM_L_FONTSIZE);
 		WIM_OptionsDisplayWindowSize:SetValue(WIM_Data.windowSize * 100);
-		WIM_OptionsDisplayWindowSizeTitle:SetText("Window Size (Percent)");
+		WIM_OptionsDisplayWindowSizeTitle:SetText(WIM_L_WINDOWSIZEPERC);
 		WIM_OptionsDisplayWindowAlpha:SetValue(WIM_Data.windowAlpha * 100);
-		WIM_OptionsDisplayWindowAlphaTitle:SetText("Transparency (Percent)");
+		WIM_OptionsDisplayWindowAlphaTitle:SetText(WIM_L_TRANSPARENCYPERC);
 	--[ Initialize General Settings
 		WIM_OptionsTabbedFrameGeneralKeepFocus:SetChecked(WIM_Data.keepFocus);
 		WIM_OptionsTabbedFrameGeneralKeepFocusRested:SetChecked(WIM_Data.keepFocusRested);
@@ -67,9 +67,9 @@ function WIM_Options_OnShow()
 		WIM_OptionsTabbedFrameGeneralInterceptSlashWisp:SetChecked(WIM_Data.hookWispParse);
 		
 	--[ Window Settings
-		WIM_OptionsTabbedFrameWindowWindowWidthTitle:SetText("Window Width");
+		WIM_OptionsTabbedFrameWindowWindowWidthTitle:SetText(WIM_L_WINDOWWIDTH);
 		WIM_OptionsTabbedFrameWindowWindowWidth:SetValue(WIM_Data.winSize.width);
-		WIM_OptionsTabbedFrameWindowWindowHeightTitle:SetText("Window Height");
+		WIM_OptionsTabbedFrameWindowWindowHeightTitle:SetText(WIM_L_WINDOWHEIGHT);
 		WIM_OptionsTabbedFrameWindowWindowHeight:SetValue(WIM_Data.winSize.height);
 		WIM_OptionsTabbedFrameWindowWindowCascade:SetChecked(WIM_Data.winCascade.enabled);
 		
@@ -418,10 +418,10 @@ end
 function WIM_Options_ShowShortcutBarClicked()
 	if(WIM_OptionsDisplayShowShortcutBar:GetChecked()) then
 		WIM_Data.showShortcutBar = true;
-		WIM_OptionsTabbedFrameWindowWindowHeightTitle:SetText("Window Height |cffffffff(Limited by shortcut bar)|r");
+		WIM_OptionsTabbedFrameWindowWindowHeightTitle:SetText(WIM_L_WINDOWHEIGHTLIM);
 	else
 		WIM_Data.showShortcutBar = false;
-		WIM_OptionsTabbedFrameWindowWindowHeightTitle:SetText("Window Height");
+		WIM_OptionsTabbedFrameWindowWindowHeightTitle:SetText(WIM_L_WINDOWHEIGHT);
 	end
 	WIM_SetAllWindowProps();
 end
@@ -464,15 +464,15 @@ function WIM_Options_AliasWindow_Click()
 	alias = string.gsub(alias, " ", "");
 	
 	if(name == "") then
-		WIM_Options_AliasWindow_Error:SetText("ERROR: Invalid name!");
+		WIM_Options_AliasWindow_Error:SetText(WIM_L_ERRINVNAME);
 		return;
 	end
 	if(alias == "") then
-		WIM_Options_AliasWindow_Error:SetText("ERROR: Invalid alias!");
+		WIM_Options_AliasWindow_Error:SetText(WIM_L_ERRINVALIAS);
 		return;
 	end
 	if(WIM_Options_AliasWindow.theMode == "add" and WIM_Alias[name] ~= nil) then
-		WIM_Options_AliasWindow_Error:SetText("ERROR: Name is already used!");
+		WIM_Options_AliasWindow_Error:SetText(WIM_L_ERRNAMEALREADYUSED);
 		return;
 	end
 	
@@ -560,11 +560,11 @@ function WIM_Options_FilterWindow_Click()
 	local tname = string.gsub(name, " ", "");
 	
 	if(tname == "") then
-		WIM_Options_FilterWindow_Error:SetText("ERROR: Invalid Keyword/Phrase!");
+		WIM_Options_FilterWindow_Error:SetText(WIM_L_ERRINVALIDKEYWORD);
 		return;
 	end
 	if(WIM_Options_FilterWindow.theMode == "add" and WIM_Filters[name] ~= nil) then
-		WIM_Options_FilterWindow_Error:SetText("ERROR: Keyword/Phrase is already used!");
+		WIM_Options_FilterWindow_Error:SetText(WIM_L_ERRKEYWORDALREADYUSED);
 		return;
 	end
 	
@@ -656,7 +656,7 @@ end
 function WIM_Options_HistoryMessageCount_Initialize()
 	local info = {};
 	info = { };
-	info.text = "1";--.."           "; --[spaces for quick width fix
+	info.text = "1";
 	info.value = 1;
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_HistoryMessageClick;
@@ -705,7 +705,7 @@ end
 function WIM_Options_HistoryMaxCount_Initialize()
 	local info = {};
 	info = { };
-	info.text = "50";--.."           "; --[spaces for quick width fix
+	info.text = "50";
 	info.value = 50;
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_HistoryMaxClick;
@@ -761,21 +761,21 @@ end
 function WIM_Options_HistoryAutoDeleteTime_Initialize()
 	local info = {};
 	info = { };
-	info.text = "Day";--.."           "; --[spaces for quick width fix
+	info.text = WIM_L_DAY;
 	info.value = 1;
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_HistoryAutoDeleteTimeClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = "Week";
+	info.text = WIM_L_WEEK;
 	info.value = 7;
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_HistoryAutoDeleteTimeClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = "Month";
+	info.text = WIM_L_MONTH;
 	info.value = 30;
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_HistoryAutoDeleteTimeClick;
@@ -830,7 +830,7 @@ function WIM_Options_WindowAnchorToggle_Click()
 		);
 		WIM_WindowAnchor:Show();
 		GameTooltip:SetOwner(WIM_WindowAnchor, "ANCHOR_RIGHT");
-		GameTooltip:SetText("Drag to set default spawn\nposition for message windows.");
+		GameTooltip:SetText(WIM_L_DRAGTOSETDEFSPAWN);
 	end
 end
 
@@ -851,56 +851,56 @@ end
 function WIM_Options_CascadeDirection_Initialize()
 	local info = {};
 	info = { };
-	info.text = "Up";
+	info.text = WIM_L_UP;
 	info.value = "up";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = "Down";
+	info.text = WIM_L_DOWN;
 	info.value = "down";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = "Left";
+	info.text = WIM_L_LEFT;
 	info.value = "left";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = "Right";
+	info.text = WIM_L_RIGHT;
 	info.value = "right";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = "Up & Left";
+	info.text = WIM_L_UPANDLEFT;
 	info.value = "upleft";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = "Up & Right";
+	info.text = WIM_L_UPANDRIGHT;
 	info.value = "upright";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = "Down & Left";
+	info.text = WIM_L_DOWNANDLEFT;
 	info.value = "downleft";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = "Down & Right";
+	info.text = WIM_L_DOWNANDRIGHT;
 	info.value = "downright";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;

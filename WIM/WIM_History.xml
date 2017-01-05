@@ -126,7 +126,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM History Viewer">
+						<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM_L_HISTORYVIEWER">
 							<Anchors>
 								<Anchor point="CENTER">
 									<Offset>
@@ -203,7 +203,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="Users">
+								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM_L_USERS">
 									<Anchors>
 										<Anchor point="CENTER">
 											<Offset>
@@ -414,7 +414,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="Filters">
+								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM_L_FILTERS2">
 									<Anchors>
 										<Anchor point="CENTER">
 											<Offset>
@@ -558,7 +558,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="Messages">
+								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM_L_MESS">
 									<Anchors>
 										<Anchor point="CENTER">
 											<Offset>

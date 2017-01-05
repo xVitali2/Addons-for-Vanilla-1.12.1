@@ -1,4 +1,4 @@
-WIM_VERSION = "1.3.1";
+WIM_VERSION = "1.3.2";
 
 WIM_Windows = {};
 WIM_EditBoxInFocus = nil;
@@ -284,7 +284,7 @@ do
 			WIM_WhoScanInProgress = true
 			SetWhoToUI(1)
 			WIM_PlayerCacheQueue[name] = WIM_PlayerCacheQueue[name] or { callbacks = {} }
-			WIM_PlayerCacheQueue[name].count = 7
+			WIM_PlayerCacheQueue[name].count = 1
 			tinsert(WIM_PlayerCacheQueue[name].callbacks, callback)
 		end
 	end
@@ -728,12 +728,12 @@ function WIM_Icon_DropDown_Update()
 	if(tCount == 0) then
 		info = { };
 		info.justifyH = "LEFT"
-		info.text = " - None -";
+		info.text = "WIM_L_NONE";
 		info.notClickable = 1;
 		info.notCheckable = 1;
 		getglobal("WIM_ConversationMenuTellButton1Close"):Hide();
 		getglobal("WIM_ConversationMenuTellButton1"):Disable();
-		getglobal("WIM_ConversationMenuTellButton1"):SetText("|cffffffff - None -");
+		getglobal("WIM_ConversationMenuTellButton1"):SetText(WIM_L_NONEC);
 		getglobal("WIM_ConversationMenuTellButton1"):Show();
 	else
 		if(WIM_Data.sortAlpha) then
@@ -983,27 +983,27 @@ function WIM_LoadShortcutFrame()
 		{
 			icon = "Interface\\Icons\\Ability_Hunter_AimedShot",
 			cmd		= "target",
-			tooltip = "Target"
+			tooltip = WIM_L_TARGET
 		},
 		{
 			icon = "Interface\\Icons\\Spell_Holy_BlessingOfStrength",
 			cmd		= "invite",
-			tooltip = "Invite"
+			tooltip = WIM_L_INVITE
 		},
 		{
 			icon = "Interface\\Icons\\INV_Misc_Bag_10_Blue",
 			cmd		= "trade",
-			tooltip = "Trade"
+			tooltip = WIM_L_TRADE
 		},
 		{
 			icon = "Interface\\Icons\\INV_Helmet_44",
 			cmd		= "inspect",
-			tooltip = "Inspect"
+			tooltip = WIM_L_INSPECT
 		},
 		{
 			icon = "Interface\\Icons\\Ability_Physical_Taunt",
 			cmd		= "ignore",
-			tooltip = "Ignore"
+			tooltip = WIM_L_IGNORE
 		},
 	};
 	for i=1,5 do

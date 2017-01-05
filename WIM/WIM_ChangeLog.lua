@@ -1,4 +1,7 @@
 WIM_CHANGE_LOG = [[
+Version 1.3.2 (01-05-2017)|cffffffff
+[+] - translated into ruRU
+
 Version 1.3.1 (10-17-2006)|cffffffff
 [+] - Created new minimap icon menu. No longer using Blizzards Drop Down Menu.
 [+] - You can now close conversations from the minimap icon menu.

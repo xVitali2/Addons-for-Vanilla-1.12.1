@@ -63,7 +63,7 @@ function WIM_HistoryViewFiltersScrollBar_Update()
 		end
 	end
 	table.sort(Filters);
-	table.insert(Filters, 1, "None (Show All)");
+	table.insert(Filters, 1, WIM_L_NONESHOWALL);
 	if(WIM_HistoryView_Filter_Selected == "") then
 		--[WIM_HistoryView_Filter_Selected = Filters[1];
 	end
