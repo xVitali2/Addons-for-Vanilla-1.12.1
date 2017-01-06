@@ -507,7 +507,7 @@ function DoTimer_DefineSpells(class) --creates the lists of spells to watch for 
 			["Howl of Terror"] = 1,
 			["Death Coil"] = 1,
 			["Shadowburn"] = 1,
-			["Shadow Vulnerability"] = 1,
+			--["Shadow Vulnerability"] = 1,
 		}
 		petspells = {
 			["Seduction"] = 1,
