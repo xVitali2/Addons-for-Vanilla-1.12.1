@@ -1,7 +1,7 @@
 ## Interface: 11200
 ## Title: DoTimer
 ## Author: Thebleh, Lichery (CFM mod)
-## Version: 1.1.5.2 
+## Version: 1.1.5.3 
 ## Notes: Displays duration timers for DoTs
 ## Notes-ruRU: Таймер дот
 ## SavedVariablesPerCharacter: DoTimer_Settings

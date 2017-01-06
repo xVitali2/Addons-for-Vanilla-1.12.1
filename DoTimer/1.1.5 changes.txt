@@ -1,3 +1,5 @@
+1.1.5.3
+- added Shadow Vulnerability for Warlock
 1.1.5.2
 - fixed for SHAMAN
 1.1.5.1 Changes:

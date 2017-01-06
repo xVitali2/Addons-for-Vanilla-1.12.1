@@ -198,6 +198,12 @@ DoTimer_SpellData = { --a list of textures (same in all locales!) and the englis
 		["Interface\\Icons\\Spell_Shadow_BurningSpirit"] = {
 			["name"] = "Life Tap",
 		},
+		--CFM
+		["Interface\\Icons\\Spell_Shadow_ShadowBolt"] = {
+			["name"] = "Shadow Vulnerability",
+			["duration"] = 12,
+			["multiplier"] = 1,
+		},
 	},
 	["PRIEST"] = {
 		["Interface\\Icons\\Spell_Nature_Slow"] = {
@@ -501,6 +507,7 @@ function DoTimer_DefineSpells(class) --creates the lists of spells to watch for 
 			["Howl of Terror"] = 1,
 			["Death Coil"] = 1,
 			["Shadowburn"] = 1,
+			["Shadow Vulnerability"] = 1,
 		}
 		petspells = {
 			["Seduction"] = 1,
