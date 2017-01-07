@@ -1,11 +1,11 @@
 # Postal - WoW 1.12 addOn
 
-A lightweight extension to the Blizzard mail interface which
-- **Automatically opens mails**
+An extension to the Blizzard mail interface which
+- **Automatically opens mail**
 - **Mails multiple items at once**
 
-**\<Left Click>** or **\<Left Drag>** to add items to the attachments.<br/>
-**\<Left Click>** to add items to the trade frame. (not mail related but GMail had this shortcut and I decided to keep it)
+**\<Right Click>** or **\<Left Drag>** to add items to the attachments.<br/>
+**\<Right Click>** to add items to the trade frame. (not mail related but GMail had this shortcut and I decided to keep it)
 
 There are two very similar (to eachother) old Vanilla mail addOns commonly found in collections: GMail and CT_MailMod. Both use the same terrible mechanism for automation, unnecessarily making them extremely slow, have a rather ugly send interface and don't  hide the "New Mail"-notifier after Inbox_Opening the last mail automatically.
 

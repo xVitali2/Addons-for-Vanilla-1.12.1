@@ -85,10 +85,8 @@ end
 function UI_ERROR_MESSAGE()
 	if Inbox_opening then
 		if arg1 == ERR_INV_FULL then
-			DEFAULT_CHAT_FRAME:AddMessage(POSTAL_INVENTORY_FULL, 1, 0, 0)
 			Abort()
 		elseif arg1 == ERR_ITEM_MAX_COUNT then
-			DEFAULT_CHAT_FRAME:AddMessage(POSTAL_MAXIMUM, 1, 0, 0)
 			Inbox_skip = true
 		end
 	end
@@ -217,20 +215,11 @@ function Inbox_Load()
 
 	do
 		local btn = CreateFrame('Button', nil, InboxFrame, 'UIPanelButtonTemplate')
-		btn:SetPoint('RIGHT', InboxFrame, 'TOP', 5, -53)
+		btn:SetPoint('BOTTOM', -10, 90)
 		btn:SetWidth(120)
 		btn:SetHeight(25)
-		btn:SetText(POSTAL_OPEN_SELECTED)
-		btn:SetScript('OnClick', Inbox_OpenSelected)
-	end
-
-	do
-		local btn = CreateFrame('Button', nil, InboxFrame, 'UIPanelButtonTemplate')
-		btn:SetPoint('LEFT', InboxFrame, 'TOP', 10, -53)
-		btn:SetWidth(120)
-		btn:SetHeight(25)
-		btn:SetText(POSTAL_OPEN_ALL)
-		btn:SetScript('OnClick', function() Inbox_OpenSelected(true) end)
+		btn:SetText(OPENMAIL)
+		btn:SetScript('OnClick', Inbox_Collect)
 	end
 
     Inbox_selectedItems = {}
@@ -241,19 +230,19 @@ function Inbox_SetSelected()
 	Inbox_selectedItems[index] = this:GetChecked()
 end
 
-function Inbox_OpenSelected(all)
+function Inbox_Collect()
 	Abort()
 
 	local selected = {}
-	if all then
-		for i = 1, GetInboxNumItems() do
-			tinsert(selected, i)
-		end
-	else
+	if next(Inbox_selectedItems) then
 		for i in Inbox_selectedItems do
 			tinsert(selected, i)
 		end
 		sort(selected)
+	else
+		for i = 1, GetInboxNumItems() do
+			tinsert(selected, i)
+		end
 	end
 	Inbox_selectedItems = {}
 	Inbox_opening = true
@@ -740,13 +729,13 @@ function SendMail_Send()
 		orig.ClickSendMailItemButton()
 
 		if not GetSendMailItem() then
-            DEFAULT_CHAT_FRAME:AddMessage(POSTAL_UNKNOWN_ERROR, 1, 0, 0)
+            DEFAULT_CHAT_FRAME:AddMessage('Postal: ' .. ERROR_CAPS, 1, 0, 0)
             return
 		end
 	end
 
 	local amount = SendMail_state.money
-	if amount then
+	if amount > 0 then
 		SendMail_state.money = nil
 		if SendMail_state.cod then
 			SetSendMailCOD(amount)
@@ -756,9 +745,15 @@ function SendMail_Send()
 	end
 
 	local subject = SendMail_state.subject
-	subject = subject ~= '' and subject or '[No Subject]'
-	if SendMail_state.numMessages > 1 then
-		subject = subject..format(POSTAL_PART, SendMail_state.numMessages - getn(SendMail_state.attachments), SendMail_state.numMessages)
+	if subject == '' then
+		if item then
+			local itemName, itemTexture, stackCount, quality = GetSendMailItem()
+			subject = itemName .. (stackCount > 1 and ' (' .. stackCount .. ')' or '')
+		else
+			subject = '<' .. NO_ATTACHMENTS .. '>'
+		end
+	elseif SendMail_state.numMessages > 1 then
+		subject = subject .. format(' [%d/%d]', SendMail_state.numMessages - getn(SendMail_state.attachments), SendMail_state.numMessages)
 	end
 
     SendMail(SendMail_state.to, subject, SendMail_state.body)

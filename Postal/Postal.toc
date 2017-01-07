@@ -1,6 +1,6 @@
 ﻿## Interface: 11200
 ## Title: Postal
-## Notes: Postal
+## Notes: Mailbox automation
 ## Notes-ruRU: Массовая отправка почты
 ## Author: shirsig
 ## SavedVariablesPerCharacter: Postal_To
