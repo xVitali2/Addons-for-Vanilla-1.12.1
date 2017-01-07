@@ -246,7 +246,6 @@ local function ShowMenu()
 	end
 end
 
-local func = {}
 local function OnClick()
 	if arg1 == "UNKNOWN" then
 		arg1 = LunaUF.clickedButton
@@ -274,33 +273,27 @@ local function OnClick()
 				TargetUnit(this.unit)
 			end
 		else
-			if not func[action] then
-				func[action] = loadstring(action or "")
-			end
+			local func = loadstring(action or "")
 			SpellStopTargeting()
 			if UnitIsUnit("target", this.unit) then
-				if func[action] then
-					func[action]()
-				else
-					LunaUF:CastSpellByName_IgnoreSelfCast(action)
-				end
-			elseif UnitIsUnit("player", this.unit) and not func[action] then
+				LunaUF:CastSpellByName_IgnoreSelfCast(func or action)
+			elseif UnitIsUnit("player", this.unit) and not func then
 				CastSpellByName(action, 1)
 			else
 				if UnitCanAttack("player", this.unit) or LunaUF:isDualSpell(action) then
 					Units.pauseUpdates = true
 					TargetUnit(this.unit)
-					LunaUF:CastSpellByName_IgnoreSelfCast(action)
+					LunaUF:CastSpellByName_IgnoreSelfCast(func or action)
 					TargetLastTarget()
 					Units.pauseUpdates = nil
 				else
 					if UnitCanAttack("player", "target") then
-						LunaUF:CastSpellByName_IgnoreSelfCast(action)
+						LunaUF:CastSpellByName_IgnoreSelfCast(func or action)
 						SpellTargetUnit(this.unit)
 					else
 						Units.pauseUpdates = true
 						TargetUnit(this.unit)
-						LunaUF:CastSpellByName_IgnoreSelfCast(action)
+						LunaUF:CastSpellByName_IgnoreSelfCast(func or action)
 						TargetLastTarget()
 						Units.pauseUpdates = nil
 					end
@@ -394,6 +387,9 @@ local function SetupGroupHeader(groupType)
 	end
 	local point = LunaUF.constants.AnchorPoint[config.growth]
 	local framesneeded = config.enabled and ((LunaUF.db.profile.locked and GetNumPartyMembers() or 4) + (config.player and 1 or 0)) or 0
+	if framesneeded == 1 and config.player then
+		framesneeded = 0
+	end
 	for i=getn(header.frames)+1, framesneeded do
 		header.frames[i] = Units:CreateUnit("Button", "LUFUnit"..unitGroup..i, header)
 		header.frames[i]:SetScript("OnDragStop", GroupHeaderStopMovingOrSizing)
