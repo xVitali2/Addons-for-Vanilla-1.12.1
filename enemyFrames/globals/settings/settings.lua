@@ -84,7 +84,7 @@ settings.header:SetVertexColor(.2, .2, .2)
 
 settings.header.t = settings:CreateFontString(nil, 'ARTWORK', 'GameFontNormal')
 settings.header.t:SetPoint('TOP', settings.header, 0, -14)
-settings.header.t:SetText'enemyFrames Settings'
+settings.header.t:SetText(EF_L_ENEMYFRAMESSETTINGS)
 
 -- container scrollframe
 
@@ -196,7 +196,7 @@ local function eventHandler()
 	if event == 'PLAYER_LOGIN' then
 		playerFaction = UnitFactionGroup'player'
 		local tc = playerFaction == 'Alliance' and 'FF1A1A' or '00ADF0'
-		print('|cff' ..tc.. '[enemyFrames] loaded. |cffffffff/efs|cff' ..tc.. ' for menu settings.')
+		print('|cff' ..tc.. EF_L_EFLOADED ..tc.. EF_L_FORMENUSETTINGS)
 		_G['enemyFrameDisplay']:SetScale(ENEMYFRAMESPLAYERDATA['scale'])
 		_G['enemyFrameDisplay']:SetPoint('CENTER', UIParent, ENEMYFRAMESPLAYERDATA['offX'], ENEMYFRAMESPLAYERDATA['offY'])
 	elseif event == 'PLAYER_LOGOUT' then

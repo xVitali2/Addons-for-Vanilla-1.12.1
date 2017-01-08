@@ -8,19 +8,19 @@
 	container:EnableMouseWheel(true)
 	container:Hide()
 	-------------------------------------------------------------------------------
-	local checkBoxOptionalsN, checkBoxOptionals  = 5, { [1] = {['id'] = 'displayNames', 		['label'] = 'Display names'}, 
+	local checkBoxOptionalsN, checkBoxOptionals  = 5, { [1] = {['id'] = 'displayNames', 		['label'] = EF_L_DISPLAYNAMES}, 
 														--[2] = {['id'] = 'displayHealthValues', 	['label'] = 'Display Health %'}, 
-														[2] = {['id'] = 'displayManabar', 		['label'] = 'Display mana bar'},
-														[3] = {['id'] = 'castTimers', 			['label'] = 'Display cast timers'},
-														[4] = {['id'] = 'displayOnlyNearby', 	['label'] = 'Display nearby units only'},
-														[5] = {['id'] = 'targetCounter', 		['label'] = 'Display Target Counter'},
+														[2] = {['id'] = 'displayManabar', 		['label'] = EF_L_DISPLAYMANABAR},
+														[3] = {['id'] = 'castTimers', 			['label'] = EF_L_DISPLAYCASTTIMERS},
+														[4] = {['id'] = 'displayOnlyNearby', 	['label'] = EF_L_DISPLAYNEARBYUNITSONLY},
+														[5] = {['id'] = 'targetCounter', 		['label'] = EF_L_DISPLAYTARGETCOUNTER},
 														
 													}
 	-------------------------------------------------------------------------------
 	-- optionals
 	container.optionals = container:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
 	container.optionals:SetPoint('LEFT', container, 'TOPLEFT', 45, -30)
-	container.optionals:SetText'optional'
+	container.optionals:SetText(EF_L_OPTIONAL)
 
 	container.optinalsList = {}
 	for i = 1, checkBoxOptionalsN, 1 do

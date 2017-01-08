@@ -100,13 +100,13 @@ local 	enemyFrame = CreateFrame('Frame', 'enemyFrameDisplay', UIParent)
 		
 		enemyFrame.bottom.settings.text = enemyFrame.bottom.settings:CreateFontString(nil, 'OVERLAY')
 		enemyFrame.bottom.settings.text:SetFont(STANDARD_TEXT_FONT, 12, 'OUTLINE')
-		enemyFrame.bottom.settings.text:SetText('S')
+		enemyFrame.bottom.settings.text:SetText(EF_L_S2)
 		
 		enemyFrame.bottom.settings:SetScript('OnEnter', function()
 			enemyFrame.bottom.settings.text:SetTextColor(.9, .9, .4)
 			
 			GameTooltip:SetOwner(this, 'ANCHOR_TOPRIGHT', -10, -60)
-			GameTooltip:SetText('settings menu')
+			GameTooltip:SetText(EF_L_SETTINGSMENU)
 			GameTooltip:Show()
 		end)
 		enemyFrame.bottom.settings:SetScript('OnLeave', function()
@@ -158,7 +158,7 @@ local 	enemyFrame = CreateFrame('Frame', 'enemyFrameDisplay', UIParent)
 		enemyFrame.raidTargetFrame.text:SetFont(STANDARD_TEXT_FONT, 18, 'OUTLINE')
 		enemyFrame.raidTargetFrame.text:SetTextColor(.8, .8, .8, .8)
 		enemyFrame.raidTargetFrame.text:SetPoint('CENTER', enemyFrame.raidTargetFrame)
-		enemyFrame.raidTargetFrame.text:SetText('Player')
+		enemyFrame.raidTargetFrame.text:SetText(EF_L_PLAYER)
 	
 		enemyFrame.raidTargetFrame.iconl = enemyFrame.raidTargetFrame:CreateTexture(nil, 'OVERLAY')
 		enemyFrame.raidTargetFrame.iconl:SetTexture([[Interface\TargetingFrame\UI-RaidTargetingIcons]])
@@ -252,10 +252,10 @@ end
 local function defaultVisuals()
 	for i = 1, unitLimit do
 		units[i].castbar.icon:SetTexture([[Interface\Icons\Inv_misc_gem_sapphire_01]])
-		units[i].castbar.text:SetText('Entangling Roots')
+		units[i].castbar.text:SetText(EF_L_ENTANGLINGROOTS)
 		units[i].castbar.text:SetText(string.sub(units[i].castbar.text:GetText(), 1, 18))
 		
-		units[i].name:SetText('Player' .. i)
+		units[i].name:SetText(EF_L_PLAYER .. i)
 		
 		units[i].raidTarget.icon:SetTexCoord(.75, 1, 0.25, .5)
 		
@@ -312,9 +312,9 @@ local function arrangeUnits()
 	
 	-- adjust title
 	if playerFaction == 'Alliance' then 
-		enemyFrame.Title:SetText(layout == 'vertical' and 'H ' or 'Horde')
+		enemyFrame.Title:SetText(layout == 'vertical' and EF_L_H or EF_L_HORDE2)
 	else 
-		enemyFrame.Title:SetText(layout == 'vertical' and 'A ' or 'Alliance')
+		enemyFrame.Title:SetText(layout == 'vertical' and EF_L_A or EF_L_ALLIANCE2)
 	end
 	
 	for i = 1, unitLimit do	
@@ -360,10 +360,10 @@ local function SetupFrames(maxU)
 	
 	if playerFaction == 'Alliance' then 
 		enemyFactionColor = RGB_FACTION_COLORS['Horde']
-		enemyFrame.Title:SetText('Horde')
+		enemyFrame.Title:SetText(EF_L_HORDE2)
 	else 
 		enemyFactionColor = RGB_FACTION_COLORS['Alliance']
-		enemyFrame.Title:SetText('Alliance')		
+		enemyFrame.Title:SetText(EF_L_ALLIANCE2)		
 	end
 	
 	enemyFrame.Title:SetTextColor(enemyFactionColor['r'], enemyFactionColor['g'], enemyFactionColor['b'], .9)

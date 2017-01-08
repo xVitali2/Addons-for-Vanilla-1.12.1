@@ -1,8 +1,11 @@
 ## Interface: 11200
 ## Title: BG Enemy Frames
-## Notes: by kuurtzen (CFM mod)
-## Version: 1.24
+## Notes: by kuurtzen
+## Notes-ruRU: мод для полей боя
 ## SavedVariablesPerCharacter: ENEMYFRAMESPLAYERDATA
+
+localization_en.lua
+localization_ru.lua
 
 globals\actionHandler.lua
 globals\spellCastingCore.lua

@@ -96,14 +96,14 @@
     TargetFrame.IntegratedCastBar.spellText:SetFont(STANDARD_TEXT_FONT, 10, 'OUTLINE')
     TargetFrame.IntegratedCastBar.spellText:SetShadowColor(0, 0, 0)
     TargetFrame.IntegratedCastBar.spellText:SetPoint('LEFT', TargetFrame.IntegratedCastBar, 1, .5)
-    TargetFrame.IntegratedCastBar.spellText:SetText('Polymorph') 
+    TargetFrame.IntegratedCastBar.spellText:SetText(EF_L_POLYMORPH) 
 	
 	TargetFrame.IntegratedCastBar.timer = TargetFrame.IntegratedCastBar:CreateFontString(nil, 'OVERLAY')
     TargetFrame.IntegratedCastBar.timer:SetTextColor(1, 1, 1)
     TargetFrame.IntegratedCastBar.timer:SetFont(STANDARD_TEXT_FONT, 8, 'OUTLINE')
     TargetFrame.IntegratedCastBar.timer:SetShadowColor(0, 0, 0)
     TargetFrame.IntegratedCastBar.timer:SetPoint('RIGHT', TargetFrame.IntegratedCastBar, -2, .5)
-    TargetFrame.IntegratedCastBar.timer:SetText'3.5s'
+    TargetFrame.IntegratedCastBar.timer:SetText(EF_L_3_5s)
 	-------------------------------------------------------------------------------
 	local function round(num, idp)
 		local mult = 10^(idp or 0)

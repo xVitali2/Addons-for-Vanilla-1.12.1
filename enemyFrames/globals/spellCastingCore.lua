@@ -334,16 +334,16 @@ local forceHideTableItem = function(tab, caster, spell)
 end
 
 local CastCraftPerform = function()
-	local pcast 	= 'You cast (.+).'							local fpcast = string.find(arg1, pcast)	-- standby for now
-	local cast		= '(.+) casts (.+).'						local fcast = string.find(arg1, cast)
-	local bcast 	= '(.+) begins to cast (.+).' 				local fbcast = string.find(arg1, bcast)
-	local craft 	= '(.+) -> (.+).' 							local fcraft = string.find(arg1, craft)
-	local perform 	= '(.+) performs (.+).' 					local fperform = string.find(arg1, perform)
-	local bperform 	= '(.+) begins to perform (.+).' 			local fbperform = string.find(arg1, bperform)
-	local performOn = '(.+) performs (.+) on (.+).' 			local fperformOn = string.find(arg1, performOn)
+	local pcast 	= EF_L_SPELLTERSE_SELF						local fpcast = string.find(arg1, pcast)	-- standby for now
+	local cast		= EF_L_SPELLTERSE_OTHER						local fcast = string.find(arg1, cast)
+	local bcast 	= EF_L_SPELLCASTOTHERSTART					local fbcast = string.find(arg1, bcast)
+	local craft 	= EF_L_CRAFT 								local fcraft = string.find(arg1, craft)
+	local perform 	= EF_L_SPELLPERFORMGOOTHER2					local fperform = string.find(arg1, perform)
+	local bperform 	= EF_L_SPELLPERFORMOTHERSTART				local fbperform = string.find(arg1, bperform)
+	local performOn = EF_L_SPELLPERFORMGOOTHERTARGETTED 		local fperformOn = string.find(arg1, performOn)
 	
-	local pcastFin 	= 'You cast (.+) on (.+).'					local fpcastFin = string.find(arg1, pcastFin)
-	local castFin 	= '(.+) casts (.+) on (.+).'				local fcastFin = string.find(arg1, castFin)
+	local pcastFin 	= EF_L_SPELLCASTGOSELFTARGETTED				local fpcastFin = string.find(arg1, pcastFin)
+	local castFin 	= EF_L_SPELLCASTGOOTHERTARGETTED			local fcastFin = string.find(arg1, castFin)
 	
 	if fbcast or fcraft then
 		local m = fbcast and bcast or fcraft and craft or fperform and perform
@@ -384,11 +384,11 @@ local CastCraftPerform = function()
 end
 
 local handleHeal = function()
-	local h   	 = 'Your (.+) heals (.+) for (.+).'					local fh 	  = string.find(arg1, h)
-	local c   	 = 'Your (.+) critically heals (.+) for (.+).'		local fc 	  = string.find(arg1, c)
-	local hot 	 = '(.+) gains (.+) health from your (.+).'			local fhot 	  = string.find(arg1, hot)
-	local oheal  = '(.+)\'s (.+) heals (.+) for (.+).'				local foheal  = string.find(arg1, oheal)
-	local ocheal = '(.+)\'s (.+) critically heals (.+) for (.+).'	local focheal = string.find(arg1, ocheal)
+	local h   	 = EF_L_HEALEDSELFOTHER					local fh 	  = string.find(arg1, h)
+	local c   	 = EF_L_HEALEDCRITSELFOTHER				local fc 	  = string.find(arg1, c)
+	local hot 	 = EF_L_PERIODICAURAHEALSELFOTHER		local fhot 	  = string.find(arg1, hot)
+	local oheal  = EF_L_HEALEDOTHEROTHER				local foheal  = string.find(arg1, oheal)
+	local ocheal = EF_L_HEALEDCRITOTHEROTHER			local focheal = string.find(arg1, ocheal)
 	
 	if fh or fc then
 		local n  = gsub(arg1, h, '%2')
@@ -415,7 +415,7 @@ local handleHeal = function()
 end
 
 local processUniqueSpell = function()
-	local vanish = '(.+) performs Vanish'		local fvanish = string.find(arg1, vanish)
+	local vanish = EF_L_SPELLPERFORMGOOTHER				local fvanish = string.find(arg1, vanish)
 	
 	if fvanish then
 		local m = vanish
@@ -430,8 +430,8 @@ local processUniqueSpell = function()
 end
 
 local DirectInterrupt = function()
-	local pintrr 	= 'You interrupt (.+)\'s (.+).'			local fpintrr  	= string.find(arg1, pintrr)
-	local intrr 	= '(.+) interrupts (.+)\'s (.+).'		local fintrr  	= string.find(arg1, pintrr)
+	local pintrr 	= EF_L_SPELLINTERRUPTSELFOTHER			local fpintrr  	= string.find(arg1, pintrr)
+	local intrr 	= EF_L_SPELLINTERRUPTOTHEROTHER			local fintrr  	= string.find(arg1, pintrr)
 
 	if fpintrr  or fintrr then
 		local m = fpintrr and pintrr or intrr
@@ -445,11 +445,11 @@ local DirectInterrupt = function()
 end
 
 local GainAfflict = function()
-	local gain 		= '(.+) gains (.+).' 								local fgain = string.find(arg1, gain)
-	local pgain 	= 'You gain (.+).'									local fpgain = string.find(arg1, pgain)	
-	local afflict 	= '(.+) is afflicted by (.+).' 						local fafflict = string.find(arg1, afflict)
-	local pafflict 	= 'You are afflicted by (.+).' 						local fpafflict = string.find(arg1, pafflict)
-	
+--DEFAULT_CHAT_FRAME:AddMessage("GainAfflict")
+	local gain 		= EF_L_AURAADDEDOTHERHELPFUL						local fgain = string.find(arg1, gain)
+	local pgain 	= EF_L_AURAADDEDSELFHELPFUL							local fpgain = string.find(arg1, pgain)	
+	local afflict 	= EF_L_AURAADDEDOTHERHARMFUL 						local fafflict = string.find(arg1, afflict)
+	local pafflict 	= EF_L_AURAADDEDSELFHARMFUL 						local fpafflict = string.find(arg1, pafflict)
 	-- start channeling based on buffs (evocation, first aid, ..)
 	if fgain or fpgain then
 		local m = fgain and gain or fpgain and pgain
@@ -459,18 +459,22 @@ local GainAfflict = function()
 		-- buffs/debuffs to be displayed
 		if SPELLINFO_BUFFS_TO_TRACK[s] then
 			newbuff(c, s, 1, false)
+			DEFAULT_CHAT_FRAME:AddMessage(" SPELLINFO_BUFFS_TO_TRACK ");
 		end
 		-- self-cast buffs that interrupt cast (blink, ice block ...)
 		if SPELLINFO_INTERRUPT_BUFFS_TO_TRACK[s] then
 			forceHideTableItem(casts, c, nil)
+			DEFAULT_CHAT_FRAME:AddMessage(" SPELLINFO_INTERRUPT_BUFFS_TO_TRACK ");
 		end
 		-- specific channeled spells (evocation ...)
 		if SPELLINFO_CHANNELED_SPELLCASTS_TO_TRACK[s] then
 			newCast(c, s, true)
+			DEFAULT_CHAT_FRAME:AddMessage(" SPELLINFO_CHANNELED_SPELLCASTS_TO_TRACK ");
 		end
 		-- buffs that alter spell casting speed
 		if SPELLINFO_TIME_MODIFIER_BUFFS_TO_TRACK[s] then
 			newIBuff(c, s)
+			DEFAULT_CHAT_FRAME:AddMessage(" SPELLINFO_TIME_MODIFIER_BUFFS_TO_TRACK ");
 		end
 			
 	-- cast-interruting CC
@@ -517,9 +521,10 @@ local GainAfflict = function()
 end
 
 local FadeRem = function()
-	local fade 		= '(.+) fades from (.+).'							local ffade = string.find(arg1, fade)
-	local rem 		= '(.+)\'s (.+) is removed'							local frem = string.find(arg1, rem)
-	local prem 		= 'Your (.+) is removed'							local fprem = string.find(arg1, prem)
+--DEFAULT_CHAT_FRAME:AddMessage("FadeRem")
+	local fade 		= EF_L_AURAREMOVEDOTHER								local ffade = string.find(arg1, fade)
+	local rem 		= EF_L_AURADISPELOTHER								local frem = string.find(arg1, rem)
+	local prem 		= EF_L_AURADISPELSELF								local fprem = string.find(arg1, prem)
 	
 	-- end channeling based on buffs (evocation ..)
 	if ffade then
@@ -560,16 +565,17 @@ local FadeRem = function()
 end
 
 local HitsCrits = function()
-	local hits = '(.+)\'s (.+) hits (.+) for (.+)' 					local fhits = string.find(arg1, hits)
-	local crits = '(.+)\'s (.+) crits (.+) for (.+)' 				local fcrits = string.find(arg1, crits)
-	local absb = '(.+)\'s (.+) is absorbed by (.+).'				local fabsb = string.find(arg1, absb)
+--DEFAULT_CHAT_FRAME:AddMessage("HitsCrits")
+	local hits = EF_L_SPELLLOGOTHEROTHER		 					local fhits = string.find(arg1, hits)
+	local crits = EF_L_SPELLLOGCRITOTHEROTHER		 				local fcrits = string.find(arg1, crits)
+	local absb = EF_L_SPELLLOGABSORBOTHEROTHER						local fabsb = string.find(arg1, absb)
 	
-	local phits = 'Your (.+) hits (.+) for (.+)' 					local fphits = string.find(arg1, phits)
-	local pcrits = 'Your (.+) crits (.+) for (.+)' 					local fpcrits = string.find(arg1, pcrits)	
-	local pabsb = 'Your (.+) is absorbed by (.+).'					local fpabsb = string.find(arg1, pabsb)
+	local phits = EF_L_SPELLLOGSELFOTHER 							local fphits = string.find(arg1, phits)
+	local pcrits = EF_L_SPELLLOGCRITSELFOTHER 						local fpcrits = string.find(arg1, pcrits)	
+	local pabsb = EF_L_SPELLLOGABSORBSELFOTHER						local fpabsb = string.find(arg1, pabsb)
 	
-	local channelDotRes = "(.+)'s (.+) was resisted by (.+)."		local fchannelDotRes = string.find(arg1, channelDotRes)
-	local pchannelDotRes = "(.+)'s (.+) was resisted."				local fpchannelDotRes = string.find(arg1, pchannelDotRes)
+	local channelDotRes = EF_L_SPELLRESISTOTHEROTHER				local fchannelDotRes = string.find(arg1, channelDotRes)
+	local pchannelDotRes = EF_L_SPELLRESISTOTHERSELF				local fpchannelDotRes = string.find(arg1, pchannelDotRes)
 	
 	-- other hits/crits
 	if fhits or fcrits or fabsb then
@@ -578,7 +584,7 @@ local HitsCrits = function()
 		local s = gsub(arg1, m, '%2')
 		local t = gsub(arg1, m, '%3')
 		
-		t = t == 'you' and playerName or t
+		t = t == EF_L_YOU and playerName or t
 		
 		-- instant spells that cancel casted ones
 		if SPELLINFO_INSTANT_SPELLCASTS_TO_TRACK[s] then 
@@ -632,11 +638,12 @@ local HitsCrits = function()
 end
 
 local channelDot = function()
-	local channelDot 	= "(.+) suffers (.+) from (.+)'s (.+)."		local fchannelDot = string.find(arg1, channelDot)
-	local channelpDot 	= '(.+) suffers (.+) from your (.+).'		local fchannelpDot	= string.find(arg1, channelpDot)
-	local pchannelDot 	= "You suffer (.+) from (.+)'s (.+)."		local fpchannelDot = string.find(arg1, pchannelDot)
+--DEFAULT_CHAT_FRAME:AddMessage("channelDot")
+	local channelDot 	= EF_L_PERIODICAURADAMAGEOTHEROTHER			local fchannelDot = string.find(arg1, channelDot)
+	local channelpDot 	= EF_L_PERIODICAURADAMAGESELFOTHER			local fchannelpDot	= string.find(arg1, channelpDot)
+	local pchannelDot 	= EF_L_PERIODICAURADAMAGEOTHERSELF			local fpchannelDot = string.find(arg1, pchannelDot)
 				
-	local MDrain = '(.+)\'s (.+) drains (.+) Mana from' 			local fMDrain = string.find(arg1, MDrain)
+	local MDrain = EF_L_SPELLPOWERDRAINOTHEROTHER		 			local fMDrain = string.find(arg1, MDrain)
 	
 	-- channeling dmg spells on other (mind flay, life drain(?))
 	if fchannelDot then
@@ -676,9 +683,9 @@ local channelDot = function()
 end
 
 local channelHeal = function()
-	local hot  = '(.+) gains (.+) health from (.+)\'s (.+).'		local fhot = string.find(arg1, hot)
-	local phot = 'You gain (.+) health from (.+)\'s (.+).'			local fphot = string.find(arg1, phot)
-	local shot = 'You gain (.+) health from (.+).'					local fshot = string.find(arg1, shot)	
+	local hot  = EF_L_PERIODICAURAHEALOTHEROTHER				local fhot = string.find(arg1, hot)
+	local phot = EF_L_PERIODICAURAHEALOTHERSELF					local fphot = string.find(arg1, phot)
+	local shot = EF_L_PERIODICAURAHEALSELFSELF					local fshot = string.find(arg1, shot)	
 	
 	if fhot or fphot then
 		local m = fhot and hot or fphot and phot
@@ -703,10 +710,10 @@ local channelHeal = function()
 end
 
 local playerDeath = function()
-	local pdie 		= 'You die.'					local fpdie		= string.find(arg1, pdie)
-	local dies		= '(.+) dies.'					local fdies		= string.find(arg1, dies)
-	local slain 	= '(.+) is slain by (.+).'		local fslain 	= string.find(arg1, slain)
-	local pslain 	= 'You have slain (.+).'		local fpslain 	= string.find(arg1, pslain)
+	local pdie 		= EF_L_UNITDIESSELF				local fpdie		= string.find(arg1, pdie)
+	local dies		= EF_L_UNITDIESOTHER			local fdies		= string.find(arg1, dies)
+	local slain 	= EF_L_PARTYKILLOTHER			local fslain 	= string.find(arg1, slain)
+	local pslain 	= EF_L_SELFKILLOTHER			local fpslain 	= string.find(arg1, pslain)
 	
 	if fpdie or fdies or fslain or fpslain then
 		local m = fdies and dies or fslain and slain or fpslain and pslain
@@ -723,7 +730,7 @@ local playerDeath = function()
 end
 
 local fear = function()
-	local fear = '(.+) attempts to run away in fear!' 				local ffear = string.find(arg1, fear)
+	local fear = EF_L_ATTEMPTSTORUNAWAY				local ffear = string.find(arg1, fear)
 	
 	if ffear then
 		local t = arg2			
@@ -735,7 +742,7 @@ end
 
 ----------------------------------------------------------------------------
 local singleEventdebug = function()
-	local v = '(.+) performs Vanish'
+	local v = EF_L_SPELLPERFORMGOOTHER
 	
 	if string.find(arg1, v) then
 		print(event)

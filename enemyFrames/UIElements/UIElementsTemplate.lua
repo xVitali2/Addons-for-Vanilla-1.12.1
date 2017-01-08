@@ -186,7 +186,7 @@
 		this.you = this:CreateFontString(nil, 'OVERLAY')
 		this.you:SetFont(STANDARD_TEXT_FONT, 16, 'OUTLINE')
 		this.you:SetPoint('LEFT', this.arrow, 'TOPRIGHT', -2, 4)
-		this.you:SetText("You")
+		this.you:SetText(EF_L_YOU2)
 		
 		this.button = CreateFrame('Button', nil, this)
 		this.button:SetPoint('TOPLEFT', this.caster, 'TOPLEFT')

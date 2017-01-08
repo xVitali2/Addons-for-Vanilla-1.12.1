@@ -87,7 +87,7 @@
 		if b then incFrame.border:Show() else incFrame.border:Hide()	end
 		incFrame:EnableMouse(b)
 		incFrame:SetBackdropColor(0, 0, 0, b and .6 or 0)
-		incFrame.title:SetText(b and 'incoming spells' or '')
+		incFrame.title:SetText(b and EF_L_INCOMINGSPELLS or '')
 		frameMovable = b
 		for i=1,unitsLimit do
 			units[i].icon:SetTexture([[Interface\Icons\Inv_misc_gem_sapphire_01]])
@@ -147,7 +147,7 @@
 	end
 	-------------------------------------------------------------------------------
 	local parseCombatLog = function()
-		local bCast = '(.+) begins to cast (.+).'	local bbCast = string.find(arg1, bCast)
+		local bCast = EF_L_SPELLCASTOTHERSTART	local bbCast = string.find(arg1, bCast)
 		
 		if bbCast then
 			local m = bCast

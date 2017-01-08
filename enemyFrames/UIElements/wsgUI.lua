@@ -1,14 +1,14 @@
 	-------------------------------------------------------------------------------
 	local flagCarriers = {}
 	local fcHealth = {}
-	local sentAnnoucement, healthWarnings = false, {10, 20, 40}
+	local sentAnnoucement, healthWarnings = false, {10, 40}
 	local nextAnnouncement = 0
 	-------------------------------------------------------------------------------
 	local h = WorldStateAlwaysUpFrame:CreateFontString(nil, 'OVERLAY')
     h:SetFontObject(GameFontNormalSmall)
     h:SetTextColor(RGB_FACTION_COLORS['Alliance']['r'], RGB_FACTION_COLORS['Alliance']['g'], RGB_FACTION_COLORS['Alliance']['b'])
     h:SetJustifyH'LEFT'
-	h:SetText('horde')
+	h:SetText(EF_L_HORDE)
 	
 	local hb = CreateFrame('Button', nil, WorldStateAlwaysUpFrame)
     hb:SetFrameLevel(2)
@@ -27,7 +27,7 @@
     a:SetFontObject(GameFontNormalSmall)
 	a:SetTextColor(RGB_FACTION_COLORS['Horde']['r'], RGB_FACTION_COLORS['Horde']['g'], RGB_FACTION_COLORS['Horde']['b'])
     a:SetJustifyH'LEFT'
-	a:SetText('alliance')
+	a:SetText(EF_L_ALLIANCE)
 	
 	local ab = CreateFrame('Button', nil, WorldStateAlwaysUpFrame)
     ab:SetFrameLevel(2)
@@ -46,7 +46,7 @@
 		label:SetTextColor(.9, .9, .4)
 		if label:GetText() ~= '' then
 			GameTooltip:SetOwner(this, 'ANCHOR_TOPRIGHT', -40, 10)
-			GameTooltip:SetText('Click to target '..label:GetText())
+			GameTooltip:SetText(EF_L_CLICKTOTARGET..label:GetText())
 			GameTooltip:Show()
 		end
 	end
@@ -104,8 +104,8 @@
 						nextAnnouncement = now + 2
 						w = healthWarnings[i]
 						--print('EFC has less than '..healthWarnings[i]..'%! Get ready to cap!')
-						local msgb = flagCarriers[x] and ' Get ready to cap!' or ''
-						SendChatMessage('EFC has less than '..healthWarnings[i]..'% Health!'.. msgb, 'BATTLEGROUND')
+						local msgb = flagCarriers[x] and EF_L_GETREADYTOCAP or ''
+						SendChatMessage(EF_L_EFCHASLESSTHAN..healthWarnings[i]..EF_L_PERCHEALTH.. msgb, 'BATTLEGROUND')
 						sentAnnoucement = true
 					end
 					return

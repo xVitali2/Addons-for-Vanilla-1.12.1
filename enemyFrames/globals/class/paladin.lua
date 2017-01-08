@@ -3,11 +3,11 @@
 	local targetSeals 	= {}
 	-------------------------------------------------------------------------------
 	local addSeal = function()
-		local nSeal = '(.+) (.+) Seal of (.+).'			local fnSeal 	= string.find(arg1, nSeal)
+		local nSeal = EF_L_SEALOF			local fnSeal 	= string.find(arg1, nSeal)
 		
 		if fnSeal then
 			local c = gsub(arg1, nSeal, '%1')			
-			local b = gsub(arg1, nSeal, '%2')			b = b == ('gain' or 'gains') and true or false
+			local b = gsub(arg1, nSeal, '%2')			b = b == (EF_L_GAIN or EF_L_GAINS) and true or false
 			local s = gsub(arg1, nSeal, '%3')
 			
 			if b then
@@ -17,7 +17,7 @@
 	end
 	-------------------------------------------------------------------------------
 	local remSeal = function()
-		local fSeal = 'Seal of (.+) fades from (.+).'	local ffSeal 	= string.find(arg1, fSeal)
+		local fSeal = EF_L_SEALOFFADESFROM	local ffSeal 	= string.find(arg1, fSeal)
 		
 		if ffSeal then
 			local c = gsub(arg1, fSeal, '%2')
@@ -27,23 +27,23 @@
 	end
 	-------------------------------------------------------------------------------
 	local judge = function()
-		local cJudge = '(.+) (.+) Judgement.'			local fJudge 	= string.find(arg1, cJudge)
+		local cJudge = EF_L_JUDGEMENT			local fJudge 	= string.find(arg1, cJudge)
 		
 		if fJudge then
 			local c = gsub(arg1, cJudge, '%1')			
-			local b = gsub(arg1, cJudge, '%2')			b = b == 'cast' or 'casts' and true or false
+			local b = gsub(arg1, cJudge, '%2')			b = b == EF_L_CAST or EF_L_CASTS and true or false
 			
 			if b  and paladins[c] then
-				targetSeals[c] = 'Judgement of '..paladins[c]
+				targetSeals[c] = EF_L_JUDGEMENTOF..paladins[c]
 			end
 		end
 	end
 	-------------------------------------------------------------------------------
 	local refreshSealDebuff = function()
-		local ph = '(.+) hit (.+) for (.+).'			local fph = string.find(arg1, ph)	
-		local pc = '(.+) crit (.+) for (.+).'			local fpc = string.find(arg1, pc)
-		local oh = '(.+) hits (.+) for (.+).'			local foh = string.find(arg1, oh)
-		local oc = '(.+) crits (.+) for (.+).'			local foc = string.find(arg1, oc)
+		local ph = EF_L_HITFOR			local fph = string.find(arg1, ph)	
+		local pc = EF_L_CRITFOR			local fpc = string.find(arg1, pc)
+		local oh = EF_L_HITSFOR			local foh = string.find(arg1, oh)
+		local oc = EF_L_CRITSFOR		local foc = string.find(arg1, oc)
 		
 		if fph or fpc or foh or foc then
 			local m = fph and ph or fpc and pc or foh and oh or foc and oc

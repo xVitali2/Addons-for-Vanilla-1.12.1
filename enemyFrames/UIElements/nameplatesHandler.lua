@@ -83,7 +83,7 @@
 			plate.castBar.text:SetShadowOffset(1, -1)
 			plate.castBar.text:SetShadowColor(0, 0, 0)
 			plate.castBar.text:SetPoint('LEFT', plate.castBar, 2, 1)
-			plate.castBar.text:SetText'Polymorph'
+			plate.castBar.text:SetText(EF_L_POLYMORPH)
 
 			plate.castBar.timer = plate.castBar:CreateFontString(nil, 'OVERLAY')
 			plate.castBar.timer:SetTextColor(1, 1, 1)
@@ -119,7 +119,7 @@
 						sparkPosition = (GetTime() - castInfo.timeStart) / (castInfo.timeEnd - castInfo.timeStart)
 					end
 					plate.castBar.text:SetText(castInfo.spell)
-					plate.castBar.timer:SetText(getTimerLeft(castInfo.timeEnd)..'s')
+					plate.castBar.timer:SetText(getTimerLeft(castInfo.timeEnd)..EF_L_S)
 					plate.castBar.icon:SetTexture(castInfo.icon)
 					plate.castBar:SetAlpha(plate:GetAlpha())
 					-- border colors

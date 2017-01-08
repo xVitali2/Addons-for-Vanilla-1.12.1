@@ -4,9 +4,9 @@ local flagCarriers = {}
 local eventHandler = function()
 
 	-- Flag for Alliance flag for horde. thanks blizzard
-	local pick 	= 'The (.+) (.+) was picked up by (.+)!'
-	local drop 	= 'The (.+) (.+) was dropped by (.+)!'
-	local score = 'captured the (.+) (.+)!'
+	local pick 	= EF_L_THEWASPICKEDUPBY
+	local drop 	= EF_L_THEWASDROPPEDBY
+	local score = EF_L_CAPTUREDTHE
 	
 	if string.find(arg1, pick) then
 		local flag 		= gsub(arg1, pick, '%1')

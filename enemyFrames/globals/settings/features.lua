@@ -8,23 +8,23 @@
 	container:EnableMouseWheel(true)
 	container:Hide()
 	-------------------------------------------------------------------------------
-	local checkBoxFeaturesN, checkBoxFeatures  = 7, { 	[1] = {['id'] = 'enableOutdoors', 		['label'] = 'Enable outside of BattleGrounds'},
-														[2] = {['id'] = 'mouseOver', 			['label'] = 'Mouseover cast on frames'},	
-														[3] = {['id'] = 'targetFrameCastbar', 	['label'] = 'Moveable Target Cast Bar'},														
-														[4] = {['id'] = 'integratedTargetFrameCastbar', 	['label'] = 'Integrated Target Cast Bar'},
-														[5] = {['id'] = 'targetPortraitDebuff', ['label'] = 'Prio debuff on Target Portrait'},
-														[6] = {['id'] = 'playerPortraitDebuff', ['label'] = 'Prio debuff on Player Portrait'},
-														[7] = {['id'] = 'targetDebuffTimers', 	['label'] = 'Debuff timers on target'},
+	local checkBoxFeaturesN, checkBoxFeatures  = 7, { 	[1] = {['id'] = 'enableOutdoors', 		['label'] = EF_L_ENABLEOUTSIDEOFBATTLEGROUNS},
+														[2] = {['id'] = 'mouseOver', 			['label'] = EF_L_MOUSEOVERCASTONFRAMES},	
+														[3] = {['id'] = 'targetFrameCastbar', 	['label'] = EF_L_MOVEABLETARGETCASTBAR},														
+														[4] = {['id'] = 'integratedTargetFrameCastbar', 	['label'] = EF_L_INTEGRATEDTARGETCASTBAR},
+														[5] = {['id'] = 'targetPortraitDebuff', ['label'] = EF_L_PRIODEBUFFONTARGETPORTRAIT},
+														[6] = {['id'] = 'playerPortraitDebuff', ['label'] = EF_L_PRIODEBUFFONPLAYERPORTRAIT},
+														[7] = {['id'] = 'targetDebuffTimers', 	['label'] = EF_L_DEBUFFTIMERSONTARGET},
 													}
-	local checkBoxFeaturesBGN, checkBoxFeaturesBG  = 3, {	[1] = {['id'] = 'incomingSpells', 		['label'] = 'Incoming Spells (BGs only)'},
-															[2] = {['id'] = 'pvpmapblips', 			['label'] = 'Class colored map blips'},
-															[3] = {['id'] = 'efcBGannouncement', 	['label'] = 'Low Health EFC announcement'},
+	local checkBoxFeaturesBGN, checkBoxFeaturesBG  = 3, {	[1] = {['id'] = 'incomingSpells', 		['label'] = EF_L_INCOMINGSPELLSBGSONLY},
+															[2] = {['id'] = 'pvpmapblips', 			['label'] = EF_L_CLASSCOLOREDMAPBLIPS},
+															[3] = {['id'] = 'efcBGannouncement', 	['label'] = EF_L_LOWHEALTHEFCANN},
 														}
 	-------------------------------------------------------------------------------
 	-- features
 	container.features = container:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
 	container.features:SetPoint('LEFT', container, 'TOPLEFT', 45, -30)
-	container.features:SetText'features'
+	container.features:SetText(EF_L_FEATURES)
 
 	container.featuresList = {}
 	for i = 1, checkBoxFeaturesN, 1 do
@@ -42,7 +42,7 @@
 	-------------------------------------------------------------------------------
 	container.bgLabel = container:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
 	container.bgLabel:SetPoint('LEFT', container.featuresList[checkBoxFeaturesN], 'LEFT', 0, -30)
-	container.bgLabel:SetText'battlegrounds'
+	container.bgLabel:SetText(EF_L_BATTLEGROUNDS)
 	
 	container.bgList = {}
 	for i = 1, checkBoxFeaturesBGN, 1 do
