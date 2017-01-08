@@ -324,16 +324,15 @@ function objGuideTable:new(oSettings)
 
 	obj.PrepareNoGuidesTableHorde = function(self, tRace)
 		-- we normilize here, cause "indexes" will clash otherwise 
-		if tRace == "Tauren" then 
+		if tRace == VG_L_TAUREN then 
 			obj.NoGuide = TablesMerge(obj.NoGuide, ColorizeTable(Table_002_TirisfalGlades))
 			obj:NormalizeGuide(obj.NoGuide, nil)
 			obj.NoGuide = TablesMerge(obj.NoGuide, ColorizeTable(Table_002_Durotar))
-		elseif tRace == "Undead" then 
+		elseif tRace == VG_L_UNDEAD then 
 			obj.NoGuide = TablesMerge(obj.NoGuide, ColorizeTable(Table_002_Durotar))
 			obj:NormalizeGuide(obj.NoGuide, nil)
 			obj.NoGuide = TablesMerge(obj.NoGuide, ColorizeTable(Table_002_Mulgore))			
-		else
-			
+		else			
 			obj.NoGuide = TablesMerge(obj.NoGuide, ColorizeTable(Table_002_Mulgore))
 			obj:NormalizeGuide(obj.NoGuide, nil)
 			obj.NoGuide = TablesMerge(obj.NoGuide, ColorizeTable(Table_002_TirisfalGlades))
@@ -342,9 +341,9 @@ function objGuideTable:new(oSettings)
 
 	obj.PrepareGuidesTableAlliance = function(self, tRace)
 		obj.Guide = TablesMerge(obj.Guide, ColorizeTable(Table_001_Introduction))
-		if tRace == "Human" then
+		if tRace == VG_L_HUMAN then
 			obj.Guide = TablesMerge(obj.Guide, ColorizeTable(Table_002_ElwynnForest))
-		elseif tRace == "Night Elf" then
+		elseif tRace == VG_L_NIGHTELF then
 			obj.Guide = TablesMerge(obj.Guide, ColorizeTable(Table_002_Teldrassil))
 		else
 			obj.Guide = TablesMerge(obj.Guide, ColorizeTable(Table_002_DunMorogh))
@@ -359,11 +358,11 @@ function objGuideTable:new(oSettings)
 
 	obj.PrepareNoGuidesTableAlliance = function(self, tRace)
 		-- we normilize here, cause "indexes" will clash otherwise 
-		if tRace == "Human" then
+		if tRace == VG_L_HUMAN then
 			obj.NoGuide = TablesMerge(obj.NoGuide, ColorizeTable(Table_002_DunMorogh))
 			obj:NormalizeGuide(obj.NoGuide, nil)
 			obj.NoGuide = TablesMerge(obj.NoGuide, ColorizeTable(Table_002_Teldrassil))
-		elseif tRace == "Night Elf" then
+		elseif tRace == VG_L_NIGHTELF then
 			obj.NoGuide = TablesMerge(obj.NoGuide, ColorizeTable(Table_002_ElwynnForest))
 			obj:NormalizeGuide(obj.NoGuide, nil)
 			obj.NoGuide = TablesMerge(obj.NoGuide, ColorizeTable(Table_002_DunMorogh))
@@ -418,7 +417,7 @@ function objGuideTable:new(oSettings)
 	end
 
 	obj.DefineDDMStartingZonesSubMenu = function(self, tFaction)
-		if tFaction == "Horde" then
+		if tFaction == VG_L_HORDE then
 			xSearchID(obj.TableDDM.lvl3["Orcs & Trolls"])
 			xSearchID(obj.TableDDM.lvl3["Taurens"])
 			xSearchID(obj.TableDDM.lvl3["Undeads"])
@@ -430,7 +429,7 @@ function objGuideTable:new(oSettings)
 	end
 
 	obj.DefineDDMLaterLevelingSubMenu = function(self, tFaction)
-		if tFaction == "Horde" then
+		if tFaction == VG_L_HORDE then
 			xSearchID(obj.TableDDM.lvl3["[H] 12-20"])
 			xSearchID(obj.TableDDM.lvl3["[H] 20-30"])
 			xSearchID(obj.TableDDM.lvl3["[H] 30-40"])
@@ -483,7 +482,7 @@ function objGuideTable:new(oSettings)
 	end
 
 	-- Constructor Main
-	if obj.Faction == "Horde" then
+	if obj.Faction == VG_L_HORDE then
 		obj:PrepareGuidesTableHorde(obj.Race)
 		obj:PrepareNoGuidesTableHorde(obj.Race)
 	else

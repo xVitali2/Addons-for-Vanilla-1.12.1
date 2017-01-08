@@ -1,6 +1,7 @@
 ## Interface: 11200
 ## Title: VanillaGuide |cff7fff7f -Ace2-|r
 ## Notes: Step-by-Step 1to60 Guides, in an Ace2 addon.
+## Notes-ruRU: Пошаговая инструкция по прокачке с 1 по 60 уровень, прокачка профессий
 ## Author: mrmr
 ## Version: 1.04.3
 ## DefaultState: enabled
@@ -18,6 +19,9 @@
 ## SavedVariablesPerCharacter: VanillaGuideDBPC
 
 # Main
+localization_en.lua
+localization_ru.lua
+
 Core.lua
 Settings.lua
 GuideTables\001_Introduction.lua
