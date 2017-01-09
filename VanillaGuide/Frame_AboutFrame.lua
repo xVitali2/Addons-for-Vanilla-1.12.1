@@ -55,7 +55,7 @@ function objAboutFrame:new(fParent, tTexture, oSettings)
 
 	local tCharInfo = oSettings:GetSettingsCharInfo()
 
-	if tCharInfo.Faction == "Horde" then
+	if tCharInfo.Faction == VG_L_HORDE then
 		sAboutText = sAboutTextHorde
 	else
 		sAboutText = sAboutTextAlliance

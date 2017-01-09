@@ -857,7 +857,7 @@ function objMainFrame:new(fParent, tTexture, oSettings, oDisplay)
 		elseif level == 2 then
 			local s = UIDROPDOWNMENU_MENU_VALUE
 			if s == "Starting Zones" then
-				if tCharInfo.Faction == "Horde" then
+				if tCharInfo.Faction == VG_L_HORDE then
 					s = "[H] " .. s
 				else
 					s = "[A] " .. s
@@ -871,7 +871,7 @@ function objMainFrame:new(fParent, tTexture, oSettings, oDisplay)
 			-- to handle both factions, we check if there's a 0 at the 4th place!
 			-- so that we won't get in the way of Starting Zones
 			if string.find(s, "0", 4) then
-				if tCharInfo.Faction == "Horde" then
+				if tCharInfo.Faction == VG_L_HORDE then
 					s = "[H] " .. s
 				else
 					s = "[A] " .. s

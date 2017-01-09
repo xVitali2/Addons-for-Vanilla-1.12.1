@@ -307,9 +307,9 @@ function objGuideTable:new(oSettings)
 	-- Guides Praparation methods
 	obj.PrepareGuidesTableHorde = function(self, tRace)
 		obj.Guide = TablesMerge(obj.Guide, ColorizeTable(Table_001_Introduction))
-		if tRace == "Tauren" then 
+		if tRace == VG_L_TAUREN then 
 			obj.Guide = TablesMerge(obj.Guide, ColorizeTable(Table_002_Mulgore))
-		elseif tRace == "Undead" then 
+		elseif tRace == VG_L_UNDEAD then 
 			obj.Guide = TablesMerge(obj.Guide, ColorizeTable(Table_002_TirisfalGlades))
 		else 
 			obj.Guide = TablesMerge(obj.Guide, ColorizeTable(Table_002_Durotar))
