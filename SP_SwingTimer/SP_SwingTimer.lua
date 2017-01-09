@@ -40,24 +40,24 @@ function SP_ST_Handler(msg)
 	end
 	
 	if (cmd == nil and arg == nil) then
-		SP_ST_Print("Chat commands: x, y, reset, show")
-		SP_ST_Print("    Example: /st show")
-		SP_ST_Print("    Example: /st y -150")
+		SP_ST_Print(SWINGT_L_CHATCOMMANDS)
+		SP_ST_Print(SWINGT_L_EXAMPLESTSHOW)
+		SP_ST_Print(SWINGT_L_EXAMPLESTY150)
 	elseif (cmd == "x") then
 		if (arg ~= nil) then
 			SP_ST_GS["x"] = arg
 			SP_ST_SetPosition()
-			SP_ST_Print("X set: "..arg)
+			SP_ST_Print(SWINGT_L_XSET..arg)
 		else
-			SP_ST_Print("Current x: "..SP_ST_GS["x"]..". To change x say: /st x [number]")
+			SP_ST_Print(SWINGT_L_CURRENTX..SP_ST_GS["x"]..SWINGT_L_TOCHANGEXSAY)
 		end
 	elseif (cmd == "y") then
 		if (arg ~= nil) then
 			SP_ST_GS["y"] = arg
 			SP_ST_SetPosition()
-			SP_ST_Print("Y set: "..arg)
+			SP_ST_Print(SWINGT_L_YSET..arg)
 		else
-			SP_ST_Print("Current y: "..SP_ST_GS["y"]..". To change y say: /st y [number]")
+			SP_ST_Print(SWINGT_L_CURRENTY..SP_ST_GS["y"]..SWINGT_L_TOCHANGEYSAY)
 		end
 	elseif (cmd == "reset") then
 		SP_ST_ResetPosition()
@@ -93,7 +93,7 @@ function SP_ST_OnLoad()
 end
 
 StaticPopupDialogs["SP_ST_Install"] = {
-	text = TEXT("Thanks for installing SP_SwingTimer 1.2! Use the chat command /st to change the position of the timer bar."),
+	text = TEXT(SWINGT_L_THANKSFORINSTALLINGSPSWT),
 	button1 = TEXT(YES),
 	timeout = 0,
 	hideOnEscape = 1,
@@ -118,7 +118,7 @@ function SP_ST_OnEvent()
 			SP_ST_Frame:SetAlpha(0)
 			SP_ST_Frame:Show()
 			
-			SP_ST_Print("SP_SwingTimer 1.2 loaded. Options: /st")
+			SP_ST_Print(SWINGT_L_SPSWTLOADED)
 		end
 		
 	elseif (event == "PLAYER_REGEN_ENABLED") then
@@ -143,7 +143,7 @@ function SP_ST_OnEvent()
 		end
 		
 	elseif (event == "CHAT_MSG_COMBAT_SELF_HITS") then
-		if (string.find(arg1, "You hit") or string.find(arg1, "You crit")) then
+		if (string.find(arg1, SWINGT_L_YOUHIT) or string.find(arg1, SWINGT_L_YOUCRIT)) then
 			if (SP_ST_ShouldReset()) then
 				SP_ST_Reset()
 			end
@@ -154,17 +154,17 @@ function SP_ST_OnEvent()
 		local b = nil
 		local spell = nil
 		
-		local a,b,spell = string.find (arg1, "Your (.+) hits")
-		if not spell then a,b,spell = string.find(arg1, "Your (.+) crits") end
-		if not spell then a,b,spell = string.find(arg1, "Your (.+) is") end
-		if not spell then a,b,spell = string.find(arg1, "Your (.+) misses") end
+		local a,b,spell = string.find (arg1, SWINGT_L_YOURHITS)
+		if not spell then a,b,spell = string.find(arg1, SWINGT_L_YOURCRITS) end
+		if not spell then a,b,spell = string.find(arg1, SWINGT_L_YOURIS) end
+		if not spell then a,b,spell = string.find(arg1, SWINGT_L_YOURMISSES) end
 		
-		if spell == "Heroic Strike" or spell == "Cleave" or spell == "Slam" then
+		if spell == SWINGT_L_HEROICSTRIKE or spell == SWINGT_L_CLEAVE or spell == SWINGT_L_SLAM then
 			SP_ST_Reset()
 		end
 		
 	elseif (event == "CHAT_MSG_COMBAT_CREATURE_VS_SELF_MISSES") then
-		if (string.find(arg1, ".* attacks. You parry.")) then
+		if (string.find(arg1, SWINGT_L_ATTACKSYOUPARRY)) then
 			local percentTime = SP_ST_TimeLeft / SP_ST_GetWeaponSpeed()
 			if (percentTime > 0.2) then
 				local hypTimeLeft = SP_ST_TimeLeft - SP_ST_GetWeaponSpeed() * 0.4

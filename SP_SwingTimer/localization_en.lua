@@ -1,0 +1,22 @@
+--by CFM
+SWINGT_L_CHATCOMMANDS="Chat commands: x, y, reset, show";
+SWINGT_L_EXAMPLESTSHOW="    Example: /st show";
+SWINGT_L_EXAMPLESTY150="    Example: /st y -150";
+SWINGT_L_XSET="X set: ";
+SWINGT_L_CURRENTX="Current x: ";
+SWINGT_L_TOCHANGEXSAY=". To change x say: /st x [number]";
+SWINGT_L_YSET="Y set: ";
+SWINGT_L_CURRENTY="Current y: ";
+SWINGT_L_TOCHANGEYSAY=". To change y say: /st y [number]";
+SWINGT_L_THANKSFORINSTALLINGSPSWT="Thanks for installing SP_SwingTimer 1.3! Use the chat command /st to change the position of the timer bar.";
+SWINGT_L_SPSWTLOADED="SP_SwingTimer 1.3 loaded. Options: /st";
+SWINGT_L_YOUHIT="You hit";
+SWINGT_L_YOUCRIT="You crit";
+SWINGT_L_YOURHITS="Your (.+) hits";
+SWINGT_L_YOURCRITS="Your (.+) crits";
+SWINGT_L_YOURIS="Your (.+) is";
+SWINGT_L_YOURMISSES="Your (.+) misses";
+SWINGT_L_HEROICSTRIKE="Heroic Strike";
+SWINGT_L_CLEAVE="Cleave";
+SWINGT_L_SLAM="Slam";
+SWINGT_L_ATTACKSYOUPARRY=".* attacks. You parry.";
