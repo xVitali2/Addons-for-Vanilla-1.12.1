@@ -3,6 +3,7 @@
 ## Title-zhCN: LunaUF |cffffffff露娜框架|r |cff7fff7f-Ace2-|r
 ## Title-deDE: Luna Unit Frames
 ## Notes: Lightweight Unit Frames in a modern look.
+## Notes-ruRU: Легкие Unit Frames в современном стиле.
 ## Notes-zhCN: 轻量级的现代风框架
 ## Notes-deDE: Einfache UnitFrames mit modernem Aussehen.
 ## Author: Avi
@@ -47,7 +48,7 @@ locales\enUS.lua
 locales\zhCN.lua
 locales\deDE.lua
 locales\frFR.lua
-
+locales\ruRU.lua
 
 modules\defaults.lua
 modules\cooldown.lua
