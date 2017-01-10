@@ -617,9 +617,10 @@ EF_L_HORDE2='Орда';
 EF_L_ALLIANCE2='Альянс';
 EF_L_S2='С';
 --wsghandler.lua
-EF_L_THEWASPICKEDUPBY='The (.+) (.+) was picked up by (.+)!';
-EF_L_THEWASDROPPEDBY='The (.+) (.+) was dropped by (.+)!';
-EF_L_CAPTUREDTHE='captured the (.+) (.+)!';
+$n $gподобрал:подобрала; флаг Орды!
+EF_L_THEWASPICKEDUPBY='(.+) $gподобрал:подобрала; (.+) (.+)!';
+EF_L_THEWASDROPPEDBY='(.+) $gпотерял:потеряла (.+) (.+)!';
+EF_L_CAPTUREDTHE='захватили (.+) (.+)!';
 --paladin.lua
 EF_L_SEALOF='(.+) (.+) \"Печать (.+)\".';
 EF_L_GAIN='получаете';
