@@ -1,15 +1,15 @@
 ## Interface: 11200
-## Version: 4.42
-## Title: Mik's Scrolling Battle Text |cff7fff7f -Ace2-|r
+## Version: 4.43
+## Title: Mik's Scrolling Battle Text
 ## Notes: Scrolls battle information around the character model.
-## RequiredDeps:!!!Libs
+## Notes-ruRU: Прокрутка информацию боя вокруг модели персонажа.
 ## OptionalDeps: SW_FixLogStrings
 ## SavedVariables: MikSBT_Save
+## RequiredDeps:!!!Libs
+
 
 MikScrollingBattleText-enUS.lua
 MikScrollingBattleText-ruRU.lua
-MikScrollingBattleText-frFR.lua
-MikScrollingBattleText-deDE.lua
 
 localization.lua
 MikTableRecyclerObject.lua

@@ -372,6 +372,11 @@ function MikSBTOpt.InitDropdowns()
  key = "TriggerTypeDropdown";
  MikSBTOpt.SetupDropdown(TRIGGER_CONFIGURATION_FRAME_NAME .. key, MikSBTOpt.DROPDOWNS[key].Label, MikSBTOpt.DROPDOWNS[key].Tooltip, MikSBTOpt.TriggerTypeDropdownOnClick, MikSBT.AVAILABLE_TRIGGER_TYPES, nil); 
  UIDropDownMenu_SetWidth(150, getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. key));
+ 
+ -- Initialize the stances dropdown.
+ key = "StanceDropdown";
+ MikSBTOpt.SetupDropdown(TRIGGER_CONFIGURATION_FRAME_NAME .. key, MikSBTOpt.DROPDOWNS[key].Label, MikSBTOpt.DROPDOWNS[key].Tooltip, MikSBTOpt.StanceDropdownOnClick, MikSBT.AVAILABLE_STANCES, nil); 
+ UIDropDownMenu_SetWidth(240, getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. key));
 end
 
 
@@ -550,6 +555,15 @@ function MikSBTOpt.TriggerTypeDropdownOnClick(frameName)
 
  -- Setup the trigger controls appropriately depending on the trigger type.
  MikSBTOpt.SetupVariableTriggerControls(getglobal(frameName):GetParent().TriggerKey, this.value == MikCEH.TRIGGERTYPE_SEARCH_PATTERN);
+end
+
+
+-- **********************************************************************************
+-- Called when the stance dropdown menu is clicked.
+-- **********************************************************************************
+function MikSBTOpt.StanceDropdownOnClick(frameName)
+ -- Set the selected dropdown option to the appropriate value.
+ UIDropDownMenu_SetSelectedValue(getglobal(frameName), this.value);
 end
 
 
@@ -3344,7 +3358,7 @@ function MikSBTOpt.SetupVariableTriggerControls(triggerKey, showSearch)
   -- Check if the search pattern controls should be shown.
   if (showSearch) then
    -- Resize the trigger frame.
-   triggerFrame:SetHeight(420);
+   triggerFrame:SetHeight(450);
 
    -- Hide the threshold slider.
    getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "ThresholdSlider"):Hide();
@@ -3356,6 +3370,7 @@ function MikSBTOpt.SetupVariableTriggerControls(triggerKey, showSearch)
    getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "TriggerEvent3Checkbox"):Show();
    getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "TriggerEvent4Checkbox"):Show();
 
+   getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "StanceDropdown"):Show();
    getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "SearchPattern1Editbox"):Show();
    getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "SearchPattern2Editbox"):Show();
    
@@ -3376,7 +3391,12 @@ function MikSBTOpt.SetupVariableTriggerControls(triggerKey, showSearch)
    -- Populate the appropriate trigger events.
    MikSBTOpt.PopulateAvailableTriggerEvents();
 
-
+   
+   local stance = triggerData.TriggerSettings.Stance
+   if not stance then stance = 7 end
+   -- Populate the stance dropdown.
+  MikSBTOpt.PopulateDropdown(TRIGGER_CONFIGURATION_FRAME_NAME .. "StanceDropdown", stance);
+   
    -- Holds the search patterns.
    local searchPattern1 = ""; 
    local searchPattern2 = "";
@@ -3404,6 +3424,7 @@ function MikSBTOpt.SetupVariableTriggerControls(triggerKey, showSearch)
    getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "TriggerEvent2Checkbox"):Hide();
    getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "TriggerEvent3Checkbox"):Hide();
    getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "TriggerEvent4Checkbox"):Hide();
+   getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "StanceDropdown"):Hide();
    getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "SearchPattern1Editbox"):Hide();
    getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "SearchPattern2Editbox"):Hide();
    
@@ -3505,6 +3526,17 @@ function MikSBTOpt.SaveTriggerConfig()
    -- Save the selected trigger events. 
    triggerData.TriggerSettings.TriggerEvents = trigEvents;
 
+   -- Save the required stance.
+  if UIDropDownMenu_GetSelectedValue(getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "StanceDropdown")) ~= 7 then
+	triggerData.TriggerSettings.Stance = UIDropDownMenu_GetSelectedValue(getglobal(TRIGGER_CONFIGURATION_FRAME_NAME .. "StanceDropdown"));
+	if not GetShapeshiftFormInfo(triggerData.TriggerSettings.Stance) then
+		MikSBT.Print("No stance found for the selected requirement on this character, this trigger might never occur :o", 1, 1, 0);
+		MikSBT.Print("Also it's dangerous to go alone! take this. o-[====>", 1, 1, 0); --remind me that this is a beta release
+	end
+  else
+	triggerData.TriggerSettings.Stance = nil
+  end
+   
    -- Create a table to hold the search patterns.
    local searchPatterns = {};
 

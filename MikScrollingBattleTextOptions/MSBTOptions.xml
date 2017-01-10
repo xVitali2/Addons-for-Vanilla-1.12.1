@@ -2149,7 +2149,16 @@
     </Anchors>
    </CheckButton>
 
-
+   <!-- Stance Dropdown -->
+   <Frame name="$parentStanceDropdown" inherits="MSBTDropdownTemplate" hidden="false">
+    <Anchors>
+     <Anchor point="TOP">
+      <Offset>
+       <AbsDimension x="0" y="-310" />
+      </Offset>
+     </Anchor>
+    </Anchors>
+   </Frame>
 
    <!-- Search Pattern 2 Editbox -->
    <EditBox name="$parentSearchPattern2Editbox" inherits="MSBTEditboxTemplate">
@@ -2157,9 +2166,9 @@
      <AbsDimension x="250" y="22" />
     </Size>
     <Anchors>
-     <Anchor point="BOTTOM">
+     <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentStanceDropdown">
       <Offset>
-       <AbsDimension x="0" y="40" />
+       <AbsDimension x="23" y="-50" />
       </Offset>
      </Anchor>
     </Anchors>

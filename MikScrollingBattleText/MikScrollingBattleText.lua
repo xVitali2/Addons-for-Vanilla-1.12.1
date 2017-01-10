@@ -107,6 +107,12 @@ ICON_CACHE["pierre de soins"] =					"Interface\\Icons\\inv_stone_04"
 ICON_CACHE["capturer un esprit"] =				"Interface\\Icons\\Spell_Shadow_Haunting"
 ICON_CACHE["récupération du mana"] =			"Interface\\Icons\\inv_misc_gem_ruby_01"
 ICON_CACHE["maître des éléments"] =				"Interface\\Icons\\spell_fire_masterofelements"
+ICON_CACHE["tribu zandalar"] =					"Interface\\Icons\\inv_misc_coin_08"
+ICON_CACHE["crachat venimeux"] =				"Interface\\Icons\\spell_nature_corrosivebreath"
+ICON_CACHE["morsure fatale"] =					"Interface\\Icons\\ability_backstab"
+ICON_CACHE["explosion sonore"] =				"Interface\\Icons\\spell_shadow_teleport"
+ICON_CACHE["flammes"] =							"Interface\\Icons\\spell_fire_fire"
+ICON_CACHE["effet inferno"] =					"Interface\\Icons\\spell_fire_incinerate"
 
 
 -- Cache des spells dont l'icone n'a pas été trouvée
@@ -652,6 +658,16 @@ function MikSBT.TriggerHandler(triggerEvent)
  -- Get a recycled table from the events recycler object.
  local animationEvent = eventsRecycler:AcquireTable();
 
+ -- Check if the trigger require a stance
+ if (MikSBT.CurrentProfile.Triggers[triggerEvent.TriggerKey].TriggerSettings.Stance) then
+	local _,_,isActive = GetShapeshiftFormInfo(MikSBT.CurrentProfile.Triggers[triggerEvent.TriggerKey].TriggerSettings.Stance)
+	if not isActive then
+		-- Reclaim the animation event table to the table recycler.
+		eventsRecycler:ReclaimTable(animationEvent);
+		return
+	end
+ end
+ 
  -- Check if there is profile data for the trigger.
  if (MikSBT.CurrentProfile.Triggers[triggerEvent.TriggerKey].EventSettings) then
   -- Set the scroll area, event settings, and output text.

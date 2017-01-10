@@ -72,15 +72,16 @@ MikSBTOpt.TABS = {
 
 MikSBTOpt.DROPDOWNS = {
  ["Tab1FrameProfileDropdown"]	= { Label="Profile", Tooltip="Selects the current profile."},
- ["ScrollAreaDropdown"]		= { Label="Scroll Area", Tooltip="Selects the scroll area to configure."},
- ["TextAlignDropdown"]		= { Label="Text Align", Tooltip="The alignment of the text for the scroll area."},
- ["AnimationStyleDropdown"]	= { Label="Animation Style", Tooltip="The animation style for the scroll area."},
+ ["ScrollAreaDropdown"]			= { Label="Scroll Area", Tooltip="Selects the scroll area to configure."},
+ ["TextAlignDropdown"]			= { Label="Text Align", Tooltip="The alignment of the text for the scroll area."},
+ ["AnimationStyleDropdown"]		= { Label="Animation Style", Tooltip="The animation style for the scroll area."},
  ["ScrollDirectionDropdown"]	= { Label="Scroll Direction", Tooltip="The scroll direction for the scroll area."},
- ["FontDropdown"] 		= { Label="Normal Font"},
- ["FontOutlineDropdown"]	= { Label="Normal Font Outline"},
- ["FontCritDropdown"]		= { Label="Crit Font"},
+ ["FontDropdown"] 				= { Label="Normal Font"},
+ ["FontOutlineDropdown"]		= { Label="Normal Font Outline"},
+ ["FontCritDropdown"]			= { Label="Crit Font"},
  ["FontOutlineCritDropdown"]	= { Label="Crit Font Outline"},
- ["TriggerTypeDropdown"]	= { Label="Trigger Type", Tooltip="Select the type of trigger."},
+ ["TriggerTypeDropdown"]		= { Label="Trigger Type", Tooltip="Select the type of trigger."},
+ ["StanceDropdown"]				= { Label="Required Stance", Tooltip="Select the stance required to enable this trigger."},
 };
 
 MikSBTOpt.CHECKBOXES = {
