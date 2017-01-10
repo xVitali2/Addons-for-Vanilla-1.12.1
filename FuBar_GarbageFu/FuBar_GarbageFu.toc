@@ -1,6 +1,7 @@
 ## Interface: 11200
 ## Title: FuBar - |cffffffffGarbage|r|cff00ff00Fu|r
 ## Notes: Drops the least valuable item in your bags to make space.
+## Notes-ruRU: Выбрасывает самый дешевый мусор из ваших сумок.
 ## Author: wmrojer
 ## X-Category: Inventory
 ## Dependencies: FuBar
@@ -18,5 +19,6 @@ PeriodicTable\Elements\Food\PTEmbedElemFood.lua
 PeriodicTable\Elements\Tradeskills\PTEmbedElemTradeskill.lua
 
 GarbageFuLocale-enUS.lua
+GarbageFuLocale-ruRU.lua
 
 GarbageFu.lua

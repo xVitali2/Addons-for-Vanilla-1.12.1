@@ -120,5 +120,4 @@ L:RegisterTranslations("enUS", function() return {
   
 	["Autodrop"] = true,
 	["AutodropDesc"] = "Toggle autodrop of items to maintain %d slots free",
-	
 } end)

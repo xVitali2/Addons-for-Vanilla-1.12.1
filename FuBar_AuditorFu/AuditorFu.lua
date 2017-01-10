@@ -149,7 +149,7 @@ AuditorFu:RegisterDefaults('profile', {
 	absurdDetail = false,
 	absurdStyle = "loot",
 	style = "total",
-	cashFormat = { Bar = "Full", toolTip = "Full" }
+	cashFormat = { Bar = "Graphical", toolTip = "Condensed" }
 })
 
 function AuditorFu:OnInitialize()
