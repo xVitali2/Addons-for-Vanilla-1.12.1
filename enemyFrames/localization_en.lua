@@ -237,6 +237,7 @@ EF_L_IMPROVEDHAMSTRING='Improved Hamstring';
 EF_L_LASTSTAND='Last Stand';
 EF_L_MORTALSTRIKE='Mortal Strike';
 EF_L_REND='Rend';
+EF_L_SUNDERARMOR='Sunder Armor';
 EF_L_RETALIATION='Retaliation';
 EF_L_SHIELDBLOCK='Shield Block';
 EF_L_SHIELDWALL='Shield Wall';

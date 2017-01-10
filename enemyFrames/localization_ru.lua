@@ -279,6 +279,7 @@ EF_L_IMPROVEDHAMSTRING='Улучшенное подрезание сухожил
 EF_L_LASTSTAND='Ни шагу назад';
 EF_L_MORTALSTRIKE='Смертельный удар';
 EF_L_REND='Кровопускание';
+EF_L_SUNDERARMOR='Раскол брони';
 EF_L_RETALIATION='Возмездие';
 EF_L_SHIELDBLOCK='Блок щитом';
 EF_L_SHIELDWALL='Глухая оборона';
@@ -617,7 +618,6 @@ EF_L_HORDE2='Орда';
 EF_L_ALLIANCE2='Альянс';
 EF_L_S2='С';
 --wsghandler.lua
-$n $gподобрал:подобрала; флаг Орды!
 EF_L_THEWASPICKEDUPBY='(.+) $gподобрал:подобрала; (.+) (.+)!';
 EF_L_THEWASDROPPEDBY='(.+) $gпотерял:потеряла (.+) (.+)!';
 EF_L_CAPTUREDTHE='захватили (.+) (.+)!';

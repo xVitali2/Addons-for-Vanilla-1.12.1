@@ -145,7 +145,6 @@
     	[EF_L_FROSTWARD]           	= {['icon'] = [[Interface\Icons\Spell_frost_frostward]], 			['duration'] = 30, 	['type'] = 'magic'},
 		[EF_L_FROSTBOLT]			= {['icon'] = [[Interface\Icons\Spell_frost_frostbolt02]], 			['duration'] = 10, 	['type'] = 'magic',		['display'] = false,},
     	[EF_L_FIREWARD]            	= {['icon'] = [[Interface\Icons\Spell_fire_firearmor]], 			['duration'] = 30, 	['type'] = 'magic'},
-		--['Ice Barrier']			= {['icon'] = [[Interface\Icons\Spell_ice_lament]], 				['duration'] = 60, 	['type'] = 'magic'},
     	[EF_L_ICEBLOCK]            	= {['icon'] = [[Interface\Icons\Spell_frost_frost]], 				['duration'] = 10, 	['prio'] = 5},
 		[EF_L_IMPACT] 				= {['icon'] = [[Interface\Icons\Spell_fire_meteorstorm]], 			['duration'] = 2, 	['type'] = 'physical', 	['prio'] = 1},
 		[EF_L_FIREVULNERABILITY]	= {['icon'] = [[Interface\Icons\Spell_fire_soulburn]],				['duration'] = 30,	['display'] = false,},
@@ -263,6 +262,7 @@
 		[EF_L_MACESTUNEFFECT]		= {['icon'] = [[Interface\Icons\Spell_frost_stun]],					['duration'] = 3,	['type'] = 'physical',	['prio'] = 1,},
 		[EF_L_MORTALSTRIKE] 		= {['icon'] = [[Interface\Icons\Ability_warrior_savageblow]], 		['duration'] = 10, 	['type'] = 'physical'},
 		[EF_L_REND]					= {['icon'] = [[Interface\Icons\Ability_gouge]], 					['duration'] = 21,	['display'] = true,},
+		[EF_L_SUNDERARMOR]			= {['icon'] = [[Interface\Icons\Ability_warrior_sunder]], 			['duration'] = 30,	['display'] = true,		['type'] = 'physical',	['prio'] = 1,},
 		[EF_L_RETALIATION]			= {['icon'] = [[Interface\Icons\Ability_warrior_challange]],		['duration'] = 15,							['prio'] = 2,},
 		[EF_L_SHIELDBASHSILENCED] 	= {['icon'] = [[Interface\Icons\Ability_warrior_shieldbash]], 		['duration'] = 3, 	['type'] = 'magic',		['prio'] = 2},
 		[EF_L_SHIELDBLOCK]			= {['icon'] = [[Interface\Icons\ability_defend]], 					['duration'] = 5,	['display'] = false,},
@@ -334,6 +334,7 @@
 		-- WARRRIOR
 		[EF_L_HAMSTRING]		= {EF_L_HAMSTRING,},
 		[EF_L_MORTALSTRIKE]		= {EF_L_MORTALSTRIKE,},
+		[EF_L_SUNDERARMOR]		= {EF_L_SUNDERARMOR,},
 	}
 	
 	SPELLINFO_ROOTS_SNARES = {
