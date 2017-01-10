@@ -201,11 +201,11 @@ MikSBT.DEFAULT_CONFIG = {
  LowManaSound					= true,
  AnimationStep					= 1.5,
  MasterFontSettings = {
-  Normal 						= {FontIndex=7, OutlineIndex=2, FontSize=18},
-  Crit 							= {FontIndex=7, OutlineIndex=2, FontSize=26},
+  Normal 						= {FontIndex=1, OutlineIndex=2, FontSize=18},
+  Crit 							= {FontIndex=2, OutlineIndex=2, FontSize=26},
  },
  BlizzardFontSettings = {
-  Normal 						= {FontIndex=6},
+  Normal 						= {FontIndex=3},
  },
  DisplaySettings = {
   Incoming =  {
