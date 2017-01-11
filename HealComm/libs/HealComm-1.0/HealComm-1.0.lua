@@ -1,6 +1,6 @@
 --[[
 Name: HealComm-1.0
-Revision: $Rev: 11401 $
+Revision: $Rev: 11431 $
 Author(s): aviana
 Website: https://github.com/Aviana
 Description: A library to provide communication of heals and resurrections.
@@ -8,7 +8,7 @@ Dependencies: AceLibrary, AceEvent-2.0, RosterLib-2.0
 ]]
 
 local MAJOR_VERSION = "HealComm-1.0"
-local MINOR_VERSION = "$Revision: 11400 $"
+local MINOR_VERSION = "$Revision: 11431 $"
 
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary") end
 if not AceLibrary:IsNewVersion(MAJOR_VERSION, MINOR_VERSION) then return end
@@ -283,20 +283,24 @@ local function external(self, major, instance)
 		self:RegisterEvent("CHAT_MSG_ADDON")
 		self:RegisterEvent("UNIT_AURA")
 		self:RegisterEvent("UNIT_HEALTH")
+		self:RegisterEvent("PLAYER_LOGIN")
 		self:TriggerEvent("HealComm_Enabled")
 	end
 	if major == "AceHook-2.1" then
 		local AceHook = instance
 		AceHook:embed(self)
+	end
+end
+
+function HealComm:PLAYER_LOGIN()
+	self:HookScript(WorldFrame, "OnMouseDown", "OnMouseDown")
 		self:Hook("CastSpell")
 		self:Hook("CastSpellByName")
-		self:HookScript(WorldFrame, "OnMouseDown")
 		self:Hook("UseAction")
 		self:Hook("SpellTargetUnit")
 		self:Hook("SpellStopTargeting")
 		self:Hook("TargetUnit")
 	end
-end
 
 function HealComm:Enable()
 -- not used anymore, but as addons still might be calling this method, we're keeping it.
@@ -969,7 +973,7 @@ end
 local healcommTip = CreateFrame("GameTooltip", "healcommTip", nil, "GameTooltipTemplate")
 healcommTip:SetOwner(WorldFrame, "ANCHOR_NONE")
 
-local Buffs = {
+HealComm.Buffs = {
 	[L["Power Infusion"]] = {amount = 0, mod = 0.2, icon = "Interface\\Icons\\Spell_Holy_PowerInfusion"};
 	[L["Divine Favor"]] = {amount = 0, mod = 0.5, icon = "Interface\\Icons\\Spell_Holy_Heal"};
 	[L["Nature Aligned"]] = {amount = 0, mod = 0.2, icon = "Interface\\Icons\\Spell_Nature_SpiritArmor"};
@@ -986,7 +990,7 @@ local Buffs = {
 	[L["The Eye of the Dead"]] = {amount = 450, mod = 0, icon = "Interface\\Icons\\Inv_Trinket_Naxxramas01"}
 }
 	
-local Debuffs = {
+HealComm.Debuffs = {
 	[L["Mortal Strike"]] = {amount = 0, mod = 0.5, icon = "Interface\\Icons\\Ability_Warrior_SavageBlow"};
 	[L["Wound Poison"]] = {amount = -135, mod = 0, icon = "Interface\\Icons\\Inv_Misc_Herb_16"};
 	[L["Curse of the Deadwood"]] = {amount = 0, mod = 0.5, icon = "Interface\\Icons\\Spell_Shadow_GatherShadows"};
@@ -1000,19 +1004,15 @@ local Debuffs = {
 	
 local function getSetBonus()
 	healcommTip:SetInventoryItem("player", 1)
-	if getglobal("healcommTipTextLeft"..healcommTip:NumLines()) then
 		local text = getglobal("healcommTipTextLeft"..healcommTip:NumLines()):GetText()
 		if text == L["Set: Increases the duration of your Rejuvenation spell by 3 sec."] or text == L["Set: Increases the duration of your Renew spell by 3 sec."] then
 			return true
 		else
 			return nil
 		end
-	else
-		return nil
-	end
 end
 	
-local function GetBuffSpellPower()
+function HealComm:GetBuffSpellPower()
 	local Spellpower = 0
 	local healmod = 1
 	for i=1, 16 do
@@ -1022,15 +1022,15 @@ local function GetBuffSpellPower()
 		end
 		healcommTip:SetUnitBuff("player", i)
 		local buffName = healcommTipTextLeft1:GetText()
-		if Buffs[buffName] and Buffs[buffName].icon == buffTexture then
-			Spellpower = (Buffs[buffName].amount * buffApplications) + Spellpower
-			healmod = (Buffs[buffName].mod * buffApplications) + healmod
+		if self.Buffs[buffName] and self.Buffs[buffName].icon == buffTexture then
+			Spellpower = (self.Buffs[buffName].amount * buffApplications) + Spellpower
+			healmod = (self.Buffs[buffName].mod * buffApplications) + healmod
 		end
 	end
 	return Spellpower, healmod
 end
 
-local function GetTargetSpellPower(spell)
+function HealComm:GetTargetSpellPower(spell)
 	local targetpower = 0
 	local targetmod = 1
 	local buffTexture, buffApplications
@@ -1071,9 +1071,9 @@ local function GetTargetSpellPower(spell)
 			break
 		end
 		local debuffName = healcommTipTextLeft1:GetText()
-		if Debuffs[debuffName] then
-			targetpower = (Debuffs[debuffName].amount * debuffApplications) + targetpower
-			targetmod = (1-(Debuffs[debuffName].mod * debuffApplications)) * targetmod
+		if self.Debuffs[debuffName] then
+			targetpower = (self.Debuffs[debuffName].amount * debuffApplications) + targetpower
+			targetmod = (1-(self.Debuffs[debuffName].mod * debuffApplications)) * targetmod
 		end
 	end
 	return targetpower, targetmod
@@ -1192,10 +1192,9 @@ function HealComm:SPELLCAST_START()
 		if BonusScanner then
 			Bonus = tonumber(BonusScanner:GetBonus("HEAL"))
 		end
-		local buffpower, buffmod = GetBuffSpellPower(self)
+		local buffpower, buffmod = self:GetBuffSpellPower()
 		local targetpower, targetmod = self.SpellCastInfo[4], self.SpellCastInfo[5]
 		local Bonus = Bonus + buffpower
-		healcomm_spellIsCasting = arg1
 		local amount = ((math.floor(self.Spells[self.SpellCastInfo[1]][tonumber(self.SpellCastInfo[2])](Bonus))+targetpower)*buffmod*targetmod)
 		if arg1 == L["Prayer of Healing"] then
 			local targets = {UnitName("player")}
@@ -1214,43 +1213,39 @@ function HealComm:SPELLCAST_START()
 		end
 	elseif ( self.SpellCastInfo and self.SpellCastInfo[1] == arg1 and Resurrections[arg1] ) then
 		self:SendAddonMessage("Resurrection/"..self.SpellCastInfo[3].."/start/")
-		healcomm_spellIsCasting = arg1
 		self:startResurrection(UnitName("player"), self.SpellCastInfo[3])
 	end
-	for _,val in pairs(self.SpellCastInfo) do
-		val = nil
-	end
+	self.spellIsCasting = arg1
 end
 
 function HealComm:SPELLCAST_FAILED()
-	if self.Spells[healcomm_spellIsCasting] then
-		if healcomm_spellIsCasting == L["Prayer of Healing"] then
+	
+	if self:IsEventScheduled("TriggerRegrowthHot") then
+		self:CancelScheduledEvent("TriggerRegrowthHot")
+	end
+
+	if self.Spells[self.spellIsCasting] then
+		if self.spellIsCasting == L["Prayer of Healing"] then
 			self:SendAddonMessage("GrpHealstop")
 			self:stopGrpHeal(UnitName("player"))
 		else
 			self:SendAddonMessage("Healstop")
 			self:stopHeal(UnitName("player"))
 		end
-		healcomm_spellIsCasting = nil
-		for _,val in pairs(self.SpellCastInfo) do
-			val = nil
-		end
-		self.CurrentSpellRank = nil
-		self.CurrentSpellName =  nil
-	elseif Resurrections[healcomm_spellIsCasting] then
+	elseif Resurrections[self.spellIsCasting] then
 		self:SendAddonMessage("Resurrection/stop/")
-		healcomm_spellIsCasting = nil
-		for _,val in pairs(self.SpellCastInfo) do
-			val = nil
-		end
-		self.CurrentSpellRank = nil
-		self.CurrentSpellName =  nil
 		self:cancelResurrection(UnitName("player"))
+	end
+	self.CurrentSpellRank = nil
+	self.CurrentSpellName =  nil
+	self.spellIsCasting = nil
+	for key in pairs(self.SpellCastInfo) do
+		self.SpellCastInfo[key] = nil
 	end
 end
 
 function HealComm:SPELLCAST_DELAYED()
-	if healcomm_spellIsCasting == L["Prayer of Healing"] then
+	if self.spellIsCasting == L["Prayer of Healing"] then
 		self:SendAddonMessage("GrpHealdelay/"..arg1.."/")
 		self:delayGrpHeal(UnitName("player"), arg1)
 	else
@@ -1259,18 +1254,24 @@ function HealComm:SPELLCAST_DELAYED()
 	end
 end
 
+function HealComm:TriggerRegrowthHot()
+	local dur = 21
+	self:SendAddonMessage("Regr/"..self.savetarget.."/"..dur.."/")
+	if not self.Hots[self.savetarget] then
+		self.Hots[self.savetarget] = {}
+	end
+	if not self.Hots[self.savetarget]["Regr"] then
+		self.Hots[self.savetarget]["Regr"]= {}
+	end
+	self.Hots[self.savetarget]["Regr"].start = GetTime()
+	self.Hots[self.savetarget]["Regr"].dur = dur
+	self:TriggerEvent("HealComm_Hotupdate", roster:GetUnitIDFromName(self.savetarget), "Regrowth")
+end
+
 function HealComm:SPELLCAST_STOP()
 	if not self.SpellCastInfo then return end
 	local targetUnit = roster:GetUnitIDFromName(self.SpellCastInfo[3])
-	if not targetUnit then
-		healcomm_spellIsCasting = nil
-		for _,val in pairs(self.SpellCastInfo) do
-			val = nil
-		end
-		self.CurrentSpellRank = nil
-		self.CurrentSpellName =  nil
-		return
-	end
+	if targetUnit then
 	if self.SpellCastInfo[1] == L["Renew"] then
 		local dur = getSetBonus() and 18 or 15
 		self:SendAddonMessage("Renew/"..self.SpellCastInfo[3].."/"..dur.."/")
@@ -1283,12 +1284,6 @@ function HealComm:SPELLCAST_STOP()
 		self.Hots[self.SpellCastInfo[3]]["Renew"].start = GetTime()
 		self.Hots[self.SpellCastInfo[3]]["Renew"].dur = dur
 		self:TriggerEvent("HealComm_Hotupdate", targetUnit, "Renew")
-		healcomm_spellIsCasting = nil
-		for _,val in pairs(self.SpellCastInfo) do
-			val = nil
-		end
-		self.CurrentSpellRank = nil
-		self.CurrentSpellName =  nil
 	elseif self.SpellCastInfo[1] == L["Rejuvenation"] then
 		local dur = getSetBonus() and 15 or 12
 		self:SendAddonMessage("Reju/"..self.SpellCastInfo[3].."/"..dur.."/")
@@ -1301,30 +1296,15 @@ function HealComm:SPELLCAST_STOP()
 		self.Hots[self.SpellCastInfo[3]]["Reju"].start = GetTime()
 		self.Hots[self.SpellCastInfo[3]]["Reju"].dur = dur
 		self:TriggerEvent("HealComm_Hotupdate", targetUnit, "Rejuvenation")
-		healcomm_spellIsCasting = nil
-		for _,val in pairs(self.SpellCastInfo) do
-			val = nil
-		end
-		self.CurrentSpellRank = nil
-		self.CurrentSpellName =  nil
 	elseif self.SpellCastInfo[1] == L["Regrowth"] then
-		local dur = 21
-		self:SendAddonMessage("Regr/"..self.SpellCastInfo[3].."/"..dur.."/")
-		if not self.Hots[self.SpellCastInfo[3]] then
-			self.Hots[self.SpellCastInfo[3]] = {}
+			self.savetarget = self.SpellCastInfo[3]
+			self:ScheduleEvent("TriggerRegrowthHot", self.TriggerRegrowthHot, 0.3, self)
 		end
-		if not self.Hots[self.SpellCastInfo[3]]["Regr"] then
-			self.Hots[self.SpellCastInfo[3]]["Regr"]= {}
-		end
-		self.Hots[self.SpellCastInfo[3]]["Regr"].start = GetTime()
-		self.Hots[self.SpellCastInfo[3]]["Regr"].dur = dur
-		self:TriggerEvent("HealComm_Hotupdate", targetUnit, "Regrowth")
-		healcomm_spellIsCasting = nil
-		for _,val in pairs(self.SpellCastInfo) do
-			val = nil
-		end
-		self.CurrentSpellRank = nil
-		self.CurrentSpellName =  nil
+	end
+	self.CurrentSpellRank = nil
+	self.CurrentSpellName =  nil
+	for key in pairs(self.SpellCastInfo) do
+		self.SpellCastInfo[key] = nil
 	end
 end
 
@@ -1517,12 +1497,6 @@ function HealComm:CastSpell(spellId, spellbookTabNum)
        -- If ClearTarget() had been called, we'd be waiting target
 		if UnitIsPlayer("target") then
 			self:ProcessSpellCast(spellName, rank, UnitName("target"))
-		else
-			self.SpellCastInfo[1] = nil
-			self.SpellCastInfo[2] = nil
-			self.SpellCastInfo[3] = nil
-			self.SpellCastInfo[4] = nil
-			self.SpellCastInfo[5] = nil
 		end
 	else
 		self:ProcessSpellCast(spellName, rank, UnitName("player"))
@@ -1554,25 +1528,19 @@ function HealComm:CastSpellByName(spellName, onSelf)
 			if UnitIsVisible("target") and UnitIsConnected("target") and UnitCanAssist("player", "target") and onSelf ~= 1 then
 				if UnitIsPlayer("target") then
 					self:ProcessSpellCast(spellName, rank, UnitName("target"))
-				else
-					self.SpellCastInfo[1] = nil
-					self.SpellCastInfo[2] = nil
-					self.SpellCastInfo[3] = nil
-					self.SpellCastInfo[4] = nil
-					self.SpellCastInfo[5] = nil
 				end
 			else
 				self:ProcessSpellCast(spellName, rank, UnitName("player"))
 			end
 		end
 	end
-end
+				end
 
-function HealComm:OnMouseDown()
+function HealComm:OnMouseDown(object)
 	-- If we're waiting to target
 	local targetName
 	
-	if ( self.CurrentSpellName and UnitName("mouseover") ) then
+	if ( self.CurrentSpellName and UnitExists("mouseover") ) then
 		targetName = UnitName("mouseover")
 	elseif ( self.CurrentSpellName and GameTooltipTextLeft1:IsVisible() ) then
 		local _, _, name = string.find(GameTooltipTextLeft1:GetText(), L["^Corpse of (.+)$"])
@@ -1580,8 +1548,8 @@ function HealComm:OnMouseDown()
 			targetName = name
 		end
 	end
-	if ( self.hooks.WorldFrameOnMouseDown ) then
-		self.hooks.WorldFrameOnMouseDown()
+	if ( self.hooks[object]["OnMouseDown"] ) then
+		self.hooks[object]["OnMouseDown"]()
 	end
 	if ( self.CurrentSpellName and targetName ) then
 		self:ProcessSpellCast(self.CurrentSpellName, self.CurrentSpellRank, targetName)
@@ -1592,12 +1560,16 @@ function HealComm:UseAction(slot, checkCursor, onSelf)
 	healcommTip:ClearLines()
 	healcommTip:SetAction(slot)
 	local spellName = healcommTipTextLeft1:GetText()
-	self.CurrentSpellName = spellName
+	
+	-- Test to see if this is a macro
+	if not GetActionText(slot) then
+		self.CurrentSpellName = spellName
+	end
 	
 	self.hooks.UseAction(slot, checkCursor, onSelf)
 	
 	-- Test to see if this is a macro
-	if ( GetActionText(slot) or not self.CurrentSpellName ) then
+	if ( not self.CurrentSpellName ) then
 		return
 	end
 	local rank = healcommTipTextRight1:GetText()
@@ -1615,12 +1587,6 @@ function HealComm:UseAction(slot, checkCursor, onSelf)
 		-- Spell is being cast on the current target
 		if UnitIsPlayer("target") then
 			self:ProcessSpellCast(spellName, rank, UnitName("target"))
-		else
-			self.SpellCastInfo[1] = nil
-			self.SpellCastInfo[2] = nil
-			self.SpellCastInfo[3] = nil
-			self.SpellCastInfo[4] = nil
-			self.SpellCastInfo[5] = nil
 		end
 	else
 		-- Spell is being cast on the player
@@ -1637,12 +1603,6 @@ function HealComm:SpellTargetUnit(unit)
 	if ( shallTargetUnit and self.CurrentSpellName and not SpellIsTargeting() ) then
 		if UnitIsPlayer(unit) then
 			self:ProcessSpellCast(self.CurrentSpellName, self.CurrentSpellRank, UnitName(unit))
-		else
-			self.SpellCastInfo[1] = nil
-			self.SpellCastInfo[2] = nil
-			self.SpellCastInfo[3] = nil
-			self.SpellCastInfo[4] = nil
-			self.SpellCastInfo[5] = nil
 		end
 		self.CurrentSpellName = nil
 		self.CurrentSpellRank = nil
@@ -1660,27 +1620,18 @@ function HealComm:TargetUnit(unit)
 	-- If we are, then well glean the target info here.
 	if ( self.CurrentSpellName and UnitExists(unit) ) and UnitIsPlayer(unit) then
 		self:ProcessSpellCast(self.CurrentSpellName, self.CurrentSpellRank, UnitName(unit))
-	else
-		self.SpellCastInfo[1] = nil
-		self.SpellCastInfo[2] = nil
-		self.SpellCastInfo[3] = nil
-		self.SpellCastInfo[4] = nil
-		self.SpellCastInfo[5] = nil
 	end
 	self.hooks.TargetUnit(unit)
 end
 
 function HealComm:ProcessSpellCast(spellName, rank, targetName)
-	local unit = roster:GetUnitIDFromName(targetName)
-	if ( spellName and rank and targetName and unit ) then
-		local power, mod = GetTargetSpellPower(spellName)
-		self.SpellCastInfo[1] = spellName
-		self.SpellCastInfo[2] = rank
-		self.SpellCastInfo[3] = targetName
+	local power, mod = self:GetTargetSpellPower(spellName)
+	self.SpellCastInfo[1] = self.SpellCastInfo[1] or spellName
+	self.SpellCastInfo[2] = self.SpellCastInfo[2] or rank
+	self.SpellCastInfo[3] = self.SpellCastInfo[3] or targetName
 		self.SpellCastInfo[4] = power
 		self.SpellCastInfo[5] = mod
 	end
-end
 
 AceLibrary:Register(HealComm, MAJOR_VERSION, MINOR_VERSION, activate, nil, external)
 HealComm = nil
