@@ -1,11 +1,10 @@
 --
 -- localization file, EN and DE supported now
 --
-
 -- global stuff
 
-PINKY_VERSION = "1.16.8";
-PINKY_BANNER = "Enhanced Trade Skills v1.16.8 /etsconfig";
+PINKY_VERSION = "1.16.9";
+PINKY_BANNER = "Enhanced Trade Skills v1.16.9 /etsconfig";
 PINKY_RELEASE = "Sep 25, 2006";
 
 PINKY_INV = "inv";
@@ -66,6 +65,46 @@ BINDING_NAME_ETS_NAME	= "Configure Options";
 if ( GetLocale() == "frFR" ) then
 
 -- french locale in here - any offers ?
+elseif ( GetLocale() == "ruRU" ) then
+--by CFM
+PINKY_DUMP = "%s: %d = %d в инвентаре + %d в банке";
+PINKY_DUMP1 = "%s: %d в инвентаре (нет информации из банка)";
+PINKY_BANK = "%d уникальных предметов в банке";
+PINKY_BANK_EMPTY = "Нет информации из банка, пожалуйста, посетите банк.";
+
+PINKY_BEAST_TRAINING = "Дрессировка";
+
+PINKY_INVALID_DISPLAY_CMD = "Invalid display command: %s (expected 'column true/false')";
+PINKY_INVALID_DISPLAY_SETTING = "Invalid display setting (%s) for column (%s) (allowed settings are true and false)";
+PINKY_INVALID_DISPLAY_COLUMN = "Invalid display column (%s), allowed values are (inv, inv+, total, total+)";
+PINKY_DISPLAY_SETTING = "Настройки %s отображения %s";
+
+PINKY_INVALID_FILTER_CMD = "Invalid filter command: %s (expected 'filterName true/false')";
+PINKY_INVALID_FILTER_SETTING = "Invalid filter setting (%s) for filter (%s) (allowed settings are true and false)";
+PINKY_INVALID_FILTER_NAME = "Invalid filter name (%s), allowed values are (inv, inv+, total, total+, optimal, medium, easy, trivial)";
+PINKY_FILTER_SETTING = "Настройки %s фильтра %s";
+PINKY_RESET = "Ваши настройки были сброшены на стандартные";
+
+PINKY_FILTER_OPTIMAL_BUTTON_TEXT = "Фильтр для 'optimal' (orange) предметов";
+PINKY_FILTER_MEDIUM_BUTTON_TEXT = "Фильтр для 'medium' (yellow) предметов";
+PINKY_FILTER_EASY_BUTTON_TEXT = "Фильтр для 'easy' (green) предметов";
+PINKY_FILTER_TRIVIAL_BUTTON_TEXT = "Фильтр для 'trivial' (gray) предметов";
+
+PINKY_FILTER_INV_BUTTON_TEXT = "Фильтр для предметы которые вы не можете сделать с предметами инвентаря";
+PINKY_FILTER_INV_PLUS_BUTTON_TEXT = "Фильтр для предметы которые вы не можете сделать с предметами инвентаря и продавца";
+PINKY_FILTER_TOTAL_BUTTON_TEXT = "Фильтр для предметы которые вы не можете сделать с предметами инвентаря и банка";
+PINKY_FILTER_TOTAL_PLUS_BUTTON_TEXT = "Фильтр для предметы которые вы не можете сделать с предметами инвентаря, банка и продавца";
+
+PINKY_DISPLAY_INV_BUTTON_TEXT = "Показывать колонки только из инвентаря";
+PINKY_DISPLAY_INV_PLUS_BUTTON_TEXT = "Показывать колонки из инвентаря и продавца";
+PINKY_DISPLAY_TOTAL_BUTTON_TEXT = "Показывать колонки из инвентаря и банка";
+PINKY_DISPLAY_TOTAL_PLUS_BUTTON_TEXT = "Показывать колонки из инвентаря, банка и продавца";
+PINKY_DISPLAY_TITLE_BUTTON_TEXT = "Показывать настройки фильтра в заголовке окна";
+BEAST_TRAIN = "Дрессировка";
+TOGGLE_FILTER_ON = "Включить фильтр";
+TOGGLE_FILTER_OFF = "Выключить фильтр";
+ TOGGLE_FILTER_TIP = "Нажать, чтобы включить или выключить фильтр";
+BINDING_NAME_ETS_NAME	= "Настройки";
 
 elseif ( GetLocale() == "deDE" ) then
 
@@ -87,7 +126,7 @@ elseif ( GetLocale() == "deDE" ) then
   -- note, do not translate optimal/medium/easy/trivial - they are internal strings and might not be localized
   PINKY_INVALID_FILTER_NAME = "Ung\195\188ltiger Filtername (%s), erlaubte Werte sind (inv, inv+, total, total+, optimal, medium, easy, trivial)";
   PINKY_FILTER_SETTING = "Setze %s Filter auf %s";
-  PINKY_RESET = "Ihre Einstellungen werden auf Standartwert zur�ckgesetzt";
+  PINKY_RESET = "Ihre Einstellungen werden auf Standartwert zurьckgesetzt";
 
   PINKY_FILTER_OPTIMAL_BUTTON_TEXT = "'optimal' (orange) Gegenst\195\164nde ausfiltern";
   PINKY_FILTER_MEDIUM_BUTTON_TEXT = "'medium' (gelbe) Gegenst\195\164nde ausfiltern";
