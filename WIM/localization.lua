@@ -1,5 +1,3 @@
---if (GetLocale() == "enGB") or (GetLocale() == "enUS") then
-
 	BINDING_HEADER_WIMMOD = "WIM (WoW Instant Messenger)";
 	BINDING_NAME_WIMSHOWNEW = "Show New Messages";
 	BINDING_NAME_WIMHISTORY = "History Viewer";
@@ -218,4 +216,3 @@ I would like to thank everyone who has helped test WIM as well as submit their f
 
 I would also like to thank everyone who has contributed on both ui.WorldOfWar.net and on Curse-Gaming.com.
 ]]
---end
