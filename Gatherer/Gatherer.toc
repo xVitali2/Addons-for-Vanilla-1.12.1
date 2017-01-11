@@ -6,6 +6,7 @@
 ## Notes: Gatherer, displays stuff you gather in your minimap and world map
 ## Notes-frFR: Gatherer, affiche les objets recoltes dans la minicarte et la carte du monde
 ## Notes-deDE: Gatherer, zeigt gesammelte Krauter und Erze auf der Minikarte und Weltkarte an
+## Notes-ruRU: Gatherer показывает места сбора на мини-карте и карте мира. 
 ## SavedVariables: GatherItems, Gatherer_SavedSettings_AccountWide
 ## SavedVariablesPerCharacter: Gatherer_SavedSettings_PerCharacter
 ## OptionalDeps: myAddOns

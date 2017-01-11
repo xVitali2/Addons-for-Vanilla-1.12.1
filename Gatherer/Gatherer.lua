@@ -75,7 +75,11 @@ function Gatherer_GetMenuName(inputName)
 		if (found > 0) then
 			name = string.upper(firstLetter)..(string.sub(inputName, 3) or "");
 		else
-			name = string.upper(string.sub(inputName, 1, 1))..(string.sub(inputName, 2) or "");
+			if (GetLocale()=="ruRU") then
+				name = inputName;
+			else
+				name = string.upper(string.sub(inputName, 1, 1))..(string.sub(inputName, 2) or "");
+			end
 		end
 
 		local iconName, _ = Gatherer_GetDB_IconByGatherName(inputName);
@@ -1635,7 +1639,6 @@ end
 
 function Gatherer_TitleCase(str)
 	if (GetLocale() == "frFR") then return str; end
-
 	local function ucaseWord(first, rest)
 		return string.upper(first)..string.lower(rest)
 	end

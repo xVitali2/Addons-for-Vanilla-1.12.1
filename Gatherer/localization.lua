@@ -204,6 +204,8 @@ if ( GetLocale() == "frFR" ) then
 		end
 		return;
 	end
+-- Common Values, Functions
+TYPE_RARE		= "Rare";
 elseif ( GetLocale() == "deDE" ) then
 	-- German localized variables
 	GATHERER_VERSION_WARNING="New zone order detected, check zone match to translate old zones to new order.";
@@ -400,6 +402,8 @@ elseif ( GetLocale() == "deDE" ) then
 		end
 		return;
 	end
+-- Common Values, Functions
+TYPE_RARE		= "Rare";
 elseif (  GetLocale() == "zhCN"  ) then
 
 	-- Chinese localized variables
@@ -591,6 +595,207 @@ elseif (  GetLocale() == "zhCN"  ) then
 		end
 		return;
 	end
+-- Common Values, Functions
+TYPE_RARE		= "Rare";
+
+elseif ( GetLocale() == "ruRU" ) then
+	-- Russian localized variables (Maus and fix by CFM)
+	GATHERER_VERSION_WARNING="New Gatherer Version detected, check zone match.";
+	GATHERER_NOTEXT="([-]) no text "
+
+	TRADE_HERBALISM="Травничество"
+	OLD_TRADE_HERBALISM="Травничество"
+	TRADE_MINING="Горное дело"
+	TRADE_OPENING="Открытие"
+	GATHER_HERBALISM="Сбор трав"
+
+	HERB_GATHER_STRING="Вы применяете Сбор трав на"
+	ORE_GATHER_STRING="Вы применяете Горное дело на"
+	TREASURE_GATHER_STRING="Вы применяете Открытие на"
+
+	HERB_GATHER_LENGTH=31
+	HERB_GATHER_END=-2
+	ORE_GATHER_LENGTH=31
+	ORE_GATHER_END=-2
+	TREASURE_GATHER_LENGTH=31
+	TREASURE_GATHER_END=-2
+
+	GATHERER_REQUIRE="Требуется"
+	GATHERER_NOSKILL="Требуется"
+
+	-- ore classes
+	ORE_CLASS_VEIN   ="жила"
+	ORE_CLASS_DEPOSIT="Залежи"
+
+	-- ore types
+	ORE_COPPER    ="Медная жила"
+	ORE_TIN       ="Оловянная жила"
+	ORE_IRON      ="Залежи железа"
+	ORE_SILVER    ="Серебряная жила"
+	ORE_TRUESILVER="Залежи истинного серебра"
+	ORE_GOLD      ="Золотая жила"
+	ORE_MITHRIL   ="Мифриловые залежи"
+	ORE_THORIUM   ="Ториевая жила"
+	
+	ORE_RTHORIUM  ="Богатая ториевая жила"
+	ORE_DARKIRON  ="Залежи черного железа"
+
+	-- herb types 
+	HERB_ARTHASTEAR        ="Слезы артаса"
+	HERB_BLACKLOTUS        ="Черный лотос"
+	HERB_BLINDWEED         ="Пастушья сумка"
+	HERB_BRIARTHORN        ="Остротерн"
+	HERB_BRUISEWEED        ="Синячник"
+	HERB_DREAMFOIL         ="Снолист"
+	HERB_EARTHROOT         ="Земляной корень"
+	HERB_FADELEAF          ="Бледнолист"
+	HERB_FIREBLOOM         ="Огнецвет"
+	HERB_GHOSTMUSHROOM     ="Призрачная поганка"
+	HERB_GOLDENSANSAM      ="Золотой сансам"
+	HERB_GOLDTHORN         ="Златошип"
+	HERB_GRAVEMOSS         ="Могильный мох"
+	HERB_GROMSBLOOD        ="Кровь Грома"
+	HERB_ICECAP            ="Ледяной зев"
+	HERB_KHADGARSWHISKER   ="Кадгаров ус"
+	HERB_KINGSBLOOD        ="Королевская кровь"
+	HERB_LIFEROOT          ="Корень жизни"
+	HERB_MAGEROYAL         ="Магороза"
+	HERB_MOUNTAINSILVERSAGE="Горный серебряный шалфей"
+	HERB_PEACEBLOOM        ="Мироцвет"
+	HERB_PLAGUEBLOOM       ="Чумоцвет"
+	HERB_PURPLELOTUS       ="Лиловый лотос"
+	HERB_SILVERLEAF        ="Сребролист"
+	HERB_STRANGLEKELP      ="Удавник"
+	HERB_SUNGRASS          ="Солнечник"
+	HERB_SWIFTTHISTLE      ="Скорополох"
+	HERB_WILDSTEELBLOOM    ="Дикий сталецвет"
+	HERB_WINTERSBITE       ="Морозник"
+	HERB_WILDVINE	       ="Дикая лоза"
+
+	-- treasure types
+	TREASURE_BOX        	="Коробка"
+	TREASURE_CHEST      	="Сундук"
+	TREASURE_CLAM       	="Гигантский моллюск"
+	TREASURE_CRATE      	="Ящик"
+	TREASURE_BARREL     	="Бочонок"
+	TREASURE_CASK       	="Бочка"
+	TREASURE_SHELLFISHTRAP	="Ловушка на моллюска"
+	TREASURE_FOOTLOCKER 	= "Сундучки"
+
+	TREASURE_BLOODHERO  	= "Кровь героев"
+
+	TREASURE_UNGOROSOIL 	= "Почва ун'Горо"
+	TREASURE_UNGOROSOIL_G	= "Куча земли"
+	TREASURE_BLOODPETAL 	= "Побег кровоцвета"
+	TREASURE_BLOODPETAL_G 	= "Росток кровоцвета"
+	TREASURE_POWERCRYST 	= "Кристалл силы"
+
+	TREASURE_NIGHTDRAGON 	= "Ночной дракон"
+	TREASURE_WHIPPERROOT 	= "Гнилой кнутокорень"
+	TREASURE_WINDBLOSSOM 	= "Оскверненный ветроцвет"
+	TREASURE_SONGFLOWER 	= "Оскверненный песнецвет"
+
+	TREASURE_FISHNODE_TRIGGER1	= "Сундучок";
+	TREASURE_FISHNODE_TRIGGER3	= "Стая";
+	TREASURE_FISHNODE_TRIGGER4	= "Косяк";
+	TREASURE_FISHNODE_TRIGGER5	= "Плавающие обломки";
+	TREASURE_FISHNODE_TRIGGER6	= "Нефтяное пятно";
+	TREASURE_FISHNODE_TRIGGER7	= "Пятно элементарной воды";
+
+	TREASURE_FISHNODE		= "Стая рыбы";
+	TREASURE_FISHWRECK		= TREASURE_FISHNODE_TRIGGER5;
+	TREASURE_FISHELEM		= TREASURE_FISHNODE_TRIGGER7;
+
+	GATHERER_ReceivesLoot		= "Ваша добыча: (.+)%.";
+
+	function Gatherer_FindOreType(input)
+		local i,j, oreType, oreClass, oreTypeClass;
+		
+		if ( string.find(input, "еребряная") and string.find(input, "жила") ) then -- silver
+			return ORE_SILVER;
+		end;
+
+		if ( string.find(input, "истинного") and string.find(input, "серебра") ) then -- truesilver
+			return ORE_TRUESILVER;
+		end;
+
+		if ( string.find(input, "олотая") and string.find(input, "жила") ) then  -- gold
+			return ORE_GOLD;
+		end;
+
+		if ( string.find(input, "ифриловые") and string.find(input, "залежи") ) then -- mithril
+			return ORE_MITHRIL;
+		end;
+		
+		if ( string.find(input, "огатая") and string.find(input, "ториевая") ) then --rich thorium
+			return ORE_RTHORIUM;
+		end;
+			
+		if ( string.find(input, "черного") and string.find(input, "железа") ) then --darkiron
+            return ORE_DARKIRON;
+        end
+		
+		if ( string.find(input, "ориевая") and string.find(input, "жила") ) then  --thorium
+			return ORE_THORIUM;
+		end;
+
+		i,j, oreType, oreClass = string.find(input, "([^ ]+) ([^ ]+)$");
+		if (oreType and oreClass and ((oreClass == ORE_CLASS_VEIN) or (oreClass == ORE_CLASS_DEPOSIT))) then
+			return oreType;
+		end
+		return;
+	end
+	
+	function Gatherer_FindTreasureType(input)
+		if string.find(input, "Гигантский моллюск") then
+			return TREASURE_CLAM;
+		end
+
+		if string.find(input, "Добротный сундук") or string.find(input, "Сундук") or string.find(input, "сундук") then
+			return TREASURE_CHEST;
+		end
+
+		if string.find(input, "Ящик") or string.find(input, "ящик") then
+			return TREASURE_CRATE;
+		end
+
+		if string.find(input, "Кровь героев") then
+			return TREASURE_BLOODHERO;
+		end
+
+		if string.find(input, "Почва Ун'Горо") or string.find(input, "Куча земли Ун'Горо") then
+			return TREASURE_UNGOROSOIL;
+		end
+
+		if string.find(input, "Побег кровоцвета") then
+			return TREASURE_BLOODPETAL;
+		end
+
+		if string.find(input, "кристалл силы") or string.find(input, "Кристалл силы") then
+			return TREASURE_POWERCRYST;
+		end
+
+		if string.find(input, "Ночной дракон") then
+			return TREASURE_NIGHTDRAGON;
+		end
+
+		if string.find(input, "Гнилой кнутокорень") then
+			return TREASURE_WHIPPERROOT;
+		end
+
+		if string.find(input, "Оскверненный ветроцвет") then
+			return TREASURE_WINDBLOSSOM;
+		end
+
+		if string.find(input, "Оскверненный песнецвет") then
+			return TREASURE_SONGFLOWER;
+		end
+
+		return;
+	end
+	
+TYPE_RARE		= "Редкое";
+
 else
 	-- English localized variables (default)
 	GATHERER_VERSION_WARNING="New Gatherer Version detected, check zone match.";
@@ -771,13 +976,11 @@ else
 		end
 		return;
 	end
+-- Common Values, Functions
+TYPE_RARE		= "Rare";
 end
 
 -- ************************************************************************************************
--- Common Values, Functions
-
-TYPE_RARE		= "Rare";
-
 
 function Gatherer_ExtractItemFromTooltip()
 	local extractedString = GameTooltipTextLeft1:GetText()

@@ -336,6 +336,172 @@ if ( GetLocale() == "frFR" ) then
 
 end
 
+if GetLocale() == "ruRU" then
+-- Version : Russian ( by Maus ) edit by CFM
+	-- Quick Menu
+	GATHERER_TEXT_TITLE_BUTTON		= "Настройки Gatherer";
+	
+	GATHERER_TEXT_TOGGLE_MINIMAP	= "Мини-карта ";
+	GATHERER_TEXT_TOGGLE_MAINMAP	= "Карта мира ";
+	GATHERER_TEXT_TOGGLE_HERBS   	= "Растения ";
+	GATHERER_TEXT_TOGGLE_MINERALS	= "Руда ";
+	GATHERER_TEXT_TOGGLE_TREASURE	= "Сундуки и рыба ";
+	GATHERER_TEXT_TOGGLE_REPORT     = "Статистика";
+	GATHERER_TEXT_TOGGLE_SEARCH		= "Поиск";
+
+	GATHERER_REPORT_TIP				= "Доступ к диалогу статистики.";
+	GATHERER_SEARCH_TIP				= "Доступ к диалогу поиска.";
+	GATHERER_MENUTITLE_TIP			= "Доступ к диалогу настроек.";
+	GATHERER_ZMBUTTON_TIP			= "Доступ к диалогу наилучшей зоны.";
+
+	-- Quick Menu Options
+	GATHERER_TEXT_CONFIG_TITLE      = "Gatherer: Настройки";
+	GATHERER_TAB_MENU_TEXT			= "Кнопка меню";
+
+	GATHERER_TEXT_SHOWONMOUSE       = "Показывать по мышке";
+	GATHERER_TEXT_HIDEONMOUSE       = "Скрывать по мышке";
+	GATHERER_TEXT_SHOWONCLICK       = "Показывать по ЛКМ";
+	GATHERER_TEXT_HIDEONCLICK       = "Скрывать по ЛКМ";
+	GATHERER_TEXT_HIDEONBUTTON      = "Скрывать по нажатию кнопки";
+	GATHERER_TEXT_POSITION          = "Позиция";
+	GATHERER_TEXT_RADIUS	        = "Радиус";
+	GATHERER_TEXT_HIDEICON			= "Скрыть значок меню";
+
+	GATHERER_SHOWONMOUSE_TIP		= "Отображать меню при наведении курсора на кнопку Gatherer.";
+	GATHERER_SHOWONCLICK_TIP		= "Отображать меню по ЛКМ.";
+	GATHERER_HIDEONMOUSE_TIP		= "Скрывать меню курсором мыши.";
+	GATHERER_HIDEONCLICK_TIP		= "Скрывать меню по ЛКМ.";
+	GATHERER_HIDEONBUTTON_TIP		= "Скрывать меню после выбора";
+	GATHERER_HIDEICON_TIP			= "Скрыть кнопку Gatherer на мини-карте.";
+	GATHERER_TEXT_POSITION_TIP  	= "Изменить позицию кнопку приложения относительно рамки.";
+	GATHERER_TEXT_RADIUS_TIP  		= "Изменить положение кнопки приложения относительно центра.";
+
+	GATHERER_TAB_MENU_TEXT_TIP		= "Доступ к настройкам быстрого меню.";
+
+	-- Globals Options
+	GATHERER_TAB_GLOBALS_TEXT		= "Общие";
+
+	GATHERER_TEXT_RAREORE           = "Связывать редкие Руда/Травы";
+	GATHERER_TEXT_NO_MINICONDIST	= "Убирать значок у мин. дистанции";
+	GATHERER_TEXT_MAPMINDER			= "Активировать Map Minder";
+	GATHERER_TEXT_MAPMINDER_VALUE	= "Map Minder таймер";
+	GATHERER_TEXT_FADEPERC			= "Процент затухания";
+	GATHERER_TEXT_FADEDIST			= "Расстояние затухания";
+	GATHERER_TEXT_THEME				= "Тема: ";
+	GATHERER_TEXT_MINIIDIST			= "Минимальное расстояние значка";
+	GATHERER_TEXT_NUMBER			= "Число мини-заметок";
+	GATHERER_TEXT_MAXDIST			= "Дистанция мини-заметок";
+	GATHERER_TEXT_HIDEMININOTES		= "Скрыть мини-заметки";
+	GATHERER_TEXT_TOGGLEWORLDNOTES	= "Длина символов в названии заметок";
+	GATHERER_TEXT_WMICONSIZEEB		= "Размер значка на карте мира";
+	GATHERER_TEXT_WMICONALPHAEB		= "Прозрачность значка";
+	GATHERER_TEXT_ALPHAUNDER_MINICON= "Мин. прозрачность";
+
+	GATHERER_MAPMINDER_TIP			= "Вкл/Выкл Map Minder.";
+	GATHERER_TEXT_MAPMINDER_TIP		= "Регулировать таймер Map Minder.";
+	GATHERER_THEME_TIP				= "Выставить тему иконки.";
+	GATHERER_NOMINIICONDIST_TIP		= "Не отображать иконки у мини-карты, когда дистанция до них близка.";	
+	GATHERER_RAREORE_TIP			= "Показывать редкую руду/травы вместе.";
+	GATHERER_TEXT_FADEPERC_TIP		= "Регулировать процент исчезновения иконок." ;
+	GATHERER_TEXT_FADEDIST_TIP		= "Регулировать расстояние исчезновения иконок.";
+	GATHERER_TEXT_MINIIDIST_TIP		= "Регулировка минимального расстояния для появления иконки.";
+	GATHERER_TEXT_NUMBER_TIP		= "Регулировка кол-ва отображаемых мини-записей на мини-карте.";
+	GATHERER_TEXT_MAXDIST_TIP		= "Регулировка максимального расстояния, для того чтобы увидеть отображаемые мини-записи на мини-карте.";
+	GATHERER_HIDEMININOTES_TIP		= "Не показывать мини-записи на мини-карте.";
+	GATHERER_TOGGLEWORLDNOTES_TIP	= "Переключение между короткими и длинными заметками на карте мира.";
+	GATHERER_WMICONSIZEEB_TIP		= "Выставить размер иконки на карте мира.";
+	GATHERER_WMICONALPHAEB_TIP		= "Выставить прозрачность иконки на карте мира.";
+	GATHERER_TEXT_ALPHAUNDER_MINICON_TIP = "Выставить прозрачность мини-записей при минимальном расстоянии.";
+	
+	GATHERER_TAB_GLOBALS_TEXT_TIP	= "Доступ к глобальным параметрам.";
+	
+	-- Filters Options
+	GATHERER_TAB_FILTERS_TEXT 		= "Фильтры";
+
+	GATHERER_TEXT_FILTER_HERBS		= "Травы: ";
+	GATHERER_TEXT_FILTER_ORE			= "Руда: ";
+	GATHERER_TEXT_FILTER_TREASURE	= "Сундуки: ";
+	GATHERER_TEXT_LINKRECORD        		= "Добавить фильтр"
+	GATHERER_TEXT_WMFILTERS			= "Фильтры на карте мира";
+	GATHERER_TEXT_DISABLEWMFIX		= "Кнопка \"Показать\\Скрыть\"";
+
+	GATHERER_HERBSKLEB_TIP			= "Установить минимальный навык для отображения травничества.";
+	GATHERER_ORESKLEB_TIP			= "Установить минимальный навык для отображения гороно дела.";
+	GATHERER_HERBDDM_TIP			= "Фильтр отображения трав.";
+	GATHERER_OREDDM_TIP				= "Фильтр отображения руды.";
+	GATHERER_TREASUREDDM_TIP		= "Фильтр отображения сокровища.";
+	GATHERER_TEXT_LINKRECORD_TIP	= "Ссылка записи на выбранный фильтр.";
+	GATHERER_TEXT_WMFILTERS_TIP		= "Переключение элементов фильтра на карте мира.";
+	GATHERER_TEXT_DISABLEWMFIX_TIP	= "Вкл/Выкл отображение предметов на карте мира";
+
+	GATHERER_TAB_FILTERS_TEXT_TIP	= "Доступ к параметрам фильтра."
+
+	-- Zone Rematch Dialog
+	GATHERER_TEXT_REMATCH_TITLE		= "Zone Rematch";
+
+	GATHERER_TEXT_APPLY_REMATCH		= "Применить Zone Rematch:";
+	GATHERER_TEXT_SRCZONE_MISSING	= "Не выбрана исходная зона.";
+	GATHERER_TEXT_DESTZONE_MISSING	= "Назначенная зона не выбрана.";
+	GATHERER_TEXT_FIXITEMS			= "Исправить имя предмета";
+	GATHERER_TEXT_LASTMATCH			= "Последний предмет: ";
+	GATHERER_TEXT_LASTMATCH_NONE	= "Нет";
+	GATHERER_TEXT_CONFIRM_REMATCH	= "Подтвердить Zone Rematch (ВНИМАНИЕ, данные будут изменены)";
+
+	GATHERER_ZM_FIXITEM_TIP			= "Исправит имя предмета, только локализованную версию.";
+	GATHERER_ZM_SRCDDM_TIP			= "Установить источник порядка карты.";
+	GATHERER_ZM_DESTDDM_TIP			= "Установить назначение порядка карты.";
+
+	-- Report Dialog
+	GATHERER_TAB_REPORT_TIP			= "Отчет объектов по зоне.";
+	
+	GATHERER_REPORT_LOCATION		= "Местонахождения:";
+	GATHERER_REPORT_COL_TYPE		= "Тип";
+	GATHERER_REPORT_COL_NAME		= "Собрано";
+	GATHERER_REPORT_COL_PTYPE		= "% Типа";
+	GATHERER_REPORT_COL_PDENSITY	= "% Кол-ва";
+	
+	GATHERER_REPORT_SUMMARY			= "Всего: # собрано с & объектов";
+
+	-- Search Dialog
+	GATHERER_TAB_SEARCH_TIP			= "Поиск определенных предметов по локации.";
+	
+	GATHERER_SEARCH_LOCATION		= "Предмет:";
+	GATHERER_SEARCH_COL_CONTINENT	= "Континент";
+	GATHERER_SEARCH_COL_ZONE		= "Зона";
+	GATHERER_SEARCH_COL_PNODE		= "% Объект";
+	GATHERER_SEARCH_COL_PDENSITY	= "% Кол-во";
+
+	GATHERER_SEARCH_SUMMARY			= "Найдено: # объектов в & зонах";
+	
+	-- World Map
+	GATHERER_FILTERDM_TEXT		= "Фильтр"
+	GATHERER_FILTERDM_TIP		= "Поиск предметов."
+
+	-- Bindings
+	BINDING_HEADER_GATHERER_BINDINGS_HEADER		= "Gatherer";
+
+	BINDING_NAME_GATHERER_BINDING_QUICKMENU		= "Показать/Скрыть Быстрое Меню";
+	BINDING_NAME_GATHERER_BINDING_OPTIONS		= "Показать/Скрыть Опции";
+	BINDING_NAME_GATHERER_BINDING_REPORT		= "Показать/Скрыть Отчет";
+	BINDING_NAME_GATHERER_BINDING_SEARCH		= "Показать/Скрыть Параметры";
+
+	-- MyAddons Help Pages
+	GathererHelp = {};
+	GathererHelp[1] ="|cffff7f3fСодержание|r\n\n1- Быстрое меню\n2- Мини-карта\n3- Карта мира\n4- Диалог опций\n5- Диалог отчета\n6- Диалог поиска\n7- Редактор объектов\n";
+	GathererHelp[2] ="|cffff7f3fБыстрое меню:|r\n\nБыстрый доступ к основным фильтрам (мини-карта, карта мира, травы, руда и сокровища), а так же доступ к статичным диалогам.\n";
+	GathererHelp[3] ="|cffff7f3fМини-карта:|r\n\nОтображение ближайших собранных объектов на мини-карте (максимум 25, в зависимости от настроек).\n";
+	GathererHelp[4] ="|cffff7f3fКарта мира:|r\n\nОтображение собранных объектов на карте мира (максимум 400 объектов, в зависимости от настроек).\n\nТак же, на карте мира возможен доступ к редактору объекта, нажав Alt+ПКМ на выбранном объекте.\n";
+	GathererHelp[5] ="|cffff7f3fДиалог опций:|r\n\nВ диалоге опций, вы можете редактировать отображение объектов, скрывать/показывать, их масштаб и многое другое.\n";
+	GathererHelp[6] ="|cffff7f3fДиалог отчета:|r\n\nВ этом диалоге, вы можете отобразить для быстрого просмотра уже собранные объекты, в различных зонах. Так же вы можете отсортировать их.\n";
+	GathererHelp[7] ="|cffff7f3fДиалог поиска:|r\n\nВ этом диалоге, вы можете указать необходимый вам объект и просмотреть в каких зонах вы уже его собирали.\n";
+	GathererHelp[8] ="|cffff7f3fРедактор объектов:|r\n\nВ этом диалоге вы можете редактировать объект, нажав на нем Alt+ПКМ. Вы можете изменить имя объекта, его иконку и много другое.\n";
+	GathererHelp.currentPage=1;
+
+	GathererDetails = {}; -- this line MUST NOT be repeated in localization blocks
+	GathererDetails["description"] = "Показать места собранных трав/руды/сокровищ ";
+	GathererDetails["releaseDate"] = "Август 27, 2006";
+end
+
 if ( GetLocale() == "deDE" ) then
 	-- Quick Menu
 	GATHERER_TEXT_TITLE_BUTTON		= "Gatherer Optionen";
