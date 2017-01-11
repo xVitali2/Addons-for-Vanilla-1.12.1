@@ -1,6 +1,5 @@
 ## Interface: 11200
 ## Title: SmartHeal
-## Title-ruRU: Умное Лечение
 ## Notes: Auto heal rank calculation and auto target healing
 ## Notes-ruRU: Автоматический расчет ранга способности лечения и автоматический выбор цели лечения
 ## Author: bolocos@gmail.com
