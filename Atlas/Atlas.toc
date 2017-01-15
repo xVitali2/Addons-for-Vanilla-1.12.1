@@ -1,16 +1,10 @@
 ## Interface: 11200
-## Title: Atlas AI |cff7fff7f -Ace2-|r
-## Title-zhTW: |r|cFF0099FF[地圖]|rAtlas 副本地圖 AI
-## Notes: Instance Map Browser, shows the possible loot from the bosses and shows the Quests for the instance.
-## Notes-deDE: Instanzkarten-Browser
-## Notes-frFR: Navigateur de cartes d'instances
-## Notes-zhTW: 副本地圖集, 瀏覽各副本、戰場地圖以及飛行地圖
-## Notes-zhCN: 副本地图浏览器
-## Notes-esES: Navegador de Mapas de Mazmorras
+## Title: Atlas |cff7fff7f -Ace2-|r
+## Notes: Atlas AllIn: instance Map Browser, shows the possible loot from the bosses and shows the Quests for the instance.
 ## Notes-ruRU: Обозреватель подземелий
-## Version: 1.12.0.2
-## X-Date: December, 2016
-## Author: Dan Gilbert, Daviesh, Thandrenn, Asurn, Loather, Rabidmax, Dazerdude (mod and fixRU by CFM)
+## Version: 1.12.0.1
+## X-Date: July, 2008
+## Author: Dan Gilbert, Daviesh, Thandrenn, Asurn, Loather, Rabidmax, Dazerdude (mod by CFM)
 ## X-Email: loglow@gmail.com
 ## X-Website: http://www.atlasmod.com
 ## X-Category: MYADDONS_CATEGORY_MAP
@@ -20,11 +14,6 @@
 ## RequiredDeps:!!!Libs
 
 Locale\Atlas-enUS.lua
-Locale\Atlas-deDE.lua
-Locale\Atlas-frFR.lua
-Locale\Atlas-zhCN.lua
-Locale\Atlas-esES.lua
-Locale\Atlas-zhTW.lua
 Locale\Atlas-ruRU.lua
 AtlasMaps.lua
 
