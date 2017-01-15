@@ -45,6 +45,7 @@ Gratuity-2.0\Gratuity-2.0.lua
 Babble\Babble-Boss-2.2\Babble-Boss-2.2.lua
 Babble\Babble-Spell-2.2\Babble-Spell-2.2.lua
 Babble\Babble-Zone-2.2\Babble-Zone-2.2.lua
+Babble\Babble-Class-2.2\Babble-Class-2.2.lua
 
 Dewdrop-2.0\Dewdrop-2.0.lua
 
