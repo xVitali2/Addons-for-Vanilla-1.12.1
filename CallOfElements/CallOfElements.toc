@@ -1,6 +1,5 @@
 ## Interface: 11200
 ## Title: Call Of Elements
-## Title-ruRU: Зов элементов
 ## Notes: The All-In-One Shaman Addon
 ## Notes-ruRU: Аддон "Все в одном" для Шаманов
 ## SavedVariables: COE_Saved, COEFramePositions
