@@ -6,6 +6,8 @@ elseif (GetLocale() == "frFR") then
     ReagentData_LoadQuestItemsFrench();
 elseif (GetLocale() == "zhCN") then
 	ReagentData_LoadQuestItemsChinese();
+elseif (GetLocale() == "ruRU") then
+	ReagentData_LoadQuestItemsRussian();
 else
     ReagentData_LoadQuestItemsEnglish();
 end

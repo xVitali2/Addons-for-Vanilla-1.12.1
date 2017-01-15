@@ -56,6 +56,9 @@ function MasterTradeSkills_OnLoad()
 	elseif (GetLocale() == "frFR") then
     	MasterTradeSkills_LoadFrench();
     	ReagentData_LoadFrench();
+	elseif (GetLocale() == "ruRU") then
+    	MasterTradeSkills_LoadRussian();
+    	ReagentData_LoadRussian();
 	end
 end
 

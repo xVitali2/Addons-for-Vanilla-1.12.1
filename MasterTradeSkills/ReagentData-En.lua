@@ -304,7 +304,7 @@ ReagentData["potion"] = {
      ["frostprotection"] = "Frost Protection Potion",
      ["elixirofgiants"] = "Elixir of Giants",
      ["elixiroffrostpower"] = "Elixir of Frost Power",
-     ["elixirofpoisonresistance"] = "Elixir of Poison Resistance",
+    -- ["elixirofpoisonresistance"] = "Elixir of Poison Resistance", ???
      ["strongtrollsblood"] = "Strong Troll's Blood Potion",
      ["lesserhealing"] = "Lesser Healing Potion",
      ["greaterhealing"] = "Greater Healing Potion",
@@ -327,7 +327,7 @@ ReagentData["potion"] = {
      ["limitedinvulnerability"] = "Limited Invulnerability Potion",
      ["elixirofsuperiordefense"] = "Elixir of Superior Defense",
      ["invisibility"] = "Invisibility Potion",
-     ["majortrollsblood"] = "Major Troll's Blood",
+     ["majortrollsblood"] = "Major Troll's Blood Potion",
      ["livingaction"] = "Living Action Potion",
      ["greaterdreamlesssleep"] = "Greater Dreamless Sleep Potion",
      ["mageblood"] = "Mageblood Potion",
@@ -441,7 +441,7 @@ ReagentData["oil"] = {
 -- Reagent Data: Other (Items that don't fit in other categories)
 ReagentData["other"] = {
      ["yellowpowercrystal"] = "Yellow Power Crystal",
-     ["philosophersstone"] = "Philosophers' Stone",
+     ["philosophersstone"] = "Philosopher's Stone",
      ["redpowercrystal"] = "Red Power Crystal",
      ["snowball"] = "Snowball",
      ["runntumtuber"] = "Runn Tum Tuber",
@@ -449,7 +449,7 @@ ReagentData["other"] = {
      ["bluepowercrystal"] = "Blue Power Crystal",
      ["frozenrune"] = "Frozen Rune",
      ["bloodofheroes"] = "Blood of Heroes",
-     ["frayedabominationstitchings"] = "Frayed Abomination Stitchings",
+     ["frayedabominationstitchings"] = "Frayed Abomination Stitching",
 };
 
 -- Reagent Data: Blasting Powder
@@ -913,7 +913,7 @@ ReagentData["quest"]["Anh\'Qiraj"]["item"] = {
         ["circlet"] = "Vek\'nilash\'s Circlet",
         ["diadem"] = "Vek\'lor\'s Diadem",
         ["hide"] = "Ouro\'s Intact Hide",
-        ["skin"] = "Skin of the Great Sandwormd",
+        ["skin"] = "Skin of the Great Sandworm",
         ["carapace"] = "Carapace of the Old God",
         ["husk"] = "Husk of the Old God",
     },

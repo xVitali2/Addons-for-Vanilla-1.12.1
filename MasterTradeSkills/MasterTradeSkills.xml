@@ -2,6 +2,7 @@
 	<Script file="Localization.lua" /> 
 	<Script file="Localization_deDE.lua" />
  	<Script file="Localization_frFR.lua" /> 
+	<Script file="Localization_ruRU.lua" /> 
 	<Script file="MasterTradeSkills.lua" /> 
 	<Frame name="MasterTradeSkillsFrame" parent="GameTooltip" hidden="false">
 		<Scripts>

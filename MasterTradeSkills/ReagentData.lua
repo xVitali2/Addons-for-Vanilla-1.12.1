@@ -34,7 +34,7 @@ ReagentData = {};
 ReagentData['crafted'] = {};
 
 -- Reagent Data: Version
-ReagentData['version'] = "2.4.0c";
+ReagentData['version'] = "2.4.0d";
 
 -- Now perform localizations if needed
 if (GetLocale() == "deDE") then
@@ -43,6 +43,8 @@ elseif (GetLocale() == "frFR") then
      ReagentData_LoadFrench();
 elseif (GetLocale() == "zhCN") then
 	 ReagentData_LoadChinese();
+elseif (GetLocale() == "ruRU") then
+	 ReagentData_LoadRussian();
 else
      ReagentData_LoadEnglish();
 end
