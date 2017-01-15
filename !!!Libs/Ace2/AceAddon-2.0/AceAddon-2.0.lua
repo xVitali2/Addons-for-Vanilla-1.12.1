@@ -1,4 +1,4 @@
-﻿--[[
+--[[
 Name: AceAddon-2.0
 Revision: $Rev: 17957 $
 Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
@@ -26,7 +26,7 @@ local function safecall(func,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10)
 end
 
 -- Localization
-local STANDBY, TITLE, NOTES, VERSION, AUTHOR, DATE, CATEGORY, EMAIL, CREDITS, WEBSITE, CATEGORIES, ABOUT, PRINT_ADDON_INFO
+local STANDBY, TITLE, NOTES, VERSION, AUTHOR, DATE, CATEGORY, EMAIL, CREDITS, WEBSITE, COMMANDS, CATEGORIES, ABOUT, PRINT_ADDON_INFO
 if GetLocale() == "deDE" then
 	STANDBY = "|cffff5050(Standby)|r" -- capitalized
 
@@ -39,7 +39,8 @@ if GetLocale() == "deDE" then
 	EMAIL = "E-mail"
 	WEBSITE = "Webseite"
 	CREDITS = "Credits" -- fix
-		 
+	COMMANDS = "Commands"
+	
 	ABOUT = "\195\188ber"
 	PRINT_ADDON_INFO = "Gibt Addondaten aus"
 
@@ -91,6 +92,7 @@ elseif GetLocale() == "frFR" then
 	EMAIL = "E-mail"
 	WEBSITE = "Site web"
 	CREDITS = "Credits" -- fix
+	COMMANDS = "Commands"
 	
 	ABOUT = "A propos"
 	PRINT_ADDON_INFO = "Afficher les informations sur l'addon"
@@ -143,6 +145,7 @@ elseif GetLocale() == "koKR" then
 	EMAIL = "E-mail"
 	WEBSITE = "웹사이트"
 	CREDITS = "Credits" -- fix
+	COMMANDS = "Commands"
 	
 	ABOUT = "정보"
 	PRINT_ADDON_INFO = "애드온 정보 출력"
@@ -195,6 +198,7 @@ elseif GetLocale() == "zhTW" then
 	EMAIL = "E-mail"
 	WEBSITE = "網站"
 	CREDITS = "Credits" -- fix
+	COMMANDS = "Commands"
 	
 	ABOUT = "關於"
 	PRINT_ADDON_INFO = "顯示插件資訊"
@@ -247,6 +251,7 @@ elseif GetLocale() == "zhCN" then
 	EMAIL = "\231\148\181\229\173\144\233\130\174\228\187\182"
 	WEBSITE = "\231\189\145\231\171\153"
 	CREDITS = "Credits" -- fix
+	COMMANDS = "Commands"
 	
 	ABOUT = "\229\133\179\228\186\142"
 	PRINT_ADDON_INFO = "\229\141\176\229\136\151\229\135\186\230\143\146\228\187\182\228\191\161\230\129\175"
@@ -299,6 +304,7 @@ elseif GetLocale() == "ruRU" then
 	EMAIL = "E-mail"
 	WEBSITE = "Сайт"
 	CREDITS = "Титры"
+	COMMANDS = "Команды"
 	
 	ABOUT = "Об аддоне"
 	PRINT_ADDON_INFO = "Показать информацию об аддоне."
@@ -351,6 +357,7 @@ elseif GetLocale() == "ruRU" then
 	EMAIL = "E-mail"
 	WEBSITE = "Website"
 	CREDITS = "Credits"
+	COMMANDS = "Commands"
 	
 	ABOUT = "About"
 	PRINT_ADDON_INFO = "Print out addon info"
@@ -538,6 +545,10 @@ function AceAddon:InitializeAddon(addon, name)
 			addon.website = GetAddOnMetadata(name, "X-Website")
 			addon.website = stripSpaces(addon.website)
 		end
+		if addon.commands == nil then
+			addon.commands = GetAddOnMetadata(name, "X-Commands")
+			addon.commands = stripSpaces(addon.commands)
+		end
 	end
 	local current = addon.class
 	while true do
@@ -603,6 +614,9 @@ function AceAddon.prototype:PrintAddonInfo()
 	end
 	if self.website then
 		print(" - |cffffff7f" .. WEBSITE .. ":|r " .. tostring(self.website))
+	end
+	if self.commands then
+		print(" - |cffffff7f" .. COMMANDS .. ":|r " .. tostring(self.commands))
 	end
 end
 
