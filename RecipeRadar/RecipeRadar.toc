@@ -1,7 +1,6 @@
 ## Interface: 11200
 ## Version: 1.12
 ## Title: Recipe Radar
-## Title-ruRU: Радар рецептов
 ## Author: Jay Miller
 ## Notes: Locates vendors who sell recipes in the current region or by profession.
 ## Notes-ruRU: Показывает вендоров, которые продают рецепты в данной территории или все свитки профессии.
