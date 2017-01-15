@@ -3,7 +3,7 @@
 ## Author: Aero/Schaka/Logonz/Dyaxler/everyone else
 ## Notes: A standalone Vanilla QuestHelper
 ## Notes-ruRU: КвестХелпер для классики
-## Version: 3.5
+## Version: 3.65
 ## RequiredDeps:!!!Libs
 ## OptionalDeps: Cartographer, MetaMap, EQL3, ShaguQuest
 ## SavedVariablesPerCharacter: QuestieSeenQuests, QuestieTrackedQuests, QuestieConfig, QuestieTrackerVariables

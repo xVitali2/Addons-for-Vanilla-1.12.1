@@ -30774,7 +30774,7 @@ QuestieHashMap = {
   ['name']="Спрятанное сокровище капитана Сандерса",
   ['startedType']="item",
   ['finishedType']="object",
-  ['startedBy']="unknown",
+  ['startedBy']="Карта сокровищ капитана Сандерса",
   ['finishedBy']="Сундучок капитана",
   ['level']=10,
   ['questLevel']='16',
@@ -38055,7 +38055,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Донал Товальд",
   ['finishedBy']="Донал Товальд",
-  ['level']=1,
+  ['level']=5,
   ['questLevel']='16',
   ['rr']=77
  },
