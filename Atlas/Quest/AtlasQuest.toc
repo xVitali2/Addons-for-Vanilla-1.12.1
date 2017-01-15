@@ -1,17 +1,13 @@
 ## Interface: 11200
 ## Title: AtlasQuest
-## Title-deDE: AtlasQuest
-## Title-koKR: AtlasQuest
-## Title-zhCN: AtlasQuest
 ## Notes: Shows the Quests for the instance.
+## Notes-ruRU: Показывает задания в подземельях.
 ## Notes-deDE: Zeigt die Quests, die es f\195\188r die jeweiligen Instanzen gibt.
 ## Notes-koKR: Shows the Quests for the instance.
 ## Notes-zhCN: Shows the Quests for the instance.
 ## Author: Thandrenn
 ## Original Author: Asurn
-## Updated by: Loather
-## Updated by: Rabidmax
-## Updated by: Thandrenn (aka Mystery8)
+## Updated by: Loather, Rabidmax, Thandrenn (aka Mystery8)
 ## CLI by: Dazerdude
 ## Version: 4.1.2.1
 ## X-eMail: mystery8@gmail.com
@@ -19,11 +15,10 @@
 ## X-Category: MYADDONS_CATEGORY_MAP
 ## X-Date: July 25, 2008
 ## X-Help: AtlasQuestHelp
-## RequiredDeps: 
 ## OptionalDeps: Atlas, AlphaMap, myAddOns
 ## LoadOnDemand: 0
 ## SavedVariablesPerCharacter:
 ## SavedVariables: AtlasQuest_Options,
-## Dependencies:
+
 AtlasQuest_InsideFrame.xml
 AtlasQuest.xml

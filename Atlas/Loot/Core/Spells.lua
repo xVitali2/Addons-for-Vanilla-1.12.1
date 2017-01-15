@@ -1798,7 +1798,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[21161] = {
 			["name"] = "Blacksmithing: Sulfuron Hammer",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -7556,7 +7556,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[14891] = {
 			["name"] = "Smelting: Smelt Dark Iron",
-			["requires"] = AL["Black Forge"],
+			["requires"] = AL["The Black Forge"],
 			["tools"] = "",
 			["castTime"] = 3,
 			["text"] = "Allows the miner to smelt chunks of dark iron ore into a dark iron bar. Smelting dark iron can only be done at the Black Forge in Blackrock Depths.",
@@ -10051,7 +10051,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[19796] = {
 			["name"] = "Engineering: Dark Iron Rifle",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956, 6219},
 			["castTime"] = 45,
 			["text"] = "",
@@ -10417,7 +10417,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[20890] = {
 			["name"] = "Blacksmithing: Dark Iron Reaver",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -10467,7 +10467,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[23652] = {
 			["name"] = "Blacksmithing: Blackguard",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -10553,7 +10553,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[23650] = {
 			["name"] = "Blacksmithing: Ebon Hand",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -10639,7 +10639,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[20897] = {
 			["name"] = "Blacksmithing: Dark Iron Destroyer",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -10655,7 +10655,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[23653] = {
 			["name"] = "Blacksmithing: Nightfall",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -11645,7 +11645,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[15292] = {
 			["name"] = "Blacksmithing: Dark Iron Pulverizer",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 45,
 			["text"] = "",
@@ -11659,7 +11659,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[15294] = {
 			["name"] = "Blacksmithing: Dark Iron Sunderer",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 45,
 			["text"] = "",
@@ -11692,7 +11692,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[23638] = {
 			["name"] = "Blacksmithing: Black Amnesty",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -11709,7 +11709,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[23639] = {
 			["name"] = "Blacksmithing: Blackfury",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -11793,7 +11793,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[15296] = {
 			["name"] = "Blacksmithing: Dark Iron Plate",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 45,
 			["text"] = "",
@@ -11839,7 +11839,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[20874] = {
 			["name"] = "Blacksmithing: Dark Iron Bracers",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -11854,7 +11854,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[20872] = {
 			["name"] = "Blacksmithing: Fiery Chain Girdle",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -11955,7 +11955,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[24399] = {
 			["name"] = "Blacksmithing: Dark Iron Boots",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -11972,7 +11972,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[23637] = {
 			["name"] = "Blacksmithing: Dark Iron Gauntlets",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -11989,7 +11989,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[23636] = {
 			["name"] = "Blacksmithing: Dark Iron Helm",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -12004,7 +12004,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[20876] = {
 			["name"] = "Blacksmithing: Dark Iron Leggings",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -12019,7 +12019,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[20873] = {
 			["name"] = "Blacksmithing: Fiery Chain Shoulders",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 60,
 			["text"] = "",
@@ -13227,7 +13227,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[15293] = {
 			["name"] = "Blacksmithing: Dark Iron Mail",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 45,
 			["text"] = "",
@@ -13329,7 +13329,7 @@ GetSpellInfoVanillaDB = {
 		},
 		[15295] = {
 			["name"] = "Blacksmithing: Dark Iron Shoulders",
-			["requires"] = AL["Black Anvil"],
+			["requires"] = AL["The Black Anvil"],
 			["tools"] = {5956},
 			["castTime"] = 45,
 			["text"] = "",

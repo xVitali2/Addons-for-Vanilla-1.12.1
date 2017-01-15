@@ -69,7 +69,7 @@ AtlasLoot_Data["AtlasLootWBItems"] = {
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
-		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=Skinning (315)" },
+		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=#p16# (315)" },
 	};
 	DEmeriss = {
 		{ 20623, "INV_Helmet_17", "=q4=Circlet of Restless Dreams", "=ds=#s1#, #a2#", "10.51%" },
@@ -101,7 +101,7 @@ AtlasLoot_Data["AtlasLootWBItems"] = {
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
-		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=Skinning (315)" },
+		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=#p16# (315)" },
 	};
 	DLethon = {
 		{ 20628, "INV_Helmet_43", "=q4=Deviate Growth Cap", "=ds=#s1#, #a2#", "15.80%" },
@@ -133,7 +133,7 @@ AtlasLoot_Data["AtlasLootWBItems"] = {
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
-		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=Skinning (315)" },
+		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=#p16# (315)" },
 	};
 	DYsondre = {
 		{ 20637, "INV_Shoulder_11", "=q4=Acid Inscribed Pauldrons", "=ds=#s3#, #a4#", "10.13%" },
@@ -165,7 +165,7 @@ AtlasLoot_Data["AtlasLootWBItems"] = {
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
-		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=Skinning (315)" },
+		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=#p16# (315)" },
 	};
 	DTrash	= {
 		{ 21146, "Spell_Shadow_AntiMagicShell", "=q1=Fragment of the Nightmare's Corruption", "=ds=#m3#", "1%" },
@@ -186,7 +186,7 @@ AtlasLoot_Data["AtlasLootWBItems"] = {
 		{ 18542, "INV_Sword_41", "=q4=Typhoon", "=ds=#h2#, #w10#", "16.89%" },
 		{ 0, "", "", "", "" },
 		{ 18704, "INV_Misc_Bandage_04", "=q4=Mature Blue Dragon Sinew", "=ds=#m3#", "51.56%" },
-		{ 18714, "INV_Misc_Quiver_03", "=q4=Ancient Sinew Wrapped Lamina", "=q1=#m4# =ds=#m12# #e9# =q14=#c2#" },
+		{ 18714, "INV_Misc_Quiver_03", "=q4=Ancient Sinew Wrapped Lamina", "=q1=#m4# =ds=#e9# #m12# =q14=#c2#" },
 	};
 	ASpiritA = {
 		{ 20949, "INV_Letter_16", "=q1=Magical Ledger", "=ds=#m2#", "" },

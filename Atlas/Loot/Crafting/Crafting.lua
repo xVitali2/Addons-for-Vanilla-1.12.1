@@ -6,7 +6,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 
 	CraftedWeapons1 = {
 		{ 0, "", "", "" },
-		{ 0, "INV_Box_01", "=q6=#p2#", "" },
+		{ 0, "Trade_BlackSmithing", "=q6=#p2#", "" },
 		{ 0, "", "", "" },
 		{ 22384, "INV_Hammer_08", "=q4=Persuader", "=ds=#h3#, #w6#" },
 		{ 22383, "INV_Sword_51", "=q4=Sageblade", "=ds=#h3#, #w10#" },
@@ -21,7 +21,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ 0, "", "", "" },
 		{ 0, "", "", "" },
 		{ 0, "", "", "" },
-		{ 0, "INV_Box_01", "=q6=#p5#", "" },
+		{ 0, "Trade_Engineering", "=q6=#p5#", "" },
 		{ 0, "", "", "" },
 		{ 18282, "INV_Weapon_Rifle_05", "=q4=Core Marksman Rifle", "=ds=#w5#" },
 		{ 18168, "Spell_Arcane_PortalDarnassus", "=q4=Force Reactive Disk", "=ds=#w8#" },
@@ -85,7 +85,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 
 	VolcanicArmor = {
 		{ 0, "", "", "" },
-		{ 0, "INV_Box_01", "=q6=#craftlwl1#", "=q1=#j6#" },
+		{ 0, "INV_Box_01", "=q6=#craftlwl1#", "=q1=#j3#" },
 		{ 0, "", "", "" },
 		{ 15055, "INV_Shoulder_13", "=q2=Volcanic Shoulders", "=ds=#s3#, #a2#" },
 		{ 15053, "INV_Chest_Leather_07", "=q2=Volcanic Breastplate", "=ds=#s5#, #a2#" },
@@ -141,7 +141,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 
 	GreenDragonM = {
 		{ 0, "", "", "" },
-		{ 0, "INV_Box_01", "=q6=#craftlwm1#", "=q1=#j8#" },
+		{ 0, "INV_Box_01", "=q6=#craftlwm1#", "=q1=#j5#" },
 		{ 0, "", "", "" },
 		{ 15045, "INV_Chest_Chain_06", "=q3=Green Dragonscale Breastplate", "=ds=#s5#, #a3#" },
 		{ 20296, "INV_Gauntlets_12", "=q3=Green Dragonscale Gauntlets", "=ds=#s9#, #a3#" },
@@ -150,7 +150,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 
 	BlueDragonM = {
 		{ 0, "", "", "" },
-		{ 0, "INV_Box_01", "=q6=#craftlwm2#", "=q1=#j7#" },
+		{ 0, "INV_Box_01", "=q6=#craftlwm2#", "=q1=#j4#" },
 		{ 0, "", "", "" },
 		{ 15049, "INV_Shoulder_18", "=q3=Blue Dragonscale Shoulders", "=ds=#s3#, #a3#" },
 		{ 15048, "INV_Chest_Chain_04", "=q3=Blue Dragonscale Breastplate", "=ds=#s5#, #a3#" },
@@ -159,7 +159,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 
 	BlackDragonM = {
 		{ 0, "", "", "" },
-		{ 0, "INV_Box_01", "=q6=#craftlwm3#", "=q1=#j6#" },
+		{ 0, "INV_Box_01", "=q6=#craftlwm3#", "=q1=#j3#" },
 		{ 0, "", "", "" },
 		{ 15051, "INV_Shoulder_01", "=q3=Black Dragonscale Shoulders", "=ds=#s3#, #a3#" },
 		{ 15050, "INV_Chest_Plate06", "=q3=Black Dragonscale Breastplate", "=ds=#s5#, #a3#" },
@@ -1521,22 +1521,22 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 	};
 
 	Smelting1 = {
-		{ 0, "Trade_Mining", "=q6=#sk1#", "" },
+		{ 0, "Spell_Fire_FlameBlades", "=q6=#sk1#", "" },
 		{ "s2657", "inv_ingot_02", "=q1=Smelt Copper", "=ds=#sr# =so1=1 =so2=25 =so3=45 =so4=70" },
 		{ "s3304", "inv_ingot_05", "=q1=Smelt Tin", "=ds=#sr# =so1=65 =so2=65 =so3=70 =so4=75" },
 		{ "s2659", "inv_ingot_bronze", "=q1=Smelt Bronze", "=ds=#sr# =so1=65 =so2=65 =so3=90 =so4=115" },
 		{ "s2658", "inv_ingot_01", "=q2=Smelt Silver", "=ds=#sr# =so1=75 =so2=100 =so3=112 =so4=125" },
 		{ 0, "", "", "" },
-		{ 0, "Trade_Mining", "=q6=#sk2#", "" },
+		{ 0, "Spell_Fire_FlameBlades", "=q6=#sk2#", "" },
 		{ "s3307", "inv_ingot_iron", "=q1=Smelt Iron", "=ds=#sr# =so1=125 =so2=125 =so3=130 =so4=140" },
 		{ 0, "", "", "" },
-		{ 0, "Trade_Mining", "=q6=#sk3#", "" },
+		{ 0, "Spell_Fire_FlameBlades", "=q6=#sk3#", "" },
 		{ "s3308", "inv_ingot_03", "=q2=Smelt Gold", "=ds=#sr# =so1=155 =so2=170 =so3=177 =so4=185" },
 		{ "s3569", "inv_ingot_steel", "=q1=Smelt Steel", "=ds=#sr# =so1=165 =so2=165 =so3=165 =so4=165" },
 		{ "s10097", "inv_ingot_06", "=q1=Smelt Mithril", "=ds=#sr# =so1=175 =so2=175 =so3=175 =so4=175" },
 		{ 0, "", "", "" },
 		{ 0, "", "", "" },
-		{ 0, "Trade_Mining", "=q6=#sk4#", "" },
+		{ 0, "Spell_Fire_FlameBlades", "=q6=#sk4#", "" },
 		{ "s14891", "inv_ingot_mithril", "=q1=Smelt Dark Iron", "=ds=#sr# =so1=230 =so2=230 =so3=230 =so4=230" },
 		{ "s10098", "inv_ingot_08", "=q2=Smelt Truesilver", "=ds=#sr# =so1=230 =so2=230 =so3=230 =so4=230" },
 		{ "s16153", "inv_ingot_07", "=q1=Smelt Thorium", "=ds=#sr# =so1=250 =so2=250 =so3=250 =so4=250" },

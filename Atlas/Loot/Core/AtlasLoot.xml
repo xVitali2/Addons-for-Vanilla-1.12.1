@@ -14,13 +14,13 @@
 
 	<Button name="AtlasLootDefaultFrameButtonTemplate" inherits="OptionsButtonTemplate" virtual="true">
 		<Size>
-			<AbsDimension x="105" y="20"/>
+			<AbsDimension x="130" y="20"/>
 		</Size>
 	</Button>
 
 	<Frame name="AtlasLootDefaultFrame" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="UIParent" enableKeyboard="true">
 		<Size>
-			<AbsDimension x="600" y="690"/>
+			<AbsDimension x="600" y="700"/>
 		</Size>
 		<Anchors>
 			<Anchor point="CENTER"/>
@@ -72,7 +72,7 @@
 					</OnClick>
 					<OnShow>
 						local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot");
-						this:SetText(AL["Atlas"]);
+						this:SetText("Atlas");
 						this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 1 );
 						if IsAddOnLoaded("Atlas") then
 							this:Enable();
@@ -160,7 +160,7 @@
 				<Anchors>
 					<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
 						<Offset>
-							<AbsDimension x="0" y="90"/>
+							<AbsDimension x="0" y="100"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -180,7 +180,7 @@
 				<Anchors>
 					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
 						<Offset>
-							<AbsDimension x="75" y="63"/>
+							<AbsDimension x="40" y="75"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -225,7 +225,7 @@
 				<Anchors>
 					<Anchor point="LEFT" relativeTo="$parent_Preset1" relativePoint="RIGHT">
 						<Offset>
-							<AbsDimension x="5" y="0"/>
+							<AbsDimension x="0" y="0"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -270,7 +270,7 @@
 				<Anchors>
 					<Anchor point="LEFT" relativeTo="$parent_Preset2" relativePoint="RIGHT">
 						<Offset>
-							<AbsDimension x="5" y="0"/>
+							<AbsDimension x="0" y="0"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -315,7 +315,7 @@
 				<Anchors>
 					<Anchor point="LEFT" relativeTo="$parent_Preset3" relativePoint="RIGHT">
 						<Offset>
-							<AbsDimension x="5" y="0"/>
+							<AbsDimension x="0" y="0"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -363,7 +363,7 @@
 				<Anchors>
 					<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
 						<Offset>
-							<AbsDimension x="-70" y="30"/>
+							<AbsDimension x="-88" y="40"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -428,7 +428,7 @@
 			</Button>
 			<Button name="AtlasLootDefaultFrameSearchClearButton" inherits="UIPanelButtonTemplate2" parent="AtlasLootDefaultFrameSearchBox">
 				<Size>
-					<AbsDimension x="58" y="32"/>
+					<AbsDimension x="76" y="32"/>
 				</Size>
 				<Anchors>
 					<Anchor point="LEFT" relativeTo="AtlasLootDefaultFrameSearchOptionsButton" relativePoint="RIGHT">
@@ -451,7 +451,7 @@
 			</Button>
 			<Button name="AtlasLootDefaultFrameLastResultButton" inherits="UIPanelButtonTemplate2" parent="AtlasLootDefaultFrameSearchBox">
 				<Size>
-					<AbsDimension x="100" y="32"/>
+					<AbsDimension x="120" y="32"/>
 				</Size>
 				<Anchors>
 					<Anchor point="LEFT" relativeTo="AtlasLootDefaultFrameSearchClearButton" relativePoint="RIGHT">
@@ -554,7 +554,7 @@
 				this:SetMovable(1);
 				this:SetBackdropColor(0.75, 0, 0.75);
 				local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot");
-				getglobal("AtlasLootDefaultFrame_Notice"):SetText(AL["This is a loot browser only.  To view maps as well, install either Atlas or Alphamap."]);
+				getglobal("AtlasLootDefaultFrame_Notice"):SetText(AL["This is a loot browser only.\nTo view maps as well, install either Atlas or Alphamap."]);
 			</OnLoad>
 			<OnShow>
 				AtlasLootDefaultFrame_OnShow();
@@ -656,7 +656,7 @@
 
 	<Button name="AtlasLootPanelButtonTemplate" inherits="OptionsButtonTemplate" virtual="true">
 		<Size>
-			<AbsDimension x="120" y="20"/>
+			<AbsDimension x="140" y="20"/>
 		</Size>
 	</Button>
 
@@ -871,8 +871,9 @@
 					<OnShow>
 						local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot");
 						this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 1 );
-						this:SetText(AL["AtlasLoot"]);
+						this:SetText("AtlasLoot");
 						getglobal("AtlasLootInfo_Text2"):SetText(AL["ALT+Click to use WishList."]);
+						getglobal("AtlasLootInfo_Text2"):SetWidth(350);
 					</OnShow>
 					<OnClick>
 						if AtlasLootCharDB.HidePanel then
@@ -904,7 +905,7 @@
 					</Size>
 					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
 						<Offset>
-							<AbsDimension x="0" y="25"/>
+							<AbsDimension x="30" y="25"/>
 						</Offset>
 					</Anchor>
 				</FontString>
@@ -1181,12 +1182,12 @@
 			</Button>
 			<Button name="AtlasLootServerQueryButton" inherits="OptionsButtonTemplate">
 				<Size>
-					<AbsDimension x="100" y="23"/>
+					<AbsDimension x="120" y="25"/>
 				</Size>
 				<Anchors>
 					<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
 						<Offset>
-							<AbsDimension x="100" y="6"/>
+							<AbsDimension x="160" y="8"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -1223,7 +1224,7 @@
 				<Anchors>
 					<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
 						<Offset>
-							<AbsDimension x="-70" y="6"/>
+							<AbsDimension x="-10" y="8"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -1289,7 +1290,7 @@
 					<Anchors>
 						<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
 							<Offset>
-								<AbsDimension x="-185" y="6"/>
+								<AbsDimension x="-124" y="8"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -1301,6 +1302,9 @@
 				AtlasLoot_OnLoad();
 				local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot");
 				getglobal("AtlasLootItemsFrame_BACK"):SetText(AL["Back"]);
+				getglobal("AtlasLootItemsFrame_BACK"):SetHeight(25);
+				getglobal("AtlasLootItemsFrame_BACK"):SetWidth(100); 
+				getglobal("AtlasLootItemsFrame_BACK"):SetPoint("RIGHT", this:GetName(), "RIGHT", -154, 0);
 				getglobal("AtlasLoot_QuickLooks"):SetText(AL["Add to QuickLooks:"]);
 			</OnLoad>
 			<OnEvent>
@@ -1331,12 +1335,12 @@
 			<Layer level="ARTWORK">
 				<Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
 					<Size>
-						<AbsDimension x="256" y="64"/>
+						<AbsDimension x="290" y="64"/>
 					</Size>
 					<Anchors>
 						<Anchor point="TOP">
 							<Offset>
-								<AbsDimension x="0" y="12"/>
+								<AbsDimension x="0" y="14"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -1702,7 +1706,7 @@
 
 	<Frame name="AtlasLootPanel" parent="UIParent" hidden="true">
 		<Size>
-			<AbsDimension x="745" y="110"/>
+			<AbsDimension x="870" y="110"/>
 		</Size>
 		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
 			<BackgroundInsets>
@@ -1903,8 +1907,7 @@
 						AtlasLoot_Toggle();
 					</OnClick>
 					<OnShow>
-						local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot");
-						this:SetText(AL["AtlasLoot"]);
+						this:SetText("AtlasLoot");
 						this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 1 );
 					</OnShow>
 				</Scripts>
@@ -2115,12 +2118,12 @@
 			</Button>
 			<EditBox name="AtlasLootSearchBox" inherits="InputBoxTemplate" letters="100">
 				<Size>
-					<AbsDimension x="240" y="35"></AbsDimension>
+					<AbsDimension x="300" y="35"></AbsDimension>
 				</Size>
 				<Anchors>
 					<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
 						<Offset>
-							<AbsDimension x="-123" y="20"/>
+							<AbsDimension x="-150" y="20"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -2138,7 +2141,7 @@
 			</EditBox>
 			<Button name="AtlasLootSearchButton" inherits="UIPanelButtonTemplate2" parent="AtlasLootSearchBox">
 				<Size>
-					<AbsDimension x="69" y="32"/>
+					<AbsDimension x="69" y="32"/> 
 				</Size>
 				<Anchors>
 					<Anchor point="LEFT" relativePoint="RIGHT">
@@ -2185,7 +2188,7 @@
 			</Button>
 			<Button name="AtlasLootSearchClearButton" inherits="UIPanelButtonTemplate2" parent="AtlasLootSearchBox">
 				<Size>
-					<AbsDimension x="58" y="32"/>
+					<AbsDimension x="80" y="32"/>
 				</Size>
 				<Anchors>
 					<Anchor point="LEFT" relativeTo="AtlasLootSearchOptionsButton" relativePoint="RIGHT">

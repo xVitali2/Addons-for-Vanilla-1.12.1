@@ -86,7 +86,7 @@ function AtlasLoot:Search(Text)
 	for dataSource in pairs(AtlasLoot_Data) do search(dataSource) end
 	
 	if getn(AtlasLootCharDB["SearchResult"]) == 0 then
-		DEFAULT_CHAT_FRAME:AddMessage(RED..AL["AtlasLoot"]..": "..WHITE..AL["No match found for"].." \""..Text.."\".");
+		DEFAULT_CHAT_FRAME:AddMessage(RED.."AtlasLoot"..": "..WHITE..AL["No match found for"].." \""..Text.."\".");
 	else
 		currentPage = 1;
 		SearchResult = AtlasLoot_CategorizeWishList(AtlasLootCharDB["SearchResult"]);

@@ -130,12 +130,12 @@
 			</Button>
 			<EditBox name="AtlasSearchEditBox" inherits="InputBoxTemplate" letters="80">
 				<Size>
-					<AbsDimension x="144" y="32"></AbsDimension>
+					<AbsDimension x="132" y="32"></AbsDimension>
 				</Size>
 				<Anchors>
 					<Anchor point="BOTTOMRIGHT">
 						<Offset>
-							<AbsDimension x="-147" y="15"/>
+							<AbsDimension x="-160" y="15"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -189,7 +189,7 @@
 			</Button>
 			<Button name="AtlasSearchClearButton" inherits="UIPanelButtonTemplate2" parent="AtlasSearchEditBox" text="ATLAS_STRING_CLEAR">
 				<Size>
-					<AbsDimension x="58" y="32"/>
+					<AbsDimension x="72" y="32"/>
 				</Size>
 				<Anchors>
 					<Anchor point="LEFT" relativeTo="AtlasSearchButton" relativePoint="RIGHT">
@@ -213,7 +213,7 @@
 				<Anchors>
 					<Anchor point="TOPRIGHT">
 						<Offset>
-							<AbsDimension x="-20" y="-50"/>
+							<AbsDimension x="-18" y="-60"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -458,7 +458,7 @@
 						</Anchor>
 					</Anchors>
 				</Texture>
-				<FontString inherits="GameFontHighlight" text="ATLAS_TITLE">
+				<FontString inherits="GameFontHighlight" text="Atlas">
 					<Anchors>
 						<Anchor point="TOP">
 							<Offset>

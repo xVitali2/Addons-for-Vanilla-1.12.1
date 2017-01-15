@@ -31,34 +31,36 @@
 		<Anchors>
 			<Anchor point="CENTER"/>
 		</Anchors>
-		<Backdrop bgFile="Interface\ChatFrame\ChatFrameBackground" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
 			<BackgroundInsets>
-				<AbsInset left="4" right="4" top="4" bottom="4"/>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
 			</BackgroundInsets>
 			<TileSize>
 				<AbsValue val="32"/>
 			</TileSize>
 			<EdgeSize>
-				<AbsValue val="16"/>
+				<AbsValue val="32"/>
 			</EdgeSize>
-			<Color r="0" g="0" b="0" a="1"/>
 		</Backdrop>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString inherits="GameFontHighlightLarge" text="ATLAS_OPTIONS_TITLE">
+				<Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64"/>
+					</Size>
 					<Anchors>
-						<Anchor point="TOPLEFT">
+						<Anchor point="TOP">
 							<Offset>
-								<AbsDimension x="20" y="-20"/>
+								<AbsDimension x="0" y="14"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
-				</FontString>
-				<FontString inherits="GameFontDisableSmall" text="ATLAS_OPTIONS_HELP">
+				</Texture>
+				<FontString name="$parent_Title" inherits="GameFontNormal">
 					<Anchors>
-						<Anchor point="TOPLEFT">
+						<Anchor point="TOP">
 							<Offset>
-								<AbsDimension x="20" y="-36"/>
+								<AbsDimension x="0" y="0"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -303,26 +305,19 @@
 		</Frames>
 		<Scripts>
 			<OnLoad>
-				AtlasOptions_OnLoad();
+				this:RegisterForDrag("LeftButton");
+				this:SetMovable(1);
+				local AL = AceLibrary("AceLocale-2.2"):new("Atlas");
+				getglobal("AtlasOptionsFrame_Title"):SetText(AL["Atlas Options"]);
 			</OnLoad>
-			<OnMouseDown>
-				if ( arg1 == "LeftButton" ) then
-					this:StartMoving()
-					this.isMoving = true
-				end
-			</OnMouseDown>
-			<OnMouseUp>
-				if this.isMoving then
-					this:StopMovingOrSizing()
-					this.isMoving = false
-				end
-			</OnMouseUp>
-			<OnHide>
-				if this.isMoving then
-					this:StopMovingOrSizing()
-					this.isMoving = false
-				end
-			</OnHide>
+			<OnDragStart>
+				this:StartMoving();
+				this.isMoving = true;
+			</OnDragStart>
+			<OnDragStop>
+				this:StopMovingOrSizing();
+				this.isMoving = false;
+			</OnDragStop>
 		</Scripts>
 	</Frame>
 </Ui>

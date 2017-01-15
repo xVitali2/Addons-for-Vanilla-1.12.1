@@ -681,4 +681,3 @@ function AQGeneral_OnClick(arg1)
     end
   end
 end
-

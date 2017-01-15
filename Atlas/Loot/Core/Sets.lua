@@ -1,4 +1,7 @@
 local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot");
+local BC = AceLibrary("Babble-Class-2.2")
+local BZ = AceLibrary("Babble-Zone-2.2")
+local BIS = AceLibrary("Babble-ItemSet-2.2")
 
 local ORANGE = "|cffFF8400";
 
@@ -87,7 +90,7 @@ function AtlasLootSetMenu()
 	AtlasLootMenuItem_22.lootpage="WORLDEPICS";
 	AtlasLootMenuItem_22:Show();
 	--Dungeon Set 1/2
-	AtlasLootMenuItem_17_Name:SetText(AL["Dungeon 1/2 Sets"]);
+	AtlasLootMenuItem_17_Name:SetText(AL["Tier 0/0.5 Sets"]);
 	AtlasLootMenuItem_17_Extra:SetText("");
 	AtlasLootMenuItem_17_Icon:SetTexture("Interface\\Icons\\INV_Chest_Chain_03");
 	AtlasLootMenuItem_17.lootpage="T0SET";
@@ -169,62 +172,62 @@ function AtlasLootPRE60SetMenu()
 	getglobal("AtlasLootItemsFrame_PREV"):Hide();
 	getglobal("AtlasLootServerQueryButton"):Hide();
 	--The Deadmines - Defias Leather
-	AtlasLootMenuItem_2_Name:SetText(AL["Defias Leather"]);
-	AtlasLootMenuItem_2_Extra:SetText(ORANGE..AL["The Deadmines"]);
+	AtlasLootMenuItem_2_Name:SetText(BIS["Defias Leather"]);
+	AtlasLootMenuItem_2_Extra:SetText(ORANGE..BZ["The Deadmines"]);
 	AtlasLootMenuItem_2_Icon:SetTexture("Interface\\Icons\\INV_Pants_12");
 	AtlasLootMenuItem_2.lootpage="DEADMINES";
 	AtlasLootMenuItem_2:Show();
 	--Wailing Caverns - Embrace of the Viper
-	AtlasLootMenuItem_3_Name:SetText(AL["Embrace of the Viper"]);
-	AtlasLootMenuItem_3_Extra:SetText(ORANGE..AL["Wailing Caverns"]);
+	AtlasLootMenuItem_3_Name:SetText(BIS["Embrace of the Viper"]);
+	AtlasLootMenuItem_3_Extra:SetText(ORANGE..BZ["Wailing Caverns"]);
 	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\INV_Shirt_16");
 	AtlasLootMenuItem_3.lootpage="WAILING";
 	AtlasLootMenuItem_3:Show();
 	--Scarlet Monastery - Chain of the Scarlet Crusade
-	AtlasLootMenuItem_4_Name:SetText(AL["Chain of the Scarlet Crusade"]);
-	AtlasLootMenuItem_4_Extra:SetText(ORANGE..AL["Scarlet Monastery"]);
+	AtlasLootMenuItem_4_Name:SetText(BIS["Chain of the Scarlet Crusade"]);
+	AtlasLootMenuItem_4_Extra:SetText(ORANGE..BZ["Scarlet Monastery"]);
 	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\INV_Gauntlets_19");
 	AtlasLootMenuItem_4.lootpage="SCARLET";
 	AtlasLootMenuItem_4:Show();
 	--Blackrock Depths - The Gladiator
-	AtlasLootMenuItem_5_Name:SetText(AL["The Gladiator"]);
-	AtlasLootMenuItem_5_Extra:SetText(ORANGE..AL["Blackrock Depths"]);
+	AtlasLootMenuItem_5_Name:SetText(BIS["The Gladiator"]);
+	AtlasLootMenuItem_5_Extra:SetText(ORANGE..BZ["Blackrock Depths"]);
 	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\INV_Helmet_01");
 	AtlasLootMenuItem_5.lootpage="BLACKROCKD";
 	AtlasLootMenuItem_5:Show();
 	--Ironweave Battlesuit
-	AtlasLootMenuItem_6_Name:SetText(AL["Ironweave Battlesuit"]);
+	AtlasLootMenuItem_6_Name:SetText(BIS["Ironweave Battlesuit"]);
 	AtlasLootMenuItem_6_Extra:SetText(ORANGE..AL["Various Locations"]);
 	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\INV_Boots_Cloth_05");
 	AtlasLootMenuItem_6.lootpage="IRONWEAVE";
 	AtlasLootMenuItem_6:Show();
 	--Stratholme - The Postmaster
-	AtlasLootMenuItem_7_Name:SetText(AL["The Postmaster"]);
-	AtlasLootMenuItem_7_Extra:SetText(ORANGE..AL["Stratholme"]);
+	AtlasLootMenuItem_7_Name:SetText(BIS["The Postmaster"]);
+	AtlasLootMenuItem_7_Extra:SetText(ORANGE..BZ["Stratholme"]);
 	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\INV_Boots_02");
 	AtlasLootMenuItem_7.lootpage="STRAT";
 	AtlasLootMenuItem_7:Show();
 	--Scholomance - Cloth - Necropile Raiment
-	AtlasLootMenuItem_8_Name:SetText(AL["Necropile Raiment"]);
-	AtlasLootMenuItem_8_Extra:SetText(ORANGE..AL["Scholomance"]);
+	AtlasLootMenuItem_8_Name:SetText(BIS["Necropile Raiment"]);
+	AtlasLootMenuItem_8_Extra:SetText(ORANGE..BZ["Scholomance"]);
 	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\INV_Shoulder_02");
 	AtlasLootMenuItem_8.lootpage="ScholoCloth";
 	AtlasLootMenuItem_8:Show();
 	--Scholomance - Leather - Cadaverous Garb
-	AtlasLootMenuItem_9_Name:SetText(AL["Cadaverous Garb"]);
-	AtlasLootMenuItem_9_Extra:SetText(ORANGE..AL["Scholomance"]);
+	AtlasLootMenuItem_9_Name:SetText(BIS["Cadaverous Garb"]);
+	AtlasLootMenuItem_9_Extra:SetText(ORANGE..BZ["Scholomance"]);
 	AtlasLootMenuItem_9_Icon:SetTexture("Interface\\Icons\\INV_Belt_16");
 	AtlasLootMenuItem_9.lootpage="ScholoLeather";
 	AtlasLootMenuItem_9:Show();
 	--Scholomance - Mail - Bloodmail Regalia
-	AtlasLootMenuItem_10_Name:SetText(AL["Bloodmail Regalia"]);
-	AtlasLootMenuItem_10_Extra:SetText(ORANGE..AL["Scholomance"]);
+	AtlasLootMenuItem_10_Name:SetText(BIS["Bloodmail Regalia"]);
+	AtlasLootMenuItem_10_Extra:SetText(ORANGE..BZ["Scholomance"]);
 	AtlasLootMenuItem_10_Icon:SetTexture("Interface\\Icons\\INV_Gauntlets_26");
 	AtlasLootMenuItem_10.lootpage="ScholoMail";
 	AtlasLootMenuItem_10:Show();
 	--Scholomance - Plate - Deathbone Guardian
-	AtlasLootMenuItem_11_Name:SetText(AL["Deathbone Guardian"]);
-	AtlasLootMenuItem_11_Extra:SetText(ORANGE..AL["Scholomance"]);
+	AtlasLootMenuItem_11_Name:SetText(BIS["Deathbone Guardian"]);
+	AtlasLootMenuItem_11_Extra:SetText(ORANGE..BZ["Scholomance"]);
 	AtlasLootMenuItem_11_Icon:SetTexture("Interface\\Icons\\INV_Belt_12");
 	AtlasLootMenuItem_11.lootpage="ScholoPlate";
 	AtlasLootMenuItem_11:Show();
@@ -235,43 +238,43 @@ function AtlasLootPRE60SetMenu()
 	AtlasLootMenuItem_12.lootpage="ScourgeInvasion";
 	AtlasLootMenuItem_12:Show();
 	--Spider's Kiss
-	AtlasLootMenuItem_17_Name:SetText(AL["Spider's Kiss"]);
-	AtlasLootMenuItem_17_Extra:SetText(ORANGE..AL["Lower Blackrock Spire"]);
+	AtlasLootMenuItem_17_Name:SetText(BIS["Spider's Kiss"]);
+	AtlasLootMenuItem_17_Extra:SetText(ORANGE..BZ["Lower Blackrock Spire"]);
 	AtlasLootMenuItem_17_Icon:SetTexture("Interface\\Icons\\INV_Weapon_ShortBlade_16");
 	AtlasLootMenuItem_17.lootpage="SpiderKiss";
 	AtlasLootMenuItem_17:Show();
 	--Dal'Rend's Arms
-	AtlasLootMenuItem_18_Name:SetText(AL["Dal'Rend's Arms"]);
-	AtlasLootMenuItem_18_Extra:SetText(ORANGE..AL["Upper Blackrock Spire"]);
+	AtlasLootMenuItem_18_Name:SetText(BIS["Dal'Rend's Arms"]);
+	AtlasLootMenuItem_18_Extra:SetText(ORANGE..BZ["Upper Blackrock Spire"]);
 	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\INV_Sword_43");
 	AtlasLootMenuItem_18.lootpage="DalRend";
 	AtlasLootMenuItem_18:Show();
 	--Zul'Gurub Rings
 	AtlasLootMenuItem_19_Name:SetText(AL["Zul'Gurub Rings"]);
-	AtlasLootMenuItem_19_Extra:SetText(ORANGE..AL["Zul'Gurub"]);
+	AtlasLootMenuItem_19_Extra:SetText(ORANGE..BZ["Zul'Gurub"]);
 	AtlasLootMenuItem_19_Icon:SetTexture("Interface\\Icons\\INV_Bijou_Orange");
 	AtlasLootMenuItem_19.lootpage="ZGRings";
 	AtlasLootMenuItem_19:Show();
 	--Primal Blessing
-	AtlasLootMenuItem_20_Name:SetText(AL["Primal Blessing"]);
-	AtlasLootMenuItem_20_Extra:SetText(ORANGE..AL["Zul'Gurub"]);
+	AtlasLootMenuItem_20_Name:SetText(BIS["Primal Blessing"]);
+	AtlasLootMenuItem_20_Extra:SetText(ORANGE..BZ["Zul'Gurub"]);
 	AtlasLootMenuItem_20_Icon:SetTexture("Interface\\Icons\\INV_Weapon_Hand_01");
 	AtlasLootMenuItem_20.lootpage="PrimalBlessing";
 	AtlasLootMenuItem_20:Show();
 	--The Twin Blades of Hakkari
-	AtlasLootMenuItem_21_Name:SetText(AL["The Twin Blades of Hakkari"]);
-	AtlasLootMenuItem_21_Extra:SetText(ORANGE..AL["Zul'Gurub"]);
+	AtlasLootMenuItem_21_Name:SetText(BIS["The Twin Blades of Hakkari"]);
+	AtlasLootMenuItem_21_Extra:SetText(ORANGE..BZ["Zul'Gurub"]);
 	AtlasLootMenuItem_21_Icon:SetTexture("Interface\\Icons\\INV_Sword_55");
 	AtlasLootMenuItem_21.lootpage="HakkariBlades";
 	AtlasLootMenuItem_21:Show();
 	--Shard of the Gods
-	AtlasLootMenuItem_22_Name:SetText(AL["Shard of the Gods"]);
+	AtlasLootMenuItem_22_Name:SetText(BIS["Shard of the Gods"]);
 	AtlasLootMenuItem_22_Extra:SetText(ORANGE..AL["Various Locations"]);
 	AtlasLootMenuItem_22_Icon:SetTexture("Interface\\Icons\\INV_Misc_MonsterScales_15");
 	AtlasLootMenuItem_22.lootpage="ShardOfGods";
 	AtlasLootMenuItem_22:Show();
 	--Spirit of Eskhandar
-	AtlasLootMenuItem_23_Name:SetText(AL["Spirit of Eskhandar"]);
+	AtlasLootMenuItem_23_Name:SetText(BIS["Spirit of Eskhandar"]);
 	AtlasLootMenuItem_23_Extra:SetText(ORANGE..AL["Various Locations"]);
 	AtlasLootMenuItem_23_Icon:SetTexture("Interface\\Icons\\INV_Misc_MonsterClaw_04");
 	AtlasLootMenuItem_23.lootpage="SpiritofEskhandar";
@@ -297,55 +300,55 @@ function AtlasLootZGSetMenu()
 	getglobal("AtlasLootItemsFrame_PREV"):Hide();
 	getglobal("AtlasLootServerQueryButton"):Hide();
 	--Priest
-	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..AL["Priest"]);
+	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..BC["Priest"]);
 	AtlasLootMenuItem_3_Extra:SetText("");
 	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\Spell_Holy_PowerWordShield");
 	AtlasLootMenuItem_3.lootpage="ZGPriest";
 	AtlasLootMenuItem_3:Show();
 	--Mage
-	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..AL["Mage"]);
+	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..BC["Mage"]);
 	AtlasLootMenuItem_4_Extra:SetText("");
 	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\Spell_Frost_IceStorm");
 	AtlasLootMenuItem_4.lootpage="ZGMage";
 	AtlasLootMenuItem_4:Show();
 	--Warlock
-	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..AL["Warlock"]);
+	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..BC["Warlock"]);
 	AtlasLootMenuItem_5_Extra:SetText("");
 	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\Spell_Shadow_CurseOfTounges");
 	AtlasLootMenuItem_5.lootpage="ZGWarlock";
 	AtlasLootMenuItem_5:Show();
 	--Rogue
-	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..AL["Rogue"]);
+	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..BC["Rogue"]);
 	AtlasLootMenuItem_6_Extra:SetText("");
 	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\Ability_BackStab");
 	AtlasLootMenuItem_6.lootpage="ZGRogue";
 	AtlasLootMenuItem_6:Show();
 	--Druid
-	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..AL["Druid"]);
+	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..BC["Druid"]);
 	AtlasLootMenuItem_7_Extra:SetText("");
 	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\Spell_Nature_Regeneration");
 	AtlasLootMenuItem_7.lootpage="ZGDruid";
 	AtlasLootMenuItem_7:Show();
 	--Hunter
-	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..AL["Hunter"]);
+	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..BC["Hunter"]);
 	AtlasLootMenuItem_18_Extra:SetText("");
 	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\Ability_Hunter_RunningShot");
 	AtlasLootMenuItem_18.lootpage="ZGHunter";
 	AtlasLootMenuItem_18:Show();
 	--Shaman
-	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..AL["Shaman"]);
+	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..BC["Shaman"]);
 	AtlasLootMenuItem_19_Extra:SetText("");
 	AtlasLootMenuItem_19_Icon:SetTexture("Interface\\Icons\\Spell_FireResistanceTotem_01");
 	AtlasLootMenuItem_19.lootpage="ZGShaman";
 	AtlasLootMenuItem_19:Show();
 	--Paladin
-	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..AL["Paladin"]);
+	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..BC["Paladin"]);
 	AtlasLootMenuItem_20_Extra:SetText("");
 	AtlasLootMenuItem_20_Icon:SetTexture("Interface\\Icons\\Spell_Holy_SealOfMight");
 	AtlasLootMenuItem_20.lootpage="ZGPaladin";
 	AtlasLootMenuItem_20:Show();
 	--Warrior
-	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..AL["Warrior"]);
+	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..BC["Warrior"]);
 	AtlasLootMenuItem_21_Extra:SetText("");
 	AtlasLootMenuItem_21_Icon:SetTexture("Interface\\Icons\\INV_Shield_05");
 	AtlasLootMenuItem_21.lootpage="ZGWarrior";
@@ -371,55 +374,55 @@ function AtlasLootAQ40SetMenu()
 	getglobal("AtlasLootItemsFrame_PREV"):Hide();
 	getglobal("AtlasLootServerQueryButton"):Hide();
 	--Priest
-	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..AL["Priest"]);
+	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..BC["Priest"]);
 	AtlasLootMenuItem_3_Extra:SetText("");
 	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\Spell_Holy_PowerWordShield");
 	AtlasLootMenuItem_3.lootpage="AQ40Priest";
 	AtlasLootMenuItem_3:Show();
 	--Mage
-	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..AL["Mage"]);
+	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..BC["Mage"]);
 	AtlasLootMenuItem_4_Extra:SetText("");
 	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\Spell_Frost_IceStorm");
 	AtlasLootMenuItem_4.lootpage="AQ40Mage";
 	AtlasLootMenuItem_4:Show();
 	--Warlock
-	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..AL["Warlock"]);
+	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..BC["Warlock"]);
 	AtlasLootMenuItem_5_Extra:SetText("");
 	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\Spell_Shadow_CurseOfTounges");
 	AtlasLootMenuItem_5.lootpage="AQ40Warlock";
 	AtlasLootMenuItem_5:Show();
 	--Rogue
-	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..AL["Rogue"]);
+	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..BC["Rogue"]);
 	AtlasLootMenuItem_6_Extra:SetText("");
 	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\Ability_BackStab");
 	AtlasLootMenuItem_6.lootpage="AQ40Rogue";
 	AtlasLootMenuItem_6:Show();
 	--Druid
-	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..AL["Druid"]);
+	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..BC["Druid"]);
 	AtlasLootMenuItem_7_Extra:SetText("");
 	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\Spell_Nature_Regeneration");
 	AtlasLootMenuItem_7.lootpage="AQ40Druid";
 	AtlasLootMenuItem_7:Show();
 	--Hunter
-	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..AL["Hunter"]);
+	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..BC["Hunter"]);
 	AtlasLootMenuItem_18_Extra:SetText("");
 	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\Ability_Hunter_RunningShot");
 	AtlasLootMenuItem_18.lootpage="AQ40Hunter";
 	AtlasLootMenuItem_18:Show();
 	--Shaman
-	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..AL["Shaman"]);
+	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..BC["Shaman"]);
 	AtlasLootMenuItem_19_Extra:SetText("");
 	AtlasLootMenuItem_19_Icon:SetTexture("Interface\\Icons\\Spell_FireResistanceTotem_01");
 	AtlasLootMenuItem_19.lootpage="AQ40Shaman";
 	AtlasLootMenuItem_19:Show();
 	--Paladin
-	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..AL["Paladin"]);
+	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..BC["Paladin"]);
 	AtlasLootMenuItem_20_Extra:SetText("");
 	AtlasLootMenuItem_20_Icon:SetTexture("Interface\\Icons\\Spell_Holy_SealOfMight");
 	AtlasLootMenuItem_20.lootpage="AQ40Paladin";
 	AtlasLootMenuItem_20:Show();
 	--Warrior
-	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..AL["Warrior"]);
+	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..BC["Warrior"]);
 	AtlasLootMenuItem_21_Extra:SetText("");
 	AtlasLootMenuItem_21_Icon:SetTexture("Interface\\Icons\\INV_Shield_05");
 	AtlasLootMenuItem_21.lootpage="AQ40Warrior";
@@ -445,55 +448,55 @@ function AtlasLootAQ20SetMenu()
 	getglobal("AtlasLootItemsFrame_PREV"):Hide();
 	getglobal("AtlasLootServerQueryButton"):Hide();
 	--Priest
-	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..AL["Priest"]);
+	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..BC["Priest"]);
 	AtlasLootMenuItem_3_Extra:SetText("");
 	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\Spell_Holy_PowerWordShield");
 	AtlasLootMenuItem_3.lootpage="AQ20Priest";
 	AtlasLootMenuItem_3:Show();
 	--Mage
-	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..AL["Mage"]);
+	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..BC["Mage"]);
 	AtlasLootMenuItem_4_Extra:SetText("");
 	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\Spell_Frost_IceStorm");
 	AtlasLootMenuItem_4.lootpage="AQ20Mage";
 	AtlasLootMenuItem_4:Show();
 	--Warlock
-	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..AL["Warlock"]);
+	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..BC["Warlock"]);
 	AtlasLootMenuItem_5_Extra:SetText("");
 	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\Spell_Shadow_CurseOfTounges");
 	AtlasLootMenuItem_5.lootpage="AQ20Warlock";
 	AtlasLootMenuItem_5:Show();
 	--Rogue
-	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..AL["Rogue"]);
+	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..BC["Rogue"]);
 	AtlasLootMenuItem_6_Extra:SetText("");
 	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\Ability_BackStab");
 	AtlasLootMenuItem_6.lootpage="AQ20Rogue";
 	AtlasLootMenuItem_6:Show();
 	--Druid
-	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..AL["Druid"]);
+	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..BC["Druid"]);
 	AtlasLootMenuItem_7_Extra:SetText("");
 	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\Spell_Nature_Regeneration");
 	AtlasLootMenuItem_7.lootpage="AQ20Druid";
 	AtlasLootMenuItem_7:Show();
 	--Hunter
-	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..AL["Hunter"]);
+	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..BC["Hunter"]);
 	AtlasLootMenuItem_18_Extra:SetText("");
 	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\Ability_Hunter_RunningShot");
 	AtlasLootMenuItem_18.lootpage="AQ20Hunter";
 	AtlasLootMenuItem_18:Show();
 	--Shaman
-	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..AL["Shaman"]);
+	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..BC["Shaman"]);
 	AtlasLootMenuItem_19_Extra:SetText("");
 	AtlasLootMenuItem_19_Icon:SetTexture("Interface\\Icons\\Spell_FireResistanceTotem_01");
 	AtlasLootMenuItem_19.lootpage="AQ20Shaman";
 	AtlasLootMenuItem_19:Show();
 	--Paladin
-	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..AL["Paladin"]);
+	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..BC["Paladin"]);
 	AtlasLootMenuItem_20_Extra:SetText("");
 	AtlasLootMenuItem_20_Icon:SetTexture("Interface\\Icons\\Spell_Holy_SealOfMight");
 	AtlasLootMenuItem_20.lootpage="AQ20Paladin";
 	AtlasLootMenuItem_20:Show();
 	--Warrior
-	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..AL["Warrior"]);
+	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..BC["Warrior"]);
 	AtlasLootMenuItem_21_Extra:SetText("");
 	AtlasLootMenuItem_21_Icon:SetTexture("Interface\\Icons\\INV_Shield_05");
 	AtlasLootMenuItem_21.lootpage="AQ20Warrior";
@@ -519,55 +522,55 @@ function AtlasLootT0SetMenu()
 	getglobal("AtlasLootItemsFrame_PREV"):Hide();
 	getglobal("AtlasLootServerQueryButton"):Hide();
 	--Priest
-	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..AL["Priest"]);
+	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..BC["Priest"]);
 	AtlasLootMenuItem_3_Extra:SetText("");
 	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\Spell_Holy_PowerWordShield");
 	AtlasLootMenuItem_3.lootpage="T0Priest";
 	AtlasLootMenuItem_3:Show();
 	--Mage
-	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..AL["Mage"]);
+	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..BC["Mage"]);
 	AtlasLootMenuItem_4_Extra:SetText("");
 	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\Spell_Frost_IceStorm");
 	AtlasLootMenuItem_4.lootpage="T0Mage";
 	AtlasLootMenuItem_4:Show();
 	--Warlock
-	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..AL["Warlock"]);
+	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..BC["Warlock"]);
 	AtlasLootMenuItem_5_Extra:SetText("");
 	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\Spell_Shadow_CurseOfTounges");
 	AtlasLootMenuItem_5.lootpage="T0Warlock";
 	AtlasLootMenuItem_5:Show();
 	--Rogue
-	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..AL["Rogue"]);
+	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..BC["Rogue"]);
 	AtlasLootMenuItem_6_Extra:SetText("");
 	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\Ability_BackStab");
 	AtlasLootMenuItem_6.lootpage="T0Rogue";
 	AtlasLootMenuItem_6:Show();
 	--Druid
-	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..AL["Druid"]);
+	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..BC["Druid"]);
 	AtlasLootMenuItem_7_Extra:SetText("");
 	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\Spell_Nature_Regeneration");
 	AtlasLootMenuItem_7.lootpage="T0Druid";
 	AtlasLootMenuItem_7:Show();
 	--Hunter
-	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..AL["Hunter"]);
+	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..BC["Hunter"]);
 	AtlasLootMenuItem_18_Extra:SetText("");
 	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\Ability_Hunter_RunningShot");
 	AtlasLootMenuItem_18.lootpage="T0Hunter";
 	AtlasLootMenuItem_18:Show();
 	--Shaman
-	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..AL["Shaman"]);
+	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..BC["Shaman"]);
 	AtlasLootMenuItem_19_Extra:SetText("");
 	AtlasLootMenuItem_19_Icon:SetTexture("Interface\\Icons\\Spell_FireResistanceTotem_01");
 	AtlasLootMenuItem_19.lootpage="T0Shaman";
 	AtlasLootMenuItem_19:Show();
 	--Paladin
-	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..AL["Paladin"]);
+	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..BC["Paladin"]);
 	AtlasLootMenuItem_20_Extra:SetText("");
 	AtlasLootMenuItem_20_Icon:SetTexture("Interface\\Icons\\Spell_Holy_SealOfMight");
 	AtlasLootMenuItem_20.lootpage="T0Paladin";
 	AtlasLootMenuItem_20:Show();
 	--Warrior
-	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..AL["Warrior"]);
+	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..BC["Warrior"]);
 	AtlasLootMenuItem_21_Extra:SetText("");
 	AtlasLootMenuItem_21_Icon:SetTexture("Interface\\Icons\\INV_Shield_05");
 	AtlasLootMenuItem_21.lootpage="T0Warrior";
@@ -575,7 +578,7 @@ function AtlasLootT0SetMenu()
 	for i = 1, 30, 1 do
 		getglobal("AtlasLootMenuItem_"..i.."_Extra"):Show();
 	end
-	AtlasLoot_BossName:SetText("|cffFFFFFF"..AL["Dungeon 1/2 Sets"]);
+	AtlasLoot_BossName:SetText("|cffFFFFFF"..AL["Tier 0/0.5 Sets"]);
 	AtlasLoot_SetItemInfoFrame(AtlasLoot_AnchorFrame);
 end
 
@@ -593,55 +596,55 @@ function AtlasLootT1SetMenu()
 	getglobal("AtlasLootItemsFrame_PREV"):Hide();
 	getglobal("AtlasLootServerQueryButton"):Hide();
 	--Priest
-	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..AL["Priest"]);
+	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..BC["Priest"]);
 	AtlasLootMenuItem_3_Extra:SetText("");
 	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\Spell_Holy_PowerWordShield");
 	AtlasLootMenuItem_3.lootpage="T1Priest";
 	AtlasLootMenuItem_3:Show();
 	--Mage
-	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..AL["Mage"]);
+	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..BC["Mage"]);
 	AtlasLootMenuItem_4_Extra:SetText("");
 	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\Spell_Frost_IceStorm");
 	AtlasLootMenuItem_4.lootpage="T1Mage";
 	AtlasLootMenuItem_4:Show();
 	--Warlock
-	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..AL["Warlock"]);
+	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..BC["Warlock"]);
 	AtlasLootMenuItem_5_Extra:SetText("");
 	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\Spell_Shadow_CurseOfTounges");
 	AtlasLootMenuItem_5.lootpage="T1Warlock";
 	AtlasLootMenuItem_5:Show();
 	--Rogue
-	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..AL["Rogue"]);
+	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..BC["Rogue"]);
 	AtlasLootMenuItem_6_Extra:SetText("");
 	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\Ability_BackStab");
 	AtlasLootMenuItem_6.lootpage="T1Rogue";
 	AtlasLootMenuItem_6:Show();
 	--Druid
-	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..AL["Druid"]);
+	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..BC["Druid"]);
 	AtlasLootMenuItem_7_Extra:SetText("");
 	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\Spell_Nature_Regeneration");
 	AtlasLootMenuItem_7.lootpage="T1Druid";
 	AtlasLootMenuItem_7:Show();
 	--Hunter
-	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..AL["Hunter"]);
+	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..BC["Hunter"]);
 	AtlasLootMenuItem_18_Extra:SetText("");
 	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\Ability_Hunter_RunningShot");
 	AtlasLootMenuItem_18.lootpage="T1Hunter";
 	AtlasLootMenuItem_18:Show();
 	--Shaman
-	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..AL["Shaman"]);
+	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..BC["Shaman"]);
 	AtlasLootMenuItem_19_Extra:SetText("");
 	AtlasLootMenuItem_19_Icon:SetTexture("Interface\\Icons\\Spell_FireResistanceTotem_01");
 	AtlasLootMenuItem_19.lootpage="T1Shaman";
 	AtlasLootMenuItem_19:Show();
 	--Paladin
-	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..AL["Paladin"]);
+	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..BC["Paladin"]);
 	AtlasLootMenuItem_20_Extra:SetText("");
 	AtlasLootMenuItem_20_Icon:SetTexture("Interface\\Icons\\Spell_Holy_SealOfMight");
 	AtlasLootMenuItem_20.lootpage="T1Paladin";
 	AtlasLootMenuItem_20:Show();
 	--Warrior
-	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..AL["Warrior"]);
+	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..BC["Warrior"]);
 	AtlasLootMenuItem_21_Extra:SetText("");
 	AtlasLootMenuItem_21_Icon:SetTexture("Interface\\Icons\\INV_Shield_05");
 	AtlasLootMenuItem_21.lootpage="T1Warrior";
@@ -667,55 +670,55 @@ function AtlasLootT2SetMenu()
 	getglobal("AtlasLootItemsFrame_PREV"):Hide();
 	getglobal("AtlasLootServerQueryButton"):Hide();
 	--Priest
-	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..AL["Priest"]);
+	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..BC["Priest"]);
 	AtlasLootMenuItem_3_Extra:SetText("");
 	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\Spell_Holy_PowerWordShield");
 	AtlasLootMenuItem_3.lootpage="T2Priest";
 	AtlasLootMenuItem_3:Show();
 	--Mage
-	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..AL["Mage"]);
+	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..BC["Mage"]);
 	AtlasLootMenuItem_4_Extra:SetText("");
 	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\Spell_Frost_IceStorm");
 	AtlasLootMenuItem_4.lootpage="T2Mage";
 	AtlasLootMenuItem_4:Show();
 	--Warlock
-	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..AL["Warlock"]);
+	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..BC["Warlock"]);
 	AtlasLootMenuItem_5_Extra:SetText("");
 	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\Spell_Shadow_CurseOfTounges");
 	AtlasLootMenuItem_5.lootpage="T2Warlock";
 	AtlasLootMenuItem_5:Show();
 	--Rogue
-	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..AL["Rogue"]);
+	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..BC["Rogue"]);
 	AtlasLootMenuItem_6_Extra:SetText("");
 	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\Ability_BackStab");
 	AtlasLootMenuItem_6.lootpage="T2Rogue";
 	AtlasLootMenuItem_6:Show();
 	--Druid
-	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..AL["Druid"]);
+	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..BC["Druid"]);
 	AtlasLootMenuItem_7_Extra:SetText("");
 	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\Spell_Nature_Regeneration");
 	AtlasLootMenuItem_7.lootpage="T2Druid";
 	AtlasLootMenuItem_7:Show();
 	--Hunter
-	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..AL["Hunter"]);
+	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..BC["Hunter"]);
 	AtlasLootMenuItem_18_Extra:SetText("");
 	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\Ability_Hunter_RunningShot");
 	AtlasLootMenuItem_18.lootpage="T2Hunter";
 	AtlasLootMenuItem_18:Show();
 	--Shaman
-	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..AL["Shaman"]);
+	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..BC["Shaman"]);
 	AtlasLootMenuItem_19_Extra:SetText("");
 	AtlasLootMenuItem_19_Icon:SetTexture("Interface\\Icons\\Spell_FireResistanceTotem_01");
 	AtlasLootMenuItem_19.lootpage="T2Shaman";
 	AtlasLootMenuItem_19:Show();
 	--Paladin
-	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..AL["Paladin"]);
+	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..BC["Paladin"]);
 	AtlasLootMenuItem_20_Extra:SetText("");
 	AtlasLootMenuItem_20_Icon:SetTexture("Interface\\Icons\\Spell_Holy_SealOfMight");
 	AtlasLootMenuItem_20.lootpage="T2Paladin";
 	AtlasLootMenuItem_20:Show();
 	--Warrior
-	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..AL["Warrior"]);
+	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..BC["Warrior"]);
 	AtlasLootMenuItem_21_Extra:SetText("");
 	AtlasLootMenuItem_21_Icon:SetTexture("Interface\\Icons\\INV_Shield_05");
 	AtlasLootMenuItem_21.lootpage="T2Warrior";
@@ -741,55 +744,55 @@ function AtlasLootT3SetMenu()
 	getglobal("AtlasLootItemsFrame_PREV"):Hide();
 	getglobal("AtlasLootServerQueryButton"):Hide();
 	--Priest
-	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..AL["Priest"]);
+	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..BC["Priest"]);
 	AtlasLootMenuItem_3_Extra:SetText("");
 	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\Spell_Holy_PowerWordShield");
 	AtlasLootMenuItem_3.lootpage="T3Priest";
 	AtlasLootMenuItem_3:Show();
 	--Mage
-	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..AL["Mage"]);
+	AtlasLootMenuItem_4_Name:SetText("|cff68ccef"..BC["Mage"]);
 	AtlasLootMenuItem_4_Extra:SetText("");
 	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\Spell_Frost_IceStorm");
 	AtlasLootMenuItem_4.lootpage="T3Mage";
 	AtlasLootMenuItem_4:Show();
 	--Warlock
-	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..AL["Warlock"]);
+	AtlasLootMenuItem_5_Name:SetText("|cff9382c9"..BC["Warlock"]);
 	AtlasLootMenuItem_5_Extra:SetText("");
 	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\Spell_Shadow_CurseOfTounges");
 	AtlasLootMenuItem_5.lootpage="T3Warlock";
 	AtlasLootMenuItem_5:Show();
 	--Rogue
-	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..AL["Rogue"]);
+	AtlasLootMenuItem_6_Name:SetText("|cfffff468"..BC["Rogue"]);
 	AtlasLootMenuItem_6_Extra:SetText("");
 	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\Ability_BackStab");
 	AtlasLootMenuItem_6.lootpage="T3Rogue";
 	AtlasLootMenuItem_6:Show();
 	--Druid
-	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..AL["Druid"]);
+	AtlasLootMenuItem_7_Name:SetText("|cffff7c0a"..BC["Druid"]);
 	AtlasLootMenuItem_7_Extra:SetText("");
 	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\Spell_Nature_Regeneration");
 	AtlasLootMenuItem_7.lootpage="T3Druid";
 	AtlasLootMenuItem_7:Show();
 	--Hunter
-	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..AL["Hunter"]);
+	AtlasLootMenuItem_18_Name:SetText("|cffaad372"..BC["Hunter"]);
 	AtlasLootMenuItem_18_Extra:SetText("");
 	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\Ability_Hunter_RunningShot");
 	AtlasLootMenuItem_18.lootpage="T3Hunter";
 	AtlasLootMenuItem_18:Show();
 	--Shaman
-	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..AL["Shaman"]);
+	AtlasLootMenuItem_19_Name:SetText("|cff2773ff"..BC["Shaman"]);
 	AtlasLootMenuItem_19_Extra:SetText("");
 	AtlasLootMenuItem_19_Icon:SetTexture("Interface\\Icons\\Spell_FireResistanceTotem_01");
 	AtlasLootMenuItem_19.lootpage="T3Shaman";
 	AtlasLootMenuItem_19:Show();
 	--Paladin
-	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..AL["Paladin"]);
+	AtlasLootMenuItem_20_Name:SetText("|cfff48cba"..BC["Paladin"]);
 	AtlasLootMenuItem_20_Extra:SetText("");
 	AtlasLootMenuItem_20_Icon:SetTexture("Interface\\Icons\\Spell_Holy_SealOfMight");
 	AtlasLootMenuItem_20.lootpage="T3Paladin";
 	AtlasLootMenuItem_20:Show();
 	--Warrior
-	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..AL["Warrior"]);
+	AtlasLootMenuItem_21_Name:SetText("|cffc69b6d"..BC["Warrior"]);
 	AtlasLootMenuItem_21_Extra:SetText("");
 	AtlasLootMenuItem_21_Icon:SetTexture("Interface\\Icons\\INV_Shield_05");
 	AtlasLootMenuItem_21.lootpage="T3Warrior";

@@ -21,7 +21,8 @@
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 --]]
-
+local GREN = "|cff66cc33"
+	
 Atlas_DropDownLayouts_Order = {
 	[1] = ATLAS_DDL_CONTINENT;
 	[2] = ATLAS_DDL_PARTYSIZE;
@@ -32,10 +33,10 @@ Atlas_DropDownLayouts_Order = {
 		[1] = ATLAS_DDL_CONTINENT_EASTERN;
 		[2] = ATLAS_DDL_CONTINENT_KALIMDOR;
 		[3] = ATLAS_DDL_WORLDBOSSES;
-		[4] = ATLAS_DDL_TYPE_ENTRANCE;
-		[5] = ATLAS_DDL_BGS;
-		[6] = ATLAS_DDL_DUNGEON_LOCATIONS;
-		[7] = ATLAS_DDL_FLIGHT_PATHS;
+		[4] = GREN..ATLAS_DDL_TYPE_ENTRANCE;
+		[5] = GREN..ATLAS_DDL_BGS;
+		[6] = GREN..ATLAS_DDL_DUNGEON_LOCATIONS;
+		[7] = GREN..ATLAS_DDL_FLIGHT_PATHS;
 	};
 	[ATLAS_DDL_PARTYSIZE] = {
 		[1] = ATLAS_DDL_PARTYSIZE_5;
@@ -43,27 +44,27 @@ Atlas_DropDownLayouts_Order = {
 		[3] = ATLAS_DDL_PARTYSIZE_20;
 		[4] = ATLAS_DDL_PARTYSIZE_40;
 		[5] = ATLAS_DDL_WORLDBOSSES;
-		[6] = ATLAS_DDL_TYPE_ENTRANCE;
-		[7] = ATLAS_DDL_BGS;
-		[8] = ATLAS_DDL_DUNGEON_LOCATIONS;
-		[9] = ATLAS_DDL_FLIGHT_PATHS;
+		[6] = GREN..ATLAS_DDL_TYPE_ENTRANCE;
+		[7] = GREN..ATLAS_DDL_BGS;
+		[8] = GREN..ATLAS_DDL_DUNGEON_LOCATIONS;
+		[9] = GREN..ATLAS_DDL_FLIGHT_PATHS;
 	};
 	[ATLAS_DDL_TYPE] = {
 		[1] = ATLAS_DDL_TYPE_DUNGEONS;
 		[2] = ATLAS_DDL_TYPE_RAIDS;
 		[3] = ATLAS_DDL_WORLDBOSSES;
-		[4] = ATLAS_DDL_TYPE_ENTRANCE;
-		[5] = ATLAS_DDL_BGS;
-		[6] = ATLAS_DDL_DUNGEON_LOCATIONS;
-		[7] = ATLAS_DDL_FLIGHT_PATHS;
+		[4] = GREN..ATLAS_DDL_TYPE_ENTRANCE;
+		[5] = GREN..ATLAS_DDL_BGS;
+		[6] = GREN..ATLAS_DDL_DUNGEON_LOCATIONS;
+		[7] = GREN..ATLAS_DDL_FLIGHT_PATHS;
 	};
 	[ATLAS_DDL_ALL] = {
 		[1] = ATLAS_DDL_ALL_MENU;
 		[2] = ATLAS_DDL_WORLDBOSSES;
-		[3] = ATLAS_DDL_TYPE_ENTRANCE;
-		[4] = ATLAS_DDL_BGS;
-		[5] = ATLAS_DDL_DUNGEON_LOCATIONS;
-		[6] = ATLAS_DDL_FLIGHT_PATHS;
+		[3] = GREN..ATLAS_DDL_TYPE_ENTRANCE;
+		[4] = GREN..ATLAS_DDL_BGS;
+		[5] = GREN..ATLAS_DDL_DUNGEON_LOCATIONS;
+		[6] = GREN..ATLAS_DDL_FLIGHT_PATHS;
 	};
 	[ATLAS_DDL_LEVELING_GUIDE] = {
 		[1] = ATLAS_DDL_LEVELING_GUIDE_ALLIANCE1;
@@ -73,10 +74,10 @@ Atlas_DropDownLayouts_Order = {
 		[5] = ATLAS_DDL_TYPE_DUNGEONS;
 		[6] = ATLAS_DDL_TYPE_RAIDS;
 		[7] = ATLAS_DDL_WORLDBOSSES;
-		[8] = ATLAS_DDL_TYPE_ENTRANCE;
-		[9] = ATLAS_DDL_BGS;
-		[10] = ATLAS_DDL_DUNGEON_LOCATIONS;
-		[11] = ATLAS_DDL_FLIGHT_PATHS;
+		[8] = GREN..ATLAS_DDL_TYPE_ENTRANCE;
+		[9] = GREN..ATLAS_DDL_BGS;
+		[10] = GREN..ATLAS_DDL_DUNGEON_LOCATIONS;
+		[11] = GREN..ATLAS_DDL_FLIGHT_PATHS;
 	};
 };
 
@@ -123,7 +124,7 @@ Atlas_DropDownLayouts = {
 			"FourDragons",
 			"LordKazzak",
 		},
-		[ATLAS_DDL_TYPE_ENTRANCE] = {
+		[GREN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
 			"BlackrockMountainEnt",
 			"DireMaulEnt",
@@ -135,17 +136,17 @@ Atlas_DropDownLayouts = {
 			"UldamanEnt",
 			"WailingCavernsEnt",
 		},
-		[ATLAS_DDL_BGS] = {
+		[GREN..ATLAS_DDL_BGS] = {
 			"AlteracValleyNorth",
 			"AlteracValleySouth",
 			"ArathiBasin",
 			"WarsongGulch",
 		},
-		[ATLAS_DDL_DUNGEON_LOCATIONS] = {
+		[GREN..ATLAS_DDL_DUNGEON_LOCATIONS] = {
 			"DLEast",
 			"DLWest",
 		},
-		[ATLAS_DDL_FLIGHT_PATHS] = {
+		[GREN..ATLAS_DDL_FLIGHT_PATHS] = {
 			"FPAllianceEast",
 			"FPAllianceWest",
 			"FPHordeEast",
@@ -199,7 +200,7 @@ Atlas_DropDownLayouts = {
 			"FourDragons",
 			"LordKazzak",
 		},
-		[ATLAS_DDL_TYPE_ENTRANCE] = {
+		[GREN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
 			"BlackrockMountainEnt",
 			"DireMaulEnt",
@@ -211,17 +212,17 @@ Atlas_DropDownLayouts = {
 			"UldamanEnt",
 			"WailingCavernsEnt",
 		},
-		[ATLAS_DDL_BGS] = {
+		[GREN..ATLAS_DDL_BGS] = {
 			"AlteracValleyNorth",
 			"AlteracValleySouth",
 			"ArathiBasin",
 			"WarsongGulch",
 		},
-		[ATLAS_DDL_DUNGEON_LOCATIONS] = {
+		[GREN..ATLAS_DDL_DUNGEON_LOCATIONS] = {
 			"DLEast",
 			"DLWest",
 		},
-		[ATLAS_DDL_FLIGHT_PATHS] = {
+		[GREN..ATLAS_DDL_FLIGHT_PATHS] = {
 			"FPAllianceEast",
 			"FPAllianceWest",
 			"FPHordeEast",
@@ -271,7 +272,7 @@ Atlas_DropDownLayouts = {
 			"FourDragons",
 			"LordKazzak",
 		},
-		[ATLAS_DDL_TYPE_ENTRANCE] = {
+		[GREN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
 			"BlackrockMountainEnt",
 			"DireMaulEnt",
@@ -283,17 +284,17 @@ Atlas_DropDownLayouts = {
 			"UldamanEnt",
 			"WailingCavernsEnt",
 		},
-		[ATLAS_DDL_BGS] = {
+		[GREN..ATLAS_DDL_BGS] = {
 			"AlteracValleyNorth",
 			"AlteracValleySouth",
 			"ArathiBasin",
 			"WarsongGulch",
 		},
-		[ATLAS_DDL_DUNGEON_LOCATIONS] = {
+		[GREN..ATLAS_DDL_DUNGEON_LOCATIONS] = {
 			"DLEast",
 			"DLWest",
 		},
-		[ATLAS_DDL_FLIGHT_PATHS] = {
+		[GREN..ATLAS_DDL_FLIGHT_PATHS] = {
 			"FPAllianceEast",
 			"FPAllianceWest",
 			"FPHordeEast",
@@ -343,7 +344,7 @@ Atlas_DropDownLayouts = {
 			"FourDragons",
 			"LordKazzak",
 		},
-		[ATLAS_DDL_TYPE_ENTRANCE] = {
+		[GREN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
 			"BlackrockMountainEnt",
 			"DireMaulEnt",
@@ -355,7 +356,7 @@ Atlas_DropDownLayouts = {
 			"UldamanEnt",
 			"WailingCavernsEnt",
 		},
-		[ATLAS_DDL_BGS] = {
+		[GREN..ATLAS_DDL_BGS] = {
 			"AlteracValleyNorth",
 			"AlteracValleySouth",
 			"ArathiBasin",
@@ -433,11 +434,11 @@ Atlas_DropDownLayouts = {
 			"HordeLeveling50",
 			"HordeLeveling51",
 		},
-		[ATLAS_DDL_DUNGEON_LOCATIONS] = {
+		[GREN..ATLAS_DDL_DUNGEON_LOCATIONS] = {
 			"DLEast",
 			"DLWest",
 		},
-		[ATLAS_DDL_FLIGHT_PATHS] = {
+		[GREN..ATLAS_DDL_FLIGHT_PATHS] = {
 			"FPAllianceEast",
 			"FPAllianceWest",
 			"FPHordeEast",
@@ -484,7 +485,7 @@ Atlas_DropDownLayouts = {
 			"FourDragons",
 			"LordKazzak",
 		},
-		[ATLAS_DDL_TYPE_ENTRANCE] = {
+		[GREN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
 			"BlackrockMountainEnt",
 			"DireMaulEnt",
@@ -496,17 +497,17 @@ Atlas_DropDownLayouts = {
 			"UldamanEnt",
 			"WailingCavernsEnt",
 		},
-		[ATLAS_DDL_BGS] = {
+		[GREN..ATLAS_DDL_BGS] = {
 			"AlteracValleyNorth",
 			"AlteracValleySouth",
 			"ArathiBasin",
 			"WarsongGulch",
 		},
-		[ATLAS_DDL_DUNGEON_LOCATIONS] = {
+		[GREN..ATLAS_DDL_DUNGEON_LOCATIONS] = {
 			"DLEast",
 			"DLWest",
 		},
-		[ATLAS_DDL_FLIGHT_PATHS] = {
+		[GREN..ATLAS_DDL_FLIGHT_PATHS] = {
 			"FPAllianceEast",
 			"FPAllianceWest",
 			"FPHordeEast",

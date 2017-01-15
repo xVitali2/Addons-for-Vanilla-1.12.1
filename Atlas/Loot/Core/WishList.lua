@@ -42,12 +42,12 @@ Looks for an empty slot in the wishlist and slots the item in
 function AtlasLoot_AddToWishlist(itemID, itemTexture, itemName, lootPage, sourcePage)
 	for _, v in ipairs(AtlasLootCharDB["WishList"]) do
 		if v[1] == itemID then
-			DEFAULT_CHAT_FRAME:AddMessage(BLUE..AL["AtlasLoot"]..": "..AtlasLoot_FixText(itemName)..RED..AL[" already in the WishList!"]);
+			DEFAULT_CHAT_FRAME:AddMessage(BLUE.."AtlasLoot"..": "..AtlasLoot_FixText(itemName)..RED..AL[" already in the WishList!"]);
 			return;
 		end
 	end
 	table.insert(AtlasLootCharDB["WishList"], { itemID, itemTexture, itemName, lootPage, sourcePage });
-	DEFAULT_CHAT_FRAME:AddMessage(BLUE..AL["AtlasLoot"]..": "..AtlasLoot_FixText(itemName)..GREY..AL[" added to the WishList."]);
+	DEFAULT_CHAT_FRAME:AddMessage(BLUE.."AtlasLoot"..": "..AtlasLoot_FixText(itemName)..GREY..AL[" added to the WishList."]);
 	AtlasLoot_WishList = AtlasLoot_CategorizeWishList(AtlasLootCharDB["WishList"]);
 end
 
@@ -59,7 +59,7 @@ function AtlasLoot_DeleteFromWishList(itemID)
 	if itemID and itemID == 0 then return end
 	for i, v in ipairs(AtlasLootCharDB["WishList"]) do
 		if v[1] == itemID then
-			DEFAULT_CHAT_FRAME:AddMessage(RED..AL["AtlasLoot"]..": "..AtlasLoot_FixText(v[3])..GREY..AL[" deleted from the WishList."]);
+			DEFAULT_CHAT_FRAME:AddMessage(RED.."AtlasLoot"..": "..AtlasLoot_FixText(v[3])..GREY..AL[" deleted from the WishList."]);
 			table.remove(AtlasLootCharDB["WishList"], i);
 			break;
 		end

@@ -257,8 +257,6 @@ function AQSetButtontext()
       STORYbutton:SetText(AQStoryB);
       OPTIONbutton:SetText(AQOptionB);
       AQOptionCloseButton:SetText(AQ_OK);
-      AtlasQuestTitle:SetText(ATLASQUEST_VERSION);
-      AQCaptionOptionTEXT:SetText(AQOptionsCaptionTEXT);
       AQAutoshowOptionTEXT:SetText(AQOptionsAutoshowTEXT);
       AQLEFTOptionTEXT:SetText(AQOptionsLEFTTEXT);
       AQRIGHTOptionTEXT:SetText(AQOptionsRIGHTTEXT);
@@ -445,10 +443,10 @@ function AQ_AtlasOrAlphamap()
            AtlasQuestFrame:SetParent(AtlasFrame);
            if (AQ_ShownSide == "Right" ) then
                AtlasQuestFrame:ClearAllPoints();
-               AtlasQuestFrame:SetPoint("TOP","AtlasFrame", 555, -80);
+               AtlasQuestFrame:SetPoint("TOP","AtlasFrame", 567, -80);
            else
                AtlasQuestFrame:ClearAllPoints();
-               AtlasQuestFrame:SetPoint("TOP","AtlasFrame", -545, -80);
+               AtlasQuestFrame:SetPoint("TOP","AtlasFrame", -556, -80);
            end
            AtlasQuestInsideFrame:SetParent(AtlasFrame);
            AtlasQuestInsideFrame:ClearAllPoints();
@@ -707,7 +705,7 @@ function Atlas_OnShow()
    -- AQ_AtlasOrAlphamap();
    if (AQ_ShownSide == "Right") then
        AtlasQuestFrame:ClearAllPoints();
-       AtlasQuestFrame:SetPoint("TOP","AtlasFrame", 555, -80);
+       AtlasQuestFrame:SetPoint("TOP","AtlasFrame", 567, -80);
   end
   original_Atlas_OnShow(); -- new line #2
 end
@@ -846,4 +844,3 @@ function AQ_OnShow()
    end
   AtlasQuestSetTextandButtons()
 end
-

@@ -27,8 +27,6 @@
 --Email: loglow@gmail.com
 --AIM: dan5981
 
-
-
 local Atlas_DebugMode = false;
 local function debug(info)
 	if ( Atlas_DebugMode ) then
@@ -115,7 +113,7 @@ Atlas_SubZoneAssoc = {
 	["DireMaulEnt"] =				"Dire Maul";
 	["BlackrockSpireLower"] =		"Blackrock Spire";
 	["BlackrockSpireUpper"] =		"Blackrock Spire";
-	["BlackrockMountainEnt"] =			"Blackrock Spire";
+	["BlackrockMountainEnt"] =		"Blackrock Spire";
 	["SMGraveyard"] =				"Scarlet Monastery";
 	["SMLibrary"] =					"Scarlet Monastery";
 	["SMArmory"] =					"Scarlet Monastery";
@@ -286,7 +284,7 @@ function Atlas_OnLoad()
 	AtlasFrame:RegisterForDrag("LeftButton");
 	
 	--Setting up slash commands involves referencing some strage auto-generated variables
-	SLASH_ATLAS1 = ATLAS_SLASH;
+	SLASH_ATLAS1 = "/atlas";
 	SlashCmdList["ATLAS"] = Atlas_SlashCommand;
 	
 
@@ -425,8 +423,8 @@ function Atlas_Init()
 	if(EarthFeature_AddButton) then
 		EarthFeature_AddButton(
 		{
-			id = ATLAS_TITLE;
-			name = ATLAS_TITLE;
+			id = "Atlas";
+			name = "Atlas";
 			subtext = ATLAS_SUBTITLE;
 			tooltip = ATLAS_DESC;
 			icon = "Interface\\AddOns\\Atlas\\Images\\AtlasIcon";
@@ -436,7 +434,7 @@ function Atlas_Init()
 	);
 	elseif(Cosmos_RegisterButton) then
 		Cosmos_RegisterButton(
-			ATLAS_TITLE,
+			"Atlas",
 			ATLAS_SUBTITLE,
 			ATLAS_DESC,
 			"Interface\\AddOns\\Atlas\\Images\\AtlasIcon",
@@ -447,7 +445,7 @@ function Atlas_Init()
 	--CTMod integration
 	if(CT_RegisterMod) then
 		CT_RegisterMod(
-			ATLAS_TITLE,
+			"Atlas",
 			ATLAS_SUBTITLE,
 			5,
 			"Interface\\AddOns\\Atlas\\Images\\AtlasIcon",
@@ -491,7 +489,7 @@ end
 --Parses slash commands
 --If an unrecognized command is given, toggle Atlas
 function Atlas_SlashCommand(msg)
-	if(msg == ATLAS_SLASH_OPTIONS) then
+	if(msg == "options" or "opt") then
 		AtlasOptions_Toggle();
 	else
 		Atlas_Toggle();

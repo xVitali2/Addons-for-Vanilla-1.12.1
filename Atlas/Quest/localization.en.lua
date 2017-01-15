@@ -41,38 +41,38 @@ local YELLOW = "|cffFFd200";   -- Ingame Yellow
 --- OPTIONS ---
 ---------------
 
-AQHelpText = ""..WHITE.."type /aq or atlasquest "..YELLOW.."[command]"..WHITE.."\ncommands: help; option/config; show/hide; left/right; colour; autoshow"..RED.."(only Atlas)"
+AQHelpText = "type /aq or atlasquest "..WHITE.."[command]"..YELLOW.."\ncommands: help; option/config; show/hide; left/right; colour; autoshow"..RED.."(only Atlas)"
 --
 AQOptionsCaptionTEXT = "AtlasQuest Options";
-AQ_OK = "OK"
+AQ_OK = "Done"
 
 -- Autoshow
-AQOptionsAutoshowTEXT = ""..WHITE.."Show AtlasQuest panel with "..RED.."Atlas"..WHITE..".";
+AQOptionsAutoshowTEXT = "Show AtlasQuest panel with Atlas.";
 AQAtlasAutoON = "The AtlasQuest panel will be automatically displayed when atlas is opened."..GREEN.."(default)"
 AQAtlasAutoOFF = "The AtlasQuest panel "..RED.."will not"..WHITE.." be displayed when you open atlas."
 
 -- Right/Left
-AQOptionsLEFTTEXT = ""..WHITE.."Show the AtlasQuest panel "..RED.."left"..WHITE..".";
-AQOptionsRIGHTTEXT = ""..WHITE.."Show the AtlasQuest panel "..RED.."right"..WHITE..".";
+AQOptionsLEFTTEXT = "Show the AtlasQuest panel "..RED.."left.";
+AQOptionsRIGHTTEXT = "Show the AtlasQuest panel "..RED.."right.";
 AQShowRight = "Now shows the AtlasQuest Panel on the "..RED.."right"..WHITE.." side.";
 AQShowLeft = "Now shows the AtlasQuest Panel on the "..RED.."left"..WHITE.." side "..GREEN.."(default)";
 
 -- Colour Check
-AQOptionsCCTEXT = ""..WHITE.."Recolour the quests depending on their levels."
+AQOptionsCCTEXT = "Recolour the quests depending on their levels."
 AQCCON = "AtlasQuest will now recolour quests depending on their levels."
 AQCCOFF = "AtlasQuest will not recolour quests."
 
 -- QuestLog Colour Check
-AQQLColourChange = ""..WHITE.."Colours all quest, you have in your Questlog "..BLUE.."blue."
+AQQLColourChange = "Colours all quest, you have in your Questlog "..BLUE.."blue."
 
 -- AutoQuery Quest Rewards
-AQOptionsAutoQueryTEXT = ""..WHITE.."Automatically query the server for items you haven't seen."
+AQOptionsAutoQueryTEXT = "Automatically query the server for items you haven't seen."
 
 -- Suppress Server Query text
-AQOptionsNoQuerySpamTEXT = ""..WHITE.."Suppress Server Query spam."
+AQOptionsNoQuerySpamTEXT = "Suppress Server Query spam."
 
 -- Use Comparison Tooltips
-AQOptionsCompareTooltipTEXT = ""..WHITE.."Compare rewards to currently equipped items."
+AQOptionsCompareTooltipTEXT = "Compare rewards to currently equipped items."
 
 
 AQAbilities = BLUE .. "Abilities:" .. WHITE;
@@ -162,7 +162,7 @@ AQITEM_ENCHANT = "Enchant"
 
 Inst1Story = "Once the greatest gold production center in the human lands, the Dead Mines were abandoned when the Horde razed Stormwind city during the First War. Now the Defias Brotherhood has taken up residence and turned the dark tunnels into their private sanctum. It is rumored that the thieves have conscripted the clever goblins to help them build something terrible at the bottom of the mines - but what that may be is still uncertain. Rumor has it that the way into the Deadmines lies through the quiet, unassuming village of Moonbrook."
 Inst1Caption = "Deadmines"
-Inst1QAA = "7 Quests" -- how many quests for alliance
+Inst1QAA = "5 Quests" -- how many quests for alliance
 Inst1QAH = "No Quests" -- for horde
 
 --Quest 1 Alliance

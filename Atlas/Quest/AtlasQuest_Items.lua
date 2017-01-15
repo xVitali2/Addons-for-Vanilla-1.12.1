@@ -4120,7 +4120,3 @@ Inst31Quest1Rewardtext_HORDE = AQDiscription_REWARD..WHITE.."1"
 Inst31Quest1ITC1_HORDE = Itemc5;
 Inst31Quest1description1_HORDE = AQITEM_QUIVER
 Inst31Quest1ID1_HORDE = "18714"
-
-
-
--- This is the end, my friend.

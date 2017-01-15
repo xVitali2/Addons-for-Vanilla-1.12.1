@@ -1,4 +1,5 @@
 local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot");
+local BZ = AceLibrary("Babble-Zone-2.2")
 
 local ORANGE = "|cffFF8400";
 
@@ -16,7 +17,7 @@ function AtlasLootWorldEventMenu()
 	getglobal("AtlasLootServerQueryButton"):Hide();
 	--Abyssal Council
 	AtlasLootMenuItem_2_Name:SetText(AL["Abyssal Council"]);
-	AtlasLootMenuItem_2_Extra:SetText(ORANGE..AL["Silithus"]);
+	AtlasLootMenuItem_2_Extra:SetText(ORANGE..BZ["Silithus"]);
 	AtlasLootMenuItem_2_Icon:SetTexture("Interface\\Icons\\Spell_Nature_TimeStop");
 	AtlasLootMenuItem_2.lootpage="AbyssalCouncil";
 	AtlasLootMenuItem_2:Show();
@@ -76,7 +77,7 @@ function AtlasLootWorldEventMenu()
 	AtlasLootMenuItem_7:Show();
 	--Gurubashi Arena Booty Run
 	AtlasLootMenuItem_4_Name:SetText(AL["Gurubashi Arena Booty Run"]);
-	AtlasLootMenuItem_4_Extra:SetText(ORANGE..AL["Stranglethorn Vale"]);
+	AtlasLootMenuItem_4_Extra:SetText(ORANGE..BZ["Stranglethorn Vale"]);
 	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\INV_Box_02");
 	AtlasLootMenuItem_4.lootpage="GurubashiArena";
 	AtlasLootMenuItem_4:Show();
@@ -88,7 +89,7 @@ function AtlasLootWorldEventMenu()
 	AtlasLootMenuItem_22:Show();
 	--Stranglethorn Fishing Extravaganza
 	AtlasLootMenuItem_8_Name:SetText(AL["Stranglethorn Fishing Extravaganza"]);
-	AtlasLootMenuItem_8_Extra:SetText(ORANGE..AL["Stranglethorn Vale"]);
+	AtlasLootMenuItem_8_Extra:SetText(ORANGE..BZ["Stranglethorn Vale"]);
 	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\INV_Fishingpole_01");
 	AtlasLootMenuItem_8.lootpage="FishingExtravaganza";
 	AtlasLootMenuItem_8:Show();
