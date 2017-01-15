@@ -1,4 +1,4 @@
-﻿--[[
+--[[
 Name: Babble-Zone-2.2
 Revision: $Rev: 17779 $
 Author(s): ckknight (ckknight@gmail.com)
@@ -60,6 +60,7 @@ BabbleZone:RegisterTranslations("enUS", function()
 		["Durotar"] = true,
 		["Duskwood"] = true,
 		["Dustwallow Marsh"] = true,
+		["Eastern Kingdoms"] = true,
 		["Eastern Plaguelands"] = true,
 		["Elwynn Forest"] = true,
 		["Everlook"] = true,
@@ -76,6 +77,7 @@ BabbleZone:RegisterTranslations("enUS", function()
 		["The Hinterlands"] = true,
 		["Hyjal"] = true,
 		["Ironforge"] = true,
+		["Kalimdor"] = true,
 		["Loch Modan"] = true,
 		["Lower Blackrock Spire"] = true,
 		["Maraudon"] = true,
@@ -201,13 +203,14 @@ BabbleZone:RegisterTranslations("ruRU", function()
 		["Deeprun Tram"] = "Подземный поезд",
 		["Desolace"] = "Пустоши",
 		["Dire Maul"] = "Забытый Город",
-		["Dire Maul (East)"] = "Забытый город – восток",
-		["Dire Maul (West)"] = "Забытый город – запад",
-		["Dire Maul (North)"] = "Забытый город – север",
+		["Dire Maul (East)"] = "Забытый город (Восток)",
+		["Dire Maul (West)"] = "Забытый город (Запад)",
+		["Dire Maul (North)"] = "Забытый город (Север)",
 		["Dun Morogh"] = "Дун Морог",
 		["Durotar"] = "Дуротар",
 		["Duskwood"] = "Сумеречный лес",
 		["Dustwallow Marsh"] = "Пылевые топи",
+		["Eastern Kingdoms"] = "Восточные королевства",
 		["Eastern Plaguelands"] = "Восточные Чумные земли",
 		["Elwynn Forest"] = "Элвиннский лес",
 		["Everlook"] = "Круговзор",
@@ -224,6 +227,7 @@ BabbleZone:RegisterTranslations("ruRU", function()
 		["The Hinterlands"] = "Внутренние земли",
 		["Hyjal"] = "Хиджал",
 		["Ironforge"] = "Стальгорн",
+		["Kalimdor"] = "Калимдор",
 		["Loch Modan"] = "Лок Модан",
 		["Lower Blackrock Spire"] = "Низина Черной Горы",
 		["Maraudon"] = "Мародон",

@@ -152,6 +152,7 @@ BabbleBoss:RegisterTranslations("enUS", function()
 		["Hate'rel"] = true,
 		["Hazzas"] = true,
 		["Hearthsinger Forresten"] = true,
+		["The Unforgiven"] = true;
 		["High Interrogator Gerstahn"] = true,
 		["Highlord Omokk"] = true,
 		["Hukku"] = true,
@@ -365,6 +366,7 @@ BabbleBoss:RegisterTranslations("ruRU", function()
 		["Hate'rel"] = "Злоб'рел",
 		["Hazzas"] = "Хаззас",
 		["Hearthsinger Forresten"] = "Певчий Форрестен",
+		["The Unforgiven"] = "Непрощенный";
 		["High Interrogator Gerstahn"] = "Верховный дознаватель Герштан",
 		["Highlord Omokk"] = "Вождь Омокк",
 		["Hukku"] = "Хукку",
