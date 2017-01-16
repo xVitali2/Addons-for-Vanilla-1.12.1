@@ -290,7 +290,6 @@ ReagentData["potion"] = {
      ["frostprotection"] = "Зелье защиты от магии льда",
      ["elixirofgiants"] = "Эликсир великанов",
      ["elixiroffrostpower"] = "Эликсир силы льда",
-     --["elixirofpoisonresistance"] = "Elixir of Poison Resistance", ???
      ["strongtrollsblood"] = "Крепкое зелье тролльей крови",
      ["lesserhealing"] = "Маленький флакон с лечебным зельем",
      ["greaterhealing"] = "Средний флакон с лечебным зельем",
@@ -359,7 +358,7 @@ ReagentData["scale"] = {
      ["deviate"] = "Искаженная чешуя",
      ["scorpid"] = "Чешуя скорпида",
      ["heavyscorpid"] = "Толстая чешуя скорпида",
-    -- ["dream"] = "Dream Scale", ?????
+     ["dream"] = "Чешуя сна",
 };
 -- Reagent Data: Stone
 ReagentData["stone"] = {

@@ -375,7 +375,7 @@ ReagentData["scale"] = {
      ["deviate"] = "Deviate Scale",
      ["scorpid"] = "Scorpid Scale",
      ["heavyscorpid"] = "Heavy Scorpid Scale",
-     ["dream"] = "Dream Scale",
+     ["dream"] = "Dreamscale",
 };
 
 -- Reagent Data: Stone
