@@ -1,8 +1,7 @@
-
 local playerFaction
-local bgs = {['Warsong Gulch'] = 10, 
-			 ['Arathi Basin'] = 15, 
-			 --['Alterac Valley'] = 40
+local bgs = {[EF_L_WARSONG] = 10, 
+			 [EF_L_ARATHI] = 15, 
+			 --[EF_L_ALTERAC] = 40
 			 }
 -- TIMERS
 local playerListInterval, playerListRefresh, enemyNearbyInterval, enemyNearbyRefresh = 30, 0, .3, 0
@@ -31,9 +30,13 @@ local function fillPlayerList()
 	for i=1, GetNumBattlefieldScores() do
 		local name, killingBlows, honorableKills, deaths, honorGained, faction, rank, race, class = GetBattlefieldScore(i)
 		if faction == f then
-			race = race == 'Undead' and 'SCOURGE' or race == 'Night Elf' and 'nightelf' or race
-			l[name] = {['name'] = name, ['class'] = string.upper(class), ['rank'] = rank-4, ['race'] = string.upper(race), ['sex'] = 'MALE'} -- rank starts at -4 apparently
-			l[name]['powerType']  =  l[name]['class'] == 'ROGUE' and 'energy' or l[name]['class'] == 'WARRIOR' and 'rage' or 'mana'
+			race = race == EF_L_UNDEAD and 'SCOURGE' or race == EF_L_NIGHTELF and 'NIGHTELF' or race
+			if (GetLocale()=="ruRU") then
+				l[name] = {['name'] = name, ['class'] = class, ['rank'] = rank-4, ['race'] = race, ['sex'] = 'MALE'} -- rank starts at -4 apparently
+			else
+				l[name] = {['name'] = name, ['class'] = string.upper(class), ['rank'] = rank-4, ['race'] = string.upper(race), ['sex'] = 'MALE'} -- rank starts at -4 apparently
+			end
+			l[name]['powerType']  =  l[name]['class'] == 'ROGUE' and EF_L_ENERGY or l[name]['class'] == 'WARRIOR' and EF_L_RAGE or EF_L_MANA
 			gotData = true
 		end
 	end	
@@ -106,7 +109,11 @@ local function verifyUnitInfo(unit)
 			u['rank']		= UnitPVPRank(unit) - 4
 			local r = UnitRace(unit)
 			if r then
-				u['race']		= r == 'Undead' and 'SCOURGE' or r == 'Night Elf' and 'NIGHTELF' or string.upper(r)
+				if (GetLocale()=="ruRU") then
+					u['race']		= r == EF_L_UNDEAD and 'SCOURGE' or r == EF_L_NIGHTELF and 'NIGHTELF' or r
+				else
+					u['race']		= r == EF_L_UNDEAD and 'SCOURGE' or r == EF_L_NIGHTELF and 'NIGHTELF' or string.upper(r)
+				end
 			end
 		end
 		u['health'] 	= UnitHealth(unit)
@@ -114,7 +121,7 @@ local function verifyUnitInfo(unit)
 		u['mana'] 		= UnitMana(unit)
 		u['maxmana']	= UnitManaMax(unit)
 		local power = UnitPowerType(unit)
-		u['powerType']  =  power == 3 and 'energy' or power == 1 and 'rage' or 'mana'
+		u['powerType']  =  power == 3 and EF_L_ENERGY or power == 1 and EF_L_RAGE or EF_L_MANA
 		local s = UnitSex(unit)
 		u['sex']		= (s == 1 or s == 2) and 'MALE' or s == 3 and 'FEMALE' 
 

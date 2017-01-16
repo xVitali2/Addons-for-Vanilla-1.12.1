@@ -19,7 +19,7 @@
 			end
 
 			local _, class  = UnitClass(blip.unit)
-			color = RAID_CLASS_COLORS[class]
+			color = EF_L_RAID_CLASS_COLORS[class]
 			if color then
 				icon:SetVertexColor(color.r, color.g, color.b)
 			end

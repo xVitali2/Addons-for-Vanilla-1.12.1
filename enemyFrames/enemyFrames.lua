@@ -496,7 +496,7 @@ local function drawUnits(list)
 	for k,v in pairs(playerList) do
 		-- set for redrawn
 		
-		local colour = RAID_CLASS_COLORS[v['class']]
+		local colour = EF_L_RAID_CLASS_COLORS[v['class']]
 		local powerColor = RGB_POWER_COLORS[v['powerType']]
 		
 		-- hightlight nearby unit
@@ -705,7 +705,7 @@ end
 function ENEMYFRAMESAnnounceRT(rt, p)
 	raidTargets = rt
 	enemyFrame.raidTargetFrame.text:SetText(p['name'])
-	enemyFrame.raidTargetFrame.text:SetTextColor(RAID_CLASS_COLORS[p['class']].r, RAID_CLASS_COLORS[p['class']].g, RAID_CLASS_COLORS[p['class']].b)
+	enemyFrame.raidTargetFrame.text:SetTextColor(EF_L_RAID_CLASS_COLORS[p['class']].r, EF_L_RAID_CLASS_COLORS[p['class']].g, EF_L_RAID_CLASS_COLORS[p['class']].b)
 	
 	local tCoords = RAID_TARGET_TCOORDS[raidTargets[p['name']]['icon']]
 	enemyFrame.raidTargetFrame.iconl:SetTexCoord(tCoords[1], tCoords[2], tCoords[3], tCoords[4])

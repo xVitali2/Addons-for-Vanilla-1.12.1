@@ -57,7 +57,7 @@
 						units[i].caster:SetText(c.caster)
 						
 						if c.class then
-							local colour = RAID_CLASS_COLORS[c.class]
+							local colour = EF_L_RAID_CLASS_COLORS[c.class]
 							units[i].caster:SetTextColor(colour.r, colour.g, colour.b)
 						end
 						

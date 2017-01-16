@@ -1,5 +1,15 @@
 --by CFM
 --wsgui.lua
+EF_L_RAID_CLASS_COLORS = {
+			["HUNTER"] = { r = 0.67, g = 0.83, b = 0.45 },
+			["WARLOCK"] = { r = 0.58, g = 0.51, b = 0.79 },
+			["PRIEST"] = { r = 1.0, g = 1.0, b = 1.0 },
+			["PALADIN"] = { r = 0.96, g = 0.55, b = 0.73 },
+			["MAGE"] = { r = 0.41, g = 0.8, b = 0.94 },
+			["ROGUE"] = { r = 1.0, g = 0.96, b = 0.41 },
+			["DRUID"] = { r = 1.0, g = 0.49, b = 0.04 },
+			["SHAMAN"] = { r = 0.96, g = 0.55, b = 0.73 },
+			["WARRIOR"] = { r = 0.78, g = 0.61, b = 0.43 }};
 EF_L_GETREADYTOCAP = ' Get ready to cap!';
 EF_L_EFCHASLESSTHAN = 'EFC has less than ';
 EF_L_PERCHEALTH = '% Health!';
@@ -629,3 +639,13 @@ EF_L_OPTIONAL='optional';
 EF_L_EFLOADED='[enemyFrames] loaded. |cffffffff/efs|cff';
 EF_L_FORMENUSETTINGS=' for menu settings.';
 EF_L_ENEMYFRAMESSETTINGS='enemyFrames Settings';
+
+EF_L_WARSONG='Warsong Gulch';
+EF_L_ARATHI='Arathi Basin';
+EF_L_ALTERAC='Alterac Mountains';
+
+EF_L_UNDEAD='Undead';
+EF_L_NIGHTELF='Night Elf';
+EF_L_ENERGY='energy';
+EF_L_RAGE='rage';
+EF_L_MANA='mana';

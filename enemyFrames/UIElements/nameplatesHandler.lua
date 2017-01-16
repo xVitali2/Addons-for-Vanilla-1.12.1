@@ -39,7 +39,7 @@
 	end
 	-------------------------------------------------------------------------------
 	local addClassColor = function(health, class)	
-		local colour = RAID_CLASS_COLORS[class]
+		local colour = EF_L_RAID_CLASS_COLORS[class]
 		health:SetStatusBarColor(colour.r, colour.g, colour.b)
 	end
 	-------------------------------------------------------------------------------
