@@ -11,6 +11,8 @@ Graphics: Vynn
 
 Change Log:
 note downgrade from 1.9 for Vanilla. //Monteo
+v1.8
+-added ruRU by CFM
 v1.7 vanilla 
 -Added Raid Warning (A) and Battleground (B) chat
 v1.6
