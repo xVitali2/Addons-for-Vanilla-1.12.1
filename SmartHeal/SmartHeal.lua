@@ -479,10 +479,18 @@ function SmartHeal:SpellMaxRank(spellname,ignoreMana)
 			elseif (sName==spells[r]) then
 				local _,_,rankNumber=string.find(sRank,"^"..SH_RANK.." (%d+)")
 				if (rankNumber and rankNumber~="") then
+				
+					--	DEFAULT_CHAT_FRAME:AddMessage(sRank.." sRank")
+						
 					rankNumber=tonumber(rankNumber)
 					SmartHealSpellTooltip:SetSpell(i,BOOKTYPE_SPELL)
 					manatooltip = getglobal("SmartHealSpellTooltipTextLeft2"):GetText()
-					local _,_,mana=string.find(manatooltip,"^(%d+) "..SH_MANA);	
+					local _,_,mana=string.find(manatooltip,SH_MANA);
+					
+					--if manatooltip then
+						--DEFAULT_CHAT_FRAME:AddMessage(manatooltip.." manatooltip")
+				--	end
+					
 					if ((mana and UnitMana('player')>tonumber(mana)) or not mana or ignoreMana) then
 						maxRank=max(maxRank,rankNumber+(r-1))
 					end
@@ -686,8 +694,8 @@ function SmartHeal:AlertHealer(arg1)
 	end
 	
 	local current_targetName=UnitName("target")
-	
-	local _,_,casterName,spell=string.find(arg1,"(.+) "..SH_BEGINS_TO_CAST.." (.+).")
+
+	local _,_,casterName,spell=string.find(arg1,SH_BEGINS_TO_CAST)
 	if(not casterName or not spell) then return end
 	
 	TargetByName(casterName)
@@ -721,8 +729,7 @@ function SmartHeal:AlertHealer(arg1)
 		if (UnitName("target")~= current_targetName) then
 			TargetLastTarget()
 		end
-	end
-	
+	end	
 end
 
 -- cannot stop cast onupdate after 1.10 , using warning alert instead 

@@ -1,7 +1,6 @@
 -- ENGLISH VERSION
 
 -- Priest
-
 -- Spell
 SH_FLASH_HEAL= "Flash Heal";
 SH_LESSER_HEAL="Lesser Heal";
@@ -91,9 +90,7 @@ SH_LIGHTNING_SHIELD="Lightning Shield";
 
 -- RUSSIAN VERSION CFM
 if ( GetLocale() == "ruRU" ) then
-
 	-- Priest
-	
 	-- Spell
 SH_FLASH_HEAL= "Быстрое исцеление";
 SH_LESSER_HEAL="Малое исцеление";
@@ -102,11 +99,9 @@ SH_GREATER_HEAL="Великое исцеление";
 SH_PRAYER_OF_HEALING="Молитва исцеления";
 SH_RENEW="Обновление";
 SH_LESSER_GREATER_HEALS="Великое исцеление/Исцеление/Малое исцеление"
-
 -- Talent
 SH_IMPROVED_RENEW="Улучшенное обновление";
 SH_SPIRTUAL_HEALING="Духовное исцеление";
-
 -- Buff
 SH_POWERWORD_SHIELD="Слово силы: Щит";
 SH_POWERWORD_FORTITUDE="Слово силы: Стойкость";
@@ -118,16 +113,12 @@ SH_DISPEL_MAGIC="Рассеивание заклинаний";
 SH_RESURRECTION="Воскрешение";
 SH_ABOLISH_DISEASE="Устранение болезни"
 ----------
-
 -- Paladin
-
 -- Spell
 SH_FLASH_OF_LIGHT= "Вспышка Света";
 SH_HOLY_LIGHT="Свет небес";
-
 -- Talent
 SH_HEALING_LIGHT="Исцеляющий Свет";
-
 -- Buff
 SH_REDEMPTION="Искупление";
 SH_LAY_ON_HANDS="Возложение рук";
@@ -139,7 +130,6 @@ SH_BLESSING_OF_SALVATION="Благословение спасения";
 SH_BLESSING_OF_SANCTUARY="Благословение неприкосновенности";
 SH_BLESSING_OF_PROTECTION="Благословение защиты"
 SH_BLESSING_OF_FREEDOM="Благословение свободы"
-
 SH_GREATER_BLESSING_OF_KINGS="Великое благословение королей";
 SH_GREATER_BLESSING_OF_MIGHT="Великое благословение могущества";
 SH_GREATER_BLESSING_OF_LIGHT="Великое благословение Света";
@@ -147,20 +137,16 @@ SH_GREATER_BLESSING_OF_WISDOM="Великое благословение муд�
 SH_GREATER_BLESSING_OF_SALVATION="Великое благословение спасения";
 SH_GREATER_BLESSING_OF_SANCTUARY="Великое благословение неприкосновенности";
 ----------
-
 -- Druid
-
 -- Spell
 SH_REJUVENATION="Омоложение";
 SH_HEALING_TOUCH="Целительное прикосновение";
 SH_REGROWTH="Восстановление";
 SH_SWIFTMEND="Быстрое восстановление"
-
 --Talent
 SH_IMPROVED_REJUVENATION="Улучшенное омоложение";
 SH_GIFT_OF_NATURE="Дар природы";
 SH_NATURES_SWIFTNESS="Природная стремительность";
-
 -- Buff
 SH_MARK_OF_THE_WILD ="Знак дикой природы";
 SH_GIFT_OF_THE_WILD ="Дар дикой природы";
@@ -169,20 +155,15 @@ SH_TRANQULITY="Спокойствие";
 SH_INNERVATE="Озарение";
 SH_THORNS = "Шипы"
 -----------
-
 -- Shaman
-
 -- Spell
 SH_LESSER_HEALING_WAVE="Малая волна исцеления";
 SH_HEALING_WAVE="Волна исцеления";
 SH_CHAIN_HEAL="Цепное исцеление";
-
 -- Buff
 SH_ANCESTRAL_SPIRIT="Дух предков";
 SH_LIGHTNING_SHIELD="Щит молний";
-
 end
-
 -- GERMAN VERESION
 if ( GetLocale() == "deDE" ) then
 
@@ -285,7 +266,6 @@ if ( GetLocale() == "deDE" ) then
 	SH_LIGHTNING_SHIELD="Blitzschild";
 
 end
-
 -- FRENCH VERSION
 if ( GetLocale() == "frFR" ) then
 
