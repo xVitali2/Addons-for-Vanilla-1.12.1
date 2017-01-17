@@ -2,8 +2,15 @@ GATHERER_ADDON_MESSAGE_PREFIX = "GATHERER";
 GATHERER_TOKEN_SEPARATOR = ";";
 
 function Gatherer_BroadcastGather(gather, gatherType, gatherC, gatherZ, gatherX, gatherY, gatherIcon, gatherEventType)
-  local message = Gatherer_EncodeGather(GetUnitName("player"), gather, gatherType, gatherC, gatherZ, gatherX, gatherY, gatherIcon, gatherEventType);
-  Gatherer_SendRawMessage(message);
+    local message = Gatherer_EncodeGather(GetUnitName("player"), gather, gatherType, gatherC, gatherZ, gatherX, gatherY, gatherIcon, gatherEventType);
+
+    if Gatherer_Settings.debug then
+        local prettyNodeName = gather;
+        local prettyZoneName = GatherRegionData[gatherC][gatherZ].name;
+        Gatherer_ChatPrint("Gatherer: Broadcasting new " .. prettyNodeName .. " node found in " .. prettyZoneName .. ".");
+    end
+
+    Gatherer_SendRawMessage(message);
 end
 
 function Gatherer_AddonMessageEvent(prefix, message, type)
@@ -57,16 +64,15 @@ function Gatherer_ReceiveBroadcast(message)
     local sender, gather, gatherType, gatherC, gatherZ, gatherX, gatherY, gatherIcon, gatherEventType = Gatherer_DecodeGather(message);
 
     if sender ~= GetUnitName("player") then
-      if Gatherer_Settings.debug then
-        Gatherer_ChatPrint("Gatherer Received: " .. message);
-      end
-      Gatherer_AddGatherToBase(gather, gatherType, gatherC, gatherZ, gatherX, gatherY, gatherIcon, gatherEventType, false);
+        if Gatherer_Settings.debug then
+            local prettyNodeName = gather;
+            local prettyZoneName = GatherRegionData[gatherC][gatherZ].name;
+            Gatherer_ChatPrint("Gatherer: " .. sender .. " discovered a new " .. prettyNodeName .. " node in " .. prettyZoneName .. ".");
+        end
+        Gatherer_AddGatherToBase(gather, gatherType, gatherC, gatherZ, gatherX, gatherY, gatherIcon, gatherEventType, false);
     end
 end
 
 function Gatherer_SendRawMessage(message)
-    if Gatherer_Settings.debug then
-        Gatherer_ChatPrint("Gatherer Sending: " .. message);
-    end
     SendAddonMessage(GATHERER_ADDON_MESSAGE_PREFIX, message, "GUILD");
 end

@@ -24,7 +24,7 @@ If you want to configure the addon, click the Gatherer configuration icon floati
 CHANGELOG (- done, = to test, + todo):
 ----------
 2.99.2
-GathererUI - bug fix
+GathererUI - bug fix and ruRU localization
 
 2.2.3.1:
 ========
