@@ -77101,6 +77101,12 @@ QuestieMonsters = {
     ["looted"] = 538,
     ["locationCount"] = 1
   },
+  ["Wanted: Gath'Ilzogg"] = {
+    ["locations"] = {
+      [1] = {30.0, 0.2962, 0.4618, 100.0}
+    },
+    ["locationCount"] = 1
+  },
   ["Cloud Serpent"] = {
     ["locations"] = {
       [1] = {14.0, 0.5195, 0.5544, 100.0},
@@ -82724,6 +82730,12 @@ QuestieMonsters = {
       [1] = {29.0, 0.7921, 0.1548, 100.0}
     },
     ["looted"] = 265,
+    ["locationCount"] = 1
+  },
+  ["WANTED: Chok'sul"] = {
+    ["locations"] = {
+      [1] = {29.0, 0.3729, 0.4649, 100.0}
+    },
     ["locationCount"] = 1
   },
   ["Apprentice Mirveda"] = {
@@ -101415,6 +101427,12 @@ QuestieMonsters = {
     ["looted"] = 649,
     ["locationCount"] = 1
   },
+  ["Wanted: Lieutenant Fangore"] = {
+    ["locations"] = {
+      [1] = {30.0, 0.2676, 0.4647, 100.0}
+    },
+    ["locationCount"] = 1
+  },
   ["Hive'Ashi Defender"] = {
     ["locations"] = {
       [1] = {5.0, 0.4767, 0.2713, 100.0},
@@ -111514,6 +111532,13 @@ QuestieMonsters = {
   ["Marshal Dughan"] = {
     ["locations"] = {
       [1] = {37.0, 0.4214, 0.6594, 100.0}
+    },
+    ["locationCount"] = 1,
+    ["faction"] = 1
+  },
+  ["Wanted Poster:  \"Hogger\""] = {
+    ["locations"] = {
+      [1] = {37.0, 0.2455, 0.7470, 100.0}
     },
     ["locationCount"] = 1,
     ["faction"] = 1
