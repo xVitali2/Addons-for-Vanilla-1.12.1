@@ -818,7 +818,7 @@ do
 
 		local ignore = {[UnitName'player']=true}
 		local function process(name)
-			if not ignore[name] and strfind(strupper(name), strupper(input), nil, true) == 1 then
+			if name and not ignore[name] and strfind(strupper(name), strupper(input), nil, true) == 1 then
 				tinsert(matches, name)
 			end
 			ignore[name] = true
