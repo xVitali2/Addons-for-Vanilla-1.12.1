@@ -19,6 +19,7 @@
 			end
 
 			local _, class  = UnitClass(blip.unit)
+			class=changeEngClassName(class);
 			color = RAID_CLASS_COLORS[class]
 			if color then
 				icon:SetVertexColor(color.r, color.g, color.b)
@@ -27,7 +28,7 @@
 	end
 	-------------------------------------------------------------------------------
 	local updateBlips = function(tableBlips)
-		local f = UnitFactionGroup'player' == 'Alliance' and 'Horde' or 'Alliance'
+		local f = UnitFactionGroup'player' == EF_L_ALLIANCE2 and EF_L_HORDE2 or EF_L_ALLIANCE2
 		for i = 1, 2 do
 			for j = 1, tableBlips[i][3] do		
 				skinBlip(f, _G[tableBlips[i][1]..j], tableBlips[i][2])
@@ -41,7 +42,7 @@
 				local mapBlip = _G[tableBlips[i][1]..j]
 				mapBlip.size = tableBlips[i][2]
 				mapBlip:SetScript('OnShow', function()
-						local f = UnitFactionGroup'player' == 'Alliance' and 'Horde' or 'Alliance'
+						local f = UnitFactionGroup'player' == EF_L_ALLIANCE2 and EF_L_HORDE2 or EF_L_ALLIANCE2
 						skinBlip(f, this, this.size)
 				end)
 			end

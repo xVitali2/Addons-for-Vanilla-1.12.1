@@ -219,7 +219,7 @@
 	local a, maxa, b, c = .002, .058, 0, 1
 	local showPortraitDebuff = function()
 		if UnitExists'target' then
-			local xtFaction = UnitFactionGroup'target' == 'Alliance' and 'Horde' or 'Alliance'
+			local xtFaction = UnitFactionGroup'target' == EF_L_ALLIANCE2 and EF_L_HORDE2 or EF_L_ALLIANCE2
 			local prioBuff = SPELLCASTINGCOREgetPrioBuff(UnitName'target', 1)[1]
 
 			if prioBuff ~= nil then

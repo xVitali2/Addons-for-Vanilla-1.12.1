@@ -25,18 +25,14 @@ local function fillPlayerList()
 	local gotData = false
 	local l = {}
 	
-	if UnitFactionGroup('player') == 'Alliance' then f = 0 else f = 1 end
+	if UnitFactionGroup('player') == EF_L_ALLIANCE2 then f = 0 else f = 1 end
 	-- get opposing faction players
 	for i=1, GetNumBattlefieldScores() do
 		local name, killingBlows, honorableKills, deaths, honorGained, faction, rank, race, class = GetBattlefieldScore(i)
 		if faction == f then
-			race = race == EF_L_UNDEAD and 'SCOURGE' or race == EF_L_NIGHTELF and 'NIGHTELF' or race
-			if (GetLocale()=="ruRU") then
-				l[name] = {['name'] = name, ['class'] = class, ['rank'] = rank-4, ['race'] = race, ['sex'] = 'MALE'} -- rank starts at -4 apparently
-			else
-				l[name] = {['name'] = name, ['class'] = string.upper(class), ['rank'] = rank-4, ['race'] = string.upper(race), ['sex'] = 'MALE'} -- rank starts at -4 apparently
-			end
-			l[name]['powerType']  =  l[name]['class'] == 'ROGUE' and EF_L_ENERGY or l[name]['class'] == 'WARRIOR' and EF_L_RAGE or EF_L_MANA
+			race = race == EF_L_UNDEAD or race == EF_L_NIGHTELF or race
+			l[name] = {['name'] = name, ['class'] = changeEngClassName(class), ['rank'] = rank-4, ['race'] = string.upper(race), ['sex'] = 'MALE'} -- rank starts at -4 apparently
+			l[name]['powerType']  =  l[name]['class'] == EF_L_ROGUE and EF_L_ENERGY or l[name]['class'] == EF_L_WARRIOR and EF_L_RAGE or EF_L_MANA
 			gotData = true
 		end
 	end	
@@ -105,15 +101,11 @@ local function verifyUnitInfo(unit)
 		u['name']		= UnitName(unit)
 		if not insideBG then
 			local _, c = UnitClass(unit)
-			u['class']		= c
+			u['class']		= changeEngClassName(c)
 			u['rank']		= UnitPVPRank(unit) - 4
 			local r = UnitRace(unit)
 			if r then
-				if (GetLocale()=="ruRU") then
-					u['race']		= r == EF_L_UNDEAD and 'SCOURGE' or r == EF_L_NIGHTELF and 'NIGHTELF' or r
-				else
-					u['race']		= r == EF_L_UNDEAD and 'SCOURGE' or r == EF_L_NIGHTELF and 'NIGHTELF' or string.upper(r)
-				end
+				u['race']	= changeEngRaceName(r)
 			end
 		end
 		u['health'] 	= UnitHealth(unit)
@@ -179,7 +171,7 @@ local function updatePlayerListInfo()
 				refreshUnits 	= true 	
 				v['nearby'] 	= false
 				v['health']		= v['maxhealth'] and v['maxhealth'] or 100
-				v['mana'] 		= v['class'] == 'WARRIOR' and 0 or v['maxmana'] and v['maxmana']  or 100
+				v['mana'] 		= v['class'] == EF_L_WARRIOR and 0 or v['maxmana'] and v['maxmana']  or 100
 				
 				if not insideBG then v['lastSeen'] = nextSeen	end 
 			end	

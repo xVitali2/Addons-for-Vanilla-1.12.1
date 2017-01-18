@@ -153,7 +153,6 @@
 			local m = bCast
 			local c = gsub(arg1, m, '%1')
 			local s = gsub(arg1, m, '%2')
-			
 			if not SPELLINFO_SINGLE_TARGET_BUFF_SPELLS[s] and SPELLINFO_SPELLCASTS_TO_TRACK[s] then
 				newCasterEntry(c, s)
 			end

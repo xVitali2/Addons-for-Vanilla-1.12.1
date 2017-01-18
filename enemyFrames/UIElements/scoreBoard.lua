@@ -15,8 +15,8 @@
 				
 				if name ~= UnitName'player' then
 					--buttonName = getglobal("WorldStateScoreButton"..i.."NameButtonName")
-					class = string.upper(class)
-					getglobal("WorldStateScoreButton"..i.."NameButtonName"):SetVertexColor(EF_L_RAID_CLASS_COLORS[class].r, EF_L_RAID_CLASS_COLORS[class].g, EF_L_RAID_CLASS_COLORS[class].b)
+					class = changeEngClassName(class);
+					getglobal("WorldStateScoreButton"..i.."NameButtonName"):SetVertexColor(RAID_CLASS_COLORS[class].r, RAID_CLASS_COLORS[class].g, RAID_CLASS_COLORS[class].b)
 				end
 			end			
 		end

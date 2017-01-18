@@ -6,7 +6,7 @@
 	-------------------------------------------------------------------------------
 	local h = WorldStateAlwaysUpFrame:CreateFontString(nil, 'OVERLAY')
     h:SetFontObject(GameFontNormalSmall)
-    h:SetTextColor(RGB_FACTION_COLORS['Alliance']['r'], RGB_FACTION_COLORS['Alliance']['g'], RGB_FACTION_COLORS['Alliance']['b'])
+    h:SetTextColor(RGB_FACTION_COLORS[EF_L_ALLIANCE2]['r'], RGB_FACTION_COLORS[EF_L_ALLIANCE2]['g'], RGB_FACTION_COLORS[EF_L_ALLIANCE2]['b'])
     h:SetJustifyH'LEFT'
 	h:SetText(EF_L_HORDE)
 	
@@ -25,7 +25,7 @@
 	
     local a = WorldStateAlwaysUpFrame:CreateFontString(nil, 'OVERLAY')
     a:SetFontObject(GameFontNormalSmall)
-	a:SetTextColor(RGB_FACTION_COLORS['Horde']['r'], RGB_FACTION_COLORS['Horde']['g'], RGB_FACTION_COLORS['Horde']['b'])
+	a:SetTextColor(RGB_FACTION_COLORS[EF_L_HORDE2]['r'], RGB_FACTION_COLORS[EF_L_HORDE2]['g'], RGB_FACTION_COLORS[EF_L_HORDE2]['b'])
     a:SetJustifyH'LEFT'
 	a:SetText(EF_L_ALLIANCE)
 	
@@ -52,7 +52,7 @@
 	end
 	local OnLeave = function()
 		local label = this == hb and h or a
-		local f = label == a and 'Horde' or 'Alliance'
+		local f = label == a and EF_L_HORDE2 or EF_L_ALLIANCE2
 		label:SetTextColor(RGB_FACTION_COLORS[f]['r'], RGB_FACTION_COLORS[f]['g'], RGB_FACTION_COLORS[f]['b'])
 		GameTooltip:Hide()
 	end
@@ -74,27 +74,27 @@
 	WSGUIupdateFC = function(fc)
 		flagCarriers = fc
 		
-		if flagCarriers['Alliance'] then
-			a:SetText(flagCarriers['Alliance'])
+		if flagCarriers[EF_L_ALLIANCE2] then
+			a:SetText(flagCarriers[EF_L_ALLIANCE2])
 		else
 			a:SetText('')
 			ah:SetText('')
-			fcHealth['Alliance'] = nil
+			fcHealth[EF_L_ALLIANCE2] = nil
 		end
 		
-		if flagCarriers['Horde'] then
-			h:SetText(flagCarriers['Horde'])
+		if flagCarriers[EF_L_HORDE2] then
+			h:SetText(flagCarriers[EF_L_HORDE2])
 		else
 			h:SetText('')
 			hh:SetText('')
-			fcHealth['Horde'] = nil
+			fcHealth[EF_L_HORDE2] = nil
 		end
 	end
 	-------------------------------------------------------------------------------
 	local w = 100
 	local efcLowHealth = function()
 		local f = UnitFactionGroup'player'
-		local x = UnitFactionGroup'player' == 'Alliance' and 'Horde' or 'Alliance'
+		local x = UnitFactionGroup'player' == EF_L_ALLIANCE2 and EF_L_HORDE2 or EF_L_ALLIANCE2
 
 		local now = GetTime()
 		if flagCarriers[f] and fcHealth[f]  then
@@ -125,13 +125,13 @@
 	-------------------------------------------------------------------------------
 	WSGUIupdateFChealth = function(unit)
 		if unit then
-			if UnitName(unit) == flagCarriers['Alliance'] then
-				fcHealth['Alliance'] = getPerc(unit)
-				ah:SetText(fcHealth['Alliance']..'%')
+			if UnitName(unit) == flagCarriers[EF_L_ALLIANCE2] then
+				fcHealth[EF_L_ALLIANCE2] = getPerc(unit)
+				ah:SetText(fcHealth[EF_L_ALLIANCE2]..'%')
 			end
-			if UnitName(unit) == flagCarriers['Horde'] then
-				fcHealth['Horde'] = getPerc(unit)
-				hh:SetText(fcHealth['Horde']..'%')
+			if UnitName(unit) == flagCarriers[EF_L_HORDE2] then
+				fcHealth[EF_L_HORDE2] = getPerc(unit)
+				hh:SetText(fcHealth[EF_L_HORDE2]..'%')
 			end
 		end
 		

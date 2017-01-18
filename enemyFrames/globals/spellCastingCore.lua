@@ -445,7 +445,6 @@ local DirectInterrupt = function()
 end
 
 local GainAfflict = function()
---DEFAULT_CHAT_FRAME:AddMessage("GainAfflict")
 	local gain 		= EF_L_AURAADDEDOTHERHELPFUL						local fgain = string.find(arg1, gain)
 	local pgain 	= EF_L_AURAADDEDSELFHELPFUL							local fpgain = string.find(arg1, pgain)	
 	local afflict 	= EF_L_AURAADDEDOTHERHARMFUL 						local fafflict = string.find(arg1, afflict)
@@ -459,22 +458,18 @@ local GainAfflict = function()
 		-- buffs/debuffs to be displayed
 		if SPELLINFO_BUFFS_TO_TRACK[s] then
 			newbuff(c, s, 1, false)
-			DEFAULT_CHAT_FRAME:AddMessage(" SPELLINFO_BUFFS_TO_TRACK ");
 		end
 		-- self-cast buffs that interrupt cast (blink, ice block ...)
 		if SPELLINFO_INTERRUPT_BUFFS_TO_TRACK[s] then
 			forceHideTableItem(casts, c, nil)
-			DEFAULT_CHAT_FRAME:AddMessage(" SPELLINFO_INTERRUPT_BUFFS_TO_TRACK ");
 		end
 		-- specific channeled spells (evocation ...)
 		if SPELLINFO_CHANNELED_SPELLCASTS_TO_TRACK[s] then
 			newCast(c, s, true)
-			DEFAULT_CHAT_FRAME:AddMessage(" SPELLINFO_CHANNELED_SPELLCASTS_TO_TRACK ");
 		end
 		-- buffs that alter spell casting speed
 		if SPELLINFO_TIME_MODIFIER_BUFFS_TO_TRACK[s] then
 			newIBuff(c, s)
-			DEFAULT_CHAT_FRAME:AddMessage(" SPELLINFO_TIME_MODIFIER_BUFFS_TO_TRACK ");
 		end
 			
 	-- cast-interruting CC
@@ -565,7 +560,6 @@ local FadeRem = function()
 end
 
 local HitsCrits = function()
---DEFAULT_CHAT_FRAME:AddMessage("HitsCrits")
 	local hits = EF_L_SPELLLOGOTHEROTHER		 					local fhits = string.find(arg1, hits)
 	local crits = EF_L_SPELLLOGCRITOTHEROTHER		 				local fcrits = string.find(arg1, crits)
 	local absb = EF_L_SPELLLOGABSORBOTHEROTHER						local fabsb = string.find(arg1, absb)
@@ -638,7 +632,6 @@ local HitsCrits = function()
 end
 
 local channelDot = function()
---DEFAULT_CHAT_FRAME:AddMessage("channelDot")
 	local channelDot 	= EF_L_PERIODICAURADAMAGEOTHEROTHER			local fchannelDot = string.find(arg1, channelDot)
 	local channelpDot 	= EF_L_PERIODICAURADAMAGESELFOTHER			local fchannelpDot	= string.find(arg1, channelpDot)
 	local pchannelDot 	= EF_L_PERIODICAURADAMAGEOTHERSELF			local fpchannelDot = string.find(arg1, pchannelDot)

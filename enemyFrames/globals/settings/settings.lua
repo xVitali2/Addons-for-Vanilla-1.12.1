@@ -134,10 +134,10 @@ end
 
 function setupSettings()
 	playerFaction = UnitFactionGroup'player'
-	if playerFaction == 'Alliance' then 
-		enemyFactionColor = RGB_FACTION_COLORS['Horde']
+	if playerFaction == EF_L_ALLIANCE2 then 
+		enemyFactionColor = RGB_FACTION_COLORS[EF_L_HORDE2]
 	else 
-		enemyFactionColor = RGB_FACTION_COLORS['Alliance']	
+		enemyFactionColor = RGB_FACTION_COLORS[EF_L_ALLIANCE2]	
 	end
 	settings.header.t:SetTextColor(enemyFactionColor['r'], enemyFactionColor['g'], enemyFactionColor['b'], .9)
 
@@ -195,7 +195,7 @@ end)
 local function eventHandler()
 	if event == 'PLAYER_LOGIN' then
 		playerFaction = UnitFactionGroup'player'
-		local tc = playerFaction == 'Alliance' and 'FF1A1A' or '00ADF0'
+		local tc = playerFaction == EF_L_ALLIANCE2 and 'FF1A1A' or '00ADF0'
 		print('|cff' ..tc.. EF_L_EFLOADED ..tc.. EF_L_FORMENUSETTINGS)
 		_G['enemyFrameDisplay']:SetScale(ENEMYFRAMESPLAYERDATA['scale'])
 		_G['enemyFrameDisplay']:SetPoint('CENTER', UIParent, ENEMYFRAMESPLAYERDATA['offX'], ENEMYFRAMESPLAYERDATA['offY'])

@@ -127,7 +127,7 @@ local 	enemyFrame = CreateFrame('Frame', 'enemyFrameDisplay', UIParent)
 		
 		enemyFrame.bottom.classIcon = enemyFrame.bottom.classButton:CreateTexture(nil, 'ARTWORK')
 		enemyFrame.bottom.classIcon:SetAllPoints()
-		enemyFrame.bottom.classIcon:SetTexture(GET_DEFAULT_ICON('class', 'WARRIOR'))
+		enemyFrame.bottom.classIcon:SetTexture(GET_DEFAULT_ICON('class', EF_L_WARRIOR))
 		enemyFrame.bottom.classIcon:SetTexCoord(.1, .9, .25, .75)
 		
 		-- rank
@@ -302,8 +302,7 @@ local function optionals()
 	end
 end
 local function setccIcon(p)
-	DEFAULT_CHAT_FRAME:AddMessage(p.." setccIcon(p)")
-	local d = p == 'class' and 'WARRIOR' or p == 'rank' and 6 or p == 'portrait' and ( playerFaction == 'Alliance' and 'MALE-ORC' or 'MALE-HUMAN')
+	local d = p == 'class' and EF_L_WARRIOR or p == 'rank' and 6 or p == 'portrait' and ( playerFaction == EF_L_ALLIANCE2 and 'MALE-ORC' or 'MALE-HUMAN')
 	for i = 1, unitLimit do
 		units[i].cc.icon:SetTexture(GET_DEFAULT_ICON(p, d))
 	end
@@ -314,7 +313,7 @@ local function arrangeUnits()
 	local unitGroup, layout = ENEMYFRAMESPLAYERDATA['groupsize'], ENEMYFRAMESPLAYERDATA['layout']
 	
 	-- adjust title
-	if playerFaction == 'Alliance' then 
+	if playerFaction == EF_L_ALLIANCE2 then 
 		enemyFrame.Title:SetText(layout == 'vertical' and EF_L_H or EF_L_HORDE2)
 	else 
 		enemyFrame.Title:SetText(layout == 'vertical' and EF_L_A or EF_L_ALLIANCE2)
@@ -361,11 +360,11 @@ local function SetupFrames(maxU)
 	-- get player's faction
 	playerFaction = UnitFactionGroup('player')
 	
-	if playerFaction == 'Alliance' then 
-		enemyFactionColor = RGB_FACTION_COLORS['Horde']
+	if playerFaction == EF_L_ALLIANCE2 then 
+		enemyFactionColor = RGB_FACTION_COLORS[EF_L_HORDE2]
 		enemyFrame.Title:SetText(EF_L_HORDE2)
 	else 
-		enemyFactionColor = RGB_FACTION_COLORS['Alliance']
+		enemyFactionColor = RGB_FACTION_COLORS[EF_L_ALLIANCE2]
 		enemyFrame.Title:SetText(EF_L_ALLIANCE2)		
 	end
 	
@@ -425,7 +424,8 @@ local function SetupFrames(maxU)
 	end
 	
 	-- class/rank/race buttons
-	enemyFrame.bottom.classButton:SetScript('OnClick', function()			
+	enemyFrame.bottom.classButton:SetScript('OnClick', function()
+			
 			ENEMYFRAMESPLAYERDATA['defaultIcon'] = 'class'
 			
 			enemyFrame.bottom.classIcon:SetBlendMode('BLEND')
@@ -451,11 +451,12 @@ local function SetupFrames(maxU)
 			if not enabled then setccIcon('rank')	end
 		end)
 		
-	local r = playerFaction == 'Alliance' and 'MALE-ORC' or 'MALE-HUMAN'
+	local r = playerFaction == EF_L_ALLIANCE2 and 'MALE-ORC' or 'MALE-HUMAN'
 	enemyFrame.bottom.raceIcon:SetTexture(GET_DEFAULT_ICON('portrait', r))
 	enemyFrame.bottom.raceButton:SetScript('OnClick', function()
 			ENEMYFRAMESPLAYERDATA['defaultIcon'] = 'portrait'
 
+						
 			enemyFrame.bottom.classIcon:SetBlendMode('ADD')
 			enemyFrame.bottom.classIcon:SetVertexColor(.3, .3, .3)
 			enemyFrame.bottom.rankIcon:SetBlendMode('ADD')
@@ -496,8 +497,7 @@ local function drawUnits(list)
 	
 	for k,v in pairs(playerList) do
 		-- set for redrawn
-		
-		local colour = EF_L_RAID_CLASS_COLORS[v['class']]
+		local colour = RAID_CLASS_COLORS[v['class']]
 		local powerColor = RGB_POWER_COLORS[v['powerType']]
 		
 		-- hightlight nearby unit
@@ -636,7 +636,7 @@ local function updateUnits()
 			local charLim = ENEMYFRAMESPLAYERDATA['castTimers'] and 14 or 15
 			units[i].castbar.text:SetText(string.sub(units[i].castbar.text:GetText(), 1, charLim))
 			
-			units[i].castbar.timer:SetText(getTimerLeft(castInfo.timeEnd))--..'s')
+			units[i].castbar.timer:SetText(getTimerLeft(castInfo.timeEnd))--..EF_L_S)
 			
 			units[i].castbar.icon:SetTexture(castInfo.icon)
 			units[i].castbar:Show()		
@@ -706,7 +706,7 @@ end
 function ENEMYFRAMESAnnounceRT(rt, p)
 	raidTargets = rt
 	enemyFrame.raidTargetFrame.text:SetText(p['name'])
-	enemyFrame.raidTargetFrame.text:SetTextColor(EF_L_RAID_CLASS_COLORS[p['class']].r, EF_L_RAID_CLASS_COLORS[p['class']].g, EF_L_RAID_CLASS_COLORS[p['class']].b)
+	enemyFrame.raidTargetFrame.text:SetTextColor(RAID_CLASS_COLORS[p['class']].r, RAID_CLASS_COLORS[p['class']].g, RAID_CLASS_COLORS[p['class']].b)
 	
 	local tCoords = RAID_TARGET_TCOORDS[raidTargets[p['name']]['icon']]
 	enemyFrame.raidTargetFrame.iconl:SetTexCoord(tCoords[1], tCoords[2], tCoords[3], tCoords[4])

@@ -88,7 +88,7 @@ EF_L_SPELLTERSE_SELF='Вы применяете заклинание \"(.+)\"';
 --%s применяет заклинание \"%s\".
 EF_L_SPELLTERSE_OTHER='(.+) применяет заклинание \"(.+)\"';
 --%s начинает использовать \"%s\".
-EF_L_SPELLCASTOTHERSTART='(.+) начинает использовать \"(.+)\"';
+EF_L_SPELLCASTOTHERSTART='(.+) начинает использовать (.+).';
 --???
 EF_L_CRAFT='(.+) -> (.+).';
 --%s выполняет действие \"%s\".
@@ -624,8 +624,8 @@ EF_L_SETTINGSMENU='Меню настроек';
 EF_L_PLAYER='Игрок';
 EF_L_H='О ';
 EF_L_A='А ';
-EF_L_HORDE2='Орда';
-EF_L_ALLIANCE2='Альянс';
+--EF_L_HORDE2='Орда';
+--EF_L_ALLIANCE2='Альянс';
 EF_L_S2='Н';
 --wsghandler.lua
 EF_L_THEWASPICKEDUPBY='(.+) $gподобрал:подобрала; (.+) (.+)!';
@@ -688,9 +688,62 @@ EF_L_WARSONG='Ущелье Песни Войны';
 EF_L_ARATHI='Низина Арати';
 EF_L_ALTERAC='Альтеракская долина';
 
-EF_L_UNDEAD='Нежить';
-EF_L_NIGHTELF='Ночной эльф';
+-- EF_L_UNDEAD='Нежить';
+-- EF_L_NIGHTELF='Ночной эльф';
 --EF_L_ENERGY='энергия';
 --EF_L_RAGE='ярость';
 --EF_L_MANA='мана';
+--EF_L_FOCUS='фокус';
+function changeEngClassName(c)
+	local class
+			if c=='Воин' then
+				class='WARRIOR';
+			elseif c=='Разбойник' then
+				class='ROGUE';
+			elseif c=='Чернокнижник' then
+				class='WARLOCK';
+			elseif c=='Шаман' then
+				class='SHAMAN';
+			elseif c=='Жрец' then
+				class='PRIEST';
+			elseif c=='Паладин' then
+				class='PALADIN';
+			elseif c=='Маг' then
+				class='MAGE';
+			elseif c=='Охотник' then
+				class='HUNTER';
+			elseif c=='Друид' then
+				class='DRUID';
+			else
+				class=string.upper(c);
+			end
+	return class
+end
+function changeEngRaceName(r)
+	local race=r;
+			if r=='Нежить' then
+				race='UNDEAD';
+			elseif r=='Орк' then
+				race='ORC';
+			elseif r=='Таурен' then
+				race='TAUREN';
+			elseif r=='Тролль' then
+				race='TROLL';
+			elseif r=='Человек' then
+				race='HUMAN';
+			elseif r=='Дворф' then
+				race='DWARF';
+			elseif r=='Гном' then
+				race='GNOME';
+			elseif r=='Ночной эльф' then
+				race='NIGHTELF';
+			elseif r=='Night Elf' then
+				race='NIGHTELF';
+			elseif r=='SCOURGE' then
+				race='UNDEAD';
+			else
+				race=string.upper(r);
+			end
+	return race
+end
 end
