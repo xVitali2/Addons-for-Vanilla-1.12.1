@@ -479,18 +479,10 @@ function SmartHeal:SpellMaxRank(spellname,ignoreMana)
 			elseif (sName==spells[r]) then
 				local _,_,rankNumber=string.find(sRank,"^"..SH_RANK.." (%d+)")
 				if (rankNumber and rankNumber~="") then
-				
-					--	DEFAULT_CHAT_FRAME:AddMessage(sRank.." sRank")
-						
 					rankNumber=tonumber(rankNumber)
 					SmartHealSpellTooltip:SetSpell(i,BOOKTYPE_SPELL)
 					manatooltip = getglobal("SmartHealSpellTooltipTextLeft2"):GetText()
 					local _,_,mana=string.find(manatooltip,SH_MANA);
-					
-					--if manatooltip then
-						--DEFAULT_CHAT_FRAME:AddMessage(manatooltip.." manatooltip")
-				--	end
-					
 					if ((mana and UnitMana('player')>tonumber(mana)) or not mana or ignoreMana) then
 						maxRank=max(maxRank,rankNumber+(r-1))
 					end

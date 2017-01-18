@@ -204,83 +204,82 @@ end
 -- RUSSIAN VERSION by CFM
 if ( GetLocale() == "ruRU" ) then
 SH_RANK="Уровень";
--- SH_SPELL_NOT_AVAILABLE="Умное Лечение недоступно с этой способностью!";
--- SH_OVERHEAL="Сверхлечение";
--- SH_SET_TO="установлен в";
--- SH_IS_NOT_ACTIVE_CLASS="Умное Лечение неактивно для вашего класса.";
--- SH_IS_ACTIVE="Умное Лечение активно."
--- SH_USAGE_SMARTHEAL="Использовать: /smartheal [настройка] [значение]";
+SH_SPELL_NOT_AVAILABLE="SmartHeal недоступен с этой способностью!";
+SH_OVERHEAL="Сверхлечение";
+SH_SET_TO="установлен в";
+SH_IS_NOT_ACTIVE_CLASS="SmartHeal неактивен для вашего класса.";
+SH_IS_ACTIVE="SmartHeal активен."
+SH_USAGE_SMARTHEAL="Использовать: /smartheal [настройка] [значение]";
 SH_BEGINS_TO_CAST="(.+) начинает использовать \"(.+)\"";
--- SH_ALERT_HEALER_MSG="%s использует %s на вашу цель %s!!!";
-SH_MANA="Мана: ^(%d+)";
--- SH_SMARTHEAL_OPTION="Умное Лечение - настройка";
--- SH_EXCESSIVE_HEALING_ALERT_MSG="Избыточное исцеление на"
--- SH_DISABLED="Выключен"
-
+SH_ALERT_HEALER_MSG="%s использует %s на вашу цель %s!!!";
+SH_MANA="Мана: (%d+)";
+SH_SMARTHEAL_OPTION="SmartHeal - настройка";
+SH_EXCESSIVE_HEALING_ALERT_MSG="Избыточное исцеление на"
+SH_DISABLED="Выключен"
 -- Bindings.xml
--- BINDING_HEADER_SMARTHEAL_AUTO_TARGET	= "Умное Лечение - Автоцель";
--- BINDING_NAME_SH_AUTOTARGET_HOTKEY1	= "Автоцель Горячая клавиша 1";
--- BINDING_NAME_SH_AUTOTARGET_HOTKEY2	= "Автоцель Горячая клавиша 2";
--- BINDING_NAME_SH_AUTOTARGET_HOTKEY3	= "Автоцель Горячая клавиша 3";
+BINDING_HEADER_SMARTHEAL_AUTO_TARGET	= "SmartHeal - Автоцель";
+BINDING_NAME_SH_AUTOTARGET_HOTKEY1	= "Автоцель Горячая клавиша 1";
+BINDING_NAME_SH_AUTOTARGET_HOTKEY2	= "Автоцель Горячая клавиша 2";
+BINDING_NAME_SH_AUTOTARGET_HOTKEY3	= "Автоцель Горячая клавиша 3";
 
 -- ClickHeal.lua
---SH_UNASSIGNED="Неназначенный"
+SH_UNASSIGNED="Неназначенный"
 
 -- SmartHeal_Options.xml
--- SH_CLOSE="закрыть"
--- SH_DEFAULT="по умолчанию"
--- SH_GENEARL="Основные"    
--- SH_CLICKHEAL="Лечение кликом"
--- SH_AUTOTARGET="Автоцель"
--- SH_HOTLIST="Горячий список"
+SH_CLOSE="закрыть"
+SH_DEFAULT="по умолчанию"
+SH_GENEARL="Основные"    
+SH_CLICKHEAL="Лечение кликом"
+SH_AUTOTARGET="Автоцель"
+SH_HOTLIST="Горячий список"
 
 -- SmartHeal_Opt_General.xml
--- SH_VERSIONLABEL="Версия:"
--- SH_HEALING_BONUS="Бонус лечения:"
--- SH_ENABLE_SMARTHEAL="Вкл. умное лечение"
--- SH_SHOW_MINIMAP_BUTTON="Показывать кнопку на миникарте"
--- SH_OVERHEAL_LABEL="%  Сверхлечения, например 110=сверхлечение, 90=не полное лечение"
--- SH_OVERRIDE_HOTKEY="Переопределение Горячую клавишу"
--- SH_ALTKEY_TO_SELFCAST="Alt для произнесения на себя"
--- SH_AUTO_SELFCAST="Автоматически произносить на себя"
--- SH_ALERT_COMPETING_HEALS="Тревога конкурирующего лечения"
--- SH_ALERT_EXCESSIVE_HEALS="Тревога избыточного лечения"
--- SH_EXCESSHEALALERT_LABEL="% Тревого избыточного лечения по отношению к здоровью"
--- SH_OVERDRIVE_MODE="Overdrive режим (Принуд. высший уровень)"
--- SH_HEALSTACK_CTRA="HealStack (CT_RA аддон)"
--- SH_RCLICK_HOTKEY_TO_SELFCAST="Нажатие правой клавишей - произнесение на себя"
+SH_VERSIONLABEL="Версия:"
+SH_HEALING_BONUS="Бонус лечения:"
+SH_ENABLE_SMARTHEAL="Вкл. SmartHeal"
+SH_SHOW_MINIMAP_BUTTON="Показывать кнопку на миникарте"
+SH_OVERHEAL_LABEL="%  Сверхлечения, например 110=сверхлечение, 90=не полное лечение"
+SH_OVERRIDE_HOTKEY="Переопределение Горячую клавишу"
+SH_ALTKEY_TO_SELFCAST="Alt для произнесения на себя"
+SH_AUTO_SELFCAST="Автоматически произносить на себя"
+SH_ALERT_COMPETING_HEALS="Тревога конкурирующего лечения"
+SH_ALERT_EXCESSIVE_HEALS="Тревога избыточного лечения"
+SH_EXCESSHEALALERT_LABEL="% Тревого избыточного лечения по отношению к здоровью"
+SH_OVERDRIVE_MODE="Overdrive режим (Принуд. высший уровень)"
+SH_HEALSTACK_CTRA="HealStack (CT_RA аддон)"
+SH_RCLICK_HOTKEY_TO_SELFCAST="Нажатие правой клавишей - произнесение на себя"
 
 -- SmartHeal_Opt_ClickHeal.xml
--- SH_CHARACTER_CLASS="Класс персонажа:"
--- SH_ENABLE_CLICKHEAL="Включить лечение кликом"
--- SH_DISABLED_BY_OVERDRIVE_MODE="Выключено из-за Overdrive режима"
+SH_CHARACTER_CLASS="Класс персонажа:"
+SH_ENABLE_CLICKHEAL="Включить лечение кликом"
+SH_DISABLED_BY_OVERDRIVE_MODE="Выключено из-за Overdrive режима"
 
 --SmartHeal_Opt_HotList.xml
--- SH_ENABLE_HOTLIST="Включить Горячий список"
--- SH_PRIORITY="Приоритет"
--- SH_PCT_HP_RATIO="% здор."
--- SH_AUTOTARGET_HOTKEY1="Автоцель Горячая клавиша 1"
--- SH_AUTOTARGET_HOTKEY2="Автоцель Горячая клавиша 2"
--- SH_AUTOTARGET_HOTKEY3="Автоцель Горячая клавиша 3"
--- SH_SET_YOUR_KEYBINDINGS_LABEL="Подсказка: установить свои клавишы [Настройки]->[Назначение клавиш]"
--- SH_WILL_CAST_FIRST_ON_HOTLIST="Целевое заклинание будет вверху Горячего списка"
--- SH_BG_COLOR="Цвет фона"
--- SH_ENABLE_PRIORITY="Включить приоритет"
--- SH_TOGGLE_PRIORITY="Сменить приоритет"
--- SH_PET="Питомец"
--- SH_RESET_HEALSTACK="Сбросить HealStack(CT_RA аддон)"
--- SH_HIDE_HP_GREATER_THAN_100="Скрыть здоровье персонажа>100%"
+SH_ENABLE_HOTLIST="Включить Горячий список"
+SH_PRIORITY="Приоритет"
+SH_PCT_HP_RATIO="% здор."
+SH_AUTOTARGET_HOTKEY1="Автоцель Горячая клавиша 1"
+SH_AUTOTARGET_HOTKEY2="Автоцель Горячая клавиша 2"
+SH_AUTOTARGET_HOTKEY3="Автоцель Горячая клавиша 3"
+SH_SET_YOUR_KEYBINDINGS_LABEL="Подсказка: установить свои клавишы [Настройки]->[Назначение клавиш]"
+SH_WILL_CAST_FIRST_ON_HOTLIST="Целевое заклинание будет вверху Горячего списка"
+SH_BG_COLOR="Цвет фона"
+SH_ENABLE_PRIORITY="Включить приоритет"
+SH_TOGGLE_PRIORITY="Сменить приоритет"
+SH_PET="Питомец"
+SH_RESET_HEALSTACK="Сбросить HealStack(CT_RA аддон)"
+SH_HIDE_HP_GREATER_THAN_100="Скрыть здоровье персонажа>100%"
 
 -- GroupIgnoreList.xml
--- SH_GROUP_IGNORE_LIST="Список игнорирования группы"
--- SH_CURRENT_TARGET_GROUP="Текущая цель группы:"
--- SH_GROUP="Группа"
--- SH_IGNORED_GROUPS="Игнорирование группы:"
+SH_GROUP_IGNORE_LIST="Список игнорирования группы"
+SH_CURRENT_TARGET_GROUP="Текущая цель группы:"
+SH_GROUP="Группа"
+SH_IGNORED_GROUPS="Игнорирование группы:"
 
 -- NamedTargetList.xml
--- SH_CURRENT_TARGET_NAME="Текущее имя цели:"
--- SH_PRIORITY_NAMES="Приоритет имен:"
--- SH_NAMED_TARGET_LIST="Названный список цели"
+SH_CURRENT_TARGET_NAME="Текущее имя цели:"
+SH_PRIORITY_NAMES="Приоритет имен:"
+SH_NAMED_TARGET_LIST="Названный список цели"
 
 SH_UNITCLASS={	["DRUID"]="Друид", ["HUNTER"]="Охотник", ["MAGE"]="Маг", ["PALADIN"]="Паладин", ["PRIEST"]="Жрец",
                	["ROGUE"]="Разбойник", ["SHAMAN"]="Шаман", ["WARLOCK"]="Чернокнижник", ["WARRIOR"]="Воин",['PLAYER']="Игрок",["PARTY"]="Группа"}
