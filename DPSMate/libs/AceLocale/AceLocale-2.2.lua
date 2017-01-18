@@ -388,7 +388,7 @@ function AceLocale.prototype:Debug()
 		return
 	end
 	local words = {}
-	local locales = {"enUS", "deDE", "frFR", "koKR", "zhCN", "zhTW", "esES"}
+	local locales = {"enUS", "ruRU", "deDE", "frFR", "koKR", "zhCN", "zhTW", "esES"}
 	local localizations = {}
 	DEFAULT_CHAT_FRAME:AddMessage("--- AceLocale Debug ---")
 	for _,locale in ipairs(locales) do
