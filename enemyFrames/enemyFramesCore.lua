@@ -30,8 +30,7 @@ local function fillPlayerList()
 	for i=1, GetNumBattlefieldScores() do
 		local name, killingBlows, honorableKills, deaths, honorGained, faction, rank, race, class = GetBattlefieldScore(i)
 		if faction == f then
-			race = race == EF_L_UNDEAD or race == EF_L_NIGHTELF or race
-			l[name] = {['name'] = name, ['class'] = changeEngClassName(class), ['rank'] = rank-4, ['race'] = string.upper(race), ['sex'] = 'MALE'} -- rank starts at -4 apparently
+			l[name] = {['name'] = name, ['class'] = changeEngClassName(class), ['rank'] = rank-4, ['race'] = changeEngRaceName(race), ['sex'] = 'MALE'} -- rank starts at -4 apparently
 			l[name]['powerType']  =  l[name]['class'] == EF_L_ROGUE and EF_L_ENERGY or l[name]['class'] == EF_L_WARRIOR and EF_L_RAGE or EF_L_MANA
 			gotData = true
 		end
