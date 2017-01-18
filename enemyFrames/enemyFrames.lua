@@ -7,14 +7,14 @@ local rtMenuInterval, rtMenuEndtime = 5, 0
 local refreshInterval, nextRefresh = 1/60, 0
 -- LISTS
 local playerList = {}
-local unitLimit = 15
+local unitLimit = 40
 local units = {}
 local raidTargets = {}
 local raidIcons, raidIconsN = { [1] = 'skull', [2] = 'moon', [3] = 'square', [4] = 'triangle',  
 								[5] = 'star', [6] = 'diamond', [7] = 'cross', [8] = 'circle'}, 8
 
 local enabled = false
-local maxUnits = 15
+local maxUnits = 40
 
 MOUSEOVERUNINAME = nil
 ---
@@ -114,8 +114,10 @@ local 	enemyFrame = CreateFrame('Frame', 'enemyFrameDisplay', UIParent)
 			GameTooltip:Hide()
 		end)
 		enemyFrame.bottom.settings:SetScript('OnClick', function()
-												if enabled then setupSettings() end
-												end)
+														if enabled then setupSettings() end 
+														end)
+			
+		
 		
 		--enemyFrame.bottom:Hide()
 		-- class
@@ -300,6 +302,7 @@ local function optionals()
 	end
 end
 local function setccIcon(p)
+	DEFAULT_CHAT_FRAME:AddMessage(p.." setccIcon(p)")
 	local d = p == 'class' and 'WARRIOR' or p == 'rank' and 6 or p == 'portrait' and ( playerFaction == 'Alliance' and 'MALE-ORC' or 'MALE-HUMAN')
 	for i = 1, unitLimit do
 		units[i].cc.icon:SetTexture(GET_DEFAULT_ICON(p, d))
@@ -422,8 +425,7 @@ local function SetupFrames(maxU)
 	end
 	
 	-- class/rank/race buttons
-	enemyFrame.bottom.classButton:SetScript('OnClick', function()
-			
+	enemyFrame.bottom.classButton:SetScript('OnClick', function()			
 			ENEMYFRAMESPLAYERDATA['defaultIcon'] = 'class'
 			
 			enemyFrame.bottom.classIcon:SetBlendMode('BLEND')
@@ -454,7 +456,6 @@ local function SetupFrames(maxU)
 	enemyFrame.bottom.raceButton:SetScript('OnClick', function()
 			ENEMYFRAMESPLAYERDATA['defaultIcon'] = 'portrait'
 
-						
 			enemyFrame.bottom.classIcon:SetBlendMode('ADD')
 			enemyFrame.bottom.classIcon:SetVertexColor(.3, .3, .3)
 			enemyFrame.bottom.rankIcon:SetBlendMode('ADD')

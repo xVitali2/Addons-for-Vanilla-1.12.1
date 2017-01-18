@@ -1,7 +1,7 @@
 local playerFaction
 local bgs = {[EF_L_WARSONG] = 10, 
 			 [EF_L_ARATHI] = 15, 
-			 --[EF_L_ALTERAC] = 40
+			 [EF_L_ALTERAC] = 40
 			 }
 -- TIMERS
 local playerListInterval, playerListRefresh, enemyNearbyInterval, enemyNearbyRefresh = 30, 0, .3, 0
@@ -15,7 +15,7 @@ local playerList = {}
 local raidTargets = {}
 local prioMembers = {}
 local nearbyList = {}
-local maxUnitsDisplayed = 15
+local maxUnitsDisplayed = 40
 -- DUMMY FRAME
 local f = CreateFrame('Frame', 'enemyFramesCore', UIParent)
 --

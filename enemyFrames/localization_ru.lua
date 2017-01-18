@@ -620,13 +620,13 @@ EF_L_S='c';
 EF_L_ALLIANCE='альянс';
 EF_L_HORDE='орда';
 --enemyFrames.lua
-EF_L_SETTINGSMENU='меню настроек';
+EF_L_SETTINGSMENU='Меню настроек';
 EF_L_PLAYER='Игрок';
 EF_L_H='О ';
 EF_L_A='А ';
 EF_L_HORDE2='Орда';
 EF_L_ALLIANCE2='Альянс';
-EF_L_S2='С';
+EF_L_S2='Н';
 --wsghandler.lua
 EF_L_THEWASPICKEDUPBY='(.+) $gподобрал:подобрала; (.+) (.+)!';
 EF_L_THEWASDROPPEDBY='(.+) $gпотерял:потеряла (.+) (.+)!';
