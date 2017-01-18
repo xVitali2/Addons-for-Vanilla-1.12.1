@@ -4,7 +4,7 @@
 if ( GetLocale() == "ruRU" ) then
 CHATBAR_SAY_ABRV			= "С";
 CHATBAR_YELL_ABRV			= "К";
-CHATBAR_PARTY_ABRV			= "Г";
+CHATBAR_PARTY_ABRV			= "Гр";
 CHATBAR_RAID_ABRV			= "Р";
 CHATBAR_RAID_WARNING_ABRV	= "А";
 CHATBAR_BATTLEGROUND_ABRV	= "П";
