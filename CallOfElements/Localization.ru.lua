@@ -1,7 +1,7 @@
 
 --[[ ----------------------------------------------------------------
 
-		       Version : Russian ( by Maus )
+		       Version : Russian ( by Maus ) CFM fix
 
 -------------------------------------------------------------------]]
 
@@ -10,7 +10,7 @@ if( GetLocale() == "ruRU" ) then
 -- Errors
 -- -------
 COESTR_NOTASHAMAN = "Вы не шаман. Выгружаю Зов Элементов";
-COESTR_NOTOTEM = "Тотемы пока не доступны";
+COESTR_NOTOTEM = "Тотемы пока недоступны";
 COESTR_UI_NOTASSIGNED = "<Текст не задан>";
 COESTR_INVALIDELEMENT = "Неверный элемент задан в тотеме: ";
 
@@ -44,7 +44,8 @@ COESTR_MINUTEDURATION = "(%d%[%.,]%d%d) мин";
 COESTR_MINUTEDURATION_INT = "(%d) мин";
 COESTR_SECDURATION = "(%d%d?) сек";
 COESTR_CASTBYNAME = "%(Уровень (%d)%)";
-COESTR_TOTEMDAMAGE = { ".+ [crh]+ударил по (Тотем .+ ) ?%u* на (%d+).*" };
+--COESTR_TOTEMDAMAGE = { ".+ [crh]+its (.+ Totem) ?%u* for (%d+).*" };
+COESTR_TOTEMDAMAGE = { ".+ [crн]+аносит (Тотем .+) ?%u* (%d+) ед. урона" };
 COESTR_TOTEMHEALTH = { "(%d*) здоровья" };
 COESTR_SHOCKSPELL = "(%a* шок)";
 COESTR_HEALINGWAVE = "Волна исцеления";
