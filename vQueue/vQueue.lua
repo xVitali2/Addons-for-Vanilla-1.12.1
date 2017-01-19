@@ -39,6 +39,8 @@ local idleMessage = 0
 local tankSelected = false
 local healerSelected = false
 local damageSelected = false
+local _, class2 = UnitClass'player'
+
 
 local vQueueColors = {
 }
@@ -168,7 +170,9 @@ function vQueue:AddMessage(frame, text, r, g, b, id)
 		blockMsg = true
 	end
 	if not blockMsg then
-		 self.hooks[frame].AddMessage(frame, string.format("%s", text), r, g, b, id)
+		 self.hooks[frame].AddMessage(frame, tostring(text), r, g, b, id)
+	--self.hooks[frame].AddMessage(frame, string.format("%s", text), r, g, b, id)
+
 	end
 end
 
@@ -2212,7 +2216,7 @@ function vQueue_addToGroup(category, groupinfo)
 			end
 			if this:GetText() == "reply" then
 				vQueueFrame.replyFrameTo:SetText(name:GetText())
-				vQueueFrame.replyFrameMsg:SetText("(vQueue) Lvl " .. tostring(UnitLevel("player")) .. " " .. selectedRole .. " " .. tostring(UnitClass("player")))
+				vQueueFrame.replyFrameMsg:SetText("(vQueue) Lvl " .. tostring(UnitLevel("player")) .. " " .. selectedRole .. " " .. tostring(class2))
 				vQueueFrame.replyFrame:Show()
 			end
 		end)
