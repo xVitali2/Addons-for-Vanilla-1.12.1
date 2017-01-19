@@ -74,6 +74,7 @@
 		-- disable incoming spells for rogues
 		local _, c = UnitClass'player'
 		c=changeEngClassName(c);
+
 		if c == EF_L_ROGUE then 	ENEMYFRAMESPLAYERDATA['incomingSpells'] = false 
 								container.bgList[1]:Disable()  
 								_G[container.bgList[1]:GetName()..'Text']:SetTextColor(.5, .5, .5, .9)								

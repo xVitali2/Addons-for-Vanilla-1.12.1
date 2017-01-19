@@ -1,16 +1,6 @@
 if( GetLocale() == "ruRU" ) then
 --by CFM
 --wsgui.lua
-EF_L_RAID_CLASS_COLORS = {
-			["Охотник"] = { r = 0.67, g = 0.83, b = 0.45 },
-			["Чернокнижник"] = { r = 0.58, g = 0.51, b = 0.79 },
-			["Жрец"] = { r = 1.0, g = 1.0, b = 1.0 },
-			["Паладин"] = { r = 0.96, g = 0.55, b = 0.73 },
-			["Маг"] = { r = 0.41, g = 0.8, b = 0.94 },
-			["Разбойник"] = { r = 1.0, g = 0.96, b = 0.41 },
-			["Друид"] = { r = 1.0, g = 0.49, b = 0.04 },
-			["Шаман"] = { r = 0.96, g = 0.55, b = 0.73 },
-			["Воин"] = { r = 0.78, g = 0.61, b = 0.43 }};
 EF_L_GETREADYTOCAP = ' Будьте готовы вернуть!';
 EF_L_EFCHASLESSTHAN = 'ВПФ имеет менее чем ';
 EF_L_PERCHEALTH = '% здоровья!';
@@ -88,8 +78,7 @@ EF_L_SPELLTERSE_SELF='Вы применяете заклинание \"(.+)\"';
 --%s применяет заклинание \"%s\".
 EF_L_SPELLTERSE_OTHER='(.+) применяет заклинание \"(.+)\"';
 --%s начинает использовать \"%s\".
-EF_L_SPELLCASTOTHERSTART='(.+) начинает использовать (.+).';
---???
+EF_L_SPELLCASTOTHERSTART='(.+) начинает использовать \"(.+)\".';
 EF_L_CRAFT='(.+) -> (.+).';
 --%s выполняет действие \"%s\".
 EF_L_SPELLPERFORMGOOTHER2='(.+) выполняет действие \"(.+)\"';
@@ -459,7 +448,6 @@ EF_L_BANSHEEWAIL='Вой банши';
 EF_L_VENOMSPIT='Отравляющий плевок';
 EF_L_ESCAPEARTIST='Мастер побега';
 EF_L_HEARTHSTONE='Камень возвращения';
---!!!!!!!!!!!!!!!!!!!!!
 EF_L_MAGICDUST='Волшебная пыль';
 EF_L_ROUGHCOPPERBOMB='Грубая медная бомба';
 EF_L_LARGECOPPERBOMB='Большая медная бомба';
@@ -624,13 +612,11 @@ EF_L_SETTINGSMENU='Меню настроек';
 EF_L_PLAYER='Игрок';
 EF_L_H='О ';
 EF_L_A='А ';
---EF_L_HORDE2='Орда';
---EF_L_ALLIANCE2='Альянс';
 EF_L_S2='Н';
 --wsghandler.lua
-EF_L_THEWASPICKEDUPBY='(.+) $gподобрал:подобрала; (.+) (.+)!';
-EF_L_THEWASDROPPEDBY='(.+) $gпотерял:потеряла (.+) (.+)!';
-EF_L_CAPTUREDTHE='захватили (.+) (.+)!';
+--EF_L_THEWASPICKEDUPBY='(.+) $gподобрал:подобрала; (.+) (.+)!';
+--EF_L_THEWASDROPPEDBY='(.+) $gпотерял:потеряла (.+) (.+)!';
+--EF_L_CAPTUREDTHE='захватили (.+) (.+)!';
 --paladin.lua
 EF_L_SEALOF='(.+) (.+) \"Печать (.+)\".';
 EF_L_GAIN='получаете';
@@ -683,19 +669,13 @@ EF_L_OPTIONAL='Опциональные';
 EF_L_EFLOADED='[enemyFrames] загружен. |cffffffff/efs|cff';
 EF_L_FORMENUSETTINGS=' для меню настроек.';
 EF_L_ENEMYFRAMESSETTINGS='Настройки enemyFrames';
-
+--enemyFramesCore.lua
 EF_L_WARSONG='Ущелье Песни Войны';
 EF_L_ARATHI='Низина Арати';
 EF_L_ALTERAC='Альтеракская долина';
 
--- EF_L_UNDEAD='Нежить';
--- EF_L_NIGHTELF='Ночной эльф';
---EF_L_ENERGY='энергия';
---EF_L_RAGE='ярость';
---EF_L_MANA='мана';
---EF_L_FOCUS='фокус';
 function changeEngClassName(c)
-	local class
+	local class=c;
 			if c=='Воин' then
 				class='WARRIOR';
 			elseif c=='Разбойник' then
@@ -714,8 +694,6 @@ function changeEngClassName(c)
 				class='HUNTER';
 			elseif c=='Друид' then
 				class='DRUID';
-			else
-				class=string.upper(c);
 			end
 	return class
 end
@@ -741,8 +719,6 @@ function changeEngRaceName(r)
 				race='NIGHTELF';
 			elseif r=='SCOURGE' then
 				race='UNDEAD';
-			else
-				race=string.upper(r);
 			end
 	return race
 end

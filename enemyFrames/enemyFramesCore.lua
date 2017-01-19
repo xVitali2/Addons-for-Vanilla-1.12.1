@@ -24,7 +24,6 @@ local function fillPlayerList()
 	local f
 	local gotData = false
 	local l = {}
-	
 	if UnitFactionGroup('player') == EF_L_ALLIANCE2 then f = 0 else f = 1 end
 	-- get opposing faction players
 	for i=1, GetNumBattlefieldScores() do
@@ -97,24 +96,24 @@ end
 local function verifyUnitInfo(unit)
 	if UnitExists(unit) and UnitIsPlayer(unit) and UnitFactionGroup(unit) ~= playerFaction then --UnitIsEnemy(unit, 'player') then
 		local u = {}
-		u['name']		= UnitName(unit)
+		u['name']			= UnitName(unit)
 		if not insideBG then
-			local _, c = UnitClass(unit)
+			local _, c 		= UnitClass(unit)
 			u['class']		= changeEngClassName(c)
 			u['rank']		= UnitPVPRank(unit) - 4
-			local r = UnitRace(unit)
+			local r 		= UnitRace(unit)
 			if r then
 				u['race']	= changeEngRaceName(r)
 			end
 		end
-		u['health'] 	= UnitHealth(unit)
-		u['maxhealth'] 	= UnitHealthMax(unit)
-		u['mana'] 		= UnitMana(unit)
-		u['maxmana']	= UnitManaMax(unit)
-		local power = UnitPowerType(unit)
-		u['powerType']  =  power == 3 and EF_L_ENERGY or power == 1 and EF_L_RAGE or EF_L_MANA
-		local s = UnitSex(unit)
-		u['sex']		= (s == 1 or s == 2) and 'MALE' or s == 3 and 'FEMALE' 
+		u['health'] 		= UnitHealth(unit)
+		u['maxhealth'] 		= UnitHealthMax(unit)
+		u['mana'] 			= UnitMana(unit)
+		u['maxmana']		= UnitManaMax(unit)
+		local power 		= UnitPowerType(unit)
+		u['powerType'] 		= power == 3 and EF_L_ENERGY or power == 1 and EF_L_RAGE or EF_L_MANA
+		local s 			= UnitSex(unit)
+		u['sex']			= (s == 1 or s == 2) and 'MALE' or s == 3 and 'FEMALE' 
 
 		addNearbyPlayers({u})
 		-- update fc health text
@@ -382,7 +381,6 @@ end
 local function initializeValues()
 	insideBG = false
 	playerFaction = UnitFactionGroup('player')
-		
 	playerList = {}
 	raidTargets = {}
 	prioMembers = {}

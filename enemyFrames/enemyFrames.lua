@@ -1,4 +1,3 @@
-
 local playerFaction
 local insideBG = false
 -- TIMERS
@@ -114,11 +113,9 @@ local 	enemyFrame = CreateFrame('Frame', 'enemyFrameDisplay', UIParent)
 			GameTooltip:Hide()
 		end)
 		enemyFrame.bottom.settings:SetScript('OnClick', function()
-														if enabled then setupSettings() end 
-														end)
-			
-		
-		
+			setupSettings() 
+		end)
+
 		--enemyFrame.bottom:Hide()
 		-- class
 		enemyFrame.bottom.classButton = CreateFrame('Button', nil, enemyFrame.bottom)
