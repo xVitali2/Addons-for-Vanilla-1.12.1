@@ -315,7 +315,7 @@ function TradeCooldownFu:OnTooltipUpdate()
       	v2 = TRADECOOLDOWNFU_READY_COLOR .. TRADECOOLDOWNFU_READY;
       else
       	local timeTable = self:RemainingTime(remaining);
-        local timeString = string.format("%dd %dh %dm %ds", timeTable.d, timeTable.h, timeTable.m, timeTable.s);
+        local timeString = string.format(TRADECOOLDOWNFU_FORMATFULL, timeTable.d, timeTable.h, timeTable.m, timeTable.s);
         if ( (timeTable.d == 0) and (timeTable.h == 0) ) then
         	v2 = TRADECOOLDOWNFU_ALMOSTREADY_COLOR .. timeString;
         else
