@@ -141,7 +141,6 @@ function getItem(itemID)
 	end
 
 	local _, _, _, iLevel, sType, _, iCount, _, sTexture = GetItemInfo(itemID)
-
 	local baseSplit = split(baseData, ":")
 	local buy = tonumber(baseSplit[1])
 	local sell = tonumber(baseSplit[2])
@@ -154,7 +153,7 @@ function getItem(itemID)
 	local limited = baseSplit[9]
 	local merchantlist = baseSplit[10]
 	local cat = CLASS_TO_CATEGORY_MAP[class]
-
+	
 	local dataItem = {
 		['buy'] = buy,
 		['sell'] = sell,
@@ -360,6 +359,7 @@ function tooltipHandler(funcVars, retVal, frame, name, link, quality, count, pri
 	local stacks = 1
 
 	local itemID, randomProp, enchant, uniqID, lame = EnhTooltip.BreakLink(link)
+	
 	if (itemID and itemID > 0) and (Informant) then
 		itemInfo = getItem(itemID)
 	end

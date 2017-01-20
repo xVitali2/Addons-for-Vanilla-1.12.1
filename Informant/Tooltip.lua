@@ -1120,7 +1120,6 @@ function breakLink(link)
 	return tonumber(itemID or 0), tonumber(randomProp or 0), tonumber(enchant or 0), tonumber(uniqID or 0), name
 end
 
-
 function findItemInBags(findName)
 	for bag = 0, 4, 1 do
 		size = GetContainerNumSlots(bag)
