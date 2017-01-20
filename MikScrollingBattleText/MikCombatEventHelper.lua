@@ -802,11 +802,7 @@ end
 -- **********************************************************************************
 function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
  -- Look for an ability hit.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGOTHERSELF", {"%s", "%n", "%a"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGOTHERSELF", {"%n", "%s", "%a"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGOTHERSELF", {"%n", "%s", "%a"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -824,11 +820,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for an ability crit.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITOTHERSELF", {"%s", "%n", "%a"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITOTHERSELF", {"%n", "%s", "%a"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITOTHERSELF", {"%n", "%s", "%a"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -846,11 +838,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a spell hit.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGSCHOOLOTHERSELF", {"%s", "%n", "%a", "%t"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGSCHOOLOTHERSELF", {"%n", "%s", "%a", "%t"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGSCHOOLOTHERSELF", {"%n", "%s", "%a", "%t"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -868,11 +856,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
  
  -- Look for a spell crit.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITSCHOOLOTHERSELF", {"%s", "%n", "%a", "%t"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITSCHOOLOTHERSELF", {"%n", "%s", "%a", "%t"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITSCHOOLOTHERSELF", {"%n", "%s", "%a", "%t"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -890,11 +874,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a miss.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLMISSOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLMISSOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLMISSOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -909,11 +889,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a dodge.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -928,11 +904,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a parry.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -947,11 +919,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a block.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -966,11 +934,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a resist.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -985,11 +949,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for an absorb.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1004,11 +964,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for an immune.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNEOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNEOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNEOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1022,11 +978,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
  end
 
  -- Look for a reflect.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLREFLECTOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLREFLECTOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLREFLECTOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1040,11 +992,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
  end
  
   -- Look for an ability hit on your pet.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGOTHEROTHER", {"%s", "%n", "%c", "%a"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGOTHEROTHER", {"%n", "%s", "%c", "%a"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGOTHEROTHER", {"%n", "%s", "%c", "%a"});
 
  -- If a match was found.
  if (capturedData ~= nil and UnitName("pet") and string.find(combatMessage, UnitName("pet"))) then
@@ -1062,11 +1010,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for an ability crit on your pet.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITOTHEROTHER", {"%s", "%n", "%a"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITOTHEROTHER", {"%n", "%s", "%a"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITOTHEROTHER", {"%n", "%s", "%a"});
 
  -- If a match was found.
  if (capturedData ~= nil and UnitName("pet") and string.find(combatMessage, UnitName("pet"))) then
@@ -1084,11 +1028,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a spell hit on your pet.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGSCHOOLOTHEROTHER", {"%s", "%n", "%c", "%a", "%t"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGSCHOOLOTHEROTHER", {"%n", "%s", "%c", "%a", "%t"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGSCHOOLOTHEROTHER", {"%n", "%s", "%c", "%a", "%t"});
 
  -- If a match was found.
  if (capturedData ~= nil and UnitName("pet") and string.find(combatMessage, UnitName("pet"))) then
@@ -1106,11 +1046,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
  
  -- Look for a spell crit on your pet.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITSCHOOLOTHEROTHER", {"%s", "%n", "%c", "%a", "%t"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITSCHOOLOTHEROTHER", {"%n", "%s", "%c", "%a", "%t"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITSCHOOLOTHEROTHER", {"%n", "%s", "%c", "%a", "%t"});
 
  -- If a match was found.
  if (capturedData ~= nil and UnitName("pet") and string.find(combatMessage, UnitName("pet"))) then
@@ -1128,11 +1064,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a miss on your pet.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLMISSOTHEROTHER", {"%s", "%n", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLMISSOTHEROTHER", {"%n", "%s", "%c"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLMISSOTHEROTHER", {"%n", "%s", "%c"});
 
  -- If a match was found.
  if (capturedData ~= nil and UnitName("pet") and string.find(combatMessage, UnitName("pet"))) then
@@ -1147,11 +1079,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a dodge on your pet.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDOTHEROTHER", {"%s", "%n", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDOTHEROTHER", {"%c", "%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDOTHEROTHER", {"%c", "%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil and UnitName("pet") and string.find(combatMessage, UnitName("pet"))) then
@@ -1166,11 +1094,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a parry on your pet.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDOTHEROTHER", {"%s", "%n", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDOTHEROTHER", {"%c", "%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDOTHEROTHER", {"%c", "%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil and UnitName("pet") and string.find(combatMessage, UnitName("pet"))) then
@@ -1185,11 +1109,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a block on your pet.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDOTHEROTHER", {"%n", "%s", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDOTHEROTHER", {"%c", "%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDOTHEROTHER", {"%c", "%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil and UnitName("pet") and string.find(combatMessage, UnitName("pet"))) then
@@ -1204,11 +1124,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a resist on your pet.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTOTHEROTHER", {"%c", "%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTOTHEROTHER", {"%n", "%s", "%c"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTOTHEROTHER", {"%n", "%s", "%c"});
 
  -- If a match was found.
  if (capturedData ~= nil and UnitName("pet") and string.find(combatMessage, UnitName("pet"))) then
@@ -1223,11 +1139,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for an absorb on your pet.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHEROTHER", {"%c", "%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHEROTHER", {"%n", "%s", "%c"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHEROTHER", {"%n", "%s", "%c"});
 
  -- If a match was found.
  if (capturedData ~= nil and UnitName("pet") and string.find(combatMessage, UnitName("pet"))) then
@@ -1242,11 +1154,7 @@ function MikCEH.ParseForIncomingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for an immune on your pet.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNEOTHEROTHER", {"%c", "%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNEOTHEROTHER", {"%n", "%s", "%c"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNEOTHEROTHER", {"%n", "%s", "%c"});
 
  -- If a match was found.
  if (capturedData ~= nil and UnitName("pet") and string.find(combatMessage, UnitName("pet"))) then
@@ -1286,11 +1194,7 @@ function MikCEH.ParseForIncomingDamageShieldDamage(combatMessage)
  end
  
   -- Look for a resist.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1304,11 +1208,7 @@ function MikCEH.ParseForIncomingDamageShieldDamage(combatMessage)
  end
  
   -- Look for a miss.
-  if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLMISSOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLMISSOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLMISSOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1323,11 +1223,7 @@ function MikCEH.ParseForIncomingDamageShieldDamage(combatMessage)
 
 
  -- Look for a dodge.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1342,11 +1238,7 @@ function MikCEH.ParseForIncomingDamageShieldDamage(combatMessage)
 
 
  -- Look for a parry.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1361,11 +1253,7 @@ function MikCEH.ParseForIncomingDamageShieldDamage(combatMessage)
 
 
  -- Look for a block.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1380,11 +1268,7 @@ function MikCEH.ParseForIncomingDamageShieldDamage(combatMessage)
 
 
  -- Look for an absorb.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1399,11 +1283,7 @@ function MikCEH.ParseForIncomingDamageShieldDamage(combatMessage)
 
 
  -- Look for an immune.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNEOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNEOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNEOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1417,11 +1297,7 @@ function MikCEH.ParseForIncomingDamageShieldDamage(combatMessage)
  end
 
  -- Look for a reflect.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLREFLECTOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLREFLECTOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLREFLECTOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1483,11 +1359,7 @@ function MikCEH.ParseForIncomingSpellHeals(combatMessage)
 
 
 	 -- Look for a HoT from someone else.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "PERIODICAURAHEALOTHERSELF", {"%a", "%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "PERIODICAURAHEALOTHERSELF", {"%a", "%n", "%s"});
- end
+	 local capturedData = MikCEH.GetCapturedData(combatMessage, "PERIODICAURAHEALOTHERSELF", {"%a", "%n", "%s"});
 
 	 -- If a match was found.
 	 if (capturedData ~= nil) then
@@ -1562,11 +1434,7 @@ function MikCEH.ParseForIncomingSpellHeals(combatMessage)
 
 
  -- Look for a HoT from someone else on your pet.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "PERIODICAURAHEALOTHEROTHER", {"%c", "%a", "%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "PERIODICAURAHEALOTHEROTHER", {"%c", "%a", "%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "PERIODICAURAHEALOTHEROTHER", {"%c", "%a", "%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil and UnitName("pet") and string.find(combatMessage, UnitName("pet"))) then
@@ -1611,8 +1479,6 @@ function MikCEH.ParseForIncomingDebuffs(combatMessage)
  -- Look for damage from a debuff.
  if (GetLocale() == "frFR") then
 	capturedData = MikCEH.GetCapturedData(combatMessage, "PERIODICAURADAMAGEOTHERSELF", {"%t", "%a", "%s", "%n"}); 
- elseif (GetLocale() == "ruRU") then
-	capturedData = MikCEH.GetCapturedData(combatMessage, "PERIODICAURADAMAGEOTHERSELF", {"%a", "%t", "%s", "%n"});
  else
 	capturedData = MikCEH.GetCapturedData(combatMessage, "PERIODICAURADAMAGEOTHERSELF", {"%a", "%t", "%n", "%s"});
 end
@@ -1620,7 +1486,12 @@ end
  -- If a match was found.
  if (capturedData ~= nil) then
 	
-	local eventData = MikCEH.GetDamageEventData(MikCEH.DIRECTIONTYPE_PLAYER_INCOMING, MikCEH.ACTIONTYPE_HIT, MikCEH.HITTYPE_OVER_TIME, capturedData.DamageType, capturedData.Amount, capturedData.SpellName, capturedData.Name);
+	local eventData
+	if (GetLocale() == "frFR") then
+		eventData = MikCEH.GetDamageEventData(MikCEH.DIRECTIONTYPE_PLAYER_INCOMING, MikCEH.ACTIONTYPE_HIT, MikCEH.HITTYPE_OVER_TIME, capturedData.DamageType, capturedData.Amount, capturedData.SpellName, capturedData.Name);
+	else
+		eventData = MikCEH.GetDamageEventData(MikCEH.DIRECTIONTYPE_PLAYER_INCOMING, MikCEH.ACTIONTYPE_HIT, MikCEH.HITTYPE_OVER_TIME, capturedData.DamageType, capturedData.Amount, capturedData.SpellName, capturedData.Name);
+	end
 
   -- Look for any partial actions and populate them into the event data.
   MikCEH.ParseForPartialActions(combatMessage, eventData);
@@ -1663,11 +1534,7 @@ end
  end
 
  -- Look for absorbed damage from a debuff.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHERSELF", {"%s", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHERSELF", {"%n", "%s"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHERSELF", {"%n", "%s"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1692,11 +1559,7 @@ function MikCEH.ParseForPowerGains(combatMessage)
 	local capturedData = nil
 
   -- Look for power gains from others.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "POWERGAINOTHERSELF", {"%p", "%a", "%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "POWERGAINOTHERSELF", {"%p", "%a", "%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "POWERGAINOTHERSELF", {"%p", "%a", "%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1760,11 +1623,7 @@ end
 -- **********************************************************************************
 function MikCEH.ParseForPowerLosses(combatMessage)
  -- Look for a power leech.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPOWERLEECHOTHERSELF", {"%s", "%n", "%a", "%p", "", "", ""});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPOWERLEECHOTHERSELF", {"%n", "%s", "%a", "%p", "", "", ""});
-end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPOWERLEECHOTHERSELF", {"%n", "%s", "%a", "%p", "", "", ""});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -1779,11 +1638,7 @@ end
 
 
  -- Look for a power drain.
- if (GetLocale()=="ruRU") then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPOWERDRAINOTHERSELF", {"%s", "%n", "%a", "%p"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPOWERDRAINOTHERSELF", {"%n", "%s", "%a", "%p"});
-end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPOWERDRAINOTHERSELF", {"%n", "%s", "%a", "%p"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2274,11 +2129,7 @@ function MikCEH.ParseForOutgoingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a dodge.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDSELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDSELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDSELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2293,11 +2144,7 @@ function MikCEH.ParseForOutgoingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a parry.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDSELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDSELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDSELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2312,11 +2159,7 @@ function MikCEH.ParseForOutgoingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a block.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDSELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDSELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDSELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2331,11 +2174,7 @@ function MikCEH.ParseForOutgoingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a resist.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTSELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTSELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTSELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2350,11 +2189,7 @@ function MikCEH.ParseForOutgoingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for an absorb.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBSELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBSELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBSELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2369,11 +2204,7 @@ function MikCEH.ParseForOutgoingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for an immune.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNESELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNESELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNESELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2388,11 +2219,7 @@ function MikCEH.ParseForOutgoingSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a reflect.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLREFLECTSELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLREFLECTSELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLREFLECTSELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2449,11 +2276,7 @@ function MikCEH.ParseForOutgoingDamageShieldDamage(combatMessage)
  end
  
   -- Look for a resist.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTSELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTSELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTSELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2467,11 +2290,7 @@ function MikCEH.ParseForOutgoingDamageShieldDamage(combatMessage)
  end
  
   -- Look for an immune.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNESELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNESELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNESELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2514,11 +2333,7 @@ function MikCEH.ParseForOutgoingDamageShieldDamage(combatMessage)
 
 
  -- Look for a dodge.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDSELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDSELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDSELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2533,11 +2348,7 @@ function MikCEH.ParseForOutgoingDamageShieldDamage(combatMessage)
 
 
  -- Look for a parry.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDSELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDSELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDSELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2552,11 +2363,7 @@ function MikCEH.ParseForOutgoingDamageShieldDamage(combatMessage)
 
 
  -- Look for a block.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDSELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDSELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDSELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2660,11 +2467,7 @@ end
 -- **********************************************************************************
 function MikCEH.ParseForOutgoingDispelResists(combatMessage)
  -- Look for a resist.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTSELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTSELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTSELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2688,6 +2491,7 @@ end
 -- **********************************************************************************
 function MikCEH.ParseForOutgoingHoTs(combatMessage)
  -- Look for a HoT to someone else.
+
  local capturedData = MikCEH.GetCapturedData(combatMessage, "PERIODICAURAHEALSELFOTHER", {"%n", "%a", "%s"});
  
  -- If a match was found.
@@ -2729,11 +2533,7 @@ function MikCEH.ParseForOutgoingDoTs(combatMessage)
  end
 
  -- Look for absorbed damage from a DoT.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBSELFOTHER", {"%n", "%s"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBSELFOTHER", {"%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBSELFOTHER", {"%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2787,40 +2587,6 @@ function MikCEH.ParseForOutgoingPetHits(combatMessage)
   -- Return the parse was successful.
   return true;
  end
- 
-  -- Look for a pet elemental hit.
- local capturedData = MikCEH.GetCapturedData(combatMessage, "COMBATHITSCHOOLOTHEROTHER", {"%c", "%n", "%a", "%t"});
-
- -- If a match was found.
- if (capturedData ~= nil) then
-  local eventData = MikCEH.GetDamageEventData(MikCEH.DIRECTIONTYPE_PET_OUTGOING, MikCEH.ACTIONTYPE_HIT, MikCEH.HITTYPE_NORMAL, capturedData.DamageType, capturedData.Amount, nil, capturedData.Name);
-
-  -- Look for any partial actions and populate them into the event data.
-  MikCEH.ParseForPartialActions(combatMessage, eventData);
-
-  -- Send the event.
-  MikCEH.SendEvent(eventData);
-
-  -- Return the parse was successful.
-  return true;
- end
- 
-  -- Look for a pet elemental crit.
- local capturedData = MikCEH.GetCapturedData(combatMessage, "COMBATHITCRITSCHOOLOTHEROTHER", {"%c", "%n", "%a", "%t"});
-
- -- If a match was found.
- if (capturedData ~= nil) then
-  local eventData = MikCEH.GetDamageEventData(MikCEH.DIRECTIONTYPE_PET_OUTGOING, MikCEH.ACTIONTYPE_HIT, MikCEH.HITTYPE_CRIT, capturedData.DamageType, capturedData.Amount, nil, capturedData.Name);
-
-  -- Look for any partial actions and populate them into the event data.
-  MikCEH.ParseForPartialActions(combatMessage, eventData);
-  
-  -- Send the event.
-  MikCEH.SendEvent(eventData);
-
-  -- Return the parse was successful.
-  return true;
- end
 
 
  -- Return the parse was NOT successful.
@@ -2848,11 +2614,7 @@ function MikCEH.ParseForOutgoingPetMisses(combatMessage)
  
 
  -- Look for a dodge.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "VSDODGEOTHEROTHER", {"%n", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "VSDODGEOTHEROTHER", {"%c", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "VSDODGEOTHEROTHER", {"%c", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2867,11 +2629,7 @@ function MikCEH.ParseForOutgoingPetMisses(combatMessage)
 
 
  -- Look for a parry.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "VSPARRYOTHEROTHER", {"%n", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "VSPARRYOTHEROTHER", {"%c", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "VSPARRYOTHEROTHER", {"%c", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2886,11 +2644,7 @@ function MikCEH.ParseForOutgoingPetMisses(combatMessage)
 
 
  -- Look for a block.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "VSBLOCKOTHEROTHER", {"%n", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "VSBLOCKOTHEROTHER", {"%c", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "VSBLOCKOTHEROTHER", {"%c", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2905,11 +2659,7 @@ function MikCEH.ParseForOutgoingPetMisses(combatMessage)
 
 
  -- Look for an absorb.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "VSABSORBOTHEROTHER", {"%n", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "VSABSORBOTHEROTHER", {"%c", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "VSABSORBOTHEROTHER", {"%c", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2924,11 +2674,7 @@ function MikCEH.ParseForOutgoingPetMisses(combatMessage)
 
 
  -- Look for an immune.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "VSIMMUNEOTHEROTHER", {"%n", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "VSIMMUNEOTHEROTHER", {"%c", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "VSIMMUNEOTHEROTHER", {"%c", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2967,11 +2713,7 @@ end
 -- **********************************************************************************
 function MikCEH.ParseForOutgoingPetSpellHitsAndMisses(combatMessage)
  -- Look for an ability hit.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGOTHEROTHER", {"%s", "%c", "%n", "%a"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGOTHEROTHER", {"%c", "%s", "%n", "%a"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGOTHEROTHER", {"%c", "%s", "%n", "%a"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -2989,11 +2731,7 @@ function MikCEH.ParseForOutgoingPetSpellHitsAndMisses(combatMessage)
 
 
  -- Look for an ability crit.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITOTHEROTHER", {"%s", "%c", "%n", "%a"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITOTHEROTHER", {"%c", "%s", "%n", "%a"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITOTHEROTHER", {"%c", "%s", "%n", "%a"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -3011,11 +2749,7 @@ function MikCEH.ParseForOutgoingPetSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a spell hit.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGSCHOOLOTHEROTHER", {"%s", "%c", "%n", "%a", "%t"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGSCHOOLOTHEROTHER", {"%c", "%s", "%n", "%a", "%t"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGSCHOOLOTHEROTHER", {"%c", "%s", "%n", "%a", "%t"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -3033,11 +2767,7 @@ function MikCEH.ParseForOutgoingPetSpellHitsAndMisses(combatMessage)
 
 
  -- Look for spell crit.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITSCHOOLOTHEROTHER", {"%s", "%c", "%n", "%a", "%t"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITSCHOOLOTHEROTHER", {"%c", "%s", "%n", "%a", "%t"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGCRITSCHOOLOTHEROTHER", {"%c", "%s", "%n", "%a", "%t"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -3055,11 +2785,7 @@ function MikCEH.ParseForOutgoingPetSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a miss.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLMISSOTHEROTHER", {"%s", "%c", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLMISSOTHEROTHER", {"%c", "%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLMISSOTHEROTHER", {"%c", "%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -3074,11 +2800,7 @@ function MikCEH.ParseForOutgoingPetSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a dodge.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDOTHEROTHER", {"%n", "%s", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDOTHEROTHER", {"%c", "%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLDODGEDOTHEROTHER", {"%c", "%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -3093,12 +2815,8 @@ function MikCEH.ParseForOutgoingPetSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a parry.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDOTHEROTHER", {"%n", "%s", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDOTHEROTHER", {"%c", "%s", "%n"});
- end
- 
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLPARRIEDOTHEROTHER", {"%c", "%s", "%n"});
+
  -- If a match was found.
  if (capturedData ~= nil) then
   local eventData = MikCEH.GetDamageEventData(MikCEH.DIRECTIONTYPE_PET_OUTGOING, MikCEH.ACTIONTYPE_PARRY, nil, nil, nil, capturedData.SpellName, capturedData.Name);
@@ -3112,11 +2830,7 @@ function MikCEH.ParseForOutgoingPetSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a block.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDOTHEROTHER", {"%n", "%s", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDOTHEROTHER", {"%c", "%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLBLOCKEDOTHEROTHER", {"%c", "%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -3131,11 +2845,7 @@ function MikCEH.ParseForOutgoingPetSpellHitsAndMisses(combatMessage)
 
 
  -- Look for a resist.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTOTHEROTHER", {"%n", "%s", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTOTHEROTHER", {"%c", "%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLRESISTOTHEROTHER", {"%c", "%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -3150,11 +2860,7 @@ function MikCEH.ParseForOutgoingPetSpellHitsAndMisses(combatMessage)
 
 
  -- Look for an absorb.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHEROTHER", {"%n", "%s", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHEROTHER", {"%c", "%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLLOGABSORBOTHEROTHER", {"%c", "%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -3169,11 +2875,7 @@ function MikCEH.ParseForOutgoingPetSpellHitsAndMisses(combatMessage)
 
 
  -- Look for an immune.
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNEOTHEROTHER", {"%n", "%s", "%c"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNEOTHEROTHER", {"%c", "%s", "%n"});
- end
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLIMMUNEOTHEROTHER", {"%c", "%s", "%n"});
 
  -- If a match was found.
  if (capturedData ~= nil) then
@@ -3188,12 +2890,8 @@ function MikCEH.ParseForOutgoingPetSpellHitsAndMisses(combatMessage)
 
 
  -- Look for an evade
- if (GetLocale()=="ruRU" ) then
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLEVADEDOTHEROTHER", {"%s", "%c", "%n"});
- else
-	local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLEVADEDOTHEROTHER", {"%c", "%s", "%n"});
- end
- 
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "SPELLEVADEDOTHEROTHER", {"%c", "%s", "%n"});
+
  -- If a match was found.
  if (capturedData ~= nil) then
   local eventData = MikCEH.GetDamageEventData(MikCEH.DIRECTIONTYPE_PET_OUTGOING, MikCEH.ACTIONTYPE_EVADE, nil, nil, nil, capturedData.SpellName, capturedData.Name);
