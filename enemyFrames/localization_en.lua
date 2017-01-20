@@ -243,6 +243,7 @@ EF_L_SHIELDBLOCK='Shield Block';
 EF_L_SHIELDWALL='Shield Wall';
 EF_L_SWEEPINGSTRIKES='Sweeping Strikes';
 EF_L_THUNDERCLAP='Thunder Clap';
+EF_L_ENRAGE='Enrage';
 	-- DRUID
 EF_L_BASH='Bash';
 EF_L_BEARFORM='Bear Form';
@@ -265,7 +266,7 @@ EF_L_BARKSKIN='Barkskin';
 EF_L_ABOLISHPOISON='Abolish Poison';
 EF_L_DASH='Dash';
 EF_L_DEMORALIZINGROAR='Demoralizing Roar';
-EF_L_ENRAGE='Enrage';
+EF_L_ENRAGED='Enrage';
 EF_L_FRENZIEDREGENERATION='Frenzied Regeneration';
 EF_L_GROWL='Growl';
 EF_L_INNERVATE='Innervate';
