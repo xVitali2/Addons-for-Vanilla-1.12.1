@@ -87,7 +87,7 @@ wayframe:RegisterForDrag("LeftButton")
 wayframe:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 wayframe:SetScript("OnEvent", OnEvent)
 wayframe.arrow = wayframe:CreateTexture("OVERLAY")
-wayframe.arrow:SetTexture("Interface\\AddOns\\!Questie\\Images\\Arrow")
+wayframe.arrow:SetTexture("Interface\\AddOns\\!QuestieRU\\Images\\Arrow")
 wayframe.arrow:SetAllPoints()
 
 local active_point, arrive_distance, showDownArrow, point_title, arrow_objective, isHide
@@ -141,7 +141,16 @@ local function OnUpdate(self, elapsed)
         self:Hide()
         return
     end
-    if UnitIsDeadOrGhost("player") then
+   for i=1, MAX_BATTLEFIELD_QUEUES do
+        bgstatus = GetBattlefieldStatus(i);
+        if (bgstatus == active) then
+            bgactive = true
+        else
+            bgactive = false
+        end
+    end
+    if UnitIsDeadOrGhost("player") and (bgactive == false) then
+        if (QuestieConfig.corpseArrow == true) and (QuestieConfig.arrowEnabled == true) then
         local deadmyx, deadmyy = GetCorpseMapPosition();
         if deadmyx and deadmyy and deadmyx ~= 0 and deadmyy ~= 0 then
             local mycon, myzone, x, y = Astrolabe:GetCurrentPlayerPosition()
@@ -149,6 +158,20 @@ local function OnUpdate(self, elapsed)
             local dtitle = "My Dead Corpse"
             local dpoint = {c = mycon, z = myzone, x = deadmyx, y = deadmyy}
             SetCrazyArrow(dpoint, ddist, dtitle);
+        end
+    end
+       if (QuestieConfig.corpseArrow == true) and (QuestieConfig.arrowEnabled == false) then
+            local deadmyx, deadmyy = GetCorpseMapPosition();
+            if deadmyx and deadmyy and deadmyx ~= 0 and deadmyy ~= 0 then
+                local mycon, myzone, x, y = Astrolabe:GetCurrentPlayerPosition()
+                local ddist, xDelta, yDelta = Astrolabe:ComputeDistance(mycont, myzone, X, Y, continent, zone, xNote, yNote)
+                local dtitle = "My Dead Corpse"
+                local dpoint = {c = mycon, z = myzone, x = deadmyx, y = deadmyy}
+                SetCrazyArrow(dpoint, ddist, dtitle);
+            end
+        end
+        if (QuestieConfig.arrowEnabled == false) and (QuestieConfig.corpseArrow == false) then
+            TomTomCrazyArrow:Hide()
         end
     end
     local dist,x,y = GetDistanceToIcon(active_point)
@@ -168,7 +191,7 @@ local function OnUpdate(self, elapsed)
         if not showDownArrow then
             arrow:SetHeight(70)
             arrow:SetWidth(53)
-            arrow:SetTexture("Interface\\AddOns\\!Questie\\Images\\Arrow-UP")
+            arrow:SetTexture("Interface\\AddOns\\!QuestieRU\\Images\\Arrow-UP")
             arrow:SetVertexColor(0, 1, 0)
             showDownArrow = true
         end
@@ -188,7 +211,7 @@ local function OnUpdate(self, elapsed)
         if showDownArrow then
             arrow:SetHeight(56)
             arrow:SetWidth(42)
-            arrow:SetTexture("Interface\\AddOns\\!Questie\\Images\\Arrow")
+            arrow:SetTexture("Interface\\AddOns\\!QuestieRU\\Images\\Arrow")
             showDownArrow = false
         end
         local degtemp = GetDirectionToIcon(active_point);

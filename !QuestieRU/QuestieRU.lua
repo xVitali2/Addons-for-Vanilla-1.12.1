@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 -- Name: Questie for Vanilla WoW
--- Revision: 3.65
+-- Revision: 3.66
 -- Authors: Aero/Schaka/Logon/Dyaxler/everyone else
 -- Website: https://github.com/AeroScripts/QuestieDev
 -- Description: Questie started out being a simple backport of QuestHelper but it has grown beyond
@@ -16,7 +16,7 @@ Questie = CreateFrame("Frame", "QuestieLua", UIParent, "ActionButtonTemplate");
 QuestRewardCompleteButton = nil;
 QuestAbandonOnAccept = nil;
 QuestAbandonWithItemsOnAccept = nil;
-QuestieVersion = 3.65;
+QuestieVersion = 3.66;
 ---------------------------------------------------------------------------------------------------
 -- WoW Functions --PERFORMANCE CHANGE--
 ---------------------------------------------------------------------------------------------------
@@ -45,6 +45,7 @@ function Questie:SetupDefaults()
 		["alwaysShowLevel"] = true,
 		["alwaysShowQuests"] = true,
 		["arrowEnabled"] = true,
+        ["corpseArrow"] = true,
 		["boldColors"] = false,
 		["maxLevelFilter"] = false,
 		["maxShowLevel"] = 3,
@@ -92,6 +93,9 @@ function Questie:CheckDefaults()
 	if QuestieConfig.arrowEnabled == nil then
 		QuestieConfig.arrowEnabled = true;
 	end
+    if QuestieConfig.corpseArrow == nile then
+        QuestieConfig.corpseArrow = true;
+    end
 	if QuestieConfig.boldColors == nil then
 		QuestieConfig.boldColors = false;
 	end
@@ -201,6 +205,7 @@ function Questie:ClearConfig(arg)
 				["alwaysShowLevel"] = true,
 				["alwaysShowQuests"] = true,
 				["arrowEnabled"] = true,
+                ["corpseArrow"] = true,
 				["boldColors"] = false,
 				["maxLevelFilter"] = false,
 				["maxShowLevel"] = 3,
@@ -275,8 +280,6 @@ function Questie:OnLoad()
 	this:RegisterEvent("CHAT_MSG_LOOT");
 this:RegisterEvent("QUEST_FINISHED");
     this:RegisterEvent("PLAYER_UNGHOST");
-    this:RegisterEvent("PLAYER_ALIVE");
-    this:RegisterEvent("PLAYER_DEAD");
 	QuestAbandonOnAccept = StaticPopupDialogs["ABANDON_QUEST"].OnAccept;
 	StaticPopupDialogs["ABANDON_QUEST"].OnAccept = function()
 		local hash = Questie:GetHashFromName(QGet_AbandonQuestName());
@@ -404,7 +407,16 @@ function Questie:OnUpdate(elapsed)
 			end
 		end
 	end
-if UnitIsDeadOrGhost("player") then
+    for i=1, MAX_BATTLEFIELD_QUEUES do
+        bgstatus = GetBattlefieldStatus(i);
+        if (bgstatus == active) then
+            bgactive = true
+        else
+            bgactive = false
+        end
+    end
+    if UnitIsDeadOrGhost("player") and (bgactive == false) then
+        if (QuestieConfig.corpseArrow == true) and (QuestieConfig.arrowEnabled == true) then
         local deadmyx, deadmyy = GetCorpseMapPosition();
         if deadmyx and deadmyy and deadmyx ~= 0 and deadmyy ~= 0 then
             local mycon, myzone, x, y = Astrolabe:GetCurrentPlayerPosition()
@@ -412,6 +424,20 @@ if UnitIsDeadOrGhost("player") then
             local dtitle = "My Dead Corpse"
             local dpoint = {c = mycon, z = myzone, x = deadmyx, y = deadmyy}
             SetCrazyArrow(dpoint, ddist, dtitle);
+        end
+    end
+        if (QuestieConfig.corpseArrow == true) and (QuestieConfig.arrowEnabled == false) then
+            local deadmyx, deadmyy = GetCorpseMapPosition();
+            if deadmyx and deadmyy and deadmyx ~= 0 and deadmyy ~= 0 then
+                local mycon, myzone, x, y = Astrolabe:GetCurrentPlayerPosition()
+                local ddist, xDelta, yDelta = Astrolabe:ComputeDistance(mycont, myzone, X, Y, continent, zone, xNote, yNote)
+                local dtitle = "My Dead Corpse"
+                local dpoint = {c = mycon, z = myzone, x = deadmyx, y = deadmyy}
+                SetCrazyArrow(dpoint, ddist, dtitle);
+            end
+        end
+        if (QuestieConfig.arrowEnabled == false) and (QuestieConfig.corpseArrow == false) then
+            TomTomCrazyArrow:Hide()
         end
     end
 end
@@ -497,8 +523,12 @@ function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 
 		Questie:CheckQuestLog();
 		Questie:AddEvent("UPDATE", 1.15);
 		local f = GameTooltip:GetScript("OnShow");
-        if (f ~= nil) then
-			--Proper tooltip hook!
+       -- Proper tooltip hooking!
+        if not f then
+            GameTooltip:SetScript("OnShow", function(self)
+                Questie:Tooltip(self, true);
+            end);
+        end
 			local Blizz_GameTooltip_Show = GameTooltip.Show
 			GameTooltip.Show = function(self)
 				Questie:Tooltip(self);
@@ -517,7 +547,6 @@ function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 
                     Bliz_GameTooltip_SetQuestLogItem(self, type, index);
                 end
             end
-		end
 		    Questie:hookTooltipLineCheck();
 	elseif(event == "CHAT_MSG_LOOT") then
 		local _, _, msg, item = string.find(arg1, "(You receive loot%:) (.+)");
@@ -525,8 +554,14 @@ function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 
 			Questie:CheckQuestLog();
 		end
     elseif(event == "PLAYER_UNGHOST") then
-        TomTomCrazyArrow:Hide()
-	end
+        if (QuestieConfig.corpseArrow == false) and (QuestieConfig.arrowEnabled == true) then
+            return
+        elseif (QuestieConfig.corpseArrow == true) and (QuestieConfig.arrowEnabled == true) then
+            TomTomCrazyArrow:Hide()
+        elseif (QuestieConfig.corpseArrow == true) and (QuestieConfig.arrowEnabled == false) then
+            TomTomCrazyArrow:Hide()
+        end
+    end
 end
 ---------------------------------------------------------------------------------------------------
 -- Questie Parsing Shortcuts
@@ -657,6 +692,19 @@ QuestieFastSlash = {
 			Questie:Toggle();
 		end
 	end,
+    ["corpsearrow"] = function()
+    -- Default: True
+        QuestieConfig.corpseArrow = not QuestieConfig.corpseArrow;
+        if QuestieConfig.corpseArrow then
+            DEFAULT_CHAT_FRAME:AddMessage("Corpse Arrow will now be shown");
+            Questie:Toggle();
+            Questie:Toggle();
+        else
+            DEFAULT_CHAT_FRAME:AddMessage("Corpse Arrow will now be hidden");
+            Questie:Toggle();
+            Questie:Toggle();
+        end
+    end,
 	["tracker"] = function()
 	-- Default: True
 		if (QuestieConfig.trackerEnabled == true) then
@@ -861,6 +909,7 @@ QuestieFastSlash = {
 					["alwaysShowLevel"] = true,
 					["alwaysShowQuests"] = true,
 					["arrowEnabled"] = true,
+                    ["corpseArrow"] = true,
 					["boldColors"] = false,
 					["maxLevelFilter"] = false,
 					["maxShowLevel"] = 3,
@@ -953,6 +1002,7 @@ QuestieFastSlash = {
 	["help"] = function()
 		DEFAULT_CHAT_FRAME:AddMessage("Questie SlashCommand Help Menu:", 1, 0.75, 0);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie arrow |r-- |c0000ffc0(toggle)|r QuestArrow", 0.75, 0.75, 0.75);
+        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie corpsearrow |r-- |c0000ffc0(toggle)|r CorpseArrow", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie clearconfig |r-- Resets Questie settings. It does NOT delete your quest data.", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie cleartracker |r-- Relocates the QuestTracker to the center of your screen.", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie color |r-- Select from two different color schemes", 0.75, 0.75, 0.75);
@@ -1010,24 +1060,25 @@ function Questie:CurrentUserToggles()
 		[1] = { "alwaysShowLevel" },
 		[2] = { "alwaysShowQuests" },
 		[3] = { "arrowEnabled" },
-		[4] = { "boldColors" },
-		[5] = { "maxLevelFilter" },
-		[6] = { "maxShowLevel" },
-		[7] = { "minLevelFilter" },
-		[8] = { "minShowLevel" },
-		[9] = { "showMapAids" },
-		[10] = { "showProfessionQuests" },
-		[11] = { "showTrackerHeader" },
-		[12] = { "showToolTips" },
-        [13] = { "trackerEnabled" },
-        [14] = { "trackerList" },
-        [15] = { "trackerScale" },
-        [16] = { "trackerBackground" },
-        [17] = { "trackerAlpha" },
-        [18] = { "resizeWorldmap" },
-        [19] = { "getVersion" },
-        [20] = { "hideMinimapIcons" },
-        [21] = { "hideObjectives" }
+        [4] = { "corpseArrow" },
+        [5] = { "boldColors" },
+        [6] = { "maxLevelFilter" },
+        [7] = { "maxShowLevel" },
+        [8] = { "minLevelFilter" },
+        [9] = { "minShowLevel" },
+        [10] = { "showMapAids" },
+        [11] = { "showProfessionQuests" },
+        [12] = { "showTrackerHeader" },
+        [13] = { "showToolTips" },
+        [14] = { "trackerEnabled" },
+        [15] = { "trackerList" },
+        [16] = { "trackerScale" },
+        [17] = { "trackerBackground" },
+        [18] = { "trackerAlpha" },
+        [19] = { "resizeWorldmap" },
+        [20] = { "getVersion" },
+        [21] = { "hideMinimapIcons" },
+        [22] = { "hideObjectives" }
 	}
 	if QuestieConfig then
 		i = 1
