@@ -873,12 +873,12 @@ end;
 
 
 function Pinky_BankStatus(player)
-  local cnt = Pinky_GetBankCount(player);
-  if (cnt == 0) then
-     Pinky_OutputMessage(PINKY_BANK_EMPTY);
-  else
-     Pinky_OutputMessage(string.format(PINKY_BANK, cnt));
-  end;
+  -- local cnt = Pinky_GetBankCount(player);
+  -- if (cnt == 0) then
+     -- Pinky_OutputMessage(PINKY_BANK_EMPTY);
+  -- else
+     -- Pinky_OutputMessage(string.format(PINKY_BANK, cnt));
+  -- end;
 end;
 
 
