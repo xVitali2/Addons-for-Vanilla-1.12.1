@@ -27,11 +27,18 @@ local QExpand_QuestHeader = ExpandQuestHeader;
 ---------------------------------------------------------------------------------------------------
 function Questie:finishAndRecurse(questhash)
     if (QuestieSeenQuests[questhash] == 1) then
+        if (QuestieTrackedQuests[questhash]) then
+            QuestieTrackedQuests[questhash] = nil;
+        end
         return
     end
     if (QuestieSeenQuests[questhash] == 0) and (QuestieTrackedQuests[questhash]) then
         if ((QuestieTrackedQuests[questhash]["leaderboards"] == 0) or (QuestieTrackedQuests[questhash]["isComplete"] == 1)) then
             QuestieSeenQuests[questhash] = 1;
+            QuestieTrackedQuests[questhash] = nil;
+            if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == hash) then
+                TomTomCrazyArrow:Hide()
+            end
         end
     elseif ((QuestieSeenQuests[questhash] == nil) or (QuestieTrackedQuests[questhash] == nil)) then
         QuestieSeenQuests[questhash] = 1;
@@ -41,7 +48,6 @@ function Questie:finishAndRecurse(questhash)
         end
         if req then
             Questie:finishAndRecurse(req);
-            QuestieTrackedQuests[req] = nil;
         end
     end
 end
@@ -64,7 +70,6 @@ function Questie:CheckQuestLog()
                 local req = QuestieHashMap[v["hash"]]['rq'];
                 if req then
                     Questie:finishAndRecurse(req)
-                    QuestieTrackedQuests[req] = nil
                 end
                 QuestieSeenQuests[v["hash"]] = 0
                 QuestieTracker:addQuestToTracker(v["hash"])
@@ -111,7 +116,6 @@ function Questie:CheckQuestLog()
                 local req = QuestieHashMap[v["hash"]]['rq'];
                 if req then
                     Questie:finishAndRecurse(req)
-                    QuestieTrackedQuests[req] = nil
                 end
                 QuestieSeenQuests[v["hash"]] = 0
                 QuestieTracker:addQuestToTracker(v["hash"])
@@ -127,7 +131,6 @@ function Questie:CheckQuestLog()
             if(not QuestieSeenQuests[v["hash"]]) then
                 local req = QuestieHashMap[v["hash"]]['rq'];
                 if req then
-                    QuestieTrackedQuests[req] = nil
                     Questie:finishAndRecurse(req)
                 end
                 QuestieSeenQuests[v["hash"]] = 0
@@ -598,7 +601,7 @@ CachedIds = {};
 function Questie:GetQuestIdFromHash(questHash)
     local numEntries, numQuests = GetNumQuestLogEntries();
     if(QUESTIE_UPDATE_EVENT or numEntries ~= LastNrOfEntries or not CachedIds[questHash]) then
-        CachedIds = {};
+        CachedIds[questHash] = {};
         QUESTIE_UPDATE_EVENT=0;
         LastNrOfEntries = numEntries;
         Questie:UpdateQuestIds();

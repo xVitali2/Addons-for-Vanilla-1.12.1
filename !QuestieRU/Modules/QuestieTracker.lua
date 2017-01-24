@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
--- Name: QuestieQuest
--- Description: Handles all the quest related functions
+-- Name: QuestieTracker
+-- Description: Handles all the quest tracker related functions
 ---------------------------------------------------------------------------------------------------
 --///////////////////////////////////////////////////////////////////////////////////////////////--
 ---------------------------------------------------------------------------------------------------
@@ -16,7 +16,8 @@ end
 -- Global vars
 ---------------------------------------------------------------------------------------------------
 QuestieTracker.hasCleared = false
-QuestieTracker.lastUpdate = 0;
+QuestieTracker.lastUpdate1 = 0;
+QuestieTracker.lastUpdate5 = 0;
 QuestieTracker.questButtons = {};
 QuestieTracker.GeneralInterval = 0;
 QuestieTracker.btnUpdate = 1;
@@ -41,14 +42,17 @@ function QuestieTracker_OnUpdate()
             QuestieTracker.frame:Hide();
         end
     end
-    if GetTime() - QuestieTracker.lastUpdate >= 1 then
-        QuestieTracker:fillTrackingFrame()
-        QuestieTracker.lastUpdate = GetTime()
+    if GetTime() - QuestieTracker.lastUpdate1 >= 1 then
         QuestieTracker:syncEQL3()
         QuestieTracker:syncQuestWatch()
+        QuestieTracker.lastUpdate1 = GetTime()
+    end
+    if GetTime() - QuestieTracker.lastUpdate5 >= 5 then
         if (QuestieConfig.showMapAids == true) or (QuestieConfig.alwaysShowQuests == true) or ((QuestieConfig.showMapAids == true) and (QuestieConfig.alwaysShowQuests == false)) then
+            QuestieTracker:fillTrackingFrame()
             Questie:SetAvailableQuests()
             Questie:RedrawNotes()
+            QuestieTracker.lastUpdate5 = GetTime()
         end
     end
 end
@@ -95,7 +99,7 @@ function QuestieTracker:updateTrackingFrameSize()
             elseif (QuestieConfig.showTrackerHeader == false) then
                 QuestieTracker.frame:SetHeight(totalHeight + 10);
             end
-            QuestieTracker.frame:SetWidth(200);
+            QuestieTracker.frame:SetWidth(220);
             QuestieTracker.frame.texture:SetAlpha(QuestieConfig.trackerAlpha);
         elseif (QuestieConfig.trackerList == false) then
             local lastButton = QuestieTracker.questButtons[QuestieTracker.highestIndex];
@@ -115,7 +119,7 @@ function QuestieTracker:updateTrackingFrameSize()
             elseif (QuestieConfig.showTrackerHeader == false) then
                 QuestieTracker.frame:SetHeight(totalHeight + 10);
             end
-            QuestieTracker.frame:SetWidth(200);
+            QuestieTracker.frame:SetWidth(220);
             QuestieTracker.frame.texture:SetAlpha(QuestieConfig.trackerAlpha);
         end
     end
@@ -459,7 +463,6 @@ function QuestieTracker:fillTrackingFrame()
             distanceControlTable[v["hash"]] = true
             table.insert(sortedByDistance, v);
         end
-        distanceNotes = {}
     end
     if QuestieConfig.boldColors == true then
         for i,v in pairs(sortedByDistance) do
@@ -489,6 +492,9 @@ function QuestieTracker:fillTrackingFrame()
             end
             quest["arrowPoint"] = v
             if quest["isComplete"] or quest["leaderboards"] == 0 then
+                if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == QuestieTrackedQuests[hash]) then
+                    TomTomCrazyArrow:Hide()
+                end
             QuestieTracker:AddObjectiveToButton(button, {['desc']="Quest Complete!"}, obj);
                 obj = 2;
             else
@@ -531,7 +537,9 @@ function QuestieTracker:fillTrackingFrame()
         end
         QuestieTracker:updateTrackingFrameSize()
         if (QuestieConfig.trackerEnabled == true) then
-            QuestieTracker.frame:Show();
+            if (QuestieConfig.trackerMinimize == false) then
+                QuestieTracker.frame:Show();
+            end
         else
             QuestieTracker:Hide()
             QuestieTracker.frame:Hide()
@@ -565,6 +573,9 @@ function QuestieTracker:fillTrackingFrame()
             end
             quest["arrowPoint"] = v
             if quest["isComplete"] or quest["leaderboards"] == 0 then
+                if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == QuestieTrackedQuests[hash]) then
+                    TomTomCrazyArrow:Hide()
+                end
                 QuestieTracker:AddObjectiveToButton(button, {['desc']="Quest Complete!"}, obj);
                 obj = 2;
             else
@@ -607,16 +618,17 @@ function QuestieTracker:fillTrackingFrame()
         end
         QuestieTracker:updateTrackingFrameSize()
         if (QuestieConfig.trackerEnabled == true) then
-            QuestieTracker.frame:Show();
+            if (QuestieConfig.trackerMinimize == false) then
+                QuestieTracker.frame:Show();
+            end
         else
             QuestieTracker:Hide()
             QuestieTracker.frame:Hide()
         end
     end
-    sortedByDistance = {}
 end
 ---------------------------------------------------------------------------------------------------
--- Creates a blank quest tracking frame and sets up the optional 'header'
+-- Creates a blank quest tracking frame and sets up the optional haeder
 ---------------------------------------------------------------------------------------------------
 function QuestieTracker:createTrackingFrame()
     QuestieTracker.frame = CreateFrame("Frame", "QuestieTrackerFrame", UIParent);
@@ -644,15 +656,56 @@ function QuestieTracker:createTrackingFrame()
         this:SetUserPlaced(false);
         QuestieTracker:saveFramePosition();
     end);
+    -- QuestTracker Header Button
     if (QuestieConfig.trackerList == true) then
-        local header = CreateFrame("Button", "QuestieTrackerHeader", QuestieTracker.frame);
+        local header = CreateFrame("Button", "QuestieTrackerHeader", UIParent);
         watcher = header:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         watcher:SetPoint("BOTTOMLEFT", QuestieTracker.frame, "BOTTOMLEFT", 10, 8)
+        -- QuestTracker Minimize Button
+        qmenu = CreateFrame("Button", "QuestieTrackerMenu", watcher.frame);
+        qmenu:SetFrameStrata("HIGH");
+        qmenu:SetWidth(100);
+        qmenu:SetHeight(10);
+        qmenu:SetPoint("BOTTOMLEFT", QuestieTracker.frame, "BOTTOMLEFT", 6, 5)
+        qmenu.texture = qmenu:CreateTexture(nil, "BACKGROUND");
+        qmenu.texture:SetTexture(0,0,0);
+        qmenu.texture:SetAlpha(0.0);
+        qmenu.texture:SetAllPoints(qmenu);
+        qmenu:EnableMouse(true);
+        qmenu:SetScript("OnClick", function()
+            if (QuestieConfig.trackerMinimize == false) then
+                QuestieConfig.trackerMinimize = true
+                QuestieTracker.frame:Hide();
+            else
+               QuestieConfig.trackerMinimize = false
+               QuestieTracker.frame:Show();
+            end
+        end);
         QuestieTrackerHeader:Hide();
     elseif (QuestieConfig.trackerList == false) then
-        local header = CreateFrame("Button", "QuestieTrackerHeader", QuestieTracker.frame);
+        local header = CreateFrame("Button", "QuestieTrackerHeader", UIParent);
         watcher = header:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         watcher:SetPoint("TOPLEFT", QuestieTracker.frame, "TOPLEFT", 10, -8)
+        -- QuestTracker Minimize Button
+        qmenu = CreateFrame("Button", "QuestieTrackerMenu", watcher.frame);
+        qmenu:SetFrameStrata("HIGH");
+        qmenu:SetWidth(100);
+        qmenu:SetHeight(10);
+        qmenu:SetPoint("TOPLEFT", QuestieTracker.frame, "TOPLEFT", 6, -6)
+        qmenu.texture = qmenu:CreateTexture(nil, "BACKGROUND");
+        qmenu.texture:SetTexture(0,0,0);
+        qmenu.texture:SetAlpha(0.0);
+        qmenu.texture:SetAllPoints(qmenu);
+        qmenu:EnableMouse(true);
+        qmenu:SetScript("OnClick", function()
+            if (QuestieConfig.trackerMinimize == false) then
+                QuestieConfig.trackerMinimize = true
+                QuestieTracker.frame:Hide();
+            else
+               QuestieConfig.trackerMinimize = false
+               QuestieTracker.frame:Show();
+            end
+        end);
         QuestieTrackerHeader:Hide();
     end
 end
@@ -735,7 +788,7 @@ function QuestLogTitleButton_OnClick(button)
                         return;
                     end
                     if ( ChatFrameEditBox:IsVisible() ) then
-                        ChatFrameEditBox:Insert(gsub(this:GetText(), " *(.*)", "%1"));
+                        ChatFrameEditBox:Insert("["..gsub(this:GetText(), ".*%]%s(.*)", "%1").."]");
                     else
                         if ( IsQuestWatched(questIndex) ) then
                             RemoveQuestWatch(questIndex);
@@ -770,7 +823,7 @@ function QuestLogTitleButton_OnClick(button)
         if(button == "LeftButton") then
             if( not IsShiftKeyDown() and IsControlKeyDown() ) then
                 if ( ChatFrameEditBox:IsVisible() ) then
-                    AddQuestStatusToChatFrame(questIndex, questName);
+                    ChatFrameEditBox:Insert("["..gsub(this:GetText(), ".*%]%s(.*)", "%1").."]");
                 end
             end
         else
@@ -795,7 +848,7 @@ function QuestLogTitleButton_OnClick(button)
                 return;
             end
             if ( ChatFrameEditBox:IsVisible() ) then
-                ChatFrameEditBox:Insert(gsub(this:GetText(), " *(.*)", "%1"));
+                ChatFrameEditBox:Insert("["..gsub(this:GetText(), ".*%]%s(.*)", "%1").."]");
             else
                 if ( IsQuestWatched(questIndex) ) then
                     QuestieTracker:setQuestInfo(questIndex);
@@ -881,6 +934,9 @@ function QuestieTracker:addQuestToTracker(hash, logId, level) -- never used???
         local desc, type, done = QGet_QuestLogLeaderBoard(i, logId);
         if QuestieTrackedQuests[hash]["objective"..i] then
             if isComplete or (QGet_NumQuestLeaderBoards() == 0) or (QuestieTrackedQuests[hash]["objective"..i]["done"] == 1) then
+                if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == hash) then
+                    TomTomCrazyArrow:Hide()
+                end
                 QuestieTrackedQuests[hash]["objective"..i] = {
                     ["desc"] = "Quest Complete!",
                     ["type"] = type,
@@ -960,7 +1016,10 @@ end
 ---------------------------------------------------------------------------------------------------
 function QuestieTracker:removeQuestFromTracker(hash)
     if (QuestieSeenQuests[hash] == 0) and (QuestieTrackedQuests[hash] ~= nil) then
-            QuestieTrackedQuests[hash]["tracked"] = false
+        QuestieTrackedQuests[hash]["tracked"] = false
+        if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == hash) then
+            TomTomCrazyArrow:Hide()
+        end
     end
     QuestieTracker:fillTrackingFrame()
     Questie:SetAvailableQuests()
@@ -1019,6 +1078,9 @@ function QuestieTracker:setQuestInfo(id)
         local hash = Questie:GetHashFromName(questName)
         if(QuestieTracker:isTracked(questName)) then
             QuestieTracker:removeQuestFromTracker(hash)
+            if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == hash) then
+                TomTomCrazyArrow:Hide()
+            end
             return
         end
         if QuestieTrackedQuests[hash] then
@@ -1057,6 +1119,9 @@ function QuestieTracker:syncEQL3()
                         QuestieTracker:addQuestToTracker(hash, id, level)
                     end
                 elseif( not isHeader and not EQL3_IsQuestWatched(id) and QuestieTracker:isTracked(questName) ) then
+                    if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == hash) then
+                        TomTomCrazyArrow:Hide()
+                    end
                     QuestieTracker:removeQuestFromTracker(hash)
                 end
             end
@@ -1087,6 +1152,9 @@ function QuestieTracker:syncQuestWatch()
                         QuestieTracker:addQuestToTracker(hash, id, level)
                     end
                 elseif( not isHeader and not IsQuestWatched(id) and QuestieTracker:isTracked(questName) ) then
+                    if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == hash) then
+                        TomTomCrazyArrow:Hide()
+                    end
                     QuestieTracker:removeQuestFromTracker(hash)
                 end
             end
@@ -1113,9 +1181,6 @@ function QuestieTracker:ADDON_LOADED()
             xOfs = 0,
             yOfs = 0,
         };
-    end
-    if not QuestieTrackedQuests then
-        QuestieTrackedQuests = {}
     end
     -- This adds the ability to scale the Worldmap from FULLSCREEN or to a WINDOW if a player isn't using Cargographer or MetaMap.
     if (QuestieConfig == nil) then return end

@@ -59,10 +59,8 @@ wayframe:Hide()
 local titleframe = CreateFrame("Frame", nil, wayframe)
 wayframe.title = titleframe:CreateFontString("OVERLAY", nil, "GameFontHighlightSmall")
 wayframe.status = titleframe:CreateFontString("OVERLAY", nil, "GameFontNormalSmall")
-wayframe.tta = titleframe:CreateFontString("OVERLAY", nil, "GameFontNormalSmall")
 wayframe.title:SetPoint("TOP", wayframe, "BOTTOM", 0, 0)
 wayframe.status:SetPoint("TOP", wayframe.title, "BOTTOM", 0, 0)
-wayframe.tta:SetPoint("TOP", wayframe.status, "BOTTOM", 0, 0)
 
 local function OnDragStart(self, button)
     if IsControlKeyDown() and IsShiftKeyDown() then
@@ -114,19 +112,15 @@ function SetArrowObjective(hash)
     local objective = QuestieTrackedQuests[hash]["arrowPoint"]
     SetCrazyArrow(objective, objective.dist, objective.title)
 end
+
 local status = wayframe.status
-local tta = wayframe.tta
 local arrow = wayframe.arrow
 local count = 0
-local last_distance = 0
-local tta_throttle = 0
-local speed = 0
-local speed_count = 0
-HACK_DUMP = 0;
 local function OnUpdate(self, elapsed)
     self = this
     elapsed = 1/GetFramerate()
     local dist,x,y
+    if not UnitIsDeadOrGhost("player") then
     if arrow_objective then
         if QuestieTrackedQuests[arrow_objective] then
             local objective = QuestieTrackedQuests[arrow_objective]["arrowPoint"]
@@ -141,38 +135,9 @@ local function OnUpdate(self, elapsed)
         self:Hide()
         return
     end
-   for i=1, MAX_BATTLEFIELD_QUEUES do
-        bgstatus = GetBattlefieldStatus(i);
-        if (bgstatus == active) then
-            bgactive = true
-        else
-            bgactive = false
-        end
     end
-    if UnitIsDeadOrGhost("player") and (bgactive == false) then
-        if (QuestieConfig.corpseArrow == true) and (QuestieConfig.arrowEnabled == true) then
-        local deadmyx, deadmyy = GetCorpseMapPosition();
-        if deadmyx and deadmyy and deadmyx ~= 0 and deadmyy ~= 0 then
-            local mycon, myzone, x, y = Astrolabe:GetCurrentPlayerPosition()
-            local ddist, xDelta, yDelta = Astrolabe:ComputeDistance(mycont, myzone, X, Y, continent, zone, xNote, yNote)
-            local dtitle = "My Dead Corpse"
-            local dpoint = {c = mycon, z = myzone, x = deadmyx, y = deadmyy}
-            SetCrazyArrow(dpoint, ddist, dtitle);
-        end
-    end
-       if (QuestieConfig.corpseArrow == true) and (QuestieConfig.arrowEnabled == false) then
-            local deadmyx, deadmyy = GetCorpseMapPosition();
-            if deadmyx and deadmyy and deadmyx ~= 0 and deadmyy ~= 0 then
-                local mycon, myzone, x, y = Astrolabe:GetCurrentPlayerPosition()
-                local ddist, xDelta, yDelta = Astrolabe:ComputeDistance(mycont, myzone, X, Y, continent, zone, xNote, yNote)
-                local dtitle = "My Dead Corpse"
-                local dpoint = {c = mycon, z = myzone, x = deadmyx, y = deadmyy}
-                SetCrazyArrow(dpoint, ddist, dtitle);
-            end
-        end
-        if (QuestieConfig.arrowEnabled == false) and (QuestieConfig.corpseArrow == false) then
-            TomTomCrazyArrow:Hide()
-        end
+    if UnitIsDeadOrGhost("player") and (UnitIsDead("player") ~= 1) and (bgactive == false) then
+        Questie:OnUpdate(elapsed)
     end
     local dist,x,y = GetDistanceToIcon(active_point)
     -- The only time we cannot calculate the distance is when the waypoint
@@ -247,31 +212,6 @@ local function OnUpdate(self, elapsed)
         local yend = ((row + 1) * 42) / 512
         arrow:SetTexCoord(xstart,xend,ystart,yend)
     end
-    -- Calculate the TTA every second  (%01d:%02d)
-    tta_throttle = tta_throttle + elapsed
-    if tta_throttle >= 1.0 then
-        -- Calculate the speed in yards per sec at which we're moving
-        local current_speed = (last_distance - dist) / tta_throttle
-        if last_distance == 0 then
-            current_speed = 0
-        end
-        if speed_count < 2 then
-            speed = (speed + current_speed) / 2
-            speed_count = speed_count + 1
-        else
-            speed_count = 0
-            speed = current_speed
-        end
-        if speed > 0 then
-            local eta = math.abs(dist / speed)
-            local text = string.format("%01d:%02d", eta / 60, Questie:Modulo(eta, 60))
-            tta:SetText(text)
-        else
-            tta:SetText("***")
-        end
-        last_distance = dist
-        tta_throttle = 0
-    end
 end
 
 function ShowHideCrazyArrow()
@@ -292,11 +232,6 @@ function ShowHideCrazyArrow()
         wayframe.title:SetHeight(height)
         titleframe:SetScale(scale)
         titleframe:SetAlpha(1)
-        if true then
-            tta:Show()
-        else
-            tta:Hide()
-        end
     else
         wayframe:Hide()
     end
