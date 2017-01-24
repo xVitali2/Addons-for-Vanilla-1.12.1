@@ -3,15 +3,11 @@ if ( GetLocale() == "ruRU" ) then
 --- Russian localization by Lichery ---
 ---------------------------------------
 
------------
---- LUA ---
------------
-
 	--[[ TrinketMenuOpt.lua : Options and sort window for TrinketMenu ]]
 
 	TrinketMenu.CheckOptInfo = {
 		{"ShowIcon","ON","Кнопка миникарты","Показать или скрыть кнопку."},
-		{"SquareMinimap","OFF","Прощадь миникарты","Движение кнопки миникарты вокруг площади миникарты.","ShowIcon"},
+		{"SquareMinimap","OFF","Площадь миникарты","Движение кнопки миникарты вокруг площади миникарты.","ShowIcon"},
 		{"CooldownCount","OFF","Восстановление числом","Отображает оставшееся время восстановления."},
 		{"TooltipFollow","OFF","На мышке","Отображает все всплывающие подсказки около мышки.","ShowTooltips"},
 		{"KeepOpen","OFF","Открытое меню","Держит меню открытым все время."},
@@ -48,10 +44,25 @@ if ( GetLocale() == "ruRU" ) then
 		{"TrinketMenu_ProfileName","Имя профиля","Введите имя для вызова профиля.  При сохранении, вы можете загрузить этот профиль для каждой ячейки аксессуара."},
 	}
 	
+	TRINKETMENU_TRNKETS = " аксессуаров"
+	
+	-- TrinketMenuQueue.lua
+	TRINKETMENU_PRIORITY = "Приоритет"
+	TRINKETMENU_PAUSE_QUEUE = "Пауза очереди"
 	TRINKETMENU_STOP_QUEUE = "-- остановка очереди здесь --"
 	TRINKETMENU_STOP_QUEUE_TOOLTIP1 = "Остановка очереди здесь"
 	TRINKETMENU_STOP_QUEUE_TOOLTIP2 = "Переместите это, чтобы отметить последний аксессуар в автоматической очереди. Иногда вам может понадобиться, чтобы пассивный аксессуар с эффектом нажатия был конце очереди (\"Амулет Озарения\", \"Второе дыхание\", и т.д.)."
 	
+	TRINKETMENU_ERROR_MSG = "|cFFBBBBBBTrinketMenu:|cFFFFFFFF "
+	TRINKETMENU_ERROR_MSG1 = "Первый параметр должен быть 0 для верхнего аксессуара или 1 для нижнего."
+	TRINKETMENU_ERROR_MSG2 = "Второй параметр либо ON, OFF, PAUSE, RESUME или начало списка аксессуаров в порядке сортировки."
+	TRINKETMENU_ERROR_MSG3 = "Аксессуар или профиль \""
+	TRINKETMENU_ERROR_MSG4 = "\" не найден."
+	TRINKETMENU_ERROR_MSG5 = " Ожидается ON, OFF, PAUSE, RESUME или SORT+list"
+	TRINKETMENU_ERROR_MSG6 = "|cFFBBBBBBTrinketMenu.GetQueue:|cFFFFFFFF Параметр должен быть 0 для верхнего аксессуара или 1 для нижнего."
+	TRINKETMENU_ERROR_MSG7 = "Ни один профиль не сохранен."
+	
+	-- TrinketMenu.lua
 	TRINKETMENU_ADDON_LOAD = "|cFFFFFF00TrinketMenu загружен:"
 	TRINKETMENU_CMD_LOAD = "/trinket load (top|bottom) profilename\nт.е.: /trinket load bottom PvP"
 
@@ -73,21 +84,13 @@ if ( GetLocale() == "ruRU" ) then
 	TRINKETMENU_YES = "Да"
 	TRINKETMENU_NO = "Нет"
 
-	TRINKETMENU_ERROR_MSG = "|cFFBBBBBBTrinketMenu:|cFFFFFFFF "
-	TRINKETMENU_ERROR_MSG1 = "Первый параметр должен быть 0 для верхнего аксессуара или 1 для нижнего."
-	TRINKETMENU_ERROR_MSG2 = "Второй параметр либо ON, OFF, PAUSE, RESUME или начало списка аксессуаров в порядке сортировки."
-	TRINKETMENU_ERROR_MSG3 = "Аксессуар или профиль \""
-	TRINKETMENU_ERROR_MSG4 = "\" не найден."
-	TRINKETMENU_ERROR_MSG5 = " Ожидается ON, OFF, PAUSE, RESUME или SORT+list"
-	TRINKETMENU_ERROR_MSG6 = "|cFFBBBBBBTrinketMenu.GetQueue:|cFFFFFFFF Параметр должен быть 0 для верхнего аксессуара или 1 для нижнего."
-	TRINKETMENU_ERROR_MSG7 = "Ни один профиль не сохранен."
-	
------------
---- XML ---
------------
-
-	TRINKETMENU_TRNKETS = " аксессуаров"
+	-- TrinketMenuOpt.xml
 	TRINKETMENU_OPTIONS = "Опции"
+	TRINKETMENU_MINIMAP_TOOLTIP1 = "Нажатие: переключение опций\nПеремещение: движение значка"
+	TRINKETMENU_MINIMAP_TOOLTIP2 = "Левое нажатие: переключение аксессуаров\nПравое нажатие: переключение опций\nПеремещение: движение значка"
+	TRINKETMENU_5_TRINKETS = "5 аксессуаров"
+	
+	-- TrinketMenuQueue.xml
 	TRINKETMENU_PROFILENAME = "Имя профиля"
 	TRINKETMENU_BUTTOM = "Нижний"
 	TRINKETMENU_TOP = "Верхний"
@@ -98,7 +101,9 @@ if ( GetLocale() == "ruRU" ) then
 	TRINKETMENU_LOAD = "Загрузить"
 	TRINKETMENU_SAVE = "Сохранить"
 	TRINKETMENU_CANCEL = "Отмена"
-	TRINKETMENU_MINIMAP_TOOLTIP1 = "Нажатие: переключение опций\nПеремещение: движение значка"
-	TRINKETMENU_MINIMAP_TOOLTIP2 = "Левое нажатие: переключение аксессуаров\nПравое нажатие: переключение опций\nПеремещение: движение значка"
-
+	
+	-- Bindings.xml
+	BINDING_NAME_TRINKETMENU_TOGGLE = "Открыть/Закрыть TrinketMenu"
+	BINDING_NAME_TRINKETMENU_TOP = "Использовать верхний аксессуар"
+	BINDING_NAME_TRINKETMENU_BOTTOM = "Использовать нижний аксессуар"
 end

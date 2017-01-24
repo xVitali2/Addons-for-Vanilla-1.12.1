@@ -363,7 +363,7 @@
 						</Backdrop>
 						<Layers>
 							<Layer level="ARTWORK">
-								<FontString name="TrinketMenu_OptColumnsSliderText" inherits="GameFontHighlightSmall" text="5 trinkets">
+								<FontString name="TrinketMenu_OptColumnsSliderText" inherits="GameFontHighlightSmall" text="TRINKETMENU_5_TRINKETS">
 									<Anchors>
 										<Anchor point="BOTTOM" relativePoint="TOP">
 											<Offset>
