@@ -1,0 +1,11 @@
+## Interface: 11200
+## Title: DPSMate +|cFFFFFFFFCCBreaker|r
+## Notes: Adds the CCBreaker module.
+## Author: Shino <Synced> - Kronos
+## Dependencies: DPSMate
+
+DPSMate_CCBreaker.lua
+DPSMate_Details_CCBreaker.lua
+DPSMate_Details_CCBreaker.xml
+DPSMate_Details_CCBreakerTotal.lua
+DPSMate_Details_CCBreakerTotal.xml
