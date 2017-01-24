@@ -1217,8 +1217,12 @@ QuestieLevLookup = {
   ["Bring Ilkrud Magthrull's Tome to Delgren the Purifier at Maestra's Post."]={0,3181993408},
   ["Talk to Delgren the Purifier at Maestra's Post."]={0,3103336192},
   ["Free the trapped Highborne souls in Night Run and Satyrnaar, then return to Delgren the Purifier at Maestra's Post."]={0,2661493280},
-  ["Kill Athrikus Narassin and bring his head to Balthule Shadowstrike near the Tower of Althalaxx."]={0,432732864},
+ },
+ ["The Tower of Althalaxx part 7"]={
   ["Speak with Balthule Shadowstrike near the Tower of Althalaxx."]={0,351455456},
+ },
+ ["The Tower of Althalaxx part 8"]={
+  ["Kill Athrikus Narassin and bring his head to Balthule Shadowstrike near the Tower of Althalaxx."]={0,432732864},
  },
  ["To Ironforge for Yagyin's Digest"]={
   ["Give the Sigil of the Hammer to Gerrig Bonegrip in the Forlorn Cavern of Ironforge."]={77,4210602997},
@@ -3464,8 +3468,6 @@ QuestieLevLookup = {
   ["Find Daphne Stilwell in Westfall."]={5,1400785165},
   ["Defend Daphne Stilwell from the Defias attack.\n\nNeither of your spirits must be released from their mortal coils if you wish to succeed.\n\nAfter you are successful, speak to Daphne Stilwell again."]={5,1355822029},
   ["Speak to Duthorian Rall in Stormwind."]={5,133585453},
-  [""]={5,275711757},
-  [""]={5,275712269},
  },
  ["Buzzbox 411"]={
   ["Collect 3 Thresher Eyes from Darkshore Threshers in the deep sea near Buzzbox 411."]={0,3671288712},
@@ -15556,7 +15558,7 @@ QuestieHashMap = {
   ['name']="The Tome of Valor",
   ['startedType']="item",
   ['finishedType']="monster",
-  ['startedBy']="unknown",
+  ['startedBy']="Tome of Valor",
   ['finishedBy']="Duthorian Rall",
   ['level']=20,
   ['questLevel']='20',
@@ -19267,7 +19269,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Wharfmaster Dizzywig",
   ['finishedBy']="Gazlowe",
-  ['level']=10,
+  ['level']=12,
   ['questLevel']='14',
   ['rq']=4060594680
  },
@@ -20879,7 +20881,7 @@ QuestieHashMap = {
   ['rq']=2153855240
  },
  [432732864]={
-  ['name']="The Tower of Althalaxx",
+  ['name']="The Tower of Althalaxx part 8",
   ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Balthule Shadowstrike",
@@ -34636,7 +34638,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Gazlowe",
   ['finishedBy']="Wharfmaster Dizzywig",
-  ['level']=10,
+  ['level']=12,
   ['questLevel']='14',
   ['rq']=3517355320
  },
@@ -35257,17 +35259,6 @@ QuestieHashMap = {
   ['level']=40,
   ['questLevel']='45PVP',
   ['rr']=77
- },
- [275712269]={
-  ['name']="The Tome of Valor",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Brandur Ironhammer",
-  ['finishedBy']="Brandur Ironhammer",
-  ['level']=20,
-  ['questLevel']='20',
-  ['rr']=5,
-  ['rc']=2
  },
  [531798064]={
   ['name']="Tiger Mastery",
@@ -46190,7 +46181,7 @@ QuestieHashMap = {
   ['rq']=3632844778
  },
  [351455456]={
-  ['name']="The Tower of Althalaxx",
+  ['name']="The Tower of Althalaxx part 7",
   ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Delgren the Purifier",
@@ -50353,17 +50344,6 @@ QuestieHashMap = {
   ['finishedBy']="Corrupted Songflower",
   ['level']=50,
   ['questLevel']='55'
- },
- [275711757]={
-  ['name']="The Tome of Valor",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Duthorian Rall",
-  ['finishedBy']="Duthorian Rall",
-  ['level']=20,
-  ['questLevel']='20',
-  ['rr']=5,
-  ['rc']=2
  },
  [973529498]={
   ['name']="Great-father Winter is Here!",
