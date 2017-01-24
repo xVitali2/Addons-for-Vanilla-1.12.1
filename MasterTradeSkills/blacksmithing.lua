@@ -2599,54 +2599,6 @@ ReagentData['crafted']['blacksmithing'] = {
             [ReagentData['bar']['thorium']] = 20,
         }
     },
---~     ['Bleakwood Hew'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['herb']['wildvine']] = 6,
---~             [ReagentData['leather']['rugged']] = 8,
---~             [ReagentData['element']['livingessence']] = 6,
---~             [ReagentData['bar']['thorium']] = 30,
---~             [ReagentData['grinding']['dense']] = 2,
---~             [ReagentData['gem']['largeopal']] = 6,
---~         }
---~     },
---~     ['Blood Talon'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['monster']['demonicrune']] = 8,
---~             [ReagentData['gem']['starruby']] = 10,
---~             [ReagentData['bar']['enchantedthorium']] = 10,
---~             [ReagentData['grinding']['dense']] = 2,
---~             [ReagentData['bar']['arcanite']] = 10,
---~         }
---~     },
---~     ['Darkspear'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['monster']['powerfulmojo']] = 20,
---~             [ReagentData['bar']['enchantedthorium']] = 20,
---~             [ReagentData['gem']['hugeemerald']] = 2,
---~             [ReagentData['gem']['azerothiandiamond']] = 2,
---~             [ReagentData['grinding']['dense']] = 2,
---~         }
---~     },
---~     ['Dawnbringer Shoulders'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['gem']['hugeemerald']] = 2,
---~             [ReagentData['element']['essenceofwater']] = 2,
---~             [ReagentData['bar']['thorium']] = 20,
---~             [ReagentData['bar']['arcanite']] = 4,
---~         }
---~     },
     ['Enchanted Thorium Breastplate'] = {
         skill = 300,
         type = 'Plate',
@@ -2773,48 +2725,6 @@ ReagentData['crafted']['blacksmithing'] = {
             [ReagentData['gem']['citrine']] = 2,
         }
     },
---~     ['Inlaid Thorium Hammer'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['bar']['truesilver']] = 2,
---~             [ReagentData['leather']['rugged']] = 4,
---~             [ReagentData['bar']['gold']] = 4,
---~             [ReagentData['bar']['thorium']] = 30,
---~             [ReagentData['gem']['bluesapphire']] = 2,
---~         }
---~     },
---~     ['Ironforge Chain'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['gem']['malachite']] = 2,
---~             [ReagentData['grinding']['rough']] = 2,
---~             [ReagentData['bar']['copper']] = 12,
---~         }
---~     },
---~     ['Ironforge Gauntlets'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['bar']['bronze']] = 8,
---~             [ReagentData['gem']['shadow']] = 3,
---~             [ReagentData['grinding']['coarse']] = 4,
---~         }
---~     },
---~     ['Mithril Scale Gloves'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['leather']['heavy']] = 6,
---~             [ReagentData['bar']['mithril']] = 8,
---~             [ReagentData['cloth']['mageweave']] = 4,
---~         }
---~     },
     ['Ornate Mithril Shoulders'] = {
         skill = 225,
         type = 'Plate',
@@ -2829,25 +2739,6 @@ ReagentData['crafted']['blacksmithing'] = {
           [ReagentData['bar']['mithril']] = 12,
         }
     },
---~     ['Rough Bronze Bracers'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['bar']['bronze']] = 4,
---~         }
---~     },
---~     ['Rune Edge'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['leather']['rugged']] = 4,
---~             [ReagentData['bar']['thorium']] = 30,
---~             [ReagentData['grinding']['dense']] = 2,
---~             [ReagentData['gem']['largeopal']] = 2,
---~         }
---~     },
     ['Sulfuron Hammer'] = {
         skill = 300,
         description = '(2H Mace) Dmg: 176-295, Spd: 3.70, DPS: 63.6, MinLvl: 60, Chance On Hit: Hurls a fiery ball that causes 83 to 101 Fire damage and an additional 16 damage over 8 seconds.',
@@ -2865,16 +2756,6 @@ ReagentData['crafted']['blacksmithing'] = {
             [ReagentData['bar']['arcanite']] = 50,
         }
     },
---~     ['Thorium Greatsword'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['leather']['rugged']] = 4,
---~             [ReagentData['bar']['thorium']] = 16,
---~             [ReagentData['grinding']['dense']] = 2,
---~         }
---~     },
     ['Dark Iron Gauntlets'] = {
         skill = 295,
         description = '[BoE] (Plate Hands) AC: 495, Sta: 16, Agi: 12, FR: 28, MinLvl: 60',
@@ -3223,7 +3104,7 @@ ReagentData['crafted']['blacksmithing'] = {
             [ReagentData['gem']['azerothiandiamond']] = 4,
         },
     },
-    ['Thich Obsidian Breastplate'] = {
+    ['Thick Obsidian Breastplate'] = {
         skill = 300,
         type = 'Shield',
         description = '[BoE] (Plate Chest) AC: 814, Str: 38, Sta: 16, MinLvl: 60, Equip: When struck by a damage spell you have a 30% chance of getting a 6 seconds spell shield that absorbs 300 to 500 of that school of damage.',
@@ -3271,12 +3152,12 @@ ReagentData['crafted']['blacksmithing'] = {
             [ReagentData['monster']['skinofshadow']] = 2,
         },
     },
-    ['Titanic Breastplate'] = {
+    ['Titanic Leggings'] = {
         skill = 300,
         type = 'Plate',
-        description = '[BoE] (Plate Chest) AC: 598, Str: 30, MinLvl: 55, Equip: Improves your chance to hit by 2%., Equip: Improves your chance to get a critical strike by 1%.',
-        source = 'Drop:Plans: Titanic Breastplate',
-        sourcerarity = 'Epic',
+        description = '[BoE] (Plate Legs) AC: 598, Str: 30, MinLvl: 55, Equip: Improves your chance to hit by 2%., Equip: Improves your chance to get a critical strike by 1%.',
+        source = 'Drop:Plans: Titanic Leggings',
+        sourcerarity = 'Epic', 
         result = 1,
         resultrarity = 'Epic',
         reagents = {

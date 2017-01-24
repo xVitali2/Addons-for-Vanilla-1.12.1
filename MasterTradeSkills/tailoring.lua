@@ -2865,11 +2865,11 @@ ReagentData['crafted']['tailoring'] = {
           [ReagentData['spidersilk']['ironweb']] = 2,
      },
     },
-    ['Soul Bag'] = {
+    ['Soul Pouch'] = {
      skill = 260,
      description = '20 Slot Shard Bag',
      type = 'Container',
-     source = 'Vendor:Pattern: Soul Bag',
+     source = 'Vendor:Pattern: Soul Pouch',
      result = 1,
      resultrarity = 'Uncommon',
      reagents = {

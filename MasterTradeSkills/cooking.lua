@@ -498,7 +498,7 @@ ReagentData['crafted']['cooking'] = {
     ['Goldthorn Tea'] = {
         skill = 175,
         description = 'MinLvl: 25, Use: Restores 1344 mana over 27 sec. Must remain seated while drinking.',
-        source = 'Unknown',
+        source = 'Trainer, RFD',
         result = 4,
         reagents = {
             [ReagentData['herb']['goldthorn']] = 1,
@@ -526,7 +526,7 @@ ReagentData['crafted']['cooking'] = {
             [ReagentData['drink']['refreshingspringwater']] = 1,
         }
     },
-    ['Mithril Headed Trout'] = {
+    ['Mithril Head Trout'] = {
         skill = 175,
         description = 'MinLvl: 25, Use: Restores 874 health over 27 sec. Must remain seated while eating.',
         source = 'Vendor:Recipe: Mithril Head Trout',

@@ -2690,26 +2690,6 @@ ReagentData['crafted']['leatherworking'] = {
         [ReagentData['monster']['ogretannin']] = 1,
         }
     },
---~     ['Nightscape Cloak'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['leather']['thick']] = 12,
---~             [ReagentData['thread']['silken']] = 4,
---~         }
---~     },
---~     ['Onyxia Scale Breastplate'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['thread']['rune']] = 2,
---~             [ReagentData['leather']['rugged']] = 40,
---~             [ReagentData['monster']['scaleofonyxia']] = 12,
---~             [ReagentData['scale']['blackdragon']] = 60,
---~         }
---~     },
     ['Onyxia Scale Cloak'] = {
         skill = 300,
         type = 'Cloth',

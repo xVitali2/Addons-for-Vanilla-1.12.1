@@ -1619,11 +1619,11 @@ ReagentData['crafted']['engineering'] = {
             [ReagentData['cloth']['rune']] = 1,
         }
     },
-    ['Gyrofreeze Ice Deflector'] = {
+    ['Gyrofreeze Ice Reflector'] = {
          skill = 260,
          description = '[BoE] [U] (Trinket) MinLvl: 47, Requires Engineering (260), Use: Reflects Frost spells back at their caster for 5 seconds.',
          type = 'Devices',
-         source = 'Vendor:Schematic: Gyrofreeze Ice Deflector',
+         source = 'Vendor:Schematic: Gyrofreeze Ice Reflector',
          sourcerarity = 'Common',
          result = 1,
          resultname = 'Gyrofreeze Ice Deflector',
@@ -2024,9 +2024,9 @@ ReagentData['crafted']['engineering'] = {
     },
     ['Alarm-O-Bot'] = {
          skill = 265,
-         description = 'Requires Engineering (265), Use: Summons an Alarm-O-Bot for 10 minutes that occasionally sends out a pulse that detects nearby stealthy or invisible enemies.',
+         description = 'Requires Gnomish Engineering (265), Use: Summons an Alarm-O-Bot for 10 minutes that occasionally sends out a pulse that detects nearby stealthy or invisible enemies.',
          type = 'Devices',
-         source = 'Drop:Schematic: Alarm-O-Bot',
+         source = 'Drop:Schematic: Gnomish Alarm-O-Bot',
          sourcerarity = 'Uncommon',
          result = 1,
          resultname = 'Alarm-O-Bot',

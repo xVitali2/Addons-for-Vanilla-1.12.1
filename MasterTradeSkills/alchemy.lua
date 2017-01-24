@@ -1084,18 +1084,6 @@ ReagentData['crafted']['alchemy'] = {
             [ReagentData['vial']['crystal']] = 1,
         }
     },
---~     ['Greater Holy Protection Potion'] = {
---~         skill = 290,
---~         description = 'MinLvl: 48, Use: Absorbs 1950 to 3250 holy damage. Lasts 1 hour.',
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['herb']['dreamfoil']] = 1,
---~             [ReagentData['element']['air']] = 1,
---~             [ReagentData['vial']['crystal']] = 1,
---~         }
---~     },
     ['Greater Nature Protection Potion'] = {
         skill = 290,
         description = 'MinLvl: 48, Use: Absorbs 1950 to 3250 nature damage. Lasts 1 hour.',
@@ -1229,44 +1217,6 @@ ReagentData['crafted']['alchemy'] = {
             [ReagentData['vial']['imbued']] = 1,
         }
     },
---~     ['Cowardly Flight Potion'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['herb']['kingsblood']] = 1,
---~             [ReagentData['vial']['leaded']] = 1,
---~             [ReagentData['feather']['Delicate Feather']] = 1,
---~         }
---~     },
---~     ['Elixir of Tongues'] = {
---~         source = 'Unknown:Recipe: Elixir of Tongues',
---~         result = 1,
---~         resultname = 'Elixir of Tongues (NYI)',
---~         reagents = {
---~             [ReagentData['vial']['empty']] = 1,
---~             [ReagentData['herb']['earthroot']] = 2,
---~             [ReagentData['herb']['mageroyal']] = 2,
---~         }
---~     },
---~     ['Elixir of Waterwalking'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~             [ReagentData['herb']['liferoot']] = 1,
---~             [ReagentData['vial']['leaded']] = 1,
---~             [ReagentData['oil']['blackmouth']] = 1,
---~         }
---~     },
---~     ['Refined Scale of Onyxia'] = {
---~         source = 'Unknown',
---~         result = 1,
---~         resultname = 'UnknownItem',
---~         reagents = {
---~          [ReagentData['monster']['scaleofonyxia']] = 1,
---~         }
---~     },
     ['Mageblood Potion'] = {
          skill = 300,
          description = 'MinLvl: 40, Use: Regenerate 12 mana every 5 sec for 60 minutes.',
