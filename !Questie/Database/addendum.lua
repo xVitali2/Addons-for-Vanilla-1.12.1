@@ -13697,7 +13697,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Felix Whindlebolt",
   ['finishedBy']="Felix Whindlebolt",
-  ['level']=3,
+  ['level']=2,
   ['questLevel']='3',
   ['rr']=77
  },
@@ -55544,7 +55544,6 @@ for k,v in pairs(QuestieHashMap) do
             end
             table.insert(QuestieZoneLevelMap[mapid][v['level']], k);
         else
-            --DEFAULT_CHAT_FRAME:AddMessage("Could not find starter for ".. v['name']);
         end
     end
 end
