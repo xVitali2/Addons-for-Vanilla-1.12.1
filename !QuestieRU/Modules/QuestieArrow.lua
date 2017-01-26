@@ -108,7 +108,7 @@ function SetArrowObjective(hash)
         return;
     end
     arrow_objective = hash
-    if not QuestieTrackedQuests[hash]["arrowPoint"] then return end
+    if not QuestieTrackedQuests[hash]["arrowPoint"] or not QuestieTrackedQuests[hash] then return end
     local objective = QuestieTrackedQuests[hash]["arrowPoint"]
     SetCrazyArrow(objective, objective.dist, objective.title)
 end
@@ -139,6 +139,7 @@ local function OnUpdate(self, elapsed)
     if UnitIsDeadOrGhost("player") and (UnitIsDead("player") ~= 1) and (bgactive == false) then
         Questie:OnUpdate(elapsed)
     end
+    if (TomTomCrazyArrow:IsVisible() ~= nil) then
     local dist,x,y = GetDistanceToIcon(active_point)
     -- The only time we cannot calculate the distance is when the waypoint
     -- is on another continent, or we are in an instance
@@ -270,9 +271,9 @@ local texcoords = setmetatable({}, {__index = function(t, k)
 end})
 
 wayframe:RegisterEvent("ADDON_LOADED")
+local runonce = true
 wayframe:SetScript("OnEvent", function(self, event, arg1, ...)
-    if true then
-        if true then
+    if runonce == true then
             local feed_crazy = CreateFrame("Frame")
             local crazyFeedFrame = CreateFrame("Frame")
             local throttle = 1
@@ -321,7 +322,7 @@ wayframe:SetScript("OnEvent", function(self, event, arg1, ...)
                 feed_crazy.text = point_title or "Unknown waypoint"
             end)
         end
-    end
+    runonce = false
 end)
 
 -- calculations have to be redone - we are NOT actually working with Astrolabe "icons" here as TomTom did and want the arrow API

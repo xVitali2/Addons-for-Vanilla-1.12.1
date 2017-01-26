@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 -- Name: Questie for Vanilla WoW
--- Revision: 3.68
+-- Revision: 3.69
 -- Authors: Aero/Schaka/Logon/Dyaxler/everyone else
 -- Website: https://github.com/AeroScripts/QuestieDev
 -- Description: Questie started out being a simple backport of QuestHelper but it has grown beyond
@@ -16,7 +16,7 @@ Questie = CreateFrame("Frame", "QuestieLua", UIParent, "ActionButtonTemplate");
 QuestRewardCompleteButton = nil;
 QuestAbandonOnAccept = nil;
 QuestAbandonWithItemsOnAccept = nil;
-QuestieVersion = 3.68;
+QuestieVersion = 3.69;
 ---------------------------------------------------------------------------------------------------
 -- WoW Functions --PERFORMANCE CHANGE--
 ---------------------------------------------------------------------------------------------------
@@ -41,8 +41,6 @@ end
 ---------------------------------------------------------------------------------------------------
 function Questie:SetupDefaults()
 	if not QuestieConfig then QuestieConfig = {
-		["alwaysShowDistance"] = false,
-		["alwaysShowLevel"] = true,
 		["alwaysShowQuests"] = true,
 		["arrowEnabled"] = true,
         ["corpseArrow"] = true,
@@ -79,15 +77,10 @@ function Questie:SetupDefaults()
 	end
 end
 ---------------------------------------------------------------------------------------------------
--- Setup Default Vars
+-- Setup Default Values
 ---------------------------------------------------------------------------------------------------
 function Questie:CheckDefaults()
-	if QuestieConfig.alwaysShowDistance == nil then
-		QuestieConfig.alwaysShowDistance = false;
-	end
-	if QuestieConfig.alwaysShowLevel == nil then
-		QuestieConfig.alwaysShowLevel = true;
-	end
+    -- Setups default QuestieConfig toggles for first time users
 	if QuestieConfig.alwaysShowQuests == nil then
 		QuestieConfig.alwaysShowQuests = true;
 	end
@@ -153,7 +146,11 @@ if QuestieConfig.trackerScale == nil then
     if QuestieConfig.hideObjectives == nil then
         QuestieConfig.hideObjectives = false;
     end
-	-- Version check
+    -- Setups default QuestDB's for fresh characters
+    if QuestieTrackedQuests == nil then
+        QuestieTrackedQuests = {}
+    end
+    -- Version check
 	if (not QuestieConfig.getVersion) or (QuestieConfig.getVersion < QuestieVersion) then
 		Questie:ClearConfig("version");
 	end
@@ -161,12 +158,18 @@ if QuestieConfig.trackerScale == nil then
     -- the same Saved Varibles file. This check will delete the Questie Saved Varibles file to prevent
     -- any quest issues for the new character.
     if UnitLevel("player") == 1 then
+        local i = 0;
         for i,v in pairs(QuestieSeenQuests) do
-            if (v == 0) or (v == -1) or (v == 1) then
+            if (i < 3) then
+                i = i + 1;
+            else
+                break;
+            end
+        end
+        if i > 2 then
                 Questie:NUKE("newcharacter");
             end
         end
-    end
 	-- Sets some EQL3 settings to keep it from conflicting with Questie fetures
 	EQL3_Player = UnitName("player").."-"..GetRealmName();
 	if IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest") then
@@ -215,8 +218,6 @@ function Questie:ClearConfig(arg)
 			QuestieConfig = {}
 			-- Setup default settings
 			QuestieConfig = {
-				["alwaysShowDistance"] = false,
-				["alwaysShowLevel"] = true,
 				["alwaysShowQuests"] = true,
 				["arrowEnabled"] = true,
                 ["corpseArrow"] = true,
@@ -301,8 +302,6 @@ function Questie:NUKE(arg)
             QuestieConfig = {}
             -- Setup default settings
             QuestieConfig = {
-                ["alwaysShowDistance"] = false,
-                ["alwaysShowLevel"] = true,
                 ["alwaysShowQuests"] = true,
                 ["arrowEnabled"] = true,
                 ["corpseArrow"] = true,
@@ -370,10 +369,17 @@ this:RegisterEvent("QUEST_FINISHED");
 		local hash = Questie:GetHashFromName(QGet_AbandonQuestName());
 		QuestieTrackedQuests[hash] = nil;
 		QuestieSeenQuests[hash] = -1;
-		if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == hash) then
-			TomTomCrazyArrow:Hide()
-		end
-		Questie:AddEvent("CHECKLOG", 0.135);
+      local index = 0
+        for i,v in pairs(QuestieTrackedQuests) do
+            if QuestieSeenQuests[i] ~= QuestieTrackedQuests[i] then
+                QuestieTrackedQuests[i] = nil
+            end
+            index = index + 1
+        end
+        if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == hash) then
+            TomTomCrazyArrow:Hide()
+        end
+        --Questie:AddEvent("CHECKLOG", 0.135);
 		QuestAbandonOnAccept();
 	end
 	QuestAbandonWithItemsOnAccept = StaticPopupDialogs["ABANDON_QUEST_WITH_ITEMS"].OnAccept;
@@ -381,10 +387,17 @@ this:RegisterEvent("QUEST_FINISHED");
 		local hash = Questie:GetHashFromName(QGet_AbandonQuestName());
 		QuestieTrackedQuests[hash] = nil;
 		QuestieSeenQuests[hash] = -1;
-		if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == hash) then
-			TomTomCrazyArrow:Hide()
-		end
-		Questie:AddEvent("CHECKLOG", 0.135);
+    local index = 0
+        for i,v in pairs(QuestieTrackedQuests) do
+            if QuestieSeenQuests[i] ~= QuestieTrackedQuests[i] then
+                QuestieTrackedQuests[i] = nil
+            end
+            index = index + 1
+        end
+        if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == hash) then
+            TomTomCrazyArrow:Hide()
+        end
+        --Questie:AddEvent("CHECKLOG", 0.135);
 		QuestAbandonWithItemsOnAccept();
 	end
 	QuestRewardCompleteButton = QuestRewardCompleteButton_OnClick;
@@ -403,7 +416,7 @@ this:RegisterEvent("QUEST_FINISHED");
 				if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == hash) then
 					TomTomCrazyArrow:Hide()
 				end
-         Questie:AddEvent("CHECKLOG", 0.135);
+            Questie:AddEvent("UPDATE", 0.135);
 		end
 		QuestRewardCompleteButton();
 	end
@@ -468,6 +481,10 @@ function Questie:OnUpdate(elapsed)
 				Questie:CheckQuestLog();
 				table.remove(QUESTIE_EVENTQUEUE, 1);
 				break;
+   elseif(v.EVENT == "TRACKER" and GetTime() - v.TIME > v.DELAY) then
+                QuestieTracker:updateTrackingFrameSize()
+                table.remove(QUESTIE_EVENTQUEUE, 1);
+                break;
 			end
 		end
 	end
@@ -523,6 +540,9 @@ QUESTIE_UPDATE_EVENT = 0;
 ---------------------------------------------------------------------------------------------------
 function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10)
 	if(event =="ADDON_LOADED" and arg1 == "Questie") then
+ --DEFAULT_CHAT_FRAME:AddMessage("**EVENT: ADDON_LOADED**")
+        QuestieTracker:updateTrackingFrameSize()
+        QuestieTracker:fillTrackingFrame()
 	elseif( event == "MINIMAP_UPDATE_ZOOM" ) then
         Astrolabe:isMinimapInCity()
 	elseif(event == "QUEST_LOG_UPDATE" or event == "QUEST_ITEM_UPDATE") then
@@ -530,15 +550,9 @@ function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 
 		if(GetTime() - QUESTIE_LAST_CHECKLOG > 0.1) then
 			Questie:AddEvent("CHECKLOG", 0.135);
 			QUESTIE_LAST_CHECKLOG = GetTime();
-		else
-			Questie:debug_Print("[QuestieEvent] ",event, "Spam Protection: Last checklog was:",GetTime() - QUESTIE_LAST_CHECKLOG, "ago skipping!");
-			QUESTIE_LAST_CHECKLOG = GetTime();
 		end
 		if(GetTime() - QUESTIE_LAST_UPDATE > 0.1) then
-			Questie:AddEvent("UPDATE", 0.15);--On my fast PC this seems like a good number
-			QUESTIE_LAST_UPDATE = GetTime();
-		else
-			Questie:debug_Print("[QuestieEvent] ",event, "Spam Protection: Last update was:",GetTime() - QUESTIE_LAST_UPDATE, "ago skipping!");
+            Questie:AddEvent("UPDATE", 0.15);
 			QUESTIE_LAST_UPDATE = GetTime();
 		end
 		Questie:BlockTranslations();
@@ -566,7 +580,6 @@ function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 
 						TomTomCrazyArrow:Hide();
 					end
 				end
-				Questie:AddEvent("CHECKLOG", 0.135);
 			end
 		end
 	elseif(event == "VARIABLES_LOADED") then
@@ -577,7 +590,7 @@ function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 
 		Questie:BlockTranslations();
 		Questie:SetupDefaults();
 		Questie:CheckDefaults();
-        --Astrolabe:isMinimapInCity()
+        Astrolabe:isMinimapInCity()
 	elseif(event == "PLAYER_LOGIN") then
 		Questie:CheckQuestLog();
 		Questie:AddEvent("UPDATE", 1.15);
@@ -608,11 +621,18 @@ function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 
             end
 		    Questie:hookTooltipLineCheck();
         Questie:CheckDefaults();
+      --DEFAULT_CHAT_FRAME:AddMessage("**EVENT: PLAYER_LOGIN**")
+        QuestieTracker:updateTrackingFrameSize()
+        QuestieTracker:fillTrackingFrame()
 	elseif(event == "CHAT_MSG_LOOT") then
 		local _, _, msg, item = string.find(arg1, "(You receive loot%:) (.+)");
 		if msg then
 			Questie:CheckQuestLog();
 		end
+     local _, _, msg, item = string.find(arg1, "(Received item%:) (.+)");
+        if msg then
+            Questie:CheckQuestLog();
+        end
     elseif(event == "PLAYER_DEAD") then
         DiedInCont, DiedInZone, DiedAtX, DiedAtY = Astrolabe:GetCurrentPlayerPosition();
     elseif(event == "PLAYER_UNGHOST") then
@@ -647,12 +667,10 @@ QuestieFastSlash = {
 		QuestieConfig.boldColors = not QuestieConfig.boldColors;
 		if QuestieConfig.boldColors then
 			DEFAULT_CHAT_FRAME:AddMessage("QuestTracker Alternate Colors enabled");
-			Questie:Toggle();
-			Questie:Toggle();
+      QuestieTracker:fillTrackingFrame();
 		else
 			DEFAULT_CHAT_FRAME:AddMessage("QuestTracker Alternate Colors disabled");
-			Questie:Toggle();
-			Questie:Toggle();
+        QuestieTracker:fillTrackingFrame();
 		end
 	end,
 	["listdirection"] = function()
@@ -818,7 +836,7 @@ QuestieFastSlash = {
     end,
 	["header"] = function()
 	-- Default: False
-		if (QuestieConfig.trackerList == false) and (QuestieConfig.showTrackerHeader == false) then
+        if (QuestieConfig.showTrackerHeader == false) then
 			StaticPopupDialogs["TRACKER_HEADER_F"] = {
 				text = "|cFFFFFF00Due to the way the QuestTracker frame is rendered, your UI will automatically be reloaded.|n|nAre you sure you want to continue?|r",
 				button1 = TEXT(YES),
@@ -833,7 +851,7 @@ QuestieFastSlash = {
 			}
 			StaticPopup_Show ("TRACKER_HEADER_F")
 		end
-		if (QuestieConfig.trackerList == false) and (QuestieConfig.showTrackerHeader == true) then
+        if (QuestieConfig.showTrackerHeader == true) then
 			StaticPopupDialogs["TRACKER_HEADER_T"] = {
 				text = "|cFFFFFF00Due to the way the QuestTracker frame is rendered, your UI will automatically be reloaded.|n|nAre you sure you want to continue?|r",
 				button1 = TEXT(YES),
@@ -847,16 +865,6 @@ QuestieFastSlash = {
 				hideOnEscape = 1
 			}
 			StaticPopup_Show ("TRACKER_HEADER_T")
-		end
-		if (QuestieConfig.trackerList == true) then
-			QuestieConfig.showTrackerHeader = not QuestieConfig.showTrackerHeader;
-			if QuestieConfig.showTrackerHeader then
-				DEFAULT_CHAT_FRAME:AddMessage("Quest Tracker Header will now be shown");
-				QuestieTrackerHeader:Show();
-			else
-				DEFAULT_CHAT_FRAME:AddMessage("Quest Tracker Header will now be hidden");
-				QuestieTrackerHeader:Hide();
-			end
 		end
 	end,
 ["qtscale"] = function(arg)
@@ -1023,11 +1031,15 @@ QuestieFastSlash = {
 	["help"] = function()
 		DEFAULT_CHAT_FRAME:AddMessage("Questie SlashCommand Help Menu:", 1, 0.75, 0);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie arrow |r-- |c0000ffc0(toggle)|r QuestArrow", 0.75, 0.75, 0.75);
+      DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie background |r-- |c0000ffc0(toggle)|r QuestTracker background will always remain on", 0.75, 0.75, 0.75);
+        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie backgroundalpha |r-- |c0000ffc0(1-9)|r QuestTracker background alpha level (default=4)", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie corpsearrow |r-- |c0000ffc0(toggle)|r CorpseArrow", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie clearconfig |r-- Resets Questie settings. It does NOT delete your quest data.", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie cleartracker |r-- Relocates the QuestTracker to the center of your screen.", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie color |r-- Select from two different color schemes", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie header |r-- |c0000ffc0(toggle)|r QuestTracker log counter", 0.75, 0.75, 0.75);
+       DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie hideminimap |r-- |c0000ffc0(toggle)|r Hides quest starter icons on mini map only", 0.75, 0.75, 0.75);
+        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie hideobjectives |r-- |c0000ffc0(toggle)|r Objective Icons", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie listdirection |r-- Lists quests Top-->Down or Bottom-->Up", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie mapnotes |r-- |c0000ffc0(toggle)|r World/Minimap icons", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie maxlevel |r-- |c0000ffc0(toggle)|r Max-Level Filter", 0.75, 0.75, 0.75);
@@ -1041,11 +1053,7 @@ QuestieFastSlash = {
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie showquests |r-- |c0000ffc0(toggle)|r Always show quests and objectives", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie tooltips |r-- |c0000ffc0(toggle)|r Always show quest and objective tool tips", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie tracker |r-- |c0000ffc0(toggle)|r QuestTracker", 0.75, 0.75, 0.75);
-        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie background |r-- |c0000ffc0(toggle)|r QuestTracker background will always remain on", 0.75, 0.75, 0.75);
-        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie backgroundalpha |r-- |c0000ffc0(1-9)|r QuestTracker background alpha level (default=4)", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie qtscale |r-- |c0000ffc0(small|medium|large)|r QuestTracker Size (default=small)", 0.75, 0.75, 0.75);
-        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie hideminimap |r-- |c0000ffc0(toggle)|r MiniMap Icons", 0.75, 0.75, 0.75);
-        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie hideobjectives |r-- |c0000ffc0(toggle)|r Objective Icons", 0.75, 0.75, 0.75);
 		if (IsAddOnLoaded("Cartographer")) or (IsAddOnLoaded("MetaMap")) then
 			return
 		elseif (not IsAddOnLoaded("Cartographer")) or (not IsAddOnLoaded("MetaMap")) then
@@ -1079,29 +1087,28 @@ end
 function Questie:CurrentUserToggles()
 	DEFAULT_CHAT_FRAME:AddMessage("Questie Settings:", 0.5, 0.5, 1)
 	local Vars = {
-		[1] = { "alwaysShowLevel" },
-		[2] = { "alwaysShowQuests" },
-		[3] = { "arrowEnabled" },
-        [4] = { "corpseArrow" },
-        [5] = { "boldColors" },
-        [6] = { "maxLevelFilter" },
-        [7] = { "maxShowLevel" },
-        [8] = { "minLevelFilter" },
-        [9] = { "minShowLevel" },
-        [10] = { "trackerMinimize" },
-        [11] = { "showMapAids" },
-        [12] = { "showProfessionQuests" },
-        [13] = { "showTrackerHeader" },
-        [14] = { "showToolTips" },
-        [15] = { "trackerEnabled" },
-        [16] = { "trackerList" },
-        [17] = { "trackerScale" },
-        [18] = { "trackerBackground" },
-        [19] = { "trackerAlpha" },
-        [20] = { "resizeWorldmap" },
-        [21] = { "getVersion" },
-        [22] = { "hideMinimapIcons" },
-        [23] = { "hideObjectives" }
+        [1] = { "alwaysShowQuests" },
+        [2] = { "arrowEnabled" },
+        [3] = { "corpseArrow" },
+        [4] = { "boldColors" },
+        [5] = { "maxLevelFilter" },
+        [6] = { "maxShowLevel" },
+        [7] = { "minLevelFilter" },
+        [8] = { "minShowLevel" },
+        [9] = { "trackerMinimize" },
+        [10] = { "showMapAids" },
+        [11] = { "showProfessionQuests" },
+        [12] = { "showTrackerHeader" },
+        [13] = { "showToolTips" },
+        [14] = { "trackerEnabled" },
+        [15] = { "trackerList" },
+        [16] = { "trackerScale" },
+        [17] = { "trackerBackground" },
+        [18] = { "trackerAlpha" },
+        [19] = { "resizeWorldmap" },
+        [20] = { "getVersion" },
+        [21] = { "hideMinimapIcons" },
+        [22] = { "hideObjectives" }
 	}
 	if QuestieConfig then
 		i = 1

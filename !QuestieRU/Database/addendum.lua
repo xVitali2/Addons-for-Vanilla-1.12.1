@@ -1217,8 +1217,12 @@ QuestieLevLookup = {
   ["Принесите фолиант Илкруда Магтрулла Делгрену Очистителю на заставу Мейстры."]={0,3181993408},
   ["Поговорите с Делгреном Очистителем на Заставе Мейстры."]={0,3103336192},
   ["Освободите заточенные души высокорожденных на Ночной поляне и Сатирнааре, затем вернитесь к Делгрену Очистителю на заставу Мейстры."]={0,2661493280},
-  ["Убейте Атрикуса Нарассина и принесите его голову Балтулу Удару Тени у башни Алталакса."]={0,432732864},
+  },
+ ["Башня Алталакса часть 7"]={
   ["Поговорите с Балтулом Ударом Тени возле башни Алталакса."]={0,351455456},
+ },
+ ["Башня Алталакса часть 8"]={
+  ["Убейте Атрикуса Нарассина и принесите его голову Балтулу Удару Тени у башни Алталакса."]={0,432732864},
  },
  ["В Стальгорн за книгой Йагина"]={
   ["Отнесите печать Молота Геррику Костохвату в Заброшенный грот в Стальгорн."]={77,4210602997},
@@ -3464,8 +3468,6 @@ QuestieLevLookup = {
   ["Найдите Дафну Стилвелл в Западном Крае."]={5,1400785165},
   ["Защитите Дафну Стилвелл от нападения Братства Справедливости. Проследите, чтобы ни ее, ни ваша душа в случае смерти не покинули свои тела, иначе испытание не будет засчитано.$b\nПосле победы поговорите с Дафной Стилвелл."]={5,1355822029},
   ["Найдите в Штормграде Даториана Ралла и поговорите с ним."]={5,133585453},
-  [""]={5,275711757},
-  [""]={5,275712269},
  },
  ["Жужжалка 411"]={
   ["Добудьте 3 глаза крепкозуба с крепкозубов Темных берегов, которые водятся в море неподалеку от Жужжалки 411."]={0,3671288712},
@@ -10774,7 +10776,7 @@ QuestieHashMap = {
  },
  [3129743213]={
   ['name']="Черный Щит",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Черный щит",
   ['finishedBy']="Капитан Гарран Ваймс",
@@ -12298,7 +12300,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Дарси",
   ['finishedBy']="Стражник Паркер",
-  ['level']=12,
+  ['level']=14,
   ['questLevel']='15',
   ['rr']=77
  },
@@ -12819,7 +12821,6 @@ QuestieHashMap = {
   ['level']=15,
   ['questLevel']='20',
   ['rr']=77,
-  ['rq']=294872749
  },
  [3202779360]={
   ['name']="Приказ Чернорука",
@@ -13696,7 +13697,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Феликс Ремонтуар",
   ['finishedBy']="Феликс Ремонтуар",
-  ['level']=3,
+  ['level']=2,
   ['questLevel']='3',
   ['rr']=77
  },
@@ -15390,8 +15391,8 @@ QuestieHashMap = {
  },
  [2945708672]={
   ['name']="Попался!",
-  ['startedType']="object",
-  ['finishedType']="object",
+  ['startedType']="monster",
+  ['finishedType']="monster",
   ['startedBy']="Деревянный туалет",
   ['finishedBy']="Деревянный туалет",
   ['level']=43,
@@ -15557,7 +15558,7 @@ QuestieHashMap = {
   ['name']="Фолиант Отваги",
   ['startedType']="item",
   ['finishedType']="monster",
-  ['startedBy']="unknown",
+  ['startedBy']="Фолиант Отваги",
   ['finishedBy']="Даториан Ралл",
   ['level']=20,
   ['questLevel']='20',
@@ -19268,7 +19269,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Управляющий пристанью Головокружилкинс",
   ['finishedBy']="Газлоу",
-  ['level']=10,
+  ['level']=12,
   ['questLevel']='14',
   ['rq']=4060594680
  },
@@ -19612,9 +19613,9 @@ QuestieHashMap = {
  },
  [1931948912]={
   ['name']="РАЗЫСКИВАЕТСЯ: Калиф Жало Скорпида",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
-  ['startedBy']="Плакат \"Разыскивается\"",
+  ['startedBy']="Плакат \"Разыскивается\": Калиф Жало Скорпида",
   ['finishedBy']="Главный инженер Чепухастер",
   ['level']=39,
   ['questLevel']='46'
@@ -20880,7 +20881,7 @@ QuestieHashMap = {
   ['rq']=2153855240
  },
  [432732864]={
-  ['name']="Башня Алталакса",
+  ['name']="Башня Алталакса часть 8",
   ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Балтул Удар Тени",
@@ -21467,7 +21468,7 @@ QuestieHashMap = {
  },
  [2710612557]={
   ['name']="Зашифрованное письмо",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Документы Синдиката",
   ['finishedBy']="Хранитель мудрости Диббс",
@@ -21541,7 +21542,7 @@ QuestieHashMap = {
  },
  [3453706893]={
   ['name']="Подозрительные следы копыт",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Подозрительный след копыта",
   ['finishedBy']="Капитан Гарран Ваймс",
@@ -22278,9 +22279,9 @@ QuestieHashMap = {
  },
  [2213851037]={
   ['name']="Разыскивается: Чок'сул",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
-  ['startedBy']="РАЗЫСКИВАЕТСЯ",
+  ['startedBy']="РАЗЫСКИВАЕТСЯ: Чок'сул",
   ['finishedBy']="Мировой судья Тупонос",
   ['level']=17,
   ['questLevel']='22+',
@@ -22589,7 +22590,7 @@ QuestieHashMap = {
  },
  [3681982149]={
   ['name']="Зловещие планы",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Документы Синдиката",
   ['finishedBy']="Мировой судья Генри Малеб",
@@ -23090,7 +23091,7 @@ QuestieHashMap = {
  },
  [2250606541]={
   ['name']="Wanted:  \"Hogger\"",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Плакат \"Разыскивается\"",
   ['finishedBy']="Маршал Дугхан",
@@ -24649,7 +24650,7 @@ QuestieHashMap = {
  },
  [88971736]={
   ['name']="Пойманная принцесса",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="object",
   ['startedBy']="Кристаллы Мизраэли",
   ['finishedBy']="Радужные осколки",
@@ -27160,7 +27161,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Шоун",
   ['finishedBy']="Хилари",
-  ['level']=12,
+  ['level']=14,
   ['questLevel']='15'
  },
  [3411052840]={
@@ -28909,7 +28910,7 @@ QuestieHashMap = {
  },
  [2985035760]={
   ['name']="Светящийся плод",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Чудоягодник",
   ['finishedBy']="Деналан",
@@ -33052,7 +33053,7 @@ QuestieHashMap = {
  },
  [1413821954]={
   ['name']="Лейтенант Павал Рит",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Кокарда Тераморской стражи",
   ['finishedBy']="Крог",
@@ -34637,7 +34638,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Газлоу",
   ['finishedBy']="Управляющий пристанью Головокружилкинс",
-  ['level']=10,
+  ['level']=12,
   ['questLevel']='14',
   ['rq']=3517355320
  },
@@ -35259,17 +35260,6 @@ QuestieHashMap = {
   ['questLevel']='45PVP',
   ['rr']=77
  },
- [275712269]={
-  ['name']="Фолиант Отваги",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Брандар Железный Молот",
-  ['finishedBy']="Брандар Железный Молот",
-  ['level']=20,
-  ['questLevel']='20',
-  ['rr']=5,
-  ['rc']=2
- },
  [531798064]={
   ['name']="Охота на тигров",
   ['startedType']="monster",
@@ -35468,7 +35458,7 @@ QuestieHashMap = {
  },
  [443711632]={
   ['name']="Тайна, покрытая мраком",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Небольшая сумка",
   ['finishedBy']="Линкен",
@@ -43233,7 +43223,7 @@ QuestieHashMap = {
  },
  [686682789]={
   ['name']="Разыскивается: лейтенант Фангор",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Разыскивается: лейтенант Фангор",
   ['finishedBy']="Мировой судья Соломон",
@@ -44170,7 +44160,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Шария",
   ['finishedBy']="Квинтис Ночной Костер",
-  ['level']=47,
+  ['level']=45,
   ['questLevel']='50',
   ['rr']=77,
   ['rq']=461774661
@@ -45152,7 +45142,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Кабатчик Дэниэлс",
   ['finishedBy']="Кабатчик Дэниэлс",
-  ['level']=12,
+  ['level']=14,
   ['questLevel']='15',
   ['rr']=77
  },
@@ -45804,7 +45794,7 @@ QuestieHashMap = {
  },
  [2357408170]={
   ['name']="Подозрительные следы копыт",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Подозрительный след копыта",
   ['finishedBy']="Крог",
@@ -46191,7 +46181,7 @@ QuestieHashMap = {
   ['rq']=3632844778
  },
  [351455456]={
-  ['name']="Башня Алталакса",
+  ['name']="Башня Алталакса часть 7",
   ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Делгрен Очиститель",
@@ -47025,7 +47015,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Танниса",
   ['finishedBy']="Квинтис Ночной Костер",
-  ['level']=47,
+  ['level']=45,
   ['questLevel']='50',
   ['rq']=461774661
  },
@@ -48635,8 +48625,8 @@ QuestieHashMap = {
  },
  [387621336]={
   ['name']="Тайна, покрытая мраком",
-  ['startedType']="object",
-  ['finishedType']="object",
+  ['startedType']="monster",
+  ['finishedType']="monster",
   ['startedBy']="Разбитый плот",
   ['finishedBy']="Небольшая сумка",
   ['level']=48,
@@ -48984,7 +48974,7 @@ QuestieHashMap = {
  },
  [3212165112]={
   ['name']="Учетная книга из Танариса",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Деревянный туалет",
   ['finishedBy']="Кринкель Сталлер",
@@ -49996,7 +49986,7 @@ QuestieHashMap = {
  },
  [4020215789]={
   ['name']="Разыскивается: Гат'Илзогг",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Разыскивается: Гат'Илзогг",
   ['finishedBy']="Мировой судья Соломон",
@@ -50213,8 +50203,8 @@ QuestieHashMap = {
  [4181245104]={
   ['name']="Ключ к свободе",
   ['startedType']="item",
-  ['finishedType']="object",
-  ['startedBy']="unknown",
+  ['finishedType']="monster",
+  ['startedBy']="Grimesilt Outhouse Key",
   ['finishedBy']="Деревянный туалет",
   ['level']=43,
   ['questLevel']='47'
@@ -50354,17 +50344,6 @@ QuestieHashMap = {
   ['finishedBy']="Оскверненный песнецвет",
   ['level']=50,
   ['questLevel']='55'
- },
- [275711757]={
-  ['name']="Фолиант Отваги",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Даториан Ралл",
-  ['finishedBy']="Даториан Ралл",
-  ['level']=20,
-  ['questLevel']='20',
-  ['rr']=5,
-  ['rc']=2
  },
  [973529498]={
   ['name']="Здравствуй, Дедушка Зима!",
@@ -52796,7 +52775,7 @@ QuestieHashMap = {
  },
  [1207173770]={
   ['name']="Черный Щит",
-  ['startedType']="object",
+  ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Черный щит",
   ['finishedBy']="Крог",
@@ -55509,7 +55488,6 @@ QuestieAdditionalStartFinishLookup = { -- {C,Z,X,Y}
 	["Первый помощник Кразз"] = {2, 18, 0.28095853328705, 0.76215869188309},
 	["Маршал Хаггард"] = {2, 10, 0.84605520963669, 0.69375222921371},
 	["Кракл"] = {1, 20, 0.30927684903145, 0.5043825507164},
-	["Туга"] = {1, 15, 0.31799566745758, 0.74145656824112},
 	["Маур Зловещий Тотем"] = {0, 0, 0, 0},
 	["Горн"] = {2, 0, 0.51567387580872, 0.6013845205307},
 	["Кали Ремик"] = {1, 6, 0.5612558722496, 0.74238252639771},
@@ -55565,8 +55543,6 @@ for k,v in pairs(QuestieHashMap) do
 				QuestieZoneLevelMap[mapid][v['level']] = {};
 			end
 			table.insert(QuestieZoneLevelMap[mapid][v['level']], k);
-		else
-			--DEFAULT_CHAT_FRAME:AddMessage("Could not find starter for ".. v['name']);
 		end
 	end
 end

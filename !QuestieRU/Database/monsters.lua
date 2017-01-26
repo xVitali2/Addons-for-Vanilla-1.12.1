@@ -1,4 +1,34 @@
 QuestieDropTable = {
+	["Suspicious Hoofprint"] = {
+    ["locations"] = {
+      [1] = {11.0, 0.509, 0.786, 100.0}
+    },
+    ["locationCount"] = 1,
+  },
+  ["Black Shield"] = {
+    ["locations"] = {
+      [1] = {11.0, 0.509, 0.792, 100.0}
+    },
+    ["locationCount"] = 1,
+  },
+  ["Theramore Guard Badge"] = {
+    ["locations"] = {
+      [1] = {11.0, 0.510, 0.790, 100.0}
+    },
+    ["locationCount"] = 1,
+  },
+  ["Wanted Poster: Andre Firebeard"] = {
+    ["locations"] = {
+      [1] = {8.0, 0.518, 0.270, 100.0}
+    },
+    ["locationCount"] = 1
+  },
+  ["Wanted Poster: Caliph Scorpidsting"] = {
+    ["locations"] = {
+      [1] = {8.0, 0.518, 0.270, 100.0}
+    },
+    ["locationCount"] = 1
+  },
 	["Даларанский чудотворец"] = {
 		["Легкий ятаган"] = 5,
 		["Шелковый материал"] = 1048,
@@ -77101,6 +77131,46 @@ QuestieMonsters = {
     ["looted"] = 538,
     ["locationCount"] = 1
   },
+    ["Wanted: Gath'Ilzogg"] = {
+    ["locations"] = {
+      [1] = {30.0, 0.2962, 0.4618, 100.0}
+    },
+    ["locationCount"] = 1
+  },
+    ["Wanted: Lieutenant Fangore"] = {
+    ["locations"] = {
+      [1] = {30.0, 0.2676, 0.4647, 100.0}
+    },
+    ["locationCount"] = 1
+  },
+    ["Wanted Poster:  \"Hogger\""] = {
+    ["locations"] = {
+      [1] = {37.0, 0.2455, 0.7470, 100.0}
+    },
+    ["locationCount"] = 1,
+    ["faction"] = 1
+  },
+    ["WANTED: Chok'sul"] = {
+    ["locations"] = {
+      [1] = {29.0, 0.3729, 0.4649, 100.0}
+    },
+    ["locationCount"] = 1
+  },
+  ["Strange Fruited Plant"] = {
+    ["locations"] = {
+      [1] = {24.0, 0.4260, 0.7620, 100.0}
+    },
+    ["locationCount"] = 1,
+    ["faction"] = 1
+  },
+  ["Syndicate Documents"] = {
+    ["locations"] = {
+      [1] = {48.0, 0.5080, 0.2030, 100.0},
+      [2] = {48.0, 0.5990, 0.7900, 100.0}
+    },
+    ["locationCount"] = 2,
+    ["faction"] = 1
+  },
   ["Облачный змей"] = {
     ["locations"] = {
       [1] = {14.0, 0.5195, 0.5544, 100.0},
@@ -115336,6 +115406,12 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1,
     ["faction"] = 1
+  },
+  ["A Wrecked Raft"] = {
+    ["locations"] = {
+      [1] = {18.0, 0.630, 0.686, 100.0}
+    },
+    ["locationCount"] = 1
   },
   ["Defias Diver"] = {
     ["locations"] = {

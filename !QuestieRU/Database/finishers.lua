@@ -1015,7 +1015,6 @@ QuestieFinishers = {
   ["The Dreghood Elders"] = "Naladu",
   ["Tear of the Earthmother"] = "David Wayne",
   ["As the Crow Flies"] = "Ysiel Windsinger",
-  ["Wanted:  \"Hogger\""] = "Маршал Дугхан",
   ["Серьезная угроза"] = "Даррен Малвей",
   ["2258053551"] = "Ган'рул Кровавый Глаз",
   ["Утраченные фрагменты"] = "Тельдарин Заблудший",
