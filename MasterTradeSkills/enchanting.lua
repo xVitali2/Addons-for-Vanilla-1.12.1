@@ -1585,7 +1585,7 @@ ReagentData['crafted']['enchanting'] = {
           [ReagentData['herb']['blacklotus']] = 2,
          },
     },
-    ['Enchant Cloak - Subtelty'] = {
+    ['Enchant Cloak - Subtlety'] = {
          skill = 300 ,
          type = 'Enchanting',
          source = 'Drop',

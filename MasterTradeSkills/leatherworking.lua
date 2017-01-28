@@ -2933,7 +2933,7 @@ ReagentData['crafted']['leatherworking'] = {
             [ReagentData['thread']['rune']] = 2,
         },
     },
-    ['Dreamscale Breasatplate'] = {
+    ['Dreamscale Breastplate'] = {
         skill = 300,
         description = '[BoP] (Mail Chest) AC: 434, NR: 30, Agi: 15, Sta: 15, Int: 14, MinLvl: 60, Passive: Restores 4 mana ever 5 sec.',
         type = 'Mail',
