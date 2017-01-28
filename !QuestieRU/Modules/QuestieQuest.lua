@@ -566,7 +566,8 @@ AstroobjectiveProcessors = {
     ['monster'] = function(quest, name, amount, selected, mapid)
         local list = {};
         local monster = {};
-        if(string.find(name, " slain")) then
+		if(string.find(name, " - убито")) then		
+			name = string.sub(name, 1, string.len(name)-13);
             monster["name"] = name;
         else
             monster["name"] = string.sub(name, string.len(name)-6);
@@ -769,6 +770,50 @@ end
 ---------------------------------------------------------------------------------------------------
 -- Race, Class and Profession filter functions
 ---------------------------------------------------------------------------------------------------
+-- RaceBitIndexTable = {
+    -- ['Человек'] = 1,
+    -- ['human'] = 1,
+    -- ['orc'] = 2,
+    -- ['Орк'] = 2,
+    -- ['dwarf'] = 3,
+    -- ['Дворф'] = 3,
+    -- ['nightelf'] = 4,
+    -- ['Ночной эльф'] = 4,
+    -- ['НочнойЭльф'] = 4,
+    -- ['Ночной Эльф'] = 4,
+    -- ['night elf'] = 4,
+    -- ['scourge'] = 5,
+    -- ['Нежить'] = 5,
+    -- ['undead'] = 5,
+    -- ['tauren'] = 6,
+    -- ['Таурен'] = 6,
+    -- ['gnome'] = 7,
+    -- ['Гном'] = 7,
+    -- ['troll'] = 8,
+    -- ['Тролль'] = 8,
+    -- ['goblin'] = 9,
+    -- ['Гоблин'] = 9
+-- };
+-- ClassBitIndexTable = {
+    -- ['warrior'] = 1,
+	-- ['Воин'] = 1,
+    -- ['paladin'] = 2,
+	-- ['Паладин'] = 2,
+    -- ['hunter'] = 3,
+	-- ['Охотник'] = 3,
+    -- ['rogue'] = 4,
+	-- ['Разбойник'] = 4,
+    -- ['priest'] = 5,
+	-- ['Жрец'] = 5,
+    -- ['shaman'] = 7,
+	-- ['Шаман'] = 7,
+    -- ['mage'] = 8,
+	-- ['Маг'] = 8,
+    -- ['warlock'] = 9,
+	-- ['Чернокнижник'] = 9,
+    -- ['druid'] = 11,
+	-- ['Друид'] = 11
+-- }
 RaceBitIndexTable = {
     ['human'] = 1,
     ['orc'] = 2,
@@ -824,8 +869,8 @@ function Questie:GetAvailableQuestHashes(mapFileName, levelFrom, levelTo)
     if(QuestieZones[mapFileName]) then
         mapid = QuestieZones[mapFileName][1];
     end
-    local class = UnitClass("Player");
-    local race = UnitRace("Player");
+    local _, class = UnitClass("Player");
+    local _, race = UnitRace("Player");
     local hashes = {};
     for l=levelFrom,levelTo do
         if QuestieZoneLevelMap[mapid] then

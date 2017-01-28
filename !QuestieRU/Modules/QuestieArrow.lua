@@ -214,6 +214,7 @@ local function OnUpdate(self, elapsed)
         arrow:SetTexCoord(xstart,xend,ystart,yend)
     end
 end
+end
 
 function ShowHideCrazyArrow()
     if wayframe:IsShown() then
