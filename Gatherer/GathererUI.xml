@@ -5,8 +5,8 @@
 	<Script file="GathererUI.lua"/>
 
 	<!-- event catcher and init GUI frame -->
-	<Frame name="GathererUI"> 
-		<Scripts> 
+	<Frame name="GathererUI">
+		<Scripts>
 			<OnLoad>
 				GathererUI_OnLoad();
 				this:RegisterEvent("VARIABLES_LOADED");
@@ -181,7 +181,7 @@
 			</OnEnter>
 			<OnMouseUp>
 				GathererUI_IconFrameOnClick();
-			</OnMouseUp> 
+			</OnMouseUp>
 		</Scripts>
 	</Frame>
 
@@ -288,7 +288,7 @@
 				PlaySound("UChatScrollButton");
 				GathererUI_InitializeMenu();
 			</OnShow>
-		</Scripts>		
+		</Scripts>
 	</Frame>
 
 	<!-- Gatherer Options Dialog frame -->
@@ -428,7 +428,7 @@
 			<!-- Frame handling buttons -->
 			<Button name="GathererUI_CallHelpButton">
 				<Size>
-					<AbsDimension x="24" y="30" /> 
+					<AbsDimension x="24" y="30" />
 				</Size>
 				<Anchors>
 					<Anchor point="TOPRIGHT">
@@ -447,11 +447,11 @@
 						end
 					</OnClick>
 				</Scripts>
-				<NormalTexture file="Interface\Buttons\UI-MicroButton-Help-Up" /> 
-				<PushedTexture file="Interface\Buttons\UI-MicroButton-Help-Down" /> 
-				<HighlightTexture file="Interface\Buttons\UI-MicroButton-Hilight" alphaMode="ADD" /> 
+				<NormalTexture file="Interface\Buttons\UI-MicroButton-Help-Up" />
+				<PushedTexture file="Interface\Buttons\UI-MicroButton-Help-Down" />
+				<HighlightTexture file="Interface\Buttons\UI-MicroButton-Hilight" alphaMode="ADD" />
 			</Button>
-			
+
 			<Button name="GathererUI_CloseButton" text="CLOSE" inherits="UIPanelButtonTemplate">
 				<Size>
 					<AbsDimension x="100" y="25"/>
@@ -572,7 +572,7 @@
 					ShowUIPanel(myAddOnsFrame);
 				end
 			</OnHide>
-		</Scripts>		
+		</Scripts>
 	</Frame>
 
 	<!-- Filtering DropDown menus and skill level editboxes -->
@@ -589,7 +589,7 @@
 		</Anchors>
 		<Scripts>
 			<OnLoad>
-				this:SetBackdropColor(0,0,0)	
+				this:SetBackdropColor(0,0,0)
 			</OnLoad>
 		</Scripts>
 		<Frames>
@@ -954,7 +954,7 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-	
+
 			<CheckButton name="GathererUI_CheckToggleWorldFilters" inherits="OptionsCheckButtonTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="GathererUI_ButtonResetHerb" relativePoint="BOTTOMLEFT">
@@ -1039,7 +1039,7 @@
 		</Anchors>
 		<Scripts>
 			<OnLoad>
-				this:SetBackdropColor(0,0,0)	
+				this:SetBackdropColor(0,0,0)
 			</OnLoad>
 		</Scripts>
 		<Frames>
@@ -1645,7 +1645,7 @@
 		</Anchors>
 		<Scripts>
 			<OnLoad>
-				this:SetBackdropColor(0,0,0)	
+				this:SetBackdropColor(0,0,0)
 			</OnLoad>
 		</Scripts>
 		<Frames>
@@ -2027,7 +2027,7 @@
 					</OnShow>
 				</Scripts>
 			</Frame>
-			
+
 			<Frame name="GathererUI_SourceZoneDropDown" inherits="UIDropDownMenuTemplate" id="20">
 				<Anchors>
 					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
@@ -2213,7 +2213,7 @@
 			</OnShow>
 		</Scripts>
 	</Frame>
-	
+
 	<!-- Help Frame -->
 	<Frame name="GathererUI_HelpFrame" hidden="true">
 		<Size>

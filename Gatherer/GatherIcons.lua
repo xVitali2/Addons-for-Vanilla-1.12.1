@@ -82,7 +82,7 @@ Gather_IconSet = {
 			[TREASURE_UNGOROSOIL]		= "Interface\\AddOns\\Gatherer\\Icons\\UngoroDirtPile",
 			[TREASURE_BLOODPETAL]		= "Interface\\AddOns\\Gatherer\\Icons\\UngoroSprout",
 			[TREASURE_POWERCRYST]		= "Interface\\AddOns\\Gatherer\\Icons\\UngoroCrystal",
-			[TREASURE_BLOODHERO]		= "Interface\\AddOns\\Gatherer\\Icons\\TreasureBloodHero", 
+			[TREASURE_BLOODHERO]		= "Interface\\AddOns\\Gatherer\\Icons\\TreasureBloodHero",
 			[TREASURE_SHELLFISHTRAP]	= "Interface\\AddOns\\Gatherer\\Icons\\TreasureShellfishTrap",
 			[TREASURE_FISHNODE]		= "Interface\\AddOns\\Gatherer\\Icons\\TreasureFishnode",
 			[TREASURE_FISHWRECK]		= "Interface\\AddOns\\Gatherer\\Icons\\TreasureFishwreck",
@@ -153,31 +153,35 @@ Gather_SkillLevel = {
 };
 
 -- Match tables for shorter DB format
+-- converting IconIndex to IconName and vice versa
 function Gatherer_GetDB_IconIndex(iconIndex, gatherType)
-	local iconName, myGather;
+	-- type: (Icon, Optional[Gatherer_EGatherType]) -> Tuple[Icon, Optional[Gatherer_EGatherType]]
+	local iconName, gatherTypeIndex;
 
+	-- if gatherType wasn't set while icon was searched by name
 	if ( not gatherType and type(iconIndex) == "string" ) then
-		for myGather in Gather_DB_TypeIndex do
+		-- try to find icon index by looking through *every* possible gatherType
+		for myGather in Gatherer_EGatherType do
 			local icon = Gatherer_GetDB_IconIndex(iconIndex, myGather);
 			if (icon) then
+				-- this time return both index and hitted gatherType
 				return icon, myGather;
 			end;
 		end
-	elseif ( type(gatherType) == "string" ) then
-		myGather = Gather_DB_TypeIndex[gatherType];
-	elseif ( type(gatherType) == "number" ) then
-		myGather = gatherType;
 	end
 
-	for iconName in Gather_DB_IconIndex[myGather] do
-		if ( type(iconIndex) == "string" and iconName == iconIndex ) then 
+	gatherTypeIndex = Gatherer_EGatherType_ensureIndex(gatherType)
+	-- when gatherType isn't set and type(iconIndex) ~= 'string'
+	-- it'll loudly fail since gatherTypeIndex would be nil
+	for iconName in Gather_DB_IconIndex[gatherTypeIndex] do
+		if ( type(iconIndex) == "string" and iconName == iconIndex ) then
 			-- return index number
-			return Gather_DB_IconIndex[myGather][iconName];
-		elseif ( type(iconIndex) == "number" and Gather_DB_IconIndex[myGather][iconName] == iconIndex ) then
+			return Gather_DB_IconIndex[gatherTypeIndex][iconName];
+		elseif ( type(iconIndex) == "number" and Gather_DB_IconIndex[gatherTypeIndex][iconName] == iconIndex ) then
 			-- return icon string
 			return iconName;
-		end 
-	end	
+		end
+	end
 
 	return nil;
 end
@@ -193,27 +197,16 @@ function Gatherer_GetDB_IconByGatherName(gatherName)
 			numType = 0;
 		else -- Herb
 			iconName = gatherName;
-			numType = 1; 
+			numType = 1;
 		end
 	end
 	if (not iconName) then
 		iconName = "default";
-		numType = 3; 
+		numType = 3;
 	end
 
 	return iconName, numType;
 end
-
-Gather_DB_TypeIndex = {
-	[0]          = "Treasure",
-	[1]          = "Herb",
-	[2]          = "Ore",
-	[3]          = "Default",
-	["Treasure"] = 0,
-	["Herb"]     = 1,
-	["Ore"]      = 2,
-	["Default"]  = 3,
-};
 
 -- Icon indexes
 -- 0 => Treasures
@@ -221,7 +214,7 @@ Gather_DB_TypeIndex = {
 -- 2 => Ores
 -- Note: If you add new items, use icon index numbers starting from 100
 
-Gather_DB_IconIndex = {};
+Gather_DB_IconIndex = {}; -- type: Dict[Gatherer_EGatherType, Dict[IconName, IconIndex]]
 Gather_DB_IconIndex[0] = {
 	["default"]             = 0,
 	[TREASURE_BOX]          = 1,

@@ -1,16 +1,16 @@
 -- Gatherer
 -- Written by Chandora
 
-GATHERER_VERSION="2.99.2";
+GATHERER_VERSION="1.0.0";
 
 --
 -- Look, seriously a full half of this code is from MapNotes.
 -- The only reason I pinched it and put it in here is I couldn't
 -- work out how to extend MapNotes to do what I wanted it to do
 -- without actually editing the MapNotes files.
--- 
+--
 -- Full credit to the MapNotes guys
--- 
+--
 
 -- Global variables
 GATHERNOTE_UPDATE_INTERVAL = 0.25;
@@ -30,7 +30,7 @@ Gatherer_UpdateWorldMap = -1;
 Gatherer_InWorld = false;
 GatherItems = { };
 GatherSkills = { };
-GatherZoneData = { };
+GatherZoneData = { }; -- Dict[ZoneName, Tuple[Continent, Zone]]
 GatherMainMapItem = { };
 -- UI variables
 Gatherer_WorldMapDetailFrameWidth = 0;
@@ -60,7 +60,7 @@ function Gatherer_GetMenuName(inputName)
 	local name, info;
 	if (inputName) then
 		local firstLetter = string.sub(inputName, 1, 2);
-		local carReplace = {["\195\160"] = "a", ["\195\161"] = "a", ["\195\162"] = "a", ["\195\163"] = "a", ["\195\164"] = "a", 
+		local carReplace = {["\195\160"] = "a", ["\195\161"] = "a", ["\195\162"] = "a", ["\195\163"] = "a", ["\195\164"] = "a",
 						["\195\168"] = "e", ["\195\169"] = "e", ["\195\170"] = "e", ["\195\171"] = "e",
 						["\195\180"] = "i", ["\195\173"] = "i", ["\195\174"] = "i", ["\195\175"] = "i",
 						["\195\179"] = "o", ["\195\180"] = "o", ["\195\181"] = "o", ["\195\182"] = "o",
@@ -114,14 +114,14 @@ function Gatherer_OnLoad()
 	-- Events for off world non processing
 	this:RegisterEvent("PLAYER_ENTERING_WORLD");
 	this:RegisterEvent("PLAYER_LEAVING_WORLD");
-	
+
 	-- Addon Loaded and player login/logout events
 	this:RegisterEvent("ADDON_LOADED");
 	this:RegisterEvent("PLAYER_LOGIN");
 	this:RegisterEvent("PLAYER_LOGOUT");
-	
+
 	Gatherer_LoadZoneData();
-	
+
 	SLASH_GATHER1 = "/gather";
 	SLASH_GATHER2 = "/gatherer";
 	SlashCmdList["GATHER"] = function(msg)
@@ -145,7 +145,7 @@ function Gatherer_Command(command)
 		if (SETTINGS.mapMinder) then mapMinder = "On"; end
 		local minderTime = "5s";
 		if (SETTINGS.minderTime) then minderTime = SETTINGS.minderTime.."s"; end
-		
+
 		Gatherer_ChatPrint("Usage:");
 		Gatherer_ChatPrint("  |cffffffff/gather (on|off|toggle)|r |cff2040ff["..useMinimap.."]|r - turns the gather minimap display on and off");
 		Gatherer_ChatPrint("  |cffffffff/gather mainmap (on|off|toggle)|r |cff2040ff["..useMainmap.."]|r - turns the gather mainmap display on and off");
@@ -164,6 +164,8 @@ function Gatherer_Command(command)
 		Gatherer_ChatPrint("  |cffffffff/gather search|r - show/hide search dialog.");
 		Gatherer_ChatPrint("  |cffffffff/gather loginfo (on|off)|r - show/hide logon information.");
 		Gatherer_ChatPrint("  |cffffffff/gather filterrec (herbs|mining|treasure)|r - link display filter to recording for selected gathering type");
+		Gatherer_ChatPrint("  |cffffffff/gather debug ([on]|off)|r |cff2040ff["..Gatherer_EBoolean[SETTINGS.debug].."]|r - show/hide debug messages");
+		Gatherer_ChatPrint("  |cffffffff/gather p2p ([on]|off)|r |cff2040ff["..Gatherer_EBoolean[SETTINGS.p2p].."]|r - enable/disable peer-to-peer functions");
 	elseif (cmd == "options" ) then
 		if ( GathererUI_DialogFrame:IsVisible() ) then
 			GathererUI_HideOptions();
@@ -178,6 +180,14 @@ function Gatherer_Command(command)
 			SETTINGS.debug = false;
 			Gatherer_ChatPrint("Debug messages disabled");
 		end
+	elseif (cmd == "p2p") then
+		if (not param or param == "" or param == "on") then
+			SETTINGS.p2p = true;
+			Gatherer_ChatPrint("Peer-to-peer functions enabled");
+		elseif (param == "off") then
+			SETTINGS.p2p = false;
+			Gatherer_ChatPrint("Peer-to-peer functions disabled");
+		end
 	elseif (cmd == "report" ) then
 		showGathererInfo(1);
 	elseif (cmd == "search" ) then
@@ -189,8 +199,8 @@ function Gatherer_Command(command)
 		SETTINGS.logInfo = value;
 	elseif ( cmd == "filterrec" ) then
 		local value=-1;
-		if (not param) then 
-			return; 
+		if (not param) then
+			return;
 		end;
 		if ( param == "treasure" ) then
 			value = 0;
@@ -384,13 +394,13 @@ function Gatherer_OnEvent(event)
 		this:RegisterEvent("UI_ERROR_MESSAGE"); -- event added for impossible to gather item
 		this:RegisterEvent("CHAT_MSG_LOOT"); -- event added for fishing node
 		Gatherer_InWorld = true;
-	
+
 	elseif (event == "PLAYER_LEAVING_WORLD" ) then
 		this:UnregisterEvent("CHAT_MSG_SPELL_SELF_BUFF"); -- standard gathering event
 		this:UnregisterEvent("UI_ERROR_MESSAGE"); -- event added for impossible to gather item
 		this:UnregisterEvent("CHAT_MSG_LOOT"); -- event added for fishing node
 		Gatherer_InWorld = false;
-	
+
 	-- process loot received message for fishing node trigger
 	elseif ( event == "CHAT_MSG_LOOT" ) then
 		local _, _, fishItem = string.find(arg1, GATHERER_ReceivesLoot );
@@ -422,7 +432,7 @@ function Gatherer_OnEvent(event)
 			Gatherer_Debug("|cffffffffEvent :|r "..event.." => "..arg1);
 			Gatherer_currentNode = GameTooltipTextLeft1:GetText();
 			Gatherer_currentAction = arg1;
-			
+
 			Gatherer_Debug("Current node: "..Gatherer_currentNode);
 			Gatherer_RecordFlag=1;
 		end
@@ -432,10 +442,10 @@ function Gatherer_OnEvent(event)
 	elseif ( event == "SPELLCAST_STOP" and Gatherer_RecordFlag == 0 ) then
 		Gatherer_currentNode=nil;
 		Gatherer_RecordFlag = 0;
-	
+
 	elseif ( event == "SPELLCAST_FAILED" ) then
 		Gatherer_RecordFlag = 0;
-	
+
 	elseif (event == "WORLD_MAP_UPDATE") then
 		if (WorldMapFrame:IsVisible()) then
 			local serverTime = GetTime();
@@ -451,7 +461,7 @@ function Gatherer_OnEvent(event)
 				end
 
 				Gatherer_MapOpen = true;
-				if ( GetCurrentMapContinent()>0 and startZone and startZone > 0 ) then 
+				if ( GetCurrentMapContinent()>0 and startZone and startZone > 0 ) then
 					SetMapZoom(startContinent, startZone);
 				end
 			end
@@ -487,33 +497,34 @@ function Gatherer_OnEvent(event)
 				myAddOnsFrame_Register(GathererDetails, GathererHelp);
 			end
 		end
-		
+
 		if (arg1 and string.lower(arg1) == "gatherer") then
 			Gatherer_Configuration.Load();
 			GATHERER_LOADED = true;
+			Gatherer_sanitizeDatabase(GatherItems)
 			Gatherer_OnUpdate(0, true);
-			
-			Gatherer_Print("Gatherer v"..GATHERER_VERSION.." -- Loaded!");
-			
+
+			Gatherer_Print("Gatherer p2p v"..GATHERER_VERSION.." -- Loaded!");
+
 			if (Gatherer_Settings.useMainmap == true) then
 				Gatherer_WorldMapDisplay:SetText("Hide Items");
 			else
 				Gatherer_WorldMapDisplay:SetText("Show Items");
 			end
-			
+
 			-- Warning at logon on Gatherer Version number change to check for localization zone change (commented, not needed in 1.12)
 			--if ( GetLocale() == "deDE" and (not Gatherer_Settings.Version or (Gatherer_Settings.Version and Gatherer_Settings.Version ~= GATHERER_VERSION ))) then
 			--	StaticPopup_Show("GATHERER_VERSION_DIALOG");
 			--end
-			
+
 			-- record current version number in order to identify the data for backup utilities
 			Gatherer_Settings.Version = GATHERER_VERSION;
-			
+
 			-- Get values for World Map once for all
 			Gatherer_WorldMapDetailFrameWidth = WorldMapDetailFrame:GetWidth();
 			Gatherer_WorldMapDetailFrameHeight = WorldMapDetailFrame:GetHeight();
 			Gatherer_WorldMapPlayerFrameLevel = WorldMapPlayer:GetFrameLevel();
-			
+
 			-- New backup format allows the user to permenantly save their data
 			-- in an automatically restoring file "GatherBase.lua"
 			-- All data in this file will be loaded "under" the saved data every
@@ -552,22 +563,22 @@ function Gatherer_OnEvent(event)
 		local useMainmap = (SETTINGS.useMainmap) and "On" or "Off";
 		local mapMinder = (SETTINGS.mapMinder) and "On" or "Off";
 		local minderTime = SETTINGS.minderTime.."s";
-		
+
 		if ( SETTINGS.logInfo and SETTINGS.logInfo == "on" ) then
 			Gatherer_Print("[Player: "..Gather_Player..", Theme: "..SETTINGS.iconSet..", Mainmap: "..useMainmap..", Minimap: "..useMinimap..", MaxDist: "..SETTINGS.maxDist.." units, NoteCount: "..SETTINGS.number..", Fade: "..SETTINGS.fadePerc.."% at "..SETTINGS.fadeDist.." units, IconDist: "..SETTINGS.miniIconDist.."px on minimap, MapMinder: "..mapMinder.." ("..minderTime.."), Filters: herbs="..Gatherer_GetFilterVal("herbs")..", mining="..Gatherer_GetFilterVal("mining")..", treasure="..Gatherer_GetFilterVal("treasure").."]");
 		end
-	
+
 	elseif ( event == "PLAYER_LOGOUT" ) then
 		Gatherer_Configuration.Save();
-	
+
 	elseif ( event == "LEARNED_SPELL_IN_TAB" or event == "SPELLS_CHANGED" ) then
 		local numSkills = tonumber(GetNumSkillLines());
-		if ( GetNumSkillLines() > 0 ) then 
+		if ( GetNumSkillLines() > 0 ) then
 			Gatherer_GetSkills();
 		end
 	elseif ( event == "SKILL_LINES_CHANGED" ) then
 		local numSkills = tonumber(GetNumSkillLines());
-		if ( GetNumSkillLines() > 0 ) then 
+		if ( GetNumSkillLines() > 0 ) then
 			Gatherer_GetSkills();
 		end
 	else
@@ -605,25 +616,25 @@ function Gatherer_GetFilter(filter)
 	local value = Gatherer_GetFilterVal(filter);
 	local filterVal = false;
 
-	if (value == "on") then 
+	if (value == "on") then
 		filterVal = true;
 	elseif (value == "off") then
-		filterVal = false; 
+		filterVal = false;
 	elseif (value == "auto") then
-		if (filter == "treasure") then 
-			filterVal = true; 
+		if (filter == "treasure") then
+			filterVal = true;
 		end
-		if (not GatherSkills) then 
-			filterVal = true; 
+		if (not GatherSkills) then
+			filterVal = true;
 		end
-		if ((GatherSkills[filter]) and (GatherSkills[filter] > 0)) then 
-			filterVal = true; 
+		if ((GatherSkills[filter]) and (GatherSkills[filter] > 0)) then
+			filterVal = true;
 		end
 	end
 
 	return filterVal;
 end
-	
+
 function Gatherer_GetSkills()
 	local GatherExpandedHeaders = {};
 	local i, j;
@@ -636,7 +647,7 @@ function Gatherer_GetSkills()
 		local skillName, header, isExpanded, skillRank, _, _, _, _, _, _, _, _ = GetSkillLineInfo(i);
 
 		-- expand the header if necessary
-		if ( header and not isExpanded ) then 
+		if ( header and not isExpanded ) then
 			GatherExpandedHeaders[i] = skillName;
 		end
 	end
@@ -657,7 +668,7 @@ function Gatherer_GetSkills()
 		if ( GatherSkills.herbs and GatherSkills.mining ) then
 			break;
 		end
-	end   
+	end
 
 	-- close headers expanded during search process
 	for i=0, GetNumSkillLines() do
@@ -671,9 +682,55 @@ function Gatherer_GetSkills()
 	end
 end
 
+
+local function random_choice(t)
+    local choiceI = nil;
+	local choiceO = nil;
+    local n = 0;
+    for i, o in pairs(t) do
+        n = n + 1
+        if math.random() < (1/n) then
+            choiceI, choiceO = i, o
+        end
+    end
+    return choiceI, choiceO
+end
+
+
+local function selectRandomGather()
+	-- type: () -> Tuple[GatherName, Gatherer_EGatherType, Continent, Zone, float, float, IconName, EGatherEventType]
+	-- returns the arguments set for the Gatherer_BroadcastGather function
+	local randomContinent, continentData = random_choice(GatherItems);
+	local randomZone, zoneData = random_choice(continentData);
+	local randomGather, gatherNodes = random_choice(zoneData);
+	local nodeIndex, randomNode = random_choice(gatherNodes);
+	Gatherer_ChatNotify('randomly selected: '..table.concat(
+		{randomContinent, randomZone, randomGather, nodeIndex}, ', '
+	), Gatherer_ENotificationType.debug);
+	if not nodeIndex then
+		return nil
+	end
+
+	local eventType = 1; -- EGatherEventType.no_skill
+	-- values don't matter, I just hate lua
+	local FISHING_GATHERS = {['floating wreckage']=0, ['school']=''};
+	if FISHING_GATHERS[randomGather] then
+		eventType = 2; -- EGatherEventType.fishing
+	end
+
+	return
+		randomGather, randomNode.gtype, randomContinent, randomZone, randomNode.x, randomNode.y,
+		randomNode.icon, eventType
+end
+
+
 -- *************************************************************************
 -- Update related functions
 
+local Gatherer_UpdateTicker = 0.0;
+local Gatherer_AnnouncePeriod = 10;
+local Gatherer_CycleCount = 0;
+local Gatherer_SecondsToAnnounce = Gatherer_AnnouncePeriod;
 function Gatherer_TimeCheck(timeDelta)
 	if (not GatherNotes) then
 		GatherNotes = { timeDiff=0, checkDiff=0 };
@@ -684,25 +741,60 @@ function Gatherer_TimeCheck(timeDelta)
 			Gatherer_OnUpdate(0,true);
 		end
 	end
+	Gatherer_UpdateTicker = Gatherer_UpdateTicker + arg1;
+	if( Gatherer_UpdateTicker < 1 ) then
+		return
+	end
+	-- reset seconds counter
+	Gatherer_UpdateTicker = 0.0;
+	-- the code below will run not more frequently
+	-- than once a second
+	Gatherer_SecondsToAnnounce = Gatherer_SecondsToAnnounce - 1
+--	Gatherer_Print('Every second '..Gatherer_SecondsToAnnounce..' seconds.')
+	if Gatherer_SecondsToAnnounce > 0 then
+		return
+	end
+	-- the code below will run not more frequently
+	-- than once Gatherer_AnnouncePeriod seconds
+	if Gatherer_Settings.p2p then
+		local args = {selectRandomGather()};
+		-- if failed to get a random node skip cycle
+		if not args[1] then
+			return
+		end
+		Gatherer_CycleCount = Gatherer_CycleCount + 1
+		if Gatherer_Settings.debug then
+			Gatherer_ChatPrint('Gatherer: Cycle #'..Gatherer_CycleCount);
+			Gatherer_ChatNotify(
+				'Sending random node once in '..Gatherer_AnnouncePeriod..' seconds.',
+				Gatherer_ENotificationType.sending
+			);
+			Gatherer_ChatNotify(
+				'args to send: '..table.concat(args, ', '), Gatherer_ENotificationType.sending
+			);
+		end
+		Gatherer_BroadcastGather(unpack(args))
+	end
+	Gatherer_SecondsToAnnounce = Gatherer_AnnouncePeriod
 end
 
 function Gatherer_OnUpdate(timeDelta, force)
 	if (not GATHERER_LOADED) then
 		Gatherer_Print("Gatherer not loaded");
-		return; 
+		return;
 	end
-	
+
 	local SETTINGS = Gatherer_Settings;
-	
+
 	if (Gatherer_InWorld == false ) then
 		return;
 	end
-	
+
 	if (not SETTINGS.useMinimap) then
 		Gatherer_HideAll();
 		return;
 	end
-	
+
 	local recalculate = false;
 	local needsUpdate = false;
 	if (not GatherNotes) then
@@ -731,8 +823,8 @@ function Gatherer_OnUpdate(timeDelta, force)
 		local inCity = GatherMap_InCity;
 		local zoomLevel = Minimap:GetZoom();
 		local px, py = Gatherer_PlayerPos();
-		if ((px == 0) and (py == 0)) then 
-			return; 
+		if ((px == 0) and (py == 0)) then
+			return;
 		end
 		local xMovement = 0; if (ClosestGathers and ClosestGathers.px) then xMovement = math.abs(ClosestGathers.px - px); end
 		local yMovement = 0; if (ClosestGathers and ClosestGathers.py) then yMovement = math.abs(ClosestGathers.py - py); end
@@ -782,17 +874,17 @@ function Gatherer_OnUpdate(timeDelta, force)
 					-- need to position and label the corresponding button
 					local gatherNote = getglobal("GatherNote"..currentPos);
 					local gatherNoteTexture = getglobal("GatherNote"..currentPos.."Texture");
-	
+
 					local itemDeltaX = closestGather.deltax+playerDeltaX;
 					local itemDeltaY = closestGather.deltay+playerDeltaY;
 					local offsX, offsY, gDist = Gatherer_MiniMapPos(itemDeltaX, itemDeltaY, ClosestGathers.scaleX, ClosestGathers.scaleY);
 					gatherNote:SetPoint("CENTER", Minimap, "CENTER", offsX, -offsY);
-				
+
 					local iconSet = SETTINGS.iconSet;
 					local iDist = SETTINGS.miniIconDist;
 					if (not iconSet) then iconSet = "shaded"; end
 					if (not iDist) then iDist = 38; end
-					
+
 					local _, _, sDist = Gatherer_MiniMapPos(iDist/10000, 0, ClosestGathers.scaleX, ClosestGathers.scaleY);
 
 					if ((iDist > 0) and (gDist > (math.floor(sDist)-1))) then
@@ -812,12 +904,12 @@ function Gatherer_OnUpdate(timeDelta, force)
 					local textureIcon = closestGather.item.icon;
 
 					if ( type(textureType) == "number" ) then
-						textureType = Gather_DB_TypeIndex[textureType];
+						textureType = Gatherer_EGatherType[textureType];
 					end
-					
+
 					if ( type(textureIcon) == "number" ) then
 						textureIcon = Gatherer_GetDB_IconIndex(textureIcon, textureType);
-					end	
+					end
 
 					if (not textureIcon) then textureIcon = "default"; end;
 					if (SETTINGS.iconSet == "iconshade" )
@@ -856,13 +948,13 @@ function Gatherer_OnUpdate(timeDelta, force)
 					end
 
 					if (currentPos > maxPos) then maxPos = currentPos; end
-					
+
 					currentPos = currentPos + 1;
 				end
 				skip_node = 0;
 			end
 		end
-		
+
 		while (maxPos < GATHERER_MAXNUMNOTES) do
 			maxPos = maxPos+1;
 			local gatherNote = getglobal("GatherNote"..maxPos);
@@ -908,7 +1000,7 @@ end
 
 function Gatherer_CreateNoteObject(noteNumber)
 	local button;
-	local overlayFrameNumber = math.floor((noteNumber - 1000) / 100 + 1); 
+	local overlayFrameNumber = math.floor((noteNumber - 1000) / 100 + 1);
 	if(getglobal("GatherMain"..noteNumber)) then
 		button = getglobal("GatherMain"..noteNumber);
 	else
@@ -916,7 +1008,7 @@ function Gatherer_CreateNoteObject(noteNumber)
 		button = CreateFrame("Button" ,"GatherMain"..noteNumber, getglobal("GathererMapOverlayFrame"..overlayFrameNumber), "GatherMainTemplate");
 		button:SetID(noteNumber);
 	end
-	
+
 	return button;
 end
 
@@ -925,11 +1017,11 @@ function GatherMain_Draw()
 	local maxNotes = 1600;
 	local gatherName, gatherData;
 	local SETTINGS = Gatherer_Settings;
-	
+
 	-- prevent the function from running twice at the same time.
 	if (Gatherer_UpdateWorldMap == 0 ) then return; end;
 	Gatherer_UpdateWorldMap = 0;
-	
+
 	if ((Gatherer_MapOpen) and (SETTINGS.useMainmap)) then
 		local mapContinent = GetCurrentMapContinent();
 		local mapZone = GetCurrentMapZone();
@@ -937,10 +1029,10 @@ function GatherMain_Draw()
 			for gatherName, gatherData in GatherItems[mapContinent][mapZone] do
 				local gatherType = "Default";
 				local specificType = "";
-				local allowed = true; 
+				local allowed = true;
 				local minSetSkillLevel = 0;
 				local idx_count=0;
-				
+
 				specificType = Gatherer_FindOreType(gatherName);
 				if (specificType) then -- Ore
 					gatherType = 2;
@@ -950,7 +1042,7 @@ function GatherMain_Draw()
 					if (specificType ) then -- Treasure
 						gatherType = 0;
 						allowed = Gatherer_GetFilter("treasure");
-					else 
+					else
 						specificType = Gatherer_FindFishType(gatherName);
 						if ( specificType ) then -- Treasure Fish
 							gatherType = 0;
@@ -958,7 +1050,7 @@ function GatherMain_Draw()
 						else
 							-- Herb
 							specificType = gatherName;
-							gatherType = 1; 
+							gatherType = 1;
 							allowed = Gatherer_GetFilter("herbs");
 						end
 					end
@@ -966,7 +1058,7 @@ function GatherMain_Draw()
 				if (not specificType) then
 					specificType = "default";
 				end
-				
+
 				-- extra filtering options
 				if (SETTINGS) then
 					if ( SETTINGS.interested and SETTINGS.interested[gatherType] ) then
@@ -974,7 +1066,7 @@ function GatherMain_Draw()
 							idx_count= idx_count +1;
 						end
 					end
-					
+
 					if( gatherType == 2 ) then -- Ore
 						minSetSkillLevel = SETTINGS.minSetOreSkill;
 						if ( not minSetSkillLevel ) then minSetSkillLevel = -1; end
@@ -982,9 +1074,9 @@ function GatherMain_Draw()
 						minSetSkillLevel = SETTINGS.minSetHerbSkill;
 						if ( not minSetSkillLevel ) then minSetSkillLevel = -1; end
 					end
-					
+
 					if ( allowed == true and Gather_SkillLevel[specificType] and
-						minSetSkillLevel > 0 and 
+						minSetSkillLevel > 0 and
 						(minSetSkillLevel > Gather_SkillLevel[specificType] or
 						 (SETTINGS.rareOre == 1 and Gather_SkillLevel[Gather_RareMatch[specificType]] and
 						  Gather_SkillLevel[specificType] < Gather_SkillLevel[Gather_RareMatch[specificType]] and
@@ -993,7 +1085,7 @@ function GatherMain_Draw()
 						allowed = false;
 					end
 				end
-				
+
 				if ((allowed == true) and
 					((SETTINGS == nil) or
 					 (SETTINGS.interested == nil) or (idx_count == 0) or SETTINGS.interested[gatherType] == nil or
@@ -1005,45 +1097,45 @@ function GatherMain_Draw()
 					for hPos, gatherInfo in gatherData do
 						local convertedGatherType="";
 						local numGatherType, numGatherIcon;
-						
+
 						if ( lastUnused > 1000 and lastUnused < maxNotes and mod(lastUnused, 100) == 0 ) then
 							local overlayFrameNumber = math.floor((lastUnused - 1000 )/100 + 1);
-							
+
 							getglobal("GathererMapOverlayFrame"..overlayFrameNumber):Show();
 						elseif (lastUnused < 1100 and not GathererMapOverlayFrame1:IsShown() ) then
 							GathererMapOverlayFrame1:Show();
 						end
-						
+
 						if ((gatherInfo.x) and (gatherInfo.y) and (gatherInfo.x>0) and (gatherInfo.y>0) and (lastUnused <= maxNotes)) then
 							local mainNote = Gatherer_CreateNoteObject(lastUnused);
-							
+
 							local mnX,mnY;
 							mnX = gatherInfo.x / 100 * Gatherer_WorldMapDetailFrameWidth;
 							mnY = -gatherInfo.y / 100 * Gatherer_WorldMapDetailFrameHeight;
-							
+
 							if ( SETTINGS and SETTINGS.IconAlpha ~= nil ) then
 								mainNote:SetAlpha(SETTINGS.IconAlpha / 100);
-							else				
+							else
 								mainNote:SetAlpha(0.8);
 							end
-							
+
 							mainNote:SetPoint("CENTER", "GathererMapOverlayFrame", "TOPLEFT", mnX, mnY);
-							
+
 							if ( SETTINGS and SETTINGS.ToggleWorldNotes and SETTINGS.ToggleWorldNotes == 1)
 							then
 								mainNote.toolTip = Gatherer_GetMenuName(gatherName);
 							else
 								mainNote.toolTip = Gatherer_GetMenuName(specificType);
 							end
-							
+
 							if ( type(gatherType) == "number" ) then
-								convertedGatherType = Gather_DB_TypeIndex[gatherType];
+								convertedGatherType = Gatherer_EGatherType[gatherType];
 								numGatherType = gatherType
 							else
 								convertedGatherType = gatherType;
-								numGatherType = Gather_DB_TypeIndex[gatherType];
+								numGatherType = Gatherer_EGatherType[gatherType];
 							end
-							
+
 							if (not Gather_IconSet["iconic"][convertedGatherType]) then
 								gatherType = "Default";
 							else
@@ -1056,33 +1148,33 @@ function GatherMain_Draw()
 							if (not texture) then
 								texture = Gather_IconSet["iconic"][gatherType]["default"];
 							end
-							
+
 							if ( gatherInfo.gtype == "Default" or gatherInfo.gtype == 3 ) then
 								texture = Gather_IconSet["iconic"]["Default"]["default"];
 							end
-							
+
 							local mainNoteTexture = getglobal("GatherMain"..lastUnused.."Texture");
 							mainNoteTexture:SetTexture(texture);
 							if ( SETTINGS and SETTINGS.IconSize ~= nil ) then
 								mainNote:SetWidth(SETTINGS.IconSize);
 								mainNote:SetHeight(SETTINGS.IconSize);
 							end
-							
+
 							-- setting value for editing
 							if (type(gatherInfo.icon) == "string" ) then
 								numGatherIcon = Gather_DB_IconIndex[numGatherType];
 							else
 								numGatherIcon = gatherInfo.icon;
 							end
-							
+
 							mainNote.continent = mapContinent;
 							mainNote.zoneIndex = mapZone;
 							mainNote.gatherName = gatherName;
 							mainNote.localIndex = hPos;
 							mainNote.gatherType = numGatherType;
 							mainNote.gatherIcon = numGatherIcon;
-							
-							if ( not mainNote:IsShown() ) then							
+
+							if ( not mainNote:IsShown() ) then
 								mainNote:Show();
 							end
 							lastUnused = lastUnused + 1;
@@ -1092,38 +1184,38 @@ function GatherMain_Draw()
 			end
 		end
 	end
-	
+
 	local i=1000;
 	for i=lastUnused, maxNotes, 1 do
 		-- Delay code to try to work around the delay display problem, pause for 50 ms each 100 items
-		local overlayFrameNumber = math.floor((i - 1000) / 100 +1); 
-		
-		if ( i < maxNotes and mod(i, 100) == 0 ) 
+		local overlayFrameNumber = math.floor((i - 1000) / 100 +1);
+
+		if ( i < maxNotes and mod(i, 100) == 0 )
 		then
 			getglobal("GathererMapOverlayFrame"..overlayFrameNumber):Hide();
 		end
-		
+
 		local mainNote = getglobal("GatherMain"..i);
 		if ( mainNote and mainNote:IsShown() ) then
 			mainNote:SetPoint("CENTER", "GathererMapOverlayFrame", "TOPLEFT", Gatherer_WorldMapDetailFrameWidth+16, Gatherer_WorldMapDetailFrameHeight+16);
 		end
 	end
-	
+
 	Gatherer_UpdateWorldMap = -1;
 end
 
 function Gatherer_FindClosest(num, interested)
 	local SETTINGS = Gatherer_Settings;
 	local gatherLocal = {playerC=0,playerZ=0,playerX=0,playerY=0,px=0,py=0,items={},count=0};
-		
+
 	if (not GATHERER_LOADED) then return gatherLocal; end
 	if (Gatherer_InWorld == false ) then return gatherLocal; end
-	
+
 
 	local continent, zone = Gatherer_GetCurrentZone();
-	
+
 	if ((continent == 0) or (zone == 0)) then return gatherLocal; end
-	
+
 	local px,py = Gatherer_PlayerPos();
 	if ((px == 0) and (py == 0)) then return gatherLocal; end
 
@@ -1135,9 +1227,9 @@ function Gatherer_FindClosest(num, interested)
 	if ((SETTINGS.maxDist) and (SETTINGS.maxDist > 0)) then
 		maxAllowable = SETTINGS.maxDist / 1000;
 	end
-	
+
 	if (not GatherItems[continent] or (GatherItems[continent] and not GatherItems[continent][zone])) then return gatherLocal; end
-	
+
 --	local gatherZone, gathersInZone;
 --	for gatherZone, gathersInZone in GatherItems[continent] do
 		local gatherName, gatherData;
@@ -1146,7 +1238,7 @@ function Gatherer_FindClosest(num, interested)
 			local gatherType = "Default";
 			local specificType = "";
 			local allowed = true;
-			
+
 			specificType = Gatherer_FindOreType(gatherName);
 			if (specificType) then -- Ore
 				gatherType = 2;
@@ -1158,24 +1250,24 @@ function Gatherer_FindClosest(num, interested)
 					allowed = Gatherer_GetFilter("treasure");
 				else -- Herb
 					specificType = gatherName;
-					gatherType = 1; 
+					gatherType = 1;
 					allowed = Gatherer_GetFilter("herbs");
 				end
 			end
-			
+
 			if (not specificType) then
 				specificType = "default";
 			end
-			
+
 			local idx_count=0;
-			
+
 			if (SETTINGS) then
 				if ( SETTINGS.interested and SETTINGS.interested[gatherType] ) then
 					for interest_index in SETTINGS.interested[gatherType] do
 						idx_count= idx_count +1;
 					end
 				end
-				
+
 				if( gatherType == 2 ) then -- Ore
 					minSetSkillLevel = SETTINGS.minSetOreSkill;
 					if ( not minSetSkillLevel ) then minSetSkillLevel = -1; end
@@ -1183,9 +1275,9 @@ function Gatherer_FindClosest(num, interested)
 					minSetSkillLevel = SETTINGS.minSetHerbSkill;
 					if ( not minSetSkillLevel ) then minSetSkillLevel = -1; end
 				end
-				
+
 				if ( allowed == true and Gather_SkillLevel[specificType] and
-					minSetSkillLevel > 0 and 
+					minSetSkillLevel > 0 and
 					(minSetSkillLevel > Gather_SkillLevel[specificType] or
 					 (SETTINGS.rareOre == 1 and Gather_SkillLevel[Gather_RareMatch[specificType]] and
 					  minSetSkillLevel > Gather_SkillLevel[Gather_RareMatch[specificType]] ))
@@ -1193,7 +1285,7 @@ function Gatherer_FindClosest(num, interested)
 					allowed = false;
 				end
 			end
-			
+
 			if ((allowed == true) and
 				((SETTINGS == nil) or
 				 (SETTINGS.interested == nil) or (idx_count == 0) or SETTINGS.interested[gatherType] == nil or
@@ -1204,61 +1296,61 @@ function Gatherer_FindClosest(num, interested)
 			) then
 				local maxNum=100;
 				local gatherInfo;
-				
+
 				for _, gatherInfo in gatherData do
 					local absHx;
 					local absHy;
-					
+
 					if ((not gatherInfo.gtype) or (gatherInfo.gtype == "")) then
 						gatherInfo.gtype = gatherType;
 					end
-					
+
 					if ((not gatherInfo.icon) or (gatherInfo.icon == "")) then
 						gatherInfo.icon = Gatherer_GetDB_IconIndex(specificType, gatherType);
 					end
-					
+
 					absHx, absHy = Gatherer_AbsCoord(continent, zone, gatherInfo.x/100, gatherInfo.y/100);
 --					absHx, absHy = Gatherer_AbsCoord(continent, gatherZone, gatherInfo.x/100, gatherInfo.y/100);					absHx = math.floor(absHx * 100000)/100000;
 					absHy = math.floor(absHy * 100000)/100000;
-					
+
 					if ((absHx ~= 0) and (absHy ~= 0)) then
 						local maxLocalPos = 0;
 						local replCandidate = 0;
 						local dist, deltaX, deltaY = Gatherer_Distance(absPx, absPy, absHx, absHy);
-						
+
 						if ((maxAllowable == 0) or (dist < maxAllowable)) then
 							local localPos, localInfo;
-							
+
 							for localPos, localInfo in gatherLocal.items do
-								
-								if ( localPos <= num ) then 
+
+								if ( localPos <= num ) then
 									if (localPos > maxLocalPos) then maxLocalPos = localPos; end
-									
+
 									-- take node at the same approximate spot into consideration
 									if ( (abs(gatherInfo.x - localInfo.item.x) <= GATHERER_CLOSESTCHECK or
 										 Gatherer_Round(gatherInfo.x * 10) == Gatherer_Round(localInfo.item.x * 10)) and
 										(abs(gatherInfo.y - localInfo.item.y) <= GATHERER_CLOSESTCHECK or
-										 Gatherer_Round(gatherInfo.y * 10) == Gatherer_Round(localInfo.item.y * 10)) ) 
+										 Gatherer_Round(gatherInfo.y * 10) == Gatherer_Round(localInfo.item.y * 10)) )
 									then
 										replCandidate = maxNum;
 										maxNum = maxNum + 1;
 									-- shorter distance
 									elseif (localInfo.dist > dist) then
-										if ((replCandidate == 0) or (gatherLocal.items[replCandidate] and (localInfo.dist > gatherLocal.items[replCandidate].dist))) 
+										if ((replCandidate == 0) or (gatherLocal.items[replCandidate] and (localInfo.dist > gatherLocal.items[replCandidate].dist)))
 										then
 											replCandidate = localPos;
 										end
 									end
 								end
 							end
-							
+
 							-- select candidate
 							if ( maxLocalPos < num ) then
 								replCandidate = maxLocalPos+1;
 							elseif ( maxLocalPos == num and gatherLocal.items[replCandidate] and dist > gatherLocal.items[replCandidate].dist ) then
 								replCandidate = 0;
 							end
-							
+
 							if (replCandidate > 0) then
 								local setItem = {};
 								setItem.name = gatherName;
@@ -1266,7 +1358,7 @@ function Gatherer_FindClosest(num, interested)
 								setItem.dist = dist;
 								setItem.deltax = deltaX;
 								setItem.deltay = deltaY;
-								
+
 								gatherLocal["items"][replCandidate] = setItem;
 								gatherCount = gatherCount+1;
 							end
@@ -1288,7 +1380,7 @@ function isMinimapInCity()
 	local tempzoom = 0;
 	local inCity = false;
 	if (GetCVar("minimapZoom") == GetCVar("minimapInsideZoom")) then
-		if (GetCVar("minimapInsideZoom")+0 >= 3) then 
+		if (GetCVar("minimapInsideZoom")+0 >= 3) then
 			Minimap:SetZoom(Minimap:GetZoom() - 1);
 			tempzoom = 1;
 		else
@@ -1324,10 +1416,10 @@ end
 
 function Gatherer_GetMapScale(continent, zone, inCity, zoomLevel)
 	if ((continent == nil) or (zoomLevel == nil)) then return 0,0; end
-	if ((not GatherRegionData) or 
-	(not GatherRegionData[continent]) or 
-	(not GatherRegionData[continent].scales) or 
-	(not GatherRegionData[continent].scales[zoomLevel]) or 
+	if ((not GatherRegionData) or
+	(not GatherRegionData[continent]) or
+	(not GatherRegionData[continent].scales) or
+	(not GatherRegionData[continent].scales[zoomLevel]) or
 	(not GatherRegionData[continent].scales[zoomLevel].xscale) or
 	(not GatherRegionData[continent].scales[zoomLevel].yscale)) then
 		return 0,0;
@@ -1340,7 +1432,7 @@ function Gatherer_GetMapScale(continent, zone, inCity, zoomLevel)
 		scaleX = scaleX * cityScale;
 		scaleY = scaleY * cityScale;
 	end
-	
+
 	return scaleX, scaleY;
 end
 
@@ -1352,7 +1444,7 @@ function Gatherer_MiniMapPos(deltaX, deltaY, scaleX, scaleY) -- works out the di
 	mapDist = Gatherer_Pythag(mapX, mapY);
 
 	if (mapDist >= 57) then
-		-- Remap it to just inside the minimap, by:converting dx,dy to angle,distance 
+		-- Remap it to just inside the minimap, by:converting dx,dy to angle,distance
 		-- then truncate distance to 58 and convert angle,58 to dx,dy
 		local flipAxis = 1;
 		if (mapX == 0) then mapX = 0.0000000001;
@@ -1377,7 +1469,7 @@ function Gatherer_ReadBuff(event, fishItem, fishTooltip)
 	if (not arg1 and not event == "SPELLCAST_STOP") then
 		Gatherer_Print("Gatherer: error, no arg recording aborted.");
 		Gatherer_RecordFlag = 0;
-		return; 
+		return;
 	elseif (arg1) then
 		chatline = string.gsub(arg1, GATHERER_NOTEXT, "");
 	end
@@ -1424,10 +1516,10 @@ function Gatherer_ReadBuff(event, fishItem, fishTooltip)
 		if (not arg1 and Gatherer_currentAction==nil and event == "SPELLCAST_STOP" and Gatherer_RecordFlag == 1) then
 			chatline="";
 		elseif (event ~= "UI_ERROR_MESSAGE" ) then
-			chatline = Gatherer_currentAction;			
+			chatline = Gatherer_currentAction;
 		end
 		Gatherer_Debug("gather="..gather.." chatline="..chatline);
-		
+
 		-- process non gatherable item because of low/lack of skill
 		if( gather and not gather ~= "" and (strfind(chatline, TRADE_HERBALISM) or strfind(chatline, OLD_TRADE_HERBALISM) or strfind(chatline, GATHER_HERBALISM)) ) then -- Herb
 			Gatherer_Debug("record Herb");
@@ -1454,10 +1546,10 @@ function Gatherer_ReadBuff(event, fishItem, fishTooltip)
 			if ( gatherCanonicalName ) then gather = gatherCanonicalName; end;
 			gatherEventType = 1;
 		end
-		if (not gatherIcon) then 
+		if (not gatherIcon) then
 			Gatherer_Print("Gatherer: no icon identified, aborting record.");
 			Gatherer_RecordFlag = 0;
-			return; 
+			return;
 		end
 		if (event == "SPELLCAST_STOP" and Gatherer_RecordFlag == 1) then
 			 gatherEventType = 0;
@@ -1467,77 +1559,101 @@ function Gatherer_ReadBuff(event, fishItem, fishTooltip)
 		Gatherer_RecordFlag = 0;
 		return;
 	end
-	
+
 	if (record == true) then
 		Gatherer_Debug("record type: "..gatherEventType);
 		Gatherer_AddGatherHere(gather, gatherType, gatherIcon, gatherEventType);
 	end
 end
 
-function Gatherer_AddGatherToBase(gather, gatherType, gatherC, gatherZ, gatherX, gatherY, gatherIcon, gatherEventType, updateCount)
-	local hPos, gatherData;
-	if (not GatherItems[gatherC]) then GatherItems[gatherC] = { }; end
-	if (not GatherItems[gatherC][gatherZ]) then GatherItems[gatherC][gatherZ] = { }; end
-	if (not GatherItems[gatherC][gatherZ][gather]) then GatherItems[gatherC][gatherZ][gather] = { }; end
 
-	local found = 0;
+local function insertionGatherIndex(gatherList, maxCheckDist, gatherX, gatherY)
+	-- type: (GatherList, float, float, float) -> Tuple(int, bool, float, float)
+	-- gatherList - list of the same gather
+	-- maxCheckDist - two nodes closer than this distance are considered the same node
+	-- returns: index to insert new gather, whether new node was found, corrected gathering coordinates
+	local resultIndex = 0;
 	local lastGather = 0;
-	local first_hole = 0;
+	local firstNumerationGap = 0;
 	local count = 0;
 	local closest = 0;
+	local newNodeFound = true;
 
-	for hPos, gatherData in GatherItems[gatherC][gatherZ][gather] do
+	for gatherIndex, gatherData in gatherList do
 		count = count + 1;
-		if ( first_hole == 0 and hPos ~= count ) then
-			first_hole = count;
+		if ( firstNumerationGap == 0 and gatherIndex ~= count ) then
+			firstNumerationGap = count;
 		end
 		local dist, deltaX, deltaY = Gatherer_Distance(gatherX,gatherY, gatherData.x,gatherData.y);
-		local maxCheckDist = 0.5;
-		if ( gatherEventType and gatherEventType == 2 ) then maxCheckDist = 1; end
 		if ((dist < maxCheckDist) and ((closest == 0) or (closest > dist))) then -- same gather
 			gatherX = (gatherX + gatherData.x) / 2;
 			gatherY = (gatherY + gatherData.y) / 2;
 			closest = dist;
-			found = hPos;
+			resultIndex = gatherIndex;
+			newNodeFound = false;
 		end
-		if (hPos > lastGather) then
-			lastGather = hPos;
+		if (gatherIndex > lastGather) then
+			lastGather = gatherIndex;
 		end
 	end
-	if (found == 0 and first_hole == 0) then -- need to create a new one (at hPos+1)
-		found = lastGather+1;
-	elseif ( found == 0 and first_hole ~= 0 ) then -- not found but there's a hole, let's fill it
-		found = first_hole;
-	end
-	local newDiscovery = (found ~= 0);
 
-	local gatherCount = 1;
+	local thereIsNumerationGap = firstNumerationGap ~= 0;
+	if (newNodeFound) then
+		-- need to create a new one (at gatherIndex+1)
+		resultIndex = lastGather+1;
+		-- no duplicate but there's a hole, let's fill it
+		if thereIsNumerationGap then
+			resultIndex = firstNumerationGap;
+		end
+	end
+	return resultIndex, newNodeFound, gatherX, gatherY
+end
+
+
+function Gatherer_AddGatherToBase(gather, gatherType, gatherC, gatherZ, gatherX, gatherY, iconIndex, gatherEventType, updateCount)
+	-- type: (GatherName, Gatherer_EGatherType, Continent, Zone, float, float, IconIndex, EGatherEventType, bool) -> bool
+	-- comparing to the latest official version (2.99.0.0284)
+	-- this function was brought out into the global space and extended with the updateCount argument.
+	-- The latter denotes whether the gather count should be incremented.
+	-- Also it has started to return whether new node was found.
+	if (not GatherItems[gatherC]) then GatherItems[gatherC] = { }; end
+	if (not GatherItems[gatherC][gatherZ]) then GatherItems[gatherC][gatherZ] = { }; end
+	if (not GatherItems[gatherC][gatherZ][gather]) then GatherItems[gatherC][gatherZ][gather] = { }; end
+
+	local maxCheckDist = 0.5;
+	if ( gatherEventType and gatherEventType == 2 ) then maxCheckDist = 1; end
+
+	local insertionIndex, newNodeFound;
+	insertionIndex, newNodeFound, gatherX, gatherY = insertionGatherIndex(
+		GatherItems[gatherC][gatherZ][gather], maxCheckDist, gatherX, gatherY
+	);
+
+	local countIncrement = 1;
+	-- when gathered without required skill or received via broacast
 	if (not updateCount) or (gatherEventType and gatherEventType == 1) then
-		if (GatherItems[gatherC][gatherZ][gather][found] == nil) then
-			GatherItems[gatherC][gatherZ][gather][found] = { };
-			gatherCount = 0;
-		else
-			gatherCount = GatherItems[gatherC][gatherZ][gather][found].count;
-		end
+		countIncrement = 0
+	end
+
+	local newCount;
+	if (GatherItems[gatherC][gatherZ][gather][insertionIndex] == nil) then
+		GatherItems[gatherC][gatherZ][gather][insertionIndex] = { };
+		newCount = countIncrement;
 	else
-		if (GatherItems[gatherC][gatherZ][gather][found] == nil) then
-			GatherItems[gatherC][gatherZ][gather][found] = { };
-		else
-			gatherCount = GatherItems[gatherC][gatherZ][gather][found].count + 1;
-		end
+		newCount = GatherItems[gatherC][gatherZ][gather][insertionIndex].count + countIncrement;
 	end
 
 	-- Round off those coordinates
 	gatherX = math.floor(gatherX * 100)/100;
 	gatherY = math.floor(gatherY * 100)/100;
 
-	GatherItems[gatherC][gatherZ][gather][found].x = gatherX;
-	GatherItems[gatherC][gatherZ][gather][found].y = gatherY;
-	GatherItems[gatherC][gatherZ][gather][found].gtype = gatherType;
-	GatherItems[gatherC][gatherZ][gather][found].count = gatherCount;
-	GatherItems[gatherC][gatherZ][gather][found].icon = Gatherer_GetDB_IconIndex(gatherIcon, gatherType);
+	assert(type(iconIndex) == 'number')
+	GatherItems[gatherC][gatherZ][gather][insertionIndex].x = gatherX;
+	GatherItems[gatherC][gatherZ][gather][insertionIndex].y = gatherY;
+	GatherItems[gatherC][gatherZ][gather][insertionIndex].gtype = gatherType;
+	GatherItems[gatherC][gatherZ][gather][insertionIndex].count = newCount;
+	GatherItems[gatherC][gatherZ][gather][insertionIndex].icon = iconIndex
 
-	return newDiscovery;
+	return newNodeFound;
 end
 
 -- this function can be used as an interface by other addons to record things
@@ -1549,32 +1665,36 @@ end
 --   gatherIcon (string): matching icon from Gatherer icon table (match gather name)
 --   gatherEventType (number): 0 normal gather, 1 gather without required skill, 2 fishing node
 function Gatherer_AddGatherHere(gather, gatherType, gatherIcon, gatherEventType)
-	
+	-- type: (GatherName, EGatherType, IconName, EGatherEventType) -> nil
+	assert(type(gatherIcon) == 'string')
 	if ( Gatherer_Settings.filterRecording[gatherType] and not Gatherer_Settings.interested[gatherType][gatherIcon] ) then
 		return;
 	end
 	local px, py = Gatherer_PlayerPos(1);
 	if (px == 0 and py == 0) then
 		--Gatherer_Print("Gatherer: Cannot record item position as client is reporting position 0,0");
-		return; 
+		return;
 	end
-	local gatherC, gatherZ = Gatherer_GetCurrentZone();
-	if (gatherC == 0 or gatherZ == 0) then
+	local gatherContinent, gatherZone = Gatherer_GetCurrentZone();
+	if (gatherContinent == 0 or gatherZone == 0) then
 		--Gatherer_Print("Gatherer: Cannot record item, invalid continent/zone.");
 		return;
 	end
 	local gatherX = px * 100;
 	local gatherY = py * 100;
-	
+
 	if (not GatherItems) then
 		Gatherer_Print("Initializing empty gatherable database");
 		GatherItems = { };
 	end
 
-	-- Broadcast to guild
-	Gatherer_BroadcastGather(gather, gatherType, gatherC, gatherZ, gatherX, gatherY, gatherIcon, gatherEventType)
+	local iconIndex = Gatherer_GetDB_IconIndex(gatherIcon, gatherType);
+	if Gatherer_Settings.p2p then
+		-- Broadcast to guild
+		Gatherer_BroadcastGather(gather, gatherType, gatherContinent, gatherZone, gatherX, gatherY, iconIndex, gatherEventType)
+	end
 
-	Gatherer_AddGatherToBase(gather, gatherType, gatherC, gatherZ, gatherX, gatherY, gatherIcon, gatherEventType, true);
+	Gatherer_AddGatherToBase(gather, gatherType, gatherContinent, gatherZone, gatherX, gatherY, iconIndex, gatherEventType, true);
 	Gatherer_OnUpdate(0,true);
 	GatherMain_Draw();
 end
@@ -1590,15 +1710,15 @@ function Gatherer_Clear()
 	Gatherer_OnUpdate(0,true);
 	GatherMain_Draw();
 end
- 
+
 function Gatherer_Show()
 	local gatherCont, gatherZone, gatherName, contData, zoneData, nameData, gatherPos, gatherItem;
-	
+
 	for gatherCont, contData in GatherItems do
 		for gatherZone, zoneData in contData do
 			for gatherName, nameData in zoneData do
 				for gatherPos, gatherItem in nameData do
-					Gatherer_Print(Gather_DB_TypeIndex[gatherItem.gtype].." "..gatherName.." was found in zone "..gatherCont..":"..gatherZone.." at "..gatherItem.x..","..gatherItem.y.."  ("..gatherItem.count.." times)");
+					Gatherer_Print(Gatherer_EGatherType[gatherItem.gtype].." "..gatherName.." was found in zone "..gatherCont..":"..gatherZone.." at "..gatherItem.x..","..gatherItem.y.."  ("..gatherItem.count.." times)");
 				end
 			end
 		end
@@ -1609,7 +1729,8 @@ end
 -- String display related functions
 
 function Gatherer_ChatPrint(str)
-	if ( DEFAULT_CHAT_FRAME ) then 
+	-- usually DEFAULT_CHAT_FRAME is the default "General" chat window
+	if ( DEFAULT_CHAT_FRAME ) then
 		DEFAULT_CHAT_FRAME:AddMessage(str, 1.0, 0.5, 0.25);
 	end
 end
@@ -1622,6 +1743,7 @@ function Gatherer_Print(str, add)
 	if (add) then
 		str = str..": "..add;
 	end
+	-- adds a message into the combat log
 	if(ChatFrame2) then
 		ChatFrame2:AddMessage(str, 1.0, 1.0, 0.0);
 	end
@@ -1649,19 +1771,19 @@ function Gatherer_MakeName(frameID)
 	local tmpClosest = ClosestGathers;
 	local tmpItemIDtable = { }
 	local tmpCount = 1;
-	if ( GATHERER_LOADED ) then 
+	if ( GATHERER_LOADED ) then
 		local gatherInfo = tmpClosest.items[frameID];
-		
+
 		tmpItemIDtable[tmpCount] = {};
 		tmpItemIDtable[tmpCount].name  = Gatherer_GetMenuName(gatherInfo.name);
 		tmpItemIDtable[tmpCount].count = gatherInfo.item.count;
 		tmpItemIDtable[tmpCount].dist  = math.floor(gatherInfo.dist*10000)/10;
-		
+
 		tmpCount = tmpCount + 1;
-		
+
 		for id in tmpClosest.items do
-			if (id ~= frameID and 
-					(abs(gatherInfo.item.x - tmpClosest.items[id].item.x) <= GATHERER_CLOSESTCHECK or 
+			if (id ~= frameID and
+					(abs(gatherInfo.item.x - tmpClosest.items[id].item.x) <= GATHERER_CLOSESTCHECK or
 				 Gatherer_Round(gatherInfo.item.x * 10) == Gatherer_Round(tmpClosest.items[id].item.x * 10)) and
 				(abs(gatherInfo.item.y - tmpClosest.items[id].item.y) <= GATHERER_CLOSESTCHECK or
 				 Gatherer_Round(gatherInfo.item.y * 10) == Gatherer_Round(tmpClosest.items[id].item.y * 10))) then
@@ -1678,7 +1800,7 @@ function Gatherer_MakeName(frameID)
 		tmpItemIDtable[1].count = 0;
 		tmpItemIDtable[1].dist = 0;
 	end
-	
+
 	return tmpItemIDtable;
 end
 
@@ -1687,7 +1809,7 @@ end
 
 function Gatherer_LoadZoneData()
 	local continentData = {GetMapContinents()};
-	for continentIndex, continentName in continentData do
+	for continentIndex, _ in continentData do
 		local zoneData = {GetMapZones(continentIndex)};
 		for zoneIndex, zoneName in zoneData do
 			GatherZoneData[zoneName] = { [1] = continentIndex, [2] = zoneIndex };
@@ -1696,6 +1818,7 @@ function Gatherer_LoadZoneData()
 end
 
 function Gatherer_GetCurrentZone()
+	-- type: () -> Tuple[Continent, Zone]
 	local zoneData = GatherZoneData[GetRealZoneText()];
 	if ( zoneData ) then
 		return zoneData[1], zoneData[2];
@@ -1709,7 +1832,7 @@ function Gatherer_ChangeMap()
 	local mapContinent = GetCurrentMapContinent();
 	local mapZone = GetCurrentMapZone();
 	local minderCurZone = false;
-	
+
 	if ((Gatherer_CloseMap ~= nil) and (Gatherer_CloseMap.continent == Gatherer_LastZone.continent) and (Gatherer_CloseMap.zone == Gatherer_LastZone.zone)) then
 		minderCurZone = true;
 	end
@@ -1719,7 +1842,7 @@ function Gatherer_ChangeMap()
 	if ((playerContinent == 0) or (playerZone == 0)) then return false; end
 	if ((playerContinent == mapContinent) and (playerZone == mapZone)) then return true; end
 
-	if ( GetCurrentMapContinent()>0 and playerZone and playerZone > 0 ) then 
+	if ( GetCurrentMapContinent()>0 and playerZone and playerZone > 0 ) then
 		if (not WorldMapFrame:IsVisible()) then
 			SetMapZoom(playerContinent, playerZone);
 		end
@@ -1728,12 +1851,12 @@ function Gatherer_ChangeMap()
 	if ((Gatherer_CloseMap ~= nil) and (Gatherer_CloseMap.time ~= nil)) then
 		lastTime = Gatherer_CloseMap.time;
 	end
-	
+
 	if (minderCurZone) then
 		Gatherer_MapOpen = false;
 		Gatherer_CloseMap = { continent = playerContinent, zone = playerZone, time = lastTime };
 	end
-	
+
 	return true;
 end
 
@@ -1747,7 +1870,7 @@ function Gatherer_PlayerPos(forced)
 
 	local px, py = GetPlayerMapPosition("player");
 	if ((px == 0) and (py == 0)) then
-		if (not forced) then 
+		if (not forced) then
 			if (Gatherer_ChangeMap()) then
 				px, py = GetPlayerMapPosition("player");
 			else
@@ -1794,10 +1917,10 @@ function Gatherer_DeleteItem()
 					GatherItems[2][search_index][GatherMainMapItem.gatherName] = nil;
 				end
 			end
-		end	
+		end
 	end
-	GatherMain_Draw();	
-	
+	GatherMain_Draw();
+
 	-- clean up for empty zones/continent
 	for locIdx in GatherItems[GatherMainMapItem.continent][GatherMainMapItem.zoneIndex][GatherMainMapItem.gatherName] do
 		gathIdx = gathIdx + 1;
@@ -1817,13 +1940,13 @@ function Gatherer_DeleteItem()
 				cntIdx = cntIdx + 1;
 			end
 
-			if ( cntIdx == 0 ) then 
+			if ( cntIdx == 0 ) then
 				--DEFAULT_CHAT_FRAME:AddMessage("Removed continents no data left")
-				GatherItems[GatherMainMapItem.continent] = nil; 
+				GatherItems[GatherMainMapItem.continent] = nil;
 			end
 		end
 	end
-	GatherMain_Draw();			
+	GatherMain_Draw();
 end
 
 -- Modify Gather Name and/or icon
@@ -1833,7 +1956,7 @@ function Gatherer_ModifyItem()
 	local mod_zone = GatherMainMapItem.zoneIndex;
 	local mod_name = GatherMainMapItem.gatherName;
 
-	-- setting new names (NB: icons on world map are deduced from gather name)	
+	-- setting new names (NB: icons on world map are deduced from gather name)
 	if ( GatherMainMapItem.newIcon and GatherMainMapItem.newIcon ~= GatherMainMapItem.gatherIcon ) then
 		newIcon = GatherMainMapItem.newIcon;
 	else
@@ -1845,7 +1968,7 @@ function Gatherer_ModifyItem()
 	else
 		newType = GatherMainMapItem.gatherType;
 	end
-	
+
 	if ( GatherMainMapItem.newGatherName ) then
 		newGatherName = GatherMainMapItem.newGatherName;
 	else
@@ -1977,10 +2100,10 @@ function Gatherer_ModifyItem()
 					end
 				end
 			end
-		end	
+		end
 	end
-	
-	GatherMain_Draw();	
+
+	GatherMain_Draw();
 	GatherMainMapItem.newIcon = nil;
 	GatherMainMapItem.newGatherName = nil;
 end
@@ -1990,13 +2113,13 @@ function Gatherer_WMDropDownGType_Initialize()
 	local index;
 	local info = {};
 	local iconGtype = GatherMainMapItem.gatherType;
-	
+
 	if ( GatherMainMapItem.newType ) then
 		iconGtype = GatherMainMapItem.newType;
 	end
 
-	for index, value in Gather_DB_TypeIndex do
-		if ( type(value) == "number" and value ~= 3 ) 
+	for index, value in Gatherer_EGatherType do
+		if ( type(value) == "number" and value ~= 3 )
 		then
 			info.text = index;
 			info.value = value;
@@ -2008,11 +2131,11 @@ function Gatherer_WMDropDownGType_Initialize()
 			info.func = Gatherer_WMDropDownGType_OnClick;
 			UIDropDownMenu_AddButton(info);
 		end
-	end	
+	end
 
 	if ( type(GatherMainMapItem.gatherType) == "number" )
 	then
-		UIDropDownMenu_SetText(Gather_DB_TypeIndex[GatherMainMapItem.gatherType], Gatherer_WMDropDownGType);
+		UIDropDownMenu_SetText(Gatherer_EGatherType[GatherMainMapItem.gatherType], Gatherer_WMDropDownGType);
 	else
 		UIDropDownMenu_SetText(GatherMainMapItem.gatherType, Gatherer_WMDropDownGType);
 	end
@@ -2020,7 +2143,7 @@ end
 
 function Gatherer_WMDropDownGType_OnClick()
 	UIDropDownMenu_SetSelectedID(Gatherer_WMDropDownGType, this:GetID());
-	GatherMainMapItem.newType = Gather_DB_TypeIndex[UIDropDownMenu_GetText(Gatherer_WMDropDownGType)];
+	GatherMainMapItem.newType = Gatherer_EGatherType[UIDropDownMenu_GetText(Gatherer_WMDropDownGType)];
 
 	UIDropDownMenu_ClearAll(Gatherer_WMDropDownIcons);
 	UIDropDownMenu_Initialize(Gatherer_WMDropDownIcons, Gatherer_WMDropDownIcons_Initialize);
@@ -2047,7 +2170,7 @@ function Gatherer_WMDropDownIcons_Initialize()
 		end
 		info.func = Gatherer_WMDropDownIcons_OnClick;
 		UIDropDownMenu_AddButton(info);
-	end	
+	end
 
 	UIDropDownMenu_SetText(Gatherer_GetDB_IconIndex(GatherMainMapItem.gatherIcon, iconGtype), Gatherer_WMDropDownIcons);
 end
@@ -2073,7 +2196,7 @@ function Gatherer_WMDropDownScope_Initialize()
 		end
 		info.func = Gatherer_WMDropDownScope_OnClick;
 		UIDropDownMenu_AddButton(info);
-	end	
+	end
 	UIDropDownMenu_SetSelectedID(Gatherer_WMDropDownScope, 1);
 end
 
@@ -2088,7 +2211,7 @@ function Gatherer_ToggleBuggedItem()
 Gatherer_ChatPrint("Toggling node to bugged state");
 	local gtype = GatherItems[GatherMainMapItem.continent][GatherMainMapItem.zoneIndex][GatherMainMapItem.gatherName][GatherMainMapItem.localIndex].gtype;
 	local icon = GatherItems[GatherMainMapItem.continent][GatherMainMapItem.zoneIndex][GatherMainMapItem.gatherName][GatherMainMapItem.localIndex].icon;
-	
+
 	if ( GatherItems[GatherMainMapItem.continent][GatherMainMapItem.zoneIndex][GatherMainMapItem.gatherName][GatherMainMapItem.localIndex].icon ~= "default" ) then
 		GatherItems[GatherMainMapItem.continent][GatherMainMapItem.zoneIndex][GatherMainMapItem.gatherName][GatherMainMapItem.localIndex].oldicon = icon;
 		GatherItems[GatherMainMapItem.continent][GatherMainMapItem.zoneIndex][GatherMainMapItem.gatherName][GatherMainMapItem.localIndex].oldgtype = gtype;

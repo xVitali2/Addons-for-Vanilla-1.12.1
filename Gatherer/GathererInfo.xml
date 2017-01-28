@@ -2,7 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 	<!-- Load scripts -->
- 	<Script file="GathererInfo.lua"/>	
+ 	<Script file="GathererInfo.lua"/>
 
 	<!-- Templates -->
 	<Button name="GathererInfo_FrameColumnHeaderTemplate" virtual="true">
@@ -59,7 +59,7 @@
 			</Anchors>
 		</NormalText>
 	</Button>
-	
+
 	<Button name="GathererInfo_FrameEntryStatusButtonTemplate" virtual="true" id="0">
 		<Size>
 			<AbsDimension x="298" y="16"/>
@@ -287,7 +287,7 @@
 			<EdgeSize>
 				<AbsValue val="32"/>
 			</EdgeSize>
-		</Backdrop>		
+		</Backdrop>
 		<Layers>
 			<Layer level="ARTWORK">
 				<Texture name="GathererInfo_FrameHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
@@ -369,7 +369,7 @@
 				</Scripts>
 			</Button>
 		</Frames>
-	  <Scripts> 
+	  <Scripts>
 	  	<OnLoad>
 	  		GathererInfo_LoadContinents( GetMapContinents() );
 			-- Tab Handling code
@@ -379,7 +379,7 @@
 		<OnShow>
 			GathererInfo_SetDefaultLocation();
 		</OnShow>
-      </Scripts> 
+      </Scripts>
 	</Frame>
 
 

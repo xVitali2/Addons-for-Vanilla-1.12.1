@@ -35,7 +35,7 @@ function GathererUI_OnLoad()
 	SLASH_GathererUI_SHOWMENU1 = "/GathererUI_showmenu";
 	SlashCmdList["GathererUI_HIDEMENU"] = GathererUI_HideMenu;
 	SLASH_GathererUI_HIDEMENU1 = "/GathererUI_hidemenu";
-	
+
 	-- Create the slash commands to show/hide the options window.
 	SlashCmdList["GathererUI_SHOWOPTIONS"] = GathererUI_ShowOptions;
 	SLASH_GathererUI_SHOWOPTIONS1 = "/GathererUI_showoptions";
@@ -83,9 +83,9 @@ function GathererUI_DialogFrame_ShowSubFrame(frameName)
 		if ( value == frameName ) then
 			getglobal(value):Show()
 		else
-			getglobal(value):Hide();	
-		end	
-	end 
+			getglobal(value):Hide();
+		end
+	end
 end
 function GathererUIFrameTab_OnClick()
 	if ( this:GetName() == "GathererUI_DialogFrameTab1" ) then
@@ -113,7 +113,7 @@ function GathererUI_ShowMenu(x, y, anchor)
 	if (anchor == nil) then
 		anchor = "center";
 	end
-	
+
 	-- Adjust for the UI scale.
 	x = x / UIParent:GetEffectiveScale();
 	y = y / UIParent:GetEffectiveScale();
@@ -148,19 +148,19 @@ end
 -- ******************************************************************
 function GathererUI_InitializeOptions()
 	local SETTINGS = Gatherer_Settings;
-	
+
 	if ( SETTINGS.showWorldMapFilters == 1 ) then
 		GathererWD_DropDownFilters:Show();
 	else
 		GathererWD_DropDownFilters:Hide();
 	end
-	
+
 	if ( SETTINGS.disableWMFreezeWorkaround == 1 ) then
 		Gatherer_WorldMapDisplay:Show();
 	else
-		Gatherer_WorldMapDisplay:Hide();	
+		Gatherer_WorldMapDisplay:Hide();
 	end
-	
+
 	if ( SETTINGS.useMainmap)
 	then
 		Gatherer_WorldMapDisplay:SetText("Hide Items");
@@ -169,9 +169,9 @@ function GathererUI_InitializeOptions()
 		Gatherer_WorldMapDisplay:SetText("Show Items");
 		GathererMapOverlayFrame:Hide();
 	end
-	
+
 	GathererHelp.currentPage = GathererHelp.currentPage or tonumber("1");
-	
+
 	-- UI related
 	GathererUI_CheckShowOnMouse:SetChecked(SETTINGS.ShowOnMouse);
 	GathererUI_CheckHideOnMouse:SetChecked(SETTINGS.HideOnMouse);
@@ -180,7 +180,7 @@ function GathererUI_InitializeOptions()
 	GathererUI_CheckHideIcon:SetChecked(SETTINGS.HideIcon);
 	GathererUI_CheckHideOnButton:SetChecked(SETTINGS.HideOnButton);
 	GathererUI_IconFrame:SetPoint("TOPLEFT", "Minimap", "TOPLEFT", 52 - (SETTINGS.Radius * cos(SETTINGS.Position)), (SETTINGS.Radius * sin(SETTINGS.Position)) - 52);
-	
+
 	-- Gatherer related
 	GathererUI_CheckNoMinIcon:SetChecked(SETTINGS.NoIconOnMinDist);
 	GathererUI_CheckRareOre:SetChecked(SETTINGS.rareOre);
@@ -192,7 +192,7 @@ function GathererUI_InitializeOptions()
 	GathererUI_CheckOreRecord:SetChecked(SETTINGS.filterRecording[2]);
 	GathererUI_CheckTreasureRecord:SetChecked(SETTINGS.filterRecording[0]);
 	GathererUI_CheckDisableWMFix:SetChecked(SETTINGS.disableWMFreezeWorkaround);
-	
+
 	GathererUI_InitializeMenu();
 end
 
@@ -206,7 +206,7 @@ function GathererUI_InitializeMenu()
 	else
 		GathererUI_IconFrame:Show();
 	end
-		
+
 
 	-- Set the text for the buttons while keeping track of how many
 	-- buttons we actually need.
@@ -243,7 +243,7 @@ function GathererUI_InitializeMenu()
 		end
 		button:Show();
 	end
-	
+
 	-- Set the width for the menu.
 	local width = GathererUI_TitleButton:GetWidth();
 	for i = 1, count do
@@ -263,7 +263,7 @@ function GathererUI_InitializeMenu()
 	for i = count + 1, GathererUI_NUM_BUTTONS do
 		getglobal("GathererUI_PopupButton"..i):Hide();
 	end
-	
+
 	-- Set the height for the menu.
 	GathererUI_Popup:SetHeight(GathererUI_BUTTON_HEIGHT + ((count + 1) * GathererUI_BUTTON_HEIGHT) + (3 * GathererUI_BUTTON_HEIGHT));
 end
@@ -271,7 +271,7 @@ end
 -- ******************************************************************
 function GathererUI_ButtonClick()
 	Gatherer_Command(this.SpellID);
-	GathererUI_InitializeMenu();	
+	GathererUI_InitializeMenu();
 end
 
 -- ******************************************************************
@@ -386,7 +386,7 @@ function GathererUIDropDown_Initialize(filterValue, iconIndex, dropDownText)
 		varMenuVal2 = NORMAL_FONT_COLOR_CODE.."off".."|r";
 	end
 	UIDropDownMenu_SetText(Gatherer_GetMenuName(value), getglobal("GathererUI_DropDown"..dropDownText));
-	
+
 	local itemWithRareMatch = {};
 	local rareItem = {};
 	for iconName, rareMatch in Gather_RareMatch do
@@ -395,19 +395,19 @@ function GathererUIDropDown_Initialize(filterValue, iconIndex, dropDownText)
 			rareItem[rareMatch] = iconName;
 		end
 	end
-	
+
 	if ( itemWithRareMatch[UIDROPDOWNMENU_MENU_VALUE] ) then
 		GathererUIDropDownSub_Initialize(UIDROPDOWNMENU_MENU_VALUE, iconIndex, dropDownText);
 		return;
 	end
-		
+
 	local gathererFilters = {varMenuVal1, varMenuVal2};
 	for iconName in Gather_DB_IconIndex[iconIndex] do
 		if (iconName ~= "default" and not rareItem[iconName]) then
 			tinsert(gathererFilters, iconName);
 		end
 	end
-	
+
 	table.sort(gathererFilters, function (a, b)
 		local aSkillLevel = Gather_SkillLevel[a] or 0;
 		local bSkillLevel = Gather_SkillLevel[b] or 0;
@@ -417,10 +417,10 @@ function GathererUIDropDown_Initialize(filterValue, iconIndex, dropDownText)
 		if (strfind(b, "on|r") or strfind(b, "off|r") or strfind(b, "auto|r")) then
 			bSkillLevel = -1;
 		end
-			return string.format("%03d%s", aSkillLevel, a) < string.format("%03d%s", bSkillLevel, b);	
+			return string.format("%03d%s", aSkillLevel, a) < string.format("%03d%s", bSkillLevel, b);
 		end);
-	
-	
+
+
 	for index, value in gathererFilters do
 		local info = {};
 		info.text = Gatherer_GetMenuName(value);
@@ -433,14 +433,14 @@ function GathererUIDropDown_Initialize(filterValue, iconIndex, dropDownText)
 			info.hasArrow = nil;
 			info.func = getglobal("GathererUIDropDownFilter"..dropDownText.."_OnClick");
 		end
-		
+
 		if (string.find(value, "on|r")) then info.value = "on"; end
 		if (string.find(value, "off|r")) then info.value = "off"; end
 		if (string.find(value, "auto|r")) then info.value = "auto"; end
-		
+
 		if ( index > 2 and Gatherer_Settings) then
 			info.keepShownOnClick = 1;
-			
+
 			if ( Gatherer_Settings.interested[iconIndex][value] ) then
 				info.checked = 1;
 			end
@@ -453,7 +453,7 @@ function GathererUIDropDown_Initialize(filterValue, iconIndex, dropDownText)
 			info.textB = 255;
 			info.checked = nil;
 		end
-		
+
 		UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	end
 end
@@ -467,15 +467,15 @@ function GathererUIDropDownSub_Initialize(rareItem, iconIndex, dropDownText)
 		elseif (iconIndex == 0) then
 			dropDownText = "Treasure";
 		end
-	end	
-	
+	end
+
 	for index, value in {rareItem, Gather_RareMatch[rareItem]} do
 		local info = {};
 		info.text = Gatherer_GetMenuName(value);
 		info.value = value;
 		info.checked = nil;
 		info.func = getglobal("GathererUIDropDownFilter"..dropDownText.."_OnClick");
-		
+
 		info.keepShownOnClick = 1;
 		if ( Gatherer_Settings.interested[iconIndex][value] ) then
 			info.checked = 1;
@@ -483,9 +483,9 @@ function GathererUIDropDownSub_Initialize(rareItem, iconIndex, dropDownText)
 		info.textR = 1;
 		info.textG = 1;
 		info.textB = 1;
-		
+
 		UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
-	end	
+	end
 end
 
 -- World Map functions
@@ -512,7 +512,7 @@ function Gatherer_WorldMapFilter_Load()
 
 		return;
 	end
-	
+
 
 	local info = {};
 	info.text = GATHERER_TEXT_TOGGLE_HERBS.."["..Gatherer_GetFilterVal("herbs").."]";
@@ -572,7 +572,7 @@ function GathererUIDropDownFilter_OnClick(filterValue, iconIndex, dropDownText)
 		UIDropDownMenu_SetText(Gatherer_GetMenuName(this.value), getglobal("GathererUI_DropDown"..dropDownText));
 
 		Gatherer_Command(filterValue.." "..this.value);
-		GathererUI_InitializeMenu();	
+		GathererUI_InitializeMenu();
 	else
 		Gatherer_Settings.interested[iconIndex][this.value] = not this.checked;
 	end
@@ -586,7 +586,7 @@ function GathererUI_OnEnterPressed_HerbSkillEditBox()
 	if ( GathererUI_HerbSkillEditBox:GetNumber() < 0 ) then
 		GathererUI_HerbSkillEditBox:SetNumber(0);
 	end
-	
+
 	Gatherer_Settings.minSetHerbSkill = GathererUI_HerbSkillEditBox:GetNumber();
 end
 
@@ -643,8 +643,8 @@ function GathererUI_ZoneRematch(sourceZoneMapping, destZoneMapping)
 				NewGatherItems[idx_c][new_idx_z] = {};
 				for myItems, rec_gatheritem in rec_zone do
 					local fixedItemName;
-					if (gathererFixItems == 1) then 
-						fixedItemName = GathererUI_FixItemName(myItems); 
+					if (gathererFixItems == 1) then
+						fixedItemName = GathererUI_FixItemName(myItems);
 					else
 						fixedItemName= myItems;
 					end
@@ -654,7 +654,7 @@ function GathererUI_ZoneRematch(sourceZoneMapping, destZoneMapping)
 						if ( type(myGather.gtype) == "number" ) then
 							myGatherType = myGather.gtype;
 						else
-							myGatherType = Gather_DB_TypeIndex[myGather.gtype];
+							myGatherType = Gatherer_EGatherType[myGather.gtype];
 						end
 						if ( type(myGather.icon) == "number" ) then
 							myIcon= myGather.icon;
@@ -665,7 +665,7 @@ function GathererUI_ZoneRematch(sourceZoneMapping, destZoneMapping)
 						if ( myGatherType == 2 and myIcon == 8 ) then
 							myIcon = Gatherer_GetDB_IconIndex(Gatherer_FindOreType(fixedItemName), myGatherType);
 						end
-						
+
 						NewGatherItems[idx_c][new_idx_z][fixedItemName][idx_item] = { x=myGather.x, y=myGather.y, gtype=myGatherType, icon=myIcon, count=myGather.count };
 						fixedItemCount = fixedItemCount + 1;
 					end
@@ -699,7 +699,7 @@ function GathererUIDropDownSourceZone_Initialize()
 		if ( Gatherer_Settings.DataBuild and Gatherer_Settings.DataBuild == info.text ) then
 			UIDropDownMenu_SetText(info.text, GathererUI_SourceZoneDropDown);
 		end
-	end	
+	end
 end
 
 function GathererUIDropDownDestionationZone_Initialize()
@@ -791,7 +791,7 @@ function GathererUI_HelpFrame_UpdateButtons()
 
 	-- Get the help
 	local help = GathererHelp;
-	
+
 	-- Check if there is an help
 	local currentPage = help.currentPage;
 	local totalPages = 9;
@@ -817,7 +817,7 @@ function GathererUI_HelpFramePrevPageButton_OnClick()
 	-- Set the current page to previous page
 	local help = GathererHelp;
 	help.currentPage = help.currentPage - 1;
-	
+
 	-- Update the help
 	GathererUI_HelpFrame_Update()
 end
@@ -828,7 +828,7 @@ function GathererUI_HelpFrameNextPageButton_OnClick()
 	-- Set the current page to next page
 	local help = GathererHelp;
 	help.currentPage = help.currentPage + 1;
-	
+
 	-- Update the help
 	GathererUI_HelpFrame_Update();
 end

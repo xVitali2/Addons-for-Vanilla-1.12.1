@@ -25,7 +25,7 @@ GI_totalCount = 0;
 function showGathererInfo(tab)
 	local myTab = 1;
 	if ( tab ) then myTab = tab; end;
-		
+
 	if ( not GathererInfo_DialogFrame:IsShown() ) then
 		GathererInfo_DialogFrame:Show();
 		PanelTemplates_SetTab(GathererInfo_DialogFrame, myTab);
@@ -58,7 +58,7 @@ end
 function GathererInfo_LocContinentDropDown_Initialize()
 	local index;
 	local info = {};
-	
+
 	for index in GatherItems do
 		-- grab zone text from table initiated by Gatherer Main
 		info.text = GathererInfoContinents[index];
@@ -71,7 +71,7 @@ end
 function GathererInfo_LocContinentDropDown_OnClick()
 	UIDropDownMenu_SetSelectedID(GathererInfo_LocContinentDropDown, this:GetID());
 	UIDropDownMenu_SetSelectedID(GathererInfo_LocZoneDropDown, 0);
-	
+
 	UIDropDownMenu_SetText("", GathererInfo_LocZoneDropDown);
 
 	UIDropDownMenu_ClearAll(GathererInfo_LocZoneDropDown);
@@ -81,7 +81,7 @@ function GathererInfo_LocContinentDropDown_OnClick()
 	while (j < GATHERERINFO_TO_DISPLAY+1) do
 		getglobal("GathererInfo_FrameButton"..j):Hide();
 		j = j+1;
-	end	
+	end
 
 end
 
@@ -108,9 +108,9 @@ end
 function GathererInfo_LocZoneDropDown_OnClick()
 	local gi_cont, gi_zone;
 	local l_zone, node_idx, index;
-	
+
 	UIDropDownMenu_SetSelectedID(GathererInfo_LocZoneDropDown, this:GetID());
-	
+
 	GathererInfo_AutoRegion = false;
 
 	gi_cont = GathererInfoContinents[UIDropDownMenu_GetText(GathererInfo_LocContinentDropDown)];
@@ -119,7 +119,7 @@ function GathererInfo_LocZoneDropDown_OnClick()
 	for l_zone in GatherItems[gi_cont] do
 		GI_totalCount = 0;
 		numGathererInfo=0;
-								
+
 		for node_idx in GatherItems[gi_cont][gi_zone] do
 			for index in  GatherItems[gi_cont][gi_zone][node_idx] do
 				GI_totalCount = GI_totalCount + GatherItems[gi_cont][gi_zone][node_idx][index].count;
@@ -127,7 +127,7 @@ function GathererInfo_LocZoneDropDown_OnClick()
 			end
 		end
 	end
-		
+
 	GathererInfo_Update();
 end
 
@@ -152,23 +152,23 @@ function GathererInfo_SetDefaultLocation()
 		if( l_cnt == gi_cont ) then
 			UIDropDownMenu_SetSelectedName(GathererInfo_LocContinentDropDown, gi_t_cont);
 			UIDropDownMenu_SetText(gi_t_cont, GathererInfo_LocContinentDropDown);
-			
+
 			for l_zone in GatherItems[gi_cont] do
 				if ( l_zone == gi_zone and GathererInfo_AutoRegion == true) then
 					UIDropDownMenu_SetSelectedName(GathererInfo_LocZoneDropDown, gi_t_zone);
 					UIDropDownMenu_SetText(gi_t_zone, GathererInfo_LocZoneDropDown);
-					
+
 					GI_totalCount = 0;
 					numGathererInfo=0;
 					found = 1;
-								
+
 					for node_idx in GatherItems[gi_cont][gi_zone] do
 						for index in  GatherItems[gi_cont][gi_zone][node_idx] do
 							GI_totalCount = GI_totalCount + GatherItems[gi_cont][gi_zone][node_idx][index].count;
 							numGathererInfo = numGathererInfo + 1;
 						end
 					end
-					
+
 					GathererInfo_Update();
 				end
 			end
@@ -189,7 +189,7 @@ function GathererInfo_Update()
 
 	-- Get continent, zone
 	if ( UIDropDownMenu_GetText(GathererInfo_LocContinentDropDown) and
-		 UIDropDownMenu_GetText(GathererInfo_LocContinentDropDown) ~= "") 
+		 UIDropDownMenu_GetText(GathererInfo_LocContinentDropDown) ~= "")
 	then
 		gi_cont = GathererInfoContinents[UIDropDownMenu_GetText(GathererInfo_LocContinentDropDown)];
 	else
@@ -197,7 +197,7 @@ function GathererInfo_Update()
 	end
 
 	if ( UIDropDownMenu_GetText(GathererInfo_LocZoneDropDown) and
-		 UIDropDownMenu_GetText(GathererInfo_LocZoneDropDown) ~= "") 
+		 UIDropDownMenu_GetText(GathererInfo_LocZoneDropDown) ~= "")
 	then
 		gi_zone = GathererInfoZones[gi_cont][UIDropDownMenu_GetText(GathererInfo_LocZoneDropDown)].zone;
 	else
@@ -208,8 +208,8 @@ function GathererInfo_Update()
 		end
 	end
 	-- if loc exists in stored base
-	if ( GatherItems and gi_cont and gi_zone and GatherItems[gi_cont] and 
-		 GatherItems[gi_cont][gi_zone] ) 
+	if ( GatherItems and gi_cont and gi_zone and GatherItems[gi_cont] and
+		 GatherItems[gi_cont][gi_zone] )
 	then
 		if ( GatherItems and GatherItems[gi_cont] and GatherItems[gi_cont][gi_zone] )
 		then
@@ -226,7 +226,7 @@ function GathererInfo_Update()
 					then
 						gtype = GatherItems[gi_cont][gi_zone][node_idx][index].gtype;
 					else
-						gtype = Gather_DB_TypeIndex[GatherItems[gi_cont][gi_zone][node_idx][index].gtype]
+						gtype = Gatherer_EGatherType[GatherItems[gi_cont][gi_zone][node_idx][index].gtype]
 					end
 
 					typeNodeCount[gtype] = typeNodeCount[gtype] + GatherItems[gi_cont][gi_zone][node_idx][index].count;
@@ -243,11 +243,11 @@ function GathererInfo_Update()
 					then
 						gtype = GatherItems[gi_cont][gi_zone][node_idx][index].gtype;
 					else
-						gtype = Gather_DB_TypeIndex[GatherItems[gi_cont][gi_zone][node_idx][index].gtype]
+						gtype = Gatherer_EGatherType[GatherItems[gi_cont][gi_zone][node_idx][index].gtype]
 					end
 
-					nodeCount = typeNodeCount[gtype];				
-				
+					nodeCount = typeNodeCount[gtype];
+
 					local found=0;
 					local findex;
 					for findex in GITT do
@@ -255,13 +255,13 @@ function GathererInfo_Update()
 							found = findex;
 						end
 					end
-				
+
 					if ( found == 0 ) then
 						GITT[i] = {};
 						GITT[i].name     = node_idx;
 
 						if ( type(GatherItems[gi_cont][gi_zone][node_idx][index].gtype) == "number" ) then
-							GITT[i].gatherType = Gather_DB_TypeIndex[GatherItems[gi_cont][gi_zone][node_idx][index].gtype];
+							GITT[i].gatherType = Gatherer_EGatherType[GatherItems[gi_cont][gi_zone][node_idx][index].gtype];
 						else
 							GITT[i].gatherType = GatherItems[gi_cont][gi_zone][node_idx][index].gtype;
 						end
@@ -301,7 +301,7 @@ function GathererInfo_Update()
 		SortGathererInfo(GathererInfo_LastSortType, false);
 		GathererInfo_totalcount:SetText(string.gsub(string.gsub(GATHERER_REPORT_SUMMARY, "#", GI_totalCount), "&", numGathererInfo));
 	end
-end	
+end
 
 -- Add items in display frame
 function GathererInfo_additem_table(gatherName, gatherNumber, gatherTexture, gatherType, typePercent, densityPercent, GIlocation, GIIndex)
@@ -310,13 +310,13 @@ function GathererInfo_additem_table(gatherName, gatherNumber, gatherTexture, gat
 		getglobal("GathererInfo_FrameButton"..GIlocation).gatherIndex = GIIndex;
 		getglobal("GathererInfo_FrameButton"..GIlocation.."Icon"):SetTexture(gatherTexture);
 		getglobal("GathererInfo_FrameButton"..GIlocation.."Type"):SetText(gatherType);
-		getglobal("GathererInfo_FrameButton"..GIlocation.."Gatherable"):SetText(gatherName);		
+		getglobal("GathererInfo_FrameButton"..GIlocation.."Gatherable"):SetText(gatherName);
 		getglobal("GathererInfo_FrameButton"..GIlocation.."Number"):SetText(gatherNumber);
 		getglobal("GathererInfo_FrameButton"..GIlocation.."TypePercent"):SetText(typePercent);
 		getglobal("GathererInfo_FrameButton"..GIlocation.."DensityPercent"):SetText(densityPercent);
 		getglobal("GathererInfo_FrameButton"..GIlocation):Show();
 	end
-	
+
 end
 
 -- **************************************************************************
@@ -330,7 +330,7 @@ function SortGathererInfo(sortType, reverse, search)
 	local key1, key2, key3;
 	local indexToShow=0;
 	local search_stub;
-	
+
 	if (search) then
 		search_stub = search;
 	else
@@ -365,7 +365,7 @@ function SortGathererInfo(sortType, reverse, search)
 		elseif ( search_stub and search_stub ~= "" ) then
 			offSet = FauxScrollFrame_GetOffset(GathererInfo_SearchListScrollFrame)
 			-- handle Search sort types
-			if ( sortType == "Cname" ) then 
+			if ( sortType == "Cname" ) then
 				key1 = GITT[ind].contName;
 				key2 = GITT[ind].zoneName;
 				key3 = format("%.6f", GITT[ind].amount / 10000);
@@ -393,7 +393,7 @@ function SortGathererInfo(sortType, reverse, search)
 	end
 
 	-- call sort function
-	if ( reverse and not GathererInfo_LastSortReverse) then 
+	if ( reverse and not GathererInfo_LastSortReverse) then
 		sort(compstr, GI_reverse_sort);
 		GathererInfo_LastSortReverse = true;
 	else
@@ -427,10 +427,10 @@ function SortGathererInfo(sortType, reverse, search)
 	while (j < GATHERERINFO_TO_DISPLAY+1) do
 		getglobal("GathererInfo_"..search_stub.."FrameButton"..j):Hide();
 		j = j+1;
-	end	
+	end
 
 	FauxScrollFrame_Update(getglobal("GathererInfo_"..search_stub.."ListScrollFrame"), indexToShow, GATHERERINFO_TO_DISPLAY, GATHERERINFO_FRAME_HEIGHT);
-	
+
 	if( search_stub == "") then
 		GathererInfo_LastSortType = sortType;
 	elseif ( search_stub == "Search" ) then
@@ -439,7 +439,7 @@ function SortGathererInfo(sortType, reverse, search)
 end
 
 function GI_reverse_sort(token1, token2)
-	return token1 > token2;	
+	return token1 > token2;
 end
 
 -- ***********************************************************
@@ -448,7 +448,7 @@ function GathererInfo_GatherTypeDropDown_Initialize()
 	local index;
 	local info = {};
 
-	for index in Gather_DB_TypeIndex do
+	for index in Gatherer_EGatherType do
 		if ( index ~= "Default" and type(index) == "string" ) then
 			info.text = index;
 			info.checked = nil;
@@ -461,7 +461,7 @@ end
 function GathererInfo_GatherType_OnClick()
 	UIDropDownMenu_SetSelectedID(GathererInfo_GatherTypeDropDown, this:GetID());
 	UIDropDownMenu_SetSelectedID(GathererInfo_GatherItemDropDown, 0);
-	
+
 	UIDropDownMenu_SetText("", GathererInfo_GatherItemDropDown);
 
 	UIDropDownMenu_ClearAll(GathererInfo_GatherItemDropDown);
@@ -471,7 +471,7 @@ function GathererInfo_GatherType_OnClick()
 	while (j < GATHERERINFO_TO_DISPLAY+1) do
 		getglobal("GathererInfo_SearchFrameButton"..j):Hide();
 		j = j+1;
-	end	
+	end
 end
 
 function GathererInfo_GatherItemDropDown_Initialize()
@@ -479,9 +479,9 @@ function GathererInfo_GatherItemDropDown_Initialize()
 	local info = {};
 	local selectedGatherTypeText = UIDropDownMenu_GetText(GathererInfo_GatherTypeDropDown);
 	local selectedGatherType
-	
+
 	if ( selectedGatherTypeText ) then
-		selectedGatherType = Gather_DB_TypeIndex[selectedGatherTypeText];
+		selectedGatherType = Gatherer_EGatherType[selectedGatherTypeText];
 
 		for index in Gather_DB_IconIndex[selectedGatherType] do
 			if (index ~= "default" ) then
@@ -516,7 +516,7 @@ function GathererInfo_GatherItem_OnClick()
 							-- check gather type
 							locGtype = GatherItems[gi_cont][gi_zone][gi_node][gi_index].gtype;
 							if ( locGtype and type(locGtype) == "string" ) then
-								locGtype = Gather_DB_TypeIndex[locGtype];
+								locGtype = Gatherer_EGatherType[locGtype];
 							end
 							locIcon = GatherItems[gi_cont][gi_zone][gi_node][gi_index].icon;
 							if ( (type(locIcon) == "string" and locIcon == search_item) or
@@ -558,7 +558,7 @@ function GathererInfo_SearchUpdate()
 		for gi_cont in GatherItems do
 			if ( gi_cont == 0 or not GathererInfoZones[gi_cont] ) then
 				Gatherer_ChatPrint("Gatherer: Warning invalid continent index ("..gi_cont..") found in data.");
-			else 
+			else
 				for gi_zone in GatherItems[gi_cont] do
 					if ( gi_zone == 0 or not GathererInfoZones[gi_cont][gi_zone] ) then
 						Gatherer_ChatPrint("Gatherer: Warning invalid zone index ("..gi_zone..") found in "..gi_cont.." continent data.");
@@ -581,7 +581,7 @@ function GathererInfo_SearchUpdate()
 										-- check gather type
 										locGtype = GatherItems[gi_cont][gi_zone][node_idx][index].gtype;
 										if ( type(locGtype) == "string" ) then
-											locGtype = Gather_DB_TypeIndex[locGtype];
+											locGtype = Gatherer_EGatherType[locGtype];
 										end
 										locIcon = GatherItems[gi_cont][gi_zone][node_idx][index].icon;
 										if ( (type(locIcon) == "string" and locIcon == search_item) or
@@ -607,7 +607,7 @@ function GathererInfo_SearchUpdate()
 											found = findex;
 										end
 									end
-												
+
 									if ( found == 0 ) then
 										GITT[i] = {};
 										GITT[i].contName = GathererInfoContinents[gi_cont];
@@ -653,13 +653,13 @@ function GathererInfo_additem_searchtable(contName, gatherNumber, zoneName, type
 	if ( GIlocation < GATHERERINFO_TO_DISPLAY +1) then
 		getglobal("GathererInfo_SearchFrameButton"..GIlocation).gatherIndex = GIIndex;
 		getglobal("GathererInfo_SearchFrameButton"..GIlocation.."Type"):SetText(contName);
-		getglobal("GathererInfo_SearchFrameButton"..GIlocation.."Gatherable"):SetText(zoneName);		
+		getglobal("GathererInfo_SearchFrameButton"..GIlocation.."Gatherable"):SetText(zoneName);
 		getglobal("GathererInfo_SearchFrameButton"..GIlocation.."Number"):SetText(gatherNumber);
 		getglobal("GathererInfo_SearchFrameButton"..GIlocation.."TypePercent"):SetText(typePercent);
 		getglobal("GathererInfo_SearchFrameButton"..GIlocation.."DensityPercent"):SetText(densityPercent);
 		getglobal("GathererInfo_SearchFrameButton"..GIlocation):Show();
 	end
-	
+
 end
 -- ***********************************************************
 -- Tab selection code
@@ -682,9 +682,9 @@ function GathererInfo_DialogFrame_ShowSubFrame(frameName)
 		if ( value == frameName ) then
 			getglobal(value):Show()
 		else
-			getglobal(value):Hide();	
-		end	
-	end 
+			getglobal(value):Hide();
+		end
+	end
 end
 function GathererInfoFrameTab_OnClick()
 	if ( this:GetName() == "GathererInfo_DialogFrameTab1" ) then

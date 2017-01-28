@@ -4,7 +4,7 @@
 
 function GathererUI_FixItemName(itemName)
 	local newItemName = itemName;
-	
+
 	if ( GetLocale() == "frFR" ) then
 	-- add name correction
 		newItemName = string.gsub(itemName , "’", '\'');
@@ -44,4 +44,4 @@ end
 function Gatherer_FixGatherName(gatherName)
 	local newGather = string.gsub(gatherName , "’", '\'');
 	return newGather;
-end	
+end

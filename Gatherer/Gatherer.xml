@@ -38,7 +38,7 @@
 		<Scripts>
 			<OnEnter>
 				if ( not (Gatherer_Settings and Gatherer_Settings.HideMiniNotes and Gatherer_Settings.HideMiniNotes == 1) ) then
-					GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");	
+					GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");
 					local itemIDtable =  Gatherer_MakeName(this:GetID())
 					local id;
 					GameTooltip:SetText(itemIDtable[1].name, 1.0, 0.82, 0.0, 1,1);
@@ -75,7 +75,7 @@
 				GatherMap_InCity = isMinimapInCity();
 			</OnEvent>
 		</Scripts>
-	</Button>		
+	</Button>
 
 	<Button name="GatherNote2" inherits="GatherNoteTemplate" id="2" hidden="false" parent="Minimap"/>
 	<Button name="GatherNote3" inherits="GatherNoteTemplate" id="3" hidden="false" parent="Minimap"/>
@@ -127,7 +127,7 @@
 			<Frame name="GathererMapOverlayFrame6" inherits="GathererMapOverlayTemplate" hidden="false"/>
 		</Frames>
 	</Frame>
-	
+
 	<Button name="GatherMainTemplate" hidden="true" virtual="true">
 		<Size>
 			<AbsDimension x="12" y="12"/>
@@ -207,7 +207,7 @@
 					GatherMain_Draw();
 					GathererMapOverlayFrame:Show()
 				end
-				
+
 				if (Gatherer_Settings.showWorldMapFilters and Gatherer_Settings.showWorldMapFilters == 1) then
 					if ( Gatherer_Settings.useMainmap ) then
 						GathererWD_DropDownFilters:Show();
@@ -223,7 +223,7 @@
 					this:SetScale(this:GetParent():GetScale() - 0.2);
 				end
 			</OnShow>
-		</Scripts>		
+		</Scripts>
 	</Button>
 
 	<Frame name="Gatherer_NodesEditFrame" topLevel="true" hidden="true" parent="WorldMapFrame">
@@ -281,7 +281,7 @@
 			</OnLoad>
 			<OnShow>
 				this:SetScale(1);
-			</OnShow>			
+			</OnShow>
 			<OnEvent>
 				this:Hide();
 			</OnEvent>
@@ -376,7 +376,7 @@
 					</OnShow>
 				</Scripts>
 			</Frame>
-			
+
 			<!-- Control Buttons -->
 			<Button name="Gatherer_WMItemDialog_Bugged" parent="Gatherer_NodesEditFrame" hidden="false" text="Toggle Bugged" inherits="UIPanelButtonTemplate" toplevel="true">
 				<Size>
@@ -395,11 +395,11 @@
 					</OnLoad>
 					<OnClick>
 						Gatherer_ToggleBuggedItem();
-						Gatherer_NodesEditFrame:Hide();						
+						Gatherer_NodesEditFrame:Hide();
 					</OnClick>
 				</Scripts>
 			</Button>
-	
+
 			<Button name="Gatherer_WMItemDialog_Delete" parent="Gatherer_NodesEditFrame" hidden="false" text="DELETE" inherits="UIPanelButtonTemplate" toplevel="true">
 				<Size>
 					<AbsDimension x="80" y="25"/>
@@ -446,7 +446,7 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			
+
 			<Button name="Gatherer_WMItemDialog_Modify" parent="Gatherer_NodesEditFrame" hidden="false" text="ACCEPT" inherits="UIPanelButtonTemplate" toplevel="true">
 				<Size>
 					<AbsDimension x="80" y="25"/>

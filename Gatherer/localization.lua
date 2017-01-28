@@ -2,7 +2,7 @@
 
 	File containing localized strings
 	for English, French, German and Chinese versions, defaults to English
-	
+
 	Processed locales: french (frFR), german (deDE), simplified chinese (zhCN), english (US or GB, default)
 ]]
 
@@ -117,7 +117,7 @@ if ( GetLocale() == "frFR" ) then
 	TREASURE_FISHNODE_TRIGGER5	= "d\195\169bris flottant";
 	TREASURE_FISHNODE_TRIGGER6	= "nappe de p\195\169trole";
 	TREASURE_FISHNODE_TRIGGER7	= "remous d'eau \195\169l\195\169mentaire";
-	
+
 	TREASURE_FISHNODE		= "banc";
 	TREASURE_FISHWRECK		= TREASURE_FISHNODE_TRIGGER5;
 	TREASURE_FISHELEM		= TREASURE_FISHNODE_TRIGGER7;
@@ -136,14 +136,14 @@ if ( GetLocale() == "frFR" ) then
 		local i,j, oreType, oreClass, oreArticle;
 		local trinput=string.gsub(input, '\'', " ")
 
-		if ( string.find(input, "riche") and string.find(input, "thorium") ) then 
+		if ( string.find(input, "riche") and string.find(input, "thorium") ) then
 			return ORE_RTHORIUM;
 		end;
 
 		if ( string.find(input, ORE_DARKIRON)) then
 			return ORE_DARKIRON;
 		end
-			
+
 		i, j, oreClass, oreArticle, oreType = string.find(input, "([^ ]+) ([^ ]+) ([^ ]+)$");
 		if (oreClass ~= ORE_CLASS_VEIN and oreClass ~= ORE_CLASS_DEPOSIT and oreClass ~= ORE_CLASS_LODE and oreClass ~= ORE_CLASS_SEAM) then
 			i, j, oreClass, oreArticle, oreType = string.find(trinput, "^([^ ]+) ([^ ]+) ([^ ]+)");
@@ -161,7 +161,7 @@ if ( GetLocale() == "frFR" ) then
 		if ( string.find(input, TREASURE_UNGOROSOIL_G) ) then
 			return TREASURE_UNGOROSOIL, TREASURE_UNGOROSOIL;
 		end
-			
+
 		if (string.find(input, TREASURE_POWERCRYST) ) then
 			return TREASURE_POWERCRYST, TREASURE_POWERCRYST;
 		end
@@ -187,14 +187,14 @@ if ( GetLocale() == "frFR" ) then
 			if ( input == iconName ) then
 				return iconName;
 			end
-			
+
 			if ( string.find(input, iconName) ) then
 				for index, treasure_regex in TREASURE_REGEX do
 					i,j, treasType = string.find(input, treasure_regex);
 					if ( treasType and treasType == iconName ) then
 						return iconName;
 					end
-					
+
 					i,j, _, treasType = string.find(input, treasure_regex);
 					if ( treasType and treasType == iconName ) then
 						return iconName;
@@ -217,7 +217,7 @@ elseif ( GetLocale() == "deDE" ) then
 	TRADE_MINING="Bergbau"
 	TRADE_OPENING="\195\150ffnen"
 	GATHER_HERBALISM="Kr\195\164utersammeln"
-	
+
 	-- strings for gather line in chat
 	HERB_GATHER_STRING="Ihr f\195\188hrt Kr\195\164utersammeln auf" -- "Ihr fuhrt Krautersammeln auf Beulengras aus."
 	ORE_GATHER_STRING="Ihr f\195\188hrt Bergbau auf"                -- "Ihr fuhrt Bergbau auf Kupfervorkommen aus."
@@ -232,7 +232,7 @@ elseif ( GetLocale() == "deDE" ) then
 	TREASURE_GATHER_END=-6
 
 	GATHERER_REQUIRE="Ben\195\182tigt"
-	GATHERER_NOSKILL="Erfordert" 
+	GATHERER_NOSKILL="Erfordert"
 
 	-- ore classes
 	ORE_CLASS_VEIN   ="vorkommen"
@@ -312,7 +312,7 @@ elseif ( GetLocale() == "deDE" ) then
 	TREASURE_FISHNODE_TRIGGER5	= "schwimmende tr\195\188mmer";
 	TREASURE_FISHNODE_TRIGGER6  = "\195\150lfleck";
 	TREASURE_FISHNODE_TRIGGER7	= "stelle mit elementarwasser";
-	
+
 	TREASURE_FISHNODE			= "schwarm";
 	TREASURE_FISHWRECK			= TREASURE_FISHNODE_TRIGGER5;
 	TREASURE_FISHELEM			= TREASURE_FISHNODE_TRIGGER7;
@@ -363,7 +363,7 @@ elseif ( GetLocale() == "deDE" ) then
 		if ( string.find(input, TREASURE_UNGOROSOIL_G) or string.find(input, TREASURE_UNGOROSOIL)) then
 			return TREASURE_UNGOROSOIL, TREASURE_UNGOROSOIL;
 		end
-			
+
 		if (string.find(input, TREASURE_POWERCRYST) ) then
 			return TREASURE_POWERCRYST, TREASURE_POWERCRYST;
 		end
@@ -381,21 +381,21 @@ elseif ( GetLocale() == "deDE" ) then
 			if ( input == iconName ) then
 				return iconName;
 			end
-			
+
 			if ( string.find(input, iconName) ) then
 				for index, treasure_regex in TREASURE_REGEX do
 					i,j, treasType = string.find(input, treasure_regex);
 					if ( treasType and treasType == iconName ) then
 						return iconName;
 					end
-					
+
 					i,j, _, treasType = string.find(input, treasure_regex);
 					if ( treasType and treasType == iconName ) then
 						return iconName;
 					end
 				end
 			end
-			
+
 			if ( string.find(string.lower(input), string.lower(iconName))) then
 				return iconName;
 			end
@@ -450,7 +450,7 @@ elseif (  GetLocale() == "zhCN"  ) then
 	ORE_RTHORIUM  ="\229\175\140\231\145\159\233\147\182"
 	ORE_DARKIRON  ="\233\187\145\233\147\129"
 
-	-- herb types       
+	-- herb types
 	HERB_ARTHASTEAR        ="\233\152\191\229\176\148\232\144\168\230\150\175\228\185\139\230\179\170"
 	HERB_BLACKLOTUS        ="\233\187\145\232\142\178\232\138\177"
 	HERB_BLINDWEED         ="\231\155\178\231\155\174\232\141\137"
@@ -512,7 +512,7 @@ elseif (  GetLocale() == "zhCN"  ) then
 	TREASURE_FISHNODE_TRIGGER5	= "floating wreckage";
 	TREASURE_FISHNODE_TRIGGER6	= "oil spill";
 	TREASURE_FISHNODE_TRIGGER7	= "patch of elemental water";
-	
+
 	TREASURE_FISHNODE		= "school";
 	TREASURE_FISHWRECK		= TREASURE_FISHNODE_TRIGGER5;
 	TREASURE_FISHELEM		= TREASURE_FISHNODE_TRIGGER7;
@@ -527,8 +527,8 @@ elseif (  GetLocale() == "zhCN"  ) then
 
 	function Gatherer_FindOreType(input)
 		local i,j, oreType, oreClass, oreTypeClass;
-		
-		if ( string.find(input, "\229\175\140") and string.find(input, "\231\145\159\233\147\182") ) then 
+
+		if ( string.find(input, "\229\175\140") and string.find(input, "\231\145\159\233\147\182") ) then
 			return ORE_RTHORIUM;
 		end;
 
@@ -560,7 +560,7 @@ elseif (  GetLocale() == "zhCN"  ) then
 		if ( string.find(input, TREASURE_UNGOROSOIL_G) or string.find(input, TREASURE_UNGOROSOIL)) then
 			return TREASURE_UNGOROSOIL, TREASURE_UNGOROSOIL;
 		end
-			
+
 		if (string.find(input, TREASURE_POWERCRYST) ) then
 			return TREASURE_POWERCRYST, TREASURE_POWERCRYST;
 		end
@@ -578,14 +578,14 @@ elseif (  GetLocale() == "zhCN"  ) then
 			if ( input == iconName ) then
 				return iconName;
 			end
-			
+
 			if ( string.find(input, iconName) ) then
 				for index, treasure_regex in TREASURE_REGEX do
 					i,j, treasType = string.find(input, treasure_regex);
 					if ( treasType and treasType == iconName ) then
 						return iconName;
 					end
-					
+
 					i,j, _, treasType = string.find(input, treasure_regex);
 					if ( treasType and treasType == iconName ) then
 						return iconName;
@@ -636,11 +636,11 @@ elseif ( GetLocale() == "ruRU" ) then
 	ORE_GOLD      ="Золотая жила"
 	ORE_MITHRIL   ="Мифриловые залежи"
 	ORE_THORIUM   ="Ториевая жила"
-	
+
 	ORE_RTHORIUM  ="Богатая ториевая жила"
 	ORE_DARKIRON  ="Залежи черного железа"
 
-	-- herb types 
+	-- herb types
 	HERB_ARTHASTEAR        ="Слезы артаса"
 	HERB_BLACKLOTUS        ="Черный лотос"
 	HERB_BLINDWEED         ="Пастушья сумка"
@@ -710,7 +710,7 @@ elseif ( GetLocale() == "ruRU" ) then
 
 	function Gatherer_FindOreType(input)
 		local i,j, oreType, oreClass, oreTypeClass;
-		
+
 		if ( string.find(input, "еребряная") and string.find(input, "жила") ) then -- silver
 			return ORE_SILVER;
 		end;
@@ -726,15 +726,15 @@ elseif ( GetLocale() == "ruRU" ) then
 		if ( string.find(input, "ифриловые") and string.find(input, "залежи") ) then -- mithril
 			return ORE_MITHRIL;
 		end;
-		
+
 		if ( string.find(input, "огатая") and string.find(input, "ториевая") ) then --rich thorium
 			return ORE_RTHORIUM;
 		end;
-			
+
 		if ( string.find(input, "черного") and string.find(input, "железа") ) then --darkiron
             return ORE_DARKIRON;
         end
-		
+
 		if ( string.find(input, "ориевая") and string.find(input, "жила") ) then  --thorium
 			return ORE_THORIUM;
 		end;
@@ -745,7 +745,7 @@ elseif ( GetLocale() == "ruRU" ) then
 		end
 		return;
 	end
-	
+
 	function Gatherer_FindTreasureType(input)
 		if string.find(input, "Гигантский моллюск") then
 			return TREASURE_CLAM;
@@ -793,7 +793,7 @@ elseif ( GetLocale() == "ruRU" ) then
 
 		return;
 	end
-	
+
 TYPE_RARE		= "Редкое";
 
 else
@@ -840,7 +840,7 @@ else
 	ORE_RTHORIUM  ="thorium (rich)"
 	ORE_DARKIRON  ="dark iron"
 
-	-- herb types 
+	-- herb types
 	HERB_ARTHASTEAR        ="arthas' tears"
 	HERB_BLACKLOTUS        ="black lotus"
 	HERB_BLINDWEED         ="blindweed"
@@ -917,11 +917,11 @@ else
 
 	function Gatherer_FindOreType(input)
 		local i,j, oreType, oreClass, oreTypeClass;
-		
-		if ( string.find(input, "rich") and string.find(input, "thorium") ) then 
+
+		if ( string.find(input, "rich") and string.find(input, "thorium") ) then
 			return ORE_RTHORIUM;
 		end;
-			
+
 		if ( string.find(input, "dark") and string.find(input, "iron") ) then
                         return ORE_DARKIRON;
                 end
@@ -941,7 +941,7 @@ else
 		if ( string.find(input, TREASURE_UNGOROSOIL_G) or string.find(input, TREASURE_UNGOROSOIL)) then
 			return TREASURE_UNGOROSOIL, TREASURE_UNGOROSOIL;
 		end
-			
+
 		if (string.find(input, TREASURE_POWERCRYST) ) then
 			return TREASURE_POWERCRYST, TREASURE_POWERCRYST;
 		end
@@ -959,14 +959,14 @@ else
 			if ( input == iconName ) then
 				return iconName;
 			end
-			
+
 			if ( string.find(input, iconName) ) then
 				for index, treasure_regex in TREASURE_REGEX do
 					i,j, treasType = string.find(input, treasure_regex);
 					if ( treasType and treasType == iconName ) then
 						return iconName;
 					end
-					
+
 					i,j, _, treasType = string.find(input, treasure_regex);
 					if ( treasType and treasType == iconName ) then
 						return iconName;
@@ -996,18 +996,18 @@ function Gatherer_FindFishType(fishItem, fishTooltip)
 		then
 			return TREASURE_FISHWRECK;
 		-- Fish School
-		elseif ( fishTooltip and (strfind(fishTooltip, TREASURE_FISHNODE_TRIGGER4) or 
+		elseif ( fishTooltip and (strfind(fishTooltip, TREASURE_FISHNODE_TRIGGER4) or
 					(TREASURE_FISHNODE_TRIGGER3 and strfind(fishTooltip, TREASURE_FISHNODE_TRIGGER3))))
 		then
 			return TREASURE_FISHNODE;
 		-- Floating Wreckage and Oil Spill
-		elseif ( fishTooltip and 
+		elseif ( fishTooltip and
 				 (strfind(fishTooltip, TREASURE_FISHNODE_TRIGGER5) or
 				  strfind(fishTooltip, TREASURE_FISHNODE_TRIGGER6)))
 		then
 			return TREASURE_FISHWRECK;
 		-- Elemental Water
-		elseif ( fishTooltip and strfind(fishTooltip, TREASURE_FISHNODE_TRIGGER7) ) 
+		elseif ( fishTooltip and strfind(fishTooltip, TREASURE_FISHNODE_TRIGGER7) )
 		then
 			return TREASURE_FISHELEM;
 		end
@@ -1015,12 +1015,12 @@ function Gatherer_FindFishType(fishItem, fishTooltip)
 end
 
 function Gatherer_FindHerbType(gather)
-	local herbType, herbFound = "", false;	
+	local herbType, herbFound = "", false;
 	for herbType in Gather_DB_IconIndex[1] do
 		if (herbType and gather and herbType == gather) then herbFound = true; break; end
 	end
 
-	if ( herbFound ) then 
+	if ( herbFound ) then
 		return gather;
 	else
 		return nil;

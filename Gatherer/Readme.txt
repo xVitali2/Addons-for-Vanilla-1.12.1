@@ -1,5 +1,17 @@
-This is Gatherer 2.99.2
+This is Gatherer_p2p 1.0.0
 
+Its crucial feature is node synchronization via guild chat.
+
+It is based on:
+* the latest 1.12.1 compatible build of the "Gatherer" addon, I've found:
+  http://gathereraddon.com/dl/Gatherer/gatherer-2.99.0.0284.zip
+* patch of the addon with node broadcasting on gathering:
+  https://github.com/jsb/Gatherer
+
+Major version is nailed to "1" for the 1.12.1 client compatible versions.
+In other ways versioning complies with semver.
+
+The text below is from the parent addon readme.
 http://gathereraddon.com
 
 ABOUT:
@@ -56,7 +68,7 @@ GathererUI - bug fix and ruRU localization
 
 # Item:
 - French localisation: fixed Sauge-argent and added name transition to list of fixed names.
-- felwood plants added. 
+- felwood plants added.
 
 2.2.2:
 ======
@@ -74,7 +86,7 @@ GathererUI - bug fix and ruRU localization
 ======
 # Bug Fix:
 - Arthas tear format forced on gathering (zone match, identical source and destination with item fix checkbox selected needed).
-- Fix for french Piège à langouste and pousse de pétale-de-sang (zone match, identical source and destination with item fix checkbox selected needed).
+- Fix for french Piï¿½ge ï¿½ langouste and pousse de pï¿½tale-de-sang (zone match, identical source and destination with item fix checkbox selected needed).
 - chinese UI localization updated.
 - Scrollbars graphic fixed.
 - scaling for icon fade under min distance added
@@ -82,7 +94,7 @@ GathererUI - bug fix and ruRU localization
 - default value for max distance is now 20 instead of infinite, search limited to current zone.
 
 # New:
-- Added iconshade theme, icons are displayed all the time, but shade under min icon distance (40% by 
+- Added iconshade theme, icons are displayed all the time, but shade under min icon distance (40% by
   default if shade under min distance is set at 100).
 
 2.2.0:
@@ -146,7 +158,7 @@ GathererUI - bug fix and ruRU localization
 # New:
 - report by zone (new UI, access through command line, binding, button on config dialog, button in quickmenu).
 - search utility (new UI, access through command line, binding, button on config dialog, button in quickmenu).
-- Ingame edit utility for nodes (delete, toggle bugged, change icon, type, gather name) with selectable scope at node, zone, continent or world level for propagation of the change, alt right click on a node on the world map to display the dialog. 
+- Ingame edit utility for nodes (delete, toggle bugged, change icon, type, gather name) with selectable scope at node, zone, continent or world level for propagation of the change, alt right click on a node on the world map to display the dialog.
 - added world map icon alpha setting selector in config dialog.
 - added option to have an alpha value for mininotes under the minimum icon distance (100% by default).
 - added binding for option, report, search dialogs.
@@ -196,7 +208,7 @@ GathererUI - bug fix and ruRU localization
 
 * Items
 - New Items:
-  - Un'Goro Power Crystals 
+  - Un'Goro Power Crystals
   - Un'Goro Soil
   - BloodPetal Sprouts
   - Blood of Heroes
@@ -208,7 +220,7 @@ GathererUI - bug fix and ruRU localization
 - New interface function (Gatherer_AddGather , see Gatherer.lua for parameters) for external addons to add record things in the Gatherer database.
 
 * World Map
-- World Map now has a show/hide button for items (lower left corner), It is off by default and will reset to that whenever you change zone (or miniregion), if the display is off, the delay/freeze while displaying items on the world map won't happen (if any) until you click to show the items. 
+- World Map now has a show/hide button for items (lower left corner), It is off by default and will reset to that whenever you change zone (or miniregion), if the display is off, the delay/freeze while displaying items on the world map won't happen (if any) until you click to show the items.
 - Filters are now accessible from the world map (note that changing the on/off/auto setting from the world map will bring you back to your character's current zone map). This is off by default, to enable it, check the button in the configuration dialog.
 - Interface to delete/flag node as bugged (accessible through alt-right clicking on an item, which used to delete it right away), these buttons appear on the lower right of the world map frame when available.
 
