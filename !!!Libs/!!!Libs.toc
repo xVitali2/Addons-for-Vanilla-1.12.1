@@ -8,7 +8,7 @@
 ## OptionalDeps: !!Warmup, !BugGrabber, !ImprovedErrorFrame
 ## X-Category: Library
 
-#1.3 added new version ace2 library, ace2 locale 2.0, bonusscanner ru version
+#1.4 added ruRU fixes
 
 Ace\Ace.xml
 Ace\AceLocals_deDE.lua
