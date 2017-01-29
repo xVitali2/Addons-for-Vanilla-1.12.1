@@ -600,7 +600,7 @@ TYPE_RARE		= "Rare";
 
 elseif ( GetLocale() == "ruRU" ) then
 	-- Russian localized variables (Maus and fix by CFM)
-	GATHERER_VERSION_WARNING="New Gatherer Version detected, check zone match.";
+	GATHERER_VERSION_WARNING="Обнаружена новая версия Gatherer, проверь zone match.";
 	GATHERER_NOTEXT="([-]) no text "
 
 	TRADE_HERBALISM="Травничество"
@@ -620,12 +620,8 @@ elseif ( GetLocale() == "ruRU" ) then
 	TREASURE_GATHER_LENGTH=31
 	TREASURE_GATHER_END=-2
 
-	GATHERER_REQUIRE="Требуется"
-	GATHERER_NOSKILL="Требуется"
-
-	-- ore classes
-	ORE_CLASS_VEIN   ="жила"
-	ORE_CLASS_DEPOSIT="Залежи"
+	GATHERER_REQUIRE="Требуется:"
+	GATHERER_NOSKILL="быть не менее"
 
 	-- ore types
 	ORE_COPPER    ="Медная жила"
@@ -636,7 +632,6 @@ elseif ( GetLocale() == "ruRU" ) then
 	ORE_GOLD      ="Золотая жила"
 	ORE_MITHRIL   ="Мифриловые залежи"
 	ORE_THORIUM   ="Ториевая жила"
-
 	ORE_RTHORIUM  ="Богатая ториевая жила"
 	ORE_DARKIRON  ="Залежи черного железа"
 
@@ -709,85 +704,53 @@ elseif ( GetLocale() == "ruRU" ) then
 	GATHERER_ReceivesLoot		= "Ваша добыча: (.+)%.";
 
 	function Gatherer_FindOreType(input)
-		local i,j, oreType, oreClass, oreTypeClass;
-
-		if ( string.find(input, "еребряная") and string.find(input, "жила") ) then -- silver
+		if ( string.find(input, "едная") and string.find(input, "жила") ) then --cooper
+			return ORE_COPPER;
+		elseif ( string.find(input, "ловянная") and string.find(input, "жила") ) then --tin
+			return ORE_TIN;
+		elseif ( string.find(input, "алежи") and string.find(input, "железа") ) then -- iron
+			return ORE_IRON;
+		elseif ( string.find(input, "еребряная") and string.find(input, "жила") ) then -- silver
 			return ORE_SILVER;
-		end;
-
-		if ( string.find(input, "истинного") and string.find(input, "серебра") ) then -- truesilver
+		elseif ( string.find(input, "истинного") and string.find(input, "серебра") ) then -- truesilver
 			return ORE_TRUESILVER;
-		end;
-
-		if ( string.find(input, "олотая") and string.find(input, "жила") ) then  -- gold
+		elseif ( string.find(input, "олотая") and string.find(input, "жила") ) then  -- gold
 			return ORE_GOLD;
-		end;
-
-		if ( string.find(input, "ифриловые") and string.find(input, "залежи") ) then -- mithril
+		elseif ( string.find(input, "ифриловые") and string.find(input, "залежи") ) then -- mithril
 			return ORE_MITHRIL;
-		end;
-
-		if ( string.find(input, "огатая") and string.find(input, "ториевая") ) then --rich thorium
+		elseif ( string.find(input, "огатая") and string.find(input, "ториевая") ) then --rich thorium
 			return ORE_RTHORIUM;
-		end;
-
-		if ( string.find(input, "черного") and string.find(input, "железа") ) then --darkiron
+		elseif ( string.find(input, "черного") and string.find(input, "железа") ) then --darkiron
             return ORE_DARKIRON;
-        end
-
-		if ( string.find(input, "ориевая") and string.find(input, "жила") ) then  --thorium
+		elseif ( string.find(input, "ориевая") and string.find(input, "жила") ) then  --thorium
 			return ORE_THORIUM;
-		end;
-
-		i,j, oreType, oreClass = string.find(input, "([^ ]+) ([^ ]+)$");
-		if (oreType and oreClass and ((oreClass == ORE_CLASS_VEIN) or (oreClass == ORE_CLASS_DEPOSIT))) then
-			return oreType;
 		end
+		
 		return;
 	end
 
 	function Gatherer_FindTreasureType(input)
 		if string.find(input, "Гигантский моллюск") then
 			return TREASURE_CLAM;
-		end
-
-		if string.find(input, "Добротный сундук") or string.find(input, "Сундук") or string.find(input, "сундук") then
+		elseif string.find(input, "Добротный сундук") or string.find(input, "Сундук") or string.find(input, "сундук") then
 			return TREASURE_CHEST;
-		end
-
-		if string.find(input, "Ящик") or string.find(input, "ящик") then
+		elseif string.find(input, "Ящик") or string.find(input, "ящик") then
 			return TREASURE_CRATE;
-		end
-
-		if string.find(input, "Кровь героев") then
+		elseif string.find(input, "Кровь героев") then
 			return TREASURE_BLOODHERO;
-		end
-
-		if string.find(input, "Почва Ун'Горо") or string.find(input, "Куча земли Ун'Горо") then
+		elseif string.find(input, "Почва Ун'Горо") or string.find(input, "Куча земли Ун'Горо") then
 			return TREASURE_UNGOROSOIL;
-		end
-
-		if string.find(input, "Побег кровоцвета") then
+		elseif string.find(input, "Побег кровоцвета") then
 			return TREASURE_BLOODPETAL;
-		end
-
-		if string.find(input, "кристалл силы") or string.find(input, "Кристалл силы") then
+		elseif string.find(input, "кристалл силы") or string.find(input, "Кристалл силы") then
 			return TREASURE_POWERCRYST;
-		end
-
-		if string.find(input, "Ночной дракон") then
+		elseif string.find(input, "Ночной дракон") then
 			return TREASURE_NIGHTDRAGON;
-		end
-
-		if string.find(input, "Гнилой кнутокорень") then
+		elseif string.find(input, "Гнилой кнутокорень") then
 			return TREASURE_WHIPPERROOT;
-		end
-
-		if string.find(input, "Оскверненный ветроцвет") then
+		elseif string.find(input, "Оскверненный ветроцвет") then
 			return TREASURE_WINDBLOSSOM;
-		end
-
-		if string.find(input, "Оскверненный песнецвет") then
+		elseif string.find(input, "Оскверненный песнецвет") then
 			return TREASURE_SONGFLOWER;
 		end
 

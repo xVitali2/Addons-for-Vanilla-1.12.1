@@ -420,14 +420,14 @@ if GetLocale() == "ruRU" then
 	GATHERER_TAB_FILTERS_TEXT 		= "Фильтры";
 
 	GATHERER_TEXT_FILTER_HERBS		= "Травы: ";
-	GATHERER_TEXT_FILTER_ORE			= "Руда: ";
+	GATHERER_TEXT_FILTER_ORE		= "Руда: ";
 	GATHERER_TEXT_FILTER_TREASURE	= "Сундуки: ";
-	GATHERER_TEXT_LINKRECORD        		= "Добавить фильтр"
+	GATHERER_TEXT_LINKRECORD        = "Добавить фильтр"
 	GATHERER_TEXT_WMFILTERS			= "Фильтры на карте мира";
 	GATHERER_TEXT_DISABLEWMFIX		= "Кнопка \"Показать\\Скрыть\"";
 
 	GATHERER_HERBSKLEB_TIP			= "Установить минимальный навык для отображения травничества.";
-	GATHERER_ORESKLEB_TIP			= "Установить минимальный навык для отображения гороно дела.";
+	GATHERER_ORESKLEB_TIP			= "Установить минимальный навык для отображения горного дела.";
 	GATHERER_HERBDDM_TIP			= "Фильтр отображения трав.";
 	GATHERER_OREDDM_TIP				= "Фильтр отображения руды.";
 	GATHERER_TREASUREDDM_TIP		= "Фильтр отображения сокровища.";
@@ -438,15 +438,15 @@ if GetLocale() == "ruRU" then
 	GATHERER_TAB_FILTERS_TEXT_TIP	= "Доступ к параметрам фильтра."
 
 	-- Zone Rematch Dialog
-	GATHERER_TEXT_REMATCH_TITLE		= "Zone Rematch";
+	GATHERER_TEXT_REMATCH_TITLE		= "Исправление зон";
 
-	GATHERER_TEXT_APPLY_REMATCH		= "Применить Zone Rematch:";
+	GATHERER_TEXT_APPLY_REMATCH		= "Применить исправление зон:";
 	GATHERER_TEXT_SRCZONE_MISSING	= "Не выбрана исходная зона.";
 	GATHERER_TEXT_DESTZONE_MISSING	= "Назначенная зона не выбрана.";
 	GATHERER_TEXT_FIXITEMS			= "Исправить имя предмета";
 	GATHERER_TEXT_LASTMATCH			= "Последний предмет: ";
 	GATHERER_TEXT_LASTMATCH_NONE	= "Нет";
-	GATHERER_TEXT_CONFIRM_REMATCH	= "Подтвердить Zone Rematch (ВНИМАНИЕ, данные будут изменены)";
+	GATHERER_TEXT_CONFIRM_REMATCH	= "Подтвердить исправление зон (ВНИМАНИЕ, данные будут изменены)";
 
 	GATHERER_ZM_FIXITEM_TIP			= "Исправит имя предмета, только локализованную версию.";
 	GATHERER_ZM_SRCDDM_TIP			= "Установить источник порядка карты.";
