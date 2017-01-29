@@ -1050,30 +1050,30 @@ end
 QuestieIcons = {
     ["complete"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!Questie\\Icons\\complete"
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\complete"
     },
     ["available"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!Questie\\Icons\\available"
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\available"
     },
     ["loot"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!Questie\\Icons\\loot"
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\loot"
     },
     ["item"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!Questie\\Icons\\loot"
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\loot"
     },
     ["event"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!Questie\\Icons\\event"
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\event"
     },
     ["object"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!Questie\\Icons\\object"
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\object"
     },
     ["slay"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!Questie\\Icons\\slay"
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\slay"
     }
 }
