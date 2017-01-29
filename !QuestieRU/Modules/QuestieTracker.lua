@@ -539,7 +539,7 @@ function QuestieTracker:fillTrackingFrame()
             button.quest:SetText(titleData);
             local obj = 1;
             if quest["isComplete"] or quest["leaderboards"] == 0 then
-                QuestieTracker:AddObjectiveToButton(button, {['desc']="Quest Complete!"}, obj);
+                QuestieTracker:AddObjectiveToButton(button, {['desc']="Выполнен!"}, obj);
                 obj = 2;
             else
                 while true do
@@ -584,7 +584,7 @@ function QuestieTracker:fillTrackingFrame()
             button:Show();
             if (QuestieConfig.showTrackerHeader == true) then
                 local numEntries, numQuests = GetNumQuestLogEntries();
-                watcher:SetText("QuestLog Status: ("..numQuests.."/20)");
+                watcher:SetText("Статус заданий: ("..numQuests.."/20)");
                 QuestieTrackerHeader:Show();
             end
             index = index + 1;
@@ -622,7 +622,7 @@ function QuestieTracker:fillTrackingFrame()
             button.quest:SetText(titleData);
             local obj = 1;
             if quest["isComplete"] or quest["leaderboards"] == 0 then
-                QuestieTracker:AddObjectiveToButton(button, {['desc']="Quest Complete!"}, obj);
+                QuestieTracker:AddObjectiveToButton(button, {['desc']="Выполнен!"}, obj);
                 obj = 2;
             else
                 while true do
@@ -667,7 +667,7 @@ function QuestieTracker:fillTrackingFrame()
             button:Show();
             if (QuestieConfig.showTrackerHeader == true) then
                 local numEntries, numQuests = GetNumQuestLogEntries();
-                watcher:SetText("QuestLog Status: ("..numQuests.."/20)");
+                watcher:SetText("Статус заданий: ("..numQuests.."/20)");
                 QuestieTrackerHeader:Show();
             end
             index = index + 1;

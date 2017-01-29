@@ -529,13 +529,13 @@ function Questie_Tooltip_OnEnter()
                         end
                     end
                 end
-                Tooltip:AddLine("["..QuestieHashMap[data.questHash].questLevel.."] "..QuestieHashMap[data.questHash].name.." |cFF33FF00(available)|r");
-                Tooltip:AddLine("Min Level: |cFFa6a6a6"..QuestieHashMap[data.questHash].level.."|r",1,1,1);
-                Tooltip:AddLine("Started by: |cFFa6a6a6"..QuestieHashMap[data.questHash].startedBy.."|r",1,1,1);
+                Tooltip:AddLine("["..QuestieHashMap[data.questHash].questLevel.."] "..QuestieHashMap[data.questHash].name.." |cFF33FF00(Доступен)|r");
+                Tooltip:AddLine("Мин. уровень: |cFFa6a6a6"..QuestieHashMap[data.questHash].level.."|r",1,1,1);
+                Tooltip:AddLine("Начинает: |cFFa6a6a6"..QuestieHashMap[data.questHash].startedBy.."|r",1,1,1);
                 if questOb ~= nil then
-                    Tooltip:AddLine("Description: |cFFa6a6a6"..questOb.."|r",1,1,1,true);
+                    Tooltip:AddLine("Описание: |cFFa6a6a6"..questOb.."|r",1,1,1,true);
                 end
-                Tooltip:AddLine("Shift+Click: |cFFa6a6a6Manually complete quest!|r",1,1,1);
+                Tooltip:AddLine("Shift+Click: |cFFa6a6a6Вручную завершить задание!|r",1,1,1);
             end
         end
         if(NOTES_DEBUG and IsAltKeyDown()) then
@@ -566,7 +566,7 @@ function Questie_AvailableQuestClick()
                 local hash = quest.questHash
                 local questName = "["..QuestieHashMap[hash].questLevel.."] "..QuestieHashMap[hash]['name']
                 Questie:finishAndRecurse(hash)
-                DEFAULT_CHAT_FRAME:AddMessage("Completing quest |cFF00FF00\"" .. questName .. "\"|r and parent quest: "..hash)
+                DEFAULT_CHAT_FRAME:AddMessage("Завершено задание |cFF00FF00\"" .. questName .. "\"|r и последующее задание: "..hash)
                 Questie:Toggle()
             end
         end
