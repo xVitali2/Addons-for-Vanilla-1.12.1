@@ -262,15 +262,15 @@ function M.display_name(item_id, no_brackets, no_color)
     end
 end
 
-function M.auctionable(tooltip, quality, lootable)
+function M.auctionable(tooltip, quality, strict)
+    local status = tooltip[2] and tooltip[2].left_text
     local durability, max_durability = durability(tooltip)
-    return not lootable
-            and (not quality or quality < 6)
-            and not tooltip_match(ITEM_BIND_ON_PICKUP, tooltip)
-            and not tooltip_match(ITEM_BIND_QUEST, tooltip)
-            and not tooltip_match(ITEM_SOULBOUND, tooltip)
+    return (not quality or quality < 6)
+            and status ~= ITEM_BIND_ON_PICKUP
+            and status ~= ITEM_BIND_QUEST
+            and status ~= ITEM_SOULBOUND
             and (not tooltip_match(ITEM_CONJURED, tooltip) or tooltip_find(ITEM_MIN_LEVEL, tooltip) > 1)
-            and not (durability and durability < max_durability)
+            and not (strict and durability and durability < max_durability)
 end
 
 function M.tooltip(setter, arg1, arg2)
