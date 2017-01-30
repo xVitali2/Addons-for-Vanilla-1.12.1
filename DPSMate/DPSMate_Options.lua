@@ -1687,13 +1687,26 @@ function DPSMate.Options:FormatTime(time)
 end
 
 function DPSMate.Options:NewSegment(segname)
+	local max = 0
+	local a = ""
 	-- Get name of this session
-	local _,_,a = DPSMate.Modules.EDT:GetSortedTable(DPSMateEDT[2])
+	for c, v in pairs(DPSMateEDT[2]) do
+		local CV = 0
+		for cat, val in pairs(v) do
+			if cat~="i" then
+				CV = CV+val["i"]
+			end
+		end
+		if max<CV then
+			max = CV
+			a = c
+		end
+	end
 	local extra = ""
-	if a[1] or segname~=nil then
+	if a or segname~=nil then
 		local name = segname
 		if not segname then
-			name = DPSMate:GetUserById(a[1]) or DPSMate.L["unknown"]
+			name = DPSMate:GetUserById(a) or DPSMate.L["unknown"]
 			extra = " - CBT: "..self:FormatTime(DPSMateCombatTime["current"])
 		end
 		if DPSMateSettings["onlybossfights"] then
@@ -1842,10 +1855,9 @@ function DPSMate.Options:CreateWindow()
 			titlebarreset = true,
 			titlebarsegments = true,
 			titlebarconfig = true,
+			titlebarsync = true,
 			titlebarenable = true,
 			titlebarfilter = true,
-			titlebarsync = DPSMateSettings["sync"],
-			titlebarenable = DPSMateSettings["enable"],
 			titlebartexture = "Healbot",
 			titlebarbgcolor = {0.01568627450980392,0,1},
 			titlebarfontcolor = {1.0,0.82,0.0},
@@ -1879,13 +1891,14 @@ function DPSMate.Options:CreateWindow()
 			borderstrata = 1,
 			bordertexture = "UI-Tooltip-Border",
 			position = {"CENTER",0,0},
-			savsize = {150,100},
+			savsize = {150,100}
 		})
 		local TL = DPSMate:TableLength(DPSMateSettings["windows"])
 		if not _G("DPSMate_"..na) then
 			local fr=CreateFrame("Frame", "DPSMate_"..na, UIParent, "DPSMate_Statusframe")
 			fr.Key=TL
 		end
+		_G("DPSMate_"..na):Show()
 		if not _G("DPSMate_ConfigMenu_Menu_Button"..(9+TL)) then
 			local f = CreateFrame("Button", "DPSMate_ConfigMenu_Menu_Button"..(9+TL), DPSMate_ConfigMenu_Menu, "DPSMate_Template_WindowButton")
 			f.Key = TL
