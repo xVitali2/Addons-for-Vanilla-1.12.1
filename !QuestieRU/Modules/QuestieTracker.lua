@@ -539,7 +539,7 @@ function QuestieTracker:fillTrackingFrame()
             button.quest:SetText(titleData);
             local obj = 1;
             if quest["isComplete"] or quest["leaderboards"] == 0 then
-                QuestieTracker:AddObjectiveToButton(button, {['desc']="Выполнен!"}, obj);
+                QuestieTracker:AddObjectiveToButton(button, {['desc']="Выполнено!"}, obj);
                 obj = 2;
             else
                 while true do
@@ -622,7 +622,7 @@ function QuestieTracker:fillTrackingFrame()
             button.quest:SetText(titleData);
             local obj = 1;
             if quest["isComplete"] or quest["leaderboards"] == 0 then
-                QuestieTracker:AddObjectiveToButton(button, {['desc']="Выполнен!"}, obj);
+                QuestieTracker:AddObjectiveToButton(button, {['desc']="Выполнено!"}, obj);
                 obj = 2;
             else
                 while true do
