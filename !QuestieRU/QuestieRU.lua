@@ -27,6 +27,9 @@ local QGet_QuestLogLeaderBoard = GetQuestLogLeaderBoard;
 local QGet_AbandonQuestName = GetAbandonQuestName;
 local QGet_QuestLogQuestText = GetQuestLogQuestText;
 local QGet_TitleText = GetTitleText;
+--by ...
+local watch = EQL3_QuestWatchFrame and "EQL3_QuestWatchFrame" or "QuestWatchFrame";
+
 ---------------------------------------------------------------------------------------------------
 function GetQuestLogTitle(index)
 	return QGet_QuestLogTitle(index);
@@ -53,7 +56,7 @@ function Questie:SetupDefaults()
 		["showMapAids"] = true,
 		["showProfessionQuests"] = false,
 		["showTrackerHeader"] = false,
-["showToolTips"] = true,
+		["showToolTips"] = true,
 		["trackerEnabled"] = true,
 		["trackerList"] = false,
         ["trackerScale"] = 1.0,
@@ -68,10 +71,10 @@ function Questie:SetupDefaults()
 	end
 	if not QuestieTrackerVariables then QuestieTrackerVariables = {
 		["position"] = {
-			["relativeTo"] = "UIParent",
-			["point"] = "LEFT",
-			["relativePoint"] = "LEFT",
-			["yOfs"] = 0,
+			["relativeTo"] = watch, --by ...
+			["point"] = "TOPLEFT", --by ...
+			["relativePoint"] = "TOPLEFT", --by ...
+			["yOfs"] = -30, --by ...
 			["xOfs"] = 0,
 		},
 	}
@@ -1224,3 +1227,38 @@ end
 -- End of misc helper functions and short cuts
 ---------------------------------------------------------------------------------------------------
 SetMapToCurrentZone();
+
+--Fix by ... ^)
+--[[__________ лечим периодический баг с затемненными ценниками __________]]--
+GameTooltipMoneyFrame:SetScript("OnShow", function()
+	if not GameTooltipMoneyFrame:IsToplevel() then
+		GameTooltipMoneyFrame:SetToplevel();
+	end
+end);
+--[[__________ лечим баг совместимости с EQL3 __________]]--
+local function EQL3_QuestLogItem_OnEnter()
+--!>>FrameXML\QuestLogFrame.xml:QuestLogRewardItemTemplate_OnEnter>>
+	GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+	if (this.rewardType == "item") then
+		GameTooltip:SetQuestLogItem(this.type, this:GetID());
+	elseif (this.rewardType == "spell") then
+		GameTooltip:SetQuestLogRewardSpell();
+	end
+--!<<FrameXML\QuestLogFrame.xml:QuestLogRewardItemTemplate_OnEnter<<
+end
+
+for i = 1, 10 do
+	local sself = tostring("EQL3_QuestLogItem"..i);
+	local self = getglobal(sself);
+	if self then
+		self:SetScript("OnEnter", function()
+			if (GetQuestLogSelection() ~= EQL3_QuestLogFrame.selectedButtonID) then
+				local bar = EQL3_QuestLogDetailScrollFrameScrollBar;
+				local val = bar:GetValue();
+				QuestLog_SetSelection(EQL3_QuestLogFrame.selectedButtonID);
+				bar:SetValue(val);
+			end
+			EQL3_QuestLogItem_OnEnter();
+		end);
+	end;
+end
