@@ -434,7 +434,7 @@ function Gatherer_OnEvent(event)
 			Gatherer_currentNode = GameTooltipTextLeft1:GetText();
 			Gatherer_currentAction = arg1;
 
-			Gatherer_Debug("Current node: "..Gatherer_currentNode);
+			Gatherer_Debug("Current node: "..(Gatherer_currentNode or "nil"));
 			Gatherer_RecordFlag=1;
 		end
 	elseif ( event == "SPELLCAST_STOP" and Gatherer_RecordFlag == 1 ) then
@@ -1443,8 +1443,16 @@ function Gatherer_MiniMapPos(deltaX, deltaY, scaleX, scaleY) -- works out the di
 	local mapDist = 0;
 
 	mapDist = Gatherer_Pythag(mapX, mapY);
-
-	if (mapDist >= 57) then
+	local mapWidth = Minimap:GetWidth()/2;
+	local mapHeight = Minimap:GetHeight()/2;
+	if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")) then
+		if (math.abs(mapX) > mapWidth) then
+			mapX = (mapWidth)*((mapX<0 and -1) or 1);
+		end
+		if (math.abs(mapY) > mapHeight) then
+			mapY = (mapHeight)*((mapY<0 and -1) or 1);
+		end
+	elseif (mapDist >= mapWidth) then
 		-- Remap it to just inside the minimap, by:converting dx,dy to angle,distance
 		-- then truncate distance to 58 and convert angle,58 to dx,dy
 		local flipAxis = 1;
@@ -1452,8 +1460,8 @@ function Gatherer_MiniMapPos(deltaX, deltaY, scaleX, scaleY) -- works out the di
 		elseif (mapX < 0) then flipAxis = -1;
 		end
 		local angle = math.atan(mapY / mapX);
-		mapX = math.cos(angle) * 58 * flipAxis;
-		mapY = math.sin(angle) * 58 * flipAxis;
+		mapX = math.cos(angle) * mapWidth * flipAxis;
+		mapY = math.sin(angle) * mapHeight * flipAxis;
 	end
 	return mapX, mapY, mapDist;
 end
