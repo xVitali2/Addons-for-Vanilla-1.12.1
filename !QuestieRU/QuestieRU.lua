@@ -67,6 +67,7 @@ function Questie:SetupDefaults()
         ["hideObjectives"] = false,
 		["getVersion"] = QuestieVersion,
         ["clusterQuests"] = true,
+		["square"] = false, --by CFM
 	}
 	end
 	if not QuestieTrackerVariables then QuestieTrackerVariables = {
@@ -85,6 +86,14 @@ end
 ---------------------------------------------------------------------------------------------------
 function Questie:CheckDefaults()
     -- Setups default QuestieConfig toggles for first time users
+	--by CFM
+	if QuestieConfig.square == nil then
+        QuestieConfig.square = true;
+    end
+	
+	if QuestieConfig.clusterQuests == nil then
+        QuestieConfig.clusterQuests = true;
+    end
 	if QuestieConfig.alwaysShowQuests == nil then
 		QuestieConfig.alwaysShowQuests = true;
 	end
@@ -247,6 +256,7 @@ function Questie:ClearConfig(arg)
                 ["hideMinimapIcons"] = false,
                 ["hideObjectives"] = false,
                 ["clusterQuests"] = true,
+				["square"] = false, --by CFM
 				["getVersion"] = QuestieVersion,
 			}
 			-- Clears tracker settings
@@ -254,10 +264,10 @@ function Questie:ClearConfig(arg)
 			-- Setup default settings and repositions the QuestTracker against the left side of the screen.
 			QuestieTrackerVariables = {
 				["position"] = {
-					["relativeTo"] = "UIParent",
-					["point"] = "CENTER",
-					["relativePoint"] = "CENTER",
-					["yOfs"] = 0,
+					["relativeTo"] = watch, --by ...
+					["point"] = "TOPLEFT", --by ...
+					["relativePoint"] = "TOPLEFT", --by ...
+					["yOfs"] = -30, --by ...
 					["xOfs"] = 0,
 				},
 			}
@@ -332,17 +342,18 @@ function Questie:NUKE(arg)
                 ["hideMinimapIcons"] = false,
                 ["hideObjectives"] = false,
                 ["clusterQuests"] = true,
+				["square"] = false, --by CFM				
                 ["getVersion"] = QuestieVersion,
             }
             -- Clears tracker settings
             QuestieTrackerVariables = {}
             QuestieTrackerVariables = {
                 ["position"] = {
-                    ["relativeTo"] = "UIParent",
-                    ["point"] = "CENTER",
-                    ["relativePoint"] = "CENTER",
-                    ["yOfs"] = 0,
-                    ["xOfs"] = 0,
+					["relativeTo"] = watch, --by ...
+					["point"] = "TOPLEFT", --by ...
+					["relativePoint"] = "TOPLEFT", --by ...
+					["yOfs"] = -30, --by ...
+					["xOfs"] = 0,
                 },
             }
             ReloadUI()
@@ -1047,18 +1058,29 @@ QuestieFastSlash = {
         Questie:Toggle();
         Questie:Toggle();
     end,
+	["square"] = function()
+        QuestieConfig.square = not QuestieConfig.square;
+        if QuestieConfig.square then
+            DEFAULT_CHAT_FRAME:AddMessage("  Questie: Значки на миникарте будут расположены по квадрату!");
+        else
+            DEFAULT_CHAT_FRAME:AddMessage("  Questie: Значки на миникарте будут расположены по кругу!");
+        end
+        Questie:Toggle();
+        Questie:Toggle();
+    end,
 	["help"] = function()
 		DEFAULT_CHAT_FRAME:AddMessage("Questie SlashCommand Help Menu:", 1, 0.75, 0);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie arrow |r-- |c0000ffc0(toggle)|r QuestArrow", 0.75, 0.75, 0.75);
-      DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie background |r-- |c0000ffc0(toggle)|r QuestTracker background will always remain on", 0.75, 0.75, 0.75);
+        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie background |r-- |c0000ffc0(toggle)|r QuestTracker background will always remain on", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie backgroundalpha |r-- |c0000ffc0(1-9)|r QuestTracker background alpha level (default=4)", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie corpsearrow |r-- |c0000ffc0(toggle)|r CorpseArrow", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie clearconfig |r-- Resets Questie settings. It does NOT delete your quest data.", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie cleartracker |r-- Relocates the QuestTracker to the center of your screen.", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie cluster |r-- |c0000ffc0(toggle)|r Cluster nearby quests together.", 0.75, 0.75, 0.75);
+        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie square |r-- |c0000ffc0(toggle)|r Смена режима отображения значков на миникарте.", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie color |r-- Select from two different color schemes", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie header |r-- |c0000ffc0(toggle)|r QuestTracker log counter", 0.75, 0.75, 0.75);
-       DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie hideminimap |r-- |c0000ffc0(toggle)|r Hides quest starter icons on mini map only", 0.75, 0.75, 0.75);
+        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie hideminimap |r-- |c0000ffc0(toggle)|r Hides quest starter icons on mini map only", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie hideobjectives |r-- |c0000ffc0(toggle)|r Objective Icons", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie listdirection |r-- Lists quests Top-->Down or Bottom-->Up", 0.75, 0.75, 0.75);
 		DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie mapnotes |r-- |c0000ffc0(toggle)|r World/Minimap icons", 0.75, 0.75, 0.75);
@@ -1128,7 +1150,9 @@ function Questie:CurrentUserToggles()
         [19] = { "resizeWorldmap" },
         [20] = { "getVersion" },
         [21] = { "hideMinimapIcons" },
-        [22] = { "hideObjectives" }
+		[22] = { "hideObjectives" },
+		[23] = { "cluster" },		
+        [24] = { "square" }
 	}
 	if QuestieConfig then
 		i = 1
