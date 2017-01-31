@@ -1445,7 +1445,7 @@ function Gatherer_MiniMapPos(deltaX, deltaY, scaleX, scaleY) -- works out the di
 	mapDist = Gatherer_Pythag(mapX, mapY);
 	local mapWidth = Minimap:GetWidth()/2;
 	local mapHeight = Minimap:GetHeight()/2;
-	if (Squeenix or (pfUI and not pfUI_config["disabled"]["minimap"]) or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")) then
+	if (Squeenix or (pfUI and pfUI_config["disabled"]["minimap"] ~= "1") or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")) then
 		if (math.abs(mapX) > mapWidth) then
 			mapX = (mapWidth)*((mapX<0 and -1) or 1);
 		end
