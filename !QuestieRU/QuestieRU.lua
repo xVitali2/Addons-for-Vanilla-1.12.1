@@ -1263,8 +1263,8 @@ end);
 for i = 1, 10 do
 	local id = i;
 	local frame = getglobal("EQL3_QuestLogItem"..id);
-	local hook = frame:GetScript("OnEnter");
 	if frame then
+		local hook = frame:GetScript("OnEnter");
 		frame:SetScript("OnEnter", function(self)
 			if (GetQuestLogSelection() ~= EQL3_QuestLogFrame.selectedButtonID) then
 				local bar = EQL3_QuestLogDetailScrollFrameScrollBar;
