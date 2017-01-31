@@ -1236,29 +1236,19 @@ GameTooltipMoneyFrame:SetScript("OnShow", function()
 	end
 end);
 --[[__________ лечим баг совместимости с EQL3 __________]]--
-local function EQL3_QuestLogItem_OnEnter()
---!>>FrameXML\QuestLogFrame.xml:QuestLogRewardItemTemplate_OnEnter>>
-	GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-	if (this.rewardType == "item") then
-		GameTooltip:SetQuestLogItem(this.type, this:GetID());
-	elseif (this.rewardType == "spell") then
-		GameTooltip:SetQuestLogRewardSpell();
-	end
---!<<FrameXML\QuestLogFrame.xml:QuestLogRewardItemTemplate_OnEnter<<
-end
-
 for i = 1, 10 do
-	local sself = tostring("EQL3_QuestLogItem"..i);
-	local self = getglobal(sself);
-	if self then
-		self:SetScript("OnEnter", function()
+	local id = i;
+	local frame = getglobal("EQL3_QuestLogItem"..id);
+	local hook = frame:GetScript("OnEnter");
+	if frame then
+		frame:SetScript("OnEnter", function(self)
 			if (GetQuestLogSelection() ~= EQL3_QuestLogFrame.selectedButtonID) then
 				local bar = EQL3_QuestLogDetailScrollFrameScrollBar;
 				local val = bar:GetValue();
 				QuestLog_SetSelection(EQL3_QuestLogFrame.selectedButtonID);
 				bar:SetValue(val);
 			end
-			EQL3_QuestLogItem_OnEnter();
+			hook();
 		end);
 	end;
 end
