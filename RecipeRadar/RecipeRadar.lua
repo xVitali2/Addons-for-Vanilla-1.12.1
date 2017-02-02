@@ -584,6 +584,19 @@ function RecipeRadar_CompareRegions(location1, location2)
 
 end
 
+-- Returns the result of the "<" operator on both major and minor portions.
+function RecipeRadar_IsVersionLessThan(version1, version2)
+
+   local major1, minor1 = string.match(version1, "(%d+)\.(%d+)")
+   local major2, minor2 = string.match(version2, "(%d+)\.(%d+)")
+
+   if (major1 ~= major2) then
+      return major1+0 < major2+0
+   end
+   return minor1+0 < minor2+0
+   
+end
+
 -- Returns a color code string converted from RGB decimals.
 function RecipeRadar_ColorToCode(color)
 

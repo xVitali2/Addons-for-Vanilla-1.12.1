@@ -6,47 +6,15 @@
 
    <Script file="MinimapButton.lua"/>
 
-   <Frame name="RecipeRadarMinimapButtonFrame" parent="Minimap" enableMouse="true" hidden="false" frameStrata="LOW">
-
-      <Size>
-         <AbsDimension x="32" y="32"/>
-      </Size>
-      <Anchors>
-         <Anchor point="TOPLEFT" relativeTo="Minimap" relativePoint="RIGHT">
-            <Offset>
-               <AbsDimension x="2" y="0"/>
-            </Offset>
-         </Anchor>
-      </Anchors>
-
-      <Frames>
-
-         <Frame name="RecipeRadarMinimapButtonHighlightFrame" hidden="true">
+   
+         <Button name="RecipeRadarMinimapButton" parent="Minimap" enableMouse="true" hidden="false" frameStrata="LOW">
             <Size>
                <AbsDimension x="32" y="32"/>
             </Size>
             <Anchors>
                <Anchor point="TOPLEFT">
                   <Offset>
-                     <AbsDimension x="0" y="0"/>
-                  </Offset>
-               </Anchor>
-            </Anchors>
-            <Layers>
-               <Layer level="OVERLAY">
-                  <Texture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
-               </Layer>
-            </Layers>
-         </Frame>
-
-         <Button name="RecipeRadarMinimapButton">
-            <Size>
-               <AbsDimension x="32" y="32"/>
-            </Size>
-            <Anchors>
-               <Anchor point="TOPLEFT">
-                  <Offset>
-                     <AbsDimension x="0" y="0"/>
+                     <AbsDimension x="2" y="0"/>
                   </Offset>
                </Anchor>
             </Anchors>
@@ -76,7 +44,4 @@
             </Scripts>
          </Button>
 
-      </Frames>
-
-   </Frame>
 </UI>

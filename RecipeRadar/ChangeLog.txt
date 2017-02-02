@@ -1,5 +1,10 @@
+Recipe Radar (vanilla) ChangeLog
 
-Recipe Radar ChangeLog
+v1.14; 2.02.2017
+
+- Added MBB compatibility (better minimap button managment),
+- Added RUru localization by Maus
+- backported some fixes from original 1.14 release
 
 v1.11; September 18, 2006
 

@@ -15,7 +15,7 @@ function RecipeRadar_SkillDB_Init()
    local db = RecipeRadar_SkillDB_GetPlayerProfessions()
    
    -- fishing doesn't get an auto-reset during the spellbook parsing
-   if (not db[RRS("Fishing")]) then
+   if (not db[RRS("Fishing")] or not db[RRS("Fishing")].Recipes) then
       db[RRS("Fishing")] = { Rank = 0, Recipes = { } }
    end
 

@@ -15,12 +15,14 @@ to do it, unzip the archive to your
 
    ... \World of Warcraft\Interface\AddOns
 
-directory.  A new directory called 'RecipeRadar' should appear.  That should
-be all you need to do to use Recipe Radar.
+directory.  A new directory called 'RecipeRadar' should appear, along with
+several files and subdirectories.  That should be all you need to do to
+use Recipe Radar.
 
 When you get in game, you may want to map a key to toggle Recipe Radar.
 You should be able to find the option to do this in your Key Bindings menu,
-all the way at the bottom.
+all the way at the bottom.  Otherwise, you can hit the new icon on your
+minimap to open Recipe Radar or use the slash command, '/rrdr'.
 
 
 Bugs
@@ -30,7 +32,9 @@ to do so is to hit the bug tracker at
 
    http://sourceforge.net/tracker/?group_id=165127
 
-and leave a short report on what was happening at the time.
+and leave a short report on what was happening at the time.  If possible,
+please include the version of Recipe Radar that caused the bug and the
+language of your WoW client.
 
 Also in the bugs category are misplaced vendors.  The location information
 for all of the vendors in the Recipe Radar database was retrieved in a 
@@ -40,7 +44,7 @@ let me know!  The most helpful thing you can do is this quick process:
 
    1) Unmap all but the problematic vendor.
    2) Move your toon exactly on top of the vendor.
-   3) Type '/rr debug vendor'.
+   3) Type '/rrdr debug vendor'.
    4) Record the text you see.  It should resemble this:
    
       Debugging Drac Roughcut

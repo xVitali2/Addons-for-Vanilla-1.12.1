@@ -890,7 +890,7 @@ RecipeRadar_RegionData = {
          Name = RRS("Bliztik"),
          Team = "Neutral",
          Coordinates = {
-            { x = 0.184, y = 0.543 },
+            { x = 0.18, y = 0.543 },
          },
          Recipes = {
             { ID = 6068, Type = RRS("Alchemy"), Skill = 165, Cost = 1500 },
@@ -2953,7 +2953,7 @@ RecipeRadar_RegionData = {
             { ID = 19212, Type = RRS("Blacksmithing"), Skill = 300, Cost = 120000, Faction = RRS("Thorium Brotherhood"), Level = 8, Specialty = RRS("Master Axesmith") },
             { ID = 19449, Type = RRS("Enchanting"), Skill = 300, Cost = 100000, Faction = RRS("Thorium Brotherhood"), Level = 7 },
             { ID = 19448, Type = RRS("Enchanting"), Skill = 300, Cost = 80000, Faction = RRS("Thorium Brotherhood"), Level = 6 },
-            { ID = 19444, Type = RRS("Enchanting"), Skill = 290, Cost = 30000, Faction = RRS("Thorium Brotherhood"), Level = 7 },
+            { ID = 19444, Type = RRS("Enchanting"), Skill = 290, Cost = 30000, Faction = RRS("Thorium Brotherhood"), Level = 5 },
             { ID = 17025, Type = RRS("Leatherworking"), Skill = 300, Cost = 160000, Faction = RRS("Thorium Brotherhood"), Level = 6, Specialty = RRS("Dragonscale Leatherworking") },
             { ID = 19331, Type = RRS("Leatherworking"), Skill = 300, Cost = 90000, Faction = RRS("Thorium Brotherhood"), Level = 7, Specialty = RRS("Dragonscale Leatherworking") },
             { ID = 19332, Type = RRS("Leatherworking"), Skill = 300, Cost = 90000, Faction = RRS("Thorium Brotherhood"), Level = 7 },

@@ -11,9 +11,9 @@ end
 function RecipeRadar_MinimapButton_Init()
 
    if (RecipeRadar_Options.ShowMinimapButton) then
-      RecipeRadarMinimapButtonFrame:Show()
+      RecipeRadarMinimapButton:Show()
    else
-      RecipeRadarMinimapButtonFrame:Hide()
+      RecipeRadarMinimapButton:Hide()
    end
    RecipeRadar_MinimapButton_UpdatePosition()
 
@@ -21,11 +21,11 @@ end
 
 function RecipeRadar_MinimapButton_Toggle()
 
-   if (RecipeRadarMinimapButtonFrame:IsVisible()) then
-      RecipeRadarMinimapButtonFrame:Hide()
+   if (RecipeRadarMinimapButton:IsVisible()) then
+      RecipeRadarMinimapButton:Hide()
       RecipeRadar_Options.ShowMinimapButton = false
    else
-      RecipeRadarMinimapButtonFrame:Show()
+      RecipeRadarMinimapButton:Show()
       RecipeRadar_Options.ShowMinimapButton = true
    end
 
@@ -35,7 +35,7 @@ end
 function RecipeRadar_MinimapButton_Flash()
 
    RECIPERADAR_FLASH_MINIMAP_BUTTON = true
-   RecipeRadarMinimapButtonHighlightFrame:Show()
+   RecipeRadarMinimapButton:LockHighlight()
 
 end
 
@@ -58,22 +58,20 @@ function RecipeRadar_MinimapButton_OnUpdate(elapsed)
    end
    cntr = mod(cntr, 0.5)
    this.cntr = cntr
-
-   -- change the alpha value to create the flashing
-   if (sign == 1) then
-      alpha = (25  + (cntr * 400)) / 255
-   else
-      alpha = (255 - (cntr * 400)) / 255
-   end
-
+   
    -- only make the new value visible if the button is also visible
-   if (RecipeRadarMinimapButtonFrame:IsVisible()) then
-      RecipeRadarMinimapButtonHighlightFrame:SetAlpha(alpha)
+   if (RecipeRadarMinimapButton:IsVisible()) then
+   if (sign == 1) then
+			RecipeRadarMinimapButton:LockHighlight();
+   else
+			RecipeRadarMinimapButton:UnlockHighlight();
    end
+   end
+      
 
    -- only flash for a few seconds, then shut off
    if (this.total > 4) then
-      RecipeRadarMinimapButtonHighlightFrame:Hide()
+      RecipeRadarMinimapButton:UnlockHighlight()
       RECIPERADAR_FLASH_MINIMAP_BUTTON = false
       this.total = 0
    end
@@ -82,9 +80,12 @@ end
 
 -- Sets the location of the button according to the current options.
 function RecipeRadar_MinimapButton_UpdatePosition()
-
-   RecipeRadarMinimapButtonFrame:SetPoint("TOPLEFT", "Minimap", "TOPLEFT",
-         54 - (78 * cos(RecipeRadar_Options.MinimapButtonPosition)),
-         (78 * sin(RecipeRadar_Options.MinimapButtonPosition)) - 55)
+	local xmin,ymin,xm,ym = Minimap:GetLeft(), Minimap:GetBottom(), Minimap:GetRight(), Minimap:GetTop();
+	local scale = Minimap:GetEffectiveScale();
+	local xdelta, ydelta = (xm - xmin)/2*scale, (ym - ymin) /2 * scale;
+	local scale2 =  RecipeRadarMinimapButton:GetEffectiveScale();
+	local x = (xdelta * cos(RecipeRadar_Options.MinimapButtonPosition))/scale2;
+	local y = (ydelta * sin(RecipeRadar_Options.MinimapButtonPosition))/scale2;
+	RecipeRadarMinimapButton:SetPoint("TOPLEFT", "Minimap", "CENTER",	x - 17 , y + 17)
 
 end

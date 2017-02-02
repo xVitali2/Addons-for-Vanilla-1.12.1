@@ -981,7 +981,7 @@ RecipeRadar_RecipeData = {
          Skill = 290,
          Cost = 30000,
          Faction = RRS("Thorium Brotherhood"),
-         Level = 7,
+         Level = 5,
          Locations = {
             { Region = RRS("Blackrock Depths"), Vendor = RRS("Lokhtos Darkbargainer"), Team = "Neutral" },
          },

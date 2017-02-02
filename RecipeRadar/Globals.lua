@@ -2,7 +2,7 @@
 -- Globals.lua: global/saved variables and some related initialization code
 -- $Id: Globals.lua 466 2006-09-18 18:10:31Z jnmiller $
 
-RECIPERADAR_VERSION = "1.11"
+RECIPERADAR_VERSION = GetAddOnMetadata("RecipeRadar", "Version");
 
 RECIPERADAR_VENDORS_DISPLAYED = 8
 RECIPERADAR_VENDOR_HEIGHT = 16
@@ -214,45 +214,7 @@ function RecipeRadar_Globals_Init(force)
    if (not force and RecipeRadar_Options.Version >= RECIPERADAR_VERSION) then
       return  -- running version is current
    end
-
-   -- v1.5 filter upgrades
-   if (RecipeRadar_Options.Version < "1.5") then
-      if (RecipeRadar_Filters.PersonAvails[AVAILABLE]) then
-         RecipeRadar_Filters.PersonAvails["LearnableByPlayer"] = true
-      end
-      if (RecipeRadar_Filters.PersonAvails[UNAVAILABLE]) then
-         RecipeRadar_Filters.PersonAvails["ProspectForPlayer"] = true
-      end
-      if (RecipeRadar_Filters.PersonAvails[USED]) then
-         RecipeRadar_Filters.PersonAvails["KnownByPlayer"] = true
-         RecipeRadar_Filters.PersonAvails["NotApplicable"] = true
-      end
-      RecipeRadar_Filters.PersonAvails[AVAILABLE] = nil
-      RecipeRadar_Filters.PersonAvails[UNAVAILABLE] = nil
-      RecipeRadar_Filters.PersonAvails[USED] = nil
-   end
-   
-   -- v1.9 skill DB format change
-   if (RecipeRadar_SkillDB and not RecipeRadar_SkillDB.Version) then
-      for realm, realm_info in RecipeRadar_SkillDB do
-         realm_info.Team = nil
-         for player, player_info in realm_info do
-            local temp = { }
-            for prof, prof_info in player_info do
-               temp[prof] = prof_info
-               player_info[prof] = nil
-            end
-            player_info.Professions = { }
-            table.foreach(temp,
-                  function (k, v) player_info.Professions[k] = v end)
-         end
-      end
-   end
-   
-   -- upgrade is complete
-   RecipeRadar_SkillDB.Version = RECIPERADAR_VERSION
    RecipeRadar_Options.Version = RECIPERADAR_VERSION
-
 end
 
 -- Initializes the Options table with some defaults.
