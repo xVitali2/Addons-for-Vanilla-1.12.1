@@ -94,7 +94,7 @@
         plate.cast:SetBackdrop(BACKDROP)
         plate.cast:SetBackdropColor(0, 0, 0)
         plate.cast:SetHeight(8)
-        plate.cast:SetPoint('LEFT', plate, 24, 0)
+        plate.cast:SetPoint('LEFT', plate, 20, 0)
         plate.cast:SetPoint('RIGHT', plate, -4, 0)
         plate.cast:SetPoint('TOP', health, 'BOTTOM', 0, -8)
 

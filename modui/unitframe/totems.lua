@@ -164,6 +164,25 @@
         end
     end
 
+    local GetSpellID = function(n)
+        local i, done, name, id, rank, srank = 1, false
+        local _, _, srank = string.find(n, '%((Rank %d+)%)')
+        n = string.gsub(n,'%(Rank %d+%)', '')
+        if not srank then
+            n = string.gsub(n, '%(%)', '')
+        end
+        while not done do
+            name, rank = GetSpellName(i, BOOKTYPE_SPELL)
+            if not name then
+                done = true
+            elseif (name == n and not srank) or (name == n and rank == srank) then
+                id = i
+            end
+            i = i + 1
+        end
+        return id
+    end
+
     local AddUseAction = function(id, book)
         local start, duration, enable = GetActionCooldown(id)
 	    local isUsable, notEnoughMana = IsUsableAction(id)
@@ -192,14 +211,9 @@
     end
 
     local AddCastSpellByName = function(n)
-        local start, duration, enable = GetSpellCooldown(id, BOOKTYPE_SPELL)
-        local n, i = GetSpellName(id, book) -- i is rank
-        n = gsub(n, '(.+) Totem', '%1')
-        if  n then
-            i = gsub(i, 'Rank (%d+)', '%1')
-            if not i then i = 0 end
-            i = tonumber(i)
-            if MODUI_TOTEMS[n] then AddTotem(MODUI_TOTEMS[n], n, i) end
+        local id = GetSpellID(n)
+        if id then
+            AddCastSpell(id, BOOKTYPE_SPELL)
         end
     end
 
@@ -218,25 +232,6 @@
         end
     end
 
-    local GetSpellID = function(n)
-        local i, done, name, id, rank, srank = 1, false
-        local _, _, srank = string.find(n, '%((Rank %d+)%)')
-        n = string.gsub(n,'%(Rank %d+%)', '')
-        if not srank then
-            n = string.gsub(n, '%(%)', '')
-        end
-        while not done do
-            name, rank = GetSpellName(i, BOOKTYPE_SPELL)
-            if not name then
-                done = true
-            elseif (name == n and not srank) or (name == n and rank == srank) then
-                id = i
-            end
-            i = i + 1
-        end
-        return id
-    end
-
     UseAction = function(id, book)
         AddUseAction(id, book)
         orig.UseAction(id, book)
@@ -247,14 +242,9 @@
         orig.CastSpell(id, book)
     end
 
-    CastSpellByName = function(n)
-        local  id = GetSpellID(n)
-        if not id then
-            orig.CastSpellByName(n)
-            return
-        end
+    CastSpellByName = function(n, onSelf)
         AddCastSpellByName(n)
-        orig.CastSpellByName(n)
+        orig.CastSpellByName(n, onSelf)
     end
 
     UseIventoryItem = function(id)

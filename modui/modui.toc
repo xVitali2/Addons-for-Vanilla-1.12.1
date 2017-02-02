@@ -2,23 +2,27 @@
 ## Author: modernist
 ## Title: mod ui
 ## Notes: make the ui better.
-##SavedVariablesPerCharacter: modAction, modStatus, modValue, modBoth, modGryphon, modEndcap, modTimestamp, modAuraFormat, modOneBag, modChatFormat, modItemLink, modBattleMap, modDungeonMap, modNameplate, modQuestWatch, modTooltip, modUnitFrame, modPVPTimers, modPVPRank, modStopWatch, modShowTooltipMover, modPlayerCastbar, modSCTDMG, modSCTHEAL, MODUI_COLOUR_FOR_UI
+##SavedVariablesPerCharacter: modAction, modStatus, modValue, modBoth, modGryphon, modEndcap, modTimestamp, modAuraFormat, modOneBag, modChatFormat, modItemLink, modBattleMap, modDungeonMap, modNameplate, modQuestWatch, modTooltip, modUnitFrame, modPVPTimers, modPVPRank, modStopWatch, modShowTooltipCursor, modPlayerCastbar, modClock, MODUI_VARS, MODUI_COLOUR_FOR_UI
 
+globals\string.lua
+globals\vars.lua
 globals\auction.lua
 globals\colour.lua
 globals\font.lua
 globals\math.lua
 globals\mount.lua
 globals\shit.lua
-globals\string.lua
 globals\table.lua
 globals\unitbuff.lua
 globals\unitcasting.lua
 
 actionbar\bagbar.lua
 actionbar\bar.lua
+actionbar\cooldown.lua
+actionbar\hotkey.lua
 actionbar\keypress.lua
 actionbar\paging.lua
+actionbar\range.lua
 actionbar\stats.lua
 actionbar\xp.lua
 
@@ -29,9 +33,11 @@ libs\libs\AceOO-2.0\AceOO-2.0.lua
 libs\libs\AceEvent-2.0\AceEvent-2.0.lua
 libs\libs\AceAddon-2.0\AceAddon-2.0.lua
 libs\libs\AceConsole-2.0\AceConsole-2.0.lua
+libs\libs\AceHook-2.1\AceHook-2.1.lua
 libs\libs\RosterLib-2.0\RosterLib-2.0.lua
 libs\libs\HealComm-1.0\HealComm-1.0.lua
 libs\libs\ProximityLib\ProximityLib.lua
+libs\libs\DruidManaLib-1.0\DruidManaLib-1.0.lua
 libs\healcomm\HealComm.lua
 libs\mobhealth\MobHealth3.lua
 libs\mobhealth\MH3_Blizzard.lua
@@ -94,6 +100,10 @@ chat\quest.lua
 
 combattext\ct.lua
 
+friends\friends.lua
+friends\guild.lua
+friends\who.lua
+
 map\mini.lua
 map\pvp.lua
 map\world.lua
@@ -106,6 +116,7 @@ pvp\av.lua
 pvp\rank.lua
 pvp\popup.lua
 pvp\wsg.lua
+pvp\scoreboard.lua
 
 raid\unit.lua
 
@@ -120,8 +131,10 @@ tracker\click.lua
 
 unitframe\boss\create.lua
 unitframe\boss\update.lua
+unitframe\aura.lua
 unitframe\castbar.lua
 unitframe\energy.lua
+unitframe\extramana.lua
 unitframe\move.lua
 unitframe\unit.lua
 unitframe\mobhealth.lua

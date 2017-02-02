@@ -20,6 +20,8 @@
 	API Documentation: http://wiki.wowace.com/index.php/MobHealth3_API_Documentation
 --]]
 
+if MobHealth3 or IsAddOnLoaded'MobInfo2' or IsAddOnLoaded'MobHealth3' then return end
+
 MobHealth3 = AceLibrary("AceAddon-2.0"):new("AceEvent-2.0", "AceConsole-2.0")
 
 --[[
@@ -118,7 +120,7 @@ function MobHealth3:OnInitialize()
             },
 		},
 	})
-    
+
     -- MH/MH2 database converter. MI2 too if the user follows the instructions
     if MobHealthDB and not MobHealthDB.thisIsADummyTable then
         -- Turn on saving
@@ -222,7 +224,7 @@ function MobHealth3:PLAYER_TARGET_CHANGED()
 				currentAccHP = AccumulatorHP[targetIndex]
 				currentAccPerc = AccumulatorPerc[targetIndex]
 			end
-	
+
 			if currentAccPerc>10 then
 				currentAccHP = currentAccHP / currentAccPerc * 10
 				currentAccPerc = 10
@@ -238,8 +240,8 @@ function MobHealth3:PLAYER_TARGET_CHANGED()
 end
 
 function MobHealth3:UNIT_HEALTH()
-	if currentAccHP and arg1=="target" then 
-		self:CalculateMaxHealth(UnitHealth("target"), UnitHealthMax("target")) 
+	if currentAccHP and arg1=="target" then
+		self:CalculateMaxHealth(UnitHealth("target"), UnitHealthMax("target"))
 	end
 end
 
@@ -250,10 +252,10 @@ end
 function MobHealth3:CalculateMaxHealth(current, max)
 
 	if calculationUnneeded[targetIndex] then return;
-    
+
     elseif current==startPercent or current==0 then
 	--self:Debug("Targetting a dead guy?")
-    
+
     elseif max > 100 then
         -- zOMG! Beast Lore! We no need no stinking calculations!
         MH3Cache[targetIndex] = max
@@ -280,9 +282,9 @@ function MobHealth3:CalculateMaxHealth(current, max)
 				MH3Cache[targetIndex] = math.floor( currentAccHP / currentAccPerc * 100 + 0.5 )
 				--self:Debug("Caching %s as %d", targetIndex, MH3Cache[targetIndex])
 			end
-			
+
 		end
-		
+
 	end
 end
 
@@ -310,7 +312,7 @@ end
 
 --[[
 	MobHealth3 API
-	
+
 	I'm using MediaWiki formatting for the docs here so I can easily copy/paste if I make modifications
 --]]
 
@@ -366,7 +368,7 @@ function MobHealth3:GetUnitHealth(unit, current, max, name, level)
         -- Beast Lore check (Does UnitHealthMax give us the real value?)
 
 	local creatureType = UnitCreatureType(unit) -- Saves us from calling it twice
-	if max == 100 and not ( (creatureType == "Beast" or creatureType == "Demon") and UnitPlayerControlled(unit) ) then 
+	if max == 100 and not ( (creatureType == "Beast" or creatureType == "Demon") and UnitPlayerControlled(unit) ) then
 		local maxHP = MH3Cache[string.format("%s:%d", name, level)]
 
 		if maxHP then return math.floor(current/100 * maxHP + 0.5), maxHP, true; end

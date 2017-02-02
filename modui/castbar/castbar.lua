@@ -13,7 +13,8 @@
         ['Aimed Shot']     = [[Interface\Icons\inv_spear_07]]
     }
 
-    orig.UseAction = UseAction
+    orig.UseAction                  = UseAction
+    orig.CastingBarFrame_OnEvent    = CastingBarFrame_OnEvent
 
     CastingBarFrame:SetStatusBarTexture(TEXTURE)
 
@@ -64,7 +65,7 @@
 
     local ToggleIcon = function()
         local t = CastingBarText:GetText()
-        if  (not CastingBarFrame.hasIcon and not overrideIcons[t]) then
+        if not t or (not CastingBarFrame.hasIcon and not overrideIcons[t]) then
             CastingBarFrame.Icon:Hide()
         else
             CastingBarFrame.Icon:Show()
@@ -75,8 +76,8 @@
     end
 
     local HideIcon = function()
-        if  this.hasIcon then
-            this.hasIcon = false
+        if  CastingBarFrame.hasIcon then
+            CastingBarFrame.hasIcon = false
         end
     end
 
@@ -84,15 +85,27 @@
         orig.UseAction(slot, target, button)
         if  CastingBarFrame:GetAlpha() < 1 or not CastingBarFrame:IsShown() then
             local icon = GetActionTexture(slot)
-            CastingBarFrame.Icon.Texture:SetTexture(icon)
-            CastingBarFrame.hasIcon = true
-            CastingBarFrame:SetScript('OnHide', HideIcon)
+            if  icon then
+                CastingBarFrame.hasIcon = true
+                CastingBarFrame.Icon.Texture:SetTexture(icon)
+                CastingBarFrame:SetScript('OnHide', HideIcon)
+            end
             ToggleIcon()
         end
     end
 
     if cv == 1 then
         PlayerCastingBarFrame()
+    end
+
+    CastingBarFrame_OnEvent = function()
+        orig.CastingBarFrame_OnEvent()
+        if  event == 'SPELLCAST_STOP'
+        or  event == 'SPELLCAST_CHANNEL_STOP'
+        or  event == 'SPELLCAST_FAILED'
+        or  event == 'SPELLCAST_INTERRUPTED' then
+            HideIcon()
+        end
     end
 
     CastingBarFrame:SetScript('OnShow', ToggleIcon)

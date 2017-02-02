@@ -8,6 +8,8 @@
     local _, class = UnitClass'player'
     local colour = RAID_CLASS_COLORS[class]
 
+    local version = '88' -- VERSION OF ADDON
+
     local menu = CreateFrame('Frame', 'modui_options', UIParent)
     menu:SetWidth(360) menu:SetHeight(270)
     menu:SetPoint('CENTER', UIParent)
@@ -58,7 +60,7 @@
     menu.intro:SetTextColor(colour.r, colour.g, colour.b)
     menu.intro:SetPoint('TOP', menu, 0, -85)
     menu.intro:SetWidth(280)
-    menu.intro:SetText'Hello! You are using version v77 of |cffff6c6cmodui|r. You can find the latest version and further support on the dedicated thread on Nostalrius\' forums:'
+    menu.intro:SetText('Hello! You are using version '..version..' of |cffff6c6cmodui|r. You can find the latest version and further support on the dedicated thread on Nostalrius\' forums:')
 
     menu.uilink = CreateFrame('EditBox', 'modui_uilink', menu, 'InputBoxTemplate')
     menu.uilink:SetFont(STANDARD_TEXT_FONT, 12)
@@ -87,10 +89,10 @@
     menu.reload.description:SetText'Your new settings require a UI reload to take effect.'
 
     menu.header.f:SetScript('OnMouseDown', function()
-        for _, v in pairs({menu.intro, menu.uilink, menu.description, menu.whisper, menu.gryphon, menu.endcap, menu.chatstamp, menu.chatformat, menu.itemlink, menu.auraformat, menu.tooltip, menu.castbar, menu.horizontal, menu.value, menu.consolidate, menu.ctDMG, menu.ctHEAL, menu.elements.title, menu.elements.description, menu.elementcontainer, menu.allelement, menu.actionlayout, menu.modraid.apology, menu.modraid.text}) do v:Hide() end
+        for _, v in pairs({menu.intro, menu.uilink, menu.description, menu.whisper, menu.gryphon, menu.endcap, menu.chatstamp, menu.chatformat, menu.chateditbox, menu.itemlink, menu.auraformat, menu.tooltip, menu.tooltip.cursor, menu.castbar, menu.castbar.target, menu.targetaura, menu.horizontal, menu.value, menu.consolidate, menu.white, menu.ctDMG, menu.ctHEAL, menu.elements.title, menu.elements.description, menu.elementcontainer, menu.allelement, menu.actionlayout, menu.keydown, menu.keydown.selfcast, menu.modraid.apology, menu.modraid.text}) do v:Hide() end
         for _, v in pairs({menu.intro, menu.uilink, menu.description, menu.whisper}) do v:Show() end
         for i = 1,  2 do _G['modui_optionsaurabutton'..i]:Hide() end
-        for i = 1, 11 do _G['modui_element'..i]:Hide() end
+        for i = 1, 12 do _G['modui_element'..i]:Hide() end
         for i = 1, 60 do _G['modui_actionbutton'..i]:Hide() end
         menu.reload:SetPoint('TOP', menu, 0, -300)
         if menu.reload:IsShown() then menu:SetHeight(340) else menu:SetHeight(270) end

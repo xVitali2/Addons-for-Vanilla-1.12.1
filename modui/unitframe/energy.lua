@@ -21,6 +21,7 @@
     spark:SetTexture[[Interface\CastingBar\UI-CastingBar-Spark]]
     spark:SetWidth(32) spark:SetHeight(32)
     spark:SetBlendMode('ADD')
+    spark:SetAlpha(.4)
 
     local energy_OnUpdate = function()
         if (syncNextUpdate) then
@@ -64,18 +65,21 @@
     end
 
     energy:SetScript('OnEvent', function()
-        if arg1 == 'PLAYER_AURAS_CHANGED' then
-            local stance = GetShapeshiftForm(true)
-            local power  = UnitPowerType('player')
-            if (class == 'DRUID' and stance == 3) or power == 3 then
-                 energy:Show()
-            else 
+        if event == 'PLAYER_REGEN_DISABLED' then
+            spark:SetAlpha(1)
+        elseif event == 'PLAYER_REGEN_ENABLED' then
+            spark:SetAlpha(.4)
+        elseif event == 'PLAYER_AURAS_CHANGED' then
+            local power  = UnitPowerType'player'
+            if power == 3 then
+                energy:Show()
+            else
                 energy:Hide()
             end
         else
             if arg1 == 'player' then
                 currentEnergyValue = UnitMana('player')
-                if currentEnergyValue == lastEnergyValue + 20 then
+                if  currentEnergyValue == lastEnergyValue + 20 then
                     preLastPulseTime = lastPulseTime
                     lastPulseTime = GetTime()
                     syncNextUpdate = true
@@ -87,5 +91,7 @@
     end)
 
     energy:SetScript('OnUpdate', energy_OnUpdate)
-    energy:RegisterEvent('PLAYER_AURAS_CHANGED')
-    energy:RegisterEvent('UNIT_ENERGY')
+    energy:RegisterEvent'PLAYER_AURAS_CHANGED'
+    energy:RegisterEvent'PLAYER_REGEN_DISABLED'
+    energy:RegisterEvent'PLAYER_REGEN_ENABLED'
+    energy:RegisterEvent'UNIT_ENERGY'

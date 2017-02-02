@@ -24,27 +24,29 @@
 
     local check = function(load)
         local cv, t
-        cv = tonumber(GetCVar'modOneBag')     t = _G['modui_element1']
+        cv = tonumber(GetCVar'modOneBag')       t = _G['modui_element1']
         if cv == 1 then t:SetChecked(true) else t:SetChecked(false) end
-        cv = tonumber(GetCVar'modBattleMap')  t = _G['modui_element2']
+        cv = tonumber(GetCVar'modBattleMap')    t = _G['modui_element2']
         if cv == 1 then t:SetChecked(true) else t:SetChecked(false) end
-        cv = tonumber(GetCVar'modWorldMap')   t = _G['modui_element3']
+        cv = tonumber(GetCVar'modWorldMap')     t = _G['modui_element3']
         if cv == 1 then t:SetChecked(true) else t:SetChecked(false) end
-        cv = tonumber(GetCVar'modDungeonMap') t = _G['modui_element4']
+        cv = tonumber(GetCVar'modDungeonMap')   t = _G['modui_element4']
         if cv == 1 then t:SetChecked(true) else t:SetChecked(false) end
-        cv = tonumber(GetCVar'modNameplate')  t = _G['modui_element5']
+        cv = tonumber(GetCVar'modNameplate')    t = _G['modui_element5']
         if cv == 1 then t:SetChecked(true) else t:SetChecked(false) end
-        cv = tonumber(GetCVar'modQuestWatch') t = _G['modui_element6']
+        cv = tonumber(GetCVar'modQuestWatch')   t = _G['modui_element6']
         if cv == 1 then t:SetChecked(true) else t:SetChecked(false) end
-        cv = tonumber(GetCVar'modTooltip')    t = _G['modui_element7']
+        cv = tonumber(GetCVar'modTooltip')      t = _G['modui_element7']
         if cv == 1 then t:SetChecked(true) else t:SetChecked(false) end
-        cv = tonumber(GetCVar'modUnitFrame')  t = _G['modui_element8']
+        cv = tonumber(GetCVar'modUnitFrame')    t = _G['modui_element8']
         if cv == 1 then t:SetChecked(true) else t:SetChecked(false) end
-        cv = tonumber(GetCVar'modPVPTimers')  t = _G['modui_element9']
+        cv = tonumber(GetCVar'modPVPTimers')    t = _G['modui_element9']
         if cv == 1 then t:SetChecked(true) else t:SetChecked(false) end
-        cv = tonumber(GetCVar'modPVPRank')    t = _G['modui_element10']
+        cv = tonumber(GetCVar'modPVPRank')      t = _G['modui_element10']
         if cv == 1 then t:SetChecked(true) else t:SetChecked(false) end
-        cv = tonumber(GetCVar'modStopWatch')  t = _G['modui_element11']
+        cv = tonumber(GetCVar'modStopWatch')    t = _G['modui_element11']
+        if cv == 1 then t:SetChecked(true) else t:SetChecked(false) end
+        cv = _G['modui_vars'].db['modCDCount']  t = _G['modui_element12']
         if cv == 1 then t:SetChecked(true) else t:SetChecked(false) end
         if load then
             cv = tonumber(GetCVar'modAllElements')
@@ -83,7 +85,7 @@
 	menu.inner:EnableMouse(true)
 	menu.inner:EnableMouseWheel(true)
 
-    for i = 1, 11 do
+    for i = 1, 12 do
         menu.element = CreateFrame('CheckButton', 'modui_element'..i, menu.inner, 'UICheckButtonTemplate')
         menu.element:SetHeight(20) menu.element:SetWidth(20)
         menu.element:SetPoint('TOPLEFT',
@@ -117,6 +119,7 @@
     _G['modui_element9Text']:SetText'PvP Battleground Timers'
     _G['modui_element10Text']:SetText'PvP Rank Tracking'
     _G['modui_element11Text']:SetText'Stopwatch'
+    _G['modui_element12Text']:SetText'Cooldown Count'
 
     menu.elementscrollframe.content = menu.inner
 	menu.elementscrollframe:SetScrollChild(menu.inner)
@@ -141,14 +144,14 @@
 
     menu.elements:SetScript('OnClick', function()
         highlight()
-        for _, v in pairs({menu.intro, menu.uilink, menu.description, menu.whisper, menu.gryphon, menu.endcap, menu.chatstamp, menu.chatformat, menu.itemlink, menu.auraformat, menu.tooltip, menu.castbar, menu.horizontal, menu.value, menu.consolidate, menu.ctDMG, menu.ctHEAL, menu.actionlayout, menu.modraid.apology, menu.modraid.text}) do v:Hide() end
+        for _, v in pairs({menu.intro, menu.uilink, menu.description, menu.whisper, menu.gryphon, menu.endcap, menu.chatstamp, menu.chatformat, menu.chateditbox, menu.itemlink, menu.auraformat, menu.targetaura, menu.tooltip, menu.tooltip.cursor, menu.castbar, menu.castbar.target, menu.horizontal, menu.value, menu.consolidate, menu.white, menu.ctDMG, menu.ctHEAL, menu.actionlayout, menu.keydown, menu.keydown.selfcast, menu.modraid.apology, menu.modraid.text}) do v:Hide() end
         for i = 1, 60 do _G['modui_actionbutton'..i]:Hide() end
         menu.elements.title:Show()
         menu.elementcontainer:Show()
         menu.elements.description:Show()
         menu.allelement:Show()
         for i = 1,  2 do _G['modui_optionsaurabutton'..i]:Hide() end
-        for i = 1, 11 do _G['modui_element'..i]:Show() end
+        for i = 1, 12 do _G['modui_element'..i]:Show() end
         menu.reload:SetPoint('TOP', menu, 0, -340)
         if menu.reload:IsShown() then menu:SetHeight(385) else menu:SetHeight(315) end
     end)
@@ -186,19 +189,32 @@
     _G['modui_element11']:SetScript('OnClick', function()
         if this:GetChecked() == 1 then SetCVar('modStopWatch', 1) else SetCVar('modStopWatch', 0) end
     end)
+    _G['modui_element12']:SetScript('OnClick', function()
+        if this:GetChecked() == 1 then
+            _G['modui_vars'].db['modCDCount'] = 1
+        else
+            _G['modui_vars'].db['modCDCount'] = 0
+        end
+    end)
 
     menu.allelement:SetScript('OnClick', function()
         if this:GetChecked() == 1 then
-            SetCVar('modOneBag',     1) SetCVar('modBattleMap', 1) SetCVar('modWorldMap',    1)
-            SetCVar('modDungeonMap', 1) SetCVar('modNameplate', 1) SetCVar('modQuestWatch',  1)
-            SetCVar('modTooltip',    1) SetCVar('modUnitFrame', 1) SetCVar('modPVPTimers',   1)
-            SetCVar('modPVPRank',    1) SetCVar('modStopWatch', 1) SetCVar('modAllElements', 1)
+            SetCVar('modOneBag',     1) SetCVar('modBattleMap', 1) SetCVar('modWorldMap',      1)
+            SetCVar('modDungeonMap', 1) SetCVar('modNameplate', 1) SetCVar('modQuestWatch',    1)
+            SetCVar('modTooltip',    1) SetCVar('modUnitFrame', 1) SetCVar('modPVPTimers',     1)
+            SetCVar('modPVPRank',    1) SetCVar('modStopWatch', 1)
+            _G['modui_vars'].db['modCDCount'] = 1
+            MODUI_VARS['modCDCount'] = 1
+            SetCVar('modAllElements', 1)
             check(false) reload()
         else
-            SetCVar('modOneBag',     0) SetCVar('modBattleMap', 0) SetCVar('modWorldMap',    0)
-            SetCVar('modDungeonMap', 0) SetCVar('modNameplate', 0) SetCVar('modQuestWatch',  0)
-            SetCVar('modTooltip',    0) SetCVar('modUnitFrame', 0) SetCVar('modPVPTimers',   0)
-            SetCVar('modPVPRank',    0) SetCVar('modStopWatch', 0) SetCVar('modAllElements', 0)
+            SetCVar('modOneBag',     0) SetCVar('modBattleMap', 0) SetCVar('modWorldMap',      0)
+            SetCVar('modDungeonMap', 0) SetCVar('modNameplate', 0) SetCVar('modQuestWatch',    0)
+            SetCVar('modTooltip',    0) SetCVar('modUnitFrame', 0) SetCVar('modPVPTimers',     0)
+            SetCVar('modPVPRank',    0) SetCVar('modStopWatch', 0)
+            _G['modui_vars'].db['modCDCount'] = 0
+            MODUI_VARS['modCDCount'] = 0
+            SetCVar('modAllElements', 0)
             check(false) reload()
         end
     end)

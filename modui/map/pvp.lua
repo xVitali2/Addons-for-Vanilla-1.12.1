@@ -85,7 +85,7 @@
         city(map)
     end
 
-    local logic = function(name, s)
+    local logic = function(name, blip, s)
         local alliancePick  = 'The Alliance (.+) was picked up by (.+)!'
         local allianceDrop  = 'The Alliance (.+) was dropped by (.+)!'
         local allianceCap   = 'captured the Alliance (.+)!'
@@ -97,6 +97,7 @@
             local t     = gsub(s, alliancePick, '%2')
             local sub   = gsub(s, '+ (.+) Flag — (.+).', '%2')
             if name and (string.find(name, t) or string.find(name, sub)) then
+                if not blip.fc then blip.fc = name end
                 return 1
             end
         elseif
@@ -105,6 +106,7 @@
             local t     = gsub(s, hordePick, '%2')
             local sub   = gsub(s, '+ (.+) Flag — (.+).', '%2')
             if name and (string.find(name, t) or string.find(name, sub)) then
+                if not blip.fc then blip.fc = name end
                 return 1
             end
         elseif
@@ -115,6 +117,7 @@
             local c    = gsub(s, hordeCap,  '%1')
             local sub  = gsub(s, '- Horde Flag — (.+).', '%1')
             if name and (string.find(name, d) or string.find(name, c) or string.find(name, sub)) then
+                if blip.fc then blip.fc = nil end
                 return 0
             end
         elseif
@@ -125,6 +128,7 @@
             local c    = gsub(s, allianceCap,  '%1')
             local sub  = gsub(s, '- Alliance Flag — (.+).', '%1')
             if name and (string.find(name, d) or string.find(name, c) or string.find(name, sub)) then
+                if blip.fc then blip.fc = nil end
                 return 0
             end
         end
@@ -158,7 +162,7 @@
                 local colour = class and RAID_CLASS_COLORS[string.upper(class)] or {r = 1, g = .8, b = 0}
                 local x = UnitFactionGroup'player' == 'Alliance' and 'Horde' or 'Alliance' -- reversey
                 if s ~= nil then
-                    local fc = logic(name, s)
+                    local fc = logic(name, blip, s)
                     if fc == 1 then
                         icon:SetTexture('Interface\\WorldStateFrame\\'..x..'Flag')
                         icon:SetPoint('CENTER', 8, 8)
@@ -169,9 +173,13 @@
                         icon:SetVertexColor(colour.r, colour.g, colour.b)
                     end
                 else
-                    if icon:GetTexture() ~= ('Interface\\WorldStateFrame\\'..x..'Flag') then
+                    if  name ~= blip.fc then
                         icon:SetTexture(string.format([[Interface\AddOns\modui\map\blips\raid]]..'%d', subgroup))
                         icon:SetVertexColor(colour.r, colour.g, colour.b)
+                    else    -- account for blips resetting with a new joinee?
+                        icon:SetTexture('Interface\\WorldStateFrame\\'..x..'Flag')
+                        icon:SetPoint('CENTER', 8, 8)
+                        icon:SetVertexColor(1, 1, 1)
                     end
                 end
             end

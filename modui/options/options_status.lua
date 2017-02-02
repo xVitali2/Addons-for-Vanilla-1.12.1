@@ -7,8 +7,6 @@
     RegisterCVar('modStatus', 1, true)
     RegisterCVar('modBoth', 1, true)
     RegisterCVar('modValue', 1, true)
-    RegisterCVar('modSCTDMG', 0, true)
-    RegisterCVar('modSCTHEAL', 0, true)
 
     local xy = function()
         local hp, hmax = UnitHealth'player', UnitHealthMax'player'
@@ -105,6 +103,15 @@
     menu.consolidate.warning:SetTextColor(1, .2, 0)
     menu.consolidate.warning:SetPoint('TOPLEFT', menu.consolidate, 'BOTTOMRIGHT', -15, -4)
 
+    menu.white = CreateFrame('CheckButton', 'modui_whitetext', menu, 'UICheckButtonTemplate')
+    menu.white:SetHeight(20) menu.white:SetWidth(20)
+    menu.white:SetPoint('TOPLEFT', menu.horizontal, 0, -165)
+    menu.white:Hide()
+    _G[menu.white:GetName()..'Text']:SetJustifyH'LEFT'
+    _G[menu.white:GetName()..'Text']:SetWidth(270)
+    _G[menu.white:GetName()..'Text']:SetPoint('LEFT', menu.white, 'RIGHT', 4, 0)
+    _G[menu.white:GetName()..'Text']:SetText'White Status Text'
+
     menu.status = CreateFrame('Button', 'modui_status', menu, 'UIPanelButtonTemplate')
     menu.status:SetWidth(100) menu.status:SetHeight(20)
     menu.status:SetText'Status Text'
@@ -113,7 +120,7 @@
 
     menu.ctDMG = CreateFrame('CheckButton', 'modui_statusctDMG', menu, 'UICheckButtonTemplate')
     menu.ctDMG:SetHeight(20) menu.ctDMG:SetWidth(20)
-    menu.ctDMG:SetPoint('TOPLEFT', menu, 25, -285)
+    menu.ctDMG:SetPoint('TOPLEFT', menu, 25, -305)
     menu.ctDMG:Hide()
     _G[menu.ctDMG:GetName()..'Text']:SetJustifyH'LEFT'
     _G[menu.ctDMG:GetName()..'Text']:SetWidth(270)
@@ -122,7 +129,7 @@
 
     menu.ctHEAL = CreateFrame('CheckButton', 'modui_statusctHEAL', menu, 'UICheckButtonTemplate')
     menu.ctHEAL:SetHeight(20) menu.ctHEAL:SetWidth(20)
-    menu.ctHEAL:SetPoint('TOPLEFT', menu, 25, -303)
+    menu.ctHEAL:SetPoint('TOPLEFT', menu, 25, -323)
     menu.ctHEAL:Hide()
     _G[menu.ctHEAL:GetName()..'Text']:SetJustifyH'LEFT'
     _G[menu.ctHEAL:GetName()..'Text']:SetWidth(270)
@@ -131,18 +138,18 @@
 
     menu.ctDMG.title = menu.ctDMG:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
     menu.ctDMG.title:SetTextColor(colour.r, colour.g, colour.b)
-    menu.ctDMG.title:SetPoint('TOPLEFT', menu, 30, -270)
+    menu.ctDMG.title:SetPoint('TOPLEFT', menu, 30, -290)
     menu.ctDMG.title:SetText'—Scrolling Combat Text'
 
     menu.status:SetScript('OnClick', function()
         highlight()
-        for _, v in pairs({menu.intro, menu.uilink, menu.description, menu.whisper, menu.gryphon, menu.endcap, menu.chatstamp, menu.chatformat, menu.itemlink, menu.auraformat, menu.tooltip, menu.castbar, menu.elements.title, menu.elements.description, menu.elementcontainer, menu.allelement, menu.actionlayout, menu.modraid.apology, menu.modraid.text}) do v:Hide() end
+        for _, v in pairs({menu.intro, menu.uilink, menu.description, menu.whisper, menu.gryphon, menu.endcap, menu.chatstamp, menu.chatformat, menu.chateditbox, menu.itemlink, menu.auraformat, menu.targetaura, menu.tooltip, menu.tooltip.cursor, menu.castbar, menu.castbar.target, menu.elements.title, menu.elements.description, menu.elementcontainer, menu.allelement, menu.actionlayout, menu.keydown, menu.keydown.selfcast, menu.modraid.apology, menu.modraid.text}) do v:Hide() end
         for i = 1,  2 do _G['modui_optionsaurabutton'..i]:Hide() end
-        for i = 1, 11 do _G['modui_element'..i]:Hide() end
+        for i = 1, 12 do _G['modui_element'..i]:Hide() end
         for i = 1, 60 do _G['modui_actionbutton'..i]:Hide() end
-        for _, v in pairs({menu.horizontal, menu.value, menu.consolidate, menu.ctDMG, menu.ctHEAL}) do v:Show() end
-        menu.reload:SetPoint('TOP', menu, 0, -360)
-        if menu.reload:IsShown() then menu:SetHeight(415) else menu:SetHeight(345) end
+        for _, v in pairs({menu.horizontal, menu.value, menu.consolidate, menu.white, menu.ctDMG, menu.ctHEAL}) do v:Show() end
+        menu.reload:SetPoint('TOP', menu, 0, -380)
+        if menu.reload:IsShown() then menu:SetHeight(435) else menu:SetHeight(365) end
     end)
 
     menu.horizontal:SetScript('OnShow', xy)
@@ -168,19 +175,35 @@
         end
     end)
 
+    menu.white:SetScript('OnClick', function()
+        if this:GetChecked() == 1 then
+            _G['modui_vars'].db['modWhiteStatusText'] = 1
+            MODUI_VARS['modWhiteStatusText'] = 1
+            reload()
+        else
+            _G['modui_vars'].db['modWhiteStatusText'] = 0
+            MODUI_VARS['modWhiteStatusText'] = 0
+            reload()
+        end
+    end)
+
     menu.ctDMG:SetScript('OnClick', function()
         if this:GetChecked() == 1 then
-            SetCVar('modSCTDMG', 1)
+            _G['modui_vars'].db['modSCTDMG'] = 1
+            MODUI_VARS['modSCTDMG'] = 1
         else
-            SetCVar('modSCTDMG', 0)
+            _G['modui_vars'].db['modSCTDMG'] = 0
+            MODUI_VARS['modSCTDMG'] = 0
         end
     end)
 
     menu.ctHEAL:SetScript('OnClick', function()
         if this:GetChecked() == 1 then
-            SetCVar('modSCTHEAL', 1)
+            _G['modui_vars'].db['modSCTHEAL'] = 1
+            MODUI_VARS['modSCTHEAL'] = 1
         else
-            SetCVar('modSCTHEAL', 0)
+            _G['modui_vars'].db['modSCTHEAL'] = 0
+            MODUI_VARS['modSCTHEAL'] = 0
         end
     end)
 
@@ -200,6 +223,16 @@
         else
             menu.consolidate:SetChecked(false)
             OptionsFrame_EnableSlider(menu.value)
+        end
+        cv = _G['modui_vars'].db['modSCTDMG']
+        if cv == 1 then menu.ctDMG:SetChecked(true) else menu.ctDMG:SetChecked(false) end
+        cv = _G['modui_vars'].db['modSCTHEAL']
+        if cv == 1 then menu.ctHEAL:SetChecked(true) else menu.ctHEAL:SetChecked(false) end
+        cv = _G['modui_vars'].db['modWhiteStatusText']
+        if  cv == 1 then
+            menu.white:SetChecked(true)
+        else
+            menu.white:SetChecked(false)
         end
     end)
 

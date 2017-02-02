@@ -77,7 +77,7 @@
         elseif event == 'PLAYER_COMBO_POINTS' then
         	msgType = 'COMBO_POINTS'
         elseif event == 'CHAT_MSG_SPELL_SELF_DAMAGE' then
-            local cv = tonumber(GetCVar'modSCTDMG')
+            local cv = _G['modui_vars'].db['modSCTDMG']
             if cv == 1 then
                 local h = 'Your (.+) hits (.+) for (.+)'  local hit  = string.find(arg1, h)
                 local c = 'Your (.+) crits (.+) for (.+)' local crit = string.find(arg1, c)
@@ -90,7 +90,7 @@
                 end
             end
         elseif event == 'CHAT_MSG_SPELL_SELF_BUFF' then
-            local cv = tonumber(GetCVar'modSCTHEAL')
+            local cv = _G['modui_vars'].db['modSCTHEAL']
             if cv == 1 then
                 local h    = 'Your (.+) heals (.+) for (.+).'            local heal = string.find(arg1, h)
                 local c    = 'Your (.+) critically heals (.+) for (.+).' local crit = string.find(arg1, c)

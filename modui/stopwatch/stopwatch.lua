@@ -8,6 +8,8 @@
 	local orig = {}
 	local pad  = function(n) return strlen(n) == 2 and n or '0'..n end
 
+	RegisterCVar('modClock', 0, true)
+
 	local sw = CreateFrame('Frame', 'modstopwatch', UIParent)
 	sw:EnableMouse(true) sw:SetMovable(true)
 	sw:SetWidth(132) sw:SetHeight(24)
@@ -83,8 +85,10 @@
 		if IsShiftKeyDown() then
 			if  TwentyFourHourTime then
 				TwentyFourHourTime = false
+				SetCVar('modClock', 0)
 			else
 				TwentyFourHourTime = true
+				SetCVar('modClock', 1)
 			end
 		else
 			if tonumber(GetCVar'modStopWatch') == 1 then
@@ -146,18 +150,16 @@
 		-- TODO: format local time & offer option between
 		-- local time = time()
 		-- print(time)
-		if  TwentyFourHourTime then
-			GameTooltip:SetText(format(TEXT(TIME_TWENTYFOURHOURS), h, m)..' — Server Time')
+		if  tonumber(GetCVar'modClock') == 1 or TwentyFourHourTime then
+			GameTooltip:AddDoubleLine(date'%H:%M', '|cffffffffLocal Time|r')
+			GameTooltip:AddDoubleLine(format(TEXT(TIME_TWENTYFOURHOURS), h, m), '|cffffffffServer Time|r')
 		else
 			local pm = 0
 			if h >= 12 then pm = 1 end
 			if h >  12 then h = h - 12 end
 			if h ==  0 then h = 12 end
-			if pm == 0 then
-				GameTooltip:SetText(format(TEXT(TIME_TWELVEHOURAM), h, m)..' — Server Time')
-			else
-				GameTooltip:SetText(format(TEXT(TIME_TWELVEHOURPM), h, m)..' — Server Time')
-			end
+			GameTooltip:AddDoubleLine(date'%I:%M %p', '|cffffffffLocal Time|r')
+			GameTooltip:AddDoubleLine(format(TEXT(pm == 0 and TIME_TWELVEHOURAM or TIME_TWELVEHOURPM), h, m), '|cffffffffServer Time|r')
 		end
 		if  tonumber(GetCVar'modStopWatch') == 1 then
 			GameTooltip:AddLine('Click to Toggle Stopwatch.', .3, 1, .6)

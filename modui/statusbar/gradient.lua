@@ -23,7 +23,11 @@
             f:SetStatusBarColor(r, g, b)
         elseif
             f:GetObjectType() == 'FontString' then
-            f:SetTextColor(r*1.5, g*1.5, b*1.5)
+            if  _G['modui_vars'].db and _G['modui_vars'].db['modWhiteStatusText'] == 0 then
+                f:SetTextColor(r*1.5, g*1.5, b*1.5)
+            else
+                f:SetTextColor(1, 1, 1)
+            end
         else
             f:SetVertexColor(r, g, b)
         end

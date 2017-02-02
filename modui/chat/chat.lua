@@ -95,8 +95,9 @@
          hideFrameForever(_G['ChatFrame'..i..'UpButton'])
          hideFrameForever(_G['ChatFrame'..i..'DownButton'])
 
-         _G['ChatFrame'..i..'BottomButton']:SetPoint('BOTTOMLEFT', -35, 22)
-         _G['ChatFrame'..i..'BottomButton']:Hide()
+        _G['ChatFrame'..i..'BottomButton']:ClearAllPoints()
+        _G['ChatFrame'..i..'BottomButton']:SetPoint('BOTTOMLEFT', -35, 22)
+        _G['ChatFrame'..i..'BottomButton']:Hide()
 
          local f = CreateFrame('Frame', nil, chat)
          f:EnableMouse(false)
@@ -110,22 +111,35 @@
          _G['ChatFrame'..i..'BottomButton']:GetNormalTexture():SetVertexColor(.5, .5, .5)
      end
 
+     function FCF_SetButtonSide(f, side)
+        local bu = _G[f:GetName()..'BottomButton']
+        bu:ClearAllPoints()
+        bu:SetPoint('BOTTOMLEFT', -35, 22)
+     end
+
      ChatFrameMenuButton:GetNormalTexture():SetVertexColor(.5, .5, .5)
      ChatFrameMenuButton:ClearAllPoints() ChatFrameMenuButton:SetPoint('BOTTOMRIGHT', ChatFrame1, 'BOTTOMLEFT', -3, -10)
      ChatMenu:ClearAllPoints() ChatMenu:SetPoint('BOTTOM', UIParent, 0, 100)
 
-     local x = ({ChatFrameEditBox:GetRegions()})
-     x[6]:SetAlpha(0) x[7]:SetAlpha(0) x[8]:SetAlpha(0)
-     ChatFrameEditBox:ClearAllPoints()
-     ChatFrameEditBox:SetPoint('BOTTOMLEFT', ChatFrame1, 'TOPLEFT', -2, 18)
-     ChatFrameEditBox:SetPoint('BOTTOMRIGHT', ChatFrame1, 'TOPRIGHT',  2, 18)
-     ChatFrameEditBox:SetAltArrowKeyMode(nil)
+    local addEditBox = function()
+        local x = ({ChatFrameEditBox:GetRegions()})
+        x[6]:SetAlpha(0) x[7]:SetAlpha(0) x[8]:SetAlpha(0)
+        ChatFrameEditBox:SetAltArrowKeyMode(nil)
+        ChatFrameEditBox:ClearAllPoints()
+        if _G['modui_vars'].db['modEditBoxOrientation'] == 1 then
+            ChatFrameEditBox:SetPoint('BOTTOMLEFT', ChatFrame1, 'TOPLEFT', -2, 18)
+            ChatFrameEditBox:SetPoint('BOTTOMRIGHT', ChatFrame1, 'TOPRIGHT',  2, 18)
+        else
+            ChatFrameEditBox:SetPoint('TOPLEFT', ChatFrame1, 'BOTTOMLEFT', -2, -18)
+            ChatFrameEditBox:SetPoint('TOPRIGHT', ChatFrame1, 'BOTTOMRIGHT',  2, -18)
+        end
+    end
 
     function ChatFrame_OnUpdate(elapsed)
         orig.ChatFrame_OnUpdate(elapsed)
         local bu = _G[this:GetName()..'BottomButton']
         local fl = _G[this:GetName()..'BottomButtonFlash']
-         if this:AtBottom() then bu:Hide()
+         if  this:AtBottom() then bu:Hide()
          else
              bu:Show()
              bu:SetAlpha(1)
@@ -149,5 +163,9 @@
      ChatTypeInfo.BATTLEGROUND.sticky = 1
      ChatTypeInfo.WHISPER.sticky = 1
      ChatTypeInfo.CHANNEL.sticky = 1
+
+     local e = CreateFrame'Frame'
+     e:RegisterEvent'PLAYER_LOGIN'
+     e:SetScript('OnEvent', addEditBox)
 
      --

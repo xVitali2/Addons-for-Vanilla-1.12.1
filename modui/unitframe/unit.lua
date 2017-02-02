@@ -4,19 +4,14 @@
 
     local HealComm       = AceLibrary'HealComm-1.0'  -- healcomm
     local TEXTURE        = [[Interface\AddOns\modui\statusbar\texture\sb.tga]]
-    local NAME_TEXTURE   = [[Interface\AddOns\modui\statusbar\texture\name.tga]]
+    local NAME_TEXTURE   = [[Interface\AddOns\modui\statusbar\texture\name2.tga]]
     local BACKDROP       = {bgFile = [[Interface\Tooltips\UI-Tooltip-Background]]}
     local _, class       = UnitClass'player'
     local colour         = RAID_CLASS_COLORS[class]
     local diffThreshold  = .1
     local orig           = {}
 
-    local anchor = function(num)
-    	if num > 5 then return 6 end
-    	return 1
-    end
-
-    orig.TargetDebuffButton_Update         = TargetDebuffButton_Update
+    orig.TargetFrame_CheckClassification   = TargetFrame_CheckClassification
     orig.PartyMemberFrame_UpdateMember     = PartyMemberFrame_UpdateMember
     orig.TargetofTarget_Update             = TargetofTarget_Update
     orig.UnitFrameHealthBar_OnValueChanged = UnitFrameHealthBar_OnValueChanged
@@ -48,9 +43,26 @@
     PlayerPVPIcon:ClearAllPoints()
     PlayerPVPIcon:SetPoint('CENTER', PlayerFrame, 'LEFT', 60, 16)
 
+    TargetFrame.Elite = TargetFrameTextureFrame:CreateTexture(nil, 'BORDER')
+    TargetFrame.Elite:SetTexture[[Interface\AddOns\modui\unitframe\UI-TargetingFrame-Elite]]
+    TargetFrame.Elite:SetWidth(128)
+    TargetFrame.Elite:SetHeight(128)
+    TargetFrame.Elite:SetPoint('TOPRIGHT', TargetFrame)
+    TargetFrame.Elite:Hide()
+
+    TargetFrame.Rare = TargetFrameTextureFrame:CreateTexture(nil, 'BORDER')
+    TargetFrame.Rare:SetTexture[[Interface\AddOns\modui\unitframe\UI-TargetingFrame-Rare-Elite]]
+    TargetFrame.Rare:SetWidth(128)
+    TargetFrame.Rare:SetHeight(128)
+    TargetFrame.Rare:SetPoint('TOPRIGHT', TargetFrame)
+    TargetFrame.Rare:Hide()
+
+    TargetRaidTargetIcon:SetDrawLayer('OVERLAY', 7)
+
     TargetPVPIcon:SetHeight(48) TargetPVPIcon:SetWidth(48)
     TargetPVPIcon:ClearAllPoints()
     TargetPVPIcon:SetPoint('CENTER', TargetFrame, 'RIGHT', -42, 16)
+    TargetPVPIcon:SetDrawLayer('OVERLAY', 7)
 
     TargetFrameNameBackground:SetTexture(NAME_TEXTURE)
     TargetFrameNameBackground:SetDrawLayer'BORDER'
@@ -77,6 +89,17 @@
     TargetofTargetHealthBar:SetStatusBarTexture(TEXTURE)
 
     TargetofTargetManaBar:SetStatusBarTexture(TEXTURE)
+
+    TargetofTargetName:SetHeight(30)
+    TargetofTargetName:ClearAllPoints()
+    TargetofTargetName:SetPoint('TOPLEFT', TargetofTargetTextureFrame, 'BOTTOMLEFT', 46, 16)
+
+    TargetofTargetPortrait:SetHeight(37)    -- fix the ugly offset on tot portraits
+    TargetofTargetPortrait:SetWidth(37)
+    TargetofTargetPortrait:SetPoint('TOPLEFT', 5, -5)
+
+    PartyMemberFrame1:ClearAllPoints()
+    PartyMemberFrame1:SetPoint('TOPLEFT', 10, -145)
 
     for i = 6, 12 do
         local f = CreateFrame('Button', 'TargetFrameBuff'..i, TargetFrame, 'TargetBuffButtonTemplate')
@@ -117,62 +140,19 @@
         end
     end
 
-
     function TargetFrame_OnShow() end           -- REMOVE TARGETING SOUND
     function TargetFrame_OnHide() CloseDropDownMenus() end
 
-    local mod_TargetBuffs = function()          -- TARGET AURAS (up to 16)
-        local b, d = 0, 0
-
-        for i = 1, 16 do
-            local bu = _G['TargetFrameBuff'..i]
-            local ic = UnitBuff('target', i)
-            if bu and ic then
-                _G['TargetFrameBuff'..i..'Icon']:SetTexture(ic)
-                bu:Show()
-                bu.id = i
-                b = i
-            else
-                if bu then bu:Hide() end
-            end
+    function TargetFrame_CheckClassification()
+        local c = UnitClassification'target'
+        TargetFrameTexture:SetTexture[[Interface\TargetingFrame\UI-TargetingFrame]]
+        for _, v in pairs({TargetFrame.Elite, TargetFrame.Rare}) do
+            v:Hide()
         end
-
-        for i = 1, 16 do
-            local ic, stack = UnitDebuff('target', i)
-            local bu = _G['TargetFrameDebuff'..i]
-            if bu and ic then
-                local count = _G['TargetFrameDebuff'..i..'Count']
-                if stack > 1 then
-                    count:SetText(stack)
-                    count:Show()
-                else
-                    count:Hide()
-                end
-                _G['TargetFrameDebuff'..i..'Icon']:SetTexture(ic)
-                bu:Show()
-                bu.id = i
-                d = i
-            else
-                if bu then bu:Hide() end
-            end
-        end
-
-        for i = 6, 12 do
-            local bu = _G['TargetFrameBuff'..i]
-            local x, y = _G['TargetFrameBuff1']:GetWidth(), _G['TargetFrameBuff1']:GetHeight()
-            bu:SetWidth(x) bu:SetHeight(y)
-        end
-
-        if UnitIsFriend('player', 'target') then
-            TargetFrameBuff1:ClearAllPoints()
-            TargetFrameBuff1:SetPoint('TOPLEFT', 'TargetFrame', 'BOTTOMLEFT', 5, 32)
-            TargetFrameDebuff1:ClearAllPoints()
-            TargetFrameDebuff1:SetPoint('TOPLEFT', _G['TargetFrameBuff'..anchor(b)], 'BOTTOMLEFT', 0, -2)
-        else
-            TargetFrameBuff1:ClearAllPoints()
-            TargetFrameBuff1:SetPoint('TOPLEFT', _G['TargetFrameDebuff'..anchor(d)], 'BOTTOMLEFT', 0, -2)
-            TargetFrameDebuff1:ClearAllPoints()
-            TargetFrameDebuff1:SetPoint('TOPLEFT', TargetFrame, 'BOTTOMLEFT', 5, 32)
+        if  c == 'worldboss' or c == 'rareelite' or c == 'elite' then
+            TargetFrame.Elite:Show()
+        elseif c == 'rare' then
+            TargetFrame.Rare:Show()
         end
     end
 
@@ -195,7 +175,6 @@
             end
         end
     end
-
 
     local t = CreateFrame'Frame'
     t:RegisterEvent'PLAYER_TARGET_CHANGED' t:RegisterEvent'PARTY_MEMBERS_CHANGED'
@@ -305,12 +284,16 @@
                     end
     			end
                 if  sb:GetName() == 'PlayerFrameManaBar' or sb:GetName() == 'TargetFrameManaBar' then
-                    if class == 'ROGUE' then
-                        string:SetTextColor(250/255, 240/255, 200/255)
-                    elseif class == 'WARRIOR' then
-                        string:SetTextColor(250/255, 108/255, 108/255)
+                    if _G['modui_vars'].db['modWhiteStatusText'] == 0 then
+                        if class == 'ROGUE' or (class == 'DRUID' and pp == 3) then
+                            string:SetTextColor(250/255, 240/255, 200/255)
+                        elseif class == 'WARRIOR' or (class == 'DRUID' and pp == 1) then
+                            string:SetTextColor(250/255, 108/255, 108/255)
+                        else
+                            string:SetTextColor(.6, .65, 1)
+                        end
                     else
-                        string:SetTextColor(.6, .65, 1)
+                        string:SetTextColor(1, 1, 1)
                     end
                 end
             end
@@ -326,18 +309,6 @@
         or (arg1 == 'MODSTATUS_BAR_CONSOLIDATE' and arg2 ~= cv3) then
             TextStatusBar_UpdateTextString() ReloadUI()
         end
-    end)
-
-    TargetFrame:SetScript('OnEnter', function()
-        UnitFrame_OnEnter()
-        function TargetDebuffButton_Update() mod_TargetBuffs() end
-        TargetDebuffButton_Update()
-    end)
-    TargetFrame:SetScript('OnLeave', function()
-        UnitFrame_OnLeave()
-        function TargetDebuffButton_Update() orig.TargetDebuffButton_Update() end
-        TargetDebuffButton_Update()
-        for i = 6, 12 do _G['TargetFrameBuff'..i]:Hide() end
     end)
 
     TargetFrameManaBar:RegisterEvent'PLAYER_DEAD'

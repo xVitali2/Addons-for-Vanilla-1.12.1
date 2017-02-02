@@ -6,7 +6,6 @@
     local sb = [[Interface\AddOns\modui\statusbar\texture\sb.tga]]
     local bg = {bgFile = [[Interface\Tooltips\UI-Tooltip-Background]],}
     local f  = CreateFrame'Frame'
-    local x  = UnitFactionGroup'player' == 'Alliance' and 'Horde' or 'Alliance'
     local xx = 4
     local bu = {}
     local a_offset, y_offset = 0, 0
@@ -286,168 +285,175 @@
         for i = 1, 40 do _G['modraid'..i].flag:Hide() end
     end
 
-    local initDropDown = function(level)
-		local i = {}
-        i.text = 'Msrk as Tank'
-        i.func = function() print'atank' end
-        UIDropDownMenu_AddButton(i)
-    end
-
-    for i = 1, 8 do
-        local header = CreateFrame('Button', 'modraid_grp'..i, UIParent)
-        header:SetWidth(32) header:SetHeight(12)
-        header:SetMovable(true) header:SetUserPlaced(true)
-        header:RegisterForDrag'LeftButton' header:EnableMouse(true)
-        header:Hide()
-
-        header.text = header:CreateFontString(nil, 'OVERLAY', 'GameFontNormalSmall')
-        header.text:SetPoint('CENTER', header)
-        header.text:SetJustifyH'CENTER'
-        header.text:SetText'group'
-
-        if i == 1 then
-            if left2right then
-                header:SetPoint('TOPLEFT', Minimap, 'BOTTOMLEFT', -138, -50)
-            else
-                header:SetPoint('TOPRIGHT', Minimap, 'BOTTOMRIGHT', -53, -50)
-            end
-        elseif i == (xx + 1) then
-            header:SetPoint('TOPLEFT',  _G['modraid_grp'..(i - xx)], 'BOTTOMLEFT', 0, -180)
+    local ToggleTank = function(unit)
+        if  this.tank:IsShown() then
+            this.tank:Hide()
         else
-            -- changed: might be an issue w/ logic?
-            header:SetPoint(left2right and 'LEFT' or 'RIGHT', _G['modraid_grp'..(i - 1)], left2right and 'RIGHT' or 'LEFT', showdebuffs and (left2right and 44 or -44) or (left2right and 32 or -32), 0)
+            this.tank:Show()
         end
-
-        header:SetScript('OnDragStart', function() this:StartMoving() end)
-        header:SetScript('OnDragStop',  function() this:StopMovingOrSizing() end)
     end
 
-    for i = 1, 40 do
-        bu[i] = CreateFrame('Button', 'modraid'..i, UIParent)
-        bu[i]:RegisterForClicks'RightButtonUp'
-        bu[i]:SetWidth(53) bu[i]:SetHeight(24)
-        bu[i]:SetBackdrop(bg)
-        bu[i]:SetBackdropColor(0, 0, 0, 1)
-        bu[i]:SetFrameLevel(0)
-        bu[i]:Hide()
+    local CreateUnits = function()
+        for i = 1, 8 do
+            local header = CreateFrame('Button', 'modraid_grp'..i, UIParent)
+            header:SetWidth(32) header:SetHeight(12)
+            header:SetMovable(true) header:SetUserPlaced(true)
+            header:RegisterForDrag'LeftButton' header:EnableMouse(true)
+            header:Hide()
 
-        modSkin(bu[i], 17.5)
-        modSkinPadding(bu[i], 2)
-        modSkinColor(bu[i], .2, .2, .2)
+            header.text = header:CreateFontString(nil, 'OVERLAY', 'GameFontNormalSmall')
+            header.text:SetPoint('CENTER', header)
+            header.text:SetJustifyH'CENTER'
+            header.text:SetText'group'
 
-        bu[i].hp = CreateFrame('StatusBar', nil, bu[i])
-        bu[i].hp:SetWidth(50) bu[i].hp:SetHeight(16)
-        bu[i].hp:SetFrameLevel(0)
-        bu[i].hp:SetMinMaxValues(0, 100)
-        bu[i].hp:SetValue(100)
-        bu[i].hp:SetStatusBarTexture(sb)
-        bu[i].hp:SetStatusBarColor(0, 1, 0)
-        bu[i].hp:SetPoint('TOP', bu[i])
-
-        bu[i].mana = CreateFrame('StatusBar', nil, bu[i])
-        bu[i].mana:SetWidth(50) bu[i].mana:SetHeight(5)
-        bu[i].mana:SetFrameLevel(0)
-        bu[i].mana:SetMinMaxValues(0, 100)
-        bu[i].mana:SetValue(100)
-        bu[i].mana:SetStatusBarTexture(sb)
-        bu[i].mana:SetPoint('TOP', bu[i].hp, 'BOTTOM', 0, -1)
-
-        bu[i].name = bu[i]:CreateFontString(nil, 'OVERLAY', 'GameFontNormalSmall')
-        bu[i].name:SetPoint('TOP', bu[i], 0, -3)
-        bu[i].name:SetJustifyH'CENTER'
-
-        bu[i].heal = CreateFrame('StatusBar', nil, bu[i].hp)
-        bu[i].heal:SetWidth(1) bu[i].heal:SetHeight(16)
-        bu[i].heal:SetFrameLevel(0)
-        bu[i].heal:SetMinMaxValues(0, 1)
-        bu[i].heal:SetValue(1)
-        bu[i].heal:SetStatusBarTexture(sb)
-        bu[i].heal:SetStatusBarColor(0, 1, 0, .7)
-
-        bu[i].healv = bu[i]:CreateFontString(nil, 'OVERLAY', 'GameFontNormalSmall')
-        bu[i].healv:SetTextColor(0, .6, 0, .6)
-        bu[i].healv:SetPoint('CENTER', bu[i], 0, -4)
-
-        bu[i].ric = bu[i]:CreateTexture(nil, 'OVERLAY')
-        bu[i].ric:SetWidth(17) bu[i].ric:SetHeight(17)
-        bu[i].ric:SetTexture[[Interface\TargetingFrame\UI-RaidTargetingIcons]]
-        bu[i].ric:SetPoint('CENTER', bu[i])
-
-        bu[i].rez = bu[i]:CreateTexture(nil, 'OVERLAY', nil, 7)
-        bu[i].rez:SetWidth(24) bu[i].rez:SetHeight(24)
-        bu[i].rez:SetTexture[[Interface\AddOns\modui\raid\texture\Raid-Icon-Rez.tga]]
-        bu[i].rez:SetPoint('CENTER', bu[i])
-        bu[i].rez:Hide()
-
-        bu[i].flag = bu[i]:CreateTexture(nil, 'OVERLAY', nil, 7)
-        bu[i].flag:SetWidth(24) bu[i].flag:SetHeight(24)
-        bu[i].flag:SetTexture('Interface\\WorldStateFrame\\'..x..'Flag')
-        bu[i].flag:SetPoint('CENTER', bu[i])
-        bu[i].flag:Hide()
-
-        bu[i].aura = CreateFrame('Button', nil, bu[i])
-        bu[i].aura:SetWidth(19) bu[i].aura:SetHeight(19)
-        bu[i].aura:SetPoint('CENTER', bu[i], 'BOTTOM', 0, 6)
-        bu[i].aura:SetFrameLevel(2)
-        bu[i].aura:EnableMouse(false)
-        bu[i].aura:Hide()
-
-        bu[i].aura.icon = bu[i].aura:CreateTexture(nil, 'BACKGROUND', 0, -7)
-        bu[i].aura.icon:SetAllPoints()
-        bu[i].aura.icon:SetAlpha(.7)
-
-        bu[i].dropdown = CreateFrame('Button', 'modraid'..i..'DropDown', bu[i], 'UIDropDownMenuTemplate')
-        UIDropDownMenu_Initialize(bu[i].dropdown, initDropDown, 'MENU')
-        UIDropDownMenu_SetAnchor(0, 0, bu[i].dropdown, 'TOPLEFT', bu[i], 'TOPRIGHT')
-        UIDropDownMenu_SetWidth(60, bu[i].dropdown)
-        UIDropDownMenu_JustifyText('LEFT', bu[i].dropdown)
-
-        modSkin(bu[i].aura, 12.5)
-        modSkinPadding(bu[i].aura, 2)
-        modSkinColor(bu[i].aura, .2, .2, .2)
-
-        bu[i].debuffs = {}
-
-        for j = 1, 2 do
-            bu[i].debuffs[j] = bu[i]:CreateTexture(nil, 'BACKGROUND')
-            bu[i].debuffs[j]:SetWidth(10) bu[i].debuffs[j]:SetHeight(10)
-            bu[i].debuffs[j]:Hide()
-
-            bu[i].debuffs[j].border = bu[i]:CreateTexture(nil, 'ARTWORK')
-            bu[i].debuffs[j].border:SetWidth(12) bu[i].debuffs[j].border:SetHeight(12)
-            bu[i].debuffs[j].border:SetPoint('CENTER', bu[i].debuffs[j])
-            bu[i].debuffs[j].border:SetTexture[[Interface\Buttons\UI-Debuff-Overlays]]
-            bu[i].debuffs[j].border:SetTexCoord(.296875, .5703125, 0, .515625)
-            bu[i].debuffs[j].border:Hide()
-
-            if j == 1 then
-                bu[i].debuffs[j]:SetPoint('TOPLEFT', bu[i], 'TOPRIGHT', 5, -2)
+            if i == 1 then
+                if left2right then
+                    header:SetPoint('TOPLEFT', Minimap, 'BOTTOMLEFT', -138, -50)
+                else
+                    header:SetPoint('TOPRIGHT', Minimap, 'BOTTOMRIGHT', -53, -50)
+                end
+            elseif i == (xx + 1) then
+                header:SetPoint('TOPLEFT',  _G['modraid_grp'..(i - xx)], 'BOTTOMLEFT', 0, -180)
             else
-                bu[i].debuffs[j]:SetPoint('TOP', bu[i].debuffs[1], 'BOTTOM', 0, -1)
+                -- changed: might be an issue w/ logic?
+                header:SetPoint(left2right and 'LEFT' or 'RIGHT', _G['modraid_grp'..(i - 1)], left2right and 'RIGHT' or 'LEFT', showdebuffs and (left2right and 44 or -44) or (left2right and 32 or -32), 0)
             end
+
+            header:SetScript('OnDragStart', function() this:StartMoving() end)
+            header:SetScript('OnDragStop',  function() this:StopMovingOrSizing() end)
         end
 
-        bu[i]:RegisterEvent'UNIT_AURA'     -- init
-        bu[i]:SetScript('OnEvent',  function() debuffs(arg1) end)
-        --[[bu[i]:SetScript('OnClick',  function()
-            print'pass'
-            print(arg1)
-                if  CursorHasItem() then
-                    DropItemOnUnit(this.unit)
-                elseif SpellIsTargeting() then
-                    SpellTargetUnit(this.unit)
-                else
-                    TargetUnit(this.unit)
-                end
-            if arg1 == 'RightButton' then
-                HideDropDownMenu(1)
-                ToggleDropDownMenu(1, nil, _G['modraid'..i..'DropDown'])
+        for i = 1, 40 do
+            local grid = _G['modui_vars'].db and _G['modui_vars'].db['modGridSize'] or nil
+            bu[i] = CreateFrame('Button', 'modraid'..i, UIParent)
+            bu[i]:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
+            if  grid == 1 then
+                -- TODO: use scaling a la iipui raidframes
+                bu[i]:SetWidth(53) bu[i]:SetHeight(53)
+            else
+                bu[i]:SetWidth(53) bu[i]:SetHeight(24)
             end
-        end)]]
-         bu[i]:SetScript('OnClick',  function() if CursorHasItem() then DropItemOnUnit(this.unit) else TargetUnit(this.unit) end end)
-        bu[i]:SetScript('OnEnter',  function() UnitFrame_OnEnter() GameTooltipStatusBar:Hide() end)
-        bu[i]:SetScript('OnLeave',  UnitFrame_OnLeave)
-        bu[i]:SetScript('OnUpdate', raidupdate)
+            bu[i]:SetBackdrop(bg)
+            bu[i]:SetBackdropColor(0, 0, 0, 1)
+            bu[i]:SetFrameLevel(0)
+            bu[i]:Hide()
+
+            modSkin(bu[i], 17.5)
+            modSkinPadding(bu[i], 2)
+            modSkinColor(bu[i], .2, .2, .2)
+
+            bu[i].hp = CreateFrame('StatusBar', nil, bu[i])
+            bu[i].hp:SetWidth(50) bu[i].hp:SetHeight(grid == 1 and 46 or 16)
+            bu[i].hp:SetFrameLevel(0)
+            bu[i].hp:SetMinMaxValues(0, 100)
+            bu[i].hp:SetValue(100)
+            bu[i].hp:SetStatusBarTexture(sb)
+            bu[i].hp:SetStatusBarColor(0, 1, 0)
+            bu[i].hp:SetPoint('TOP', bu[i])
+
+            bu[i].mana = CreateFrame('StatusBar', nil, bu[i])
+            bu[i].mana:SetWidth(50) bu[i].mana:SetHeight(5)
+            bu[i].mana:SetFrameLevel(0)
+            bu[i].mana:SetMinMaxValues(0, 100)
+            bu[i].mana:SetValue(100)
+            bu[i].mana:SetStatusBarTexture(sb)
+            bu[i].mana:SetPoint('TOP', bu[i].hp, 'BOTTOM', 0, -1)
+
+            bu[i].name = bu[i]:CreateFontString(nil, 'OVERLAY', 'GameFontNormalSmall')
+            bu[i].name:SetPoint('TOP', bu[i], 0, -3)
+            bu[i].name:SetJustifyH'CENTER'
+
+            bu[i].heal = CreateFrame('StatusBar', nil, bu[i].hp)
+            bu[i].heal:SetWidth(1) bu[i].heal:SetHeight(16)
+            bu[i].heal:SetFrameLevel(0)
+            bu[i].heal:SetMinMaxValues(0, 1)
+            bu[i].heal:SetValue(1)
+            bu[i].heal:SetStatusBarTexture(sb)
+            bu[i].heal:SetStatusBarColor(0, 1, 0, .7)
+
+            bu[i].healv = bu[i]:CreateFontString(nil, 'OVERLAY', 'GameFontNormalSmall')
+            bu[i].healv:SetTextColor(0, .6, 0, .6)
+            bu[i].healv:SetPoint('CENTER', bu[i], 0, -4)
+
+            bu[i].ric = bu[i]:CreateTexture(nil, 'OVERLAY')
+            bu[i].ric:SetWidth(17) bu[i].ric:SetHeight(17)
+            bu[i].ric:SetTexture[[Interface\TargetingFrame\UI-RaidTargetingIcons]]
+            bu[i].ric:SetPoint('CENTER', bu[i])
+
+            bu[i].rez = bu[i]:CreateTexture(nil, 'OVERLAY', nil, 7)
+            bu[i].rez:SetWidth(24) bu[i].rez:SetHeight(24)
+            bu[i].rez:SetTexture[[Interface\AddOns\modui\raid\texture\Raid-Icon-Rez.tga]]
+            bu[i].rez:SetPoint('CENTER', bu[i])
+            bu[i].rez:Hide()
+
+            bu[i].flag = bu[i]:CreateTexture(nil, 'OVERLAY', nil, 7)
+            bu[i].flag:SetWidth(24) bu[i].flag:SetHeight(24)
+            bu[i].flag:SetTexture('Interface\\WorldStateFrame\\'..(UnitFactionGroup'player' == 'Alliance' and 'Horde' or 'Alliance')..'Flag')
+            bu[i].flag:SetPoint('CENTER', bu[i])
+            bu[i].flag:Hide()
+
+            bu[i].tank = bu[i].hp:CreateTexture(nil, 'OVERLAY', nil, 7)
+            bu[i].tank:SetWidth(16) bu[i].tank:SetHeight(16)
+            bu[i].tank:SetTexture[[Interface\AddOns\modui\raid\texture\Tank.tga]]
+            bu[i].tank:SetPoint('CENTER', bu[i], 'BOTTOM', 0, 1)
+            bu[i].tank:Hide()
+
+            bu[i].aura = CreateFrame('Button', nil, bu[i])
+            bu[i].aura:SetWidth(19) bu[i].aura:SetHeight(19)
+            bu[i].aura:SetPoint('CENTER', bu[i], 'BOTTOM', 0, 6)
+            bu[i].aura:SetFrameLevel(2)
+            bu[i].aura:EnableMouse(false)
+            bu[i].aura:Hide()
+
+            bu[i].aura.icon = bu[i].aura:CreateTexture(nil, 'BACKGROUND', 0, -7)
+            bu[i].aura.icon:SetAllPoints()
+            bu[i].aura.icon:SetAlpha(.7)
+
+            modSkin(bu[i].aura, 12.5)
+            modSkinPadding(bu[i].aura, 2)
+            modSkinColor(bu[i].aura, .2, .2, .2)
+
+            bu[i].debuffs = {}
+
+            for j = 1, 2 do
+                bu[i].debuffs[j] = bu[i]:CreateTexture(nil, 'BACKGROUND')
+                bu[i].debuffs[j]:SetWidth(10) bu[i].debuffs[j]:SetHeight(10)
+                bu[i].debuffs[j]:Hide()
+
+                bu[i].debuffs[j].border = bu[i]:CreateTexture(nil, 'ARTWORK')
+                bu[i].debuffs[j].border:SetWidth(12) bu[i].debuffs[j].border:SetHeight(12)
+                bu[i].debuffs[j].border:SetPoint('CENTER', bu[i].debuffs[j])
+                bu[i].debuffs[j].border:SetTexture[[Interface\Buttons\UI-Debuff-Overlays]]
+                bu[i].debuffs[j].border:SetTexCoord(.296875, .5703125, 0, .515625)
+                bu[i].debuffs[j].border:Hide()
+
+                if j == 1 then
+                    bu[i].debuffs[j]:SetPoint('TOPLEFT', bu[i], 'TOPRIGHT', 5, -2)
+                else
+                    bu[i].debuffs[j]:SetPoint('TOP', bu[i].debuffs[1], 'BOTTOM', 0, -1)
+                end
+            end
+
+            bu[i]:RegisterEvent'UNIT_AURA'     -- init
+            bu[i]:SetScript('OnEvent',  function() debuffs(arg1) end)
+            bu[i]:SetScript('OnClick',  function()
+                if  arg1 == 'RightButton' then
+                    ToggleTank(this.unit)
+                else
+                    if  CursorHasItem() then
+                        DropItemOnUnit(this.unit)
+                    elseif SpellIsTargeting() then
+                        SpellTargetUnit(this.unit)
+                    else
+                        TargetUnit(this.unit)
+                    end
+                end
+            end)
+            --bu[i]:SetScript('OnClick',  function() if CursorHasItem() then DropItemOnUnit(this.unit) else TargetUnit(this.unit) end end)
+            bu[i]:SetScript('OnEnter',  function() UnitFrame_OnEnter() GameTooltipStatusBar:Hide() end)
+            bu[i]:SetScript('OnLeave',  UnitFrame_OnLeave)
+            bu[i]:SetScript('OnUpdate', raidupdate)
+        end
     end
 
     Minimap.raid = CreateFrame('Button', 'modMinimap_RaidSpawn', Minimap)
@@ -494,6 +500,7 @@
             if not MODUI_RAID_XY then
                 MODUI_RAID_XY = {'TOP', Minimap, 'BOTTOM', 2, -70}
             end
+            CreateUnits()
         elseif (event == 'PLAYER_ENTERING_WORLD' and UnitInRaid'player')
         or (event == 'CHAT_MSG_SYSTEM' and string.find(arg1, 'You have joined a raid group')) then
             local t = GetTime() + 60

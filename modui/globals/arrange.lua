@@ -100,37 +100,41 @@
     end
 
     local movetip = function()           -- TOOLTIP
-        if  tonumber(GetCVar'modAction') == 0 then
-            local parent    = _G['modTooltipParent']
-            local type      = GameTooltip:GetAnchorType()
-            local x = {parent:GetPoint()}
-            local i = 1
-            GameTooltip:SetBackdropColor(0, 0, 0)
-            GameTooltip:SetBackdropBorderColor(.1, .1, .1, 1)
-            if  type == 'ANCHOR_NONE' then
-                GameTooltip:ClearAllPoints()
-                GameTooltip:SetPoint('BOTTOMRIGHT', parent)
-                if x[4] == -10 and x[5] == 140 then
-                    parent:ClearAllPoints()
-                    if SHOW_MULTI_ACTIONBAR_3 then
-                        parent:SetPoint('BOTTOMRIGHT', MultiBarLeftButton12, 'TOPRIGHT', 3, 8)
-                    elseif SHOW_MULTI_ACTIONBAR_2 and not SHOW_MULTI_ACTIONBAR_3 then
-                        parent:SetPoint('BOTTOMRIGHT', MultiBarBottomRightButton12, 'TOPRIGHT', 3, 8)
-                    else
-                        parent:SetPoint('BOTTOMRIGHT', MainMenuBarBackpackButton, 'TOPRIGHT', 3, 16)
+        if  tonumber(GetCVar'modTooltip') == 1 then
+            if  tonumber(GetCVar'modAction') == 0 then
+                local parent    = _G['modTooltipParent']
+                local type      = GameTooltip:GetAnchorType()
+                local x = {parent:GetPoint()}
+                local i = 1
+                GameTooltip:SetBackdropColor(0, 0, 0)
+                GameTooltip:SetBackdropBorderColor(.1, .1, .1, 1)
+                if  type == 'ANCHOR_NONE' then
+                    GameTooltip:ClearAllPoints()
+                    GameTooltip:SetPoint('BOTTOMRIGHT', parent)
+                    if x[4] == -10 and x[5] == 140 then
+                        parent:ClearAllPoints()
+                        if SHOW_MULTI_ACTIONBAR_3 then
+                            parent:SetPoint('BOTTOMRIGHT', MultiBarLeftButton12, 'TOPRIGHT', 3, 8)
+                        elseif SHOW_MULTI_ACTIONBAR_2 and not SHOW_MULTI_ACTIONBAR_3 then
+                            parent:SetPoint('BOTTOMRIGHT', MultiBarBottomRightButton12, 'TOPRIGHT', 3, 8)
+                        else
+                            parent:SetPoint('BOTTOMRIGHT', MainMenuBarBackpackButton, 'TOPRIGHT', 3, 16)
+                        end
+                    end
+                    if  tonumber(GetCVar'modShowTooltipCursor') == 1 then
+                        GameTooltip:SetOwner(UIParent, 'ANCHOR_CURSOR')
+                    end
+                    while (ContainerFrame1.bags[i] and tonumber(GetCVar'modOneBag') == 1) do
+                        GameTooltip:SetOwner(UIParent, 'ANCHOR_CURSOR')
+                        i = i + 1
                     end
                 end
-                while ContainerFrame1.bags[i] and tonumber(GetCVar'modOneBag') == 1 do
-                    local f  = _G[ContainerFrame1.bags[i]]
-                    GameTooltip:SetOwner(UIParent, 'ANCHOR_CURSOR')
-                    i = i + 1
+            else
+                local type = GameTooltip:GetAnchorType()
+                if type == 'ANCHOR_NONE' then
+                    GameTooltip:ClearAllPoints()
+                    GameTooltip:SetPoint('BOTTOMRIGHT', UIParent, -CONTAINER_OFFSET_X - 18, CONTAINER_OFFSET_Y)
                 end
-            end
-        else
-            local type = GameTooltip:GetAnchorType()
-            if type == 'ANCHOR_NONE' then
-                GameTooltip:ClearAllPoints()
-                GameTooltip:SetPoint('BOTTOMRIGHT', UIParent, -CONTAINER_OFFSET_X - 18, CONTAINER_OFFSET_Y)
             end
         end
     end
@@ -162,14 +166,6 @@
         KeyRingButton:SetScale(.875)
         KeyRingButton:ClearAllPoints() KeyRingButton:SetPoint('TOPRIGHT', f, -38, -12)
         KeyRingButton:SetFrameLevel(5)
-    end
-
-    local moveDurability = function()
-        if  DurabilityFrame then
-            DurabilityFrame:SetScale(.8)
-            DurabilityFrame:ClearAllPoints()
-            DurabilityFrame:SetPoint('BOTTOMRIGHT', MainMenuBar, 60, 125)
-        end
     end
 
     orig.GameTooltip_SetDefaultAnchor  = GameTooltip_SetDefaultAnchor
@@ -205,7 +201,6 @@
 
     function UIParent_ManageFramePositions()
         orig.UIParent_ManageFramePositions()
-        moveDurability()
         if tonumber(GetCVar'modAction') == 0 then
             movebars()
             moveCB()

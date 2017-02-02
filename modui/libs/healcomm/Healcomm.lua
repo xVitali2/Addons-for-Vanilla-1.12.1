@@ -44,23 +44,22 @@ local function onEvent(unitname)
 	if UnitName("target") == unitname then
 		onHeal("target")
 	end
-	local unitobj = roster:GetUnitObjectFromName(unitname)
-	local unit = unitobj.unitid
-	if not unit then
+	local unitobj = roster:GetUnitObjectFromName(name)
+	if not unitobj or not unitobj.unitid then
 		return
 	end
-	if UnitIsUnit("player", unit) then
+	if UnitIsUnit("player", unitobj.unitid) then
 		onHeal("player")
 	else
 		for i=1, 4 do
-			if UnitIsUnit("party"..i, unit) then
+			if UnitIsUnit("party"..i, unitobj.unitid) then
 				onHeal("party"..i)
 			end
 		end
 	end
 	if UnitInRaid("player") then
 		local header = GROUP.." "..unitobj.subgroup
-		local classheader = UnitClass(unit)
+		local classheader = UnitClass(unitobj.unitid)
 		local frame, unitframe
 		for i=1, NUM_RAID_PULLOUT_FRAMES do
 			frame = getglobal("RaidPullout"..i.."Name")
@@ -68,8 +67,8 @@ local function onEvent(unitname)
 				frame = getglobal("RaidPullout"..i)
 				for z=1, frame.numPulloutButtons do
 					unitframe = getglobal(frame:GetName().."Button"..z)
-					if unitframe.unit == unit then
-						onHeal(unit, getglobal(unitframe:GetName().."HealthBar"))
+					if unitframe.unit == unitobj.unitid then
+						onHeal(unitobj.unitid, getglobal(unitframe:GetName().."HealthBar"))
 					end
 				end
 			end

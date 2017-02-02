@@ -30,9 +30,9 @@
 
     menu.modraid:SetScript('OnClick', function()
         highlight()
-        for _, v in pairs({modui_optionsactionlayout, menu.intro, menu.uilink, menu.description, menu.whisper, menu.gryphon, menu.endcap, menu.chatstamp, menu.chatformat, menu.itemlink, menu.auraformat, menu.tooltip, menu.castbar, menu.horizontal, menu.value, menu.consolidate, menu.ctDMG, menu.ctHEAL, menu.elements.title, menu.elements.description, menu.elementcontainer, menu.allelement, menu.actionlayout}) do v:Hide() end
+        for _, v in pairs({modui_optionsactionlayout, menu.intro, menu.uilink, menu.description, menu.whisper, menu.gryphon, menu.endcap, menu.chatstamp, menu.chatformat, menu.chateditbox, menu.itemlink, menu.auraformat, menu.targetaura, menu.tooltip, menu.tooltip.cursor, menu.castbar, menu.castbar.target, menu.horizontal, menu.value, menu.consolidate, menu.white, menu.ctDMG, menu.ctHEAL, menu.elements.title, menu.elements.description, menu.elementcontainer, menu.allelement, menu.actionlayout, menu.keydown, menu.keydown.selfcast}) do v:Hide() end
         for i = 1,  2 do _G['modui_optionsaurabutton'..i]:Hide() end
-        for i = 1, 11 do _G['modui_element'..i]:Hide() end
+        for i = 1, 12 do _G['modui_element'..i]:Hide() end
         for i = 1, 60 do _G['modui_actionbutton'..i]:Hide() end
         menu.modraid.apology:Show()
         menu.modraid.text:Show()

@@ -33,29 +33,29 @@
     	['Clone']						= {[[Interface\Icons\spell_shadow_blackplague]], 2.5},
     	['Creeping Mold'] 				= {[[Interface\Icons\spell_shadow_creepingplague]], 3},
     	['Cripple'] 					= {[[Interface\Icons\spell_shadow_cripple]], 3},
-    	['Crystal Flash']				= {[[Interface\Icons\spell_shadow_teleport]], 2, true},
-    	['Crystal Gaze'] 				= {[[Interface\Icons\ability_golemthunderclap]], 2,	true},
-    	['Crystalline Slumber'] 		= {[[Interface\Icons\spell_nature_sleep]], 2, true},
+    	['Crystal Flash']				= {[[Interface\Icons\spell_shadow_teleport]], 2},
+    	['Crystal Gaze'] 				= {[[Interface\Icons\ability_golemthunderclap]], 2},
+    	['Crystalline Slumber'] 		= {[[Interface\Icons\spell_nature_sleep]], 2},
     	['Cultivate Packet of Seeds'] 	= {[[Interface\Icons\inv_misc_food_45]], 10},
     	['Curse of Mending']			= {[[Interface\Icons\spell_shadow_antishadow]], 1},
     	['Curse of the Deadwood']		= {[[Interface\Icons\spell_shadow_gathershadows]], 2},
     	['Curse of the Fallen Magram'] 	= {[[Interface\Icons\spell_shadow_unholyfrenzy]], 2},
         ['Dark Sludge']					= {[[Interface\Icons\spell_shadow_creepingplague]], 5},
-    	['Dire Growl'] 					= {[[Interface\Icons\ability_racial_cannibalize]], 1, true},
+    	['Dire Growl'] 					= {[[Interface\Icons\ability_racial_cannibalize]], 1},
     	['Fevered Fatigue'] 			= {[[Interface\Icons\spell_nature_nullifydisease]], 3},
     	['Fire Shield II'] 				= {[[Interface\Icons\spell_fire_immolation]], 1},
     	['Flame Spike']					= {[[Interface\Icons\spell_fire_flamebolt]], 3},
     	['Flamespit']					= {[[Interface\Icons\spell_fire_selfdestruct]], 3},
     	['Freeze Solid']				= {[[Interface\Icons\spell_frost_glacier]], 2.5},
-    	['Furbolg Form'] 				= {[[Interface\Icons\Inv_misc_monsterclaw_04]], 2, true},
-    	['Diseased Slime']				= {[[Interface\Icons\spell_shadow_creepingplague]], 2, true},
+    	['Furbolg Form'] 				= {[[Interface\Icons\Inv_misc_monsterclaw_04]], 2},
+    	['Diseased Slime']				= {[[Interface\Icons\spell_shadow_creepingplague]], 2},
     	['Disenchant']					= {[[Interface\Icons\Inv_Enchant_Disenchant]], 3},
     	['Drink Minor Potion']			= {[[Interface\Icons\Spell_holy_heal]], 3},
     	['Dynamite']					= {[[Interface\Icons\spell_fire_selfdestruct]], 1},
     	['Earthgrab Totem']				= {[[Interface\Icons\spell_nature_naturetouchdecay]], .5},
     	['Exploding Shot']				= {[[Interface\Icons\spell_fire_fireball02]], 1},
     	['Icicle']						= {[[Interface\Icons\spell_frost_frostbolt02]], 1.5},
-    	['Ink Spray']					= {[[Interface\Icons\spell_nature_sleep]], 1, true},
+    	['Ink Spray']					= {[[Interface\Icons\spell_nature_sleep]], 1},
     	['Healing Ward']				= {[[Interface\Icons\spell_holy_layonhands]], 2},
     	['Holy Smite']					= {[[Interface\Icons\Spell_holy_holysmite]], 2.5},
     	['Lizard Bolt']					= {[[Interface\Icons\spell_nature_lightning]], 2},
@@ -351,6 +351,7 @@
         ['Wyvern Sting'] = true,
     }
 
+    --  TODO: DR/decay
     MODUI_BUFFS_TO_TRACK = {
             -- MISC
         ['Invulnerability']        = {[[Interface\Icons\Spell_holy_divineintervention]], 6},
@@ -388,6 +389,7 @@
     	['Power Word: Shield']     = {[[Interface\Icons\Spell_holy_powerwordshield]], 30},
             -- ROGUE
         ['Vanish']                 = {[[Interface\Icons\Ability_vanish]], 10},
+        ['Gouge']                  = {[[Interface\Icons\Ability_gouge]], 5}
             -- WARLOCK
     	-- ['Shadow Trance'] = {'Interface\\Icons\\Spell_shadow_twilight', 10},
     }
@@ -427,6 +429,7 @@
         ['Cheap Shot']               = {[[Interface\Icons\Ability_cheapshot]], 5, 'None'},
         ['Gouge']                    = {[[Interface\Icons\Ability_gouge]], 4, 'None'},
         ['Kidney Shot']              = {[[Interface\Icons\Ability_rogue_kidneyshot]], 6, 'None'},
+        ['Sap']                      = {[[Interface\Icons\Ability_sap]], 11},
             -- WARLOCK
         ['Curse of Exhaustion']      = {[[Interface\Icons\Spell_shadow_grimward]], 12, 'Curse'},
         ['Curse of Tongues']         = {[[Interface\Icons\Spell_shadow_curseoftounges]], 30, 'Curse'},
@@ -440,10 +443,6 @@
     }
 
     MODUI_TOTEMS = {
-        ['Horde Guard']         = {   icon = 'Spell_Nature_GroundingTotem',
-                                    time = 45,
-                                    type = 'Earth'
-                                },
         ['Grounding']         = {   icon = 'Spell_Nature_GroundingTotem',
                                     time = 45,
                                     type = 'Earth'
@@ -457,6 +456,10 @@
                                     type = 'Earth',
                                     -- rank[index] equals hitpoints in this case
                                     rank = {206, 276, 316, 346, 426, 486},
+                                },
+        ['Strength of Earth'] = {   icon = 'Spell_nature_earthbindtotem',
+                                    time = 120,
+                                    type = 'Earth'
                                 },
         ['Stoneskin']         = {   icon = 'Spell_Nature_StoneSkinTotem',
                                     time = 120,

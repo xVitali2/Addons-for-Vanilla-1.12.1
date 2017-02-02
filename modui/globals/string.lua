@@ -16,7 +16,7 @@
         if  (not m) or m == '' then
             DEFAULT_CHAT_FRAME:AddMessage'nil'
         elseif  type(m) == 'table' then
-            DEFAULT_CHAT_FRAME:AddMessage('table: '..GetName(m))
+            DEFAULT_CHAT_FRAME:AddMessage'table'
         else
             DEFAULT_CHAT_FRAME:AddMessage(m)
         end
@@ -36,21 +36,6 @@
     CHAT_FLAG_DND = 'DND — '
     CHAT_FLAG_GM  = 'GM — '
 
-        -- FriendsFrame AFK fix
-    function FriendsList_Update()
-        orig.FriendsList_Update()
-        local offset = FauxScrollFrame_GetOffset(FriendsFrameFriendsScrollFrame)
-	    local index
-        for i = 1, 10 do
-            index = offset + i
-            local name, level, class, area, connected, status = GetFriendInfo(index)
-            if connected then
-                local text = _G['FriendsFrameFriendButton'..i..'ButtonTextNameLocation']
-                if string.find(status, '(.+) —') then status = gsub(status, '(.+) —', '— %1') end
-                text:SetText(format(TEXT(FRIENDS_LIST_TEMPLATE), name, area, status))
-            end
-        end
-    end
 
 
     _G.FOREIGN_SERVER_LABEL = ' —'

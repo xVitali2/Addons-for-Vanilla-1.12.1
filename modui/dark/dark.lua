@@ -361,6 +361,10 @@
             local _, a = SW_IconFrame_Button:GetRegions()
             table.insert(MODUI_COLOURELEMENTS_FOR_UI, a)
         end
+        if IsAddOnLoaded'DPSMate' then                  -- DPSMATE
+            local _, a = DPSMate_MiniMap:GetRegions()
+            table.insert(MODUI_COLOURELEMENTS_FOR_UI, a)
+        end
         if arg1 == 'Blizzard_AuctionUI' then            -- AUCTION
             local _, a, b, c, d, e, f = AuctionFrame:GetRegions()
             for _, v in pairs({a, b, c, d, e, f}) do

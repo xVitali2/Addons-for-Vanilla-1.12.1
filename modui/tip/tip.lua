@@ -5,7 +5,6 @@
     local sb                    = [[Interface\AddOns\modui\statusbar\texture\sb.tga]]
     local GameTooltip           = GameTooltip
     local GameTooltipStatusBar  = GameTooltipStatusBar
-    local cv                    = tonumber(GetCVar'modShowTooltipMover')
     local orig = {}
 
     local statustext = function()
@@ -47,7 +46,7 @@
     GameTooltipStatusBar:SetPoint('LEFT', GameTooltipStatusBar:GetParent(), 10, 0)
     GameTooltipStatusBar:SetPoint('RIGHT', GameTooltipStatusBar:GetParent(), -10, 0)
     GameTooltipStatusBar:SetPoint('TOP', GameTooltipStatusBar:GetParent(), 'BOTTOM', 0, 17)
-    GameTooltipStatusBar:SetFrameLevel(GameTooltipStatusBar:GetFrameLevel() + 2)
+    GameTooltipStatusBar:SetFrameLevel(GameTooltipStatusBar:GetFrameLevel() + 4)
 
     GameTooltipHeaderText:SetFont(STANDARD_TEXT_FONT, 13)
     GameTooltipHeaderText:SetShadowOffset(.7, -.7)
@@ -57,7 +56,7 @@
     GameTooltipText:SetShadowOffset(.7, -.7)
     GameTooltipText:SetShadowColor(0, 0, 0,1)
 
-    if cv == 1 then
+    if _G['modui_tooltip']:GetChecked() == 1 then
         parent:EnableMouse(true)
         parent:SetBackdropColor(0, 1, 0, 1)
         parent:SetScript('OnDragStart', function() this:StartMoving() end)
@@ -140,7 +139,7 @@
                 local t = gsub(n, 'Level (.+) (.+) (.+)', '%2')
                 if t then colour = RAID_CLASS_COLORS[string.upper(t)] end
             end
-            if c ~= 'normal' and c ~= 'minus' then
+            if  c ~= 'normal' and c ~= 'minus' then
                 local t = gsub(n, 'Level (.+) ((.+))', '%1')
                 local classification = c == 'elite' and '(Elite)' or c == 'rare' and '(Rare)' or c == 'rareelite' and '(Rare Elite)' or '(Boss)'
                 GameTooltipTextLeft2:SetText('Level '..t..' '..classification)
@@ -158,6 +157,7 @@
         and (not string.find(GameTooltip:GetParent():GetName(), 'PlayerFrame')
          or  not string.find(GameTooltip:GetParent():GetName(), 'TargetFrame')
          or  not string.find(GameTooltip:GetParent():GetName(), 'PartyFrame')
+         or  not string.find(GameTooltip:GetParent():GetName(), 'PetFrame')
          or  not string.find(GameTooltip:GetParent():GetName(), 'RaidFrame')) then
             GameTooltip:AddLine' '
         else
@@ -197,5 +197,6 @@
             r:UnregisterAllEvents()
         end
     end)
+
 
     --

@@ -17,7 +17,7 @@
 
     local update = function()
         bu.last = bu.last + arg1
-        if bu.last > TOOLTIP_UPDATE_TIME then
+        if bu.last > .05 then
             local i = table.getn(bu.junk)
             if i > 0 then
                 UseContainerItem(bu.junk[i][1], bu.junk[i][2])
@@ -42,6 +42,7 @@
                 end
             end
         end
+        print'|cff4c8d00Selling poor quality or trash items.|r'
         bu:SetScript('OnUpdate', update)
     end)
 

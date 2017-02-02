@@ -171,14 +171,17 @@
        if t == nil then return _AddMessage(f, t, r, g, b, id) end
        local colour = HEX_CLASS_COLORS[class]
        local ts = tonumber(GetCVar'modTimestamp')
-       local d = date'%H.%M'..string.lower(date'%p')
        if tonumber(GetCVar'modItemLink') == 1 then
            t = gsub(t, '|H(.-)|h%[(.-)%]|h', '|H%1|h%2|h')                -- STRIP BRACKETS
        end
        if tonumber(GetCVar'modChatFormat') == 1 then
            t = gsub(t, '%[(%d+)%. .+%].+(|Hplayer.+)', '%1 %2')               -- WORLD CHANNELS '1'
            t = gsub(t, 'Guild Message of the Day:', 'GMOTD —')                -- MOTD
-           if ts == 1 then t = string.format('|cff'..colour..'%s|r %s', d, t) end  -- TIMESTAMP
+           if  ts == 1 then                                                   -- TIMESTAMP
+               local d = date'%I.%M'..string.lower(date'%p')
+               d = gsub(d, '0*(%d+)', '%1', 1)
+               t = string.format('|cff'..colour..'%s|r %s', d, t)
+           end
            for i, v in pairs(chatevents) do                                   -- CHAT EVENTS
                for k, j in pairs(v) do
                    if string.find(t, k)then

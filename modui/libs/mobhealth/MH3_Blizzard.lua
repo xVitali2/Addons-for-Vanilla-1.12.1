@@ -4,11 +4,15 @@
 
     By Neronix of Hellscream EU
         Some code by KamuiGT
-    
+
     Based on code from MobHealth2
 --]]
 
-if not MobHealth3 then error("<MH3 Blizzard Frames> MobHealth3 isn't loaded! Are you SURE you have MobHealth3 installed?"); return; end
+if not MobHealth3 then
+    if not IsAddOnLoaded'ModInfo2' or not IsAddonLoaded'MobHealth3' then
+        error("<MH3 Blizzard Frames> MobHealth3 isn't loaded! Are you SURE you have MobHealth3 installed?") return
+    end
+end
 
 MH3Blizz = AceLibrary("AceAddon-2.0"):new("AceEvent-2.0", "AceConsole-2.0")
 
@@ -99,7 +103,7 @@ function MH3Blizz:OnInitialize()
 				type = "text",
 				usage = "<number>",
 				get = function() return MH3BlizzConfig.healthX end,
-				set = function(val) 
+				set = function(val)
                     MH3BlizzConfig.healthX = tonumber(val)
                     htext:SetPoint("TOP", TargetFrameHealthBar, "BOTTOM", MH3BlizzConfig.healthX-2, MH3BlizzConfig.healthY+22)
                 end,
@@ -110,7 +114,7 @@ function MH3Blizz:OnInitialize()
 				type = "text",
 				usage = "<number>",
 				get = function() return MH3BlizzConfig.healthY end,
-				set = function(val) 
+				set = function(val)
                     MH3BlizzConfig.healthY = tonumber(val)
                     htext:SetPoint("TOP", TargetFrameHealthBar, "BOTTOM", MH3BlizzConfig.healthX-2, MH3BlizzConfig.healthY+22)
                 end,
@@ -121,7 +125,7 @@ function MH3Blizz:OnInitialize()
 				type = "text",
 				usage = "<number>",
 				get = function() return MH3BlizzConfig.powerX end,
-				set = function(val) 
+				set = function(val)
                     MH3BlizzConfig.powerX = tonumber(val)
                     ptext:SetPoint("TOP", TargetFrameManaBar, "BOTTOM", MH3BlizzConfig.powerX-2, MH3BlizzConfig.powerY+22)
                 end,
@@ -132,19 +136,19 @@ function MH3Blizz:OnInitialize()
 				type = "text",
 				usage = "<number>",
 				get = function() return MH3BlizzConfig.powerY end,
-				set = function(val) 
+				set = function(val)
                     MH3BlizzConfig.powerY = tonumber(val)
                     ptext:SetPoint("TOP", TargetFrameManaBar, "BOTTOM", MH3BlizzConfig.powerX-2, MH3BlizzConfig.powerY+22)
                 end,
 			},
 		},
 	})
-    
+
     -- WARNING WARNING WARNING
     -- BIG DIRTY HACK AHEAD
-    
+
     TargetDeadText:SetText()
-    
+
     -- Ok, it wasn't even big, nor was it actually a hack
 end
 
@@ -204,10 +208,10 @@ end
 
 function MH3Blizz:PowerUpdate()
     local cur, max = UnitMana("target"), UnitManaMax("target")
-    
+
     -- No power? No text!
     if max == 0 then ptext:SetText(); return; end
-    
+
     local absText, percText = "", ""
 
     -- Set absolute text
@@ -227,4 +231,3 @@ function MH3Blizz:PowerUpdate()
 
     ptext:SetText(absText.." "..percText)
 end
-

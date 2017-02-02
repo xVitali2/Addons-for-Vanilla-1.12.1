@@ -6,15 +6,24 @@
     local BACKDROP = {bgFile = [[Interface\Tooltips\UI-Tooltip-Background]],}
     local f = CreateFrame'Frame'
 
-    TargetFrame.cast = CreateFrame('StatusBar', 'TargetFrame_modCastbar', TargetFrame)
+    local parent = CreateFrame('Frame', 'modCastbarParent', UIParent)
+    parent:SetWidth(142)
+    parent:SetHeight(8)
+    parent:SetPoint('TOP', TargetFrame, 'BOTTOM', -38, -22)
+    parent:SetMovable(true)
+    parent:EnableMouse(true)
+    parent:RegisterForDrag'LeftButton'
+    parent:SetBackdrop({bgFile = [[Interface\Tooltips\UI-Tooltip-Background]],
+							 insets = {left = -1, right = -1, top = -1, bottom = -1}})
+    parent:SetBackdropColor(0, 0, 0, 0)
+
+    TargetFrame.cast = CreateFrame('StatusBar', 'TargetFrame_modCastbar', parent)
     TargetFrame.cast:SetStatusBarTexture(TEXTURE)
     TargetFrame.cast:SetStatusBarColor(1, .4, 0)
     TargetFrame.cast:SetBackdrop(BACKDROP)
     TargetFrame.cast:SetBackdropColor(0, 0, 0)
     TargetFrame.cast:SetHeight(8)
-    TargetFrame.cast:SetPoint('LEFT', TargetFrame, 33.5, 0)
-    TargetFrame.cast:SetPoint('RIGHT', TargetFrame, -50, 0)
-    TargetFrame.cast:SetPoint('TOP', TargetFrame, 'BOTTOM', 0, -2)
+    TargetFrame.cast:SetAllPoints(parent)
     TargetFrame.cast:SetValue(0)
     TargetFrame.cast:Hide()
 
@@ -93,10 +102,10 @@
     local showCast = function()
         local target = GetUnitName'target'
         TargetFrame.cast:Hide()
-        if target ~= nil then
+        if target ~= nil or cv == 1 then
             local v = PROCESSCASTINGgetCast(target)
             if v ~= nil then
-                if GetTime() < v.timeEnd then
+                if  GetTime() < v.timeEnd then
                     TargetFrame.cast:SetMinMaxValues(0, v.timeEnd - v.timeStart)
                     if v.inverse then
                         TargetFrame.cast:SetValue(mod((v.timeEnd - GetTime()), v.timeEnd - v.timeStart))
@@ -110,6 +119,13 @@
                     TargetFrame.cast:Show()
                     position()
                 end
+            elseif _G['modui_castbarTarget']:GetChecked() == 1 then
+                    TargetFrame.cast:Show()
+                    TargetFrame.cast:SetMinMaxValues(0, 1)
+                    TargetFrame.cast:SetValue(1)
+                    TargetFrame.cast.text:SetText'Frostbolt'
+                    TargetFrame.cast.timer:SetText'0s'
+                    TargetFrame.cast.icon:SetTexture[[Interface\ICONS\spell_frost_frostbolt02]]
             end
         end
     end
