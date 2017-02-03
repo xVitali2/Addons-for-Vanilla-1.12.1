@@ -63,15 +63,6 @@ EngBags_AltClick_Auction = 1;
 EngBags_AltClick_Trade = 1;
 EngBags_AltClick_Mail = 1;
 
--- These are catagories to leave off the right click menu.  just trying to make space
---	** not needed anymore, since I created a 3rd level of the dropdown
---[[ EngInventory_Catagories_Exclude_List = {
-	["BANDAGES"] = 1,
-	["EMPTY_PROJECTILE_SLOTS"] = 1,
-	["EMPTY_SLOTS"] = 1,
-	["HEALTHSTONE"] = 1,
-	["JUJU"] = 1
-	}; --]]
 EngInventory_Catagories_Exclude_List = {};
 ------------------------
 
@@ -888,6 +879,7 @@ function EngInventory_SetDefaultValues(re)
 	EI_SetDefault("putinslot--MINIPET", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EI_SetDefault("putinslot--HEARTH", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EI_SetDefault("putinslot--KEYS", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EI_SetDefault("putinslot--KEYS2", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 	EI_SetDefault("putinslot--CLASS_ITEMS2", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 
 	-- NEW EQUIP SORTING
@@ -947,12 +939,6 @@ function EngInventory_SetDefaultValues(re)
         EI_SetDefault("bar_sort_"..EngInventoryConfig["putinslot--HEALINGPOTION"], EngBags_SORTBYNAMEREV, 2+re, EngBags_NumericRange, EngBags_SORTLOWESTVALUE, EngBags_SORTHIGHESTVALUE);
         EI_SetDefault("bar_sort_"..EngInventoryConfig["putinslot--MANAPOTION"], EngBags_SORTBYNAMEREV, 2+re, EngBags_NumericRange, EngBags_SORTLOWESTVALUE, EngBags_SORTHIGHESTVALUE);
         EI_SetDefault("bar_sort_"..EngInventoryConfig["putinslot--TRADEGOODS"], EngBags_SORTBYNAMEREV, 2+re, EngBags_NumericRange, EngBags_SORTLOWESTVALUE, EngBags_SORTHIGHESTVALUE);
-
-	--EI_SetDefault("allow_new_in_bar_"..EngInventoryConfig["putinslot--HEALINGPOTION"], 0, 1+re, EngBags_NumericRange, 0, 1);
-	--EI_SetDefault("allow_new_in_bar_"..EngInventoryConfig["putinslot--MANAPOTION"], 0, 1+re, EngBags_NumericRange, 0, 1);
-	--EI_SetDefault("allow_new_in_bar_"..EngInventoryConfig["putinslot--FOOD"], 0, 1+re, EngBags_NumericRange, 0, 1);
-	--EI_SetDefault("allow_new_in_bar_"..EngInventoryConfig["putinslot--DRINK"], 0, 1+re, EngBags_NumericRange, 0, 1);
-	--EI_SetDefault("allow_new_in_bar_"..EngInventoryConfig["putinslot--SOULSHARDS"], 0, 1+re, EngBags_NumericRange, 0, 1);
 
 	for i = 1, EngBags_MAX_BARS do
                 EI_SetDefault("bar_sort_"..i, EngBags_SORTBYNAME, 2+re, EngBags_NumericRange, EngBags_SORTLOWESTVALUE, EngBags_SORTHIGHESTVALUE);
@@ -1115,44 +1101,11 @@ function EngInventory_OnEvent(event)
                 EngInventory_UpdateWindow();
         elseif ( event == "BAG_UPDATE_COOLDOWN" ) then
                 EngInventory_UpdateWindow();
---      elseif ( event == "ITEM_LOCK_CHANGED" ) then
---              EngInventory_UpdateWindow();
---	elseif ( event == "CRAFT_SHOW" ) then
---		EngBags_Craft();
---	elseif ( event == "TRADE_SKILL_SHOW" ) then
---		EngBags_Trade();
---	elseif ( event == "UPDATE_INVENTORY_ALERTS" ) then
---		local itemLink;
---		local a,b,c,d;
---
---		EngBags_PrintDEBUG("About to scan inventory");
---
---		if (EngBagsConfig[EngBags_PLAYERID]["equipped_items"] == nil) then
---			EngBagsConfig[EngBags_PLAYERID]["equipped_items"] = {};
---		end
---
---		for key,value in { "HeadSlot","NeckSlot","ShoulderSlot","BackSlot","ChestSlot",
---			"ShirtSlot","TabardSlot","WristSlot","HandsSlot","WaistSlot","LegsSlot",
---			"FeetSlot","Finger0Slot","Finger1Slot","Trinket0Slot","Trinket1Slot",
---			"MainHandSlot","SecondaryHandSlot","RangedSlot" } do
---
---			EngBags_PrintDEBUG( "Scanning: "..value );
---			itemLink = GetInventoryItemLink("player", GetInventorySlotInfo(value) );
---			if ( (itemLink ~= nil) and (type(itemLink) == "string") ) then
---				for a,b,c,d in string.gfind(itemLink, "(%d+):(%d+):(%d+):(%d+)") do
---					itemLink = ""..a..":0:"..c..":0";
---				end
---				
---				EngBagsConfig[EngBags_PLAYERID]["equipped_items"][itemLink] = 1;
---			end
---		end
---
---              EngInventory_UpdateWindow();
-	else
-		EngBags_PrintDEBUG("OnEvent: No event handler found.");
+		else
+			EngBags_PrintDEBUG("OnEvent: No event handler found.");
         end
 
-	EngBags_PrintDEBUG("bags_OnEvent: Finished "..event);
+		EngBags_PrintDEBUG("bags_OnEvent: Finished "..event);
 
 	end
 
@@ -1248,7 +1201,7 @@ function EngInventory_Update_item_cache()
 					itm["iteminfo"] = GetContainerItemLink(bagnum, slotnum);
 
 					if (bagnum == KEYRING_CONTAINER) then
-						itm["bagname"] = "KeyRing";
+						itm["bagname"] = EILocal["KeyRing"];
 						itm["gametooltip"] = nil;
 					end
 					if (is_shot_bag) then
