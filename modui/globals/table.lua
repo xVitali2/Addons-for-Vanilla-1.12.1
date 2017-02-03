@@ -373,6 +373,7 @@
     	['Abolish Poison']         = {[[Interface\Icons\Spell_nature_nullifypoison_02]], 8},
     	['Nature\'s Grasp']        = {[[Interface\Icons\Spell_nature_natureswrath]], 45},
         ['Innervate']              = {[[Interface\Icons\Spell_nature_lightning]], 20},
+        --['Rejuvenation']           = {[[Interface\Icons\Spell_nature_rejuvenation]], 12},
             -- HUNTER
         ['Feign Death']            = {[[Interface\Icons\Ability_rogue_feigndeath]], 360},
         ['Improved Concussive Shot'] = {[[Interface\Icons\Spell_frost_stun]], 3},
@@ -380,6 +381,7 @@
     	['Frost Ward']             = {[[Interface\Icons\Spell_frost_frostward]], 30},
     	['Fire Ward']              = {[[Interface\Icons\Spell_fire_firearmor]], 30},
     	['Ice Block']              = {[[Interface\Icons\Spell_frost_frost]], 10},
+        --['Ice Barrier']            = {[[Interface\Icons\Spell_ice_lament]], 60},
             -- PALADIN
     	['Blessing of Protection'] = {[[Interface\Icons\Spell_holy_sealofprotection]], 8},
     	['Blessing of Freedom']    = {[[Interface\Icons\Spell_holy_sealofvalor]], 10},

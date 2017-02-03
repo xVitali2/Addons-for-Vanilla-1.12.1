@@ -140,6 +140,7 @@
             bu.hp:SetStatusBarColor(r, g, b)
         else
             bu.hp:SetStatusBarColor(r*.375, g*.375, b*.375)
+            bu.name:SetTextColor(1, .1, .1)
         end
     end
 
@@ -212,6 +213,7 @@
     local raidupdate = function()
         if this:IsShown() then
             if not UnitExists(this.unit) then this:Hide() return end
+            local grid           = _G['modui_vars'].db['modGridSize']
             local now            = GetTime()
             local hp, mana, name = this.hp, this.mana, this.name
             local power          = UnitPowerType(this.unit)
@@ -238,9 +240,11 @@
             status(this)
 
             if power ~= 0 and UnitMana(this.unit) < 1 then
-                hp:SetHeight(24) mana:Hide()
+                hp:SetPoint('BOTTOMRIGHT', this)
+                mana:Hide()
             else
-                hp:SetHeight(16) mana:Show()
+                hp:SetPoint('BOTTOMRIGHT', this, 0, 8)
+                mana:Show()
             end
         end
     end
@@ -324,15 +328,13 @@
         end
 
         for i = 1, 40 do
-            local grid = _G['modui_vars'].db and _G['modui_vars'].db['modGridSize'] or nil
-            bu[i] = CreateFrame('Button', 'modraid'..i, UIParent)
-            bu[i]:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
-            if  grid == 1 then
-                -- TODO: use scaling a la iipui raidframes
-                bu[i]:SetWidth(53) bu[i]:SetHeight(53)
-            else
-                bu[i]:SetWidth(53) bu[i]:SetHeight(24)
-            end
+            local db = _G['modui_vars'].db
+
+            bu[i] = CreateFrame('Frame', 'modraid'..i, UIParent)
+            -- bu[i]:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
+            bu[i]:SetWidth(db['modRaidX'] and db['modRaidX'] or 53)
+            bu[i]:SetHeight(db['modRaidY'] and db['modRaidY'] or 24)
+    		bu[i]:SetResizable(true)
             bu[i]:SetBackdrop(bg)
             bu[i]:SetBackdropColor(0, 0, 0, 1)
             bu[i]:SetFrameLevel(0)
@@ -343,21 +345,22 @@
             modSkinColor(bu[i], .2, .2, .2)
 
             bu[i].hp = CreateFrame('StatusBar', nil, bu[i])
-            bu[i].hp:SetWidth(50) bu[i].hp:SetHeight(grid == 1 and 46 or 16)
             bu[i].hp:SetFrameLevel(0)
             bu[i].hp:SetMinMaxValues(0, 100)
             bu[i].hp:SetValue(100)
             bu[i].hp:SetStatusBarTexture(sb)
             bu[i].hp:SetStatusBarColor(0, 1, 0)
-            bu[i].hp:SetPoint('TOP', bu[i])
+            bu[i].hp:SetPoint('TOPLEFT', bu[i], 1, -1)
+            bu[i].hp:SetPoint('BOTTOMRIGHT', bu[i], -1, 8)
 
             bu[i].mana = CreateFrame('StatusBar', nil, bu[i])
-            bu[i].mana:SetWidth(50) bu[i].mana:SetHeight(5)
+            bu[i].mana:SetHeight(7)
             bu[i].mana:SetFrameLevel(0)
             bu[i].mana:SetMinMaxValues(0, 100)
             bu[i].mana:SetValue(100)
             bu[i].mana:SetStatusBarTexture(sb)
-            bu[i].mana:SetPoint('TOP', bu[i].hp, 'BOTTOM', 0, -1)
+            bu[i].mana:SetPoint('TOPLEFT', bu[i].hp, 'BOTTOMLEFT', 0, -1)
+            bu[i].mana:SetPoint('TOPRIGHT', bu[i].hp, 'BOTTOMRIGHT', 0, -1)
 
             bu[i].name = bu[i]:CreateFontString(nil, 'OVERLAY', 'GameFontNormalSmall')
             bu[i].name:SetPoint('TOP', bu[i], 0, -3)
@@ -436,7 +439,7 @@
 
             bu[i]:RegisterEvent'UNIT_AURA'     -- init
             bu[i]:SetScript('OnEvent',  function() debuffs(arg1) end)
-            bu[i]:SetScript('OnClick',  function()
+            --[[bu[i]:SetScript('OnClick',  function()
                 if  arg1 == 'RightButton' then
                     ToggleTank(this.unit)
                 else
@@ -448,7 +451,7 @@
                         TargetUnit(this.unit)
                     end
                 end
-            end)
+            end) ]]
             --bu[i]:SetScript('OnClick',  function() if CursorHasItem() then DropItemOnUnit(this.unit) else TargetUnit(this.unit) end end)
             bu[i]:SetScript('OnEnter',  function() UnitFrame_OnEnter() GameTooltipStatusBar:Hide() end)
             bu[i]:SetScript('OnLeave',  UnitFrame_OnLeave)
@@ -492,6 +495,7 @@
     end)
 
     f:RegisterEvent'VARIABLES_LOADED'
+    f:RegisterEvent'PLAYER_LOGIN'
     f:RegisterEvent'PLAYER_ENTERING_WORLD'
     f:RegisterEvent'CHAT_MSG_SYSTEM'  f:RegisterEvent'RAID_ROSTER_UPDATE'
     f:RegisterEvent'CHAT_MSG_BG_SYSTEM_ALLIANCE' f:RegisterEvent'CHAT_MSG_BG_SYSTEM_HORDE'
@@ -500,6 +504,7 @@
             if not MODUI_RAID_XY then
                 MODUI_RAID_XY = {'TOP', Minimap, 'BOTTOM', 2, -70}
             end
+        elseif event == 'PLAYER_LOGIN' then
             CreateUnits()
         elseif (event == 'PLAYER_ENTERING_WORLD' and UnitInRaid'player')
         or (event == 'CHAT_MSG_SYSTEM' and string.find(arg1, 'You have joined a raid group')) then

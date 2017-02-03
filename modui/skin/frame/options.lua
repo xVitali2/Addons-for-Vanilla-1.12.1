@@ -19,6 +19,10 @@
     modSkinPadding(modui_optionsCloseButton, -5)
     modSkinColor(modui_optionsCloseButton, .2, .2, .2)
 
+    modSkin(modui_optionsraidframe, 17.5)
+    modSkinPadding(modui_optionsraidframe, 2)
+    modSkinColor(modui_optionsraidframe, .2, .2, .2)
+
     for i = 1, 60 do
         local bu = _G['modui_actionbutton'..i]
         if bu then

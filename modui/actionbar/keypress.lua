@@ -146,7 +146,7 @@
 				end
 			else
 				local bu = _G['BActionButton'..i]
-				if bu and bu:GetButtonState() == 'PUSHED' then
+				if  bu and bu:GetButtonState() == 'PUSHED' then
 					bu:SetButtonState'NORMAL'
 					if MacroFrame_SaveMacro then MacroFrame_SaveMacro() end
 					bu:SetChecked(IsCurrentAction(BActionButton.GetPagedID(i)))
@@ -172,6 +172,7 @@
 	function MultiActionButtonUp(bar, i, onSelf)
 		if  _G['modui_vars'].db['modKeyDown'] == 0 then
 			local time = GetTime()
+			local bu = _G[bar..'Button'..i]
 			orig.MultiActionButtonUp(bar, i, onSelf)
 			bu.keypress = time
 		else

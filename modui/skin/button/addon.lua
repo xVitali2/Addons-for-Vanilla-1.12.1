@@ -88,7 +88,7 @@
             for _, bu in ipairs(RingMenu_usedButtons) do
                 local bo = _G[bu:GetName()..'Border']
                 local ic = _G[bu:GetName()..'Icon']
-                if not bu.skin then
+                if bu and not bu.skin then
                     modSkin(bu, 18)
                     modSkinPadding(bu, 3)
                     modSkinColor(bu, .2, .2, .2)

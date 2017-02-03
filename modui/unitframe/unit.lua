@@ -284,7 +284,7 @@
                     end
     			end
                 if  sb:GetName() == 'PlayerFrameManaBar' or sb:GetName() == 'TargetFrameManaBar' then
-                    if _G['modui_vars'].db['modWhiteStatusText'] == 0 then
+                    if _G['modui_vars'].db and _G['modui_vars'].db['modWhiteStatusText'] == 0 then
                         if class == 'ROGUE' or (class == 'DRUID' and pp == 3) then
                             string:SetTextColor(250/255, 240/255, 200/255)
                         elseif class == 'WARRIOR' or (class == 'DRUID' and pp == 1) then
