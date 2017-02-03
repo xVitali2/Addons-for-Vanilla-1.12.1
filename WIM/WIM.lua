@@ -1170,6 +1170,8 @@ function WIM_LoadDefaultFilters()
 	WIM_Filters["CQM"]						= "Block";
 	WIM_Filters["SERVICE"]					= "Ignore";
 	WIM_Filters["CHEAP"]					= "Block";
+	WIM_Filters["WWW"]						= "Block";
+	WIM_Filters["ElysiumtyWOW"]				= "Block";
 --	WIM_Filters[""]						= "Ignore";
 
 	WIM_FilteringScrollBar_Update();
