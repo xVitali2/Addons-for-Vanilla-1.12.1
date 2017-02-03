@@ -1,5 +1,5 @@
-Due to considerable delays on 1.07, I've decided to work on both 1.06.3 and 1.07 simultaneously. If you have any simple requests they'll make 1.06 updates, more complex things (eg rogue talents, eviscerate scaling, lifetap) will be in 1.07 version - whenever it comes out. ^^
-
+Version 1.06.6
+	- Added ruRU localization
 Version 1.06.5
 	- Changing action bar pages finally works with button text
 	- Forms, Warrior stances now work correctly with button text

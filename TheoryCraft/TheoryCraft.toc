@@ -2,7 +2,8 @@
 ## Author: Aelian
 ## Title: TheoryCraft
 ## Notes: Tells you everything about an ability, right on the tooltip.
-## Version: 1.06.5
+## Notes-ruRU: Полная информация о способностях прямо в описании.
+## Version: 1.06.6
 ## SavedVariablesPerCharacter: TheoryCraft_Settings
 ## SavedVariables: TheoryCraft_SetBonuses, TheoryCraft_MitigationMobs, TheoryCraft_MitigationPlayers
 ## DefaultState: enabled

@@ -28,6 +28,68 @@
 -- Format for IFs:
 --     "#IF text IF#"
 
+-----------------------
+-----TheoryCraftUI-----
+-----------------------
+Print_Do_Nothing = "Do Nothing";
+Print_Min_Damage = "Min Damage";
+Print_Max_Damage = "Max Damage";
+Print_Average_Damage = "Average Damage";
+Print_Ave_Dam_no_crits = "Ave Dam (no crits)";
+Print_Damage_per_sec = "DPS";
+Print_With_Dot_DPS = "With Dot DPS";
+Print_Damage_per_min = "DPM";
+Print_Total_Damage = "Total Damage";
+Print_Total_Damage_left = "Total Damage (left)";
+Print_Min_Heal = "Min Heal";
+Print_Max_Heal = "Max Heal";
+Print_Average_Heal = "Average Heal";
+Print_Ave_Heal_no_crits = "Ave Heal (no crits)";
+Print_Heal_per_sec = "HPS";
+Print_With_Hot_HPS = "With Hot HPS";
+Print_Heal_per_min = "HPM";
+Print_Total_Healing = "Total Healing";
+Print_Total_Healing_left = "Total Healing (left)";
+Print_Spellcasts_remaining = "Spellcasts remaining";
+
+print_Health = "Health";
+print_Mana = "Mana";
+print_Attack_Power = "Attack Power";
+print_Ranged_Attack_Power = "Ranged Attack Power";
+print_Crit_Chance = "Crit Chance";
+print_Ranged_Crit_Chance = "Ranged Crit Chance";
+print_Agi_per_Crit = "Agi per Crit";
+print_Normal_Regen = "Normal Regen";
+print_Regen_Whilst_Casting = "Regen Whilst Casting";
+print_Stamina = "Stamina";
+print_Strength = "Strength";
+print_Agility = "Agility";
+print_Intellect = "Intellect";
+print_Spirit = "Spirit";
+print_Proc_Effect = "Proc Effect";
+print_Spell_Crit_Chance = "Spell Crit Chance";
+print_Heal_Crit_Chance = "Heal Crit Chance";
+print_Damage_Spell_Crit_Chance = "Damage Spell Crit Chance";
+print__Crit_Chance = " Crit Chance";
+print__Damage_and_Healing = "+Damage and Healing";
+print__Healing = "+Healing";
+print__Spell_Damage = "+Spell Damage";
+print__Damage = " Damage";
+print__Damage_to_Undead = "+Damage to Undead";
+print_Shield_Block_Value = "Shield Block Value";
+print_Hit_Chance = "Hit Chance";
+print_Mana_Per_Five = "Mana Per Five";
+print_Spirit_In_5_Rule = "Spirit In 5 Rule";
+print_Mana_Restore = "Mana Restore";
+print_Tick = " / Tick";
+print_Spell_Hit_Chance = "Spell Hit Chance";
+print_Damage_Spell_Hit_Chance = "Damage Spell Hit Chance";
+print__Hit_Chance = " Hit Chance";
+print_Spell_Penetration = "Spell Penetration";
+print_Damage_Spell_Penetration = "Damage Spell Penetration";
+print__Penetration = " Penetration";
+-------------------------------------------------
+
 TheoryCraft_TooltipOrs = {
 	hitorhealhit = "Treffer",
 	hitorhealheal = "Heilung",
@@ -332,6 +394,7 @@ TheoryCraft_Locale = {
 	ID_Set		= "Set: ",
 	ID_Use		= "Benutzen: ",
 	to			= " bis ",
+	to_print 	= " bis ",
 	Attack		= "Angreifen",
 	InstantCast	= "Spontanzauber",
 	SecCast		= " Sek Zauber",

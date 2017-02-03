@@ -247,63 +247,63 @@ function TheoryCraft_UpdateOutfitTab()
 
 	local totalmana = TheoryCraft_GetStat("totalmana")+TheoryCraft_GetStat("manarestore")
 
-	TheoryCraftAddVital("Health", math.floor(TheoryCraft_GetStat("totalhealth")))
+	TheoryCraftAddVital(print_Health, math.floor(TheoryCraft_GetStat("totalhealth")))
 	if class == "HUNTER" then
-		TheoryCraftAddVital("Mana", math.floor(TheoryCraft_GetStat("totalmana")))
-		TheoryCraftAddVital("Attack Power", math.floor(TheoryCraft_GetStat("attackpower")))
-		TheoryCraftAddVital("Ranged Attack Power", math.floor(TheoryCraft_GetStat("rangedattackpower")))
-		TheoryCraftAddVital("Crit Chance", round(TheoryCraft_GetStat("meleecritchancereal"), 2).."%")
-		TheoryCraftAddVital("Ranged Crit Chance", round(TheoryCraft_GetStat("rangedcritchance"), 2).."%")
-		TheoryCraftAddVital("Agi per Crit", round(TheoryCraft_agipercrit, 2))
-		TheoryCraftAddVital("Normal Regen", round(TheoryCraft_Data.Stats["regen"]*2, 2).." / Tick")
-		TheoryCraftAddVital("Regen Whilst Casting", round(TheoryCraft_Data.Stats["icregen"]*2, 2).." / Tick")
-		TheoryCraftAddStat("Stamina", math.floor(TheoryCraft_GetStat("stamina")))
-		TheoryCraftAddStat("Strength", math.floor(TheoryCraft_GetStat("strength")))
-		TheoryCraftAddStat("Agility", math.floor(TheoryCraft_GetStat("agility")))
-		TheoryCraftAddStat("Intellect", math.floor(TheoryCraft_GetStat("intellect")))
-		TheoryCraftAddStat("Spirit", math.floor(TheoryCraft_GetStat("spirit")))
+		TheoryCraftAddVital(print_Mana, math.floor(TheoryCraft_GetStat("totalmana")))
+		TheoryCraftAddVital(print_Attack_Power, math.floor(TheoryCraft_GetStat("attackpower")))
+		TheoryCraftAddVital(print_Ranged_Attack_Power, math.floor(TheoryCraft_GetStat("rangedattackpower")))
+		TheoryCraftAddVital(print_Crit_Chance, round(TheoryCraft_GetStat("meleecritchancereal"), 2).."%")
+		TheoryCraftAddVital(print_Ranged_Crit_Chance, round(TheoryCraft_GetStat("rangedcritchance"), 2).."%")
+		TheoryCraftAddVital(print_Agi_per_Crit, round(TheoryCraft_agipercrit, 2))
+		TheoryCraftAddVital(print_Normal_Regen, round(TheoryCraft_Data.Stats["regen"]*2, 2)..print_Tick)
+		TheoryCraftAddVital(print_Regen_Whilst_Casting, round(TheoryCraft_Data.Stats["icregen"]*2, 2)..print_Tick)
+		TheoryCraftAddStat(print_Stamina, math.floor(TheoryCraft_GetStat("stamina")))
+		TheoryCraftAddStat(print_Strength, math.floor(TheoryCraft_GetStat("strength")))
+		TheoryCraftAddStat(print_Agility, math.floor(TheoryCraft_GetStat("agility")))
+		TheoryCraftAddStat(print_Intellect, math.floor(TheoryCraft_GetStat("intellect")))
+		TheoryCraftAddStat(print_Spirit, math.floor(TheoryCraft_GetStat("spirit")))
 	elseif (class == "ROGUE") or (class == "WARRIOR") then
-		TheoryCraftAddVital("Attack Power", math.floor(TheoryCraft_GetStat("attackpower")))
-		TheoryCraftAddVital("Crit Chance", round(TheoryCraft_GetStat("meleecritchancereal"), 2).."%")
-		TheoryCraftAddVital("Agi per Crit", round(TheoryCraft_agipercrit, 2))
-		TheoryCraftAddStat("Stamina", math.floor(TheoryCraft_GetStat("stamina")))
-		TheoryCraftAddStat("Strength", math.floor(TheoryCraft_GetStat("strength")))
-		TheoryCraftAddStat("Agility", math.floor(TheoryCraft_GetStat("agility")))
+		TheoryCraftAddVital(print_Attack_Power, math.floor(TheoryCraft_GetStat("attackpower")))
+		TheoryCraftAddVital(print_Crit_Chance, round(TheoryCraft_GetStat("meleecritchancereal"), 2).."%")
+		TheoryCraftAddVital(print_Agi_per_Crit, round(TheoryCraft_agipercrit, 2))
+		TheoryCraftAddStat(print_Stamina, math.floor(TheoryCraft_GetStat("stamina")))
+		TheoryCraftAddStat(print_Strength, math.floor(TheoryCraft_GetStat("strength")))
+		TheoryCraftAddStat(print_Agility, math.floor(TheoryCraft_GetStat("agility")))
 	elseif (class == "PALADIN") then
-		TheoryCraftAddVital("Mana", math.floor(TheoryCraft_GetStat("totalmana")))
-		TheoryCraftAddVital("Attack Power", math.floor(TheoryCraft_GetStat("attackpower")))
-		TheoryCraftAddVital("Crit Chance", round(TheoryCraft_GetStat("meleecritchancereal"), 2).."%")
-		TheoryCraftAddVital("Agi per Crit", round(TheoryCraft_agipercrit, 2))
-		TheoryCraftAddVital("Normal Regen", round(TheoryCraft_Data.Stats["regen"]*2, 2).." / Tick")
-		TheoryCraftAddVital("Regen Whilst Casting", round(TheoryCraft_Data.Stats["icregen"]*2, 2).." / Tick")
-		TheoryCraftAddStat("Stamina", math.floor(TheoryCraft_GetStat("stamina")))
-		TheoryCraftAddStat("Intellect", math.floor(TheoryCraft_GetStat("intellect")))
-		TheoryCraftAddStat("Strength", math.floor(TheoryCraft_GetStat("strength")))
-		TheoryCraftAddStat("Agility", math.floor(TheoryCraft_GetStat("agility")))
-		TheoryCraftAddStat("Spirit", math.floor(TheoryCraft_GetStat("spirit")))
+		TheoryCraftAddVital(print_Mana, math.floor(TheoryCraft_GetStat("totalmana")))
+		TheoryCraftAddVital(print_Attack_Power, math.floor(TheoryCraft_GetStat("attackpower")))
+		TheoryCraftAddVital(print_Crit_Chance, round(TheoryCraft_GetStat("meleecritchancereal"), 2).."%")
+		TheoryCraftAddVital(print_Agi_per_Crit, round(TheoryCraft_agipercrit, 2))
+		TheoryCraftAddVital(print_Normal_Regen, round(TheoryCraft_Data.Stats["regen"]*2, 2)..print_Tick)
+		TheoryCraftAddVital(print_Regen_Whilst_Casting, round(TheoryCraft_Data.Stats["icregen"]*2, 2)..print_Tick)
+		TheoryCraftAddStat(print_Stamina, math.floor(TheoryCraft_GetStat("stamina")))
+		TheoryCraftAddStat(print_Intellect, math.floor(TheoryCraft_GetStat("intellect")))
+		TheoryCraftAddStat(print_Strength, math.floor(TheoryCraft_GetStat("strength")))
+		TheoryCraftAddStat(print_Agility, math.floor(TheoryCraft_GetStat("agility")))
+		TheoryCraftAddStat(print_Spirit, math.floor(TheoryCraft_GetStat("spirit")))
 	elseif (class == "DRUID") then
 		if UnitManaMax("player") == 100 then
-			TheoryCraftAddVital("Attack Power", math.floor(TheoryCraft_GetStat("attackpower")))
-			TheoryCraftAddVital("Crit Chance", round(TheoryCraft_GetStat("meleecritchancereal"), 2).."%")
-			TheoryCraftAddVital("Agi per Crit", round(TheoryCraft_agipercrit, 2))
-			TheoryCraftAddStat("Stamina", math.floor(TheoryCraft_GetStat("stamina")))
-			TheoryCraftAddStat("Strength", math.floor(TheoryCraft_GetStat("strength")))
-			TheoryCraftAddStat("Agility", math.floor(TheoryCraft_GetStat("agility")))
+			TheoryCraftAddVital(print_Attack_Power, math.floor(TheoryCraft_GetStat("attackpower")))
+			TheoryCraftAddVital(print_Crit_Chance, round(TheoryCraft_GetStat("meleecritchancereal"), 2).."%")
+			TheoryCraftAddVital(print_Agi_per_Crit, round(TheoryCraft_agipercrit, 2))
+			TheoryCraftAddStat(print_Stamina, math.floor(TheoryCraft_GetStat("stamina")))
+			TheoryCraftAddStat(print_Strength, math.floor(TheoryCraft_GetStat("strength")))
+			TheoryCraftAddStat(print_Agility, math.floor(TheoryCraft_GetStat("agility")))
 		else
-			TheoryCraftAddVital("Mana", math.floor(TheoryCraft_GetStat("totalmana")))
-			TheoryCraftAddVital("Normal Regen", round(TheoryCraft_Data.Stats["regen"]*2, 2).." / Tick")
-			TheoryCraftAddVital("Regen Whilst Casting", round(TheoryCraft_Data.Stats["icregen"]*2, 2).." / Tick")
-			TheoryCraftAddStat("Stamina", math.floor(TheoryCraft_GetStat("stamina")))
-			TheoryCraftAddStat("Intellect", math.floor(TheoryCraft_GetStat("intellect")))
-			TheoryCraftAddStat("Spirit", math.floor(TheoryCraft_GetStat("spirit")))
+			TheoryCraftAddVital(print_Mana, math.floor(TheoryCraft_GetStat("totalmana")))
+			TheoryCraftAddVital(print_Normal_Regen, round(TheoryCraft_Data.Stats["regen"]*2, 2)..print_Tick)
+			TheoryCraftAddVital(print_Regen_Whilst_Casting, round(TheoryCraft_Data.Stats["icregen"]*2, 2)..print_Tick)
+			TheoryCraftAddStat(print_Stamina, math.floor(TheoryCraft_GetStat("stamina")))
+			TheoryCraftAddStat(print_Intellect, math.floor(TheoryCraft_GetStat("intellect")))
+			TheoryCraftAddStat(print_Spirit, math.floor(TheoryCraft_GetStat("spirit")))
 		end
 	else
-		TheoryCraftAddVital("Mana", math.floor(TheoryCraft_GetStat("totalmana")))
-		TheoryCraftAddVital("Normal Regen", round(TheoryCraft_Data.Stats["regen"]*2, 2).." / Tick")
-		TheoryCraftAddVital("Regen Whilst Casting", round(TheoryCraft_Data.Stats["icregen"]*2, 2).." / Tick")
-		TheoryCraftAddStat("Stamina", math.floor(TheoryCraft_GetStat("stamina")))
-		TheoryCraftAddStat("Intellect", math.floor(TheoryCraft_GetStat("intellect")))
-		TheoryCraftAddStat("Spirit", math.floor(TheoryCraft_GetStat("spirit")))
+		TheoryCraftAddVital(print_Mana, math.floor(TheoryCraft_GetStat("totalmana")))
+		TheoryCraftAddVital(print_Normal_Regen, round(TheoryCraft_Data.Stats["regen"]*2, 2)..print_Tick)
+		TheoryCraftAddVital(print_Regen_Whilst_Casting, round(TheoryCraft_Data.Stats["icregen"]*2, 2)..print_Tick)
+		TheoryCraftAddStat(print_Stamina, math.floor(TheoryCraft_GetStat("stamina")))
+		TheoryCraftAddStat(print_Intellect, math.floor(TheoryCraft_GetStat("intellect")))
+		TheoryCraftAddStat(print_Spirit, math.floor(TheoryCraft_GetStat("spirit")))
 	end
 
 	TheoryCraftModsLeft:SetHeight(288-TheoryCraftStatsLeft:GetHeight()-TheoryCraftVitalsLeft:GetHeight()-10*highestnumber)
@@ -322,46 +322,46 @@ function TheoryCraft_UpdateOutfitTab()
 		end
 	end
 	if proceffect then
-		TheoryCraftAddMod("Proc Effect", " ")
+		TheoryCraftAddMod(print_Proc_Effect, " ")
 	end
 
 	if TheoryCraft_GetStat("CritReport") ~= 0 then
-		TheoryCraftAddMod("Crit Chance", "+"..(TheoryCraft_GetStat("CritReport")).."%")
+		TheoryCraftAddMod(print_Crit_Chance, "+"..(TheoryCraft_GetStat("CritReport")).."%")
 	end
 	if (class ~= "HUNTER") and (class ~= "WARRIOR") and (class ~= "ROGUE") then
 		if TheoryCraft_GetStat("Allcritchance") ~= 0 then
-			TheoryCraftAddMod("Spell Crit Chance", round(TheoryCraft_Data.Stats["critchance"], 2).."% + "..(TheoryCraft_GetStat("Allcritchance")).."%")
+			TheoryCraftAddMod(print_Spell_Crit_Chance, round(TheoryCraft_Data.Stats["critchance"], 2).."% + "..(TheoryCraft_GetStat("Allcritchance")).."%")
 		else
-			TheoryCraftAddMod("Spell Crit Chance", round(TheoryCraft_Data.Stats["critchance"], 2).."%")
+			TheoryCraftAddMod(print_Spell_Crit_Chance, round(TheoryCraft_Data.Stats["critchance"], 2).."%")
 		end
 	end
-	AddMods(1, "critchance", "DONT", "Heal Crit Chance", "Damage Spell Crit Chance", " Crit Chance", "+", "%")
-	AddMods(1, "", "+Damage and Healing", "+Healing", "+Spell Damage", " Damage", "", "", "+")
+	AddMods(1, "critchance", "DONT", print_Heal_Crit_Chance, print_Damage_Spell_Crit_Chance, print__Crit_Chance, "+", "%")
+	AddMods(1, "", print__Damage_and_Healing, print__Healing, print__Spell_Damage, print__Damage, "", "", "+")
 	if TheoryCraft_GetStat("Undead") ~= 0 then
-		TheoryCraftAddMod("+Damage to Undead", TheoryCraft_GetStat("Undead"))
+		TheoryCraftAddMod(print__Damage_to_Undead, TheoryCraft_GetStat("Undead"))
 	end
 	if TheoryCraft_GetStat("AttackPowerReport") ~= 0 then
-		TheoryCraftAddMod("Attack Power", "+"..(TheoryCraft_GetStat("AttackPowerReport")))
+		TheoryCraftAddMod(print_Attack_Power, "+"..(TheoryCraft_GetStat("AttackPowerReport")))
 	end
 	if TheoryCraft_GetStat("RangedAttackPowerReport") ~= 0 then
-		TheoryCraftAddMod("Ranged Attack Power", "+"..(TheoryCraft_GetStat("RangedAttackPowerReport")))
+		TheoryCraftAddMod(print_Ranged_Attack_Power, "+"..(TheoryCraft_GetStat("RangedAttackPowerReport")))
 	end
 	if TheoryCraft_GetStat("BlockValueReport") ~= 0 then
-		TheoryCraftAddMod("Shield Block Value", TheoryCraft_GetStat("BlockValueReport"))
+		TheoryCraftAddMod(print_Shield_Block_Value, TheoryCraft_GetStat("BlockValueReport"))
 	end
-	AddMods(1, "hitchance", "Spell Hit Chance", "", "Damage Spell Hit Chance", " Hit Chance", "+", "%")
+	AddMods(1, "hitchance", print_Spell_Hit_Chance, "", print_Damage_Spell_Hit_Chance, print__Hit_Chance, "+", "%")
 	if TheoryCraft_GetStat("Meleehitchance") ~= 0 then
-		TheoryCraftAddMod("Hit Chance", "+"..(TheoryCraft_GetStat("Meleehitchance")).."%")
+		TheoryCraftAddMod(print_Hit_Chance, "+"..(TheoryCraft_GetStat("Meleehitchance")).."%")
 	end
-	AddMods(1, "penetration", "Spell Penetration", "", "Damage Spell Penetration", " Penetration", "", "")
+	AddMods(1, "penetration", print_Spell_Penetration, "", print_Damage_Spell_Penetration, print__Penetration, "", "")
 	if TheoryCraft_GetStat("manaperfive") ~= 0 then
-		TheoryCraftAddMod("Mana Per Five", TheoryCraft_GetStat("manaperfive"))
+		TheoryCraftAddMod(print_Mana_Per_Five, TheoryCraft_GetStat("manaperfive"))
 	end
 	if TheoryCraft_GetStat("ICPercent") ~= 0 then
-		TheoryCraftAddMod("Spirit In 5 Rule", (TheoryCraft_GetStat("ICPercent")*100).."%")
+		TheoryCraftAddMod(print_Spirit_In_5_Rule, (TheoryCraft_GetStat("ICPercent")*100).."%")
 	end
 	if TheoryCraft_GetStat("manarestore") ~= 0 then
-		TheoryCraftAddMod("Mana Restore", TheoryCraft_GetStat("manarestore"))
+		TheoryCraftAddMod(print_Mana_Restore, TheoryCraft_GetStat("manarestore"))
 	end
 	UpdateCustomOutfit()
 end
@@ -464,26 +464,26 @@ function TheoryCraft_InitDropDown()
 	else
 		a = TheoryCraft_Combo2Click
 	end
-	i = AddButton(i, "Do Nothing", "donothing", a)
-	i = AddButton(i, "Min Damage", "mindamage", a)
-	i = AddButton(i, "Max Damage", "maxdamage", a)
-	i = AddButton(i, "Average Damage", "averagedam", a)
-	i = AddButton(i, "Ave Dam (no crits)", "averagedamnocrit", a)
-	i = AddButton(i, "DPS", "dps", a)
-	i = AddButton(i, "With Dot DPS", "withdotdps", a)
-	i = AddButton(i, "DPM", "dpm", a)
-	i = AddButton(i, "Total Damage", "maxoomdamfloored", a)
-	i = AddButton(i, "Total Damage (left)", "maxoomdamremaining", a)
-	i = AddButton(i, "Min Heal", "minheal", a)
-	i = AddButton(i, "Max Heal", "maxheal", a)
-	i = AddButton(i, "Average Heal", "averageheal", a)
-	i = AddButton(i, "Ave Heal (no crits)", "averagehealnocrit", a)
-	i = AddButton(i, "HPS", "hps", a)
-	i = AddButton(i, "With Hot HPS", "withhothps", a)
-	i = AddButton(i, "HPM", "hpm", a)
-	i = AddButton(i, "Total Healing", "maxoomhealfloored", a)
-	i = AddButton(i, "Total Healing (left)", "maxoomhealremaining", a)
-	i = AddButton(i, "Spellcasts remaining", "spellcasts", a)
+	i = AddButton(i, Print_Do_Nothing, "donothing", a)
+	i = AddButton(i, Print_Min_Damage, "mindamage", a)
+	i = AddButton(i, Print_Max_Damage, "maxdamage", a)
+	i = AddButton(i, Print_Average_Damage, "averagedam", a)
+	i = AddButton(i, Print_Ave_Dam_no_crits, "averagedamnocrit", a)
+	i = AddButton(i, Print_Damage_per_sec, "dps", a)
+	i = AddButton(i, Print_With_Dot_DPS, "withdotdps", a)
+	i = AddButton(i, Print_Damage_per_min, "dpm", a)
+	i = AddButton(i, Print_Total_Damage, "maxoomdamfloored", a)
+	i = AddButton(i, Print_Total_Damage_left, "maxoomdamremaining", a)
+	i = AddButton(i, Print_Min_Heal, "minheal", a)
+	i = AddButton(i, Print_Max_Heal, "maxheal", a)
+	i = AddButton(i, Print_Average_Heal, "averageheal", a)
+	i = AddButton(i, Print_Ave_Heal_no_crits, "averagehealnocrit", a)
+	i = AddButton(i, Print_Heal_per_sec, "hps", a)
+	i = AddButton(i, Print_With_Hot_HPS, "withhothps", a)
+	i = AddButton(i, Print_Heal_per_min, "hpm", a)
+	i = AddButton(i, Print_Total_Healing, "maxoomhealfloored", a)
+	i = AddButton(i, Print_Total_Healing_left, "maxoomhealremaining", a)
+	i = AddButton(i, Print_Spellcasts_remaining, "spellcasts", a)
 end
 
 function TheoryCraft_SetTalent(arg1)

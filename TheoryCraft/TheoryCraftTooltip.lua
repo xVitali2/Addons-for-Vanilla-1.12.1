@@ -116,14 +116,14 @@ function TheoryCraft_AddTooltipInfo(frame, dontshow)
 			if tooltipdata["minheal"] == tooltipdata["maxheal"] then
 				return round(tooltipdata["minheal"])
 			else
-				return round(tooltipdata["minheal"])..TheoryCraft_Locale.to..round(tooltipdata["maxheal"])
+				return round(tooltipdata["minheal"])..TheoryCraft_Locale.to_print..round(tooltipdata["maxheal"])
 			end
 		end
 		if n == "dmgrange" and tooltipdata["mindamage"] then
 			if tooltipdata["mindamage"] == tooltipdata["maxdamage"] then
 				return round(tooltipdata["mindamage"])
 			else
-				return round(tooltipdata["mindamage"])..TheoryCraft_Locale.to..round(tooltipdata["maxdamage"])
+				return round(tooltipdata["mindamage"])..TheoryCraft_Locale.to_print..round(tooltipdata["maxdamage"])
 			end
 		end
 		if ((n == "critdmgrange") or (n == "igniterange")) and (tooltipdata["critdmgmin"]) then
@@ -131,14 +131,14 @@ function TheoryCraft_AddTooltipInfo(frame, dontshow)
 				if tooltipdata["critdmgminminusignite"] == tooltipdata["critdmgmaxminusignite"] then
 					return round(tooltipdata["critdmgminminusignite"])
 				else
-					return round(tooltipdata["critdmgminminusignite"])..TheoryCraft_Locale.to..round(tooltipdata["critdmgmaxminusignite"])
+					return round(tooltipdata["critdmgminminusignite"])..TheoryCraft_Locale.to_print..round(tooltipdata["critdmgmaxminusignite"])
 				end
 			else
 				if (tooltipdata["critdmgminminusignite"] == nil) and (n == "igniterange") then return "$NOT FOUND$" end
 				if tooltipdata["critdmgmin"] == tooltipdata["critdmgmax"] then
 					return round(tooltipdata["critdmgmin"])
 				else
-					return round(tooltipdata["critdmgmin"])..TheoryCraft_Locale.to..round(tooltipdata["critdmgmax"])
+					return round(tooltipdata["critdmgmin"])..TheoryCraft_Locale.to_print..round(tooltipdata["critdmgmax"])
 				end
 			end
 		end
@@ -146,7 +146,7 @@ function TheoryCraft_AddTooltipInfo(frame, dontshow)
 			if tooltipdata["crithealmin"] == tooltipdata["crithealmax"] then
 				return round(tooltipdata["crithealmin"])
 			else
-				return round(tooltipdata["crithealmin"])..TheoryCraft_Locale.to..round(tooltipdata["crithealmax"])
+				return round(tooltipdata["crithealmin"])..TheoryCraft_Locale.to_print..round(tooltipdata["crithealmax"])
 			end
 		end
 		if n2 then

@@ -316,8 +316,7 @@ local function GetCritChance(critreport)
 	TheoryCraftTooltip:SetSpell(id, BOOKTYPE_SPELL)
 	local spellName = TheoryCraftTooltipTextLeft2:GetText()
 	if not spellName then return 0 end
-	iCritInfo = string.find(spellName, "%s")
-	critNum = string.sub(spellName,0,(iCritInfo -2))
+	_, _, critNum = strfind(spellName, "(%d+[.,]%d+)")
 	critChance = string.gsub(critNum, ",", ".")
 	critChance = tonumber(critChance)
 	if critreport == nil then critreport = 0 end
