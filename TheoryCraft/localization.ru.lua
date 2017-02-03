@@ -217,7 +217,7 @@ TheoryCraft_MeleeMinMaxReader = {
 		type={"addeddamage"} },
 	{ pattern = "наносящий (%d+) ед. урона,",							-- Mocking Blow
 		type={"addeddamage"} },
-	{ pattern = "и нанося им (%d+) ед. урона.",							-- Thunder Clap
+	{ pattern = "нанося им (%d+) ед. урона.",							-- Thunder Clap
 		type={"addeddamage"} },
 
 }
@@ -259,8 +259,8 @@ TheoryCraft_MeleeMinMaxReplacer = {
 	  replacewith = "наносит $damage$ ед. урона." },
 	{ search = "наносящий (%d+) ед. урона,",								-- Mocking Blow
 	  replacewith = "наносящая $damage$ ед. урона," },
-	{ search = "и нанося им (%d+) ед. урона",							-- Thunder Clap
-	  replacewith = "и наносит $damage$ ед. урона" },
+	{ search = "нанося им (%d+) ед. урона",							-- Thunder Clap
+	  replacewith = "наносит $damage$ ед. урона" },
 	{ search = "  нанося каждому противнику урон ",						-- Whirlwind
 	  replacewith = " наносит $damage$ ед. урона " },
 }
@@ -377,8 +377,8 @@ TheoryCraft_Locale = {
 		["Frost Nova"] = "Кольцо льда",
 		["Cone of Cold"] = "Конус холода",
 		["Blizzard"] = "Снежная буря",
-		["Arcane Explosion"] = "Волшебный взрыв",
-		["Arcane Missiles"] = "Чародейские снаряды",
+		["Arcane Explosion"] = "Чародейский взрыв",
+		["Arcane Missiles"] = "Чародейские стрелы",
 		["Fire Blast"] = "Огненный взрыв",
 		["Fireball"] = "Огненный шар",
 		["Pyroblast"] = "Огненная глыба",
