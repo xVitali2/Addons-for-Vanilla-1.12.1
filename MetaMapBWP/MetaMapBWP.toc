@@ -2,6 +2,7 @@
 ## Title: MetaMapBWP
 ## Author: MetaHawk
 ## Notes: Waypoints system module
+## Notes-ruRU: Модуль системы Маршрутов
 ## LoadOnDemand: 1
 ## Dependencies: MetaMap
 ## SavedVariables: BWP_Options, BWP_Destination, BWP_QuestList, BWP_AbandonedQuests
