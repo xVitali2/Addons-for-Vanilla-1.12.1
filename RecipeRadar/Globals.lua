@@ -230,7 +230,7 @@ function RecipeRadar_Options_Init()
 
    if (RecipeRadar_Options.ShowMinimapButton == nil) then
       RecipeRadar_Options.ShowMinimapButton = true
-      RecipeRadarMinimapButtonFrame:Show()
+      if (RecipeRadarMinimapButtonFrame) then RecipeRadarMinimapButtonFrame:Show() end
    end
 
    if (not RecipeRadar_IsProfession(

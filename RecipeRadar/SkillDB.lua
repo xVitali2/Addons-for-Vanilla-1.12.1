@@ -24,7 +24,11 @@ end
 -- This function safely initializes the player's personal skill database.
 -- If no player is supplied, the current player is assumed.
 function RecipeRadar_SkillDB_GetSafePlayerDB(player)
-
+	
+	if (not RecipeRadar_SkillDB) then
+		RecipeRadar_SkillDB_Init()
+	end
+	
    if (not player) then player = UnitName("player") end
 
    local db = RecipeRadar_SkillDB[GetRealmName()]

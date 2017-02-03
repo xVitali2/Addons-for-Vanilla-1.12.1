@@ -1,5 +1,11 @@
 Recipe Radar (vanilla) ChangeLog
 
+v1.15; 3.02.2017
+
+- Added square minimaps support for icons on minimap & for minimapbutton
+- Fixed first startup errors
+- More support for MBB
+
 v1.14; 2.02.2017
 
 - Added MBB compatibility (better minimap button managment),

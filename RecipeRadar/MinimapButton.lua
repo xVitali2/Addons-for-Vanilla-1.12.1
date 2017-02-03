@@ -84,8 +84,17 @@ function RecipeRadar_MinimapButton_UpdatePosition()
 	local scale = Minimap:GetEffectiveScale();
 	local xdelta, ydelta = (xm - xmin)/2*scale, (ym - ymin) /2 * scale;
 	local scale2 =  RecipeRadarMinimapButton:GetEffectiveScale();
-	local x = (xdelta * cos(RecipeRadar_Options.MinimapButtonPosition))/scale2;
-	local y = (ydelta * sin(RecipeRadar_Options.MinimapButtonPosition))/scale2;
-	RecipeRadarMinimapButton:SetPoint("TOPLEFT", "Minimap", "CENTER",	x - 17 , y + 17)
+	local angle = RecipeRadar_Options.MinimapButtonPosition
+	local x,y =0,0;
+	if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")
+		or (pfUI and pfUI_config["disabled"]["minimap"] ~= "1")) then
+		x = math.max(-xdelta, math.min((xdelta*1.5) * cos(angle), xdelta))
+		y = math.max(-ydelta, math.min((ydelta*1.5) * sin(angle), ydelta))
+	else
+		x= cos(angle)*xdelta
+		y= sin(angle)*ydelta
+	end
+	
+	RecipeRadarMinimapButton:SetPoint("TOPLEFT", "Minimap", "CENTER",	x/scale2 - 17 , y/scale2 + 17)
 
 end

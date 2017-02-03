@@ -147,19 +147,26 @@ function RecipeRadar_Minimap_GetPosition(offs_x, offs_y, scale_x, scale_y)
    local map_x, map_y = offs_x * scale_x, offs_y * scale_y
    local dist = RecipeRadar_Minimap_Pythagorean(map_x, map_y)
 
-   if (dist >= 57) then
-
-      local flip_axis = 1
-      if (map_x == 0) then
-         map_x = 0.0000000001
-      elseif (map_x < 0) then
-         flip_axis = -1
+	local mapWidth = Minimap:GetWidth()/2;
+	local mapHeight = Minimap:GetHeight()/2;
+	if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")
+		or (pfUI and pfUI_config["disabled"]["minimap"] ~= "1")) then
+		if (math.abs(map_x) > mapWidth) then
+			map_x = (mapWidth)*((map_x<0 and -1) or 1);
       end
-
-      local angle = math.atan(map_y / map_x)
-      map_x = math.cos(angle) * 58 * flip_axis
-      map_y = math.sin(angle) * 58 * flip_axis
-
+		if (math.abs(map_y) > mapHeight) then
+			map_y = (mapHeight)*((map_y<0 and -1) or 1);
+		end
+	elseif (mapDist >= mapWidth) then
+		-- Remap it to just inside the minimap, by:converting dx,dy to angle,distance
+		-- then truncate distance to 58 and convert angle,58 to dx,dy
+		local flipAxis = 1;
+		if (map_x == 0) then map_x = 0.0000000001;
+		elseif (map_x < 0) then flipAxis = -1;
+		end
+		local angle = math.atan(map_y / map_x);
+		map_x = math.cos(angle) * mapWidth * flipAxis;
+		map_y = math.sin(angle) * mapHeight * flipAxis;
    end
 
    return map_x, map_y
