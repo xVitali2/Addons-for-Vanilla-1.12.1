@@ -8,6 +8,7 @@ local realHostedCategory = ""
 local playersQueued = {}
 local chatQueue = {}
 local groups = {}
+local notifyForDungeon = ""
 
 local vQueueFrame = {}
 local catListButtons = {}
@@ -673,6 +674,52 @@ function vQueue_OnEvent(event)
 			vQueueFrame.hostlistHealCheck:Hide()
 			vQueueFrame.hostlistRoleText:SetText("")
 		end
+		
+-- Sven Button
+
+		vQueueFrame.watchListButton = vQueue_newButton(vQueueFrame.hostlistTopSection, 10)
+		vQueueFrame.watchListButton:SetPoint("BOTTOMLEFT", vQueueFrame.hostlistTopSection, "BOTTOMLEFT", 3, 5)
+		vQueueFrame.watchListButton:SetText("Notify about groups")
+		vQueueFrame.watchListButton:SetWidth(vQueueFrame.watchListButton:GetTextWidth()+10)
+		vQueueFrame.watchListButton:SetScript("OnClick", function()
+			titleDung = selectedQuery
+			notifyForDungeon = titleDung
+			vQueueFrame.watchListButton:SetText("Notified for " .. notifyForDungeon)
+			vQueueFrame.clearNotifyButton:Show()
+		end)
+
+		vQueueFrame.clearNotifyButton = vQueue_newButton(vQueueFrame.hostlistTopSection, 10)
+		vQueueFrame.clearNotifyButton:SetPoint("BOTTOMLEFT", vQueueFrame.hostlistTopSection, "BOTTOMLEFT", 115, 5)
+		vQueueFrame.clearNotifyButton:SetText("Clear")
+		vQueueFrame.clearNotifyButton:SetWidth(vQueueFrame.clearNotifyButton:GetTextWidth()+10)
+		vQueueFrame.clearNotifyButton:SetScript("OnClick", function()
+			notifyForDungeon = ""
+			vQueueFrame.watchListButton:SetText("Notify about groups")
+			vQueueFrame.clearNotifyButton:Hide()
+		end)
+		vQueueFrame.clearNotifyButton:Hide()
+
+		vQueueFrame.watchListButton:SetScript("OnEnter", function()
+			playerQueueToolTip:SetOwner( this, "ANCHOR_CURSOR" );
+			playerQueueToolTip:AddLine("Don't forget to choose role on the right side", 1, 1, 1, 1)
+			playerQueueToolTip:Show()
+		end)
+
+		vQueueFrame.clearNotifyButton:SetScript("OnEnter", function()
+			playerQueueToolTip:SetOwner( this, "ANCHOR_CURSOR" );
+			playerQueueToolTip:AddLine("Clears the search, you will not be notified anymore", 1, 1, 1, 1)
+			playerQueueToolTip:Show()
+		end)
+
+		vQueueFrame.watchListButton:SetScript("OnLeave", function()
+			playerQueueToolTip:Hide()
+		end)
+
+		vQueueFrame.clearNotifyButton:SetScript("OnLeave", function()
+			playerQueueToolTip:Hide()
+		end)
+
+		-- Sven Button Ende
 		
 		vQueueFrame.hostlistHostButton = vQueue_newButton(vQueueFrame.hostlistTopSection, 10)
 		vQueueFrame.hostlistHostButton:SetPoint("BOTTOMRIGHT", vQueueFrame.hostlistTopSection, "BOTTOMRIGHT", -3, 5)
@@ -1537,9 +1584,31 @@ function vQueue_OnEvent(event)
 								leaderMessages[arg2] = strippedStr .. ":" .. kCat .. ":" .. tostring(GetTime())
 								if kCat ~= "dm" then
 									vQueue_addToGroup(kCat, "(Mouseover to see chat message)" .. ":" .. arg2 .. ":" .. getglobal("MINLVLS")[kCat] .. ":" .. "?" .. ":" .. healerRole .. ":" .. damageRole .. ":" .. tankRole)
+									-- DEFAULT_CHAT_FRAME:AddMessage("ATM1 " .. kCat .. " - notify is " .. notifyForDungeon)
+									if kCat == notifyForDungeon then
+										if (selectedRole == "Damage" and damageRole == "Damage") or (selectedRole == "Healer" and healerRole == "Healer") or (selectedRole == "Tank" and tankRole == "Tank") then
+											vQueueFrame.replyFrameTo:SetText(arg2)
+											vQueueFrame.replyFrameMsg:SetText("(vQueue) Lvl " .. tostring(UnitLevel("player")) .. " " .. selectedRole .. " " .. tostring(class2))
+											vQueueFrame.replyFrame:Show()
+
+											if vQueueFrameShown then 
+
+											else
+												vQueueFrame:Show() 
+												vQueueFrame.catList:Show()
+												vQueueFrame.hostlist:Show()
+												vQueueFrameShown = true
+											end
+										end
+										-- DEFAULT_CHAT_FRAME:AddMessage("Someone is looking for " .. kCat .. " - you are: " .. selectedRole)
+									end
 								end
 								if kCat == 'dm' then
 									if not setContains(whoRequestList, arg2) then addToSet(whoRequestList, arg2) end
+									-- DEFAULT_CHAT_FRAME:AddMessage("ATM2 " .. kCat .. " - notify is " .. notifyForDungeon)
+									if kCat == notifyForDungeon then
+										DEFAULT_CHAT_FRAME:AddMessage("Someone is looking for " .. kCat)
+									end
 								end
 								refreshCatList(kCat)
 								break
@@ -2320,8 +2389,8 @@ function vQueue_SlashCommandHandler( msg )
 			addToSet(chatQueue, "lfg " .. args[2] .. "-CHANNEL-" .. tostring(GetChannelName(channelName)))
 		end
 	elseif args[1] == "request" and args[2] ~= nil then
-		if not setContains(chatQueue, "vqrequest " .. UnitLevel("player") .. " " .. UnitClass("player") .. " " .. selectedRole .. "-WHISPER-" .. args[2]) then
-			addToSet(chatQueue, "vqrequest " .. UnitLevel("player") .. " " .. UnitClass("player") .. " " .. selectedRole .. "-WHISPER-" .. args[2])
+		if not setContains(chatQueue, "vqrequest " .. UnitLevel("player") .. " " .. class2 .. " " .. selectedRole .. "-WHISPER-" .. args[2]) then
+			addToSet(chatQueue, "vqrequest " .. UnitLevel("player") .. " " .. class2 .. " " .. selectedRole .. "-WHISPER-" .. args[2])
 		end
 	elseif args[1] == "testgroups" then
 		for i=1, 100 do
