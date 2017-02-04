@@ -42,7 +42,7 @@ pfLocaleSpellEvents["ruRU"] = {
   ['SPELL_PERFORM'] = "(.+) начинает выполнять действие \"(.+)\".",
   ['SPELL_AFFLICTED'] = "(.+) находится под воздействием эффекта \"(.+)\".",
   ['SPELL_HIT'] = "Ваше заклинание \"(.+)\" наносит (.+) %d+\ед. урона.",
-  ['OTHER_SPELL_HIT'] = "\"%2$s\" %1$s наносит %3$s %4$d ед. урона.",
+  ['OTHER_SPELL_HIT'] = "\"(.+)\" (.+) наносит %a+ %d+\ ед. урона.",
 }
 
 pfLocaleSpellInterrupts["ruRU"] = {
