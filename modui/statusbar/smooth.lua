@@ -22,6 +22,15 @@
 	local smoothframe = CreateFrame'Frame'
 	smoothing = {}
 
+    local isPlate = function(frame)
+        local overlayRegion = frame:GetRegions()
+        if not overlayRegion or overlayRegion:GetObjectType() ~= 'Texture'
+        or overlayRegion:GetTexture() ~= [[Interface\Tooltips\Nameplate-Border]] then
+            return false
+        end
+        return true
+    end
+
 	local min, max = math.min, math.max
 	local function AnimationTick()
 		local limit = 30/GetFramerate()
@@ -69,7 +78,16 @@
 		end
 	end
 
-    smoothframe:SetScript('OnUpdate', AnimationTick)
+    smoothframe:SetScript('OnUpdate', function()
+        local frames = {WorldFrame:GetChildren()}
+        for _, plate in ipairs(frames) do
+            if isPlate(plate) and plate:IsVisible() then
+                local v = plate:GetChildren()
+                SmoothBar(v.new)
+            end
+        end
+        AnimationTick()
+    end)
 
 	for _, v in pairs (barstosmooth) do
         if v then SmoothBar(v) end

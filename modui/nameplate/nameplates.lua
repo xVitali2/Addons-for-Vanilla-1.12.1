@@ -71,8 +71,13 @@
         name:SetPoint('BOTTOMRIGHT', plate, 'TOPRIGHT', -4, -16)
         name:SetJustifyH'RIGHT'
 
-        health:SetStatusBarTexture(TEXTURE)
+        health:SetStatusBarTexture''
         health:SetFrameLevel(1)
+
+        health.new = CreateFrame('StatusBar', nil, health)
+        health.new:SetAllPoints()
+        health.new:SetStatusBarTexture(TEXTURE)
+        health.new:SetFrameLevel(1)
 
         border:SetVertexColor(.2, .2, .2)
         border:SetDrawLayer'OVERLAY'
@@ -183,6 +188,20 @@
         local health = plate:GetChildren()
         plate:SetWidth(120)
         health:SetWidth(100)
+        health.new:SetWidth(100)
+    end
+
+    local addValue = function(plate)
+        local health = plate:GetChildren()
+        local min, max = health:GetMinMaxValues()
+        health.new:SetMinMaxValues(min, max)
+        health.new:SetValue(health:GetValue())
+    end
+
+    local addColour = function(plate)
+        local health  = plate:GetChildren()
+        local r, g, b = health:GetStatusBarColor()
+        health.new:SetStatusBarColor(r, g, b)
     end
 
     local addClass = function(plate)    -- CLASS COLOUR
@@ -199,7 +218,7 @@
 
         if p[n] and r > .9 then
             local colour = RAID_CLASS_COLORS[p[n]['class']]
-            health:SetStatusBarColor(colour.r, colour.g, colour.b)
+            health.new:SetStatusBarColor(colour.r, colour.g, colour.b)
         end
     end
 
@@ -358,7 +377,7 @@
                 if isPlate(plate) and plate:IsVisible() then
                     local _, _, name = plate:GetRegions()
                     if not plate.skinned then modPlate(plate) end
-                    addSize(plate) addClass(plate) addCP(plate) addCast(plate) addHeal(plate) addBuff(plate) addPvP(plate) addTotem(plate)
+                    addSize(plate) addValue(plate) addColour(plate) addClass(plate) addCP(plate) addCast(plate) addHeal(plate) addBuff(plate) addPvP(plate) addTotem(plate)
                 end
             end
         end

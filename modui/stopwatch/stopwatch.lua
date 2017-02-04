@@ -95,7 +95,6 @@
 				if visible then
 					sw:Hide()
 					visible = false
-					t0 = nil
 				else
 					sw:Show()
 					t:SetText'0:0:0'
@@ -127,6 +126,7 @@
 		play:SetText'Pause'
 		sw:SetScript('OnUpdate', sw_OnUpdate)
 		sw:Show()
+		visible = true
 	end
 
 	local sw_toggle = function()

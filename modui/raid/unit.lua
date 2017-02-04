@@ -330,8 +330,8 @@
         for i = 1, 40 do
             local db = _G['modui_vars'].db
 
-            bu[i] = CreateFrame('Frame', 'modraid'..i, UIParent)
-            -- bu[i]:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
+            bu[i] = CreateFrame('Button', 'modraid'..i, UIParent)
+            bu[i]:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
             bu[i]:SetWidth(db['modRaidX'] and db['modRaidX'] or 53)
             bu[i]:SetHeight(db['modRaidY'] and db['modRaidY'] or 24)
     		bu[i]:SetResizable(true)
@@ -439,7 +439,7 @@
 
             bu[i]:RegisterEvent'UNIT_AURA'     -- init
             bu[i]:SetScript('OnEvent',  function() debuffs(arg1) end)
-            --[[bu[i]:SetScript('OnClick',  function()
+            bu[i]:SetScript('OnClick',  function()
                 if  arg1 == 'RightButton' then
                     ToggleTank(this.unit)
                 else
@@ -451,8 +451,7 @@
                         TargetUnit(this.unit)
                     end
                 end
-            end) ]]
-            --bu[i]:SetScript('OnClick',  function() if CursorHasItem() then DropItemOnUnit(this.unit) else TargetUnit(this.unit) end end)
+            end)
             bu[i]:SetScript('OnEnter',  function() UnitFrame_OnEnter() GameTooltipStatusBar:Hide() end)
             bu[i]:SetScript('OnLeave',  UnitFrame_OnLeave)
             bu[i]:SetScript('OnUpdate', raidupdate)
