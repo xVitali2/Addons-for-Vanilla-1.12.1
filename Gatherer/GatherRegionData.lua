@@ -183,9 +183,9 @@ elseif ( GetLocale() == "ruRU" ) then
 	GatherRegionData[2][20] = { scale = 0.07670475476181, xoffset = 0.43087243362495, yoffset = 0.73224350550454, name = "Сумеречный лес" };
 	GatherRegionData[2][21] = { scale = 0.18128603034401, xoffset = 0.39145470225916, yoffset = 0.79412224886668, name = "Тернистая долина" };
 	GatherRegionData[2][22] = { scale = 0.12837403412087, xoffset = 0.36837217317549, yoffset = 0.15464954319582, name = "Тирисфальские леса" };
-	GatherRegionData[2][23-15] = { scale = 0.06338794005823, xoffset = 0.46372051266487, yoffset = 0.57812379382509, name = "Тлеющее ущелье" };
-	GatherRegionData[2][24-17] = { scale = 0.03819701270887, xoffset = 0.41531450060561, yoffset = 0.67097280492581, name = "Штормград" };
-	GatherRegionData[2][25-10] = { scale = 0.09860350595046, xoffset = 0.41092682316676, yoffset = 0.65651531970162, name = "Элвиннский лес" };
+	GatherRegionData[2][23] = { scale = 0.06338794005823, xoffset = 0.46372051266487, yoffset = 0.57812379382509, name = "Тлеющее ущелье" };
+	GatherRegionData[2][24] = { scale = 0.03819701270887, xoffset = 0.41531450060561, yoffset = 0.67097280492581, name = "Штормград" };
+	GatherRegionData[2][25] = { scale = 0.09860350595046, xoffset = 0.41092682316676, yoffset = 0.65651531970162, name = "Элвиннский лес" };
 
 -- english/US locale
 else
