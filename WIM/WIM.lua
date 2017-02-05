@@ -1156,7 +1156,6 @@ function WIM_LoadDefaultFilters()
 	WIM_Filters["VOLATILE INFECTION"] 		= "Ignore";
 	WIM_Filters["^<GA"]						= "Block";
 	WIM_Filters["USD"]						= "Block";
-	WIM_Filters["COM"]						= "Block";
 	WIM_Filters["W@W"]						= "Block";
 	WIM_Filters["C@M"]						= "Block";
 	WIM_Filters["G4"]						= "Block";
@@ -1171,7 +1170,7 @@ function WIM_LoadDefaultFilters()
 	WIM_Filters["SERVICE"]					= "Ignore";
 	WIM_Filters["CHEAP"]					= "Block";
 	WIM_Filters["WWW"]						= "Block";
-	WIM_Filters["ElysiumtyWOW"]				= "Block";
+	WIM_Filters["1-60"]						= "Block";
 --	WIM_Filters[""]						= "Ignore";
 
 	WIM_FilteringScrollBar_Update();
