@@ -3,6 +3,7 @@ if (GetLocale() == "esES") then
 -- Spanish Data for MetaMap by Fili
 
 -- General
+METAMAP_INSTANCES = "Instances";
 METAMAP_CATEGORY = "Interfaz";
 METAMAP_SUBTITLE = "Mod MapaMundi";
 METAMAP_DESC = "MetaMap es una modificación del MapaMundi Estandar.";

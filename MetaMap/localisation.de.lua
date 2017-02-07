@@ -13,6 +13,7 @@
 if (GetLocale() == "deDE") then
 
 -- General
+METAMAP_INSTANCES = "Instances";
 METAMAP_CATEGORY = "Interface";
 METAMAP_SUBTITLE = "WorldMap Mod";
 METAMAP_DESC = "MetaMap ist eine Erweiterung der standard Weltkarte.";

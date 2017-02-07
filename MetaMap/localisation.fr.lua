@@ -22,6 +22,7 @@
 if (GetLocale() == "frFR") then
 
 -- General
+METAMAP_INSTANCES = "Instances";
 METAMAP_CATEGORY = "Interface";
 METAMAP_SUBTITLE = "WorldMap Mod";
 METAMAP_DESC = "MetaMap est une modification de la carte standard du monde.";

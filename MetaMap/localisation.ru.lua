@@ -2,6 +2,7 @@
 
 if (GetLocale() == "ruRU") then
 -- General
+METAMAP_INSTANCES = "Подземелья";
 METAMAP_CATEGORY = "Интерфейс";
 METAMAP_SUBTITLE = "Мод Карты мира";
 METAMAP_DESC = "MetaMap улучшает стандартную Карту мира.";

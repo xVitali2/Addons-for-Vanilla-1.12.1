@@ -1229,9 +1229,9 @@
 		<Frames>
 			<Button	name="MetaMapFrameDropDown"	inherits="UIDropDownMenuTemplate">
 				<Anchors>
-					<Anchor	point="RIGHT"	relativeTo="WorldMapContinentDropDown" relativePoint="LEFT">
+					<Anchor	point="LEFT"	relativeTo="WorldMapContinentDropDown" relativePoint="LEFT">
 						<Offset>
-							<AbsDimension	x="33" y="0"/>
+							<AbsDimension	x="450" y="0"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -1244,11 +1244,11 @@
 		</Frames>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString	inherits="GameFontNormalSmall" text="Instances">
+				<FontString	inherits="GameFontNormalSmall" text="METAMAP_INSTANCES">
 					<Anchors>
 						<Anchor	point="LEFT" relativeTo="WorldMapContinentDropDown"	relativePoint="LEFT">
 							<Offset>
-								<AbsDimension	x="-170" y="21"/>
+								<AbsDimension	x="470" y="21"/>
 							</Offset>
 						</Anchor>
 					</Anchors>

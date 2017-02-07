@@ -1,6 +1,7 @@
 -- Default English Data for MetaMap
 
 -- General
+METAMAP_INSTANCES = "Instances";
 METAMAP_CATEGORY = "Interface";
 METAMAP_SUBTITLE = "WorldMap Mod";
 METAMAP_DESC = "MetaMap adds enhancements to the standard World Map.";
