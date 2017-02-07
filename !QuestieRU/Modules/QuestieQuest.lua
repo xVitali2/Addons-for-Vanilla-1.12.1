@@ -527,6 +527,7 @@ AstroobjectiveProcessors = {
                         monster["lootname"] = e;
                         monster["locations"] = {};
                         monster["type"] = "loot";
+						if not (QuestieMonsters[e]) then return list; end
                         for k, pos in pairs(QuestieMonsters[e]['locations']) do
                             table.insert(monster["locations"], pos);
                         end
@@ -686,7 +687,7 @@ end
 function Questie:getQuestHash(name, level, objectiveText)
     local hashLevel = level or "hashLevel"
     local hashText = objectiveText or "hashText"
-    if QuestieQuestHashCache[name..hashLevel..hashText] then
+    if name and QuestieQuestHashCache[name..hashLevel..hashText] then --fix by ...
         return QuestieQuestHashCache[name..hashLevel..hashText]
     end
     local questLookup = QuestieLevLookup[name];

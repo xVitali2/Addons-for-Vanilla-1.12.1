@@ -654,7 +654,7 @@ function Questie_AvailableQuestClick()
                 Dewdrop:Open(this)
                 Dewdrop:Unregister(this)
             end
-            if (IsAddOnLoaded("Cartographer")) and (CartographerDB["disabledModules"]["Default"]["Look 'n' Feel"] == true) then
+            if (IsAddOnLoaded("Cartographer")) and (CartographerDB["disabledModules"]) and (CartographerDB["disabledModules"]["Default"]["Look 'n' Feel"] == true) then --fix by ...
                 Dewdrop:Register(this,
                     'children', function()
                         for i, quest in pairs(this.quests) do
@@ -1087,6 +1087,7 @@ function Questie:DrawClusters(clusters, frameName, scale, frame, button)
         table.sort(cluster.points, function(a, b)
             local questA = QuestieHashMap[a.questHash]
             local questB = QuestieHashMap[b.questHash]
+			if not questA or not questB then return; end -- fix by ...
             return
                 (a.icontype == "complete" and b.icontype ~= "complete") or
                 (a.icontype == b.icontype and questA.level < questB.level) or
