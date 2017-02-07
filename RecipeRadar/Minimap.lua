@@ -157,7 +157,7 @@ function RecipeRadar_Minimap_GetPosition(offs_x, offs_y, scale_x, scale_y)
 		if (math.abs(map_y) > mapHeight) then
 			map_y = (mapHeight)*((map_y<0 and -1) or 1);
 		end
-	elseif (mapDist >= mapWidth) then
+	elseif (dist >= mapWidth) then
 		-- Remap it to just inside the minimap, by:converting dx,dy to angle,distance
 		-- then truncate distance to 58 and convert angle,58 to dx,dy
 		local flipAxis = 1;
