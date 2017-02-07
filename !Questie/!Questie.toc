@@ -4,7 +4,7 @@
 ## Notes: A standalone Vanilla QuestHelper
 ## Version: 3.69
 ## RequiredDeps:
-## OptionalDeps: Cartographer, MetaMap, EQL3, ShaguQuest
+## OptionalDeps: pfUI, Cartographer, MetaMap, EQL3, ShaguQuest
 ## SavedVariables:
 ## SavedVariablesPerCharacter: QuestieSeenQuests, QuestieTrackedQuests, QuestieConfig, QuestieTrackerVariables
 
