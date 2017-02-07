@@ -216,8 +216,9 @@
             isPlayer(n) ClearTarget()
         end
 
-        if p[n] and r > .9 then
+        if  p[n] then
             local colour = RAID_CLASS_COLORS[p[n]['class']]
+            health:SetStatusBarColor(colour.r, colour.g, colour.b)
             health.new:SetStatusBarColor(colour.r, colour.g, colour.b)
         end
     end
@@ -334,7 +335,7 @@
         if  MODUI_TOTEMS[n] then
             local totem  = MODUI_TOTEMS[n]
 
-            health:SetStatusBarTexture''
+            health.new:SetStatusBarTexture''
 
             for _, v in pairs({plate:GetRegions()}) do
                 v:SetAlpha(0)
@@ -348,7 +349,7 @@
             plate.totem:Show()
             plate.totem.icon:SetTexture('Interface\\Icons\\'..totem.icon)
         else
-            health:SetStatusBarTexture(TEXTURE)
+            health.new:SetStatusBarTexture(TEXTURE)
 
             name:ClearAllPoints()
             name:SetPoint('BOTTOMRIGHT', plate, 'TOPRIGHT', -4, -16)

@@ -354,7 +354,7 @@
             bu[i].hp:SetPoint('BOTTOMRIGHT', bu[i], -1, 8)
 
             bu[i].mana = CreateFrame('StatusBar', nil, bu[i])
-            bu[i].mana:SetHeight(7)
+            bu[i].mana:SetHeight(6)
             bu[i].mana:SetFrameLevel(0)
             bu[i].mana:SetMinMaxValues(0, 100)
             bu[i].mana:SetValue(100)

@@ -177,13 +177,18 @@
     end
 
     local t = CreateFrame'Frame'
-    t:RegisterEvent'PLAYER_TARGET_CHANGED' t:RegisterEvent'PARTY_MEMBERS_CHANGED'
-    t:RegisterEvent'UNIT_FACTION'
+    t:RegisterEvent'PLAYER_ENTERING_WORLD' t:RegisterEvent'PARTY_MEMBERS_CHANGED'
+    t:RegisterEvent'PLAYER_TARGET_CHANGED' t:RegisterEvent'UNIT_FACTION'
     t:SetScript('OnEvent', function()           -- COLOUR UNIT
-        local _, class = UnitClass'target'
-        local colour = RAID_CLASS_COLORS[class]
-        if UnitIsPlayer'target' then TargetFrameNameBackground:SetVertexColor(colour.r, colour.g, colour.b, 1) end
-        if arg1 == 'PARTY_MEMBERS_CHANGED' then colourParty() end
+        if event == 'PLAYER_ENTERING_WORLD' or event == 'PARTY_MEMBERS_CHANGED' then
+            colourParty()
+        else
+            local _, class = UnitClass'target'
+            local colour = RAID_CLASS_COLORS[class]
+            if UnitIsPlayer'target' then
+                TargetFrameNameBackground:SetVertexColor(colour.r, colour.g, colour.b, 1)
+            end
+        end
     end)
 
     function PartyMemberFrame_UpdateMember()

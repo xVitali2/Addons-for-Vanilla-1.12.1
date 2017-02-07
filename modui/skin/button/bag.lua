@@ -35,8 +35,10 @@
                 modSkinColor(bu, .2, .2, .2)
                 if bu and bu:IsShown() and link then
                     local _, _, istring         = string.find(link, '|H(.+)|h')
-                    local _, _, q, _, _, type   = GetItemInfo(istring)
-                    if  type == 'Quest' then
+                    local n, _, q, _, _, type   = GetItemInfo(istring)
+                    if strfind(n, 'Mark of Honor') then
+                        modSkinColor(bu, .98, .95, .0)
+                    elseif  type == 'Quest' then
                         modSkinColor(bu, 1, .33, .0)
                     elseif q and q > 1 then
                     	local r, g, b = GetItemQualityColor(q)

@@ -83,7 +83,9 @@
         for _, plate in ipairs(frames) do
             if isPlate(plate) and plate:IsVisible() then
                 local v = plate:GetChildren()
-                SmoothBar(v.new)
+                if  v.new then
+                    SmoothBar(v.new)
+                end
             end
         end
         AnimationTick()
