@@ -8,8 +8,8 @@
 ## X-Category: Interface Enhancements
 ## X-eMail: alarisha@gmail.com
 
-## Dependencies:
-## OptionalDeps: Ace2, Tablet-2.0, Abacus-2.0, FuBarPlugin-2.0, Compost-2.0, Dewdrop-2.0, FuBar
+## Dependencies: FuBar
+## OptionalDeps: Ace2, Tablet-2.0, Abacus-2.0, FuBarPlugin-2.0, Compost-2.0, Dewdrop-2.0
 ## SavedVariables: Fubar_AuditorDB, AuditorDB
 ## LoadOnDemand: 0
 

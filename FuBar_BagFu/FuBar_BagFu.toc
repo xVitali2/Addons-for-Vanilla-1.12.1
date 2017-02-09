@@ -2,7 +2,7 @@
 ## Title: FuBar - |cffffffffBag|r|cff00ff00Fu|r
 ## Notes: Keeps track of space left in your bags.
 ## Author: phyber
-## OptionalDeps: FuBar
+## Dependencies: FuBar
 ## SavedVariables: BagFuDB
 ## Version: 2
 ## X-Category: Inventory
