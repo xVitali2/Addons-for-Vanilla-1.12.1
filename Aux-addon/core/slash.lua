@@ -23,6 +23,9 @@ function SlashCmdList.AUX(command)
     elseif arguments[1] == 'ignore' and arguments[2] == 'owner' then
 	    _G.aux_ignore_owner = not aux_ignore_owner
         print('ignore owner ' .. status(aux_ignore_owner))
+    elseif arguments[1] == 'post' and arguments[2] == 'bid' then
+	    _G.aux_post_bid = not aux_post_bid
+	    print('post bid ' .. status(aux_post_bid))
     elseif arguments[1] == 'tooltip' and arguments[2] == 'value' then
 	    _G.aux_tooltip_value = not aux_tooltip_value
         print('tooltip value ' .. status(aux_tooltip_value))

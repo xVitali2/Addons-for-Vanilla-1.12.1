@@ -28,7 +28,7 @@ local handlers = {
     OnLeave = function()
         this.mouseover = false
         if not this.data then return end
-        if this.st.selectionDisabled or not this.st.selected or this.st.selected ~= key(this.st.rowData, this.data) then
+        if not this.st.selected or this.st.selected ~= key(this.st.rowData, this.data) then
             this.highlight:Hide()
         end
 
@@ -41,7 +41,7 @@ local handlers = {
     OnClick = function()
         if not this.data then return end
         this.st:ClearSelection()
-        this.st.selected = key(this.st.rowData, this.data)
+        this.st.selected = not this.st.selectionDisabled and key(this.st.rowData, this.data)
         this.highlight:Show()
 
         local handler = this.st.handlers.OnClick
@@ -103,7 +103,7 @@ local methods = {
 		    else
 			    row:Show()
 			    while getn(row.cols) < getn(self.colInfo) do
-				    self:AddRowCol(i)
+				    self:AddCell(i)
 			    end
 			    for j, col in row.cols do
 				    if self.headCols[j] and self.colInfo[j] then
@@ -132,10 +132,7 @@ local methods = {
                 if not data then break end
                 self.rows[i].data = data
 
-                if (self.selected == key(self.rowData, data) and not self.selectionDisabled)
-                        or (self.highlighted and self.highlighted == key(self.rowData, data))
-                        or self.rows[i].mouseover
-                then
+                if self.selected == key(self.rowData, data) or self.rows[i].mouseover then
                     self.rows[i].highlight:Show()
                 else
                     self.rows[i].highlight:Hide()
@@ -166,19 +163,8 @@ local methods = {
         self:Update()
     end,
 
-    SetSelection = function(self, predicate)
-        self:ClearSelection()
-        for i, rowDatum in self.rowData do
-            if predicate(rowDatum) then
-                    self.selected = i
-                    self:Update()
-                break
-            end
-        end
-    end,
-
     GetSelection = function(self)
-        return self.selected
+        return self.rowData[self.selected]
     end,
 
     ClearSelection = function(self)
@@ -192,7 +178,7 @@ local methods = {
 
     AddColumn = function(self)
         local colNum = getn(self.headCols) + 1
-        local col = CreateFrame('Frame', self:GetName() .. 'HeadCol' .. colNum, self.contentFrame)
+        local col = CreateFrame('Frame', nil, self.contentFrame)
         if colNum == 1 then
             col:SetPoint('TOPLEFT', 0, 0)
         else
@@ -215,33 +201,32 @@ local methods = {
 
         tinsert(self.headCols, col)
 
-        -- add new cells to the rows
         for i, row in self.rows do
             while getn(row.cols) < getn(self.headCols) do
-                self:AddRowCol(i)
+                self:AddCell(i)
             end
         end
     end,
 
-    AddRowCol = function(self, rowNum)
+    AddCell = function(self, rowNum)
         local row = self.rows[rowNum]
         local colNum = getn(row.cols) + 1
-        local col = CreateFrame('Frame', nil, row)
-        local text = col:CreateFontString()
-        col.text = text
+        local cell = CreateFrame('Frame', nil, row)
+        local text = cell:CreateFontString()
+        cell.text = text
         text:SetFont(gui.font, ROW_TEXT_SIZE)
         text:SetJustifyV('CENTER')
         text:SetPoint('TOPLEFT', 1, -1)
         text:SetPoint('BOTTOMRIGHT', -1, 1)
-        col:SetHeight(ROW_HEIGHT)
-        col.st = self
+        cell:SetHeight(ROW_HEIGHT)
+        cell.st = self
 
         if colNum == 1 then
-            col:SetPoint('TOPLEFT', 0, 0)
+	        cell:SetPoint('TOPLEFT', 0, 0)
         else
-            col:SetPoint('TOPLEFT', row.cols[colNum - 1], 'TOPRIGHT')
+	        cell:SetPoint('TOPLEFT', row.cols[colNum - 1], 'TOPRIGHT')
         end
-        tinsert(row.cols, col)
+        tinsert(row.cols, cell)
     end,
 
     AddRow = function(self)
@@ -261,7 +246,7 @@ local methods = {
         end
         local highlight = row:CreateTexture()
         highlight:SetAllPoints()
-        highlight:SetTexture(1, .9, .9, .1)
+        highlight:SetTexture(1, .9, 0, .4)
         highlight:Hide()
         row.highlight = highlight
         row.st = self
@@ -269,7 +254,7 @@ local methods = {
         row.cols = T
         self.rows[rowNum] = row
         for _ = 1, getn(self.colInfo) do
-            self:AddRowCol(rowNum)
+            self:AddCell(rowNum)
         end
     end,
 

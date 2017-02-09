@@ -17,12 +17,12 @@ local al = require 'aux.gui.auction_listing'
 TAB(POST)
 
 local DURATION_4, DURATION_8, DURATION_24 = 120, 480, 1440
-local settings_schema = {'tuple', '#', {stack_size='number'}, {duration='number'}, {start_price='number'}, {buyout_price='number'}, {hidden='boolean'}}
+local settings_schema = {'tuple', '#', {duration='number'}, {start_price='number'}, {buyout_price='number'}, {hidden='boolean'}}
 
 local scan_id, inventory_records, bid_records, buyout_records = 0, T, T, T
 
 function get_default_settings()
-	return O('duration', DURATION_8 , 'stack_size', 1, 'start_price', 0, 'buyout_price', 0, 'hidden', false)
+	return O('duration', DURATION_8, 'start_price', 0, 'buyout_price', 0, 'hidden', false)
 end
 
 do
@@ -107,22 +107,6 @@ function update_inventory_listing()
 	item_listing.populate(inventory_listing, records)
 end
 
-function price_color(record, reference)
-	local unit_undercut = undercut(record, stack_size_slider:GetValue())
-	unit_undercut = money.from_string(money.to_string(unit_undercut, true, nil, 3))
-
-	local stack_undercut = undercut(record, stack_size_slider:GetValue(), true)
-	stack_undercut = money.from_string(money.to_string(stack_undercut, true, nil, 3))
-
-	if unit_undercut < reference and stack_undercut < reference then
-		return color.red
-	elseif unit_undercut < reference then
-		return color.orange
-	elseif stack_undercut < reference then
-		return color.yellow
-	end
-end
-
 function update_auction_listing(listing, records, reference)
 	local rows = T
 	if selected_item then
@@ -130,12 +114,13 @@ function update_auction_listing(listing, records, reference)
 		local stack_size = stack_size_slider:GetValue()
 		for i = 1, getn(records[selected_item.key] or empty) do
 			local record = records[selected_item.key][i]
+			local price_color = money.from_string(money.to_string(undercut(record, stack_size_slider:GetValue(), listing == 'bid'), true, nil, 3)) < reference and color.red
 			tinsert(rows, O(
 				'cols', A(
 				O('value', record.own and color.yellow(record.count) or record.count),
 				O('value', al.time_left(record.duration)),
 				O('value', record.stack_size == stack_size and color.yellow(record.stack_size) or record.stack_size),
-				O('value', money.to_string(record.unit_price, true, nil, 3, price_color(record, reference, stack_size))),
+				O('value', money.to_string(record.unit_price, true, nil, 3, price_color)),
 				O('value', historical_value and al.percentage_historical(round(record.unit_price / historical_value * 100)) or '---')
 			),
 				'record', record
@@ -155,8 +140,8 @@ function update_auction_listing(listing, records, reference)
 		end
 		sort(rows, function(a, b)
 			return sort_util.multi_lt(
-				a.record.unit_price,
-				b.record.unit_price,
+				a.record.unit_price * (listing == 'bid' and a.record.stack_size or 1),
+				b.record.unit_price * (listing == 'bid' and b.record.stack_size or 1),
 
 				a.record.historical_value and 1 or 0,
 				b.record.historical_value and 1 or 0,
@@ -172,12 +157,16 @@ function update_auction_listing(listing, records, reference)
 			)
 		end)
 	end
-	listing:SetData(rows)
+	if listing == 'bid' then
+		bid_listing:SetData(rows)
+	elseif listing == 'buyout' then
+		buyout_listing:SetData(rows)
+	end
 end
 
 function update_auction_listings()
-	update_auction_listing(bid_listing, bid_records, unit_start_price)
-	update_auction_listing(buyout_listing, buyout_records, unit_buyout_price)
+	update_auction_listing('bid', bid_records, unit_start_price)
+	update_auction_listing('buyout', buyout_records, unit_buyout_price)
 end
 
 function M.select_item(item_key)
@@ -195,9 +184,17 @@ function price_update()
 
         local historical_value = history.value(selected_item.key)
 
+        if bid_listing:GetSelection() then
+	        unit_start_price = undercut(bid_listing:GetSelection().record, stack_size_slider:GetValue(), true)
+        elseif buyout_listing:GetSelection() then
+	        unit_start_price = undercut(buyout_listing:GetSelection().record, stack_size_slider:GetValue())
+        end
         settings.start_price = unit_start_price
         start_price_percentage:SetText(historical_value and al.percentage_historical(round(unit_start_price / historical_value * 100)) or '---')
 
+        if buyout_listing:GetSelection() then
+	        unit_buyout_price = undercut(buyout_listing:GetSelection().record, stack_size_slider:GetValue())
+        end
         settings.buyout_price = unit_buyout_price
         buyout_price_percentage:SetText(historical_value and al.percentage_historical(round(unit_buyout_price / historical_value * 100)) or '---')
 
@@ -233,15 +230,20 @@ function post_auctions()
 			stack_count,
 			function(posted)
 				for i = 1, posted do
-                    record_auction(key, stack_size, unit_start_price, unit_buyout_price, duration_code, UnitName'player')
+                    record_auction(key, stack_size, unit_start_price * stack_size, unit_buyout_price, duration_code, UnitName'player')
                 end
                 update_inventory_records()
-                selected_item = nil
+				local same
                 for _, record in inventory_records do
                     if record.key == key then
-                        update_item(record)
+	                    same = record
 	                    break
                     end
+                end
+                if same then
+	                update_item(same)
+                else
+                    selected_item = nil
                 end
                 refresh = true
 			end
@@ -373,6 +375,11 @@ function update_item(item)
 
     scan.abort(scan_id)
 
+    if not selected_item or item.key ~= selected_item.key then
+	    bid_listing:ClearSelection()
+	    buyout_listing:ClearSelection()
+    end
+
     selected_item = item
 
     UIDropDownMenu_Initialize(duration_dropdown, initialize_duration_dropdown)
@@ -381,7 +388,17 @@ function update_item(item)
     hide_checkbox:SetChecked(settings.hidden)
 
     stack_size_slider:SetMinMaxValues(1, selected_item.max_charges or selected_item.max_stack)
-    stack_size_slider:SetValue(settings.stack_size)
+    if selected_item.max_charges then
+	    for i = selected_item.max_charges, 1, -1 do
+			if selected_item.availability[i] > 0 then
+				stack_size_slider:SetMinMaxValues(1, i)
+				break
+			end
+	    end
+    else
+	    stack_size_slider:SetMinMaxValues(1, min(selected_item.max_stack, selected_item.aux_quantity))
+    end
+    stack_size_slider:SetValue(huge)
     quantity_update(true)
 
     unit_start_price_input:SetText(money.to_string(settings.start_price, true, nil, 3, nil, true))

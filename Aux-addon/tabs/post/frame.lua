@@ -80,13 +80,12 @@ bid_listing:SetColInfo{
     {name=AUCTION_BID, width=.4, align='RIGHT'},
     {name=HIST_VALUE, width=.18, align='CENTER'},
 }
-bid_listing:DisableSelection(true)
 bid_listing:SetHandler('OnClick', function(table, row_data, column, button)
-    unit_start_price = undercut(row_data.record, stack_size_slider:GetValue(), button == 'RightButton')
+	refresh = true
 end)
 bid_listing:SetHandler('OnDoubleClick', function(table, row_data, column, button)
 	stack_size_slider:SetValue(row_data.record.stack_size)
-	unit_start_price = undercut(row_data.record, stack_size_slider:GetValue())
+	refresh = true
 end)
 
 buyout_listing = listing.new(frame.buyout_listing)
@@ -97,13 +96,12 @@ buyout_listing:SetColInfo{
 	{name=AUCTION_BUYOUT, width=.4, align='RIGHT'},
 	{name=HIST_VALUE, width=.18, align='CENTER'},
 }
-buyout_listing:DisableSelection(true)
 buyout_listing:SetHandler('OnClick', function(table, row_data, column, button)
-	unit_buyout_price = undercut(row_data.record, stack_size_slider:GetValue(), button == 'RightButton')
+	refresh = true
 end)
 buyout_listing:SetHandler('OnDoubleClick', function(table, row_data, column, button)
 	stack_size_slider:SetValue(row_data.record.stack_size)
-	unit_buyout_price = undercut(row_data.record, stack_size_slider:GetValue())
+	refresh = true
 end)
 
 do
@@ -154,7 +152,6 @@ do
         quantity_update(true)
         if selected_item then
             local settings = read_settings()
-            settings.stack_size = this:GetNumber()
             write_settings(settings)
         end
     end
@@ -238,6 +235,7 @@ do
 	    end
     end)
     editbox.formatter = function() return money.to_string(unit_start_price, true, nil, 3) end
+    editbox.char = function() bid_listing:ClearSelection(); buyout_listing:ClearSelection() end
     editbox.change = function() refresh = true end
     editbox.enter = function() this:ClearFocus() end
     editbox.focus_loss = function()
@@ -273,6 +271,7 @@ do
         end
     end)
     editbox.formatter = function() return money.to_string(get_unit_buyout_price(), true, nil, 3) end
+    editbox.char = function() buyout_listing:ClearSelection() end
     editbox.change = function() refresh = true end
     editbox.enter = function() this:ClearFocus() end
     editbox.focus_loss = function()
@@ -296,4 +295,18 @@ do
 	local label = gui.label(frame.parameters, gui.font_size.medium)
 	label:SetPoint('TOPLEFT', unit_buyout_price_input, 'BOTTOMLEFT', 0, -24)
 	deposit = label
+end
+
+function LOAD()
+	if not aux_post_bid then
+		frame.bid_listing:Hide()
+		frame.buyout_listing:SetPoint('BOTTOMLEFT', frame.inventory, 'BOTTOMRIGHT', 2.5, 0)
+		buyout_listing:SetColInfo{
+			{name=AUCTIONS_1, width=.15, align='CENTER'},
+			{name=TIME_LEFT, width=.15, align='CENTER'},
+			{name=STACK_SIZE, width=.15, align='CENTER'},
+			{name=AUCTION_BUYOUT, width=.4, align='RIGHT'},
+			{name=HIST_VALUE, width=.15, align='CENTER'},
+		}
+	end
 end
