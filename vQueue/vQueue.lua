@@ -40,7 +40,8 @@ local idleMessage = 0
 local tankSelected = false
 local healerSelected = false
 local damageSelected = false
-local _, class2 = UnitClass'player'
+local _, zet = UnitClass'player'
+local class2=string.lower(zet)
 
 
 local vQueueColors = {
@@ -1588,7 +1589,7 @@ function vQueue_OnEvent(event)
 									if kCat == notifyForDungeon then
 										if (selectedRole == "Damage" and damageRole == "Damage") or (selectedRole == "Healer" and healerRole == "Healer") or (selectedRole == "Tank" and tankRole == "Tank") then
 											vQueueFrame.replyFrameTo:SetText(arg2)
-											vQueueFrame.replyFrameMsg:SetText("(vQueue) Lvl " .. tostring(UnitLevel("player")) .. " " .. selectedRole .. " " .. tostring(class2))
+											vQueueFrame.replyFrameMsg:SetText("(vQueue) Lvl " .. tostring(UnitLevel("player")) .. " " .. selectedRole .. " " .. class2)
 											vQueueFrame.replyFrame:Show()
 
 											if vQueueFrameShown then 
@@ -2285,7 +2286,7 @@ function vQueue_addToGroup(category, groupinfo)
 			end
 			if this:GetText() == "reply" then
 				vQueueFrame.replyFrameTo:SetText(name:GetText())
-				vQueueFrame.replyFrameMsg:SetText("(vQueue) Lvl " .. tostring(UnitLevel("player")) .. " " .. selectedRole .. " " .. tostring(class2))
+				vQueueFrame.replyFrameMsg:SetText("(vQueue) Lvl " .. tostring(UnitLevel("player")) .. " " .. selectedRole .. " " .. class2)
 				vQueueFrame.replyFrame:Show()
 			end
 		end)
@@ -2428,8 +2429,8 @@ function vQueue_OnUpdate()
 			JoinChannelByName("LocalDefense")
 			JoinChannelByName("LookingForGroup")
 			JoinChannelByName("World")
-			JoinChannelByName("global")
-			JoinChannelByName("all")
+		--	JoinChannelByName("global")
+		--	JoinChannelByName("all")
 		--	JoinChannelByName("vQueue")
 			fixingChat = false
 		end
