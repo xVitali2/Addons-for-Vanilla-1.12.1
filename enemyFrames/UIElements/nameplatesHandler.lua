@@ -144,7 +144,7 @@
 		if not plate.buffs then			
 			plate.buffs = {}
 			for i = 1, maxBuffs do
-				local buffWidth, buffHeight = 20, 16--20, 16
+				local buffWidth, buffHeight = 20, 16
 				
 				plate.buffs[i] = CreateFrame('Frame', 'NamePlateBuff'..i, plate)
 				plate.buffs[i]:SetWidth(buffWidth) plate.buffs[i]:SetHeight(buffHeight)
