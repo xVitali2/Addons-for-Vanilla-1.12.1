@@ -19,7 +19,7 @@ TAB(POST)
 local DURATION_4, DURATION_8, DURATION_24 = 120, 480, 1440
 local settings_schema = {'tuple', '#', {duration='number'}, {start_price='number'}, {buyout_price='number'}, {hidden='boolean'}}
 
-local scan_id, inventory_records, bid_records, buyout_records = 0, T, T, T
+local scan_id, inventory_records, bid_records, buyout_records = 0, {}, {}, {}
 
 function get_default_settings()
 	return O('duration', DURATION_8, 'start_price', 0, 'buyout_price', 0, 'hidden', false)
@@ -45,6 +45,26 @@ end
 function write_settings(settings, item_key)
 	item_key = item_key or selected_item.key
 	data[item_key] = persistence.write(settings_schema, settings)
+end
+
+do
+	local bid_selections, buyout_selections = {}, {}
+
+	function get_bid_selection()
+		return bid_selections[selected_item.key]
+	end
+
+	function set_bid_selection(record)
+		bid_selections[selected_item.key] = record
+	end
+
+	function get_buyout_selection()
+		return buyout_selections[selected_item.key]
+	end
+
+	function set_buyout_selection(record)
+		buyout_selections[selected_item.key] = record
+	end
 end
 
 function refresh_button_click()
@@ -117,9 +137,9 @@ function update_auction_listing(listing, records, reference)
 			local price_color = money.from_string(money.to_string(undercut(record, stack_size_slider:GetValue(), listing == 'bid'), true, nil, 3)) < reference and color.red
 			tinsert(rows, O(
 				'cols', A(
-				O('value', record.own and color.yellow(record.count) or record.count),
+				O('value', record.own and color.green(record.count) or record.count),
 				O('value', al.time_left(record.duration)),
-				O('value', record.stack_size == stack_size and color.yellow(record.stack_size) or record.stack_size),
+				O('value', record.stack_size == stack_size and color.green(record.stack_size) or record.stack_size),
 				O('value', money.to_string(record.unit_price, true, nil, 3, price_color)),
 				O('value', historical_value and al.percentage_historical(round(record.unit_price / historical_value * 100)) or '---')
 			),
@@ -146,11 +166,11 @@ function update_auction_listing(listing, records, reference)
 				a.record.historical_value and 1 or 0,
 				b.record.historical_value and 1 or 0,
 
+				b.record.own and 0 or 1,
+				a.record.own and 0 or 1,
+
 				a.record.stack_size,
 				b.record.stack_size,
-
-				b.record.own and 1 or 0,
-				a.record.own and 1 or 0,
 
 				a.record.duration,
 				b.record.duration
@@ -184,16 +204,16 @@ function price_update()
 
         local historical_value = history.value(selected_item.key)
 
-        if bid_listing:GetSelection() then
-	        unit_start_price = undercut(bid_listing:GetSelection().record, stack_size_slider:GetValue(), true)
-        elseif buyout_listing:GetSelection() then
-	        unit_start_price = undercut(buyout_listing:GetSelection().record, stack_size_slider:GetValue())
+        if bid_selection then
+	        unit_start_price = undercut(bid_selection, stack_size_slider:GetValue(), true)
+        elseif buyout_selection then
+	        unit_start_price = undercut(buyout_selection, stack_size_slider:GetValue())
         end
         settings.start_price = unit_start_price
         start_price_percentage:SetText(historical_value and al.percentage_historical(round(unit_start_price / historical_value * 100)) or '---')
 
-        if buyout_listing:GetSelection() then
-	        unit_buyout_price = undercut(buyout_listing:GetSelection().record, stack_size_slider:GetValue())
+        if buyout_selection then
+	        unit_buyout_price = undercut(buyout_selection, stack_size_slider:GetValue())
         end
         settings.buyout_price = unit_buyout_price
         buyout_price_percentage:SetText(historical_value and al.percentage_historical(round(unit_buyout_price / historical_value * 100)) or '---')
@@ -323,18 +343,18 @@ function update_item_configuration()
 end
 
 function undercut(record, stack_size, stack)
-    local price = round(record.unit_price * (stack and record.stack_size or stack_size))
+    local price = ceil(record.unit_price * (stack and record.stack_size or stack_size))
     if not record.own then
 	    price = max(0, price - 1)
     end
     return price / stack_size
 end
 
-function quantity_update(max_count)
+function quantity_update(maximize_count)
     if selected_item then
         local max_stack_count = selected_item.max_charges and selected_item.availability[stack_size_slider:GetValue()] or floor(selected_item.availability[0] / stack_size_slider:GetValue())
         stack_count_slider:SetMinMaxValues(1, max_stack_count)
-        if max_count then
+        if maximize_count then
             stack_count_slider:SetValue(max_stack_count)
         end
     end
@@ -375,11 +395,6 @@ function update_item(item)
 
     scan.abort(scan_id)
 
-    if not selected_item or item.key ~= selected_item.key then
-	    bid_listing:ClearSelection()
-	    buyout_listing:ClearSelection()
-    end
-
     selected_item = item
 
     UIDropDownMenu_Initialize(duration_dropdown, initialize_duration_dropdown)
@@ -387,7 +402,6 @@ function update_item(item)
 
     hide_checkbox:SetChecked(settings.hidden)
 
-    stack_size_slider:SetMinMaxValues(1, selected_item.max_charges or selected_item.max_stack)
     if selected_item.max_charges then
 	    for i = selected_item.max_charges, 1, -1 do
 			if selected_item.availability[i] > 0 then
@@ -409,6 +423,7 @@ function update_item(item)
     end
 
     write_settings(settings, item.key)
+
     refresh = true
 end
 
@@ -456,6 +471,7 @@ function refresh_entries()
 	if selected_item then
 		local item_id, suffix_id = selected_item.item_id, selected_item.suffix_id
         local item_key = item_id .. ':' .. suffix_id
+		bid_selection, buyout_selection = nil, nil
         bid_records[item_key], buyout_records[item_key] = nil, nil
         local query = scan_util.item_query(item_id)
         status_bar:update_status(0,0)

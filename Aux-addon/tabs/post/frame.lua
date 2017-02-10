@@ -39,7 +39,7 @@ frame.buyout_listing:SetPoint('BOTTOMRIGHT', 0, 0)
 
 do
     local checkbox = gui.checkbox(frame.inventory)
-    checkbox:SetPoint('TOPLEFT', 6, -15)
+    checkbox:SetPoint('TOPLEFT', 49, -15)
     checkbox:SetScript('OnClick', function()
         refresh = true
     end)
@@ -80,7 +80,11 @@ bid_listing:SetColInfo{
     {name=AUCTION_BID, width=.4, align='RIGHT'},
     {name=HIST_VALUE, width=.18, align='CENTER'},
 }
+bid_listing:SetSelection(function(data)
+	return data.record == bid_selection
+end)
 bid_listing:SetHandler('OnClick', function(table, row_data, column, button)
+	bid_selection = row_data.record
 	refresh = true
 end)
 bid_listing:SetHandler('OnDoubleClick', function(table, row_data, column, button)
@@ -96,7 +100,11 @@ buyout_listing:SetColInfo{
 	{name=AUCTION_BUYOUT, width=.4, align='RIGHT'},
 	{name=HIST_VALUE, width=.18, align='CENTER'},
 }
+buyout_listing:SetSelection(function(data)
+	return data.record == buyout_selection
+end)
 buyout_listing:SetHandler('OnClick', function(table, row_data, column, button)
+	buyout_selection = row_data.record
 	refresh = true
 end)
 buyout_listing:SetHandler('OnDoubleClick', function(table, row_data, column, button)
@@ -207,7 +215,7 @@ do
 end
 do
     local checkbox = gui.checkbox(frame.parameters)
-    checkbox:SetPoint('TOPRIGHT', -6, -15)
+    checkbox:SetPoint('TOPRIGHT', -83, -6)
     checkbox:SetScript('OnClick', function()
         local settings = read_settings()
         settings.hidden = this:GetChecked()
@@ -215,7 +223,7 @@ do
         refresh = true
     end)
     local label = gui.label(checkbox, gui.font_size.small)
-    label:SetPoint('RIGHT', checkbox, 'LEFT', -6, 1)
+    label:SetPoint('LEFT', checkbox, 'RIGHT', 4, 1)
     label:SetText(HIDE_THIS_ITEM)
     hide_checkbox = checkbox
 end
