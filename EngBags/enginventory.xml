@@ -2,10 +2,10 @@
 	<Script file="default_items.lua"/>
 	<Script file="tooltip.lua"/>
 	<Script file="support_funcs.lua"/> 
-	<Script file="chat_cmd_handler.lua"/> 
+	<Script file="chat_cmd_handler.lua"/>
+	<Script file="localization.lua"/>	
 	<Script file="enginventory.lua"/> 
 	<Script file="ei_hooks.lua"/>
-	<Script file="localization.lua"/>
 
 
 	<GameTooltip name="EngInventory_tt" frameStrata="TOOLTIP" hidden="true" parent="UIParent" inherits="GameTooltipTemplate">
@@ -83,7 +83,7 @@
 		</Scripts>
 	</Button>
 
-  <Button name="EngInventory_SlotTargetTemplate" inherits="ItemButtonTemplate" hidden="true" virtual="true">
+    <Button name="EngInventory_SlotTargetTemplate" inherits="ItemButtonTemplate" hidden="true" virtual="true">
 		<Size>
 			<AbsDimension x="40" y="40"/>
 		</Size>
@@ -404,7 +404,6 @@
 		</Layers>
 
 		<Frames>
-
 
 			<Button name="EngInventory_Button_ChangeEditMode" inherits="GameMenuButtonTemplate" text="Edit">
 				<Size><AbsDimension x="85" y="25"/></Size>
@@ -733,7 +732,6 @@
 					this:RegisterEvent("BAG_UPDATE_COOLDOWN");
 					this:RegisterEvent("ITEM_LOCK_CHANGED");
 					this:RegisterEvent("UPDATE_INVENTORY_ALERTS");
-
 					this:RegisterEvent("CRAFT_SHOW");
 					this:RegisterEvent("TRADE_SKILL_SHOW");
 					EngInventory_init();

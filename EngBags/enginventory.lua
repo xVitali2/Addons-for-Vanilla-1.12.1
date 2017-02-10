@@ -3,6 +3,9 @@ ENGINVENTORY_DEBUGMESSAGES = 0;         -- 0 = off, 1 = on
 ENGINVENTORY_SHOWITEMDEBUGINFO = 0;
 ENGINVENTORY_WIPECONFIGONLOAD = 0;	-- for debugging, test it out on a new config every load
 
+local function print(text)
+	DEFAULT_CHAT_FRAME:AddMessage(text)
+end
 
 BINDING_HEADER_ENGINVENTORY = "EngInventory @ EngBags";
 BINDING_NAME_EI_TOGGLE = "Toggle Inventory Window";
@@ -20,18 +23,62 @@ ENGINVENTORY_WINDOWBOTTOMPADDING_NORMALMODE = 25;
 
 EngInventory_WindowBottomPadding = ENGINVENTORY_WINDOWBOTTOMPADDING_NORMALMODE;
 
---[[ New data layout:
-
-	bar, position = refers to the virtual locations
-	bagnum, slotnum = refers to physical bag/slot
-
-	EngInventory_item_cache[ bag ][ bag_slot ]
-		- Contains all the data we collect from the items in the bags.
-		- We collect this data before sorting!
-	EngInventory_bar_positions[ bar_number ][ position ] = { ["bagnum"]=bagnum, ["slotnum"]=slotnum }
-		- Contains the final locations in my window after sorting
-	EngInventory_buttons[ frame_name ] = { ["bagnum"]=bagnum, ["slotnum"]=slotnum }
---]]
+--//CFM
+ function EI_CreateBagsBar()
+  if pfUI then
+	local button_size, b=EngInventoryConfig["frameButtonSize"],.1
+     if not EI_bagslots then
+        EI_bagslots = CreateFrame("Frame", "EIBagSlots", EngInventory_frame)
+		EI_bagslots.slots = {}
+        EI_bagslots:Hide()
+     end
+    local min, max = 0, 3
+	EI_bagslots:SetPoint("BOTTOMRIGHT", EngInventory_frame, "BOTTOMRIGHT", 128, 10)
+    local width = (button_size/5*4 + b*2) * (max-min+1)
+    local height = b + (button_size/5*4 + b)
+    EI_bagslots:SetWidth(width)
+    EI_bagslots:SetHeight(height)
+    for slot=min, max do
+      if not EI_bagslots.slots[slot] then
+        EI_bagslots.slots[slot] = {}
+        EI_bagslots.slots[slot].frame = CreateFrame("CheckButton", "EIUIBagsBBag" .. slot .. "Slot", EI_bagslots, "BagSlotButtonTemplate")
+        local icon = getglobal(EI_bagslots.slots[slot].frame:GetName() .. "IconTexture")
+        local border = getglobal(EI_bagslots.slots[slot].frame:GetName() .. "NormalTexture")
+        icon:SetTexCoord(.08, .92, .08, .92)
+        icon:ClearAllPoints()
+        icon:SetPoint("TOPLEFT", 1, -1)
+        icon:SetPoint("BOTTOMRIGHT", -1, 1)
+		border:SetTexture("")
+        EI_bagslots.slots[slot].frame.slot = slot
+        EI_bagslots.slots[slot].slot = slot
+		local SlotEnter = EI_bagslots.slots[slot].frame:GetScript("OnEnter")
+        EI_bagslots.slots[slot].frame:SetScript("OnEnter", function()
+          -- for slot, f in ipairs(pfUI.bags[this.slot + 1].slots) do
+            -- pfUI.api:CreateBackdrop(f.frame, default_border)
+            -- f.frame.backdrop:SetBackdropBorderColor(.2,1,.8,1)
+          -- end
+          SlotEnter()
+        end)
+        local SlotLeave = EI_bagslots.slots[slot].frame:GetScript("OnLeave")
+        EI_bagslots.slots[slot].frame:SetScript("OnLeave", function()
+          --pfUI.bag:UpdateBag(this.slot + 1)
+          SlotLeave()
+        end)
+      end
+	 local left = (slot-min)*(button_size/5*4+3*2) + b
+     local top = -b
+      EI_bagslots.slots[slot].frame:ClearAllPoints()
+	  EI_bagslots.slots[slot].frame:SetPoint("TOPLEFT", EI_bagslots, "TOPLEFT", top, left)
+      EI_bagslots.slots[slot].frame:SetHeight(button_size/5*4)
+      EI_bagslots.slots[slot].frame:SetWidth(button_size/5*4)
+	  local id, texture = GetInventorySlotInfo("Bag" .. slot .. "Slot")
+	  pfUI.api:CreateBackdrop(EI_bagslots.slots[slot].frame, 3)
+      EI_bagslots.slots[slot].frame:Show()
+    end
+	EI_bagslots:Show();
+   end
+  end
+--CFM//
 
 EngInventory_item_cache = { {}, {}, {}, {}, {} };	-- cache of all the items as they appear in bags
 EngInventory_bar_positions = {};
@@ -65,7 +112,6 @@ EngBags_AltClick_Mail = 1;
 
 EngInventory_Catagories_Exclude_List = {};
 ------------------------
-
 EngInventory_ConfigOptions_Default = {
 	{
 		{ ["type"] = "Text", ["ID"] = 1, ["width"] = 1.0, ["color"] = { 1,0,0.25 }, ["align"] = "center",
@@ -609,9 +655,7 @@ function EngInventory_CreateConfigOptions()
 	end
 
 end
-
 ------------------------
-
 function EngInventory_CalcButtonSize(newsize)
 	local k = "button_size_opts";
 	-- constants
@@ -670,9 +714,6 @@ function EngInventory_Catagories(exclude_list, select_bar)
 	return(clist);
 end
 
-
-
-
 -- sets a default value in the config if the current value is nil.  Increment "resetversion" to override saved values
 -- and force a new setting.
 
@@ -686,7 +727,7 @@ function EI_SetDefault(varname, defaultvalue, resetversion, cleanupfunction, cle
 
         if (resetversion == nil) then
                 -- more debugging
-                message("* Warning, EngInventory EI_SetDefault called with nil reset version: "..varname.." *");
+                message("* Warning, EngBags EI_SetDefault called with nil reset version: "..varname.." *");
                 resetversion = 0;
         end
 
@@ -710,18 +751,6 @@ end
 function EngInventory_SetClassBars()
 	local c = {};
 	local localizedPlayerClass, englishClass = UnitClass("player");
-
-	--[[
-	c["Warlock"] = "putinslot--NON_CLASS_ITEMS";
-	c["Mage"] = "putinslot--NON_CLASS_ITEMS";
-	c["Priest"] = "putinslot--NON_CLASS_ITEMS";
-	c["Hunter"] = "putinslot--NON_CLASS_ITEMS";
-	c["Rogue"] = "putinslot--NON_CLASS_ITEMS";
-	c["Shaman"] = "putinslot--NON_CLASS_ITEMS";
-	c["Druid"] = "putinslot--NON_CLASS_ITEMS";
-	c["Warrior"] = "putinslot--NON_CLASS_ITEMS";
-	c["Paladin"] = "putinslot--NON_CLASS_ITEMS";
-	--]]
 
 	c["WARLOCK"] = "";
 	c["MAGE"] = "";
@@ -949,7 +978,7 @@ function EngInventory_SetDefaultValues(re)
 	-- find matching catagories that are not assigned
 	for key,value in EngInventoryConfig["item_search_list"] do
 		if (EngInventoryConfig["putinslot--"..value[1]] == nil) then
-			message("EngInventory: Unassigned catagory: "..value[1].." -- It has been assigned to slot 1");
+			message("EngBags: Unassigned catagory: "..value[1].." -- It has been assigned to slot 1");
 			EngInventoryConfig["putinslot--"..value[1]] = 1;
 		end
 	end
@@ -991,8 +1020,7 @@ function EngInventory_init()
 	EngBagsItems[EngBags_PLAYERID][4] = {};
 
 	-- change imported from auctioneer team..  what does it do?
-	UIPanelWindows["EngInventory_frame"] = { area = "left", pushable = 6 };
-
+	UIPanelWindows["EngInventory_frame"] = { area = "left", pushable = 6 };	
 	if ( ENGINVENTORY_WIPECONFIGONLOAD == 1 ) then
 		EngInventoryConfig = {};
 	end
@@ -1013,8 +1041,8 @@ function EngInventory_init()
                 EngInventory_load_Localization("RU");
         else
                 -- have to load something...  :(
-                --EngBags_Print("*** No localization found, stuff won't work properly ***", 1,0.25,0.25 );
-			message("EngInventory: No localization found, stuff won't work properly");
+            EngBags_Print("*** No localization found, stuff won't work properly ***", 1,0.25,0.25 );
+			message("EngBags: No localization found, stuff won't work properly");
             EngInventory_load_Localization("EN");
         end
 
@@ -1060,7 +1088,6 @@ function EngInventory_init()
         -- setup hooks
         EngInventory_RegisterHooks(ENGINVENTORY_HOOKS_REGISTER);
 
-
         EngInventory_Button_HighlightToggle:SetText(EILocal["EngInventory_Button_HighlightToggle_off"]);
         EngInventory_Button_ChangeEditMode:SetText(EILocal["EngInventory_Button_ChangeEditMode_off"]);
 
@@ -1071,15 +1098,14 @@ function EngInventory_init()
         end
 
 	EngInventory_OnEvent("UPDATE_INVENTORY_ALERTS");	-- reload the items currently equipped
-
+	-- init bagsbar
+	EI_CreateBagsBar();
 	-- Force update item cache.
 	EngInventory_Update_item_cache();
-
 	if ( CT_Mail_newTradeFrameShow == nil ) then
 		EngInventory_oldTradeFrameShow = TradeFrame:GetScript("OnShow");
 		TradeFrame:SetScript("OnShow", EngInventory_newTradeFrameShow);
 	end
-
 end
 
 function EngInventory_newTradeFrameShow()
@@ -1094,7 +1120,6 @@ end
 function EngInventory_OnEvent(event)
 
 	if ( EngInventory_frame:IsVisible() ) then
-
         EngBags_PrintDEBUG("bags_event: '"..event.."'");
 
         if ( event == "BAG_UPDATE" ) then
@@ -1647,7 +1672,7 @@ function EngInventory_UpdateButton(itemframe, itm)
         local ic_start, ic_duration, ic_enable;
         local showSell = nil;
         local itemframe_texture = getglobal(itemframe:GetName().."IconTexture");
-	local itemframe_normaltexture = getglobal(itemframe:GetName().."NormalTexture");
+		local itemframe_normaltexture = getglobal(itemframe:GetName().."NormalTexture");
         local itemframe_font = getglobal(itemframe:GetName().."Count");
         local itemframe_bkgr = getglobal(itemframe:GetName().."_bkgr");
         local itemframe_stock = getglobal(itemframe:GetName().."Stock");
@@ -1775,7 +1800,7 @@ end
 
 function EngInventory_GetBarPositionAndCache()
         local bar, position, itm;
-	local bagnum, slotnum;
+		local bagnum, slotnum;
 
         if (EngInventory_buttons[this:GetName()] ~= nil) then
                 bar = EngInventory_buttons[this:GetName()]["bar"];
@@ -1881,7 +1906,7 @@ function EngInventory_ItemButton_OnEnter()
 		itm["bagname"] = "Backpack";
 	end
 
-	GameTooltip:AddLine("Container::"..itm["bagname"], 1,0,0 );
+	GameTooltip:AddLine(EILocal["Container"]..":"..itm["bagname"], 1,0,0 );
 
 	if ( EngInventoryConfig["tooltip_mode"] == 1 ) then
 		EngBags_ModifyItemTooltip(itm["bagnum"], itm["slotnum"], "GameTooltip", itm);
@@ -1954,7 +1979,7 @@ function EngInventory_ItemButton_OnClick(button, ignoreShift)
                         else
                                 -- we got a click, and we already had one selected.  let's move the items
                                 EngInventoryConfig["putinslot--"..EngInventory_edit_selected] = bar;
-				EngInventory_resort_required = ENGINVENTORY_MANDATORY;
+								EngInventory_resort_required = ENGINVENTORY_MANDATORY;
 
                                 EngInventory_edit_selected = "";
                                 EngInventory_edit_hilight = itm["barClass"];
@@ -2855,7 +2880,7 @@ function EngInventory_frame_RightClickMenu_populate(level)
 		elseif (level == 2) then
 			if (this.value ~= nil) then
 				if (this.value["opt"] == "set_button_size") then
-					for key,value in { 20,30,35,40,50 } do
+					for key,value in { 20,30,35,40,50,60 } do
 						info = {
 							["text"] = value.."x"..value;
 							["value"] = value;
@@ -2865,6 +2890,7 @@ function EngInventory_frame_RightClickMenu_populate(level)
 										EngInventory_CalcButtonSize(EngInventoryConfig["frameButtonSize"]);
 										EngInventory_window_update_required = ENGINVENTORY_MANDATORY;
 										EngInventory_UpdateWindow();
+										EI_CreateBagsBar();
 									end
 								end
 							};
@@ -3426,9 +3452,9 @@ function EngInventory_UpdateWindow()
 end
 function EngInventory_UpdateBagState()
         local shouldBeChecked = EngInventory_frame:IsVisible();
-	if (EngInventoryConfig["hook_Bag0"] == 1) then
+		if (EngInventoryConfig["hook_Bag0"] == 1) then
 	        MainMenuBarBackpackButton:SetChecked(shouldBeChecked);
-	end
+		end
         local bagButton = nil;
         for i = 0, 3 do 
 		if (EngInventoryConfig["hook_Bag"..(i+1)] == 1) then

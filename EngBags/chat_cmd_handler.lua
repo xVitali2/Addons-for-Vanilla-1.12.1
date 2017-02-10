@@ -74,42 +74,6 @@ function EngBank_cmd(msg)
 		local skillType, numAvailable, isExpanded, tmp, tmp2;
 		local reagentName, reagentTexture, reagentCount, playerReagentCount;
 		local craftName, craftSubSpellName, craftType;
-		--[[
-		for i = 1, GetNumSkillLines() do
-			skillName, isHeader, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType = GetSkillLineInfo(i);
-			if (isHeader) then
-				EngBags_Print(skillName, 1,0,0);
-			else
-				EngBags_Print(skillName, 0,1,1);
-			end
-		end
-		--]]
-
-		--[[
-		if (GetNumTradeSkills() > 0) then
-			for i = 1, GetNumTradeSkills() do
-				skillName, skillType, numAvailable, isExpanded = GetTradeSkillInfo(i);
-
-				--Print("|cFFFF007F"..skillType.."|r = "..skillName..", |cFF007FFF"..numAvailable.."|r");
-
-				if (skillType ~= "header") then
-					--tmp = GetTradeSkillTools(i);
-					Print( GetTradeSkillItemLink(i) );
-
-					if (GetTradeSkillNumReagents(i) > 0) then
-						for i2 = 1, GetTradeSkillNumReagents(i) do
-							reagentName, reagentTexture, reagentCount, playerReagentCount = GetTradeSkillReagentInfo(i, i2);
-							Print( "--> "..GetTradeSkillReagentItemLink(i,i2)..", "..reagentCount );
-						end
-					end
-				end
-			end
-
-			local tradeskillName, currentLevel, maxLevel = GetTradeSkillLine();
-			
-			Print( tradeskillName..", "..currentLevel..", "..maxLevel );
-		end --]]
-
 		if (GetNumCrafts() > 0) then
 			for i = 1, GetNumCrafts() do
 				craftName, craftSubSpellName, craftType, numAvailable, isExpanded = GetCraftInfo(i);
@@ -211,42 +175,6 @@ function EngInventory_cmd(msg)
 		local skillType, numAvailable, isExpanded, tmp, tmp2;
 		local reagentName, reagentTexture, reagentCount, playerReagentCount;
 		local craftName, craftSubSpellName, craftType;
-		--[[
-		for i = 1, GetNumSkillLines() do
-			skillName, isHeader, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType = GetSkillLineInfo(i);
-			if (isHeader) then
-				EngBags_Print(skillName, 1,0,0);
-			else
-				EngBags_Print(skillName, 0,1,1);
-			end
-		end
-		--]]
-
-		--[[
-		if (GetNumTradeSkills() > 0) then
-			for i = 1, GetNumTradeSkills() do
-				skillName, skillType, numAvailable, isExpanded = GetTradeSkillInfo(i);
-
-				--Print("|cFFFF007F"..skillType.."|r = "..skillName..", |cFF007FFF"..numAvailable.."|r");
-
-				if (skillType ~= "header") then
-					--tmp = GetTradeSkillTools(i);
-					Print( GetTradeSkillItemLink(i) );
-
-					if (GetTradeSkillNumReagents(i) > 0) then
-						for i2 = 1, GetTradeSkillNumReagents(i) do
-							reagentName, reagentTexture, reagentCount, playerReagentCount = GetTradeSkillReagentInfo(i, i2);
-							Print( "--> "..GetTradeSkillReagentItemLink(i,i2)..", "..reagentCount );
-						end
-					end
-				end
-			end
-
-			local tradeskillName, currentLevel, maxLevel = GetTradeSkillLine();
-			
-			Print( tradeskillName..", "..currentLevel..", "..maxLevel );
-		end --]]
-
 		if (GetNumCrafts() > 0) then
 			for i = 1, GetNumCrafts() do
 				craftName, craftSubSpellName, craftType, numAvailable, isExpanded = GetCraftInfo(i);

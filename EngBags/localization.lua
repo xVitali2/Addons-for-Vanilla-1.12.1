@@ -5,7 +5,6 @@ end
 EBLocal = {
 	["_loaded"] = 0
 };
-
 EngBank_HELP = {
 	["EN"] = {
 		"EngBank Commands:",
@@ -56,6 +55,12 @@ EngBank_HELP = {
 -- 1st element is EN, 2nd DE, 3rd FR 4 - RU
 EngBank_LOCALIZATION = {
 	-- some default items to place in slots manually
+	["Container"] = {
+		"Container",
+		"Container",
+		"Container",
+		"Контейнер"
+		},
 	["RightClick_MenuTitle"] = {
 		"EngBank @ EngBags",
 		"EngBank @ EngBags",
@@ -441,6 +446,12 @@ ENGINVENTORY_LOCALIZATION = {
 		"KeyRing",
 		"KeyRing",
 		"Связка ключей"
+		},
+	["Container"] = {
+		"Container",
+		"Container",
+		"Container",
+		"Контейнер"
 		},
 	["RightClick_MenuTitle"] = {
 		"EngInventory @ EngBags",

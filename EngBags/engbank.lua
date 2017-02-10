@@ -1716,7 +1716,7 @@ function EngBank_ItemButton_OnEnter()
 		itm["bagname"] = "Bank";
 	end
 
-	GameTooltip:AddLine("Container::"..itm["bagname"], 1,0,0 );
+	GameTooltip:AddLine(EBLocal["Container"]..":"..itm["bagname"], 1,0,0 );
 		
         if ( EngBankConfig["tooltip_mode"] == 1 ) then
 		EngBags_ModifyItemTooltip(itm["bagnum"], itm["slotnum"], "GameTooltip", itm);

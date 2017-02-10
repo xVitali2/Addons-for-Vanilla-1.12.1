@@ -1,11 +1,12 @@
 ## Interface: 11200
 ## Title: EngBags
 ## Notes: AutoSorting Bags
+## Notes-ruRU: Сортировка сумок
 ## RequiredDeps: 
-## OptionalDeps: lootlink, auctioneer, equipcompare
+## OptionalDeps: pfUI, lootlink, auctioneer, equipcompare
 ## SavedVariables: EngBagsItems, EngBagsConfig
 ## SavedVariablesPerCharacter:
-## Version: 1.56
+## Version: 1.57
 ## Dependencies: 
 ## LoadOnDemand: 0
 EngBank.xml

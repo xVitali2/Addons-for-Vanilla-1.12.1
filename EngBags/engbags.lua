@@ -1,4 +1,4 @@
-ENGBAGS_VERSION = "1.55";
+ENGBAGS_VERSION = "1.57";
 
 BINDING_HEADER_EngBags = "EngBags";
 

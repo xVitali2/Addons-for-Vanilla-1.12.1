@@ -5,9 +5,9 @@
 	<Script file="engbags.lua"/>
 	<Script file="eb_config.lua"/>
 	<Script file="chat_cmd_handler.lua"/> 
+	<Script file="localization.lua"/>
 	<Script file="EngBank.lua"/> 
 	<Script file="hooks.lua"/>
-	<Script file="localization.lua"/>
 	<Script file="engcrafts.lua"/>
 
 
