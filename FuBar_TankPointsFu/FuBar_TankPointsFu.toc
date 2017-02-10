@@ -8,17 +8,11 @@
 ## X-Credits: by Amethyst (idea from original Tank Points mod by WhiteTooth)
 ## X-WoWIPortal: amethyst
 
-## Dependencies: !!!Libs
+## Dependencies: FuBar, !Libs
 ## X-Embeds: CrayonLib, SpellCacheLib, SpellStatusLib
 
 ## SavedVariablesPerCharacter: FuBar_TankPointsDB
 ## LoadOnDemand: 0
-
-#libs
-libs\AceComm-2.0\AceComm-2.0.lua
-libs\Crayon-2.0\Crayon-2.0.lua
-libs\SpellCache-1.0\SpellCache-1.0.lua
-libs\SpellStatus-1.0\SpellStatus-1.0.lua
 
 TankPointsFu_Locale_enUS.lua
 TankPointsFu_Locale_ruRU.lua

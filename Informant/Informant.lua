@@ -21,7 +21,7 @@
 		Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 --]]
 
-INFORMANT_VERSION = "3.9.0.1001"
+INFORMANT_VERSION = "3.9.0.1002"
 
 
 -- GLOBAL FUNCTION PROTOTYPES:

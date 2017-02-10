@@ -13,7 +13,7 @@
 
 ## X-BigWigs-LoadInZone: Naxxramas
 
-## Dependencies: BigWigs
+## Dependencies: BigWigs, !Libs
 ## OptionalDeps: Ace2
 
 BigWigs_ThaddiusArrows.lua

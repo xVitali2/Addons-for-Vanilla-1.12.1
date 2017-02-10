@@ -7,19 +7,12 @@
 ## Notes-zhCN: CT_RaidAssist外的另一个选择。
 ## Notes-zhTW: 除了 CT_RaidAssist 以外的另一個選擇。
 ## Notes-frFR: Alternative à CT_RaidAssist.
-## RequiredDeps:!!!Libs
+## RequiredDeps:!Libs
 ## Version: 2.0.$Revision: 18312 $
 ## Author: Haste, Ammo and others
 ## OptionalDeps: FuBar
 ## X-Category: Raid
 ## SavedVariables: oRADB, oRAFubarDB
-
-#Libs
-Libs\SpecialEvents-Aura-2.0\SpecialEvents-Aura-2.0.lua
-Libs\PaintChips-2.0\PaintChips-2.0.lua
-Libs\Candybar-2.0\CandyBar-2.0.lua
-Libs\Surface-1.0\Surface-1.0.lua
-Libs\RosterLib-2.0\RosterLib-2.0.lua
 
 #Main
 LoadOnDemand.lua

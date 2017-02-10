@@ -14,10 +14,9 @@
 ## X-BigWigs-LoadInZone: Naxxramas
 ## X-Credits: <CWDG>月色狼影， flyflame
 
-## Dependencies: BigWigs, !!!Libs
+## Dependencies: BigWigs, !Libs
 ## OptionalDeps: Ace2, TabletLib, DewdropLib, GratuityLib
 
-libs\RosterLib-2.0\RosterLib-2.0.lua
 SEEA-2.0-Events-Only.lua
 
 BigWigs_HealbotAssist.lua

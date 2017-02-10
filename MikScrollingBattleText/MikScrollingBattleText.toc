@@ -5,7 +5,7 @@
 ## Notes-ruRU: Прокрутка информацию боя вокруг модели персонажа.
 ## OptionalDeps: SW_FixLogStrings
 ## SavedVariables: MikSBT_Save
-## RequiredDeps:!!!Libs
+## RequiredDeps:!Libs
 
 
 MikScrollingBattleText-enUS.lua

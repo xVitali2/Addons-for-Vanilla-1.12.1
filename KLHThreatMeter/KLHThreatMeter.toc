@@ -5,7 +5,7 @@
 ## Notes-ruRU: Измеритель угрозы
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
-## Version: 17.36
+## Version: 17.35
 ## SavedVariablesPerCharacter: KLHTM_SavedVariables
 
 Code\KTM_Core.lua

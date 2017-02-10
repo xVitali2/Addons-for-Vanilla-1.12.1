@@ -8,6 +8,7 @@
 ## Author:Archarodim (Originally coded by Quu)
 ## eMail: Archarodim _(AT)_ Teaser _(DOT)_ FR
 ## URL: http://www.2072productions.com/?to=decursive.php
+
 localization.lua
 localization.ru.lua
 localization.fr.lua

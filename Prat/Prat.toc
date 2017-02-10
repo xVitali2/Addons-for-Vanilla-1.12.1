@@ -6,16 +6,11 @@
 ## Notes-frFR: Framework pour des modules concernant les fentres de discussion
 ## Version: 1.0.$Revision: 16704 $
 ## Author: Prat Development Team
-## RequiredDeps:!!!Libs
+## RequiredDeps:!Libs
 ## X-Category: Chat/Communication
 ## X-Website: http://www.wowace.com/mediawiki/index.php?title=Prat
 ## X-Credits: Industrial, Ammo, Cirk, Yris, Leuchtturm, AnduinLothar, Satrina, <CWDG>昏睡墨鱼&月色狼影
 ## SavedVariables: PratDB
-
-#Libs
-libs\Babble-Class-2.2\Babble-Class-2.2.lua
-libs\AceTab-2.0\AceTab-2.0.lua
-
 
 Prat.lua
 

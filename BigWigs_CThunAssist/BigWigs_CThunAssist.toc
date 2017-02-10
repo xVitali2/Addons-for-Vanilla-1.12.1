@@ -10,9 +10,8 @@
 ## X-Category: Raid
 ## X-BigWigs-LoadInZone: Ahn'Qiraj
 
-## Dependencies: BigWigs
+## Dependencies: BigWigs, !Libs
 ## OptionalDeps: Ace2, TabletLib, DewdropLib, RosterLib
 
-libs\RosterLib-2.0\RosterLib-2.0.lua
 
 BigWigs_CThunAssist.lua

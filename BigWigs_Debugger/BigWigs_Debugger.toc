@@ -7,7 +7,7 @@
 ## X-Website: http://www.wowace.com/index.php/BigWigs
 ## X-Email: rabbit.magtheridon@gmail.com
 ## X-Category: Development Tools
-## Dependencies: BigWigs
+## Dependencies: BigWigs, !Libs
 ## OptionalDeps: Ace2, FuBar, FuBarPlugin-2.0, DewdropLib, TabletLib
 ## SavedVariables: BigWigsDebuggerDB
 

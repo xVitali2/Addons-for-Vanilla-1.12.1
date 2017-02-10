@@ -6,7 +6,7 @@
 ## Version: 2.2
 ## X-Category: Interface Enhancements
 ## X-Website: http://www.wowinterface.com/downloads/info5009-Fubar_-_TradeCooldownFu.html
-## Dependencies: FuBar
+## Dependencies: FuBar, !Libs
 ## OptionalDeps: Ace2
 ## LoadOnDemand: 1
 ## SavedVariables: Fubar_TradeCooldownDB,FTC_Save

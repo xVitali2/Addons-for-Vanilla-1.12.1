@@ -6,7 +6,7 @@
 ## OptionalDeps: Khaos
 ## SavedVariables: InformantConfig
 ##
-## Version: 3.9.0.1002 (Otwo)
+## Version: 3.9.0.1002
 
 Stubby.lua
 Stubby.xml

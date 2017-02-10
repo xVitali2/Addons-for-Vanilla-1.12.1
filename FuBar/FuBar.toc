@@ -7,14 +7,11 @@
 ## Notes-zhCN: 插件式信息面板。
 ## Version: 2.11581
 ## Author: ckknight
-## RequiredDeps:!!!Libs
+## RequiredDeps:!Libs
 ## X-eMail: ckknight@gmail.com
 ## X-Website: http://ckknight.wowinterface.com/
 ## X-Category: Interface Enhancements
 ## SavedVariables: FuBar2DB
-
-#libs
-libs\Jostle-2.0\Jostle-2.0.lua
 
 FuBar-Locale-enUS.lua
 FuBar-Locale-ruRU.lua

@@ -13,11 +13,8 @@
 ## OptionalDeps: Ace2, GratuityLib, Deformat, Babble-2.2
 ## X-Embeds: Deformat, GratuityLib, SpellCacheLib, SpellStatusLib, Babble-2.2
 ## SavedVariables: BigWigsCommonAurasDB
-## RequiredDeps:!!!Libs
+## RequiredDeps:!Libs
 ## X-BigWigs-LoadWithCore: 1
-
-libs\SpellCache-1.0\SpellCache-1.0.lua
-libs\SpellStatus-1.0\SpellStatus-1.0.lua 
 
 CommonAuras.lua
 

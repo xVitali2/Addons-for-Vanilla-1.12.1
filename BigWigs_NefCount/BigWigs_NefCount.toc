@@ -12,7 +12,7 @@
 ## LoadOnDemand: 1
 ## X-BigWigs-LoadInZone: Blackwing Lair
 
-## Dependencies: BigWigs
+## Dependencies: BigWigs, !Libs
 ## OptionalDeps: Ace2
 
 BigWigs_CounterBars.lua

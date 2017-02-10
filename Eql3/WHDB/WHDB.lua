@@ -19,7 +19,7 @@ function WHDB_Event(event)
 		if (Cartographer_Notes ~= nil) then
 			WHDBDB = {}; WHDBDBH = {};
 			Cartographer_Notes:RegisterNotesDatabase("WHDB",WHDBDB,WHDBDBH);
-			WHDB_Print(L["Cartographer Database Registered."]);
+			--WHDB_Print(L["Cartographer Database Registered."]);
 		end
 		--Free the oposite faction database. -- not working in 1.12.1 UnitFactionGroup not init yet
 		---WHDB_Print(UnitFactionGroup("player"));
@@ -49,26 +49,27 @@ end
 
 function WHDB_ShowUsingInfo()
 	if (EQL3_QuestLogFrame ~= nil) then
-		WHDB_Print(L["Using EQL3."]);
+	--	WHDB_Print(L["Using EQL3."]);
 	elseif (QuestGuru_QuestLogFrame ~= nil) then
-		WHDB_Print(L["Using QuestGuru."]);
+	--	WHDB_Print(L["Using QuestGuru."]);
 	else
-		WHDB_Print(L["Using default quest log."]);
+	--	WHDB_Print(L["Using default quest log."]);
 	end
 	if (MetaMap_DeleteNotes ~= nil) then
-		WHDB_Print(L["MetaMap plotter enabled."]);
+		--WHDB_Print(L["MetaMap plotter enabled."]);
 	end
 	if (Cartographer_Notes ~= nil) then
-		WHDB_Print(L["Cartographer plotter enabled."]);
+	--	WHDB_Print(L["Cartographer plotter enabled."]);
 	end
 	if (MapNotes_Data_Notes ~= nil) then
-		WHDB_Print(L["MapNotes plotter enabled."]);
+	--	WHDB_Print(L["MapNotes plotter enabled."]);
 	end
 end
 
 function WHDB_Slash(input)
 	local params = {};
-	for v in string.gmatch(input, "[^ ]+") do
+	--for v in string.gmatch(input, "[^ ]+") do
+	for v in string.gmatch(input, "%a+") do
 		tinsert(params, v);
 	end
 	if (params[1] == "help" or params[1] == "") then

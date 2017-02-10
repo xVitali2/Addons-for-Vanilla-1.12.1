@@ -4,7 +4,7 @@
 ## Notes: Keydown Cast Support for Vanilla
 ## Notes-ruRU: Произнесение заклинаний и способностей при нажатии на клавишу. (в игре при отпускании)
 ## Version: 0.5.1
-## RequiredDeps:!!!Libs
+## RequiredDeps:!Libs
 ## SavedVariablesPerCharacter: CS_SELF_ENABLED
 
 ClassicSnowfall.lua

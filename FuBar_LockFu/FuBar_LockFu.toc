@@ -6,7 +6,7 @@
 ## X-eMail: fenlis@naver.com
 ## X-Website: 
 ## X-Category: Others
-## Dependencies: !!!Libs
+## Dependencies: FuBar, !Libs
 ## OptionalDeps: FuBar
 ## Version: 2.2
 ## SavedVariables: LockFuDB

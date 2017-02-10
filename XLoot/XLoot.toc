@@ -4,7 +4,7 @@
 ## Notes-ruRU: Переделывает встроенные окна добычи. |cffff4488Xuerian|r.
 ## Version: 0.5
 ## Author: Xuerian
-## RequiredDeps:!!!Libs
+## RequiredDeps:!Libs
 ## X-Category: Inventory
 ## X-AceForum: 2278
 ## X-eMail: sky.shell@gmail.com

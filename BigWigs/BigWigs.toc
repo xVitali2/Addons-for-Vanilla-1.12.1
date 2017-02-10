@@ -18,12 +18,7 @@
 ## OptionalDeps: FuBar,MikScrollingBattleText, sct
 ## SavedVariables: BigWigsDB, BigWigsFubarDB
 ## SavedVariablesPerCharacter: BigWigsDBPerChar
-## RequiredDeps:!!!Libs
-
-#Libs
-libs\PaintChips-2.0\PaintChips-2.0.lua
-libs\CandyBar-2.0\CandyBar-2.0.lua
-libs\Surface-1.0\Surface-1.0.lua
+## RequiredDeps:!Libs
 
 #Main
 LoadOnDemand.lua

@@ -6,7 +6,7 @@
 ## Version: 1.04.3
 ## DefaultState: enabled
 ## LoadOnDemand: 0
-## RequiredDeps:!!!Libs
+## RequiredDeps:!Libs
 ## X-Credits: Joana/Mancow and Brian Kopps for the guides. myself for the Joana's guide and the addon itself. Kira and Cdlp for the Brian Kopps' guide. Velenran for Profession guides.
 ## X-Category: Quests
 ## X-Date: 2013-08-23

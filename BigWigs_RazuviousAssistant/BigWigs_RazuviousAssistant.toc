@@ -11,11 +11,9 @@
 ## LoadOnDemand: 1
 ## X-BigWigs-LoadInZone: Naxxramas
 
-## Dependencies: BigWigs, !!!Libs
+## Dependencies: BigWigs, !Libs
 ## OptionalDeps: Ace2, GratuityLib, SpecialEventsEmbed
 
 ## SavedVariables: BigWigsRazuviousAssistantDB
-
-libs\SpecialEvents-Aura-2.0\SpecialEvents-Aura-2.0.lua
 
 BigWigs_RazuviousAssistant.lua

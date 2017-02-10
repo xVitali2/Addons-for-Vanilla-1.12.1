@@ -11,12 +11,7 @@
 ## X-OptionsFrame: AtlasOptionsFrame
 ## SavedVariables: AtlasQuest_Options, AtlasOptions, AtlasLootCharDB
 ## OptionalDeps: Titan, myAddOns, EarthFeatureFrame, Alphamap, AtlasLoader, LootLink, ItemSync, EquipCompare, EQCompare
-## RequiredDeps:!!!Libs
-
-#libs in
-libs\Babble-Class-2.2.lua
-libs\Babble-Faction-2.2.lua
-libs\Babble-ItemSet-2.2.lua
+## RequiredDeps:!Libs
 
 Locale\Atlas-enUS.lua
 Locale\Atlas-ruRU.lua

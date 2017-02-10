@@ -8,13 +8,8 @@
 ## X-Category: Interface Enhancements
 ## X-Credits: gxam (co-author), ssayclub (koKR translations)
 
-## RequiredDeps:!!!Libs
+## RequiredDeps:!Libs
 ## SavedVariables: AutomatonDB
-
-#libs
-libs\SpecialEvents-Aura-2.0\SpecialEvents-Aura-2.0.lua
-libs\SpecialEvents-Mount-2.0\SpecialEvents-Mount-2.0.lua
-libs\Abacus-2.0\Abacus-2.0.lua
 
 Core.lua
 modules\AutoClam.xml

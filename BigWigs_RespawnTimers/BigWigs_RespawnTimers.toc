@@ -9,7 +9,7 @@
 ## X-ReleaseDate: $Date: 2006-11-17 11:12:36 -0500 (Fri, 17 Nov 2006) $
 ## X-Category: Raid
 ## Version: 1
-## Dependencies: BigWigs
+## Dependencies: BigWigs, !Libs
 ## OptionalDeps: Ace2
 ## SavedVariables: BigWigsRespawnTimersDB
 

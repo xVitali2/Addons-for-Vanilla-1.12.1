@@ -7,7 +7,7 @@
 
 ## X-Category: Interface Enhancements
 
-## Dependencies: FuBar
+## Dependencies: FuBar, !Libs
 ## OptionalDeps: Ace2, Tablet-2.0, FuBarPlugin-2.0
 ## LoadOnDemand: 1
 ## SavedVariables: TrackerFuDB
