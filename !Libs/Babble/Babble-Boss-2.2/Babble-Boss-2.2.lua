@@ -252,7 +252,6 @@ BabbleBoss:RegisterTranslations("enUS", function()
 		["Skum"] = true,
 		["Lord Serpentis"] = true,
 		["Verdan the Everliving"] = true,
-		["Verdan the Everliving"] = true,
 		["Mutanus the Devourer"] = true,
 		["Naralex"] = true,
 		["Deviate Faerie Dragon"] = true,

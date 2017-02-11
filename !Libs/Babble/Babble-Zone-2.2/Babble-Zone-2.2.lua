@@ -229,7 +229,7 @@ BabbleZone:RegisterTranslations("ruRU", function()
 		["Ironforge"] = "Стальгорн",
 		["Kalimdor"] = "Калимдор",
 		["Loch Modan"] = "Лок Модан",
-		["Lower Blackrock Spire"] = "Низина Черной Горы",
+		["Lower Blackrock Spire"] = "Низина Черной горы",
 		["Maraudon"] = "Мародон",
 		["Menethil Harbor"] = "Гавань Менетилов",
 		["Molten Core"] = "Огненные Недра",
