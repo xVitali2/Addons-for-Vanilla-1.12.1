@@ -1381,7 +1381,12 @@ function vQueue_OnEvent(event)
 		minimapButton:SetWidth(32)
 		minimapButton:SetHeight(32)
 		minimapButton:ClearAllPoints()
-		minimapButton:SetPoint("TOPLEFT", Minimap,"TOPLEFT",54-(75*cos(MinimapPos)),(75*sin(MinimapPos))-55) 
+		if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")
+			or (pfUI and pfUI_config["disabled"]["minimap"] ~= "1")) then
+			minimapButton:SetPoint("TOPLEFT", Minimap,"TOPLEFT",52-math.max(-82,math.min(110 * cos(MinimapPos or 0),84)), math.max(-86,math.min(110 * sin(MinimapPos or 0),82))-52)
+		else
+			minimapButton:SetPoint("TOPLEFT", Minimap,"TOPLEFT",52-(80*cos(MinimapPos)),(80*sin(MinimapPos))-52) 
+		end
 		minimapButton:SetHighlightTexture("Interface\\MINIMAP\\UI-Minimap-ZoomButton-Highlight", "ADD")
 		minimapButton:RegisterForDrag("RightButton")
 		minimapButton.texture = minimapButton:CreateTexture(nil, "BUTTON")
@@ -1434,17 +1439,24 @@ function vQueue_OnEvent(event)
 		end)
 		minimapButton:SetScript("OnUpdate", function()
 			if miniDrag then
-				    local xpos,ypos = GetCursorPosition() 
-					local xmin,ymin = Minimap:GetLeft(), Minimap:GetBottom() 
-
-					xpos = xmin-xpos/UIParent:GetScale()+70 
-					ypos = ypos/UIParent:GetScale()-ymin-70 
-					
-					MinimapPos = math.deg(math.atan2(ypos,xpos))
-					if (MinimapPos < 0) then
-						MinimapPos = MinimapPos + 360
-					end
-					this:SetPoint("TOPLEFT", Minimap,"TOPLEFT",54-(75*cos(MinimapPos)),(75*sin(MinimapPos))-55) 
+				local xpos,ypos = GetCursorPosition() 
+				local xmin,ymin = Minimap:GetLeft() or 400, Minimap:GetBottom() or 400
+				xpos = xmin-xpos/UIParent:GetScale()+70 
+				ypos = ypos/UIParent:GetScale()-ymin-70 
+				MinimapPos = math.deg(math.atan2(ypos,xpos))
+				if (MinimapPos < 0) then
+					MinimapPos = MinimapPos + 360
+				end
+				if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")
+					or (pfUI and pfUI_config["disabled"]["minimap"] ~= "1")) then
+					xpos = 110 * cos(MinimapPos or 0)
+					ypos = 110 * sin(MinimapPos or 0)
+					xpos = math.max(-82,math.min(xpos,84))
+					ypos = math.max(-86,math.min(ypos,82))
+					this:SetPoint("TOPLEFT", Minimap,"TOPLEFT",52-xpos, ypos-52)					
+				else
+					this:SetPoint("TOPLEFT", Minimap,"TOPLEFT",52-(80*cos(MinimapPos)),(80*sin(MinimapPos))-52)					
+				end
 			end
 		end)
 		CreateFrame( "GameTooltip", "MinimapTool", nil, "GameTooltipTemplate" ); -- Tooltip name cannot be nil

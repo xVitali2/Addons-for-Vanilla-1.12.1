@@ -2,10 +2,11 @@
 ## Title: vQueue |cff7fff7f -Ace2-|r
 ## Author: Devlix
 ## Notes: Utility for group finding.
-## RequiredDeps:!Libs
+## RequiredDeps: !Libs
+## OptionalDeps: pfUI
 ## SavedVariables: MinimapPos, vQueueOptions, notCaught
 ## SavedVariablesPerCharacter: selectedRole, isFinding
-## Version: 1.2.1
+## Version: 1.2.2
 
 vQueue.lua
 vQueue.xml
