@@ -7,6 +7,7 @@
 ## Notes-deDE: Lokalisiert Händler, die Rezepte im Strombereich oder durch Beruf verkaufen.
 ## Notes-frFR: Localise les marchands qui vendent des recettes dans la région courante ou par profession.
 ## Notes-esES: Localiza a vendedores que venden recetas en la región actual o por la profesión.
+## OptionalDeps: pfUI
 ## SavedVariables: RecipeRadar_SkillDB RecipeRadar_NameCache
 ## SavedVariablesPerCharacter: RecipeRadar_Options RecipeRadar_Filters
 Localization.lua
