@@ -4,6 +4,10 @@ local abacus = AceLibrary("Abacus-2.0")
 local compost = AceLibrary("Compost-2.0")
 local L = AceLibrary("AceLocale-2.2"):new("AuditorFu")
 
+local function print(text)
+	DEFAULT_CHAT_FRAME:AddMessage(text)
+end
+
 AuditorFu = AceLibrary("AceAddon-2.0"):new("FuBarPlugin-2.0", "AceEvent-2.0", "AceConsole-2.0", "AceDB-2.0")
 
 local optionsTable = {
@@ -603,7 +607,7 @@ function AuditorFu:OnTooltipUpdate()
 				end
 			end
 			table.sort(t, self.sort_func)
-			for _,name in pairs(t) do
+			for _, name in pairs(t) do
 				if not AuditorFu:IsFiltered(name) == true then
 					local value = Auditor.db.realm.chars[name]
 					local subbedDate = string.sub(Auditor.db.realm[name].timeDate.niceDate,4,5).." "..L["DATE_"..string.sub(Auditor.db.realm[name].timeDate.niceDate,1,2)].." '"..string.sub(Auditor.db.realm[name].timeDate.niceDate,7,8)

@@ -217,7 +217,9 @@ function Auditor:UpdateFigures()
 		auditorMode = "merch"
 	end
 end
-
+function padzero(s, count)
+	return string.rep("0", count-string.len(s)) .. s 
+end
 function Auditor:UpdateTimeFrame()
 	-- Good lordy, is it still the same day? Week? Year!? I hope people like the 7 day's data as opposed to calendar week data
 	local timeDiff = time() - self.db.realm[auditorPlayer].timeDate.timeDate
@@ -259,7 +261,7 @@ function Auditor:UpdateTimeFrame()
 		Auditor:DataReset("day")
 		self.db.realm[auditorPlayer].timeDate.timeDate = (math.floor( time() / 86400)) * 86400
 	end
-	self.db.realm[auditorPlayer].timeDate.niceDate = dateTable.month.."/"..dateTable.day.."/"..string.sub(dateTable.year,3,4)
+	self.db.realm[auditorPlayer].timeDate.niceDate = padzero(dateTable.month,2).."/"..padzero(dateTable.day,2).."/"..string.sub(dateTable.year,3,4)
 end
 
 function Auditor:ImportAccountant()
