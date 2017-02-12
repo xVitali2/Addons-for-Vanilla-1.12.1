@@ -1,6 +1,5 @@
 	-------------------------------------------------------------------------------
 	local _, class = UnitClass'player'
-	class=changeEngClassName(class);
 	if class ~= 'ROGUE' then return end
 	-------------------------------------------------------------------------------
 	local processDebuff = function(tar, spell, cp)
