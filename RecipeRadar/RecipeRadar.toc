@@ -13,7 +13,7 @@ Localization.lua
 Globals.lua
 FrameTemplates.xml
 Maps.xml
-MinimapButton.xml
 AvailabilityTooltip.xml
 RecipeRadar.xml
+MinimapButton.xml
 OptionsFrame.xml

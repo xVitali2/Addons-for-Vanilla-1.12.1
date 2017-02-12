@@ -1,22 +1,11 @@
-<?xml version="1.0" encoding="utf-8" ?>
-
-<UI xmlns="http://www.blizzard.com/wow/ui/"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
-
-   <Script file="MinimapButton.lua"/>
-
-   
-         <Button name="RecipeRadarMinimapButton" parent="Minimap" enableMouse="true" hidden="false" frameStrata="LOW">
+<UI  xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="MinimapButton.lua"></Script>	
+    <Button name="RecipeRadarMinimapButton" toplevel="true" parent="Minimap" enableMouse="true" hidden="false" movable="true" frameStrata="LOW">
             <Size>
                <AbsDimension x="32" y="32"/>
             </Size>
             <Anchors>
-               <Anchor point="TOPLEFT">
-                  <Offset>
-                     <AbsDimension x="2" y="0"/>
-                  </Offset>
-               </Anchor>
+               <Anchor point="TOPLEFT"/>
             </Anchors>
             <NormalTexture file="Interface\AddOns\RecipeRadar\Images\Misc\MinimapButtonUp"/>
             <PushedTexture file="Interface\AddOns\RecipeRadar\Images\Misc\MinimapButtonDown"/>
@@ -27,21 +16,30 @@
                   this.cntr = 0
                   this.sign = 1
                   RECIPERADAR_FLASH_MINIMAP_BUTTON = false
+				  this:RegisterForClicks("LeftButtonUp","RightButtonUp")
+				  this:RegisterForDrag("LeftButton")
                </OnLoad>
-               <OnClick>
-                  RecipeRadar_MinimapButton_OnClick()
-               </OnClick>
                <OnUpdate>
                   RecipeRadar_MinimapButton_OnUpdate(arg1)
                </OnUpdate>
                <OnEnter>
-                  GameTooltip_SetDefaultAnchor(GameTooltip, UIParent)
+				  GameTooltip:SetOwner(this,"ANCHOR_LEFT")
                   GameTooltip:SetText(RRS("Recipe Radar"))
+				  GameTooltip:AddLine(RRS("Left-drag: Moving minimap icon"))
+				  GameTooltip:Show()
                </OnEnter>
                <OnLeave>
                   GameTooltip:Hide()
                </OnLeave>
+			   	<OnDragStart>
+					RecipeRadar.StartTimer("DragMinimapButton")
+				</OnDragStart>
+				<OnDragStop>
+					RecipeRadar.StopTimer("DragMinimapButton")
+				</OnDragStop>
+				<OnClick>
+                  RecipeRadar_MinimapButton_OnClick()
+               </OnClick>
             </Scripts>
-         </Button>
-
+    </Button>
 </UI>

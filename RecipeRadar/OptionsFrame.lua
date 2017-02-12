@@ -24,8 +24,8 @@ function RecipeRadar_OptionsFrame_Init()
    RecipeRadarShowMinimapButton:SetChecked(
          RecipeRadar_Options.ShowMinimapButton)
 
-   RecipeRadarMinimapButtonPositionSlider:SetValue(
-         RecipeRadar_Options.MinimapButtonPosition)
+   --RecipeRadarMinimapButtonPositionSlider:SetValue(
+     --    RecipeRadar_Options.MinimapButtonPosition)
 
    RecipeRadarAutoSelectRegionButton:SetChecked(
          RecipeRadar_Options.AutoSelectRegion)

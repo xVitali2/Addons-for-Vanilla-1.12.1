@@ -2,6 +2,10 @@
 -- RecipeRadar.lua: main event code and general utility functions
 -- $Id: RecipeRadar.lua 464 2006-09-18 18:05:57Z jnmiller $
 
+RecipeRadar = {}
+RecipeRadar.TimerPool = {}
+RecipeRadar.Timers = {}
+
 function RecipeRadar_OnLoad()
 
    tinsert(UISpecialFrames, "RecipeRadarFrame")
@@ -10,7 +14,6 @@ function RecipeRadar_OnLoad()
    SLASH_RecipeRadar1 = "/rrdr"
    SLASH_RecipeRadar2 = "/reciperadar"
    SlashCmdList["RecipeRadar"] = RecipeRadar_SlashHandler
-
    this:RegisterEvent("VARIABLES_LOADED")
    this:RegisterEvent("ZONE_CHANGED_NEW_AREA")
    this:RegisterEvent("MINIMAP_UPDATE_ZOOM")
@@ -22,7 +25,6 @@ function RecipeRadar_OnLoad()
    this:RegisterEvent("PLAYER_ENTERING_WORLD")
 
    -- RecipeRadar_Print("Recipe Radar loaded!")
-
 end
 
 function RecipeRadar_OnEvent()
@@ -30,7 +32,7 @@ function RecipeRadar_OnEvent()
    if (event == "VARIABLES_LOADED") then
 
       RecipeRadar_Globals_Init()
-      RecipeRadar_MinimapButton_Init()
+	  RecipeRadar_MinimapButton_Init()
       RecipeRadar_Availability_Init()
       RecipeRadar_Maps_Init()
       RecipeRadar_SkillDB_Init()

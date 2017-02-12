@@ -103,7 +103,7 @@
          </CheckButton>
 
          <!-- Minimap button position slider -->
-         <Slider name="RecipeRadarMinimapButtonPositionSlider" inherits="OptionsSliderTemplate">
+         <!-- <Slider name="RecipeRadarMinimapButtonPositionSlider" inherits="OptionsSliderTemplate">
             <Size>
                <AbsDimension x="220" y="16"/>
             </Size>
@@ -127,7 +127,7 @@
                   RecipeRadar_MinimapButton_UpdatePosition()
                </OnValueChanged>
             </Scripts>
-         </Slider>
+         </Slider> -->
 
          <!-- Auto-select region checkbox -->
          <CheckButton name="RecipeRadarAutoSelectRegionButton" inherits="OptionsCheckButtonTemplate">

@@ -26,7 +26,7 @@ if (GetLocale() == "sample") then
 
    -- the name of the addon!
    RecipeRadar_Strings["Recipe Radar"] = ""
-
+   RecipeRadar_Strings["Left-drag: Moving minimap icon"] = ""
    -- these show up in the game's Key Bindings screen
    RecipeRadar_Strings["Recipe Radar Bindings"] = ""
    RecipeRadar_Strings["Toggle Recipe Radar"] = ""
@@ -416,7 +416,8 @@ if (GetLocale() == "ruRU") then
 
    -- the name of the addon!
    RecipeRadar_Strings["Recipe Radar"] = "Радар Рецептов"
-
+   -- tooltip minimap
+   RecipeRadar_Strings["Left-drag: Moving minimap icon"] = "Левая кнопка мыши: перемещение значка на миникарте"
    -- these show up in the game's Key Bindings screen
    RecipeRadar_Strings["Recipe Radar Bindings"] = "Настройки клавиш Радара Рецептов"
    RecipeRadar_Strings["Toggle Recipe Radar"] = "Включить Радар Рецептов"

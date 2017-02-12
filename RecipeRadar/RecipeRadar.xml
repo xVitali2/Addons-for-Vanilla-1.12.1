@@ -1,9 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-
-<UI xmlns="http://www.blizzard.com/wow/ui/"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
-
+﻿<UI xmlns="http://www.blizzard.com/wow/ui/">
    <Script file="RegionData.lua"/>
    <Script file="RecipeData.lua"/>
    <Script file="RecipeRadar.lua"/>
@@ -741,86 +736,12 @@
          </OnMouseUp>
       </Scripts>
    </Frame>
+   <!-- OnUpdate to process all timers -->
+	<Frame name="RecipeRadar_TimersFrame" hidden="true">
+		<Scripts>
+			<OnUpdate>
+				RecipeRadar.TimersFrame_OnUpdate()
+			</OnUpdate>
+		</Scripts>
+	</Frame>
 </UI>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
