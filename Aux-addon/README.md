@@ -90,7 +90,7 @@ Furthermore
 While it is faster to type filters directly into the search box this sub-tab serves as a tutorial to learn how to formulate queries.
 The filters on the left side are Blizzard filters which may reduce the number of pages to be scanned and those on the right side are post filters which do not affect the scan time but can be combined with logical operators to formulate very complex filters.
 ### Post
-![Alt text](http://i.imgur.com/wZks6L0.png)
+![Alt text](http://i.imgur.com/otzOT2I.png)
 - When entering prices **g**, **s** and **c** denote gold, silver and copper respectively.
 - A price value without explicit denotations will count as gold. (e.g., 10.5 = 10g50s)
 - Price values can contain decimals. (e.g., 1.5g = 1g50s)
@@ -132,7 +132,7 @@ For using a tooltip filter as the first filter part there is an explicit **toolt
 Here are some queries I use myself for illustration:
 
 **or/and2/profit/5g/percent/60/and3/bid-profit/5g/bid-percent/60/left/30m**<br/>
-This filter will search the whole auction house for auctions either with a buyout price of 5g or more higher than the market value and 60% or less of the market value or a bid price for which the same is true and in addition only 30m or less remaining.
+This filter will search the whole auction house for auctions either with a buyout price of 5g or more below market value and 60% or less of the market value or a bid price for which the same is true and in addition only 30m or less remaining.
 
 **wrangler's wristbands/exact/or2/and2/+3 agility/+3 stamina/+5 stamina/price/1g**<br/>
 This will search for wrangler's wristband with 3/3 monkey or 5 stam suffixes for at most 1g buyout price.
