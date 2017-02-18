@@ -152,20 +152,22 @@ function ADDON.targetIndicatorShow(namePlate)
 end
 
 function ADDON.getChronometerTimer(debuffname,target)
-	for i = 20, 1, -1 do
-	--CFM fix
-		if Chronometer.active and Chronometer.bars[i].name and Chronometer.bars[i].target 
-			and (Chronometer.bars[i].target == target or Chronometer.bars[i].target == "none")
-			and Chronometer.bars[i].timer.x.tx and Chronometer.bars[i].timer.x.tx == debuffname then
+--CFM fix
+	if Chronometer.active then
+		for i = 20, 1, -1 do
+			if Chronometer.bars[i].name and Chronometer.bars[i].target 
+				and (Chronometer.bars[i].target == target or Chronometer.bars[i].target == "none")
+				and Chronometer.bars[i].timer.x.tx and Chronometer.bars[i].timer.x.tx == debuffname then
 			
-				local registered,time,elapsed,running = Chronometer:CandyBarStatus(Chronometer.bars[i].id)
+					local registered,time,elapsed,running = Chronometer:CandyBarStatus(Chronometer.bars[i].id)
 				
-				if registered and running then
-					--if elapsed > 5 then return decimal_round(elapsed, 0) else return decimal_round(elapsed, 1) end
-					return decimal_round(time-elapsed, 0)
-				else
-					return nil
-				end
+					if registered and running then
+						--if elapsed > 5 then return decimal_round(elapsed, 0) else return decimal_round(elapsed, 1) end
+						return decimal_round(time-elapsed, 0)
+					else
+						return nil
+					end
+			end
 		end
 	end
 end
