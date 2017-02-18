@@ -1,0 +1,30 @@
+﻿## Interface: 11200
+## Author: Bhattu, fixes: laytya
+## Title: Chronometer |cff7fff7f -Ace2-|r
+## Notes: Chronometer - an Ace2 Timer Mod based on AceTimer for Vanilla
+## Notes-zhCN: Chronometer - 基于AceTimer的Ace2计时条插件
+## Version: 0.10.2
+## DefaultState:
+## Dependencies: !Libs
+## OptionalDeps: Ace2, Babble-2.2, PaintChipsLib, CompostLib, CandyBar, Deformat, GratuityLib, SpellCacheLib, ParserLib, DewdropLib
+## SavedVariables: ChronometerDB
+
+## X-ReleaseDate: $Date: 2017-02-17 $
+## X-Email: laytya@gmail.com
+## X-Category: Combat
+## X-Website: https://github.com/laytya/Chronometer-vanilla
+## X-Embeds: Ace2, Babble-2.2, PaintChipsLib, CompostLib, CandyBar, Deformat, GratuityLib, SpellCacheLib, ParserLib, DewdropLib
+
+Core\Chronometer.lua
+Core\Chronometer-Locale.lua
+
+Data\Druid.lua
+Data\Hunter.lua
+Data\Mage.lua
+Data\Paladin.lua
+Data\Priest.lua
+Data\Rogue.lua
+Data\Shaman.lua
+Data\Warlock.lua
+Data\Warrior.lua
+Data\Racial.lua
