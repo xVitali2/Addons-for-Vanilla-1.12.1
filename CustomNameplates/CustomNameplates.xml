@@ -2,6 +2,7 @@
 C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
   
   <Script file="settings.lua"/>
+  <Script file="options.lua"/>
 	<Script file="CustomNameplates.lua"/>
 	
 	<!-- 								Main Frame										-->
@@ -13,6 +14,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 				this:RegisterEvent("UNIT_AURA");
         this:RegisterEvent("PLAYER_REGEN_ENABLED");
         this:RegisterEvent("PLAYER_REGEN_DISABLED");
+        this:RegisterEvent("VARIABLES_LOADED");
 				this.ticker = 0;
 				this.scanningPlayers = false;
 			</OnLoad> 
