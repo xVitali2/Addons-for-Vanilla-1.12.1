@@ -120,12 +120,12 @@ function ADDON.checkMouseover(name)
 		local _, class = UnitClass("mouseover")
 		ADDON.Players[name] = {}
 		ADDON.Players[name].class = class
-		ADDON.Print(name.." => ".. ADDON.Players[name].class)
+		--ADDON.Print(name.." => ".. ADDON.Players[name].class)
 	else
 		ADDON.NPC[name] = {}
 		ADDON.NPC[name].class = UnitClassification("mouseover")
 		if  MobHealth_PPP  then ADDON.NPC[name].ppp = MobHealth_PPP( name..":"..UnitLevel("mouseover") ); end
-		ADDON.Print(name.." => ".. ADDON.NPC[name].class .. ", " ..ADDON.NPC[name].ppp)
+		--ADDON.Print(name.." => ".. ADDON.NPC[name].class .. ", " ..ADDON.NPC[name].ppp)
   end
 end
 

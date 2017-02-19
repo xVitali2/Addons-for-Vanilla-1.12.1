@@ -20,7 +20,7 @@ local genSettings = {
   ["showFriendly"]=false,       -- controls if friendly nameplates start ON
   ["combatOnly"]=false,         -- controls if enemy nameplates will only show in combat
   ["hbwidth"]=130,               -- width of nameplates
-  ["hbheight"]=11,               -- height of nameplates
+  ["hbheight"]=13,               -- height of nameplates
                                 -- texture of the healthbar (if a non-default it needs to be put in addon folder)  
   ["texture"]="Interface\\AddOns\\CustomNameplates\\barSmall",               
   ["refreshRate"]=1/60,         -- the denominator defines the update frequency (in FPS), lower the number for better performance at the cost of slower updates
@@ -35,8 +35,8 @@ local raidicon = {
 }
 local debufficon = {
   ["hide"]=false,               -- hide or show debuff icons
-  ["sizex"]=24,                 -- X size
-  ["sizey"]=12,                 -- Y size
+  ["sizex"]=18,                 -- X size
+  ["sizey"]=16,                 -- Y size
   ["point"]="BOTTOMLEFT",
   ["anchorpoint"]="TOPLEFT", 		-- "BOTTOMLEFT",
   ["yoffs"]=16, -- -13,         -- vertical offset of the first row of debuffs
