@@ -36,7 +36,7 @@
                 if bu and bu:IsShown() and link then
                     local _, _, istring         = string.find(link, '|H(.+)|h')
                     local n, _, q, _, _, type   = GetItemInfo(istring)
-                    if strfind(n, 'Mark of Honor') then
+                    if n and strfind(n, 'Mark of Honor') then
                         modSkinColor(bu, .98, .95, .0)
                     elseif  type == 'Quest' then
                         modSkinColor(bu, 1, .33, .0)

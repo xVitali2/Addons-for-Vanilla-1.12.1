@@ -200,7 +200,7 @@
 				local bu = _G[con..'Item'..i]
 				local cd = _G[con..'Item'..i..'Cooldown']
 				table.insert(buttons, bu)
-				cd:SetFrameLevel(bu:GetFrameLevel() + 1) cd:SetFrameStrata'TOOLTIP'
+				cd:SetFrameLevel(bu:GetFrameLevel() + 1)
 			end
 		end
 		MoveButtons(buttons, bagContainer)
