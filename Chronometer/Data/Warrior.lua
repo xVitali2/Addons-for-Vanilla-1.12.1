@@ -2,6 +2,7 @@
 -- Setup Timers                                                               --
 --<< ====================================================================== >>--
 local BS = AceLibrary("Babble-Spell-2.2")
+local L = AceLibrary("AceLocale-2.2"):new("Chronometer")
 
 function Chronometer:WarriorSetup()
 	local _, eclass = UnitClass("player")
@@ -39,11 +40,11 @@ function Chronometer:WarriorSetup()
 
 	self:AddTimer(self.EVENT, BS["Blood Craze"],          6, 0,1,1, { a=1, cr="GREEN" })
 	self:AddTimer(self.EVENT, BS["Bloodthirst"],          8, 0,1,1)
-	self:AddTimer(self.EVENT, BS["Charge Stun"],          1, 1,0,0, { xn=BS["Charge"] })
+	self:AddTimer(self.EVENT, BS["Charge Stun"],          1, 1,0,0) --, { xn=BS["Charge"] })
 	self:AddTimer(self.EVENT, BS["Deep Wounds"],         12, 1,0,0, { a=1, cr="GREEN" })
 	self:AddTimer(self.EVENT, BS["Enrage"],              12, 0,1,1, { a=1, cr="GREEN" })
 	self:AddTimer(self.EVENT, BS["Improved Hamstring"],   5, 1,0,0, { cr="GREEN" })
-	self:AddTimer(self.EVENT, BS["Intercept Stun"],       3, 1,0,0, { xn=BS["Intercept"] })
+	self:AddTimer(self.EVENT, BS["Intercept Stun"],       3, 1,0,0) --, { xn=BS["Intercept"] })
 	self:AddTimer(self.EVENT, BS["Mace Stun Effect"],     3, 1,0,0, { cr="GREEN", a=1, xn=BS["Mace Specialization"] })
 	self:AddTimer(self.EVENT, BS["Revenge Stun"],         3, 1,0,0, { cr="GREEN", xn=BS["Revenge"] })
 	self:AddTimer(self.EVENT, BS["Shield Bash - Silenced"], 3, 1,0,0, { cr="GREEN", xn=BS["Shield Bash"] })

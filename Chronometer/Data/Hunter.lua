@@ -35,7 +35,7 @@ function Chronometer:HunterSetup()
 	self:AddTimer(self.EVENT, BS["Immolation Trap Effect"],  15, 1,0,1, { gr=1, xn=BS["Immolation Trap"] })
 	self:AddTimer(self.EVENT, BS["Improved Concussive Shot"], 3, 1,0,0, { cr="GREEN", xn=BS["Concussive Shot"] })
 	self:AddTimer(self.EVENT, BS["Improved Wing Clip"],       5, 1,0,0, { cr="GREEN", xn=BS["Wing Clip"] } )
-	self:AddTimer(self.EVENT, BS["Quick Shots"],             12, 0,1,1, { a=1, cr="GREEN", tx="Interface\\Icons\\Ability_Warrior_InnerRage" })
+	self:AddTimer(self.EVENT, BS["Quick Shots"],             12, 0,1,1, { a=1, cr="GREEN" })
 
 	--self:AddTimer(A.SKILL, C.COUNTERATTACK,            5, 0,1,0, { cr="YELLOW", rc=true })
 	--self:AddTimer(A.SKILL, C.MONGOOSE_BITE,            5, 0,1,0, { cr="YELLOW", rc=true })

@@ -36,7 +36,7 @@ function Chronometer:PaladinSetup()
 	self:AddTimer(self.SPELL, BS["Seal of Wisdom"],         30, 0,1,1, { gr=2, rc=true })
 	self:AddTimer(self.SPELL, BS["Turn Undead"],            10, 1,0,0, { gr=3, d={rs=5} })
 
-	self:AddTimer(self.EVENT, BS["Forbearance"],               60, 1,0,1, { tx="Interface\\Icons\\Spell_Holy_RemoveCurse" })
+	self:AddTimer(self.EVENT, BS["Forbearance"],               60, 1,0,1 )
 	self:AddTimer(self.EVENT, BS["Judgement of Justice"],      10, 1,0,0, { cr="RED", xn=BS["Seal of Justice"], rom=true })
 	self:AddTimer(self.EVENT, BS["Judgement of Light"],        10, 1,0,0, { cr="RED", xn=BS["Seal of Light"],  d={tn=BS["Lasting Judgement"], tb=10}, rom=true })
 	self:AddTimer(self.EVENT, BS["Judgement of Wisdom"],       10, 1,0,0, { cr="RED", xn=BS["Seal of Wisdom"], d={tn=BS["Lasting Judgement"], tb=10}, rom=true })

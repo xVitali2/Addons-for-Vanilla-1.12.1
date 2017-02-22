@@ -2,6 +2,7 @@
 -- Setup Timers                                                               --
 --<< ====================================================================== >>--
 local BS = AceLibrary("Babble-Spell-2.2")
+local L = AceLibrary("AceLocale-2.2"):new("Chronometer")
 
 function Chronometer:DruidSetup()
 	local _, eclass = UnitClass("player")
@@ -39,7 +40,7 @@ function Chronometer:DruidSetup()
 	self:AddTimer(self.EVENT, BS["Entangling Roots"],      12, 1,0,1, { gr=1, d={rs=3} })
 	self:AddTimer(self.EVENT, BS["Nature's Grace"],        15, 0,1,1, { cr="GREEN", a=1 })
 
-	self:AddTimer(self.EVENT, BS["Clearcasting"],          15, 0,1,1, { cr="GREEN", a=1, tx="Interface\\Icons\\Spell_Shadow_ManaBurn" })
+	self:AddTimer(self.EVENT, BS["Clearcasting"],          15, 0,1,1, { cr="GREEN", a=1 })
 	self:AddTimer(self.EVENT, BS["Pounce Bleed"],          18, 1,0,0, { xn=BS["Pounce"] })
 	self:AddTimer(self.EVENT, BS["Starfire Stun"],          3, 1,0,0, { xn=BS["Starfire"] })
 end

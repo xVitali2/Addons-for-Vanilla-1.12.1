@@ -67,6 +67,8 @@ L:RegisterTranslations("enUS", function() return {
 	
 	["Hide"] = true,
 	
+	-- These all need to be added to Babble-Spell!!!
+	["Improved Fire Totems"] = true,
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
@@ -136,6 +138,9 @@ L:RegisterTranslations("ruRU", function() return {
 	
 	["Hide"] = "Скрыть",
 	
+	-- These all need to be added to Babble-Spell!!!
+	
+	["Improved Fire Totems"] = "Улучшенный тотем огня",
 } end)
 
 L:RegisterTranslations("deDE", function() return {

@@ -225,7 +225,7 @@ function Chronometer:OnEnable()
 			break
 		end
 	end
-	if not enableRom then
+	if not enableRoM then
 		for n, t in pairs(self.timers[self.EVENT]) do
 			if t.x.rom then
 				enableRoM = true
@@ -431,6 +431,9 @@ end
 
 function Chronometer:GetTexture(name, record)
 	if record.xn then name = record.xn end
+	record.tx = BS:GetSpellIcon(name)
+	return record.tx
+--[[	
 	local i = 1
 	while true do
 		local nm = GetSpellName(i, BOOKTYPE_SPELL)
@@ -453,6 +456,7 @@ function Chronometer:GetTexture(name, record)
 			if nm == name then record.tx = tx; return record.tx end
 		end
 	end
+]]
 end
 
 function Chronometer:GetTalentPosition(name)
@@ -711,7 +715,7 @@ function Chronometer:SPELL_PERIODIC(event, info)
 	end
 
 	aura = info.skill
-	
+	self:Debug(aura)
 	if aura == "Deep Wound" then aura = "Deep Wounds"  end   --TODO: table of elysium bugs
 	
 	local timer = self.timers[self.EVENT][aura]	
