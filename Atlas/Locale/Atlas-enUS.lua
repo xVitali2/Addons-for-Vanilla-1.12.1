@@ -305,7 +305,6 @@ AL:RegisterTranslations("enUS", function() return {
 	["AQ Opening Quest Chain"] = true;
 	
 	--Ruins of Ahn'Qiraj
-	["Lieutenant General Andorov"] = true;
 	["Four Kaldorei Elites"] = true;
 	["Captain Qeez"] = true;
 	["Captain Tuubid"] = true;

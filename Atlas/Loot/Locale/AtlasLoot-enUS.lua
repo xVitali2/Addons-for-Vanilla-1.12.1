@@ -373,7 +373,6 @@ AL:RegisterTranslations("enUS", function() return {
 	["Magra"] = true;
 	["Veng"] = true;
 	["Maraudos"] = true;
-	["Lieutenant General Andorov"] = true;
 	["Blood Steward of Kirtonos"] = true;
 	["Arugal's Voidwalker"] = true;
 	["Fras Siabi"] = true;

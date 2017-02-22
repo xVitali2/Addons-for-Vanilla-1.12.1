@@ -74,8 +74,6 @@ ATLASQUEST_VERSION = ""..BLUE.."AtlasQuest 4.1.2.1";
 AQ_ShownSide = "Left"
 AQAtlasAuto = 1;
 AQNOColourCheck = nil;
-AtlasQuestHelp = {};
-AtlasQuestHelp[1] = "[/aq + available command: help, left/right, show/hide, autoshow\ndownload adress:\nhttp://ui.worldofwar.net/ui.php?id=3069, http://www.curse-gaming.com/de/wow/addons-4714-1-atlasquest.html]";
 
 local AtlasQuest_Defaults = {
   ["Version"] =  "4.1.2.1",

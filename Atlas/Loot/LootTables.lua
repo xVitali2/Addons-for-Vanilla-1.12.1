@@ -243,7 +243,7 @@ AtlasLoot_TableNames = {
 	["RFKTrash"] = { AL["Trash Mobs"].." ("..BZ["Razorfen Kraul"]..")", "AtlasLootItems" },
 	--The Ruins of Ahn'Qiraj
 	["AQ20Kurinnaxx"] = { BB["Kurinnaxx"], "AtlasLootItems" },
-	["AQ20Andorov"] = { AL["Lieutenant General Andorov"], "AtlasLootItems" },
+	["AQ20Andorov"] = { BB["Lieutenant General Andorov"], "AtlasLootItems" },
 	["AQ20CAPTAIN"] = { AL["Rajaxx's Captains"], "AtlasLootItems" },
 	["AQ20Rajaxx"] = { BB["General Rajaxx"], "AtlasLootItems" },
 	["AQ20Moam"] = { BB["Moam"], "AtlasLootItems" },
@@ -1079,7 +1079,7 @@ AtlasLoot_TableNamesBoss = {
 	},
 	[BZ["Ruins of Ahn'Qiraj"]] = {
 		["AQ20Kurinnaxx"] = { BB["Kurinnaxx"], "AtlasLootItems" },
-		["AQ20Andorov"] = { AL["Lieutenant General Andorov"], "AtlasLootItems" },
+		["AQ20Andorov"] = { BB["Lieutenant General Andorov"], "AtlasLootItems" },
 		["AQ20CAPTAIN"] = { AL["Rajaxx's Captains"], "AtlasLootItems" },
 		["AQ20Rajaxx"] = { BB["General Rajaxx"], "AtlasLootItems" },
 		["AQ20Moam"] = { BB["Moam"], "AtlasLootItems" },

@@ -517,9 +517,7 @@ function AtlasLoot_OnLoad()
 	--Enable the use of /al or /atlasloot to open the loot browser
 	SLASH_ATLASLOOT1 = "/atlasloot";
 	SLASH_ATLASLOOT2 = "/al";
-	SlashCmdList["ATLASLOOT"] = function(msg)
-		AtlasLoot_SlashCommand(msg);
-	end
+	SlashCmdList["ATLASLOOT"] = AtlasLoot_SlashCommand;
 end
 
 --[[
@@ -2747,7 +2745,7 @@ AtlasLoot_DewDropDown_SubTables = {
 	},
 	["RuinsofAQ"] = {
 		{ BB["Kurinnaxx"], "AQ20Kurinnaxx" },
-		{ AL["Lieutenant General Andorov"], "AQ20Andorov" },
+		{ BB["Lieutenant General Andorov"], "AQ20Andorov" },
 		{ AtlasLoot_TableNames["AQ20CAPTAIN"][1], "AQ20CAPTAIN" },
 		{ BB["General Rajaxx"], "AQ20Rajaxx" },
 		{ BB["Moam"], "AQ20Moam" },

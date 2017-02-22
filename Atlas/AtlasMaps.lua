@@ -412,7 +412,7 @@ AtlasMaps = {
 		{ ORNG..AL["Reputation"]..": "..BF["Cenarion Circle"], FACTION, 609 };
 		{ BLUE.."A) "..AL["Entrance"] };
 		{ GREY.."1) "..BB["Kurinnaxx"], NPC, 15348 };
-		{ GREY..INDENT..AL["Lieutenant General Andorov"], NPC, 15471 };
+		{ GREY..INDENT..BB["Lieutenant General Andorov"], NPC, 15471 };
 		{ GREY..INDENT..AL["Four Kaldorei Elites"], NPC, 15473 };
 		{ GREY.."2) "..BB["General Rajaxx"], NPC, 15341 };
 		{ GREY..INDENT..AL["Captain Qeez"], NPC, 15391 };

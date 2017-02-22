@@ -287,7 +287,6 @@ function Atlas_OnLoad()
 	SLASH_ATLAS1 = "/atlas";
 	SlashCmdList["ATLAS"] = Atlas_SlashCommand;
 	
-
 end
 
 
@@ -489,7 +488,7 @@ end
 --Parses slash commands
 --If an unrecognized command is given, toggle Atlas
 function Atlas_SlashCommand(msg)
-	if(msg == "options" or "opt") then
+	if(msg == "options" or msg == "opt") then
 		AtlasOptions_Toggle();
 	else
 		Atlas_Toggle();
