@@ -91,15 +91,32 @@ pfUI:RegisterModule("nameplates", function ()
 
     this.setup = true
   end
-
+  --debuff timers
+  function pfUI.nameplates.getTimer(debuffname,target)
+	if not Chronometer.active then return end
+	for i = 20, 1, -1 do
+		if Chronometer.bars[i].name and Chronometer.bars[i].target 
+			and (Chronometer.bars[i].target == target or Chronometer.bars[i].target == "none")
+			and Chronometer.bars[i].timer.x.tx and Chronometer.bars[i].timer.x.tx == debuffname then
+				local registered,time,elapsed,running = Chronometer:CandyBarStatus(Chronometer.bars[i].id)
+				if registered and running then
+					return floor(time - elapsed + 0.5)
+				else
+					return nil
+				end
+		end
+	end
+  end
   function pfUI.nameplates:CreateDebuffs(frame)
     if pfUI_config.nameplates["showdebuffs"] ~= "1" then return end
 
     if frame.debuffs == nil then frame.debuffs = {} end
     for j=1, 16, 1 do
       if frame.debuffs[j] == nil then
-        frame.debuffs[j] = this:CreateTexture(nil, "BORDER")
-        frame.debuffs[j]:SetTexture(0,0,0,0)
+	  --  frame.debuffs[j] = this:CreateTexture(nil, "BORDER")
+       -- frame.debuffs[j]:SetTexture(0,0,0,0)
+	   	frame.debuffs[j] = CreateFrame("Frame", "pfUIDebuff"..j, frame)
+		frame.debuffs[j].texture = frame.debuffs[j]:CreateTexture(nil, "ARTWORK")
         frame.debuffs[j]:ClearAllPoints()
         frame.debuffs[j]:SetWidth(12)
         frame.debuffs[j]:SetHeight(12)
@@ -110,6 +127,7 @@ pfUI:RegisterModule("nameplates", function ()
         elseif j > 8 then
           frame.debuffs[j]:SetPoint("TOPLEFT", frame.debuffs[1], "BOTTOMLEFT", (j-9) * 13, -1)
         end
+		frame.debuffs[j].texture:SetAllPoints(frame.debuffs[j])
       end
     end
   end
@@ -338,23 +356,45 @@ pfUI:RegisterModule("nameplates", function ()
   end
 
   function pfUI.nameplates:UpdateDebuffs(frame, healthbar)
+    local target=GetUnitName'target'
     if not frame.debuffs or pfUI_config.nameplates["showdebuffs"] ~= "1" then return end
-
+		 		  
     if UnitExists("target") and healthbar:GetAlpha() == 1 then
-    local j = 1
-      local k = 1
+      local j, k = 1, 1
       for j, e in ipairs(pfUI.nameplates.debuffs) do
-        frame.debuffs[j]:SetTexture(pfUI.nameplates.debuffs[j])
-        frame.debuffs[j]:SetTexCoord(.078, .92, .079, .937)
-        frame.debuffs[j]:SetAlpha(0.9)
+		frame.debuffs[j].texture:SetTexture(pfUI.nameplates.debuffs[j])
+		frame.debuffs[j].texture:SetTexCoord(.078, .92, .079, .937)
+	    frame.debuffs[j].texture:SetAlpha(0.9)
+		frame.debuffs[j]:Show()
+		if Chronometer then
+			if frame.debuffs[j].cd == nil then
+				frame.debuffs[j].cd = frame.debuffs[j]:CreateFontString(nil, "OVERLAY")
+				frame.debuffs[j].cd:SetFont(pfUI.font_default,14,'OUTLINE',0,-1)
+				frame.debuffs[j].cd:SetTextColor(1,1,1)
+				frame.debuffs[j].cd:SetText("")
+				frame.debuffs[j].cd:SetJustifyH('LEFT')
+				frame.debuffs[j].cd:SetPoint('TOPLEFT', -2, 5)
+				frame.debuffs[j].cd:Hide()
+			end
+			local debuffname = pfUI.nameplates.debuffs[j]
+			local duration = pfUI.nameplates.getTimer(debuffname,target)
+			if duration then
+				frame.debuffs[j].cd:SetText(duration);
+				frame.debuffs[j].cd:Show()
+			else
+				frame.debuffs[j].cd:Hide()
+			end
+		end
         k = k + 1
       end
       for j = k, 16, 1 do
-        frame.debuffs[j]:SetTexture(nil)
+        frame.debuffs[j].texture:SetTexture(nil)
+		frame.debuffs[j]:Hide()
       end
     elseif frame.debuffs then
       for j = 1, 16, 1 do
-        frame.debuffs[j]:SetTexture(nil)
+        frame.debuffs[j].texture:SetTexture(nil)
+		frame.debuffs[j]:Hide()
       end
     end
   end
