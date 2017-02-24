@@ -162,152 +162,152 @@ AtlasLoot_ButtonRegistry = {
 		Back_Title = AL["Factions"];;
 	};
 	["WSGRepFriendly"] = {
-		Title = "WSG "..AL["Friendly Reputation Rewards"];
+		Title = AL["Friendly Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 	};
 	["WSGRepHonored1019"] = {
-		Title = "10-19 WSG "..AL["Honored Reputation Rewards"];
+		Title = "10-19 "..AL["Honored Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 		Next_Page = "WSGRepHonored2029";
 	};
 	["WSGRepHonored2029"] = {
-		Title = "20-29 WSG "..AL["Honored Reputation Rewards"];
+		Title = "20-29 "..AL["Honored Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 		Next_Page = "WSGRepHonored3039";
 		Prev_Page = "WSGRepHonored1019";
 	};
 	["WSGRepHonored3039"] = {
-		Title = "30-39 WSG "..AL["Honored Reputation Rewards"];
+		Title = "30-39 "..AL["Honored Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 		Next_Page = "WSGRepHonored4049";
 		Prev_Page = "WSGRepHonored2029";
 	};
 	["WSGRepHonored4049"] = {
-		Title = "40-49 WSG "..AL["Honored Reputation Rewards"];
+		Title = "40-49 "..AL["Honored Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 		Next_Page = "WSGRepHonored5059";
 		Prev_Page = "WSGRepHonored3039";
 	};
 	["WSGRepHonored5059"] = {
-		Title = "50-59 WSG "..AL["Honored Reputation Rewards"];
+		Title = "50-59 "..AL["Honored Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 		Prev_Page = "WSGRepHonored4049";
 	};
 	["WSGRepRevered1019"] = {
-		Title = "10-19 WSG "..AL["Revered Reputation Rewards"];
+		Title = "10-19 "..AL["Revered Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 		Next_Page = "WSGRepRevered2029";
 	};
 	["WSGRepRevered2029"] = {
-		Title = "20-29 WSG "..AL["Revered Reputation Rewards"];
+		Title = "20-29 "..AL["Revered Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 		Next_Page = "WSGRepRevered3039";
 		Prev_Page = "WSGRepRevered1019";
 	};
 	["WSGRepRevered3039"] = {
-		Title = "30-39 WSG "..AL["Revered Reputation Rewards"];
+		Title = "30-39 "..AL["Revered Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 		Next_Page = "WSGRepRevered4049";
 		Prev_Page = "WSGRepRevered2029";
 	};
 	["WSGRepRevered4049"] = {
-		Title = "40-49 WSG "..AL["Revered Reputation Rewards"];
+		Title = "40-49 "..AL["Revered Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 		Next_Page = "WSGRepRevered5059";
 		Prev_Page = "WSGRepRevered3039";
 	};
 	["WSGRepRevered5059"] = {
-		Title = "50-59 WSG "..AL["Revered Reputation Rewards"];
+		Title = "50-59 "..AL["Revered Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 		Prev_Page = "WSGRepRevered4049";
 	};
 	["WSGRepExalted4049"] = {
-		Title = "40-49 WSG "..AL["Exalted Reputation Rewards"];
+		Title = "40-49 "..AL["Exalted Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 		Next_Page = "WSGRepExalted5059";
 	};
 	["WSGRepExalted5059"] = {
-		Title = "50-59 WSG "..AL["Exalted Reputation Rewards"];
+		Title = "50-59 "..AL["Exalted Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 		Next_Page = "WSGRepExalted60";
 		Prev_Page = "WSGRepExalted4049";
 	};
 	["WSGRepExalted60"] = {
-		Title = "60 WSG "..AL["Exalted Reputation Rewards"];
+		Title = "60 "..AL["Exalted Reputation Rewards"];
 		Back_Page = "WSGRepMenu";
 		Prev_Page = "WSGRepExalted5059";
 	};
 	["ABRepFriendly"] = {
-		Title = "AB "..AL["Friendly Reputation Rewards"];
+		Title = AL["Friendly Reputation Rewards"];
 		Back_Page = "ABRepMenu";
 	};
 	["ABRepHonored2029"] = {
-		Title = "20-29 AB "..AL["Honored Reputation Rewards"];
+		Title = "20-29 "..AL["Honored Reputation Rewards"];
 		Back_Page = "ABRepMenu";
 		Next_Page = "ABRepHonored3039";
 	};
 	["ABRepHonored3039"] = {
-		Title = "30-39 AB "..AL["Honored Reputation Rewards"];
+		Title = "30-39 "..AL["Honored Reputation Rewards"];
 		Back_Page = "ABRepMenu";
 		Next_Page = "ABRepHonored4049";
 		Prev_Page = "ABRepHonored2029";
 	};
 	["ABRepHonored4049"] = {
-		Title = "40-49 AB "..AL["Honored Reputation Rewards"];
+		Title = "40-49 "..AL["Honored Reputation Rewards"];
 		Back_Page = "ABRepMenu";
 		Next_Page = "ABRepHonored5059";
 		Prev_Page = "ABRepHonored3039";
 	};
 	["ABRepHonored5059"] = {
-		Title = "50-59 AB "..AL["Honored Reputation Rewards"];
+		Title = "50-59 "..AL["Honored Reputation Rewards"];
 		Back_Page = "ABRepMenu";
 		Prev_Page = "ABRepHonored4049";
 	};
 	["ABRepRevered2029"] = {
-		Title = "20-29 AB "..AL["Revered Reputation Rewards"];
+		Title = "20-29 "..AL["Revered Reputation Rewards"];
 		Back_Page = "ABRepMenu";
 		Next_Page = "ABRepRevered3039";
 	};
 	["ABRepRevered3039"] = {
-		Title = "30-39 AB "..AL["Revered Reputation Rewards"];
+		Title = "30-39 "..AL["Revered Reputation Rewards"];
 		Back_Page = "ABRepMenu";
 		Next_Page = "ABRepRevered4049";
 		Prev_Page = "ABRepRevered2029";
 	};
 	["ABRepRevered4049"] = {
-		Title = "40-49 AB "..AL["Revered Reputation Rewards"];
+		Title = "40-49 "..AL["Revered Reputation Rewards"];
 		Back_Page = "ABRepMenu";
 		Next_Page = "ABRepRevered5059";
 		Prev_Page = "ABRepRevered3039";
 	};
 	["ABRepRevered5059"] = {
-		Title = "50-59 AB "..AL["Revered Reputation Rewards"];
+		Title = "50-59 "..AL["Revered Reputation Rewards"];
 		Back_Page = "ABRepMenu";
 		Prev_Page = "ABRepRevered4049";
 	};
 	["ABRepExalted"] = {
-		Title = "AB "..AL["Exalted Reputation Rewards"];
+		Title = AL["Exalted Reputation Rewards"];
 		Back_Page = "ABRepMenu";
 	};
 	["AVRepFriendly"] = {
-		Title = "AV "..AL["Friendly Reputation Rewards"];
+		Title = AL["Friendly Reputation Rewards"];
 		Back_Page = "AVRepMenu";
 		Next_Page = "AVRepHonored";
 	};
 	["AVRepHonored"] = {
-		Title = "AV "..AL["Honored Reputation Rewards"];
+		Title = AL["Honored Reputation Rewards"];
 		Back_Page = "AVRepMenu";
 		Next_Page = "AVRepRevered";
 		Prev_Page = "AVRepFriendly";
 	};
 	["AVRepRevered"] = {
-		Title = "AV "..AL["Revered Reputation Rewards"];
+		Title = AL["Revered Reputation Rewards"];
 		Back_Page = "AVRepMenu";
 		Next_Page = "AVRepExalted";
 		Prev_Page = "AVRepHonored";
 	};
 	["AVRepExalted"] = {
-		Title = "AV "..AL["Exalted Reputation Rewards"];
+		Title = AL["Exalted Reputation Rewards"];
 		Back_Page = "AVRepMenu";
 		Prev_Page = "AVRepRevered";
 	};

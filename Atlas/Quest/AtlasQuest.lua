@@ -227,7 +227,7 @@ function AQ_OnLoad()
     if ( AtlasFrame ) then
     	AQATLASMAP = AtlasMap:GetTexture()
     else
-	  AQATLASMAP = 36;
+	  AQATLASMAP = 99;
     end
     --this:RegisterForDrag("LeftButton");
     AQSlashCommandfunction();
@@ -390,7 +390,7 @@ end
 
 -----------------------------------------------------------------------------
 -- Check which program is used (Atlas or AlphaMap)
--- hide panel if instance is 36 (nothing)
+-- hide panel if instance is 99 (nothing)
 -----------------------------------------------------------------------------
 function AQ_OnUpdate(arg1)
   local previousValue = AQINSTANZ;
@@ -404,8 +404,8 @@ function AQ_OnUpdate(arg1)
            AtlasQuest_InstanzencheckAM();
         end
 
-        -- Hides the panel if the map which is shown no quests have (map = 36)
-       if ( AQINSTANZ == 36) then
+        -- Hides the panel if the map which is shown no quests have (map = 99)
+       if ( AQINSTANZ == 99) then
              HideUIPanel(AtlasQuestFrame);
              HideUIPanel(AtlasQuestInsideFrame);
        elseif (( AQINSTANZ ~= previousValue ) or (AQUpdateNOW ~= nil)) then

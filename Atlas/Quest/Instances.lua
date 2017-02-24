@@ -88,78 +88,76 @@ function AtlasQuest_Instanzenchecken()
 
 	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\SMLibrary") then
 		AQINSTANZ = 19;
-
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\Scholomance") then
+		
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\SMArmory") then
 		AQINSTANZ = 20;
 
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\ShadowfangKeep") then
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\SMCathedral") then
 		AQINSTANZ = 21;
 
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\Stratholme") then
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\SMGraveyard") then
 		AQINSTANZ = 22;
 
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\TheRuinsofAhnQiraj") then
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\Scholomance") then
 		AQINSTANZ = 23;
 
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\TheStockade") then
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\ShadowfangKeep") then
 		AQINSTANZ = 24;
 
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\TheSunkenTemple") or (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\TheSunkenTempleEnt") then
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\Stratholme") then
 		AQINSTANZ = 25;
 
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\TheTempleofAhnQiraj") then
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\TheRuinsofAhnQiraj") then
 		AQINSTANZ = 26;
 
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\ZulFarrak") then
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\TheStockade") then
 		AQINSTANZ = 27;
 
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\ZulGurub") then
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\TheSunkenTemple") or (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\TheSunkenTempleEnt") then
 		AQINSTANZ = 28;
 
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\Gnomeregan") or (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\GnomereganEnt") then
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\TheTempleofAhnQiraj") then
 		AQINSTANZ = 29;
 
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\SMArmory") then
-		AQINSTANZ = 57;
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\ZulFarrak") then
+		AQINSTANZ = 30;
 
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\SMCathedral") then
-		AQINSTANZ = 58;
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\ZulGurub") then
+		AQINSTANZ = 31;
 
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\SMGraveyard") then
-		AQINSTANZ = 59;
-
-
-	-- Battlegrounds
-
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\AlteracValleyNorth") then
-		AQINSTANZ = 33;
-
-	elseif (AQATLASMAP ==  "Interface\\AddOns\\Atlas\\Images\\Maps\\AlteracValleySouth") then
-		AQINSTANZ = 33;
-
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\ArathiBasin") then
-		AQINSTANZ = 34;
-
-	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\WarsongGulch") then
-		AQINSTANZ = 35;
-
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\Gnomeregan") or (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\GnomereganEnt") then
+		AQINSTANZ = 32;
 
 	-- Outdoor Raids
 
 	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\FourDragons")  then
-		AQINSTANZ = 30;
+		AQINSTANZ = 33;
 
 	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\Azuregos")  then
-		AQINSTANZ = 31;
+		AQINSTANZ = 34;
 
 	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\LordKazzak")  then
-		AQINSTANZ = 32;
+		AQINSTANZ = 35;
+
+	-- Battlegrounds
+
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\AlteracValleyNorth") then
+		AQINSTANZ = 36;
+
+	elseif (AQATLASMAP ==  "Interface\\AddOns\\Atlas\\Images\\Maps\\AlteracValleySouth") then
+		AQINSTANZ = 36;
+
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\ArathiBasin") then
+		AQINSTANZ = 37;
+
+	elseif (AQATLASMAP == "Interface\\AddOns\\Atlas\\Images\\Maps\\WarsongGulch") then
+		AQINSTANZ = 38;
 
 
 	-- Default
 
 	else --added for newer atlas version until i update atlasquest and for the flight pass maps
-		AQINSTANZ = 36;
+		AQINSTANZ = 99;
 	end
 end
 
@@ -232,52 +230,52 @@ function AtlasQuest_InstanzencheckAM()
 		AQINSTANZ = 19;
 
 	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\Scholomance") then
-		AQINSTANZ = 20;
-
-	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\ShadowfangKeep") then
-		AQINSTANZ = 21;
-
-	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\Stratholme") then
-		AQINSTANZ = 22;
-
-	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\RuinsofAhnQiraj") then
 		AQINSTANZ = 23;
 
-	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\TheStockade") then
+	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\ShadowfangKeep") then
 		AQINSTANZ = 24;
 
-	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\TheSunkenTemple") or (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Exteriors\\Maps\\SunkenTempleExt") then
+	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\Stratholme") then
 		AQINSTANZ = 25;
 
-	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\TempleofAhnQiraj") then
+	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\RuinsofAhnQiraj") then
 		AQINSTANZ = 26;
 
-	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\ZulFarrak") then
+	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\TheStockade") then
 		AQINSTANZ = 27;
 
-	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\ZulGurub") then
+	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\TheSunkenTemple") or (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Exteriors\\Maps\\SunkenTempleExt") then
 		AQINSTANZ = 28;
 
-	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\Gnomeregan") or (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Exteriors\\Maps\\GnomereganExt") then
+	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\TempleofAhnQiraj") then
 		AQINSTANZ = 29;
+
+	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\ZulFarrak") then
+		AQINSTANZ = 30;
+
+	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\ZulGurub") then
+		AQINSTANZ = 31;
+
+	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\Gnomeregan") or (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Exteriors\\Maps\\GnomereganExt") then
+		AQINSTANZ = 32;
 
 
 	-- Battlegrounds
 
 	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Battlegrounds\\Maps\\AlteracValley") then
-		AQINSTANZ = 33;
+		AQINSTANZ = 36;
 
 	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Battlegrounds\\Maps\\ArathiBasin") then
-		AQINSTANZ = 34;
+		AQINSTANZ = 37;
 
 	elseif (AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Battlegrounds\\Maps\\WarsongGulch") then
-		AQINSTANZ = 35;
+		AQINSTANZ = 38;
 
 
 	-- Default
 
 	else
-		AQINSTANZ = 36;
+		AQINSTANZ = 99;
 	end
 
 -----------------------------------------------------------------------------
@@ -288,19 +286,19 @@ function AtlasQuest_InstanzencheckAM()
 		if (GamAlphaMapMap ~= nil) then -- check to prevent errors (post  ui.worldofwar dunno why error ocour)
 			if (GamAlphaMapMap.type == AM_TYP_WORLDBOSSES) then
 				if (GamAlphaMapMap.filename == "AM_Kazzak_Map") then
-					AQINSTANZ = 32;
+					AQINSTANZ = 35;
 				elseif (GamAlphaMapMap.filename == "AM_Azuregos_Map") then
-					AQINSTANZ = 31;
+					AQINSTANZ = 34;
 				elseif (GamAlphaMapMap.filename == "AM_Dragon_Duskwood_Map") then
-					AQINSTANZ = 30;
+					AQINSTANZ = 33;
 				elseif (GamAlphaMapMap.filename == "AM_Dragon_Hinterlands_Map") then
-					AQINSTANZ = 30;
+					AQINSTANZ = 33;
 				elseif (GamAlphaMapMap.filename == "AM_Dragon_Feralas_Map") then
-					AQINSTANZ = 30;
+					AQINSTANZ = 33;
 				elseif (GamAlphaMapMap.filename == "AM_Dragon_Ashenvale_Map") then
-					AQINSTANZ = 30;
+					AQINSTANZ = 33;
 				else
-					AQINSTANZ = 36;
+					AQINSTANZ = 99;
 				end
 			end
 		end
@@ -332,20 +330,23 @@ end
 -- 17 = Razorfen Downs (RFD)
 -- 18 = Razorfen Kraul (RFK)
 -- 19 = SM: Library (SM Lib)
--- 20 = Scholomance (Scholo)
--- 21 = Shadowfang Keep (SFK)
--- 22 = Stratholme (Strat)
--- 23 = The Ruins of Ahn'Qiraj (AQ20)
--- 24 = The Stockade (Stocks)
--- 25 = Sunken Temple (ST)
--- 26 = The Temple of Ahn'Qiraj (AQ40)
--- 27 = Zul'Farrak (ZF)
--- 28 = Zul'Gurub (ZG)
--- 29 = Gnomeregan (Gnomer)
--- 30 = Four Dragons
--- 31 = Azuregos
--- 32 = Highlord Kruul
--- 33 = Alterac Valley (AV)
--- 34 = Arathi Basin (AB)
--- 35 = Warsong Gulch (WSG)
--- 36 =  default "rest"
+-- 20 = SM: Armory (SM Arm)
+-- 21 = SM: Cathedral (SM Cath)
+-- 22 = SM: Graveyard (SM GY)
+-- 23 = Scholomance (Scholo)
+-- 24 = Shadowfang Keep (SFK)
+-- 25 = Stratholme (Strat)
+-- 26 = The Ruins of Ahn'Qiraj (AQ20)
+-- 27 = The Stockade (Stocks)
+-- 28 = Sunken Temple (ST)
+-- 29 = The Temple of Ahn'Qiraj (AQ40)
+-- 30 = Zul'Farrak (ZF)
+-- 31 = Zul'Gurub (ZG)
+-- 32 = Gnomeregan (Gnomer)
+-- 33 = Four Dragons
+-- 34 = Azuregos
+-- 35 = Lord Kazzak
+-- 36 = Alterac Valley (AV)
+-- 37 = Arathi Basin (AB)
+-- 38 = Warsong Gulch (WSG)
+-- 99 =  default "rest"
