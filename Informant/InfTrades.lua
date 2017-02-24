@@ -60,9 +60,9 @@ function bagHook()
 end
 
 function initTrades()
---	Stubby.RegisterFunctionHook("EnhTooltip.TradeHook", 100, tradeHook);
---	Stubby.RegisterFunctionHook("EnhTooltip.BankHook", 100, bankHook);
---	Stubby.RegisterFunctionHook("EnhTooltip.BagHook", 100, bagHook);
+	--Stubby.RegisterFunctionHook("EnhTooltip.TradeHook", 100, tradeHook);
+	--Stubby.RegisterFunctionHook("EnhTooltip.BankHook", 100, bankHook);
+	--Stubby.RegisterFunctionHook("EnhTooltip.BagHook", 100, bagHook);
 	Informant.InitTrades = function() end
 end
 Informant.InitTrades = initTrades

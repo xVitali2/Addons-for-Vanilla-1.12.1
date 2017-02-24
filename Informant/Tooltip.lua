@@ -177,20 +177,21 @@ end
 --[[
 ---- Initialize a storage space that all our functions can see
 --]]
-local self = {
+ENHTOOLTIP = {
 	showIgnore = false,
 	moneySpacing = 4,
 	embedLines = {},
 	eventTimer = 0,
 	hideTime = 0,
 	currentGametip = nil,
-	currentItem = nil,
 	forcePopupKey = "alt",
 	oldChatItem = nil,
 	hooks = {},
 	notify = { tooltip = {}, popup = {}, merchant = {}, bank = {}, bag = {}, trade = {} },
 	notifyFuncs = {},
 }
+
+if not LASTITEM then LASTITEM="" end
 
 -- =============== LOCAL FUNCTIONS =============== --
 
@@ -303,8 +304,8 @@ end
 
 function hideTooltip()
 	EnhancedTooltip:Hide()
-	self.currentItem = ""
-	self.hideTime = 0
+	ENHTOOLTIP.hideTime = 0
+	LASTITEM=""
 end
 
 -- Iterate over numbered global objects
@@ -343,10 +344,10 @@ function clearTooltip()
 	EnhancedTooltip.lineCount = 0
 	EnhancedTooltip.moneyCount = 0
 	EnhancedTooltip.minWidth = 0
-	for curLine in self.embedLines do
-		self.embedLines[curLine] = nil;
+	for curLine in ENHTOOLTIP.embedLines do
+		ENHTOOLTIP.embedLines[curLine] = nil;
 	end
-	table.setn(self.embedLines, 0);
+	table.setn(ENHTOOLTIP.embedLines, 0);
 end
 
 function getRect(object, curRect)
@@ -366,12 +367,12 @@ function getRect(object, curRect)
 end
 
 function showTooltip(currentTooltip, skipEmbedRender)
-	if (self.showIgnore == true) then return end
+	if (ENHTOOLTIP.showIgnore == true) then return end
 	if (EnhancedTooltip.hasEmbed and not skipEmbedRender) then
 		embedRender()
-		self.showIgnore=true;
+		ENHTOOLTIP.showIgnore=true;
 		currentTooltip:Show()
-		self.showIgnore=false;
+		ENHTOOLTIP.showIgnore=false;
 	end
 	if (not EnhancedTooltip.hasData) then
 		return
@@ -404,9 +405,9 @@ function showTooltip(currentTooltip, skipEmbedRender)
 	local cWidth = currentTooltip:GetWidth()
 	if (cWidth < width) then
 		currentTooltip:SetWidth(width - 20)
-		self.showIgnore=true;
+		ENHTOOLTIP.showIgnore=true;
 		currentTooltip:Show()
-		self.showIgnore=false;
+		ENHTOOLTIP.showIgnore=false;
 	else
 		width = cWidth
 	end
@@ -477,9 +478,9 @@ function showTooltip(currentTooltip, skipEmbedRender)
 	else
 		-- No parent
 		-- The only option is to tack the object underneath / shuffle it up if there aint enuff room
-		self.showIgnore=true;
+		ENHTOOLTIP.showIgnore=true;
 		currentTooltip:Show()
-		self.showIgnore=false;
+		ENHTOOLTIP.showIgnore=false;
 		enhTooltipTipRect = getRect(currentTooltip, enhTooltipTipRect)
 
 		if (enhTooltipTipRect.b - height < 60) then
@@ -506,9 +507,9 @@ function showTooltip(currentTooltip, skipEmbedRender)
 			local ttMoneyLineWidth = myLine:GetWidth()
 			ttMoney:ClearAllPoints()
 			if ((ttMoney.myLineNumber < 4) and (EnhancedTooltip.hasIcon)) then
-				ttMoney:SetPoint("LEFT", myLine, "RIGHT", width - ttMoneyLineWidth - ttMoneyWidth - self.moneySpacing*2 - 34, 0)
+				ttMoney:SetPoint("LEFT", myLine, "RIGHT", width - ttMoneyLineWidth - ttMoneyWidth - ENHTOOLTIP.moneySpacing*2 - 34, 0)
 			else
-				ttMoney:SetPoint("LEFT", myLine, "RIGHT", width - ttMoneyLineWidth - ttMoneyWidth - self.moneySpacing*2, 0)
+				ttMoney:SetPoint("LEFT", myLine, "RIGHT", width - ttMoneyLineWidth - ttMoneyWidth - ENHTOOLTIP.moneySpacing*2, 0)
 			end
 		end
 	end
@@ -575,10 +576,10 @@ function getTextGSC(money, exact, dontUseColorCodes)
 end
 
 function embedRender()
-	for pos, lData in self.embedLines do
-		self.currentGametip:AddLine(lData.line)
+	for pos, lData in ENHTOOLTIP.embedLines do
+		ENHTOOLTIP.currentGametip:AddLine(lData.line)
 		if (lData.r) then
-			local lastLine = getglobal(self.currentGametip:GetName().."TextLeft"..self.currentGametip:NumLines())
+			local lastLine = getglobal(ENHTOOLTIP.currentGametip:GetName().."TextLeft"..ENHTOOLTIP.currentGametip:NumLines())
 			lastLine:SetTextColor(lData.r,lData.g,lData.b)
 		end
 	end
@@ -591,7 +592,7 @@ end
 		bExact has no meaning, if moneyAmount is nil.
 ]]
 function addLine(lineText, moneyAmount, embed, bExact)
-	if (embed) and (self.currentGametip) then
+	if (embed) and (ENHTOOLTIP.currentGametip) then
 		EnhancedTooltip.hasEmbed = true
 		EnhancedTooltip.curEmbed = true
 		local line = ""
@@ -600,7 +601,7 @@ function addLine(lineText, moneyAmount, embed, bExact)
 		else
 			line = lineText
 		end
-		table.insert(self.embedLines, {line = line})
+		table.insert(ENHTOOLTIP.embedLines, {line = line})
 		return
 	end
 	EnhancedTooltip.hasData = true
@@ -617,13 +618,13 @@ function addLine(lineText, moneyAmount, embed, bExact)
 	if (moneyAmount ~= nil) and (moneyAmount > 0) then
 		local curMoney = EnhancedTooltip.moneyCount + 1
 		local money = getglobal("EnhancedTooltipMoney"..curMoney)
-		money:SetPoint("LEFT", line, "RIGHT", self.moneySpacing, 0)
+		money:SetPoint("LEFT", line, "RIGHT", ENHTOOLTIP.moneySpacing, 0)
 		TinyMoneyFrame_Update(money:GetName(), math.floor(moneyAmount))
 		money.myLine = line:GetName()
 		money.myLineNumber = curLine
 		money:Show()
 		local moneyWidth = money:GetWidth()
-		lineWidth = lineWidth + moneyWidth + self.moneySpacing
+		lineWidth = lineWidth + moneyWidth + ENHTOOLTIP.moneySpacing
 		getglobal("EnhancedTooltipMoney"..curMoney.."SilverButtonText"):SetTextColor(1.0,1.0,1.0)
 		getglobal("EnhancedTooltipMoney"..curMoney.."CopperButtonText"):SetTextColor(0.86,0.42,0.19)
 		EnhancedTooltip.moneyCount = curMoney
@@ -635,10 +636,10 @@ function addLine(lineText, moneyAmount, embed, bExact)
 end
 
 function addSeparator(embed)
-	if (embed) and (self.currentGametip) then
+	if (embed) and (ENHTOOLTIP.currentGametip) then
 		EnhancedTooltip.hasEmbed = true
 		EnhancedTooltip.curEmbed = true
-		table.insert(self.embedLines, {line = " "})
+		table.insert(ENHTOOLTIP.embedLines, {line = " "})
 		return
 	end
 	EnhancedTooltip.hasData = true
@@ -653,11 +654,11 @@ function addSeparator(embed)
 end
 
 function lineColor(r, g, b)
-	if (EnhancedTooltip.curEmbed) and (self.currentGametip) then
-		local n = table.getn(self.embedLines)
-		self.embedLines[n].r = r
-		self.embedLines[n].g = g
-		self.embedLines[n].b = b
+	if (EnhancedTooltip.curEmbed) and (ENHTOOLTIP.currentGametip) then
+		local n = table.getn(ENHTOOLTIP.embedLines)
+		ENHTOOLTIP.embedLines[n].r = r
+		ENHTOOLTIP.embedLines[n].g = g
+		ENHTOOLTIP.embedLines[n].b = b
 		return
 	end
 	local curLine = EnhancedTooltip.lineCount
@@ -667,7 +668,7 @@ function lineColor(r, g, b)
 end
 
 function lineSize_Large()
-	if (EnhancedTooltip.curEmbed) and (self.currentGametip) then return end
+	if (EnhancedTooltip.curEmbed) and (ENHTOOLTIP.currentGametip) then return end
 	local curLine = EnhancedTooltip.lineCount
 	if (curLine == 0) then return end
 	local line = getglobal("EnhancedTooltipText"..curLine)
@@ -675,7 +676,7 @@ function lineSize_Large()
 end
 
 function lineSize_Small()
-	if (EnhancedTooltip.curEmbed) and (self.currentGametip) then return end
+	if (EnhancedTooltip.curEmbed) and (ENHTOOLTIP.currentGametip) then return end
 	local curLine = EnhancedTooltip.lineCount
 	if (curLine == 0) then return end
 	local line = getglobal("EnhancedTooltipText"..curLine)
@@ -700,18 +701,18 @@ end
 function gtHookOnHide()
 	local curName = ""
 	local hidingName = this:GetName()
-	if (self.currentGametip) then curName = self.currentGametip:GetName() end
+	if (ENHTOOLTIP.currentGametip) then curName = ENHTOOLTIP.currentGametip:GetName() end
 	if (curName == hidingName) then
 		HideObj = hidingName
-		self.hideTime = self.eventTimer + 0.1
+		ENHTOOLTIP.hideTime = ENHTOOLTIP.eventTimer + 0.1
 	end
 end
 
 function doHyperlink(reference, link, button)
 	if (ItemRefTooltip:IsVisible()) then
 		local itemName = ItemRefTooltipTextLeft1:GetText()
-		if (itemName and self.currentItem ~= itemName) then
-			self.currentItem = itemName
+		if (itemName and LASTITEM ~= itemName) then
+			LASTITEM = itemName
 
 			local testPopup = false
 			if (button == "RightButton") then
@@ -719,7 +720,7 @@ function doHyperlink(reference, link, button)
 			end
 			local callRes = tooltipCall(ItemRefTooltip, itemName, link, -1, 1, 0, testPopup, reference)
 			if (callRes == true) then
-				self.oldChatItem = {['reference']=reference, ['link']=link, ['button']=button, ['embed']=EnhancedTooltip.hasEmbed}
+				ENHTOOLTIP.oldChatItem = {['reference']=reference, ['link']=link, ['button']=button, ['embed']=EnhancedTooltip.hasEmbed}
 			elseif (callRes == false) then
 				return false;
 			end
@@ -728,18 +729,18 @@ function doHyperlink(reference, link, button)
 end
 
 function checkHide()
-	if (self.hideTime == 0) then return end
+	if (ENHTOOLTIP.hideTime == 0) then return end
 
-	if (self.eventTimer >= self.hideTime) then
+	if (ENHTOOLTIP.eventTimer >= ENHTOOLTIP.hideTime) then
 		hideTooltip()
 		if (HideObj and HideObj == "ItemRefTooltip") then
 			-- closing chatreferenceTT?
-			self.oldChatItem = nil -- remove old chatlink data
-		elseif self.oldChatItem then
+			ENHTOOLTIP.oldChatItem = nil -- remove old chatlink data
+		elseif ENHTOOLTIP.oldChatItem then
 			-- closing another tooltip
 			-- redisplay old chatlinkdata, if it was not embeded
-			if not self.oldChatItem.embed then
-				doHyperlink(self.oldChatItem.reference, self.oldChatItem.link, self.oldChatItem.button)
+			if not ENHTOOLTIP.oldChatItem.embed then
+				doHyperlink(ENHTOOLTIP.oldChatItem.reference, ENHTOOLTIP.oldChatItem.link, ENHTOOLTIP.oldChatItem.button)
 			end
 		end
 	end
@@ -812,22 +813,23 @@ function fakeLink(hyperlink, quality, name)
 end
 
 function tooltipCall(frame, name, link, quality, count, price, forcePopup, hyperlink)
-	self.currentGametip = frame
-	self.hideTime = 0
+	ENHTOOLTIP.currentGametip = frame
+	ENHTOOLTIP.hideTime = 0
 
-	local itemSig = frame:GetName()
+	local itemSig = frame:GetName()	
+	
 	if (link) then itemSig = itemSig..link end
 	if (count) then itemSig = itemSig..count end
 	if (price) then itemSig = itemSig..price end
-
-	if (self.currentItem and self.currentItem == itemSig) then
+--	if itemSig then ace:print(itemSig.."_ITEMSIG") end
+--	ace:print(LASTITEM.."_LASTITEM")
+	if LASTITEM and LASTITEM == itemSig then
 		-- We are already showing this... No point doing it again.
-		showTooltip(self.currentGametip)
+		showTooltip(ENHTOOLTIP.currentGametip)
 		return
 	end
-
-	self.currentItem = itemSig
-
+	
+	LASTITEM = itemSig
 	if (quality==nil or quality==-1) then
 		local linkQuality = qualityFromLink(link)
 		if (linkQuality and linkQuality > -1) then
@@ -842,9 +844,9 @@ function tooltipCall(frame, name, link, quality, count, price, forcePopup, hyper
 
 	local showTip = true
 	local popupKeyPressed = (
-		(self.forcePopupKey == "ctrl" and IsControlKeyDown()) or
-		(self.forcePopupKey == "alt" and IsAltKeyDown()) or
-		(self.forcePopupKey == "shift" and IsShiftKeyDown())
+		(ENHTOOLTIP.forcePopupKey == "ctrl" and IsControlKeyDown()) or
+		(ENHTOOLTIP.forcePopupKey == "alt" and IsAltKeyDown()) or
+		(ENHTOOLTIP.forcePopupKey == "shift" and IsShiftKeyDown())
 	)
 
 	if ((forcePopup == true) or ((forcePopup == nil) and (popupKeyPressed))) then
@@ -854,19 +856,20 @@ function tooltipCall(frame, name, link, quality, count, price, forcePopup, hyper
 		end
 	end
 
-	if (showTip) then
+	if showTip then
 		clearTooltip()
-		self.showIgnore = true
+		ENHTOOLTIP.showIgnore = true
 		EnhTooltip.AddTooltip(frame, name, link, quality, count, price)
-		self.showIgnore = false
+		ENHTOOLTIP.showIgnore = false
 		showTooltip(frame)
-		self.currentItem = itemSig
+		LASTITEM = itemSig
 		return true
 	else
 		frame:Hide()
 		hideTooltip()
 		return false
 	end
+
 end
 
 
@@ -896,7 +899,7 @@ end
 
 function callBankHook()
 	if not (BankFrame and BankFrame:IsVisible()) then return end
-	EnhTooltip.BankHook(0)
+		EnhTooltip.BankHook(0)
 end
 
 function callBagHook(funcVars, event, bagNumber)
@@ -950,7 +953,7 @@ end
 
 function afHookOnEnter(funcArgs, retVal, type, index)
 	local link = GetAuctionItemLink(type, index)
-	if (link) then
+	if link then
 		local name = nameFromLink(link)
 		if (name) then
 			local aiName, aiTexture, aiCount, aiQuality, aiCanUse, aiLevel, aiMinBid, aiMinIncrement, aiBuyoutPrice, aiBidAmount, aiHighBidder, aiOwner = GetAuctionItemInfo(type, index)
@@ -1025,7 +1028,7 @@ function gtHookSetInboxItem(funcArgs, retVal, frame, index)
 	local inboxItemName, itemTexture, inboxItemCount, inboxItemQuality = GetInboxItem(index)
 	local itemName, hyperLink, itemQuality, itemLink
 
-	for itemID = 1, 30000 do
+	for itemID = 1, 38000 do
 		itemName, hyperLink, itemQuality = GetItemInfo(itemID)
 		if (itemName and itemName == inboxItemName) then
 			local _, _, _, hex = GetItemQualityColor(tonumber(itemQuality))
@@ -1152,25 +1155,25 @@ end
 
 function gtHookSetText(funcArgs, retval, frame, text, r, g, b, a, textWrap)
 	-- Nothing to do for plain text
-	if (self.currentGametip == frame) then
+	if (ENHTOOLTIP.currentGametip == frame) then
 		clearTooltip()
 	end
 end
 
 function gtHookAppendText(funcArgs, retVal, frame)
-	if (self.currentGametip and self.currentItem and self.currentItem ~= "") then
-		showTooltip(self.currentGametip, true)
+	if (ENHTOOLTIP.currentGametip and LASTITEM and LASTITEM ~= "") then
+		showTooltip(ENHTOOLTIP.currentGametip, true)
 	end
 end
 
 function gtHookShow(funcArgs, retVal, frame)
-	if (self.hookRecursion) then
+	if (ENHTOOLTIP.hookRecursion) then
 		return;
 	end
-	if (self.currentGametip and self.currentItem and self.currentItem ~= "") then
-		self.hookRecursion = true;
-		showTooltip(self.currentGametip, true)
-		self.hookRecursion = nil;
+	if (ENHTOOLTIP.currentGametip and LASTITEM and LASTITEM ~= "") then
+		ENHTOOLTIP.hookRecursion = true;
+		showTooltip(ENHTOOLTIP.currentGametip, true)
+		ENHTOOLTIP.hookRecursion = nil;
 	end
 end
 
@@ -1235,20 +1238,20 @@ end
 
 function setElapsed(elapsed)
 	if (elapsed) then
-		self.eventTimer = self.eventTimer + elapsed
+		ENHTOOLTIP.eventTimer = ENHTOOLTIP.eventTimer + elapsed
 	end
 	checkHide()
-	return self.eventTimer
+	return ENHTOOLTIP.eventTimer
 end
 
 function setMoneySpacing(spacing)
-	if (spacing ~= nil) then self.moneySpacing = spacing end
-	return self.moneySpacing
+	if (spacing ~= nil) then ENHTOOLTIP.moneySpacing = spacing end
+	return ENHTOOLTIP.moneySpacing
 end
 
 function setPopupKey(key)
-	if (key ~= nil) then self.forcePopupKey = key end
-	return self.forcePopupKey
+	if (key ~= nil) then ENHTOOLTIP.forcePopupKey = key end
+	return ENHTOOLTIP.forcePopupKey
 end
 
 

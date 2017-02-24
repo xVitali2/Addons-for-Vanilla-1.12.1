@@ -21,7 +21,7 @@
 		Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 --]]
 
-INFORMANT_VERSION = "3.9.0.1002"
+INFORMANT_VERSION = "3.9.0.1003"
 
 
 -- GLOBAL FUNCTION PROTOTYPES:
@@ -607,7 +607,7 @@ function onLoad()
 	end
 
 	InformantFrameTitle:SetText(_INFM('FrameTitle'))
---	Informant.InitTrades();
+	--Informant.InitTrades();
 end
 
 local function frameLoaded()
@@ -615,54 +615,53 @@ local function frameLoaded()
 	Stubby.RegisterFunctionHook("EnhTooltip.AddTooltip", 300, tooltipHandler)
 
 	onLoad()
-
 	-- Setup the default for stubby to always load (people can override this on a
 	-- per toon basis)
-	Stubby.SetConfig("Informant", "LoadType", "always", true)
+	--Stubby.SetConfig("Informant", "LoadType", "always", true)
 
 	-- Register our temporary command hook with stubby
-	Stubby.RegisterBootCode("Informant", "CommandHandler", [[
-		local function cmdHandler(msg)
-			local i,j, cmd, param = string.find(string.lower(msg), "^([^ ]+) (.+)$")
-			if (not cmd) then cmd = string.lower(msg) end
-			if (not cmd) then cmd = "" end
-			if (not param) then param = "" end
-			if (cmd == "load") then
-				if (param == "") then
-					Stubby.Print("Manually loading Informant...")
-					LoadAddOn("Informant")
-				elseif (param == "always") then
-					Stubby.Print("Setting Informant to always load for this character")
-					Stubby.SetConfig("Informant", "LoadType", param)
-					LoadAddOn("Informant")
-				elseif (param == "never") then
-					Stubby.Print("Setting Informant to never load automatically for this character (you may still load manually)")
-					Stubby.SetConfig("Informant", "LoadType", param)
-				else
-					Stubby.Print("Your command was not understood")
-				end
-			else
-				Stubby.Print("Informant is currently not loaded.")
-				Stubby.Print("  You may load it now by typing |cffffffff/informant load|r")
-				Stubby.Print("  You may also set your loading preferences for this character by using the following commands:")
-				Stubby.Print("  |cffffffff/informant load always|r - Informant will always load for this character")
-				Stubby.Print("  |cffffffff/informant load never|r - Informant will never load automatically for this character (you may still load it manually)")
-			end
-		end
-		SLASH_INFORMANT1 = "/informant"
-		SLASH_INFORMANT2 = "/inform"
-		SLASH_INFORMANT3 = "/info"
-		SLASH_INFORMANT4 = "/inf"
-		SlashCmdList["INFORMANT"] = cmdHandler
-	]]);
-	Stubby.RegisterBootCode("Informant", "Triggers", [[
-		local loadType = Stubby.GetConfig("Informant", "LoadType")
-		if (loadType == "always") then
-			LoadAddOn("Informant")
-		else
-			Stubby.Print("]].._INFM('MesgNotLoaded')..[[");
-		end
-	]]);
+	-- Stubby.RegisterBootCode("Informant", "CommandHandler", [[
+		-- local function cmdHandler(msg)
+			-- local i,j, cmd, param = string.find(string.lower(msg), "^([^ ]+) (.+)$")
+			-- if (not cmd) then cmd = string.lower(msg) end
+			-- if (not cmd) then cmd = "" end
+			-- if (not param) then param = "" end
+			-- if (cmd == "load") then
+				-- if (param == "") then
+					-- Stubby.Print("Manually loading Informant...")
+					-- LoadAddOn("Informant")
+				-- elseif (param == "always") then
+					-- Stubby.Print("Setting Informant to always load for this character")
+					-- Stubby.SetConfig("Informant", "LoadType", param)
+					-- LoadAddOn("Informant")
+				-- elseif (param == "never") then
+					-- Stubby.Print("Setting Informant to never load automatically for this character (you may still load manually)")
+					-- Stubby.SetConfig("Informant", "LoadType", param)
+				-- else
+					-- Stubby.Print("Your command was not understood")
+				-- end
+			-- else
+				-- Stubby.Print("Informant is currently not loaded.")
+				-- Stubby.Print("  You may load it now by typing |cffffffff/informant load|r")
+				-- Stubby.Print("  You may also set your loading preferences for this character by using the following commands:")
+				-- Stubby.Print("  |cffffffff/informant load always|r - Informant will always load for this character")
+				-- Stubby.Print("  |cffffffff/informant load never|r - Informant will never load automatically for this character (you may still load it manually)")
+			-- end
+		-- end
+		-- SLASH_INFORMANT1 = "/informant"
+		-- SLASH_INFORMANT2 = "/inform"
+		-- SLASH_INFORMANT3 = "/info"
+		-- SLASH_INFORMANT4 = "/inf"
+		-- SlashCmdList["INFORMANT"] = cmdHandler
+	-- ]]);
+	-- Stubby.RegisterBootCode("Informant", "Triggers", [[
+		-- local loadType = Stubby.GetConfig("Informant", "LoadType")
+		-- if (loadType == "always") then
+			-- LoadAddOn("Informant")
+		-- else
+			-- Stubby.Print("]].._INFM('MesgNotLoaded')..[[");
+		-- end
+	-- ]]);
 end
 
 function onVariablesLoaded()
