@@ -53,7 +53,7 @@ function LOAD()
 end
 
 function extend_tooltip(tooltip, link, quantity)
-    local item_id, suffix_id = info.parse_link(link)
+    local item_id, suffix_id,_,_,name = info.parse_link(link)
     quantity = IsShiftKeyDown() and quantity or 1
     if aux_tooltip_disenchant_source then
         local r, g, b = color.tooltip.disenchant.source()
@@ -120,15 +120,22 @@ end
 function game_tooltip_hooks:SetHyperlink(itemstring)
     local name, _, quality = GetItemInfo(itemstring)
     if name then
+		--ace:print("SetHyperlink")
         local hex = select(4, GetItemQualityColor(quality))
         local link = hex ..  '|H' .. itemstring .. '|h[' .. name .. ']|h' .. FONT_COLOR_CODE_CLOSE
+		if EnhTooltip then
+			EnhTooltip.TooltipCall(GameTooltip,name,link,quality,1)
+		end
         extend_tooltip(GameTooltip, link, 1)
     end
 end
 
 function game_tooltip_hooks:SetAuctionItem(type, index)
 	local link = GetAuctionItemLink(type, index)
-    if link then
+	local item_id, suffix_id,_,_,name = info.parse_link(link)
+	local item_info=temp-info.item(item_id)
+	if link then
+	--ace:print("SetAuctionItem")
         extend_tooltip(GameTooltip, link, select(3, GetAuctionItemInfo(type, index)))
     end
 end
@@ -136,6 +143,7 @@ end
 function game_tooltip_hooks:SetLootItem(slot)
 	local link = GetLootSlotLink(slot)
     if link then
+	--ace:print("SetLootItem")
         extend_tooltip(GameTooltip, link, select(3, GetLootSlotInfo(slot)))
     end
 end
@@ -143,6 +151,7 @@ end
 function game_tooltip_hooks:SetQuestItem(qtype, slot)
 	local link = GetQuestItemLink(qtype, slot)
     if link then
+	--ace:print("SetQuestItem")
         extend_tooltip(GameTooltip, link, select(3, GetQuestItemInfo(qtype, slot)))
     end
 end
@@ -150,6 +159,7 @@ end
 function game_tooltip_hooks:SetQuestLogItem(qtype, slot)
 	local link = GetQuestLogItemLink(qtype, slot)
     if link then
+	--ace:print("SetQuestLogItem")
         extend_tooltip(GameTooltip, link, select(3, GetQuestLogRewardInfo(slot)))
     end
 end
@@ -157,6 +167,7 @@ end
 function game_tooltip_hooks:SetBagItem(bag, slot)
 	local link = GetContainerItemLink(bag, slot)
     if link then
+	--ace:print("SetBagItem")
         extend_tooltip(GameTooltip, link, select(2, GetContainerItemInfo(bag, slot)))
     end
 end
@@ -165,6 +176,7 @@ function game_tooltip_hooks:SetInboxItem(index)
     local name, _, quantity = GetInboxItem(index)
     local id = name and cache.item_id(name)
     if id then
+	--ace:print("SetInboxItem")
         local _, itemstring, quality = GetItemInfo(id)
         local hex = select(4, GetItemQualityColor(tonumber(quality)))
         local link = hex ..  '|H' .. itemstring .. '|h[' .. name .. ']|h' .. FONT_COLOR_CODE_CLOSE
@@ -175,6 +187,7 @@ end
 function game_tooltip_hooks:SetInventoryItem(unit, slot)
 	local link = GetInventoryItemLink(unit, slot)
     if link then
+	--ace:print("SetInventoryItem")
         extend_tooltip(GameTooltip, link, 1)
     end
 end
@@ -182,6 +195,7 @@ end
 function game_tooltip_hooks:SetMerchantItem(slot)
 	local link = GetMerchantItemLink(slot)
     if link then
+	--ace:print("SetMerchantItem")
         local quantity = select(4, GetMerchantItemInfo(slot))
         extend_tooltip(GameTooltip, link, quantity)
     end
@@ -195,6 +209,7 @@ function game_tooltip_hooks:SetCraftItem(skill, slot)
         link, quantity = GetCraftItemLink(skill), 1
     end
     if link then
+	--ace:print("SetCraftItem")
 	    extend_tooltip(GameTooltip, link, quantity)
     end
 end
@@ -202,6 +217,7 @@ end
 function game_tooltip_hooks:SetCraftSpell(slot)
 	local link = GetCraftItemLink(slot)
     if link then
+	--ace:print("SetCraftSpell")
         extend_tooltip(GameTooltip, link, 1)
     end
 end
@@ -214,6 +230,7 @@ function game_tooltip_hooks:SetTradeSkillItem(skill, slot)
         link, quantity = GetTradeSkillItemLink(skill), 1
     end
     if link then
+	--ace:print("SetTradeSkillItem")
         extend_tooltip(GameTooltip, link, quantity)
     end
 end
@@ -221,6 +238,7 @@ end
 function game_tooltip_hooks:SetAuctionSellItem()
     local name, _, quantity = GetAuctionSellItemInfo()
     if name then
+	--ace:print("SetAuctionSellItem")
         for slot in info.inventory do
 	        temp(slot)
             local link = GetContainerItemLink(unpack(slot))

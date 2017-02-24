@@ -98,17 +98,14 @@ function M.auction_sell_item()
 		)
 	end
 end
-
 function M.auction(index, query_type)
     query_type = query_type or 'list'
-
     local link = GetAuctionItemLink(query_type, index)
 	if link then
         local item_id, suffix_id, unique_id, enchant_id = parse_link(link)
         local item_info = temp-item(item_id, suffix_id, unique_id, enchant_id)
 
         local name, texture, count, quality, usable, level, start_price, min_increment, buyout_price, high_bid, high_bidder, owner, sale_status = GetAuctionItemInfo(query_type, index)
-
     	local duration = GetAuctionItemTimeLeft(query_type, index)
         local tooltip, tooltip_money = tooltip('auction', query_type, index)
         local max_charges = max_item_charges(item_id)
@@ -116,7 +113,6 @@ function M.auction(index, query_type)
         local aux_quantity = charges or count
         local blizzard_bid = high_bid > 0 and high_bid or start_price
         local bid_price = high_bid > 0 and (high_bid + min_increment) or start_price
-
         return O(
             'item_id', item_id,
             'suffix_id', suffix_id,
