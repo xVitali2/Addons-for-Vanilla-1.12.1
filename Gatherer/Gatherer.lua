@@ -688,12 +688,14 @@ local function random_choice(t)
     local choiceI = nil;
 	local choiceO = nil;
     local n = 0;
-    for i, o in pairs(t) do
-        n = n + 1
-        if math.random() < (1/n) then
-            choiceI, choiceO = i, o
-        end
-    end
+	if t then
+		for i, o in pairs(t) do
+			n = n + 1
+			if math.random() < (1/n) then
+				choiceI, choiceO = i, o
+			end
+		end
+	end
     return choiceI, choiceO
 end
 
