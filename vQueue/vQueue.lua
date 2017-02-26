@@ -1632,7 +1632,7 @@ function vQueue_OnEvent(event)
 											vQueueDB.FrameShown = true
 										end
 									end
-									DEFAULT_CHAT_FRAME:AddMessage("Someone is looking for " .. kCat)
+									--DEFAULT_CHAT_FRAME:AddMessage("Someone is looking for " .. kCat)
 								end
 								refreshCatList(kCat)
 								break
