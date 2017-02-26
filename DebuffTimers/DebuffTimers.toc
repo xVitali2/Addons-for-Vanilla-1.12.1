@@ -2,6 +2,7 @@
 ## Title: Debuff Timers
 ## Notes: Timer Overlays for enemy buffs and debuffs
 ## Notes-ruRU: Добавляет таймеры на вражеские положительные и отрицательные эффекты
+## Author: Renew, based on: shirsig - aurae, gamer4eg(ruRU)
 ## SavedVariablesPerCharacter: AUF_settings
 ## OptionalDeps: DPSMate, pfUI, LunaUnitFrames, XPerl_Target, DiscordUnitFrames, modui, UnitFramesImproved_Vanilla
 
