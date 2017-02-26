@@ -52,8 +52,8 @@ function LOAD()
     end)
 end
 
-function extend_tooltip(tooltip, link, quantity)
-    local item_id, suffix_id,_,_,name = info.parse_link(link)
+function M.extend_tooltip(tooltip, link, quantity)
+    local item_id, suffix_id = info.parse_link(link)
     quantity = IsShiftKeyDown() and quantity or 1
     if aux_tooltip_disenchant_source then
         local r, g, b = color.tooltip.disenchant.source()
@@ -132,9 +132,7 @@ end
 
 function game_tooltip_hooks:SetAuctionItem(type, index)
 	local link = GetAuctionItemLink(type, index)
-	local item_id, suffix_id,_,_,name = info.parse_link(link)
-	local item_info=temp-info.item(item_id)
-	if link then
+    if link then
 	--ace:print("SetAuctionItem")
         extend_tooltip(GameTooltip, link, select(3, GetAuctionItemInfo(type, index)))
     end

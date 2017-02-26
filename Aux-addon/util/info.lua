@@ -196,7 +196,6 @@ function M.set_shopping_tooltip(slot)
         ShoppingTooltip1:SetOwner(GameTooltip, 'ANCHOR_NONE')
         ShoppingTooltip1:SetPoint('TOPLEFT', GameTooltip, 'TOPRIGHT', 0, -10)
         load_tooltip(ShoppingTooltip1, tooltips[1])
-        ShoppingTooltip1:Show()
     end
 
     if tooltips[2] then
@@ -204,7 +203,6 @@ function M.set_shopping_tooltip(slot)
         ShoppingTooltip2:SetOwner(ShoppingTooltip1, 'ANCHOR_NONE')
         ShoppingTooltip2:SetPoint('TOPLEFT', ShoppingTooltip1, 'TOPRIGHT')
         load_tooltip(ShoppingTooltip2, tooltips[2])
-        ShoppingTooltip2:Show()
     end
 end
 
@@ -231,7 +229,7 @@ end
 
 function M.load_tooltip(frame, tooltip)
     frame:ClearLines()
-    for _, line in tooltip do
+    for _, line in ipairs(tooltip) do
         if line.right_text then
             frame:AddDoubleLine(line.left_text, line.right_text, line.left_color[1], line.left_color[2], line.left_color[3], line.right_color[1], line.right_color[2], line.right_color[3])
         else
@@ -242,6 +240,7 @@ function M.load_tooltip(frame, tooltip)
 	    _G[frame:GetName() .. 'TextLeft' .. i]:SetJustifyH('LEFT')
 	    _G[frame:GetName() .. 'TextRight' .. i]:SetJustifyH('LEFT')
     end
+    frame:Show()
 end
 
 function M.display_name(item_id, no_brackets, no_color)
