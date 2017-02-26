@@ -6,7 +6,7 @@
 ## OptionalDeps: pfUI
 ## SavedVariables: MinimapPos, vQueueOptions, notCaught
 ## SavedVariablesPerCharacter: selectedRole, isFinding
-## Version: 1.2.2
+## Version: 1.2.4
 
 vQueue.lua
 vQueue.xml

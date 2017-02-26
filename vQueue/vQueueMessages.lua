@@ -1,6 +1,11 @@
 LFMARGS = {
+	"run",
 	"lfm",
 	"need",
+	"last",
+	"ready",
+	"gtg",
+	"g2g",
 	"lf",
 	"spot",
 	"looking",
@@ -121,7 +126,9 @@ CATARGS["rfc"] = {
 CATARGS["dead"] = {
 	"deadmines",
 	"deadmine",
-	"dm"
+	"vancleef",
+	"cleef",
+	"vc"
 }
 CATARGS["wc"] = {
 	"wailing caverns",
@@ -137,6 +144,7 @@ CATARGS["sfk"] = {
 CATARGS["stock"] = {
 	"the stockade",
 	"stockade",
+	"stockades",
 	"stock",
 	"stocks"
 }
@@ -148,8 +156,8 @@ CATARGS["bfd"] = {
 CATARGS["gnomer"] = {
 	"gnomeregan",
 	"gnomergan",
-	"gnomer",
-	"gnome"
+	"gnome",
+	"gnomer"
 }
 CATARGS["rfk"] = {
 	"razorfen kraul",
@@ -163,13 +171,14 @@ CATARGS["graveyard"] = {
 	"gy",
 	"smgy",
 	"smgraveyard",
-	"smgrave",
-	"sm all",
-	"sm any"
+	"smgrave"
 }
 CATARGS["library"] = {
 	"library",
+	"sm",
 	"lib",
+	"sm all",
+	"sm any",
 	"libs",
 	"smlib",
 	"smlibrary",
@@ -211,38 +220,48 @@ CATARGS["ulda"] = {
 }
 CATARGS["zf"] = {
 	"zul farrak",
+	"farrak",
 	"zulfarak",
+	"mallet",
 	"zul farak",
 	"zulfarrak",
 	"zf"
 }
 CATARGS["mara"] = {
+	"mara",
 	"maraudon",
 	"marudon",
-	"mara",
 	"maru"
 }
 CATARGS["st"] = {
+	"st",
 	"sunken",
 	"sunk",
-	"sunkentemple",
-	"st"
+	"sunkentemple"
 }
 CATARGS["brd"] = {
 	"blackrock depths",
 	"blackrock dpths",
 	"brd",
-	"lava run"
+	"lava",
+	"arena",
+	"jailbreak"
 }
 CATARGS["lbrs"] = {
 	"lower brs",
 	"lower blackrock",
 	"lbrs"
 }
-CATARGS["dm"] = {
-	"dire",
-	"maul",
+CATARGS["dem"] = {
 	"dm",
+	"dire maul",
+	"diremaul",
+	"dmw",
+	"dmn",
+	"dme",
+	"dm:w",
+	"dm:n",
+	"dm:e",
 	"tribute",
 	"trib"
 }
@@ -267,8 +286,9 @@ CATARGS["ony"] = {
 }
 CATARGS["zg"] = {
 	"zg",
-	"zul\'g",
-	"gurub"
+	"zul",
+	"gurub",
+	"hakkar"
 }
 CATARGS["mc"] = {
 	"molten",
@@ -366,6 +386,6 @@ MINLVLS["mara"] = 46
 MINLVLS["st"] = 50
 MINLVLS["brd"] = 52
 MINLVLS["lbrs"] = 55
-MINLVLS["dm"] = 56
+MINLVLS["dem"] = 56
 MINLVLS["strat"] = 58
 MINLVLS["scholo"] = 58
