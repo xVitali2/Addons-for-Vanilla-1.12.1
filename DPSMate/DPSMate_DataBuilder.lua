@@ -57,9 +57,15 @@ local AbilityFlags = {
 	["schatten"] = 5,
 	["natur"] = 4,
 	["frost"] = 2,
-	["physisch"] = 1
+	["physisch"] = 1,
 	
-	-- Still needs localization
+	["火焰"] = 3,
+	["神圣"] = 7,
+	["奥术"] = 6,
+	["暗影"] = 5,
+	["自然"] = 4,
+	["冰霜"] = 2,
+	["物理"] = 1,
 }
 DPSMate.DB.NeedUpdate = false
 DPSMate.DB.UserData = {}
@@ -949,9 +955,15 @@ local spellSchoolNames = {
 	["schatten"] = true,
 	["arkan"] = true,
 	["frost"] = true,
-	["heilig"] = true
+	["heilig"] = true,
 	
-	-- Needs localization
+	["火焰"] = true,
+	["神圣"] = true,
+	["奥术"] = true,
+	["暗影"] = true,
+	["自然"] = true,
+	["冰霜"] = true,
+	["物理"] = true,
 }
 function DPSMate.DB:AddSpellSchool(ab, school)
 	school = slower(school)
@@ -2301,12 +2313,12 @@ function DPSMate.DB:CombatTime()
 end
 
 local cheatDeathTable = {
-	"Interface\\Icons\\Ability_Vanish" = true,
-	"Interface\\Icons\\Ability_Rogue_Feighdeath" = true,
-	"Interface\\Icons\\ability_vanish" = true,
-	"Interface\\Icons\\Ability_vanish" = true,
-	"Interface\\Icons\\ability_rogue_feighdeath" = true,
-	"Interface\\Icons\\Ability_rogue_feighdeath" = true,
+	["Interface\\Icons\\Ability_Vanish"] = true,
+	["Interface\\Icons\\Ability_Rogue_Feighdeath"] = true,
+	["Interface\\Icons\\ability_vanish"] = true,
+	["Interface\\Icons\\Ability_vanish"] = true,
+	["Interface\\Icons\\ability_rogue_feighdeath"] = true,
+	["Interface\\Icons\\Ability_rogue_feighdeath"] = true,
 }
 function DPSMate.DB:hasVanishedFeignDeath()
 	local tex
