@@ -339,12 +339,12 @@ function StartTimer(effect, unit, start)
 	local key = effect .. '@' .. unit
 	local timer = timers[key] or {}
 	timers[key] = timer
-
 	timer.EFFECT = effect
 	timer.UNIT = unit
 	timer.START = start
 	timer.END = timer.START
-
+	--ace:print(effect.."_EFF")
+	--ace:print(AUFdebuff.EFFECT[effect].DURATION.."_DUR")
 	local duration = 0
 	if AUFdebuff.EFFECT[effect] and AUFdebuff.EFFECT[effect].DURATION then duration = AUFdebuff.EFFECT[effect].DURATION end
 	local comboTime = 0
@@ -360,11 +360,11 @@ function StartTimer(effect, unit, start)
 	if IsPlayer(unit) then
 		timer.END = timer.END + DiminishedDuration(unit, effect, AUFdebuff.EFFECT[effect].PVP_DURATION or duration)
 	else
-		timer.END = timer.END + duration
-		
+		timer.END = timer.END + duration		
 	end
 	
 	timer.stopped = nil
+	--ace:print(duration.."_dur")
 	AUF:UpdateDebuffs()
 end
 
@@ -438,6 +438,15 @@ do
 				StartTimer(L[effect], unit, GetTime())
 			end
 		end
+		--local a =string.gfind(arg1, L["(.+) suffers (.-)% (.-)% damage from your (.+)."])
+		--ace:print(a.." a ")
+		--for unit, effect in string.gfind(arg1, L["(.+) suffers (.-)% (.-)% damage from your (.+)."]) do
+		--ace:print(unit.."_unit")
+		--ace:print(effect.."_effect")
+		--	if L[effect] and AUFdebuff.EFFECT[L[effect]] then
+		--		StartTimer(L[effect], unit, GetTime())
+		--	end
+		--end
 	end
 
 	do
@@ -469,7 +478,7 @@ end)
 
 do
 	local function rank(i, j)
-		local _, _, _, _, rank = GetTalentInfo(i, j)
+		local _, _, _, _, rank= GetTalentInfo(i, j)
 		return rank
 	end
 
@@ -515,12 +524,12 @@ do
 		}
 	elseif class == 'MAGE' then
 		bonuses = {
-			["Cone of Cold"] = function()
-				return min(1, rank(3, 2)) * .5 + rank(3, 2) * .5
-			end,
-			["Frostbolt"] = function()
-				return min(1, rank(3, 2)) * .5 + rank(3, 2) * .5
-			end,
+			-- ["Cone of Cold"] = function()
+				-- return min(1, rank(3, 2)) * .5 + rank(3, 2) * .5
+			-- end,
+			-- ["Frostbolt"] = function()
+				-- return min(1, rank(3, 2)) * .5 + rank(3, 2) * .5
+			-- end,
 			["Polymorph"] = function()
 				return AUF_settings.arcanist and 15 or 0
 			end,
@@ -557,7 +566,7 @@ AUF.UnitDebuff = UnitDebuff
 AUF.UnitBuff = UnitBuff
 AUF.UnitName = UnitName
 AUF.Work = {}
-AUF.Version = "0.9"
+AUF.Version = "0.9.1"
 
 AUF.ClickCast = {}
 AUF.DoubleCheck = {}
@@ -716,8 +725,10 @@ function AUF:UpdateDebuffs()
 	if UnitExists("target") then
 		for _, timer in timers do
 			if not timer.DR and AUF.UnitName("target") == timer.UNIT then
+				if timer.EFFECT=="Chilled_Bl" then timer.EFFECT="Chilled" end
 				for i=1,16 do
-					if L[UnitDebuffText("target",i)] and L[UnitDebuffText("target",i)] == timer.EFFECT and getglobal(AUF.DebuffAnchor..i) and not AUF.DoubleCheck[timer.EFFECT] then
+					local name = UnitDebuffText("target",i)
+					if L[name] and L[name] == timer.EFFECT and getglobal(AUF.DebuffAnchor..i) and not AUF.DoubleCheck[timer.EFFECT] then
 						if timer.EFFECT == "Intimidating Shout" then -- exception for doublecheck
 						else
 							AUF.DoubleCheck[timer.EFFECT] = true
@@ -768,13 +779,12 @@ end
 function AUF:CooldownStart(FRAME,START,DURATION)
 	if AUF_settings.reverse then
 		FRAME.reverse = 1
-		if AUF.DebuffAnchor == "pfUITargetDebuff" then pfCooldownFrame_SetTimer(FRAME,START,DURATION,1)
-		else CooldownFrame_SetTimer(FRAME,START,DURATION,1) end
 	else
 		FRAME.reverse = nil
-		if AUF.DebuffAnchor == "pfUITargetDebuff" then pfCooldownFrame_SetTimer(FRAME,START,DURATION,1)
-		else CooldownFrame_SetTimer(FRAME,START,DURATION,1) end
+		 
 	end
+	if AUF.DebuffAnchor == "pfUITargetDebuff" and pfCooldownFrame_SetTimer then pfCooldownFrame_SetTimer(FRAME,START,DURATION,1)
+	else CooldownFrame_SetTimer(FRAME,START,DURATION,1) end
 end
 
 function AUF:UpdateSavedVariables()
@@ -1340,31 +1350,45 @@ function AUF:DatabasePreload()
 	if CLASS == "MAGE" then
 		local _, _, _, _, rank = GetTalentInfo(2, 10) -- improved scorch
 		if rank == 3 then
-			AUF_Debuff["MAGE"].EFFECT["Fire Vulnerability"] = {
+			AUF_Debuff[CLASS].EFFECT["Fire Vulnerability"] = {
 				ICON = "Spell_Fire_SoulBurn",
 				DURATION = 30,
 			}
 			
-			AUF_Debuff["MAGE"].SPELL["Scorch"] = {
+			AUF_Debuff[CLASS].SPELL["Scorch"] = {
 				DURATION = {30, 30, 30, 30, 30, 30, 30},
 				EFFECT = "Fire Vulnerability",
 			}
 			
 		end
-		
-		local _, _, _, _, rank = GetTalentInfo(2, 10) -- improved chilled
-		if rank == 3 then
-			AUF_Debuff["MAGE"].EFFECT["Chilled"].DURATION = 8			
+		local _, _, _, _, rank = GetTalentInfo(3, 10) -- improved blizzard
+		if rank > 0 then
+	--	ace:print(rank.."_ rank Blizzard")
+			AUF_Debuff[CLASS].EFFECT["Chilled_Bl"] = {
+				ICON = "Spell_Frost_Icestorm",
+				DURATION = 6
+			}	
+			if rank == 3 then AUF_Debuff[CLASS].EFFECT["Chilled_Bl"] = { ICON = "Spell_Frost_Icestorm", DURATION = 6 } end
+					
+			AUF_Debuff[CLASS].SPELL["Blizzard"] = {
+				DURATION = {6, 6, 6, 6, 6, 6},
+				EFFECT = "Chilled_Bl",
+			}
 		end
-		
+		local _, _, _, _, rank = GetTalentInfo(3, 7) -- improved chilled
+		if rank > 0 then
+			AUF_Debuff[CLASS].SPELL["Cone of Cold"].DURATION = {8+rank,8+rank,8+rank,8+rank,8+rank}
+			AUF_Debuff[CLASS].EFFECT["Chilled"].DURATION = 5+rank
+			AUF_Debuff[CLASS].SPELL["Frostbolt"].DURATION = {5+rank, 6+rank, 6+rank, 7+rank, 7+rank, 8+rank, 8+rank, 9+rank, 9+rank, 9+rank}
+		end
 		local _, _, _, _, rank = GetTalentInfo(1, 11) -- improved counterspell
-		if rank == 2 then
-			AUF_Debuff["MAGE"].EFFECT["Counterspell - Silenced"].DURATION = 4		
+		if rank > 0 then
+			AUF_Debuff[CLASS].EFFECT["Counterspell - Silenced"].DURATION = 4		
 		end
 		
 		local _, _, _, _, rank = GetTalentInfo(3, 16) -- winters chill
-		if rank == 1 or rank == 2 or rank == 3 or rank == 4 or rank == 5 then
-			AUF_Debuff["MAGE"].EFFECT["Winter's Chill"] = {
+		if rank > 0 then
+			AUF_Debuff[CLASS].EFFECT["Winter's Chill"] = {
 				ICON = "Spell_Frost_ChillingBlast",
 				DURATION = 15,
 			}
