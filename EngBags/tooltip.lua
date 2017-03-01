@@ -181,14 +181,14 @@ function EngBags_ModifyItemTooltip(bag, slot, tooltipName, itm)
 		return;
 	end
 
-	if EnhTooltip and bag and slot and ( bag < 0 or bag > 4 ) then		-- This is only needed for bank bags (-1,6,7,8,9,10)
-		local link = GetContainerItemLink(bag, slot);
-		if (itm["itemname"]) then
-			local texture, itemCount, locked, quality, readable = GetContainerItemInfo(bag, slot);
-			if (quality == nil) then quality = EnhTooltip.QualityFromLink(link); end
-			EnhTooltip.TooltipCall(GameTooltip, itm["itemname"], link, quality, itemCount, 0);
-		end
-	else
+	-- if EnhTooltip and bag and slot and ( bag < 0 or bag > 4 ) then		-- This is only needed for bank bags (-1,6,7,8,9,10)
+		-- local link = GetContainerItemLink(bag, slot);
+		-- if (itm["itemname"]) then
+			-- local texture, itemCount, locked, quality, readable = GetContainerItemInfo(bag, slot);
+			-- if (quality == nil) then quality = EnhTooltip.QualityFromLink(link); end
+			-- EnhTooltip.TooltipCall(GameTooltip, itm["itemname"], link, quality, itemCount, 0);
+		-- end
+	-- else
 		tooltip:Show();
-	end
+	-- end
 end

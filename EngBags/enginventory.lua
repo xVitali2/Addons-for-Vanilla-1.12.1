@@ -54,7 +54,7 @@ EngInventory_WindowBottomPadding = ENGINVENTORY_WINDOWBOTTOMPADDING_NORMALMODE;
 		local SlotEnter = EI_bagslots.slots[slot].frame:GetScript("OnEnter")
         EI_bagslots.slots[slot].frame:SetScript("OnEnter", function()
           -- for slot, f in ipairs(pfUI.bags[this.slot + 1].slots) do
-            -- pfUI.api:CreateBackdrop(f.frame, default_border)
+            -- pfUI.api.CreateBackdrop(f.frame, default_border)
             -- f.frame.backdrop:SetBackdropBorderColor(.2,1,.8,1)
           -- end
           SlotEnter()
@@ -72,7 +72,8 @@ EngInventory_WindowBottomPadding = ENGINVENTORY_WINDOWBOTTOMPADDING_NORMALMODE;
       EI_bagslots.slots[slot].frame:SetHeight(button_size/5*4)
       EI_bagslots.slots[slot].frame:SetWidth(button_size/5*4)
 	  local id, texture = GetInventorySlotInfo("Bag" .. slot .. "Slot")
-	  pfUI.api:CreateBackdrop(EI_bagslots.slots[slot].frame, 3)
+	 -- pfUI.api.CreateBackdrop(EI_bagslots.slots[slot].frame, 3)
+	  EI_bagslots.slots[slot].frame:SetBackdrop(DropDownList1Backdrop:GetBackdrop())
       EI_bagslots.slots[slot].frame:Show()
     end
 	EI_bagslots:Show();
