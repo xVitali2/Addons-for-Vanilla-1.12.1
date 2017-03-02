@@ -73,7 +73,7 @@ EngInventory_WindowBottomPadding = ENGINVENTORY_WINDOWBOTTOMPADDING_NORMALMODE;
       EI_bagslots.slots[slot].frame:SetWidth(button_size/5*4)
 	  local id, texture = GetInventorySlotInfo("Bag" .. slot .. "Slot")
 	 -- pfUI.api.CreateBackdrop(EI_bagslots.slots[slot].frame, 3)
-	  EI_bagslots.slots[slot].frame:SetBackdrop(DropDownList1Backdrop:GetBackdrop())
+	  --EI_bagslots.slots[slot].frame:SetBackdrop(DropDownList1Backdrop:GetBackdrop())
       EI_bagslots.slots[slot].frame:Show()
     end
 	EI_bagslots:Show();
