@@ -24,7 +24,7 @@ local genSettings = {
                                 -- texture of the healthbar (if a non-default it needs to be put in addon folder)  
   ["texture"]="Interface\\AddOns\\CustomNameplates\\barSmall",               
   ["refreshRate"]=1/60,         -- the denominator defines the update frequency (in FPS), lower the number for better performance at the cost of slower updates
-  ["clickThrough"]=false         -- controls whether the nameplates are clickthrough
+  ["clickThrough"]=2            -- controls whether the nameplates are clickthrough = 0, click = 1, mouselook = 2
 } 
 local raidicon = {
   ["size"]=15,                  -- size of raidicon
@@ -35,8 +35,8 @@ local raidicon = {
 }
 local debufficon = {
   ["hide"]=false,               -- hide or show debuff icons
-  ["sizex"]=18,                 -- X size
-  ["sizey"]=16,                 -- Y size
+  ["sizex"]=24,                 -- X size
+  ["sizey"]=12,                 -- Y size
   ["point"]="BOTTOMLEFT",
   ["anchorpoint"]="TOPLEFT", 		-- "BOTTOMLEFT",
   ["yoffs"]=16, -- -13,         -- vertical offset of the first row of debuffs

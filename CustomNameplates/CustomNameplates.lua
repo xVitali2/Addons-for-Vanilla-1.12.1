@@ -1,4 +1,11 @@
-﻿-- GLOBALS: CustomNameplatesHandleEvent, CustomNameplatesUpdate
+﻿local L = AceLibrary("AceLocale-2.2"):new("CustomNameplates")
+local BS = AceLibrary("Babble-Spell-2.3")
+
+CustomNameplates = CreateFrame("Frame", nil, UIParent)
+CustomNameplates.ticker = 0
+CustomNameplates.scanningPlayers = false
+
+
 local _G = getfenv(0)
 local ADDON = {}
 local floor, mod = math.floor, math.mod
@@ -6,6 +13,7 @@ local floor, mod = math.floor, math.mod
 ADDON.currentDebuffs = {}
 ADDON.Players = {}
 ADDON.NPC = {}
+ADDON.InCombat = false
 --ADDON.namePlateCache = {}
 
 ADDON.Icons = {
@@ -109,7 +117,7 @@ function ADDON.fillPlayerDB(name)
 		ADDON.NPC[name] = {}
 		ADDON.NPC[name].class = UnitClassification("target")
 	   	if  MobHealth_PPP  then ADDON.NPC[name].ppp = MobHealth_PPP( name..":"..UnitLevel("target") ); end
-	--	ADDON.Print(name.." => ".. ADDON.NPC[name].class .. ", " ..ADDON.NPC[name].ppp)
+--		ADDON.Print(name.." => ".. ADDON.NPC[name].class .. ", " ..(ADDON.NPC[name].ppp or "nil"))
     end   
 end
 
@@ -120,12 +128,12 @@ function ADDON.checkMouseover(name)
 		local _, class = UnitClass("mouseover")
 		ADDON.Players[name] = {}
 		ADDON.Players[name].class = class
-		--ADDON.Print(name.." => ".. ADDON.Players[name].class)
+		ADDON.Print(name.." => ".. ADDON.Players[name].class)
 	else
 		ADDON.NPC[name] = {}
 		ADDON.NPC[name].class = UnitClassification("mouseover")
 		if  MobHealth_PPP  then ADDON.NPC[name].ppp = MobHealth_PPP( name..":"..UnitLevel("mouseover") ); end
-		--ADDON.Print(name.." => ".. ADDON.NPC[name].class .. ", " ..ADDON.NPC[name].ppp)
+--		ADDON.Print(name.." => ".. ADDON.NPC[name].class .. ", " ..(ADDON.NPC[name].ppp or "nil"))
   end
 end
 
@@ -152,22 +160,19 @@ function ADDON.targetIndicatorShow(namePlate)
 end
 
 function ADDON.getChronometerTimer(debuffname,target)
---CFM fix
-	if Chronometer.active then
-		for i = 20, 1, -1 do
-			if Chronometer.bars[i].name and Chronometer.bars[i].target 
-				and (Chronometer.bars[i].target == target or Chronometer.bars[i].target == "none")
-				and Chronometer.bars[i].timer.x.tx and Chronometer.bars[i].timer.x.tx == debuffname then
+	for i = 20, 1, -1 do
+		if Chronometer.bars[i].name and Chronometer.bars[i].target 
+			and (Chronometer.bars[i].target == target or Chronometer.bars[i].target == "none")
+			and Chronometer.bars[i].timer.x.tx and Chronometer.bars[i].timer.x.tx == debuffname then
 			
-					local registered,time,elapsed,running = Chronometer:CandyBarStatus(Chronometer.bars[i].id)
+				local registered,time,elapsed,running = Chronometer:CandyBarStatus(Chronometer.bars[i].id)
 				
-					if registered and running then
-						--if elapsed > 5 then return decimal_round(elapsed, 0) else return decimal_round(elapsed, 1) end
-						return decimal_round(time-elapsed, 0)
-					else
-						return nil
-					end
-			end
+				if registered and running then
+					--if elapsed > 5 then return decimal_round(elapsed, 0) else return decimal_round(elapsed, 1) end
+					return decimal_round(time-elapsed, 0)
+				else
+					return nil
+				end
 		end
 	end
 end
@@ -184,11 +189,12 @@ function ADDON.ClassPos (class)
 	if(class=="PALADIN") then return 0,    0.25,    0.5,	0.75;	end
 	return 0.25, 0.5, 0.5, 0.75	-- Returns empty next one, so blank
 end
-function ADDON.targetIndicatorHide(namePlate)
+
+function CustomNameplates:targetIndicatorHide(namePlate)
   namePlate.targetIndicator:Hide()
 end
 
-function ADDON.CustomNameplates_OnUpdate(elapsed)
+function CustomNameplates:OnUpdate(elapsed)
   CustomNameplates.ticker = CustomNameplates.ticker + elapsed
   if not (CustomNameplates.ticker > ADDON.genSettings.refreshRate) then return end  -- cap at 60fps by default
   CustomNameplates.ticker = 0
@@ -207,6 +213,7 @@ function ADDON.CustomNameplates_OnUpdate(elapsed)
 	  
 	  local text = Name:GetText()
 	  local target = GetUnitName'target'
+			local mouseover = GetUnitName'mouseover'
 	  
       --Healthbar
       HealthBar:SetStatusBarTexture(ADDON.genSettings.texture)
@@ -325,7 +332,7 @@ function ADDON.CustomNameplates_OnUpdate(elapsed)
         end
       else
         ADDON.targetNormalsize(namePlate)
-        ADDON.targetIndicatorHide(namePlate)
+				CustomNameplates:targetIndicatorHide(namePlate)
         for j=1,16,1 do
           if namePlate.debuffIcons[j].texture then 
 			namePlate.debuffIcons[j].texture:SetTexture(nil)
@@ -506,14 +513,14 @@ function ADDON.CustomNameplates_OnUpdate(elapsed)
 				elseif classif == "elite" then
 					tad = "+"
       end
-				if (tad ~= "" and not Level.tag:IsVisible()) then 
+				if (tad ~= "") then 
 					Level.tag:SetText(tad)
 					Level.tag:Show()
 				else
-					Level.tag:Hide()
+					local _ = Level.tag:IsVisible() and Level.tag:Hide()
 				end
 			else
-				Level.tag:Hide()
+				local _ = Level.tag:IsVisible() and Level.tag:Hide()			
 			end
 			
       local red, green, blue, _ = Level:GetTextColor() --Set Color of Level
@@ -555,7 +562,8 @@ function ADDON.CustomNameplates_OnUpdate(elapsed)
 			
       --if currently one of the nameplates is an actual player, draw ADDON.classicon
 			
-			if ADDON.Players[text] ~= nil and namePlate.classIcon:GetTexture() == "Solid Texture" and string_find(namePlate.classIcon:GetTexture(), "Interface") == nil then
+			if ADDON.Players[text] ~= nil and namePlate.classIcon:GetTexture() == "Solid Texture" 
+			  and string_find(namePlate.classIcon:GetTexture(), "Interface") == nil then
 				if (not ADDON.classicon.hide) then
 					namePlate.classIcon:SetTexture(ADDON.Icons[ADDON.Players[text]["class"]])
           namePlate.classIcon:SetTexCoord(.078, .92, .079, .937)
@@ -563,6 +571,11 @@ function ADDON.CustomNameplates_OnUpdate(elapsed)
 					--namePlate.classIconBorder:Show()
 				end
 				
+			elseif (UnitExists("target") and HealthBar:GetAlpha() == 1 and target == text and
+				not UnitIsTappedByPlayer("target") and UnitIsTapped("target") and UnitCanAttack("player", "target") ) 
+				or (UnitExists("mouseover") and mouseover == text and
+				not UnitIsTappedByPlayer("mouseover") and  UnitIsTapped("mouseover") and UnitCanAttack("player", "mouseover") )then
+				HealthBar:SetStatusBarColor(0.5,0.5,0.5,0.85)
 			else  
 				local red, green, blue, _ = HealthBar:GetStatusBarColor() --Set Color of Healthbar
 				if blue > 0.99 and red == 0 and green == 0 then
@@ -586,19 +599,15 @@ function ADDON.CustomNameplates_OnUpdate(elapsed)
         end
       end
 			
-      if (ADDON.genSettings.clickThrough == true) then
-        namePlate:EnableMouse(false)
-      else
-        namePlate:EnableMouse(true)
-      end
+			CustomNameplatesUpdateClickHandler(namePlate)
 			
     end
   end  
 end
 
--- xml script handlers (need to be globals)
-function CustomNameplatesHandleEvent(event) --Handles wow events
   
+function CustomNameplates:OnEvent(event) --Handles wow events
+--	Sea.io.print(event)
   if event == "VARIABLES_LOADED" then
     local options = _G["CustomNameplatesOptions"]()
     -- Settings block
@@ -611,9 +620,12 @@ function CustomNameplatesHandleEvent(event) --Handles wow events
     ADDON.leveltext = CustomNameplatesDBPC.leveltext
 	ADDON.combopoints = CustomNameplatesDBPC.combopoints
     ADDON.VARIABLES_LOADED = true
+		if type(ADDON.genSettings.clickThrough) == "boolean" then
+			ADDON.genSettings.clickThrough = 2
+		end
     if ADDON.PLAYER_ENTERING_WORLD then
       ADDON.PLAYER_ENTERING_WORLD = nil
-      CustomNameplatesHandleEvent("PLAYER_ENTERING_WORLD")
+			CustomNameplates:OnEvent("PLAYER_ENTERING_WORLD")
     end
   end
 	
@@ -651,18 +663,34 @@ function CustomNameplatesHandleEvent(event) --Handles wow events
 	
   if ADDON.VARIABLES_LOADED and ADDON.genSettings.combatOnly then
     if event == "PLAYER_REGEN_DISABLED" then -- incombat
+			ADDON.InCombat = true
       ShowNameplates()
     elseif event == "PLAYER_REGEN_ENABLED" then -- exiting combat
+			ADDON.InCombat = false
       HideNameplates()
     end
   end
 	
 end
 
-function CustomNameplatesUpdate(elapsed) --updates the frames
+CustomNameplates:SetScript("OnEvent", function()
+	--ADDON.Print(event)
+	CustomNameplates:OnEvent(event)
+end)
+
+CustomNameplates:SetScript("OnUpdate",function(...)
   if not ADDON.VARIABLES_LOADED then return end
-  ADDON.CustomNameplates_OnUpdate(elapsed)
-end
+	CustomNameplates:OnUpdate(arg1)
+end)
+
+CustomNameplates:RegisterEvent("PLAYER_TARGET_CHANGED")
+CustomNameplates:RegisterEvent("UNIT_AURA")
+CustomNameplates:RegisterEvent("PLAYER_ENTERING_WORLD");
+CustomNameplates:RegisterEvent("PLAYER_REGEN_ENABLED");
+CustomNameplates:RegisterEvent("PLAYER_REGEN_DISABLED");
+CustomNameplates:RegisterEvent("VARIABLES_LOADED");
+--CustomNameplates:RegisterEvent'START_AUTOREPEAT_SPELL'
+--CustomNameplates:RegisterEvent'STOP_AUTOREPEAT_SPELL'
 
 SlashCmdList["CNP"] = function(msg)
   local options = _G["CustomNameplatesOptions"]()
@@ -672,6 +700,59 @@ SlashCmdList["CNP"] = function(msg)
     options:Show()
   end
 end
+
+function CustomNameplatesUpdateClickHandler(frame) -- from shaguplates
+  if ADDON.genSettings.clickThrough > 0 then
+    frame:EnableMouse(true)
+    if ADDON.genSettings.clickThrough == 2 then
+		if( frame:HasScript("OnMouseDown") ) then
+			local test = frame:GetScript("OnMouseDown");
+			if( test ) then
+				return
+			end	
+		end
+--		Sea.io.print("Setup click")
+		frame:SetScript("OnMouseDown", function()
+        if arg1 and arg1 == "RightButton" then
+          MouselookStart()
+          CustomNameplatesEmulRightClick.time = GetTime()
+          CustomNameplatesEmulRightClick.frame = this
+          CustomNameplatesEmulRightClick:Show()
+        end
+      end)
+    end
+  else
+    frame:EnableMouse(false)
+  end
+end
+
+-- emulate fake rightclick
+CustomNameplatesEmulRightClick = CreateFrame("Frame", nil, UIParent)
+CustomNameplatesEmulRightClick.time = nil
+CustomNameplatesEmulRightClick.frame = nil
+CustomNameplatesEmulRightClick:SetScript("OnUpdate", function()
+  -- break here if nothing to do
+  if not CustomNameplatesEmulRightClick.time or not CustomNameplatesEmulRightClick.frame then
+    this:Hide()
+    return
+  end
+
+  -- if threshold is reached (0.5 second) no click action will follow
+  if not IsMouselooking() and CustomNameplatesEmulRightClick.time + 0.5 < GetTime() then
+    CustomNameplatesEmulRightClick:Hide()
+    return
+  end
+
+  -- run a usual nameplate rightclick action
+  if not IsMouselooking() then
+    CustomNameplatesEmulRightClick.frame:Click("LeftButton")
+    if UnitCanAttack("player", "target") and not ADDON.InCombat then AttackTarget() end
+    CustomNameplatesEmulRightClick:Hide()
+    return
+  end
+end)
+
+
 SlashCmdList["CUSTOMNAMEPLATES"] = SlashCmdList["CNP"]
 SLASH_CNP1 = "/cnp"
 SLASH_CUSTOMNAMEPLATES1 = "/customnameplates"
