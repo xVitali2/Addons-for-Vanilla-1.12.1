@@ -47,7 +47,6 @@ if GetLocale() == "ruRU" then
 		["Ледяная ловушка"] = "Frost Trap",
 		
 		--Mage
-		["Снежная буря"] = "Blizzard", --CFM 
 		["Распознавание магии"] = "Detect Magic",	
 		["Ледяная стрела"] = "Frostbolt",	
 		["Конус холода"] = "Cone of Cold",
@@ -67,7 +66,8 @@ if GetLocale() == "ruRU" then
 		["Уязвимость к стихиям"] = "Elemental Vulnerability",
 		["Уязвимость к огню"] = "Fire Vulnerability",
 		["Зимняя стужа"] = "Winter's Chill",
-
+		["Снежная буря"] = "Blizzard", --CFM 
+		
 		--Paladin
 		["Молот правосудия"] = "Hammer of Justice",
 		["Покаяние"] = "Repentance",
@@ -161,18 +161,18 @@ if GetLocale() == "ruRU" then
 		["Громовая поступь"] = "War Stomp",
 		
 		--Parser
-		["You fail to %a+ (.*):.*"] = "Вам не удалось %a+ (.*):.*",
+		["You fail to %a+ (.*):.*"] = "Вам не удалось %a+ \"(.*)\":.*",
 		["is immune to your (.*)%."] = "обладает невосприимчивостью к вашему заклинанию \"(.*)\".%.",
-		["Your (.*) missed"] = "Ваше заклинание (.*) не попадает по",
+		["Your (.*) missed"] = "Ваше заклинание \"(.*)\" не попадает по",
 		["Your (.*) was resisted"] = "сопротивляется вашему заклинанию \"(.*)\".%.",
 		["Your (.*) was evaded"] = "Ваше заклинание (.*) не достигает",
 		["Your (.*) was dodged"] = "уклоняется от вашего заклинания \"(.*)\".%.",
 		["Your (.*) was deflected"] = "отклоняет ваше заклинание \"(.*)\".%.",
 		["Your (.*) is reflected"] = "отражает ваше заклинание \"(.*)\".%.",
 		["Your (.*) is parried"] = "парирует вашу способность \"(.*)\".%.",
-		["(.+) fades from (.+)%."] = "Действие эффекта (.+) наложенного на (.+) заканчивается%.",
-		["(.+) suffers (.-)% (.-)% damage from your (.+)."]="(.+) получает (.-)% ед. урона ((.-)%) от вашего заклинания \"(.+)\".",
-		["(.+)'s (.+) is removed%."] = "(.+) теряет (.+)%.",
+		["(.+) fades from (.+)%."] = "Действие эффекта \"(.+)\" наложенного на (.+) заканчивается%.",
+		["(.+) suffers (.-)% (.-)% damage from your (.+)."]="(.+) получает (.+) ед. урона (.+) от вашего заклинания \"(.+)\".", --CFM
+		["(.+)'s (.+) is removed%."] = "(.+) теряет \"(.+)\"%.",
 		["(.+) is afflicted by (.+)%."] = "(.+) находится под воздействием эффекта \"(.+)\"%.",
 		["(.-)%(Rank (%d+)%)"] = "(.-)%(Уровень (%d+)%)",
 		["(.+) dies"] = "(.+) погибает",
@@ -246,6 +246,7 @@ else
 		["Elemental Vulnerability"] = "Elemental Vulnerability",
 		["Fire Vulnerability"] = "Fire Vulnerability",
 		["Winter's Chill"] = "Winter's Chill",
+		["Blizzard"] = "Blizzard", --CFM 
 
 		--Paladin
 		["Hammer of Justice"] = "Hammer of Justice",
@@ -352,7 +353,7 @@ else
 		["(.+) fades from (.+)%."] = "(.+) fades from (.+)%.",
 		["(.+)'s (.+) is removed%."] = "(.+)'s (.+) is removed%.",
 		["(.+) is afflicted by (.+)%."] = "(.+) is afflicted by (.+)%.",
-		["(.+) suffers (.-)% (.-)% damage from your (.+)."]="(.+) suffers (.-)% (.-)% damage from your (.+).",
+		["(.+) suffers (.-)% (.-)% damage from your (.+)."]="(.+) suffers (.-)% (.-)% damage from your (.+).", --CFM
 		["(.-)%(Rank (%d+)%)"] = "(.-)%(Rank (%d+)%)",
 		["(.+) dies"] = "(.+) dies",
 		["^([^%s']*)"] = "^([^%s']*)",

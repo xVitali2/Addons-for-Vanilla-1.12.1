@@ -27,7 +27,7 @@ CreateFrame('GameTooltip', 'AUF_Tooltip', nil, 'GameTooltipTemplate')
 _G.AUF_settings = {}
 
 local COMBO = 0
-local _,CLASS = UnitClass("player")
+local _,CLASS = UnitClass'player'
 
 local DR_CLASS = {
 	["Bash"] = 1,
@@ -433,20 +433,16 @@ do
 	
 	function CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE()
 		if player[hostilePlayer(arg1)] == nil then player[hostilePlayer(arg1)] = true end -- wrong for pets
-		for unit, effect in string.gfind(arg1, L["(.+) is afflicted by (.+)%."]) do
+		 for unit, effect in string.gfind(arg1, L["(.+) is afflicted by (.+)%."]) do
+			 if L[effect] and AUFdebuff.EFFECT[L[effect]] then
+				 StartTimer(L[effect], unit, GetTime())
+			 end
+		 end
+		for unit,_,_,effect in string.gfind(arg1, L["(.+) suffers (.-)% (.-)% damage from your (.+)."]) do
 			if L[effect] and AUFdebuff.EFFECT[L[effect]] then
 				StartTimer(L[effect], unit, GetTime())
 			end
 		end
-		--local a =string.gfind(arg1, L["(.+) suffers (.-)% (.-)% damage from your (.+)."])
-		--ace:print(a.." a ")
-		--for unit, effect in string.gfind(arg1, L["(.+) suffers (.-)% (.-)% damage from your (.+)."]) do
-		--ace:print(unit.."_unit")
-		--ace:print(effect.."_effect")
-		--	if L[effect] and AUFdebuff.EFFECT[L[effect]] then
-		--		StartTimer(L[effect], unit, GetTime())
-		--	end
-		--end
 	end
 
 	do
@@ -482,8 +478,7 @@ do
 		return rank
 	end
 
-	local _, class = UnitClass'player'
-	if class == 'ROGUE' then
+	if CLASS == 'ROGUE' then
 		bonuses = {
 			["Gouge"] = function()
 				return rank(2, 1) * .5
@@ -492,7 +487,7 @@ do
 				return rank(3, 8) * 3
 			end,
 		}
-	elseif class == "WARLOCK" then
+	elseif CLASS == "WARLOCK" then
 		bonuses = {
 			["Shadow Word: Pain"] = function() -- ???
 				return rank(2, 7) * 1.5
@@ -501,13 +496,13 @@ do
 				return rank(2, 7) * 1.5
 			end,
 		}
-	elseif class == "WARRIOR" then
+	elseif CLASS == "WARRIOR" then
 		bonuses = {
 			["Demoralizing Shout"] = function()
 				return rank(2, 1) * 3
 			end,
 		}
-	elseif class == 'HUNTER' then
+	elseif CLASS == 'HUNTER' then
 		bonuses = {
 			["Freezing Trap Effect"] = function(t)
 				return t * rank(3, 7) * .15
@@ -516,25 +511,19 @@ do
 				return t * rank(3, 7) * .15
 			end,
 		}
-	elseif class == 'PRIEST' then
+	elseif CLASS == 'PRIEST' then
 		bonuses = {
 			["Shadow Word: Pain"] = function()
 				return rank(3, 4) * 3
 			end,
 		}
-	elseif class == 'MAGE' then
+	elseif CLASS == 'MAGE' then
 		bonuses = {
-			-- ["Cone of Cold"] = function()
-				-- return min(1, rank(3, 2)) * .5 + rank(3, 2) * .5
-			-- end,
-			-- ["Frostbolt"] = function()
-				-- return min(1, rank(3, 2)) * .5 + rank(3, 2) * .5
-			-- end,
 			["Polymorph"] = function()
 				return AUF_settings.arcanist and 15 or 0
 			end,
 		}
-	elseif class == 'DRUID' then
+	elseif CLASS == 'DRUID' then
 		bonuses = {
 			["Pounce"] = function()
 				return rank(2, 4) * .5
@@ -566,7 +555,7 @@ AUF.UnitDebuff = UnitDebuff
 AUF.UnitBuff = UnitBuff
 AUF.UnitName = UnitName
 AUF.Work = {}
-AUF.Version = "0.9.1"
+AUF.Version = "0.9.2"
 
 AUF.ClickCast = {}
 AUF.DoubleCheck = {}
@@ -583,14 +572,12 @@ function AUF.Debuff:Build()
 		AUF.Debuff[i]:SetParent(AUF.Debuff[i].parent)
 		AUF.Debuff[i]:SetAllPoints(AUF.Debuff[i].parent)
 		AUF.Debuff[i].parent:SetScript("OnUpdate",nil)
-
 		AUF.Debuff[i].Font = AUF.Debuff[i]:CreateFontString(nil, "OVERLAY")
 		AUF.Debuff[i].Font:SetPoint("CENTER", AUF_settings.OffsetX, AUF_settings.OffsetY)
 		AUF.Debuff[i].Font:SetFont("Fonts\\ARIALN.TTF", AUF_settings.TextSize, "OUTLINE")
 		AUF.Debuff[i].Font:SetJustifyH("CENTER")
 		AUF.Debuff[i].Font:SetTextColor(1,1,1)
 		AUF.Debuff[i].Font:SetText("")
-		
 	end
 end
 
@@ -723,7 +710,7 @@ function AUF:UpdateDebuffs()
 	if UnitExists("target") then
 		for _, timer in timers do
 			if not timer.DR and AUF.UnitName("target") == timer.UNIT then
-				if timer.EFFECT=="Chilled_Bl" then timer.EFFECT="Chilled" end
+				if timer.EFFECT=="Blizzard" then timer.EFFECT="Chilled" end
 				for i=1,16 do
 					local name = UnitDebuffText("target",i)
 					if L[name] and L[name] == timer.EFFECT and getglobal(AUF.DebuffAnchor..i) and not AUF.DoubleCheck[timer.EFFECT] then
@@ -1334,8 +1321,12 @@ end
 
 -- to detect talents
 function AUF:DatabasePreload()
+	local function rk(i, j)
+		local _, _, _, _, rank= GetTalentInfo(i, j)
+		return rank
+	end
 	if CLASS == "MAGE" then
-		local _, _, _, _, rank = GetTalentInfo(2, 10) -- improved scorch
+		local rank = rk(2,10) -- improved scorch
 		if rank == 3 then
 			AUF_Debuff[CLASS].EFFECT["Fire Vulnerability"] = {
 				ICON = "Spell_Fire_SoulBurn",
@@ -1346,33 +1337,27 @@ function AUF:DatabasePreload()
 				DURATION = {30, 30, 30, 30, 30, 30, 30},
 				EFFECT = "Fire Vulnerability",
 			}
-			
 		end
-		local _, _, _, _, rank = GetTalentInfo(3, 10) -- improved blizzard
+		rank = rk(3,10) -- improved blizzard
 		if rank > 0 then
-	--	ace:print(rank.."_ rank Blizzard")
-			AUF_Debuff[CLASS].EFFECT["Chilled_Bl"] = {
+			AUF_Debuff[CLASS].EFFECT["Blizzard"] = {
 				ICON = "Spell_Frost_Icestorm",
-				DURATION = 6
-			}	
-		--	if rank == 3 then AUF_Debuff[CLASS].EFFECT["Chilled_Bl"] = { ICON = "Spell_Frost_Icestorm", DURATION = 6 } end
+				DURATION = 4.5
+			}
 			AUF_Debuff[CLASS].SPELL["Blizzard"] = {
-				DURATION = {6, 6, 6, 6, 6, 6},
-				EFFECT = "Chilled_Bl",
+				DURATION = {4.5, 4.5, 4.5, 4.5, 4.5, 4.5},
+				EFFECT = "Blizzard",
 			}
 		end
-		local _, _, _, _, rank = GetTalentInfo(3, 7) -- improved chilled
+		rank = rk(3,7) -- improved chilled
 		if rank > 0 then
 			AUF_Debuff[CLASS].SPELL["Cone of Cold"].DURATION = {8+rank,8+rank,8+rank,8+rank,8+rank}
 			AUF_Debuff[CLASS].EFFECT["Chilled"].DURATION = 5+rank
 			AUF_Debuff[CLASS].SPELL["Frostbolt"].DURATION = {5+rank, 6+rank, 6+rank, 7+rank, 7+rank, 8+rank, 8+rank, 9+rank, 9+rank, 9+rank}
 		end
-		local _, _, _, _, rank = GetTalentInfo(1, 11) -- improved counterspell
-		if rank > 0 then
-			AUF_Debuff[CLASS].EFFECT["Counterspell - Silenced"].DURATION = 4		
-		end
-		
-		local _, _, _, _, rank = GetTalentInfo(3, 16) -- winters chill
+		rank = rk(1,11) -- improved counterspell
+		if rank > 0 then AUF_Debuff[CLASS].EFFECT["Counterspell - Silenced"].DURATION = 4 end
+		rank = rk(3,16) -- winters chill
 		if rank > 0 then
 			AUF_Debuff[CLASS].EFFECT["Winter's Chill"] = {
 				ICON = "Spell_Frost_ChillingBlast",
