@@ -825,6 +825,7 @@ pfUI:RegisterModule("gui", function ()
   pfUI.gui:CreateConfig(pfUI.gui.appearance, "Bags Border Size", C.appearance.border, "bags")
 
   pfUI.gui:CreateConfig(pfUI.gui.appearance, "Cooldown", nil, nil, "header")
+  pfUI.gui:CreateConfig(pfUI.gui.appearance, "Cooldown Color (3 Sec)", C.appearance.cd, "seccolor", "color")
   pfUI.gui:CreateConfig(pfUI.gui.appearance, "Cooldown Color (Minutes)", C.appearance.cd, "mincolor", "color")
   pfUI.gui:CreateConfig(pfUI.gui.appearance, "Cooldown Color (Hours)", C.appearance.cd, "hourcolor", "color")
   pfUI.gui:CreateConfig(pfUI.gui.appearance, "Cooldown Color (Days)", C.appearance.cd, "daycolor", "color")
@@ -916,6 +917,8 @@ pfUI:RegisterModule("gui", function ()
   pfUI.gui:CreateConfig(pfUI.gui.bar, "Enable Action Bar Backgrounds", C.bars, "background", "checkbox")
   pfUI.gui:CreateConfig(pfUI.gui.bar, "Enable Range Display On Hotkeys", C.bars, "glowrange", "checkbox")
   pfUI.gui:CreateConfig(pfUI.gui.bar, "Range Display Color", C.bars, "rangecolor", "color")
+  pfUI.gui:CreateConfig(pfUI.gui.bar, "Show Macro Text", C.bars, "showmacro", "checkbox")
+  pfUI.gui:CreateConfig(pfUI.gui.bar, "Show Hotkey Text", C.bars, "showkeybind", "checkbox")
   pfUI.gui:CreateConfig(pfUI.gui.bar, "Enable Range Based Auto Paging (Hunter)", C.bars, "hunterbar", "checkbox")
 
   pfUI.gui:CreateConfig(pfUI.gui.bar, "Seconds Until Action Bars Autohide", C.bars, "hide_time")
@@ -1061,7 +1064,7 @@ pfUI:RegisterModule("gui", function ()
   pfUI.gui.resetFrames = pfUI.gui:CreateConfigTab("Reset Positions", "bottom", function()
     CreateQuestionDialog("Do you really want to reset the Frame Positions?",
       function()
-        _G["C"]["position"] = {}
+        _G["pfUI_config"]["position"] = {}
         this:GetParent():Hide()
         pfUI.gui:Reload()
       end)
@@ -1081,7 +1084,7 @@ pfUI:RegisterModule("gui", function ()
   pfUI.gui.resetConfig = pfUI.gui:CreateConfigTab("Reset Config", "bottom", function()
     CreateQuestionDialog("Do you really want to reset your configuration?\nThis also includes frame positions",
       function()
-        _G["C"] = {}
+        _G["pfUI_config"] = {}
         pfUI:LoadConfig()
         this:GetParent():Hide()
         pfUI.gui:Reload()
@@ -1093,7 +1096,7 @@ pfUI:RegisterModule("gui", function ()
     CreateQuestionDialog("Do you really want to reset |cffffaaaaEVERYTHING|r?\nThis includes configuration, frame positions, firstrun settings,\n player cache, profiles and just EVERYTHING!",
       function()
         _G["pfUI_init"] = {}
-        _G["C"] = {}
+        _G["pfUI_config"] = {}
         _G["pfUI_playerDB"] = {}
         pfUI_profiles = {}
         pfUI:LoadConfig()
