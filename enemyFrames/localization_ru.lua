@@ -673,7 +673,7 @@ EF_L_ENEMYFRAMESSETTINGS='Настройки enemyFrames';
 EF_L_WARSONG='Ущелье Песни Войны';
 EF_L_ARATHI='Низина Арати';
 EF_L_ALTERAC='Альтеракская долина';
-
+end
 function changeEngClassName(c)
 	local class=c;
 			if c=='Воин' then
@@ -721,5 +721,4 @@ function changeEngRaceName(r)
 				race='UNDEAD';
 			end
 	return race
-end
 end
