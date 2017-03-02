@@ -4,6 +4,7 @@ local DB = DPSMate.DB
 local tnbr = tonumber
 local strgsub = string.gsub
 local npcdb = DPSMate.NPCDB
+local GetTime = GetTime
 
 --schmetternd
 if (GetLocale() == "deDE") then
@@ -47,9 +48,20 @@ if (GetLocale() == "deDE") then
 			DB:AddSpellSchool("Lava","feuer")
 			return
 		end
+		for a in strgfind(msg, "Ihr verliert (%d+) Gesundheit aufgrund von Feuerschaden%.") do
+			DB:DamageTaken(self.player, "Feuer", 1, 0, 0, 0, 0, 0, tnbr(a), "Umgebung", 0, 0)
+			DB:DeathHistory(self.player, "Umgebung", "Feuer", tnbr(a), 1, 0, 0, 0)
+			DB:AddSpellSchool("Feuer","feuer")
+			return
+		end
 		for a in strgfind(msg, "Ihr ertrinkt und verliert (%d+) Gesundheit%.") do
 			DB:DamageTaken(self.player, "Ertrinken", 1, 0, 0, 0, 0, 0, tnbr(a), "Umgebung", 0, 0)
 			DB:DeathHistory(self.player, "Umgebung", "Ertrinken", tnbr(a), 1, 0, 0, 0)
+			return
+		end
+		for a in strgfind(msg, "Ihr verliert (%d+) Gesundheit wegen Schwimmens in Schleim%.") do
+			DB:DamageTaken(self.player, "Schleim", 1, 0, 0, 0, 0, 0, tnbr(a), "Umgebung", 0, 0)
+			DB:DeathHistory(self.player, "Umgebung", "Schleim", tnbr(a), 1, 0, 0, 0)
 			return
 		end
 	end
@@ -324,6 +336,12 @@ if (GetLocale() == "deDE") then
 			DB:AddSpellSchool("Lava","feuer")
 			return
 		end
+		for a,b in strgfind(msg, "(.+) verliert (%d+) Punkte aufgrund von Feuerschaden%.") do
+			DB:DamageTaken(a, "Feuer", 1, 0, 0, 0, 0, 0, tnbr(b), "Umgebung", 0, 0)
+			DB:DeathHistory(a, "Umgebung", "Feuer", tnbr(b), 1, 0, 0, 0)
+			DB:AddSpellSchool("Feuer","feuer")
+			return
+		end
 		for a,b in strgfind(msg, "(.-) fällt und verliert (%d+) Gesundheit%.") do
 			DB:DamageTaken(a, "Fallen", 1, 0, 0, 0, 0, 0, tnbr(b), "Umgebung", 0, 0)
 			DB:DeathHistory(a, "Umgebung", "Fallen", tnbr(b), 1, 0, 0, 0)
@@ -332,6 +350,11 @@ if (GetLocale() == "deDE") then
 		for a,b in strgfind(msg, "(.-) ertrinkt und verliert (%d+) Gesundheit%.") do
 			DB:DamageTaken(a, "Ertrinken", 1, 0, 0, 0, 0, 0, tnbr(b), "Umgebung", 0, 0)
 			DB:DeathHistory(a, "Umgebung", "Ertrinken", tnbr(b), 1, 0, 0, 0)
+			return
+		end
+		for a,b in strgfind(msg, "(.+) verliert (%d+) Gesundheit wegen Schwimmens in Schleim%.") do
+			DB:DamageTaken(a, "Schleim", 1, 0, 0, 0, 0, 0, tnbr(b), "Umgebung", 0, 0)
+			DB:DeathHistory(a, "Umgebung", "Schleim", tnbr(b), 1, 0, 0, 0)
 			return
 		end
 	end
@@ -1002,15 +1025,19 @@ if (GetLocale() == "deDE") then
 	end
 	
 	DPSMate.Parser.CreatureVsCreatureHitsAbsorb = function(self, msg)
+		for c, b, a, d, absorbed in strgfind(msg, "(.+) trifft (.+) kritisch für (%d+) Schaden%.(.*)%((%d+) absorbiert%)") do DB:SetUnregisterVariables(tnbr(absorbed), "Angreifen", c); return end
 		for c, b, a, d, absorbed in strgfind(msg, "(.+) trifft (.+) für (%d+) Schaden%.(.*)%((%d+) absorbiert%)") do DB:SetUnregisterVariables(tnbr(absorbed), "Angreifen", c); return end
 	end
 	
 	DPSMate.Parser.CreatureVsSelfSpellDamageAbsorb = function(self, msg)
 		for c, q, ab, b, a, d, absorbed in strgfind(msg, "(.+) trifft Euch(.*) mit %'(.+)%' für (.+)%.(.*)%((%d+) absorbiert%)") do DB:SetUnregisterVariables(tnbr(absorbed), ab, c); return end
+		for c, q, ab, b, a, d, absorbed in strgfind(msg, "(.+) trifft Euch(.*) %(mit (.+)%)%. Schaden: (%d+)(.*)%((%d+) absorbiert%)") do DB:SetUnregisterVariables(tnbr(absorbed), ab, c); return end
+		for c, ab, b, a, d, absorbed in strgfind(msg, "(.-%s*)'?s (.+) trifft Euch kritisch für (%d+)(.*)%((%d+) absorbiert%)") do DB:SetUnregisterVariables(tnbr(absorbed), ab, c); return end
 	end
 	
 	DPSMate.Parser.CreatureVsCreatureSpellDamageAbsorb = function(self, msg)
-		for c, ab, b, a, x, d, absorbed in strgfind(msg, "(.-%s*)'?s (.+) trifft (.+) für (.+)%.(.*)%((%d+) absorbiert%)") do DB:SetUnregisterVariables(tnbr(absorbed), ab, self:ReplaceSwString(c)); return end
+		for c, ab, b, a, d, absorbed in strgfind(msg, "(.-%s*)'?s (.+) trifft (.+) kritisch für (.*)%((%d+) absorbiert%)") do DB:SetUnregisterVariables(tnbr(absorbed), ab, self:ReplaceSwString(c)); return end
+		for c, ab, b, a, d, absorbed in strgfind(msg, "(.-%s*)'?s (.+) trifft (.+) für (.+)%.(.*)%((%d+) absorbiert%)") do DB:SetUnregisterVariables(tnbr(absorbed), ab, self:ReplaceSwString(c)); return end
 	end
 	
 	DPSMate.Parser.SpellPeriodicSelfBuffAbsorb = function(self, msg)
