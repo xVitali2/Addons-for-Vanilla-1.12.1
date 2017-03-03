@@ -39,7 +39,7 @@ frame.buyout_listing:SetPoint('BOTTOMRIGHT', 0, 0)
 
 do
     local checkbox = gui.checkbox(frame.inventory)
-    checkbox:SetPoint('TOPLEFT', 49, -15)
+    checkbox:SetPoint('TOPLEFT', 10, -2)
     checkbox:SetScript('OnClick', function()
         refresh = true
     end)
@@ -60,6 +60,23 @@ do
 	    function()
 	        if arg1 == 'LeftButton' then
 	            update_item(this.item_record)
+				if Informant then
+					local id =this.item_record.item_id
+					local itdata = Informant.GetItem(id)
+					local str=nil
+					local gold,silver,copper=nil,nil,nil
+
+					if (itdata and itdata['buy'] and itdata['buy'] ~= 0) then str=itdata['sell'] end
+					--ace:print(id.."_id")
+					if str then
+						gold,silver,copper=money.to_gsc(str)
+						str = gold.."|cffffd70ag.|r"..silver.."|cffc7c7cfs.|r"..copper.."|cffeda55fc|r"
+					end
+					if LABELFORITEM==nil then LABELFORITEM=gui.label(f, gui.font_size.small) end
+					LABELFORITEM:SetPoint('TOP', f, 'LEFT', 120, 200)
+					if str==nil then str="?" end
+					LABELFORITEM:SetText("Цена у продавца:  "..str)
+				end
 	        elseif arg1 == 'RightButton' then
 	            tab = 1
 	            search_tab.filter = strlower(info.item(this.item_record.item_id).name) .. '/exact'

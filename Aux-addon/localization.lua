@@ -34,7 +34,7 @@ if (GetLocale() == "ruRU") then
 	HOURS_2 = "2 часа"
 	HOURS_8 = "8 часов"
 	HOURS_24 = "24 часа"
-	HIDDEN_ITEMS = "Cкрытые предметы"
+	HIDDEN_ITEMS = "Скрытые предметы"
 	PAUSE = "Пауза"
 	RESUME = "Возобновить"
 	SEARCH_RESULTS = "Результаты поиска"
