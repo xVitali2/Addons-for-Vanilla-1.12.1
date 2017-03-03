@@ -13089,7 +13089,18 @@ Informant.SetDatabase({
 	-- []="?:?:2:0:1:::0:0", --
 	-- []="?:?:2:0:1:::0:0", --
 	-- []="?:?:2:0:1:::0:0", --
-	-- 0:0:2 оружие
-	-- 0:0:4 доспехи
+--[[local buy = tonumber(baseSplit[1])
+	local sell = tonumber(baseSplit[2])
+	local class = tonumber(baseSplit[3])
+	local quality = tonumber(baseSplit[4])
+	local stack = tonumber(iCount) or tonumber(baseSplit[5])
+	local additional = baseSplit[6]
+	local usedby = baseSplit[7]
+	local quantity = baseSplit[8]
+	local limited = baseSplit[9]
+	local merchantlist = baseSplit[10]
+	 0:0:2 оружие
+	 0:0:4 доспехи
+	]]
 })
 

@@ -93,14 +93,15 @@ local filterDefaults = {
 		['all'] = 'on',
 		['embed'] = 'off',
 		['locale'] = 'default',
-		['show-vendor'] = 'on',
-		['show-vendor-buy'] = 'on',
+		['show-vendor'] = 'off',
+		['show-vendor-buy'] = 'off',
 		['show-vendor-sell'] = 'on',
-		['show-usage'] = 'on',
-		['show-stack'] = 'on',
-		['show-merchant'] = 'on',
-		['show-quest'] = 'on',
+		['show-usage'] = 'off',
+		['show-stack'] = 'off',
+		['show-merchant'] = 'off',
+		['show-quest'] = 'off',
 		['show-icon'] = 'on',
+		['show-id'] = 'on',
 	}
 
 -- FUNCTION DEFINITIONS
@@ -369,6 +370,7 @@ function tooltipHandler(funcVars, retVal, frame, name, link, quality, count, pri
 	itemInfo.itemLink = link
 	itemInfo.itemCount = count
 	itemInfo.itemQuality = quality
+	itemInfo.itemID=itemID
 
 	stacks = itemInfo.stack
 	if (not stacks) then stacks = 1 end
@@ -430,7 +432,6 @@ function tooltipHandler(funcVars, retVal, frame, name, link, quality, count, pri
 			end
 		end
 	end
-
 	if (getFilter('show-stack')) then
 		if (stacks > 1) then
 			EnhTooltip.AddLine(string.format(_INFM('FrmtInfoStx'), stacks), nil, embedded)
@@ -485,6 +486,12 @@ function tooltipHandler(funcVars, retVal, frame, name, link, quality, count, pri
 				EnhTooltip.AddLine(string.format(_INFM('FrmtInfoQuest'), questCount), nil, embedded)
 				EnhTooltip.LineColor(0.5, 0.5, 0.8)
 			end
+		end
+	end
+	if (getFilter('show-id')) then
+		if itemInfo.itemID then
+			EnhTooltip.AddLine(string.format(_INFM('FrmtInfoID'), itemInfo.itemID), nil, embedded)
+			EnhTooltip.LineColor(0.8, 0.5, 0.6)
 		end
 	end
 end
@@ -615,53 +622,6 @@ local function frameLoaded()
 	Stubby.RegisterFunctionHook("EnhTooltip.AddTooltip", 300, tooltipHandler)
 
 	onLoad()
-	-- Setup the default for stubby to always load (people can override this on a
-	-- per toon basis)
-	--Stubby.SetConfig("Informant", "LoadType", "always", true)
-
-	-- Register our temporary command hook with stubby
-	-- Stubby.RegisterBootCode("Informant", "CommandHandler", [[
-		-- local function cmdHandler(msg)
-			-- local i,j, cmd, param = string.find(string.lower(msg), "^([^ ]+) (.+)$")
-			-- if (not cmd) then cmd = string.lower(msg) end
-			-- if (not cmd) then cmd = "" end
-			-- if (not param) then param = "" end
-			-- if (cmd == "load") then
-				-- if (param == "") then
-					-- Stubby.Print("Manually loading Informant...")
-					-- LoadAddOn("Informant")
-				-- elseif (param == "always") then
-					-- Stubby.Print("Setting Informant to always load for this character")
-					-- Stubby.SetConfig("Informant", "LoadType", param)
-					-- LoadAddOn("Informant")
-				-- elseif (param == "never") then
-					-- Stubby.Print("Setting Informant to never load automatically for this character (you may still load manually)")
-					-- Stubby.SetConfig("Informant", "LoadType", param)
-				-- else
-					-- Stubby.Print("Your command was not understood")
-				-- end
-			-- else
-				-- Stubby.Print("Informant is currently not loaded.")
-				-- Stubby.Print("  You may load it now by typing |cffffffff/informant load|r")
-				-- Stubby.Print("  You may also set your loading preferences for this character by using the following commands:")
-				-- Stubby.Print("  |cffffffff/informant load always|r - Informant will always load for this character")
-				-- Stubby.Print("  |cffffffff/informant load never|r - Informant will never load automatically for this character (you may still load it manually)")
-			-- end
-		-- end
-		-- SLASH_INFORMANT1 = "/informant"
-		-- SLASH_INFORMANT2 = "/inform"
-		-- SLASH_INFORMANT3 = "/info"
-		-- SLASH_INFORMANT4 = "/inf"
-		-- SlashCmdList["INFORMANT"] = cmdHandler
-	-- ]]);
-	-- Stubby.RegisterBootCode("Informant", "Triggers", [[
-		-- local loadType = Stubby.GetConfig("Informant", "LoadType")
-		-- if (loadType == "always") then
-			-- LoadAddOn("Informant")
-		-- else
-			-- Stubby.Print("]].._INFM('MesgNotLoaded')..[[");
-		-- end
-	-- ]]);
 end
 
 function onVariablesLoaded()

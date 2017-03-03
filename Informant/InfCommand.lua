@@ -79,6 +79,7 @@ function buildCommandMap()
 		[_INFM('CmdDefault')]		=	'default',
 		[_INFM('CmdEmbed')]			=	'embed',
 		[_INFM('ShowIcon')]			=	'show-icon',
+		[_INFM('ShowID')]			=	'show-id',
 		[_INFM('ShowStack')]		=	'show-stack',
 		[_INFM('ShowUsage')]		=	'show-usage',
 		[_INFM('ShowQuest')]		=	'show-quest',
@@ -127,7 +128,7 @@ function commandHandler(command, source)
 	elseif (cmd == "default") then
 		restoreDefault(param, chatprint)
 	elseif (cmd == "embed" or cmd == "show-stack" or cmd == "show-usage" or
-			cmd == "show-quest" or cmd == "show-merchant" or cmd == "show-vendor" or
+			cmd == "show-quest" or cmd == "show-id" or cmd == "show-merchant" or cmd == "show-vendor" or
 			cmd == "show-vendor-buy" or cmd == "show-vendor-sell" or cmd == "show-icon") then
 		genVarSet(cmd, param, chatprint)
 	else
@@ -153,6 +154,7 @@ function cmdHelp()
 	chatPrint(string.format(lineFormat, _INFM('ShowVendorBuy'), getLocalizedFilterVal('show-vendor-buy'), _INFM('HelpVendorBuy')))
 	chatPrint(string.format(lineFormat, _INFM('ShowUsage'), getLocalizedFilterVal('show-usage'), _INFM('HelpUsage')))
 	chatPrint(string.format(lineFormat, _INFM('ShowQuest'), getLocalizedFilterVal('show-quest'), _INFM('HelpQuest')))
+	chatPrint(string.format(lineFormat, _INFM('ShowID'), getLocalizedFilterVal('show-id'), _INFM('HelpID')))
 	chatPrint(string.format(lineFormat, _INFM('ShowMerchant'), getLocalizedFilterVal('show-merchant'), _INFM('HelpMerchant')))
 	chatPrint(string.format(lineFormat, _INFM('ShowStack'), getLocalizedFilterVal('show-stack'), _INFM('HelpStack')))
 	chatPrint(string.format(lineFormat, _INFM('ShowIcon'), getLocalizedFilterVal('show-icon'), _INFM('HelpIcon')))
@@ -451,6 +453,31 @@ function registerKhaos()
 						return (string.format(_INFM('FrmtActEnable'),  _INFM('ShowQuest')))
 					else
 						return (string.format(_INFM('FrmtActDisable'), _INFM('ShowQuest')))
+					end
+				end;
+				check=true;
+				default={checked=true};
+				disabled={checked=false};
+				dependencies={enabled={checked=true}};
+				difficulty=1;
+			};
+			{
+				id="show-id";
+				type=K_TEXT;
+				text=function() 
+					return _INFM('GuiInfoID')
+				end;
+				helptext=function() 
+					return _INFM('HelpID')
+				end;
+				callback=function(state)
+					genVarSet("show-id", state.checked)
+				end;
+				feedback=function(state)
+					if (state.checked) then
+						return (string.format(_INFM('FrmtActEnable'),  _INFM('ShowID')))
+					else
+						return (string.format(_INFM('FrmtActDisable'), _INFM('ShowID')))
 					end
 				end;
 				check=true;

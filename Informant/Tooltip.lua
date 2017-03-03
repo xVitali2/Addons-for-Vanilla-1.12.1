@@ -821,8 +821,6 @@ function tooltipCall(frame, name, link, quality, count, price, forcePopup, hyper
 	if (link) then itemSig = itemSig..link end
 	if (count) then itemSig = itemSig..count end
 	if (price) then itemSig = itemSig..price end
---	if itemSig then ace:print(itemSig.."_ITEMSIG") end
---	ace:print(LASTITEM.."_LASTITEM")
 	if LASTITEM and LASTITEM == itemSig then
 		-- We are already showing this... No point doing it again.
 		showTooltip(ENHTOOLTIP.currentGametip)
