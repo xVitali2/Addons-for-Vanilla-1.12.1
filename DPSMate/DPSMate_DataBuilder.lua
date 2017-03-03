@@ -1042,7 +1042,7 @@ local spellSchoolNames = {
 	["лед"] = true,
 	["физический урон"] = true,
 	
-	暗影
+	--暗影
 	-- zhCN
 	["火焰"] = true,
 	["神圣"] = true,
