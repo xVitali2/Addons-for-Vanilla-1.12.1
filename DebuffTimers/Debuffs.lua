@@ -1,4 +1,4 @@
-AUF_Debuff = {
+DET_Debuff = {
 
 	["DRUID"] = {
 		EFFECT = {
