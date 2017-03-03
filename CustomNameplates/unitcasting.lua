@@ -219,7 +219,7 @@
 				newCast(info.victim, info.skill, true)
 			end
 			if CNP_TIME_MODIFIER_BUFFS_TO_TRACK[info.skill] then
-				Sea.io.print("tMod "..info.skill)
+			--	Sea.io.print("tMod "..info.skill)
 
 				newIBuff(info.victim, info.skill)
 			end
