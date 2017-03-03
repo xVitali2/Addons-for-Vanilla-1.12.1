@@ -9,6 +9,8 @@ Description: Guide Serie - 004 Professions
             Professions Guides
 	1.04.2
 		-- no changes in here for this revision
+	1.04.3
+		-- no changes in here for this revision
 ------------------------------------------------------
 Connection:
 --]]--------------------------------------------------

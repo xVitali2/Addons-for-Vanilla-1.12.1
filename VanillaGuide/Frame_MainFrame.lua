@@ -893,7 +893,7 @@ function objMainFrame:new(fParent, tTexture, oSettings, oDisplay)
 		-- 1 = Notes Enabled
 		-- 2 = BWP Enabled
 		-- 3 = Notes & BWP Enabled
-		if nX and nY and sZone then
+		if nX and nY and sZone and MetaMap_GetCurrentMapInfo then
 			local continent, zone, _, mapName = MetaMap_GetCurrentMapInfo()
 			local normX = nX/100
 			local normY = nY/100
