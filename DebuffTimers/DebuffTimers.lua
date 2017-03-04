@@ -660,10 +660,10 @@ function DET:UpdateFont(button,start,duration,style)
 end
 
 function DET:round(num, numDecimalPlaces)
-	if numDecimalPlaces > 0 then
+	if num and numDecimalPlaces > 0 then
 		DET.Work.mult = 10^(numDecimalPlaces or 0)
 		return string.format("%.1f",math.floor(num * DET.Work.mult + 0.5) / DET.Work.mult)
-	else
+	elseif num then
 		return math.floor(num)
 	end
 end
