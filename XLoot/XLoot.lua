@@ -4,7 +4,7 @@
 -- localization (and koKR locals) by fenlis. Thanks =)
 -- Dreaded Esc bug (hopefully) fixed by ckknight! Thanks so much ^_~
 -- Todo: Add "Link all to party/raid" button. Split loot frame display into modules, add Slim layout, add Block layout. Add indicator icons to the items. Dice for items that will be rolled on. Lock or something else for BoP items.
-local L = AceLibrary("AceLocale-2.2"):new("XLoot")
+local L = AceLibrary("AceLocale-2.0"):new("XLoot")
 
 XLoot = AceLibrary("AceAddon-2.0"):new("AceEvent-2.0", "AceDB-2.0", "AceConsole-2.0", "AceHook-2.0");--, "AceModuleCore-2.0" Shhhhh
 --libs\AceModuleCore\AceModuleCore-2.0.lua
@@ -75,7 +75,7 @@ end
 
 function XLoot:DewdropFunc(level, value)
 	if level == 1 then 
-		self.dewdrop:AddLine('text', L["guiTitle"], 'isTitle', true, 'textR', 0.5, 'textG', 0.7, 'textB', 1)
+		self.dewdrop:AddLine('text', "XLoot", 'isTitle', true, 'textR', 0.5, 'textG', 0.7, 'textB', 1)
 	end
 	self.dewdrop:FeedAceOptionsTable(self.opts)
 end

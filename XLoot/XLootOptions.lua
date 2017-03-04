@@ -8,7 +8,7 @@ function XLoot:DoOptions()
 		args = {
 			header = {
 				type = "header",
-				name = hcolor..L["guiTitle"].."  |c88888888"..self.revision,
+				name = hcolor..L["guiTitle"],
 				order = 1
 			},
 			lock = {
