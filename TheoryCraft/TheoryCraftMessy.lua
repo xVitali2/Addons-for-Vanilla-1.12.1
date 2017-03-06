@@ -443,11 +443,11 @@ function TheoryCraft_getMinMax(spelldata, returndata, frame)
 				round(minDamage)..to..round(maxDamage)..
 				string.sub(description, string.find(description, "%d+"..to.."%d+", 0)+lengthofdamagetext)
 		local descriptionbegin = string.sub(description, 0, string.find(description, "%d+"..to.."%d+")+string.len(minDamage..to..maxDamage))
-		local descriptionrest = string.sub(description, string.find(description, "%d+"..to.."%d+")+string.len(minDamage..to..maxDamage)+1)
-		descriptionrest=string.sub(descriptionrest, 0, string.find(descriptionrest, "%d+"..to.."%d+", 0)-1)..
-				round(minHeal)..to..round(maxHeal)..
-				string.sub(descriptionrest, string.find(descriptionrest, "%d+"..to.."%d+", 0)+lengthofhealtext)
-		description = descriptionbegin..descriptionrest
+		-- local descriptionrest = string.sub(description, string.find(description, "%d+"..to.."%d+")+string.len(minDamage..to..maxDamage)+1)
+		-- descriptionrest=string.sub(descriptionrest, 0, string.find(descriptionrest, "%d+"..to.."%d+", 0)-1)..
+				-- round(minHeal)..to..round(maxHeal)..
+				-- string.sub(descriptionrest, string.find(descriptionrest, "%d+"..to.."%d+", 0)+lengthofhealtext)
+		description = descriptionbegin--..descriptionrest
 		returndata["description"] = description
 		returndata["critdmgchance"] = returndata["critchance"]
 		returndata["crithealchance"] = returndata["critchance"]
