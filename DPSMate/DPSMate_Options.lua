@@ -3,25 +3,19 @@ DPSMate.Options.fonts = {
 	["FRIZQT"] = UNIT_NAME_FONT,
 	["ARIALN"] = "Fonts\\ARIALN.TTF",
 	["MORPHEUS"] = "Fonts\\MORPHEUS.TTF",
-	["ABF"] = "Interface\\AddOns\\DPSMate\\fonts\\ABF.TTF",
-	["Accidental Presidency"] = "Interface\\AddOns\\DPSMate\\fonts\\Accidental Presidency.TTF",
-	["Adventure"] = "Interface\\AddOns\\DPSMate\\fonts\\Adventure.TTF",
-	["Avqest"] = "Interface\\AddOns\\DPSMate\\fonts\\Avqest.TTF",
-	["Bazooka"] = "Interface\\AddOns\\DPSMate\\fonts\\Bazooka.TTF",
-	["BigNoodleTitling"] = "Interface\\AddOns\\DPSMate\\fonts\\BigNoodleTitling.TTF",
-	["BigNoodleTitling-Oblique"] = "Interface\\AddOns\\DPSMate\\fonts\\BigNoodleTitling-Oblique.TTF",
-	["BlackChancery"] = "Interface\\AddOns\\DPSMate\\fonts\\BlackChancery.TTF",
-	["Emblem"] = "Interface\\AddOns\\DPSMate\\fonts\\Emblem.TTF",
-	["Enigma__2"] = "Interface\\AddOns\\DPSMate\\fonts\\Enigma__2.TTF",
-	["Movie_Poster-Bold"] = "Interface\\AddOns\\DPSMate\\fonts\\Movie_Poster-Bold.TTF",
-	["Porky"] = "Interface\\AddOns\\DPSMate\\fonts\\Porky.TTF",
-	["rm_midse"] = "Interface\\AddOns\\DPSMate\\fonts\\rm_midse.TTF",
-	["Tangerin"] = "Interface\\AddOns\\DPSMate\\fonts\\Tangerin.TTF",
-	["Tw_Cen_MT_Bold"] = "Interface\\AddOns\\DPSMate\\fonts\\Tw_Cen_MT_Bold.TTF",
-	["Ultima_Campagnoli"] = "Interface\\AddOns\\DPSMate\\fonts\\Ultima_Campagnoli.TTF",
-	["VeraSe"] = "Interface\\AddOns\\DPSMate\\fonts\\VeraSe.TTF",
-	["Yellowjacket"] = "Interface\\AddOns\\DPSMate\\fonts\\Yellowjacket.TTF",
 	["visitor2"] = "Interface\\AddOns\\DPSMate\\fonts\\visitor2.TTF",
+	["Accidental Presidency"] = "Interface\\AddOns\\DPSMate\\fonts\\Accidental Presidency.TTF",
+	["Enigma__2"] = "Interface\\AddOns\\DPSMate\\fonts\\Enigma__2.TTF",
+	["VeraSe"] = "Interface\\AddOns\\DPSMate\\fonts\\VeraSe.TTF",
+	["AlteHaas"] = "Interface\\AddOns\\DPSMate\\fonts\\AlteHaas.TTF",
+	["CaviarDreams"] = "Interface\\AddOns\\DPSMate\\fonts\\CaviarDreams.TTF",
+	["Expressway"] = "Interface\\AddOns\\DPSMate\\fonts\\Expressway.TTF",
+	["ExpresswayBold"] = "Interface\\AddOns\\DPSMate\\fonts\\ExpresswayBold.TTF",
+	["Roboto"] = "Interface\\AddOns\\DPSMate\\fonts\\Roboto.TTF",
+	["The Bad Times"] = "Interface\\AddOns\\DPSMate\\fonts\\The Bad Times.TTF",
+	["Vegur"] = "Interface\\AddOns\\DPSMate\\fonts\\Vegur.TTF",
+	["Mandarin1"] = "Interface\\AddOns\\DPSMate\\fonts\\Mandarin1.TTF",
+	["Mandarin2"] = "Interface\\AddOns\\DPSMate\\fonts\\Mandarin2.TTF",
 }
 DPSMate.Options.fontflags = {
 	["None"] = "NONE",
@@ -1841,19 +1835,19 @@ function DPSMate.Options:CreateWindow()
 			CurMode = "damage",
 			hidden = false,
 			scale = 1,
-			barfont = "ARIALN",
-			barfontsize = 14,
+			barfont = "FRIZQT",
+			barfontsize = 13,
 			barfontflag = "Outline",
-			bartexture = "Healbot",
+			bartexture = "Minimalist",
 			barspacing = 1,
-			barheight = 19,
+			barheight = 17,
 			classicons = true,
 			ranks = true,
 			titlebar = true,
 			titlebarfont = "FRIZQT",
 			titlebarfontflag = "None",
 			titlebarfontsize = 12,
-			titlebarheight = 18,
+			titlebarheight = 17,
 			titlebarreport = true,
 			titlebarreset = true,
 			titlebarsegments = true,
@@ -1861,8 +1855,8 @@ function DPSMate.Options:CreateWindow()
 			titlebarsync = true,
 			titlebarenable = true,
 			titlebarfilter = true,
-			titlebartexture = "Healbot",
-			titlebarbgcolor = {0.01568627450980392,0,1},
+			titlebartexture = "Minimalist",
+			titlebarbgcolor = {0.1568627450980392,0.1725490196078431,0.1647058823529412},
 			titlebarfontcolor = {1.0,0.82,0.0},
 			barfontcolor = {1.0,1.0,1.0},
 			contentbgtexture = "UI-Tooltip-Background",
@@ -1884,7 +1878,7 @@ function DPSMate.Options:CreateWindow()
 				druid = true,
 			},
 			filterpeople = "",
-			grouponly = false,
+			grouponly = true,
 			realtime = false,
 			cbtdisplay = false,
 			barbg = false,
@@ -1894,7 +1888,7 @@ function DPSMate.Options:CreateWindow()
 			borderstrata = 1,
 			bordertexture = "UI-Tooltip-Border",
 			position = {"CENTER",0,0},
-			savsize = {150,100}
+			savsize = {150,100},
 		})
 		local TL = DPSMate:TableLength(DPSMateSettings["windows"])
 		if not _G("DPSMate_"..na) then
@@ -2122,7 +2116,7 @@ function DPSMate.Options:ShowTooltip()
 			GameTooltip:SetOwner(this:GetParent():GetParent():GetParent(), "TOPRIGHT")
 		end
 		local _, cbt = DPSMate:GetMode(DPSMate_Details.PaKey)
-		GameTooltip:AddLine(this.user.." ["..strformat("%0.1f", cbt).."s]", 1,0.82,0,1)
+		GameTooltip:AddLine(this.user.." ["..self:FormatTime(cbt).."]", 1,0.82,0,1)
 		DPSMate.RegistredModules[DPSMateSettings["windows"][DPSMate_Details.PaKey]["CurMode"]]:ShowTooltip(this.user, DPSMate_Details.PaKey)
 		GameTooltip:AddLine(" ")
 		GameTooltip:AddLine(DPSMate.L["leftclickopend"], 0,1,0,1)
@@ -2177,6 +2171,7 @@ function DPSMate.Options:ToggleSync()
 			_G("DPSMate_"..val["name"].."_Head_Sync"):GetNormalTexture():SetVertexColor(0.67,0.83,0.45,1)
 		end
 	end
+	DPSMate.Sync.synckey = ""
 end
 
 
