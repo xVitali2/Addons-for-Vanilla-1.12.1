@@ -19,7 +19,6 @@ function M.set_p(v)
 end
 
 function M.print(...)
-	temp(arg)
 	DEFAULT_CHAT_FRAME:AddMessage(LIGHTYELLOW_FONT_COLOR_CODE .. '<aux> ' .. join(map(arg, tostring), ' '))
 end
 
@@ -29,8 +28,7 @@ function M.get_bids_loaded() return bids_loaded end
 local current_owner_page
 function M.get_current_owner_page() return current_owner_page end
 
-local event_frame = CreateFrame('Frame')
-
+local event_frame = CreateFrame'Frame'
 for event in temp-S('ADDON_LOADED', 'VARIABLES_LOADED', 'PLAYER_LOGIN', 'AUCTION_HOUSE_SHOW', 'AUCTION_HOUSE_CLOSED', 'AUCTION_BIDDER_LIST_UPDATE', 'AUCTION_OWNED_LIST_UPDATE') do
 	event_frame:RegisterEvent(event)
 end
@@ -241,9 +239,19 @@ do
 		label = label .. LIGHTYELLOW_FONT_COLOR_CODE .. ')' .. FONT_COLOR_CODE_CLOSE
 		return label
 	end
+	local function hook_quest_item(f)
+		f:SetScript('OnMouseUp', function()
+			if arg1 == 'RightButton' then
+				if active_tab then
+					tab = 1
+					search_tab.filter = _G[this:GetName() .. 'Name']:GetText() .. '/exact'
+					search_tab.execute(nil, false)
+				end
+			end
+		end)
+	end
 	function ADDON_LOADED.Blizzard_CraftUI()
 		hook('CraftFrame_SetSelection', function(...)
-			temp(arg)
 			local ret = temp-A(orig.CraftFrame_SetSelection(unpack(arg)))
 			local id = GetCraftSelectionIndex()
 			local reagent_count = GetCraftNumReagents(id)
@@ -269,25 +277,11 @@ do
 			return unpack(ret)
 		end)
 		for i = 1, 8 do
-			local f = _G['CraftReagent' .. i]
-			f:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
-			local orig = f:GetScript'OnClick'
-			f:SetScript('OnClick', function()
-				if arg1 == 'RightButton' then
-					if active_tab then
-						tab = 1
-						search_tab.filter = strlower(GetCraftReagentInfo(GetCraftSelectionIndex(), this:GetID())) .. '/exact'
-						search_tab.execute(nil, false)
-					end
-				else
-					orig() -- TODO weird bug with upvalue, somehow always the same function?
-				end
-			end)
+			hook_quest_item(_G['CraftReagent' .. i])
 		end
 	end
 	function ADDON_LOADED.Blizzard_TradeSkillUI()
 		hook('TradeSkillFrame_SetSelection', function(...)
-			temp(arg)
 			local ret = temp-A(orig.TradeSkillFrame_SetSelection(unpack(arg)))
 			local id = GetTradeSkillSelectionIndex()
 			local reagent_count = GetTradeSkillNumReagents(id)
@@ -313,20 +307,7 @@ do
 			return unpack(ret)
 		end)
 		for i = 1, 8 do
-			local f = _G['TradeSkillReagent' .. i]
-			f:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
-			local orig = f:GetScript'OnClick'
-			f:SetScript('OnClick', function()
-				if arg1 == 'RightButton' then
-					if active_tab then
-						tab = 1
-						search_tab.filter = strlower(GetTradeSkillReagentInfo(GetTradeSkillSelectionIndex(), this:GetID())) .. '/exact'
-						search_tab.execute(nil, false)
-					end
-				else
-					orig() -- TODO weird bug with upvalue, somehow always the same function?
-				end
-			end)
+			hook_quest_item(_G['TradeSkillReagent' .. i])
 		end
 	end
 end
