@@ -23,7 +23,7 @@
     function CooldownFrame_SetTimer(this, start, duration, enable)
         orig.CooldownFrame_SetTimer(this, start, duration, enable)
         if _G['modui_vars'].db and _G['modui_vars'].db['modCDCount'] == 1 then -- this occasionally fires before PLAYER_LOGIN
-            if start > 0 and duration > 3 then
+            if  this:GetParent():GetWidth() > 27 and start > 0 and duration > 3 then
                 this.start = start
                 this.duration = duration
                 this.nextUpdate = 0
