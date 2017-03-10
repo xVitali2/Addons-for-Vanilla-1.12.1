@@ -1,4 +1,3 @@
-
 _G = getfenv(0)
 
 print = function(m) DEFAULT_CHAT_FRAME:AddMessage(m) end
@@ -28,14 +27,14 @@ ENEMYFRAMESPLAYERDATA =
 	['targetDebuffTimers']		= false,
 	-- bgs
 	['incomingSpells']			= false,
-	['pvpmapblips']				= false,	
+	['pvpmapblips']				= false,
 	['efcBGannouncement']		= false,
 	-- optionals
 	['displayNames']			= true,
 	--['displayHealthValues'] = false,
 	['displayManabar']			= false,
 	['displayOnlyNearby']		= false,
-	['castTimers']				= false,		
+	['castTimers']				= false,
 	['targetCounter']			= false,
 	-- nameplates
 	['nameplatesClassColor'] 	= true,
@@ -43,8 +42,7 @@ ENEMYFRAMESPLAYERDATA =
 	['nameplatesCastbar']		= true,
 	['plateDebuffSize']			= 1,
 	['nameplatesRaidMarks']		= true,
-	
-	
+
 	['offX']				= 0,
 	['offY']				= 0,
 }
@@ -184,7 +182,8 @@ local closeSettings = function()
 		_G['enemyFrameDisplay']:Hide() 
 	end 
 
-	INCOMINGSPELLSsettings(false) TARGETFRAMECASTBARsettings(false)
+	INCOMINGSPELLSsettings(false)
+	TARGETFRAMECASTBARsettings(false)
 end
 -- x button
 settings.x:SetScript('OnClick', function() 
@@ -198,9 +197,9 @@ local function eventHandler()
 		local tc = playerFaction == EF_L_ALLIANCE2 and 'FF1A1A' or '00ADF0'
 		print('|cff' ..tc.. EF_L_EFLOADED ..tc.. EF_L_FORMENUSETTINGS)
 		_G['enemyFrameDisplay']:SetScale(ENEMYFRAMESPLAYERDATA['scale'])
-		_G['enemyFrameDisplay']:SetPoint('CENTER', UIParent, ENEMYFRAMESPLAYERDATA['offX'], ENEMYFRAMESPLAYERDATA['offY'])
+		_G['enemyFrameDisplay']:SetPoint('CENTER', UIParent,'CENTER', ENEMYFRAMESPLAYERDATA['offX'], ENEMYFRAMESPLAYERDATA['offY'])
 	elseif event == 'PLAYER_LOGOUT' then
-		local point, relativeTo, relativePoint, xOfs, yOfs = _G['enemyFrameDisplay']:GetPoint()
+		local _,_,_,xOfs,yOfs = _G['enemyFrameDisplay']:GetPoint()
 		ENEMYFRAMESPLAYERDATA['offX'] = xOfs
 		ENEMYFRAMESPLAYERDATA['offY'] = yOfs
 	elseif event == 'ZONE_CHANGED_NEW_AREA' then

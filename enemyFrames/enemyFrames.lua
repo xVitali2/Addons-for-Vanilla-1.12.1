@@ -25,8 +25,9 @@ local enemyFactionColor
 
 local 	enemyFrame = CreateFrame('Frame', 'enemyFrameDisplay', UIParent)
 		enemyFrame:SetFrameStrata("BACKGROUND")
-		enemyFrame:SetPoint('CENTER', UIParent, UIParent:GetHeight()/3, UIParent:GetHeight()/3)		
+		enemyFrame:SetPoint('CENTER', UIParent, UIParent:GetHeight()/3, UIParent:GetHeight()/3)
 		enemyFrame:SetHeight(20)
+		enemyFrame:SetWidth(20)
 		
 		--enemyFrame:SetBackdrop(BACKDROP)
 		--enemyFrame:SetBackdropColor(0, 0, 0, .6)
