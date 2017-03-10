@@ -1,8 +1,7 @@
 local playerFaction
 local bgs = {[EF_L_WARSONG] = 10, 
 			 [EF_L_ARATHI] = 15, 
-			 [EF_L_ALTERAC] = 40
-			 }
+			 [EF_L_ALTERAC] = 40}
 -- TIMERS
 local playerListInterval, playerListRefresh, enemyNearbyInterval, enemyNearbyRefresh = 30, 0, .3, 0
 local raidMemberIndex = 1
@@ -37,12 +36,12 @@ local function fillPlayerList()
 	
 	-- add new players
 	for k, v in pairs(l) do
-		if playerList[v['name']] == nil then	
-			playerList[v['name']] 			 = v 		
+		if playerList[v['name']] == nil then
+			playerList[v['name']]  = v 
 			refreshUnits = true 
 		end
 	end
-	-- remove aabsent players
+	-- remove absent players
 	for k, v in pairs(playerList) do
 		if l[v['name']] == nil then	
 			playerList[v['name']] = nil	

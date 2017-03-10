@@ -675,7 +675,8 @@ EF_L_ARATHI='Низина Арати';
 EF_L_ALTERAC='Альтеракская долина';
 end
 function changeEngClassName(c)
-	local class=c;
+	if not c then return end
+	local class=string.upper(c)
 			if c=='Воин' then
 				class='WARRIOR';
 			elseif c=='Разбойник' then
@@ -698,7 +699,8 @@ function changeEngClassName(c)
 	return class
 end
 function changeEngRaceName(r)
-	local race=r;
+	if not r then return end
+	local race=string.upper(r)
 			if r=='Нежить' then
 				race='UNDEAD';
 			elseif r=='Орк' then
