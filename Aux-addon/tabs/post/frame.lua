@@ -51,6 +51,7 @@ end
 
 gui.horizontal_line(frame.inventory, -45)
 
+
 do
 	local f = CreateFrame('Frame', nil, frame.inventory)
 	f:SetPoint('TOPLEFT', 0, -51)
@@ -79,7 +80,19 @@ do
 				end
 	        elseif arg1 == 'RightButton' then
 	            tab = 1
-	            search_tab.filter = strlower(info.item(this.item_record.item_id).name) .. '/exact'
+				local itemname=info.item(this.item_record.item_id).name
+				if GetLocale()=="ruRU" then
+					local s,ss=nil,nil
+					ss = string.find(itemname,"крошшера")
+					if ss then
+						s=string.sub(itemname,56,84)
+					else
+						s=string.sub(itemname,0,63)
+					end
+					search_tab.filter = s
+				else
+					search_tab.filter = strlower(itemname) .. '/exact'
+				end
 	            search_tab.execute(nil, false)
 	        end
 	    end,
