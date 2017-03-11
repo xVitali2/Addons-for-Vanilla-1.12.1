@@ -16,14 +16,6 @@ local price_per_unit = false
 local HEAD_HEIGHT = 27
 local HEAD_SPACE = 2
 
-local AUCTION_PCT_COLORS = {
-    {color=color.blue, value=50},
-    {color=color.green, value=80},
-    {color=color.yellow, value=110},
-    {color=color.orange, value=135},
-    {color=color.red, value=huge},
-}
-
 local TIME_LEFT_STRINGS = {
 	color.red(SHORT), -- Short
 	color.orange(MEDIUM), -- Medium
@@ -529,16 +521,21 @@ function record_percentage(record)
     end
 end
 
-function percentage_color(pct)
-	for i = 1, getn(AUCTION_PCT_COLORS) do
-		if pct < AUCTION_PCT_COLORS[i].value then
-			return AUCTION_PCT_COLORS[i].color
-		end
-	end
-end
-
 function M.percentage_historical(pct, bid)
-    return (bid and color.gray or percentage_color(pct)) .. (pct > 10000 and '>10000' or pct) .. '%' .. FONT_COLOR_CODE_CLOSE
+    local text = (pct > 10000 and '>10000' or pct) .. '%'
+    if bid then
+        return color.gray(text)
+    elseif pct < 50 then
+        return color.blue(text)
+    elseif pct < 80 then
+        return color.green(text)
+    elseif pct < 110 then
+        return color.yellow(text)
+    elseif pct < 135 then
+        return color.orange(text)
+    else
+        return color.red(text)
+    end
 end
 
 function M.time_left(code)
@@ -548,13 +545,16 @@ end
 local methods = {
 
     ResizeColumns = function(self)
-	    local width = self.contentFrame:GetRight() - self.contentFrame:GetLeft()
+        local weight = 0
         for _, cell in self.headCells do
-            cell:SetWidth(cell.info.width * width)
+            weight = weight + cell.info.width
         end
+        weight = (self.contentFrame:GetRight() - self.contentFrame:GetLeft()) / weight
+        for i, cell in self.headCells do
+            local width = cell.info.width * weight
+            cell:SetWidth(width)
         for _, row in self.rows do
-            for i, cell in row.cells do
-                cell:SetWidth(self.headCells[i].info.width * width)
+                row.cells[i]:SetWidth(width)
             end
         end
     end,
@@ -583,13 +583,13 @@ local methods = {
 
     OnIconEnter = function()
         local rt = this:GetParent().row.rt
-        local rowData = this:GetParent().row.data
-        if rowData and rowData.record then
+        local row = this:GetParent().row
+        if row.record then
 	        GameTooltip:SetOwner(this, 'ANCHOR_RIGHT')
-            info.load_tooltip(GameTooltip, rowData.record.tooltip)
-	        tooltip.extend_tooltip(GameTooltip, rowData.record.link, rowData.record.aux_quantity)
+            info.load_tooltip(GameTooltip, row.record.tooltip)
+	        tooltip.extend_tooltip(GameTooltip, row.record.link, row.record.aux_quantity)
 			if not EQUIPCOMPARE_VERSIONID then
-				info.set_shopping_tooltip(rowData.record.slot)
+				info.set_shopping_tooltip(row.record.slot)
 		    end
         end
     end,
@@ -600,11 +600,11 @@ local methods = {
 
     OnEnter = function()
         local rt = this.rt
-        if rt.expanded[this.data.expandKey] then
+        if rt.expanded[this.expandKey] then
             GameTooltip_SetDefaultAnchor(GameTooltip, UIParent)
             GameTooltip:AddLine(MSG_1, 1, 1, 1, true)
             GameTooltip:Show()
-        elseif this.data.expandable then
+        elseif this.expandable then
             GameTooltip_SetDefaultAnchor(GameTooltip, UIParent)
             GameTooltip:AddLine(MSG_2, 1, 1, 1, true)
             GameTooltip:Show()
@@ -615,7 +615,7 @@ local methods = {
 
     OnLeave = function()
         GameTooltip:Hide()
-        if not this.rt.selected or this.rt.selected.search_signature ~= this.data.record.search_signature then
+        if not this.rt.selected or this.rt.selected.search_signature ~= this.record.search_signature then
             this.highlight:Hide()
         end
     end,
@@ -623,17 +623,17 @@ local methods = {
     OnClick = function()
         local button = arg1
         if IsControlKeyDown() then
-            DressUpItemLink(this.data.record.link)
+            DressUpItemLink(this.record.link)
         elseif IsShiftKeyDown() and ChatFrameEditBox:IsVisible() then
-            ChatFrameEditBox:Insert(this.data.record.link)
+            ChatFrameEditBox:Insert(this.record.link)
         elseif not modified and button == 'RightButton' then -- TODO not when alt (how?)
             tab = 1
-            search_tab.filter = strlower(info.item(this.data.record.item_id).name) .. '/exact'
+            search_tab.filter = strlower(info.item(this.record.item_id).name) .. '/exact'
             search_tab.execute(nil, false)
         else
             local selection = this.rt:GetSelection()
-            if not selection or selection.record ~= this.data.record then
-                this.rt:SetSelectedRecord(this.data.record)
+            if not selection or selection.record ~= this.record then
+                this.rt:SetSelectedRecord(this.record)
             elseif this.rt.handlers.OnClick then
                 this.rt.handlers.OnClick(this, button)
             end
@@ -642,14 +642,13 @@ local methods = {
 
     OnDoubleClick = function()
         local rt = this.rt
-        local rowData = this.data
-        local expand = not rt.expanded[rowData.expandKey]
+        local expand = not rt.expanded[this.expandKey]
 
-        rt.expanded[rowData.expandKey] = expand
+        rt.expanded[this.expandKey] = expand
         rt:UpdateRowInfo()
         rt:UpdateRows()
-        if not rowData.indented then
-            rt:SetSelectedRecord(this.data.record)
+        if not this.indented then
+            rt:SetSelectedRecord(this.record)
         end
     end,
 
@@ -677,16 +676,16 @@ local methods = {
             local prevRecord = records[i - 1]
             if prevRecord and record.search_signature == prevRecord.search_signature then
                 -- it's an identical auction to the previous row so increment the number of auctions
-                self.rowInfo[getn(self.rowInfo)].children[getn(self.rowInfo[getn(self.rowInfo)].children)].numAuctions = self.rowInfo[getn(self.rowInfo)].children[getn(self.rowInfo[getn(self.rowInfo)].children)].numAuctions + 1
+                self.rowInfo[getn(self.rowInfo)].children[getn(self.rowInfo[getn(self.rowInfo)].children)].count = self.rowInfo[getn(self.rowInfo)].children[getn(self.rowInfo[getn(self.rowInfo)].children)].count + 1
             elseif not single_item and prevRecord and record.item_key == prevRecord.item_key then
                 -- it's the same base item as the previous row so insert a new auction
-                tinsert(self.rowInfo[getn(self.rowInfo)].children, O('numAuctions', 1, 'record', record))
+                tinsert(self.rowInfo[getn(self.rowInfo)].children, O('count', 1, 'record', record))
                 if self.expanded[self.rowInfo[getn(self.rowInfo)].expandKey] then
                     self.rowInfo.numDisplayRows = self.rowInfo.numDisplayRows + 1
                 end
             else
                 -- it's a different base item from the previous row
-                tinsert(self.rowInfo, O('item_key', record.item_key, 'expandKey', record.item_key, 'children', A(O('numAuctions', 1, 'record', record))))
+                tinsert(self.rowInfo, O('item_key', record.item_key, 'expandKey', record.item_key, 'children', A(O('count', 1, 'record', record))))
                 self.rowInfo.numDisplayRows = self.rowInfo.numDisplayRows + 1
             end
         end
@@ -695,9 +694,9 @@ local methods = {
 		    local info = self.rowInfo[i]
             local totalAuctions, totalPlayerAuctions = 0, 0
             for _, childInfo in info.children do
-                totalAuctions = totalAuctions + childInfo.numAuctions
+                totalAuctions = totalAuctions + childInfo.count
                 if is_player(childInfo.record.owner) then
-                    totalPlayerAuctions = totalPlayerAuctions + childInfo.numAuctions
+                    totalPlayerAuctions = totalPlayerAuctions + childInfo.count
                 end
             end
             info.totalAuctions = totalAuctions
@@ -775,17 +774,17 @@ local methods = {
             if self.expanded[info.expandKey] then
                 for j = 1, getn(info.children) do
 	                local childInfo = info.children[j]
-                    self:SetRowInfo(rowIndex, childInfo.record, childInfo.numAuctions, 0, j > 1, false, info.expandKey, childInfo.numAuctions)
+                    self:SetRowInfo(rowIndex, childInfo.record, childInfo.count, 0, j > 1, false, info.expandKey)
                     rowIndex = rowIndex + 1
                 end
             else
-                self:SetRowInfo(rowIndex, info.children[1].record, info.totalAuctions, getn(info.children) > 1 and info.totalPlayerAuctions or 0, false, getn(info.children) > 1, info.expandKey, info.children[1].numAuctions)
+                self:SetRowInfo(rowIndex, info.children[1].record, info.totalAuctions, getn(info.children) > 1 and info.totalPlayerAuctions or 0, false, getn(info.children) > 1, info.expandKey)
                 rowIndex = rowIndex + 1
             end
         end
     end,
 
-    SetRowInfo = function(self, rowIndex, record, displayNumAuctions, numPlayerAuctions, indented, expandable, expandKey, numAuctions)
+    SetRowInfo = function(self, rowIndex, record, totalAuctions, totalPlayerAuctions, indented, expandable, expandKey)
         if rowIndex <= 0 or rowIndex > getn(self.rows) then return end
         local row = self.rows[rowIndex]
         row:Show()
@@ -794,10 +793,14 @@ local methods = {
         else
             row.highlight:Hide()
         end
-        row.data = {record=record, expandable=expandable, indented=indented, numAuctions=numAuctions, expandKey=expandKey}
+
+        row.record = record
+        row.expandable = expandable
+        row.indented = indented
+        row.expandKey = expandKey
 
         for i, column in self.columns do
-	        column.fill(row.cells[i], record, displayNumAuctions, numPlayerAuctions, expandable, indented)
+	        column.fill(row.cells[i], record, totalAuctions, totalPlayerAuctions, expandable, indented)
         end
     end,
 
@@ -807,7 +810,7 @@ local methods = {
         self.selected = selectedData and self.selected or nil
 
         for _, row in self.rows do
-            if self.selected and row.data and row.data.record.search_signature == self.selected.search_signature then
+            if self.selected and row.record and row.record.search_signature == self.selected.search_signature then
                 row.highlight:Show()
             else
                 row.highlight:Hide()
@@ -834,7 +837,7 @@ local methods = {
         local prevSelectedIndex
         if self.selected then
             for i, row in self.rows do
-                if row:IsVisible() and row.data and row.data.record == self.selected then
+                if row:IsVisible() and row.record == self.selected then
                     prevSelectedIndex = i
                 end
             end
@@ -846,14 +849,14 @@ local methods = {
         if not self.selected and prevSelectedIndex then
             -- try to select the same row
             local row = self.rows[prevSelectedIndex]
-            if row and row:IsVisible() and row.data and row.data.record then
-                self:SetSelectedRecord(row.data.record)
+            if row and row:IsVisible() and row.record then
+                self:SetSelectedRecord(row.record)
             end
             if not self.selected then
                 -- select the first row
                 row = self.rows[1]
-                if row and row:IsVisible() and row.data and row.data.record then
-                    self:SetSelectedRecord(row.data.record)
+                if row and row:IsVisible() and row.record then
+                    self:SetSelectedRecord(row.record)
                 end
             end
         end

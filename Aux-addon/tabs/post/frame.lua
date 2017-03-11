@@ -267,7 +267,6 @@ do
 end
 do
     local editbox = gui.editbox(frame.parameters)
-    editbox.name = 'start'
     editbox:SetPoint('TOPRIGHT', -71, -60)
     editbox:SetWidth(180)
     editbox:SetHeight(22)
@@ -303,7 +302,6 @@ do
 end
 do
     local editbox = gui.editbox(frame.parameters)
-    editbox.name = 'buy'
     editbox:SetPoint('TOPRIGHT', unit_start_price_input, 'BOTTOMRIGHT', 0, -19)
     editbox:SetWidth(180)
     editbox:SetHeight(22)
