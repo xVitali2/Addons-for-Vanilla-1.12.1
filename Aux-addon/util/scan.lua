@@ -75,7 +75,14 @@ end
 function M.item_query(item_id, first_page, last_page)
 	local item_info = info.item(item_id)
     if item_info then
-        local query = filter_util.query(item_info.name .. '/exact')
+		local s=nil
+		if GetLocale()=="ruRU" then
+			local ss = string.find(item_info.name,"крошшера")
+			if ss then s=string.sub(item_info.name,56,84) else s=string.sub(item_info.name,0,63) end
+		else
+			s=item_info.name..'/exact'
+		end
+        local query = filter_util.query(s)
         query.blizzard_query.first_page = first_page
         query.blizzard_query.last_page = last_page
         return O('validator', query.validator, 'blizzard_query', query.blizzard_query)
