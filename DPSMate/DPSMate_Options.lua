@@ -810,7 +810,7 @@ end
 
 function DPSMate.Options:PopUpAccept(bool, bypass)
 	DPSMate_PopUp:Hide()
-	if DPSMate.DB:InPartyOrRaid() and not bypass and DPSMateSettings["sync"] and bool then
+	if (UnitInParty("player") or UnitInRaid("player")) and not bypass and DPSMateSettings["sync"] and bool then
 		if IsPartyLeader() or IsRaidOfficer() or IsRaidLeader() then
 			DPSMate.Sync:StartVote()
 		else
@@ -995,7 +995,7 @@ function DPSMate.Options:OpenMenu(b, obj)
 end
 
 function DPSMate.Options:ToggleDrewDrop(i, obj, pa)
-	if not DPSMate:WindowsExist() then return end
+	if not DPSMateSettings["windows"][1] then return end
 	for cat, _ in pairs(DPSMateSettings["windows"][pa.Key]["options"][i]) do
 		DPSMateSettings["windows"][pa.Key]["options"][i][cat] = false
 	end
