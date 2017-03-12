@@ -1,5 +1,5 @@
 local N = UnitName("player");
-local R = UnitRace("player");
+local _, R = UnitRace("player");
 QuestieLevLookup = {
  ["Питомцы Элуны"]={
   ["Поговорите с верховным друидом Фэндралом Оленьим Шлемом в Дарнасе."]={77,1617756149},
@@ -55512,40 +55512,212 @@ QuestieAdditionalStartFinishLookup = { -- {C,Z,X,Y}
 	["Харлан Багли"] = {2, 17, 0.55106711387634, 0.56233310699463},
 	["Чи-Та 3"] = {1, 20, 0.67657661437988, 0.16762030124664},
 }
+function GetEntityLocations(entity)
+    local locations = {}
+    local mapIds = {}
+    for sourceType, sources in pairs(entity) do
+        if sourceType == "drop" then
+            for sourceName, b in pairs(sources) do
+                local locationMeta, ids = GetMonsterLocations(sourceName)
+                if next(locationMeta) then
+                    if locations[sourceType] == nil then locations[sourceType] = {} end
+                    locations[sourceType][sourceName] = locationMeta
+                    for c, zs in pairs(ids) do if mapIds[c] == nil then mapIds[c] = {} end for z, b in pairs(zs) do mapIds[c][z] = true end end
+                end
+            end
+        end
+        if sourceType == "contained" then
+            for sourceName, b in pairs(sources) do
+                local locationMeta, ids = GetObjectLocations(sourceName)
+                if next(locationMeta) then
+                    if locations[sourceType] == nil then locations[sourceType] = {} end
+                    locations[sourceType][sourceName] = locationMeta
+                    for c, zs in pairs(ids) do if mapIds[c] == nil then mapIds[c] = {} end for z, b in pairs(zs) do mapIds[c][z] = true end end
+                end
+            end
+        end
+        if sourceType == "contained_id" then
+            for sourceId, b in pairs(sources) do
+                local locationMeta, ids = GetNewObjectLocations(sourceId)
+                if next(locationMeta) then
+                    if locations[sourceType] == nil then locations[sourceType] = {} end
+                    local sourceName = locationMeta.name
+                    locationMeta.name = nil
+                    locations[sourceType][sourceName] = locationMeta
+                    for c, zs in pairs(ids) do if mapIds[c] == nil then mapIds[c] = {} end for z, b in pairs(zs) do mapIds[c][z] = true end end
+                end
+            end
+        end
+        if sourceType == "containedi" then
+            for sourceName, b in pairs(sources) do
+                local locationMeta, ids = GetItemLocations(sourceName)
+                if next(locationMeta) then
+                    if locations[sourceType] == nil then locations[sourceType] = {} end
+                    locations[sourceType][sourceName] = locationMeta
+                    for c, zs in pairs(ids) do if mapIds[c] == nil then mapIds[c] = {} end for z, b in pairs(zs) do mapIds[c][z] = true end end
+                end
+            end
+        end
+        if sourceType == "created" then
+            for sourceName, b in pairs(sources) do
+                local locationMeta, ids = GetItemLocations(sourceName)
+                if next(locationMeta) then
+                    if locations[sourceType] == nil then locations[sourceType] = {} end
+                    locations[sourceType][sourceName] = locationMeta
+                    for c, zs in pairs(ids) do if mapIds[c] == nil then mapIds[c] = {} end for z, b in pairs(zs) do mapIds[c][z] = true end end
+                end
+            end
+        end
+        if sourceType == "transforms" then
+            for sourceName, b in pairs(sources) do
+                local locationMeta, ids = GetMonsterLocations(sourceName)
+                if next(locationMeta) then
+                    if locations[sourceType] == nil then locations[sourceType] = {} end
+                    locations[sourceType][sourceName] = locationMeta
+                    for c, zs in pairs(ids) do if mapIds[c] == nil then mapIds[c] = {} end for z, b in pairs(zs) do mapIds[c][z] = true end end
+                end
+            end
+        end
+        if sourceType == "transformedby" then
+            for sourceName, b in pairs(sources) do
+                local locationMeta, ids = GetItemLocations(sourceName)
+                if next(locationMeta) then
+                    if locations[sourceType] == nil then locations[sourceType] = {} end
+                    locations[sourceType][sourceName] = locationMeta
+                    for c, zs in pairs(ids) do if mapIds[c] == nil then mapIds[c] = {} end for z, b in pairs(zs) do mapIds[c][z] = true end end
+                end
+            end
+        end
+        if sourceType == "openedby" then
+            for sourceName, b in pairs(sources) do
+                local locationMeta, ids = GetItemLocations(sourceName)
+                if next(locationMeta) then
+                    if locations[sourceType] == nil then locations[sourceType] = {} end
+                    locations[sourceType][sourceName] = locationMeta
+                    --for c, zs in pairs(ids) do if mapIds[c] == nil then mapIds[c] = {} end for z, b in pairs(zs) do mapIds[c][z] = true end end
+                end
+            end
+        end
+        if sourceType == "locations" then
+            local added = false
+            for i, location in pairs(sources) do
+                local reformattedLocation
+                if location[2] >= 1 then
+                    -- new location format
+                    reformattedLocation = location
+                elseif QuestieZoneIDLookup[location[1]] then
+                    -- old location format
+                    local MapInfo = QuestieZoneIDLookup[location[1]]
+                    reformattedLocation = {MapInfo[4], MapInfo[5], location[2], location[3]}
+                end
+
+                if reformattedLocation then
+                    if locations[sourceType] == nil then locations[sourceType] = {} end
+                    table.insert(locations[sourceType], reformattedLocation)
+                    if added == false then
+                        local c, z = reformattedLocation[1], reformattedLocation[2]
+                        if mapIds[c] == nil then mapIds[c] = {} end
+                        mapIds[c][z] = true
+                        added = true
+                    end
+                else
+                    --sources[i] = nil
+                end
+            end
+        end
+        if sourceType == "name" then
+            locations[sourceType] = sources
+        end
+    end
+    return locations, mapIds
+end
+
+function GetMonsterLocations(monsterName)
+    if QuestieMonsters[monsterName] then
+        return GetEntityLocations(QuestieMonsters[monsterName])
+    end
+    -- todo handle QuestieAdditionalStartFinishLookup
+    --local additionalCheck = QuestieAdditionalStartFinishLookup[monsterName]
+    --if additionalCheck ~= nil then
+    --    local czLookupKey = additionalCheck[2]*100 + additionalCheck[3]
+    --    return QuestieCZLookup[czLookupKey]
+    --end
+    return {}, {}
+end
+
+function GetObjectLocations(objectName)
+    if QuestieObjects[objectName] then
+        return GetEntityLocations(QuestieObjects[objectName])
+    else
+        -- todo shouldn't really check monsters, but someone moved some objects and items to the monsters list
+        return GetMonsterLocations(objectName)
+    end
+    return {}, {}
+end
+
+function GetNewObjectLocations(objectId)
+    if QuestieNewObjects[objectId] then
+        return GetEntityLocations(QuestieNewObjects[objectId])
+    end
+    return {}, {}
+end
+
+function GetItemLocations(itemName)
+    if QuestieItems[itemName] then
+        return GetEntityLocations(QuestieItems[itemName])
+    end
+    return {}, {}
+end
+
+function GetEventLocations(eventName)
+    if QuestieEvents[eventName] then
+        return GetEntityLocations(QuestieEvents[eventName])
+    end
+    return {}, {}
+end
+
+function addQuestToZoneLevelMap(c, z, level, questId, locationMeta)
+    if QuestieZoneLevelMap[c] == nil then
+        QuestieZoneLevelMap[c] = {};
+    end
+    if QuestieZoneLevelMap[c][z] == nil then
+        QuestieZoneLevelMap[c][z] = {};
+    end
+    if QuestieZoneLevelMap[c][z][level] == nil then
+        QuestieZoneLevelMap[c][z][level] = {};
+    end
+    QuestieZoneLevelMap[c][z][level][questId] = locationMeta
+end
 
 QuestieZoneLevelMap = {
 }
 
 local start = GetTime();
 for k,v in pairs(QuestieHashMap) do
-	if v['startedType'] == "monster" then
-		local qhdb = QuestieMonsters[v['startedBy']];
-		local mapid = -1;
-		if qhdb == nil then
-			local derp = QuestieAdditionalStartFinishLookup[v['startedBy']];
-			if not (derp == nil) then
-				local c = derp[1];
-				local v = derp[2];
-				-- MAKE THIS CODE FASTER
-				for k,va in pairs(QuestieZones) do
-					if va[2] == c and va[3] == v then
-						mapid = va[1];
-					end
-				end
-			end
-		else
-			mapid = qhdb['locations'][1][1];
-		end
-		if not (mapid == -1) then
-			if QuestieZoneLevelMap[mapid] == nil then
-				QuestieZoneLevelMap[mapid] = {};
-			end
-			if QuestieZoneLevelMap[mapid][v['level']] == nil then
-				QuestieZoneLevelMap[mapid][v['level']] = {};
-			end
-			table.insert(QuestieZoneLevelMap[mapid][v['level']], k);
-		end
-	end
+    if v['startedType'] == "monster" then
+        local locationMeta, mapIds = GetMonsterLocations(v['startedBy'])
+        for c, zs in pairs(mapIds) do
+            for z, b in pairs(zs) do
+                addQuestToZoneLevelMap(c, z, v['level'], k, locationMeta)
+            end
+        end
+    end
+    if v['startedType'] == "item" and v['startedBy'] ~= "unknown" then
+        local locationMeta, mapIds = GetItemLocations(v['startedBy'])
+        for c, zs in pairs(mapIds) do
+            for z, b in pairs(zs) do
+                addQuestToZoneLevelMap(c, z, v['level'], k, locationMeta)
+            end
+        end
+    end
+    if v['startedType'] == "object" then
+        local locationMeta, mapIds = GetObjectLocations(v['startedBy'])
+        for c, zs in pairs(mapIds) do
+            for z, b in pairs(zs) do
+                addQuestToZoneLevelMap(c, z, v['level'], k, locationMeta)
+            end
+        end
+    end
 end
 
 local ttl = GetTime() - start;

@@ -1,11 +1,13 @@
 ## Interface: 11200
-## Title: Questie[RU]
-## Author: Aero/Schaka/Logonz/Dyaxler/everyone else
+## Title: QuestieRU
+## Author: Aero/Schaka/Logonz/Dyaxler/Muehe/Zoey & all of our contributors
 ## Notes: A standalone Vanilla QuestHelper
-## Notes-ruRU: –ö–≤–µ—Å—Ç–•–µ–ª–ø–µ—Ä –¥–ª—è –∫–ª–∞—Å—Å–∏–∫–∏ v3.69
-## Version: 3.69
-## OptionalDeps: !!!Libs, Cartographer, MetaMap, EQL3, ShaguQuest
-## SavedVariablesPerCharacter: QuestieSeenQuests, QuestieTrackedQuests, QuestieConfig, QuestieTrackerVariables
+## Notes-ruRU:  ‚ÂÒÚ’ÂÎÔÂ ‰Îˇ ÍÎ‡ÒÒËÍË v3.70
+## Version: 3.70
+## RequiredDeps:
+## OptionalDeps: !Libs, Cartographer, MetaMap, EQL3, ShaguQuest
+## SavedVariables:
+## SavedVariablesPerCharacter: QuestieSeenQuests, QuestieCachedQuests, QuestieConfig, QuestieTrackerVariables, QuestieMinimapPosition
 
 # Astrolabe
 Libs\AceLibrary\AceLibrary.lua
@@ -25,6 +27,9 @@ Libs\Babble-Spell-2.2\Babble-Spell-2.2.lua
 Libs\Tablet-2.0\Tablet-2.0.lua
 Libs\Tourist-2.0\Tourist-2.0.lua
 
+# Questie Utility Functions
+Modules\QuestieUtils.lua
+
 # Questie Database
 Database\items.lua
 Database\monsters.lua
@@ -33,13 +38,15 @@ Database\zone.lua
 Database\hash.lua
 Database\finishers.lua
 Database\objects.lua
+Database\newObjects.lua
 Database\addendum.lua
 Astrolabe\Astrolabe.lua
 
 # Questie
-QuestieRU.lua
+Questie.lua
+Modules\QuestieArrow.lua
+Modules\QuestieGUI.lua
 Modules\QuestieNotes.lua
 Modules\QuestieQuest.lua
 Modules\QuestieTracker.lua
-Modules\QuestieArrow.lua
-QuestieRU.xml
+Questie.xml

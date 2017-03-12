@@ -24,7 +24,7 @@ local Z = AceLibrary("Babble-Zone-2.2")
 local playerLevel = 1
 local _,race = UnitRace("player")
 local isHorde = (race == "Orc" or race == "Troll" or race == "Tauren" or race == "Scourge" or race == "BloodElf")
-local isWestern = GetLocale() == "enUS" or GetLocale() == "ruRU" or GetLocale() == "deDE" or GetLocale() == "frFR" or GetLocale() == "esES"
+local isWestern = GetLocale() == "enUS" or GetLocale() == "deDE" or GetLocale() == "frFR" or GetLocale() == "esES"
 local math_mod = math.fmod or math.mod
 
 local expansion = (MAX_PLAYER_LEVEL == 70)

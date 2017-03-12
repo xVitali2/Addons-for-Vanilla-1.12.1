@@ -1,6 +1,6 @@
 --[[
 Name: AceAddon-2.0
-Revision: $Rev: 17957 $
+Revision: $Rev: 14832 $
 Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
 Inspired By: Ace 1.x by Turan (turan@gryphon.com)
 Website: http://www.wowace.com/
@@ -11,22 +11,16 @@ Dependencies: AceLibrary, AceOO-2.0, AceEvent-2.0, (optional) AceConsole-2.0
 ]]
 
 local MAJOR_VERSION = "AceAddon-2.0"
-local MINOR_VERSION = "$Revision: 17957 $"
+local MINOR_VERSION = "$Revision: 14832 $"
 
 -- This ensures the code is only executed if the libary doesn't already exist, or is a newer version
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary.") end
 if not AceLibrary:IsNewVersion(MAJOR_VERSION, MINOR_VERSION) then return end
 
-if loadstring("return function(...) return ... end") and AceLibrary:HasInstance(MAJOR_VERSION) then return end -- lua51 check
 if not AceLibrary:HasInstance("AceOO-2.0") then error(MAJOR_VERSION .. " requires AceOO-2.0.") end
 
-local function safecall(func,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10)
-	local success, err = pcall(func,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10)
-	if not success then geterrorhandler()(err) end
-end
-
 -- Localization
-local STANDBY, TITLE, NOTES, VERSION, AUTHOR, DATE, CATEGORY, EMAIL, CREDITS, WEBSITE, COMMANDS, CATEGORIES, ABOUT, PRINT_ADDON_INFO
+local STANDBY, TITLE, NOTES, VERSION, AUTHOR, DATE, CATEGORY, EMAIL, WEBSITE, CATEGORIES, ABOUT, PRINT_ADDON_INFO
 if GetLocale() == "deDE" then
 	STANDBY = "|cffff5050(Standby)|r" -- capitalized
 
@@ -38,9 +32,7 @@ if GetLocale() == "deDE" then
 	CATEGORY = "Kategorie"
 	EMAIL = "E-mail"
 	WEBSITE = "Webseite"
-	CREDITS = "Credits" -- fix
-	COMMANDS = "Commands"
-	
+		 
 	ABOUT = "\195\188ber"
 	PRINT_ADDON_INFO = "Gibt Addondaten aus"
 
@@ -91,8 +83,6 @@ elseif GetLocale() == "frFR" then
 	CATEGORY = "Cat\195\169gorie"
 	EMAIL = "E-mail"
 	WEBSITE = "Site web"
-	CREDITS = "Credits" -- fix
-	COMMANDS = "Commands"
 	
 	ABOUT = "A propos"
 	PRINT_ADDON_INFO = "Afficher les informations sur l'addon"
@@ -144,8 +134,6 @@ elseif GetLocale() == "koKR" then
 	CATEGORY = "분류"
 	EMAIL = "E-mail"
 	WEBSITE = "웹사이트"
-	CREDITS = "Credits" -- fix
-	COMMANDS = "Commands"
 	
 	ABOUT = "정보"
 	PRINT_ADDON_INFO = "애드온 정보 출력"
@@ -197,8 +185,6 @@ elseif GetLocale() == "zhTW" then
 	CATEGORY = "類別"
 	EMAIL = "E-mail"
 	WEBSITE = "網站"
-	CREDITS = "Credits" -- fix
-	COMMANDS = "Commands"
 	
 	ABOUT = "關於"
 	PRINT_ADDON_INFO = "顯示插件資訊"
@@ -250,8 +236,6 @@ elseif GetLocale() == "zhCN" then
 	CATEGORY = "\229\136\134\231\177\187"
 	EMAIL = "\231\148\181\229\173\144\233\130\174\228\187\182"
 	WEBSITE = "\231\189\145\231\171\153"
-	CREDITS = "Credits" -- fix
-	COMMANDS = "Commands"
 	
 	ABOUT = "\229\133\179\228\186\142"
 	PRINT_ADDON_INFO = "\229\141\176\229\136\151\229\135\186\230\143\146\228\187\182\228\191\161\230\129\175"
@@ -292,60 +276,7 @@ elseif GetLocale() == "zhCN" then
 		["Tradeskill"] = "\229\149\134\228\184\154\230\138\128\232\131\189",
 		["UnitFrame"] = "\229\164\180\229\131\143\230\161\134\230\158\182",
 	}
-elseif GetLocale() == "ruRU" then
-	STANDBY = "|cffff5050(в режиме ожидания)|r"
-	
-	TITLE = "Название"
-	NOTES = "Описание"
-	VERSION = "Версия"
-	AUTHOR = "Автор"
-	DATE = "Дата"
-	CATEGORY = "Категория"
-	EMAIL = "E-mail"
-	WEBSITE = "Сайт"
-	CREDITS = "Титры"
-	COMMANDS = "Команды"
-	
-	ABOUT = "Об аддоне"
-	PRINT_ADDON_INFO = "Показать информацию об аддоне."
-	
-	CATEGORIES = {
-		["Action Bars"] = "Панели команд",
-		["Auction"] = "Аукцион",
-		["Audio"] = "Аудио",
-		["Battlegrounds/PvP"] = "Поля сражений/PvP",
-		["Buffs"] = "Баффы",
-		["Chat/Communication"] = "Чат/Коммуникация",
-		["Druid"] = "Друид",
-		["Hunter"] = "Охотник",
-		["Mage"] = "Маг",
-		["Paladin"] = "Паладин",
-		["Priest"] = "Жрец",
-		["Rogue"] = "Разбойник",
-		["Shaman"] = "Шаман",
-		["Warlock"] = "Чернокнижник",
-		["Warrior"] = "Воин",
-		["Healer"] = "Лекарь",
-		["Tank"] = "Танк",
-		["Caster"] = "Кастер",
-		["Combat"] = "Сражения",
-		["Compilations"] = "Компиляция",
-		["Data Export"] = "Экспорт данных",
-		["Development Tools"] = "Инструменты разработчика",
-		["Guild"] = "Гильдия",
-		["Frame Modification"] = "Модификация фреймов",
-		["Interface Enhancements"] = "Улучшение интерфейса",
-		["Inventory"] = "Инвентарь",
-		["Library"] = "Библиотеки",
-		["Map"] = "Карта",
-		["Mail"] = "Почта",
-		["Miscellaneous"] = "Разное",
-		["Quest"] = "Задания",
-		["Raid"] = "Рейд",
-		["Tradeskill"] = "Умения",
-		["UnitFrame"] = "Фреймы персонажей",
-	}
-	else -- enUS
+else -- enUS
 	STANDBY = "|cffff5050(standby)|r"
 	
 	TITLE = "Title"
@@ -356,8 +287,6 @@ elseif GetLocale() == "ruRU" then
 	CATEGORY = "Category"
 	EMAIL = "E-mail"
 	WEBSITE = "Website"
-	CREDITS = "Credits"
-	COMMANDS = "Commands"
 	
 	ABOUT = "About"
 	PRINT_ADDON_INFO = "Print out addon info"
@@ -402,7 +331,7 @@ end
 
 setmetatable(CATEGORIES, { __index = function(self, key) -- case-insensitive
 	local lowerKey = string.lower(key)
-	for k,v in pairs(CATEGORIES) do
+	for k,v in CATEGORIES do
 		if string.lower(k) == lowerKey then
 			return v
 		end
@@ -451,17 +380,14 @@ local function RegisterOnEnable(self)
 				if current.mixins then
 					for mixin in pairs(current.mixins) do
 						if type(mixin.OnEmbedEnable) == "function" then
-							safecall(mixin.OnEmbedEnable,mixin,self)
+							mixin:OnEmbedEnable(self)
 						end
 					end
 				end
 				current = current.super
 			end
 			if type(self.OnEnable) == "function" then
-				safecall(self.OnEnable,self)
-			end
-			if AceEvent then
-				AceEvent:TriggerEvent("Ace2_AddonEnabled", self)
+				self:OnEnable()
 			end
 		end
 	else
@@ -487,52 +413,46 @@ function AceAddon:InitializeAddon(addon, name)
 		-- TOC checks
 		if addon.title == nil then
 			addon.title = GetAddOnMetadata(name, "Title")
-		end
-		if addon.title then
-			local num = string.find(addon.title, " |cff7fff7f %-Ace2%-|r$")
-			if num then
-				addon.title = string.sub(addon.title, 1, num - 1)
+			if addon.title then
+				local num = string.find(addon.title, " |cff7fff7f %-Ace2%-|r$")
+				if num then
+					addon.title = string.sub(addon.title, 1, num - 1)
+				end
+				addon.title = stripSpaces(addon.title)
 			end
-			addon.title = stripSpaces(addon.title)
 		end
-		
 		if addon.notes == nil then
 			addon.notes = GetAddOnMetadata(name, "Notes")
 			addon.notes = stripSpaces(addon.notes)
 		end
 		if addon.version == nil then
 			addon.version = GetAddOnMetadata(name, "Version")
-		end
-		if addon.version then
-			if string.find(addon.version, "%$Revision: (%d+) %$") then
-				addon.version = string.gsub(addon.version, "%$Revision: (%d+) %$", "%1")
-			elseif string.find(addon.version, "%$Rev: (%d+) %$") then
-				addon.version = string.gsub(addon.version, "%$Rev: (%d+) %$", "%1")
-			elseif string.find(addon.version, "%$LastChangedRevision: (%d+) %$") then
-				addon.version = string.gsub(addon.version, "%$LastChangedRevision: (%d+) %$", "%1")
+			if addon.version then
+				if string.find(addon.version, "%$Revision: (%d+) %$") then
+					addon.version = string.gsub(addon.version, "%$Revision: (%d+) %$", "%1")
+				elseif string.find(addon.version, "%$Rev: (%d+) %$") then
+					addon.version = string.gsub(addon.version, "%$Rev: (%d+) %$", "%1")
+				elseif string.find(addon.version, "%$LastChangedRevision: (%d+) %$") then
+					addon.version = string.gsub(addon.version, "%$LastChangedRevision: (%d+) %$", "%1")
+				end
 			end
+			addon.version = stripSpaces(addon.version)
 		end
-		addon.version = stripSpaces(addon.version)
 		if addon.author == nil then
 			addon.author = GetAddOnMetadata(name, "Author")
 			addon.author = stripSpaces(addon.author)
 		end
-		if addon.credits == nil then
-			addon.credits = GetAddOnMetadata(name, "X-Credits")
-			addon.credits = stripSpaces(addon.credits)
-		end
 		if addon.date == nil then
 			addon.date = GetAddOnMetadata(name, "X-Date") or GetAddOnMetadata(name, "X-ReleaseDate")
-		end
-		if addon.date then
-			if string.find(addon.date, "%$Date: (.-) %$") then
-				addon.date = string.gsub(addon.date, "%$Date: (.-) %$", "%1")
-			elseif string.find(addon.date, "%$LastChangedDate: (.-) %$") then
-				addon.date = string.gsub(addon.date, "%$LastChangedDate: (.-) %$", "%1")
+			if addon.date then
+				if string.find(addon.date, "%$Date: (.-) %$") then
+					addon.date = string.gsub(addon.date, "%$Date: (.-) %$", "%1")
+				elseif string.find(addon.date, "%$LastChangedDate: (.-) %$") then
+					addon.date = string.gsub(addon.date, "%$LastChangedDate: (.-) %$", "%1")
+				end
 			end
+			addon.date = stripSpaces(addon.date)
 		end
-		addon.date = stripSpaces(addon.date)
-
 		if addon.category == nil then
 			addon.category = GetAddOnMetadata(name, "X-Category")
 			addon.category = stripSpaces(addon.category)
@@ -544,10 +464,6 @@ function AceAddon:InitializeAddon(addon, name)
 		if addon.website == nil then
 			addon.website = GetAddOnMetadata(name, "X-Website")
 			addon.website = stripSpaces(addon.website)
-		end
-		if addon.commands == nil then
-			addon.commands = GetAddOnMetadata(name, "X-Commands")
-			addon.commands = stripSpaces(addon.commands)
 		end
 	end
 	local current = addon.class
@@ -565,10 +481,7 @@ function AceAddon:InitializeAddon(addon, name)
 		current = current.super
 	end
 	if type(addon.OnInitialize) == "function" then
-		safecall(addon.OnInitialize, addon, name)
-	end
-	if AceEvent then
-		AceEvent:TriggerEvent("Ace2_AddonInitialized", addon)
+		addon:OnInitialize(name)
 	end
 	RegisterOnEnable(addon)
 end
@@ -597,9 +510,6 @@ function AceAddon.prototype:PrintAddonInfo()
 	if self.author then
 		print(" - |cffffff7f" .. AUTHOR .. ":|r " .. tostring(self.author))
 	end
-	if self.credits then
-		print(" - |cffffff7f" .. CREDITS .. ":|r " .. tostring(self.credits))
-	end
 	if self.date then
 		print(" - |cffffff7f" .. DATE .. ":|r " .. tostring(self.date))
 	end
@@ -614,9 +524,6 @@ function AceAddon.prototype:PrintAddonInfo()
 	end
 	if self.website then
 		print(" - |cffffff7f" .. WEBSITE .. ":|r " .. tostring(self.website))
-	end
-	if self.commands then
-		print(" - |cffffff7f" .. COMMANDS .. ":|r " .. tostring(self.commands))
 	end
 end
 
@@ -651,17 +558,14 @@ function AceAddon:PLAYER_LOGIN()
 					if current.mixins then
 						for mixin in pairs(current.mixins) do
 							if type(mixin.OnEmbedEnable) == "function" then
-								safecall(mixin.OnEmbedEnable,mixin,addon)
+								mixin:OnEmbedEnable(addon)
 							end
 						end
 					end
 					current = current.super
 				end
 				if type(addon.OnEnable) == "function" then
-					safecall(addon.OnEnable,addon)
-				end
-				if AceEvent then
-					AceEvent:TriggerEvent("Ace2_AddonEnabled", addon)
+					addon:OnEnable()
 				end
 			end
 		end

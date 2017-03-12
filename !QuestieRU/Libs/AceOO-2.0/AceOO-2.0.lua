@@ -1,6 +1,6 @@
 --[[
 Name: AceOO-2.0
-Revision: $Rev: 17638 $
+Revision: $Rev: 11577 $
 Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
 Inspired By: Ace 1.x by Turan (turan@gryphon.com)
 Website: http://www.wowace.com/
@@ -11,13 +11,12 @@ Dependencies: AceLibrary
 ]]
 
 local MAJOR_VERSION = "AceOO-2.0"
-local MINOR_VERSION = "$Revision: 17638 $"
+local MINOR_VERSION = "$Revision: 11577 $"
 
 -- This ensures the code is only executed if the libary doesn't already exist, or is a newer version
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary.") end
 if not AceLibrary:IsNewVersion(MAJOR_VERSION, MINOR_VERSION) then return end
 
-if loadstring("return function(...) return ... end") and AceLibrary:HasInstance(MAJOR_VERSION) then return end -- lua51 check
 local table_setn
 do
 	local version = GetBuildInfo()
