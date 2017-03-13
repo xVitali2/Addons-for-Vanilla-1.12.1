@@ -1,8 +1,7 @@
 Questie.minimapButton = CreateFrame('Button', 'QuestieMinimap', Minimap)
-if (QuestieMinimapPosition == nil) then
-    QuestieMinimapPosition = -90
+if QuestieMinimapPosition==nil then
+	QuestieMinimapPosition = 0
 end
-
 Questie.minimapButton:SetMovable(true)
 Questie.minimapButton:EnableMouse(true)
 Questie.minimapButton:RegisterForDrag('LeftButton')

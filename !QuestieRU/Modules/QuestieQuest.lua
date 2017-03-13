@@ -910,7 +910,7 @@ function Questie:GetQuestObjectivePaths(questHash)
             if splitIndex ~= nil then
                 objectiveName = string.sub(objectiveName, 1, splitIndex-1);
                 if (string.find(objectiveName, " - убито")) then
-                    objectiveName = string.sub(objectiveName, 1, string.len(objectiveName)-8);
+                    objectiveName = string.sub(objectiveName, 1, string.len(objectiveName)-13);
                 end
             end
             locations = typeFunction(objectiveName);
@@ -1066,7 +1066,7 @@ AstroobjectiveProcessors = {
         local list = {};
         local monster = {};
         if (string.find(name, " - убито")) then
-            name = string.sub(name, 1, string.len(name)-8);
+            name = string.sub(name, 1, string.len(name)-13);
         end
         monster["name"] = name;
         monster["type"] = "slay";

@@ -2,11 +2,9 @@
 ## Title: QuestieRU
 ## Author: Aero/Schaka/Logonz/Dyaxler/Muehe/Zoey & all of our contributors
 ## Notes: A standalone Vanilla QuestHelper
-## Notes-ruRU: КвестХелпер для классики v3.70
+## Notes-ruRU: РљРІРµСЃС‚С…РµР»РїРµСЂ РґР»СЏ РєР»Р°СЃСЃРёРєРё v3.70
 ## Version: 3.70
-## RequiredDeps:
 ## OptionalDeps: !Libs, Cartographer, MetaMap, EQL3, ShaguQuest
-## SavedVariables:
 ## SavedVariablesPerCharacter: QuestieSeenQuests, QuestieCachedQuests, QuestieConfig, QuestieTrackerVariables, QuestieMinimapPosition
 
 # Astrolabe
@@ -45,8 +43,8 @@ Astrolabe\Astrolabe.lua
 # Questie
 Questie.lua
 Modules\QuestieArrow.lua
-Modules\QuestieGUI.lua
 Modules\QuestieNotes.lua
 Modules\QuestieQuest.lua
 Modules\QuestieTracker.lua
+Modules\QuestieGUI.lua
 Questie.xml
