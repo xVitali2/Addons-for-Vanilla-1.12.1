@@ -479,6 +479,7 @@ BabbleSpell:RegisterTranslations("enUS", function()
 		["Feline Swiftness"] = true,
 		["Feral Aggression"] = true,
 		["Feral Charge"] = true,
+		["Feral Charge Effect"] = true,
 		["Feral Instinct"] = true,
 		["Ferocious Bite"] = true,
 		["Ferocity"] = true,
@@ -543,6 +544,7 @@ BabbleSpell:RegisterTranslations("enUS", function()
 		["Forked Lightning"] = true,
 		["Forsaken Skills"] = true,
 		["Frailty"] = true,
+		["Freeze"] = true,
 		["Freeze Solid"] = true,
 		["Freezing Trap Effect"] = true,
 		["Freezing Trap"] = true,
@@ -1908,6 +1910,7 @@ BabbleSpell:RegisterTranslations("ruRU", function()
 		["Feline Swiftness"] = "Звериная скорость",
 		["Feral Aggression"] = "Звериная агрессия",
 		["Feral Charge"] = "Звериная атака",
+		["Feral Charge Effect"] = "Звериная атака - эффект",
 		["Feral Instinct"] = "Животный инстинкт",
 		["Ferocious Bite"] = "Свирепый укус",
 		["Ferocity"] = "Свирепость",
@@ -1972,6 +1975,7 @@ BabbleSpell:RegisterTranslations("ruRU", function()
 		["Forked Lightning"] = "Раздвоенная молния",
 		["Forsaken Skills"] = "Утраченные навыки",
 		["Frailty"] = "Немощь",
+		["Freeze"] = "Заморозка",
 		["Freeze Solid"] = "Полная заморозка",
 		["Freezing Trap Effect"] = "Эффект замораживающей ловушки",
 		["Freezing Trap"] = "Замораживающая ловушка",
@@ -3305,6 +3309,7 @@ BabbleSpell:RegisterTranslations("deDE", function()
 		["Feline Swiftness"] = "Katzenhafte Schnelligkeit",
 		["Feral Aggression"] = "Wilde Aggression",
 		["Feral Charge"] = "Wilde Attacke",
+		["Feral Charge Effect"] = "Feral Charge Effect", --  Need to translated
 		["Feral Instinct"] = "Instinkt der Wildnis",
 		["Ferocious Bite"] = "Wilder Biss",
 		["Ferocity"] = "Wildheit",
@@ -3369,6 +3374,7 @@ BabbleSpell:RegisterTranslations("deDE", function()
 		["Forked Lightning"] = "Gabelblitzschlag",
 		["Forsaken Skills"] = "Verlassene F\195\164higkeit",
 		["Frailty"] = "Gebrechlichkeit",
+		["Freeze"] = "Freeze",  --  Need to translated
 		["Freeze Solid"] = "Zu Eis erstarren",
 		["Freezing Trap Effect"] = "Eisk?tefalle",
 		["Freezing Trap"] = "Eisk\195\164ltefalle",
@@ -4619,6 +4625,7 @@ BabbleSpell:RegisterTranslations("frFR", function()
 		["Feline Swiftness"] = "C\195\169l\195\169rit\195\169 f\195\169line",
 		["Feral Aggression"] = "Agressivit\195\169 farouche",
 		["Feral Charge"] = "Charge farouche",
+		["Feral Charge Effect"] = "Feral Charge Effect", --  Need to translated
 		["Feral Instinct"] = "Instinct farouche",
 		["Ferocious Bite"] = "Morsure f\195\169roce",
 		["Ferocity"] = "Ferocit\195\169",
@@ -5763,6 +5770,7 @@ BabbleSpell:RegisterTranslations("zhCN", function()
 		["Feline Swiftness"] = "豹之迅捷",
 		["Feral Aggression"] = "野性侵略",
 		["Feral Charge"] = "野性冲锋",
+		["Feral Charge Effect"] = "Feral Charge Effect", --  Need to translated
 		["Feral Instinct"] = "野性本能",
 		["Ferocious Bite"] = "凶猛撕咬",
 		["Ferocity"] = "凶暴",
@@ -6905,6 +6913,7 @@ BabbleSpell:RegisterTranslations("zhTW", function()
 		["Feline Swiftness"] = "豹之迅捷",
 		["Feral Aggression"] = "野性侵略",
 		["Feral Charge"] = "野性衝鋒",
+		["Feral Charge Effect"] = "Feral Charge Effect", --  Need to translated
 		["Feral Instinct"] = "野性本能",
 		["Ferocious Bite"] = "兇猛撕咬",
 		["Ferocity"] = "兇暴",
@@ -8049,6 +8058,7 @@ BabbleSpell:RegisterTranslations("koKR", function()
 		["Feline Swiftness"] = "살쾡이의 기민함",
 		["Feral Aggression"] = "야생의 공격성",
 		["Feral Charge"] = "야성의 돌진",
+		["Feral Charge Effect"] = "Feral Charge Effect", --  Need to translated
 		["Feral Instinct"] = "야생의 본능",
 		["Ferocious Bite"] = "흉포한 이빨",
 		["Ferocity"] = "야수의 본성",    
@@ -9333,6 +9343,7 @@ local spellIcons = {
 	["Feline Swiftness"] = "Spell_Nature_SpiritWolf",
 	["Feral Aggression"] = "Ability_Druid_DemoralizingRoar",
 	["Feral Charge"] = "Ability_Hunter_Pet_Bear",
+	["Feral Charge Effect"] = "Ability_Hunter_Pet_Bear",
 	["Feral Instinct"] = "Ability_Ambush",
 	["Ferocious Bite"] = "Ability_Druid_FerociousBite",
 	["Ferocity"] = "INV_Misc_MonsterClaw_04",
@@ -9394,6 +9405,7 @@ local spellIcons = {
 	["Forked Lightning"] = "Spell_Nature_ChainLightning",
 	["Forsaken Skills"] = "Spell_Shadow_AntiShadow",
 	["Frailty"] = "Spell_Shadow_AnimateDead",
+	["Freeze"] = "Spell_Frost_FrostNova",
 	["Freeze Solid"] = "Spell_Fost_Glacier",
 	["Freezing Trap"] = "Spell_Frost_ChainsOfIce",
 	["Frenzied Regeneration"] = "Ability_BullRush",
@@ -9689,7 +9701,6 @@ local spellIcons = {
 	["Intimidation"] = "Ability_Devour",
 	["Intoxicating Venom"] = "Ability_Creature_Poison_01",
 	["Iron Will"] = "Spell_Magic_MageArmor",
-	["Iron Will"] = "Spell_Magic_MageArmor",                                              -- INCORRECT! Needs path updated!!! Preferably before expansion.
 	["Judgement of Command"] = "Ability_Warrior_InnerRage",
 	["Judgement of Justice"] = "Spell_Holy_SealOfWrath",
 	["Judgement of Light"] = "Spell_Holy_HealingAura",
