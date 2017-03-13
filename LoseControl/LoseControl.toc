@@ -2,5 +2,7 @@
 ## Title: LoseControl
 ## Author: CFM mod
 ## Notes: Makes it easy to see the duration of crowd control spells by displaying them in a dedicated icon onscreen.
+## Notes-ruRU: Отображает заклинание от которого персонаж теряет контроль.
+## RequiredDeps:!Libs
 ## SavedVariablesPerCharacter: LoseControlDB
-LoseControl.xml
+LoseControl.lua

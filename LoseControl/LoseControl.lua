@@ -1,63 +1,61 @@
 local L = "LoseControl"
+local BS = AceLibrary("Babble-Spell-2.2");
 local CC      = "CC"
 local Silence = "Silence"
-local Disarm  = "Disarm"
 local Root    = "Root"
 local Snare   = "Snare"
-local Immune  = "Immune"
-local PvE     = "PvE"
 
 local spellIds = {
 	-- Druid
-	["Bash"] = CC, -- Bash
-	["Feral Charge Efect"] = Root, -- Feral Charge Efect
-	["Hibernate"] = CC, -- Hibernate
-	["Pounce"] = CC, -- Pounce
-	["Entangling Roots"] = Root, -- Entangling Roots	
+	[BS["Bash"]] = CC, -- Bash
+	[BS["Feral Charge Effect"]] = Root, -- Feral Charge Efect
+	[BS["Hibernate"]] = CC, -- Hibernate
+	[BS["Pounce"]] = CC, -- Pounce
+	[BS["Entangling Roots"]] = Root, -- Entangling Roots	
 	-- Hunter
-	["Freezing Trap"] = CC, -- Freezing Trap
-	["Intimidation"] = CC, -- Intimidation
-	["Scare Beast"] = CC, -- Scare Beast
-	["Scatter Shot"] = CC, -- Scatter Shot
-	["Wyvern Sting"] = CC, -- Wyvern Sting; requires a hack to be removed later
+	[BS["Freezing Trap"]] = CC, -- Freezing Trap
+	[BS["Intimidation"]] = CC, -- Intimidation
+	[BS["Scare Beast"]] = CC, -- Scare Beast
+	[BS["Scatter Shot"]] = CC, -- Scatter Shot
+	[BS["Wyvern Sting"]] = CC, -- Wyvern Sting; requires a hack to be removed later
 	-- Mage
-	["Frost Nova"] = Root, -- Frost Nova
-	["Polymorph"] = CC, -- Polymorph
-	["Frostbite"] = Root, -- Frostbite
-	["Freeze"] = Root, -- Freeze
-	["Cone of Cold"] = Snare, -- Cone of Cold	
-	["Counterspell - Silenced"] = Silence, -- Counterspell - Silenced
+	[BS["Frost Nova"]] = Root, -- Frost Nova
+	[BS["Polymorph"]] = CC, -- Polymorph
+	[BS["Frostbite"]] = Root, -- Frostbite
+	[BS["Freeze"]] = Root, -- Freeze
+	[BS["Cone of Cold"]] = Snare, -- Cone of Cold	
+	[BS["Counterspell - Silenced"]] = Silence, -- Counterspell - Silenced
 	-- Paladin
-	["Hammer of Justice"] = CC, -- Hammer of Justice
-	["Repentance"] = CC, -- Repentance
+	[BS["Hammer of Justice"]] = CC, -- Hammer of Justice
+	[BS["Repentance"]] = CC, -- Repentance
 	-- Priest
-	["Mind Control"] = CC, -- Mind Control
-	["Psychic Scream"] = CC, -- Psychic Scream
-	["Silence"] = Silence, -- Silence
+	[BS["Mind Control"]] = CC, -- Mind Control
+	[BS["Psychic Scream"]] = CC, -- Psychic Scream
+	[BS["Silence"]] = Silence, -- Silence
 	-- Rogue
-	["Blind"] = CC, -- Blind
-	["Cheap Shot"] = CC, -- Cheap Shot
-	["Gouge"] = CC, -- Gouge
-	["Kidney Shot"] = CC, -- Kidney shot; the buff is 30621
-	["Sap"] = CC, -- Sap
+	[BS["Blind"]] = CC, -- Blind
+	[BS["Cheap Shot"]] = CC, -- Cheap Shot
+	[BS["Gouge"]] = CC, -- Gouge
+	[BS["Kidney Shot"]] = CC, -- Kidney shot; the buff is 30621
+	[BS["Sap"]] = CC, -- Sap
 	-- Warlock
-	["Death Coil"] = CC, -- Death Coil
-	["Fear"] = CC, -- Fear
-	["Howl of Terror"] = CC, -- Howl of Terror
-	["Seduction"] = CC, -- Seduction
+	[BS["Death Coil"]] = CC, -- Death Coil
+	[BS["Fear"]] = CC, -- Fear
+	[BS["Howl of Terror"]] = CC, -- Howl of Terror
+	[BS["Seduction"]] = CC, -- Seduction
 	-- Warrior
-	["Charge Stun"] = CC, -- Charge Stun
-	["Intercept Stun"] = CC, -- Intercept Stun
-	["Intimidating Shout"] = CC, -- Intimidating Shout
-	["Piercing Howl"] = Snare, -- Piercing Howl
+	[BS["Charge Stun"]] = CC, -- Charge Stun
+	[BS["Intercept Stun"]] = CC, -- Intercept Stun
+	[BS["Intimidating Shout"]] = CC, -- Intimidating Shout
+	[BS["Piercing Howl"]] = Snare, -- Piercing Howl
 	
 	-- other
-	["War Stomp"] = CC, -- War Stomp
+	[BS["War Stomp"]] = CC, -- War Stomp
 	--CFM
-	["Ice Blast"] = CC, -- Ice Yeti
-	["Web"]=CC			-- Carrion Lurker
+	[BS["Ice Blast"]] = CC, -- Ice Yeti
+	[BS["Snap Kick"]] = CC, -- Ice Yeti
+	[BS["Web"]] = Root		  -- Carrion Lurker
 }
-
 
 	LCPlayer = CreateFrame("Frame", "LoseControlPlayer", ActionButtonTemplate)
 	LCPlayer:SetHeight(50)
@@ -75,10 +73,12 @@ local spellIds = {
 		local spellFound = false
 		for i=1, 16 do -- 16 is enough due to HARMFUL filter
 			local texture = UnitDebuff("player", i)
-			LCTooltip:ClearLines()
-			LCTooltip:SetUnitDebuff("player", i)
-			local buffName = LCTooltipTextLeft1:GetText()
-						if spellIds[buffName] then
+			GameTooltip:ClearLines()
+			GameTooltip:SetOwner(UIParent, "ANCHOR_NONE")
+			GameTooltip:SetUnitDebuff("player", i)
+			local buffName = GameTooltipTextLeft1:GetText()
+			GameTooltip:Hide()
+			if spellIds[buffName] then
 				spellFound = true
 				for j=0, 31 do
 					local buffTexture = GetPlayerBuffTexture(j)
