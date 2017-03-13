@@ -1332,12 +1332,8 @@ end
 
 -- to detect talents
 function DET:DatabasePreload()
-	local function rk(i, j)
-		local _, _, _, _, rank= GetTalentInfo(i, j)
-		return rank
-	end
 	if CLASS == "MAGE" then
-		local rank = rk(2,10) -- improved scorch
+		local _, _, _, _, rank= GetTalentInfo(2, 10) -- improved scorch
 		if rank == 3 then
 			DET_Debuff[CLASS].EFFECT["Fire Vulnerability"] = {
 				ICON = "Spell_Fire_SoulBurn",
@@ -1349,7 +1345,8 @@ function DET:DatabasePreload()
 				EFFECT = "Fire Vulnerability",
 			}
 		end
-		rank = rk(3,10) -- improved blizzard
+		rank=nil
+		local _, _, _, _, rank= GetTalentInfo(3, 10) -- improved blizzard
 		if rank > 0 then
 			DET_Debuff[CLASS].EFFECT["Blizzard"] = {
 				ICON = "Spell_Frost_Icestorm",
@@ -1360,20 +1357,25 @@ function DET:DatabasePreload()
 				EFFECT = "Blizzard",
 			}
 		end
-		rank = rk(3,7) -- improved chilled
+		rank=nil
+		local _, _, _, _, rank= GetTalentInfo(3, 7) -- improved chilled
+	--	ace:print(rank.." -rank (3,7)")
 		if rank > 0 then
 			DET_Debuff[CLASS].SPELL["Cone of Cold"].DURATION = {8+rank,8+rank,8+rank,8+rank,8+rank}
 			DET_Debuff[CLASS].EFFECT["Chilled"].DURATION = 5+rank
 			DET_Debuff[CLASS].SPELL["Frostbolt"].DURATION = {5+rank, 6+rank, 6+rank, 7+rank, 7+rank, 8+rank, 8+rank, 9+rank, 9+rank, 9+rank}
 		end
-		rank = rk(1,11) -- improved counterspell
+		rank=nil
+		local _, _, _, _, rank= GetTalentInfo(1, 11) -- improved counterspell
 		if rank > 0 then DET_Debuff[CLASS].EFFECT["Counterspell - Silenced"].DURATION = 4 end
-		rank = rk(3,16) -- winters chill
+		rank=nil
+		local _, _, _, _, rank= GetTalentInfo(3, 16) -- winters chill
 		if rank > 0 then
 			DET_Debuff[CLASS].EFFECT["Winter's Chill"] = {
 				ICON = "Spell_Frost_ChillingBlast",
 				DURATION = 15,
 			}
 		end
+		rank=nil
 	end
 end
