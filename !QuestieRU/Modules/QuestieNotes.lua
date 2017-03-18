@@ -1326,6 +1326,7 @@ function Questie:DrawClusters(clusters, frameName, scale, frame, button)
         table.sort(cluster.points, function(a, b)
             local questA = QuestieHashMap[a.questHash];
             local questB = QuestieHashMap[b.questHash];
+			if not questA or not questB then return; end
             return
                 (a.icontype == "complete" and b.icontype ~= "complete") or
                 (a.icontype ~= "complete" and b.icontype ~= "complete" and questA.level < questB.level) or
