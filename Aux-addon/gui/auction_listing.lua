@@ -588,6 +588,9 @@ local methods = {
 	        GameTooltip:SetOwner(this, 'ANCHOR_RIGHT')
             info.load_tooltip(GameTooltip, row.record.tooltip)
 	        tooltip.extend_tooltip(GameTooltip, row.record.link, row.record.aux_quantity)
+			if EnhTooltip then
+				EnhTooltip.TooltipCall(GameTooltip,row.record.name,row.record.link,row.record.quality,row.record.aux_quantity)
+			end
 			if not EQUIPCOMPARE_VERSIONID then
 				info.set_shopping_tooltip(row.record.slot)
 		    end

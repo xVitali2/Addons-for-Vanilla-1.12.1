@@ -68,7 +68,6 @@ do
 					local gold,silver,copper=nil,nil,nil
 
 					if (itdata and itdata['buy'] and itdata['buy'] ~= 0) then str=itdata['sell'] end
-					--ace:print(id.."_id")
 					if str then
 						gold,silver,copper=money.to_gsc(str)
 						str = gold.."|cffffd70ag.|r"..silver.."|cffc7c7cfs.|r"..copper.."|cffeda55fc|r"
