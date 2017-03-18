@@ -1,17 +1,17 @@
 QuestieDropTable = {
-	["Suspicious Hoofprint"] = {
+	["Подозрительный след копыта"] = {
     ["locations"] = {
       [1] = {11.0, 0.509, 0.786, 100.0}
     },
     ["locationCount"] = 1,
   },
-  ["Black Shield"] = {
+  ["Черный щит"] = {
     ["locations"] = {
       [1] = {11.0, 0.509, 0.792, 100.0}
     },
     ["locationCount"] = 1,
   },
-  ["Theramore Guard Badge"] = {
+  ["Кокарда Тераморской стражи"] = {
     ["locations"] = {
       [1] = {11.0, 0.510, 0.790, 100.0}
     },
@@ -50149,10 +50149,9 @@ QuestieMonsters = {
   ["Газбан"] = {
     ["locations"] = {
       [1] = {38.0, 0.2487, 0.2348, 100.0},
-      [2] = {38.0, 0.2075, 0.2267, 4.0}
     },
     ["looted"] = 343,
-    ["locationCount"] = 2
+    ["locationCount"] = 1
   },
   ["Кристофер Хьюэн"] = {
     ["locations"] = {
@@ -73945,7 +73944,7 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 2
   },
-  ["Hemet Nesingwary Jr."] = {
+  ["Хеминг Эрнестуэй"] = {
     ["locations"] = {
       [1] = {38.0, 0.3566, 0.1076, 100.0}
     },
@@ -115245,13 +115244,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Diktynna"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.6111, 0.5416, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
   ["Знахарь из племени Тлеющего Терновника"] = {
     ["locations"] = {
       [1] = {32.0, 0.4079, 0.9567, 100.0}
@@ -115294,21 +115286,6 @@ QuestieMonsters = {
     ["looted"] = 9645,
     ["locationCount"] = 1
   },
-  ["Vindicator Palanaar"] = {
-    ["locations"] = {
-      [1] = {2.0, 0.3494, 0.4973, 100.0}
-    },
-    ["looted"] = 1,
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
-  ["Mmmrrrggglll"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.2543, 0.6956, 100.0}
-    },
-    ["looted"] = 571,
-    ["locationCount"] = 1
-  },
   ["Мошенник из Братства Справедливости"] = {
     ["locations"] = {
       [1] = {49.0, 0.4412, 0.6874, 100.0},
@@ -115316,13 +115293,6 @@ QuestieMonsters = {
     },
     ["looted"] = 16570,
     ["locationCount"] = 2
-  },
-  ["Acteon"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.4977, 0.5187, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
   },
   ["Скути"] = {
     ["locations"] = {
@@ -115346,13 +115316,13 @@ QuestieMonsters = {
     ["looted"] = 3518,
     ["locationCount"] = 2
   },
-  ["Moora slain"] = {
+  ["Моора"] = {
     ["locations"] = {
       [1] = {13.0, 0.389, 0.4681, 100.0}
     },
     ["locationCount"] = 1
   },
-  ["Bloodpetal Thresher slain"] = {
+  ["Кровоцвет-крепкозуб"] = {
     ["locations"] = {
       [1] = {18.0, 0.5816, 0.3619, 100.0},
       [5] = {18.0, 0.652, 0.4047, 4.0},
@@ -115361,13 +115331,6 @@ QuestieMonsters = {
       [2] = {18.0, 0.6551, 0.2834, 71.0}
     },
     ["locationCount"] = 5
-  },
-  ["Forgemaster Morug"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.3676, 0.2726, 100.0}
-    },
-    ["looted"] = 176,
-    ["locationCount"] = 1
   },
   ["Каран Могучий Молот"] = {
     ["locations"] = {
@@ -115400,19 +115363,11 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["A Wrecked Raft"] = {
+  ["Разбитый плот"] = {
     ["locations"] = {
       [1] = {18.0, 0.630, 0.686, 100.0}
     },
     ["locationCount"] = 1
-  },
-  ["Defias Diver"] = {
-    ["locations"] = {
-      [1] = {10.0, 0.6567, 0.1605, 100.0},
-      [2] = {10.0, 0.6418, 0.2517, 2.0}
-    },
-    ["looted"] = 2433,
-    ["locationCount"] = 2
   }
 }
 
@@ -115433,4 +115388,4 @@ for k,v in pairs(QuestieItems) do
 end
 
 local ttl = GetTime() - start;
-DEFAULT_CHAT_FRAME:AddMessage("Questie initialized MonsterDB in " .. math.floor(ttl*1000) .. "ms"); -- log function may not be created yet
+DEFAULT_CHAT_FRAME:AddMessage("Questie: инициализация MonsterDB за " .. math.floor(ttl*1000) .. "мс"); -- log function may not be created yet

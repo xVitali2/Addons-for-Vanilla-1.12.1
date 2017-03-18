@@ -1,5 +1,20 @@
 QuestieItems = {
-  ["Presencia de Voren'thal"] = {
+  ["План сбора золота"] = {
+    ["drop"] = {
+      ["Графф Быстрохват"] = 1,
+      ["Недоросток из стаи Речной Лапы"] = 1,
+      ["Дробитель"] = 1,
+      ["Гонец стаи Речной Лапы"] = 1,
+    }
+  },
+  ["Фиал благословенной воды"] = {
+    ["locationCount"] = 2,
+    ["locations"] = {
+      [1] = {24.0,0.3843,0.341,100.0},
+	  [2] = {21.0,0.3939,0.8433,100.0},
+    },
+  },
+  ["Присутствие Ворен'таля"] = {
     ["locations"] = {
       [1] = {59.0, 0.3003, 0.1519, 100.0},
       [5] = {52.0, 0.926, 0.5837, 3.0},
@@ -7,14 +22,14 @@ QuestieItems = {
       [4] = {60.0, 0.6708, 0.5628, 45.0},
       [2] = {60.0, 0.5938, 0.6078, 92.0}
     },
-    ["locationCount"] = 5
+    ["locationCount"] = 5,
   },
   ["Амулет Тяжелоступа"] = {
     ["drop"] = {
       ["Магреган Чернотень"] = 2
     }
   },
-  ["Dicker Yetibalg"] = {
+  ["Толстая шкура йети"] = {
     ["drop"] = {
       ["Lauernder Wildschrammyeti"] = 45,
       ["Titanischer Wildschrammyeti"] = 378,
@@ -23,7 +38,7 @@ QuestieItems = {
       ["Wildschrammyeti"] = 2084
     }
   },
-  ["Ancient Legguards of the Monkey"] = {
+  ["Древние набедренники"] = {
     ["drop"] = {
       ["Убийца из шайки Скитальцев Пустыни"] = 1,
       ["Темный охотник"] = 1,
@@ -35,18 +50,18 @@ QuestieItems = {
     },
     ["opened"] = 4
   },
-  ["Wappenschlüssel"] = {
+  ["Герб"] = {
     ["locations"] = {
       [1] = {39.0, 0.6673, 0.2974, 100.0}
     },
     ["locationCount"] = 1
   },
-  ["Tobera de herrería"] = {
+  ["Фурма"] = {
     ["drop"] = {
-      ["Vapoherrero Hierro Negro"] = 302
+      ["Кузнец из клана Черного Железа"] = 302
     }
   },
-  ["Brigade Pauldrons of the Wolf"] = {
+  ["Дружинное наплечье"] = {
     ["drop"] = {
       ["Разъяренный каменный элементаль"] = 1,
       ["Зул'арек Злобный Охотник"] = 1,
@@ -61,7 +76,7 @@ QuestieItems = {
       ["Надзиратель из клана Ярости Горна"] = 1
     }
   },
-  ["薩瑞爾祖恩的頭顱"] = {
+  ["Голова Тарил\'зуна"] = {
     ["locations"] = {
       [1] = {30.0, 0.6865, 0.5884, 100.0},
       [2] = {30.0, 0.6732, 0.5351, 2.0}
@@ -83,58 +98,20 @@ QuestieItems = {
       ["Тайник Круга Кенария"] = 130
     }
   },
-  ["Shattered Hand Vambraces of the Beast"] = {
-    ["drop"] = {
-      ["Priestess of Delight"] = 1
-    },
-    ["opened"] = 3
-  },
-  ["Brigade Gauntlets of the Whale"] = {
+  ["Дружинные рукавицы"] = {
     ["drop"] = {
       ["Зул'арек Злобный Охотник"] = 2,
       ["Старый Серобрюх"] = 1
     },
     ["opened"] = 2
   },
-  ["Cenarisches Versorgungsabzeichen"] = {
+  ["Кенарийский знак тыловика"] = {
     ["locations"] = {
       [1] = {5.0, 0.5185, 0.6807, 100.0}
     },
     ["locationCount"] = 1
   },
-  ["Expedition Pants of Strength"] = {
-    ["drop"] = {
-      ["Irespeaker"] = 1,
-      ["The Black Stalker"] = 2,
-      ["Underbog Colossus"] = 1,
-      ["Dawnblade Summoner"] = 1,
-      ["Nexus Terror"] = 1,
-      ["Monstrous Kaliri"] = 1,
-      ["Furnace Guard"] = 1,
-      ["Malicious Instructor"] = 1,
-      ["Incandescent Fel Spark"] = 1
-    },
-    ["opened"] = 1
-  },
-  ["Umbrafen Cap of the Owl"] = {
-    ["drop"] = {
-      ["Bladespire Brute"] = 1,
-      ["Sunfury Arcanist"] = 1
-    },
-    ["opened"] = 3
-  },
-  ["??????"] = {
-    ["drop"] = {
-      ["「畸形足」瑪雷·維爾金斯"] = 763
-    }
-  },
-  ["Umbrafen Waistband of the Eagle"] = {
-    ["opened"] = 3,
-    ["drop"] = {
-      ["Farahlon Giant"] = 1
-    }
-  },
-  ["Demon's Claw of the Whale"] = {
+  ["Коготь демона"] = {
     ["opened"] = 2,
     ["drop"] = {
       ["Газ'ранка"] = 1
@@ -162,19 +139,13 @@ QuestieItems = {
     },
     ["opened"] = 1
   },
-  ["이케옌의 소지품"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.7055, 0.9789, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Chair de ver putride"] = {
+  ["Кусок мяса червя-трупоеда"] = {
     ["drop"] = {
-      ["Larve putride"] = 1386,
-      ["Dévoreur putride"] = 366
+      ["Личинка-падальщик"] = 1386,
+      ["Падальщик-пожиратель"] = 366
     }
   },
-  ["裝滿的哈卡之卵"] = {
+  ["Заполненное яйцо Хаккара"] = {
     ["locations"] = {
       [1] = {46.0, 0.7733, 0.3591, 100.0}
     },
@@ -249,7 +220,7 @@ QuestieItems = {
       ["청소부구더기"] = 1386
     }
   },
-  ["Kurinnaxx' Giftbeutel"] = {
+  ["Ядовитая железа Куриннакса"] = {
     ["drop"] = {
       ["Куриннакс"] = 1
     }
@@ -397,7 +368,7 @@ QuestieItems = {
       ["Fel Tinkerer Zortan"] = 1
     }
   },
-  ["精密奧金轉換器"] = {
+  ["Схема: сверхточный арканитовый преобразователь"] = {
     ["locations"] = {
       [1] = {25.0, 0.3296, 0.6468, 100.0},
       [5] = {1.0, 0.8007, 0.2309, 4.0},
@@ -457,7 +428,7 @@ QuestieItems = {
     },
     ["locationCount"] = 1
   },
-  ["Imposing Belt of the Bear"] = {
+  ["Впечатляющий пояс"] = {
     ["drop"] = {
       ["Ползучий слякоч"] = 1,
       ["Громила из клана Гордунни"] = 1
@@ -495,7 +466,7 @@ QuestieItems = {
     ["locationCount"] = 1,
     ["opened"] = 3
   },
-  ["希拉里的项链"] = {
+  ["Ожерелье Хилари"] = {
     ["locations"] = {
       [1] = {30.0, 0.2701, 0.5468, 100.0},
       [5] = {30.0, 0.264, 0.5154, 5.0},
@@ -512,7 +483,7 @@ QuestieItems = {
       ["Haal'eshi Talonguard"] = 533
     }
   },
-  ["Foulard de Surena"] = {
+  ["Колье Сурены"] = {
     ["drop"] = {
       ["Сурена Каледон"] = 1
     }

@@ -4850,7 +4850,7 @@ QuestieLevLookup = {
   ["Принесите клык Ишамухала Джорну Искателю Неба в Лагерь Таурахо."]={178,3269431154},
  },
  ["Охота на человека"]={
-  ["Find and kill \"the Collector\"  then return to Marshal Dughan with The Collector's Ring."]={77,1860690525},
+  ["Найдите и убейте Вымогателя, а затем принесите его кольцо маршалу Дугхану."]={77,1860690525},
  },
  ["Обломки кораблекрушения"]={
   ["Га'Ток с Колючего Холма просит вас принести ему 3 комплекта инструментов гномов, найти которые можно в обломках кораблей у побережья."]={178,3314871874},
@@ -31349,10 +31349,10 @@ QuestieHashMap = {
  },
  [172976144]={
   ['name']="Венец Земли",
-  ['startedType']="item",
-  ['finishedType']="unknown",
-  ['startedBy']="unknown",
-  ['finishedBy']="unknown",
+  ['startedType']="monster",
+  ['finishedType']="monster",
+  ['startedBy']="Коритрас Лунный Гнев",
+  ['finishedBy']="Коритрас Лунный Гнев",
   ['level']=6,
   ['questLevel']='11',
   ['rq']=8875032
@@ -44038,9 +44038,9 @@ QuestieHashMap = {
  },
  [1860690525]={
   ['name']="Охота на человека",
-  ['startedType']="monster",
+  ['startedType']="item",
   ['finishedType']="monster",
-  ['startedBy']="Маршал Дугхан",
+  ['startedBy']="План сбора золота",
   ['finishedBy']="Маршал Дугхан",
   ['level']=7,
   ['questLevel']='10',
@@ -55721,4 +55721,4 @@ for k,v in pairs(QuestieHashMap) do
 end
 
 local ttl = GetTime() - start;
-DEFAULT_CHAT_FRAME:AddMessage("Compiled AvailableQuests in " .. math.floor(ttl*1000) .. "ms");
+DEFAULT_CHAT_FRAME:AddMessage("Инициализированы AvailableQuests за " .. math.floor(ttl*1000) .. "мс");
