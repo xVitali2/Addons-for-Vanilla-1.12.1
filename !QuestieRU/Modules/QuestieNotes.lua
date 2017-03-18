@@ -1437,4 +1437,5 @@ QuestieIcons = {
         text = "Complete",
         path = "Interface\\AddOns\\!QuestieRU\\Icons\\slay",
         priority = 3
+	}
 };
