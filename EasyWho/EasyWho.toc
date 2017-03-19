@@ -1,0 +1,9 @@
+## Interface: 11200
+## Title: EasyWho
+## Version: 2.0
+## Author: CFM (v1.2.1 by Lugh, перевод gamer4eg)
+## Notes: Add buttons to the Who-Frame for easy configuration of a who request
+## Notes-ruRU: Улучшенный список /who
+
+localization.lua
+EasyWho.lua
