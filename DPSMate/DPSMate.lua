@@ -1,6 +1,6 @@
 -- Global Variables
 DPSMate = {}
-DPSMate.VERSION = 99
+DPSMate.VERSION = 106
 DPSMate.LOCALE = GetLocale()
 DPSMate.SYNCVERSION = DPSMate.VERSION..DPSMate.LOCALE
 DPSMate.Parser = CreateFrame("Frame", nil, UIParent)
@@ -428,7 +428,7 @@ end
 function DPSMate:SetStatusBarValue()
 	if not DPSMateSettings["windows"][1] or self.Options.TestMode then return end
 	local arr, cbt, ecbt, user, val, perc, strt, statusbar, r, g, b, img, len
-	for k,c in DPSMateSettings.windows do
+	for k,c in pairs(DPSMateSettings.windows) do
 		arr, cbt, ecbt = self:GetMode(k)
 		user, val, perc, strt = self:GetSettingValues(arr,cbt,k,ecbt)
 		if DPSMateSettings["showtotals"] then
@@ -460,8 +460,8 @@ function DPSMate:SetStatusBarValue()
 				statusbar:Hide()
 			end
 		end
-			_G("DPSMate_"..c["name"].."_ScrollFrame_Child"):SetHeight((len+1)*(c["barheight"]+c["barspacing"]))
-			_G("DPSMate_"..c["name"].."_ScrollFrame_Child_Total"):Show()
+		_G("DPSMate_"..c["name"].."_ScrollFrame_Child"):SetHeight((len+1)*(c["barheight"]+c["barspacing"]))
+		_G("DPSMate_"..c["name"].."_ScrollFrame_Child_Total"):Show()
 		if len == 0 then
 			_G("DPSMate_"..c["name"].."_ScrollFrame_Child_Total"):Hide()
 		end
@@ -545,18 +545,22 @@ function DPSMate:ApplyFilter(key, name)
 end
 
 function DPSMate:GetSettingValues(arr, cbt, k, ecbt)
-	return self.RegistredModules[DPSMateSettings["windows"][k]["CurMode"]]:GetSettingValues(arr, cbt, k or 1, ecbt)
+	k = k or 1
+	return self.RegistredModules[DPSMateSettings["windows"][k]["CurMode"]]:GetSettingValues(arr, cbt, k, ecbt)
 end
 
 function DPSMate:EvalTable(k)
-	return self.RegistredModules[DPSMateSettings["windows"][k]["CurMode"]]:EvalTable(DPSMateUser[UnitName("player")], k or 1)
+	k = k or 1
+	return self.RegistredModules[DPSMateSettings["windows"][k]["CurMode"]]:EvalTable(DPSMateUser[UnitName("player")], k)
 end
 
 function DPSMate:GetClassColor(class)
-	if class then
-		class = DPSMateUser[class][2] or "warrior"
-	else
-		class = "warrior"
+	if not classcolor[class] then
+		if class then
+			class = DPSMateUser[class][2] or "warrior"
+		else
+			class = "warrior"
+		end
 	end
 	return classcolor[class].r, classcolor[class].g, classcolor[class].b, class
 end

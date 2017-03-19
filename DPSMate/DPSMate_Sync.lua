@@ -368,7 +368,7 @@ DPSMate.Sync.CHAT_MSG_ADDON = function(arg1,arg2,arg3,arg4) -- DB.loaded part? A
 		end
 	else
 		if arg1=="DPSMate"..sKey then
-			Ececute[arg1](this, arg2, arg4)
+			Execute[arg1](this, arg2, arg4)
 		end
 	end
 end
@@ -949,6 +949,7 @@ DPSMate.Sync.OtherAbilities = {
 DPSMate.Parser.SendSpell = {}
 local oldUseAction = UseAction
 DPSMate.Parser.UseAction = function(slot, checkCursor, onSelf)
+	DPSMate_Tooltip:ClearLines()
 	DPSMate_Tooltip:SetAction(slot)
 	local aura = DPSMate_TooltipTextLeft1:GetText()
 	local target = GetTargetP()

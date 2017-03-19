@@ -1,7 +1,7 @@
 -- Events
 DPSMate.Parser:RegisterEvent("CHAT_MSG_COMBAT_PET_HITS")
 DPSMate.Parser:RegisterEvent("CHAT_MSG_COMBAT_PET_MISSES")
-DPSMate.Parser:RegisterEvent("CHAT_MSG_SPELL_PET_BUFF")
+--DPSMate.Parser:RegisterEvent("CHAT_MSG_SPELL_PET_BUFF")
 DPSMate.Parser:RegisterEvent("CHAT_MSG_SPELL_PET_DAMAGE")
 
 DPSMate.Parser:RegisterEvent("CHAT_MSG_COMBAT_SELF_HITS")
@@ -52,6 +52,9 @@ DPSMate.Parser:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_PARTY")
 DPSMate.Parser:RegisterEvent("CHAT_MSG_COMBAT_FRIENDLY_DEATH")
 DPSMate.Parser:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH")
 DPSMate.Parser:RegisterEvent("PLAYER_AURAS_CHANGED")
+
+DPSMate.Parser:RegisterEvent("PLAYER_LOGOUT")
+DPSMate.Parser:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 BINDING_HEADER_DPSMATE = "DPSMate"
 BINDING_NAME_DPSMATE_REPORT = DPSMate.L["togglereportframe"]
@@ -480,17 +483,15 @@ DPSMate.Parser.playerclass = nil
 
 -- Local Variables
 local _,playerclass = UnitClass("player")
+local fac = UnitFactionGroup("player")
 local UL = UnitLevel
 
 -- Begin Functions
 
 function DPSMate.Parser:OnLoad()
-	if (not DPSMateUser[self.player]) then
-		DPSMateUser[self.player] = {
-			[1] = DPSMate:TableLength(DPSMateUser)+1,
-			[2] = strlower(playerclass),
-		}
-	end
+	self.player = UnitName("player")
+	_,playerclass = UnitClass("player")
+	DPSMate.DB:BuildUser(self.player, strlower(playerclass))
 	DPSMateUser[self.player][8] = UL("player")
 	-- Prevent this addon from causing issues
 	if SW_FixLogStrings then
@@ -501,19 +502,29 @@ end
 function DPSMate.Parser:GetPlayerValues()
 	self.player = UnitName("player")
 	_,playerclass = UnitClass("player")
-	self.playerclass = playerclass
+	self.playerclass = strlower(playerclass)
 	DPSMatePlayer[1] = self.player
-	DPSMatePlayer[2] = playerclass
-	local _, fac = UnitFactionGroup("player")
-	if fac == "Alliance" then
-		DPSMatePlayer[3] = 1
-	elseif fac == "Horde" then
-		DPSMatePlayer[3] = -1
+	DPSMatePlayer[2] = strlower(playerclass)
+	fac = UnitFactionGroup("player")
+	if fac then
+		if strfind(fac, "lliance") then
+			DPSMatePlayer[3] = 1
+		elseif strfind(fac, "orde") then
+			DPSMatePlayer[3] = -1
+		end
 	end
 	DPSMatePlayer[4] = GetRealmName()
 	DPSMatePlayer[5] = GetGuildInfo("player")
 	DPSMatePlayer[6] = GetLocale()
 	self:OnLoad()
+end
+
+DPSMate.Parser.PLAYER_LOGOUT = function()
+	this:GetPlayerValues()
+end
+
+DPSMate.Parser.PLAYER_ENTERING_WORLD = function()
+	this:GetPlayerValues()
 end
 
 function DPSMate.Parser:GetUnitByName(target)
