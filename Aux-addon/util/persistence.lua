@@ -3,20 +3,6 @@ module 'aux.util.persistence'
 include 'T'
 include 'aux'
 
-_G.aux_datasets = {}
-
-do
-	local dataset
-	function M.get_dataset()
-		if not dataset then
-		    local dataset_key = format('%s|%s', GetCVar'realmName', UnitFactionGroup'player')
-		    dataset = aux_datasets[dataset_key] or T
-		    aux_datasets[dataset_key] = dataset
-	    end
-	    return dataset
-	end
-end
-
 function M.read(schema, str)
     if schema == 'string' then
         return str

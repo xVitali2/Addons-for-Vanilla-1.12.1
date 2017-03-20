@@ -12,11 +12,13 @@ local scan = require 'aux.core.scan'
 local search_tab = require 'aux.tabs.search'
 
 _G.aux_scale = 1
-_G.aux_characters = {}
 
-function M.set_p(v)
-	inspect(nil, v)
-end
+_G.aux = {
+	character = {},
+	faction = {},
+	realm = {},
+	account = {},
+}
 
 function M.print(...)
 	DEFAULT_CHAT_FRAME:AddMessage(LIGHTYELLOW_FONT_COLOR_CODE .. '<aux> ' .. join(map(arg, tostring), ' '))
@@ -33,7 +35,6 @@ for event in temp-S('ADDON_LOADED', 'VARIABLES_LOADED', 'PLAYER_LOGIN', 'AUCTION
 	event_frame:RegisterEvent(event)
 end
 
-ADDON_LOADED = {}
 do
 	local handlers, handlers2 = {}, {}
 	function M.set_LOAD(f)
@@ -44,7 +45,13 @@ do
 	end
 	event_frame:SetScript('OnEvent', function()
 		if event == 'ADDON_LOADED' then
-			(ADDON_LOADED[arg1] or nop)()
+			if arg1 == 'Blizzard_AuctionUI' then
+				Blizzard_AuctionUI()
+			elseif arg1 == 'Blizzard_CraftUI' then
+				Blizzard_CraftUI()
+			elseif arg1 == 'Blizzard_TradeSkillUI' then
+				Blizzard_TradeSkillUI()
+			end
 		elseif event == 'VARIABLES_LOADED' then
 			for _, f in handlers do f() end
 		elseif event == 'PLAYER_LOGIN' then
@@ -54,6 +61,43 @@ do
 			_M[event]()
 		end
 	end)
+end
+
+do
+	local cache = {}
+	function LOAD()
+		cache.account = aux.account
+		do
+			local key = format('%s|%s', GetCVar'realmName', UnitName'player')
+			aux.character[key] = aux.character[key] or {}
+			cache.character = aux.character[key]
+		end
+		do
+			local key = GetCVar'realmName'
+			aux.realm[key] = aux.realm[key] or {}
+			cache.realm = aux.realm[key]
+		end
+	end
+	function LOAD2()
+		do
+			local key = format('%s|%s', GetCVar'realmName', UnitFactionGroup'player')
+			aux.faction[key] = aux.faction[key] or {}
+			cache.faction = aux.faction[key]
+		end
+	end
+	for scope in temp-S('character', 'faction', 'realm', 'account') do
+		local scope = scope
+		M[scope .. '_data'] = function(key, init)
+			if not cache[scope] then error('Cache not ready', 2) end
+			cache[scope][key] = cache[scope][key] or {}
+			for k, v in init or empty do
+				if cache[scope][key][k] == nil then
+					cache[scope][key][k] = v
+				end
+			end
+			return cache[scope][key]
+		end
+	end
 end
 
 tab_info = {}
@@ -163,29 +207,8 @@ do
 	end
 end
 
-function M.is_player(name)
-	local key = GetCVar'realmName' .. '|' .. UnitFactionGroup'player'
-	return name and index(aux_characters, key, name) and true or false
-end
-
 function LOAD2()
-	local key = GetCVar'realmName' .. '|' .. UnitFactionGroup'player'
-	aux_characters[key] = aux_characters[key] or {}
-	for char, lastSeen in aux_characters[key] do
-		if GetTime() - lastSeen > 60 * 60 * 24 * 30 then
-			aux_characters[key][char] = nil
-		end
-	end
-	aux_characters[key][UnitName'player'] = GetTime()
 	AuxFrame:SetScale(aux_scale)
-end
-
-function M.neutral_faction()
-	return not UnitFactionGroup'npc'
-end
-
-function M.min_bid_increment(current_bid)
-	return max(1, floor(current_bid / 100) * 5)
 end
 
 function AUCTION_HOUSE_SHOW()
@@ -210,18 +233,17 @@ end
 
 do
 	local last_owner_page_requested
-	function GetOwnerAuctionItems(...)
-		temp(arg)
-		local page = arg[1]
-		last_owner_page_requested = page
-		return orig.GetOwnerAuctionItems(unpack(arg))
+	function GetOwnerAuctionItems(index)
+		local page = index
+		last_owner_page_requested = index
+		return orig.GetOwnerAuctionItems(index)
 	end
 	function AUCTION_OWNED_LIST_UPDATE()
 		current_owner_page = last_owner_page_requested or 0
 	end
 end
 
-function ADDON_LOADED.Blizzard_AuctionUI()
+function Blizzard_AuctionUI()
 	AuctionFrame:UnregisterEvent('AUCTION_HOUSE_SHOW')
 	AuctionFrame:SetScript('OnHide', nil)
 	hook('ShowUIPanel', function(...)
@@ -250,7 +272,7 @@ do
 			end
 		end)
 	end
-	function ADDON_LOADED.Blizzard_CraftUI()
+	function Blizzard_CraftUI()
 		hook('CraftFrame_SetSelection', function(...)
 			local ret = temp-A(orig.CraftFrame_SetSelection(unpack(arg)))
 			local id = GetCraftSelectionIndex()
@@ -280,7 +302,7 @@ do
 			hook_quest_item(_G['CraftReagent' .. i])
 		end
 	end
-	function ADDON_LOADED.Blizzard_TradeSkillUI()
+	function Blizzard_TradeSkillUI()
 		hook('TradeSkillFrame_SetSelection', function(...)
 			local ret = temp-A(orig.TradeSkillFrame_SetSelection(unpack(arg)))
 			local id = GetTradeSkillSelectionIndex()

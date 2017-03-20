@@ -22,9 +22,10 @@ if (GetLocale() == "ruRU") then
 	AUCTION_NOT_FOUND = "Аукцион не найден"
 	INVALID_SCHEMA = "Неверная схема."
 	SCANNING_AUCTIONS = "Сканирование аукционов..."
-	SCANNING = "Сканирование (Страница %d / %d)"	
-	SCAN_COMPLETE = "Сканирование завершено"	
-	SCAN_ABORTED = "Сканирование прервано"	
+	SCANNING = 'Сканирование (Страница %d / %d)'
+	SCANNING2 = 'Сканирование %d / %d (Страница %d / %d)'
+	SCAN_COMPLETE = "Сканирование завершено"
+	SCAN_ABORTED = "Сканирование прервано"
 	CANCEL = "Отмена"
 	REFRESH = "Обновить"
 	BID = "Ставка"
@@ -149,7 +150,8 @@ else
 	AUCTION_NOT_FOUND = "Auction not found"
 	INVALID_SCHEMA = "Invalid schema."
 	SCANNING_AUCTIONS = "Scanning auctions..."
-	SCANNING = "Scanning (Page %d / %d)"	
+	SCANNING = "Scanning (Page %d / %d)"
+	SCANNING2 = 'Scanning %d / %d (Page %d / %d)'
 	SCAN_COMPLETE = "Scan complete"	
 	SCAN_ABORTED = "Scan aborted"	
 	CANCEL = "Cancel"

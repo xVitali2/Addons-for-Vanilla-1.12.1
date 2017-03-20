@@ -4,6 +4,7 @@ local info = require 'aux.util.info'
 local filter_util = require 'aux.util.filter'
 local scan_util = require 'aux.util.scan'
 local scan = require 'aux.core.scan'
+local cache = require 'aux.core.cache'
 
 function LOAD()
 	new_search()
@@ -247,7 +248,7 @@ function start_search(queries, continuation)
 			total_scan_pages = max(total_scan_pages, 1)
 			current_page = min(current_page, total_scan_pages)
 			search.status_bar:update_status((current_query - 1) / getn(queries), (current_page - 1) / total_scan_pages)
-			search.status_bar:set_text(format(SCANNING, current_query, total_queries, current_page, total_scan_pages))
+			search.status_bar:set_text(format(SCANNING2, current_query, total_queries, current_page, total_scan_pages))
 		end,
 		on_page_scanned = function()
 			search.table:SetDatabase()
