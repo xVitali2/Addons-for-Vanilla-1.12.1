@@ -2962,10 +2962,13 @@ QuestieNewObjects = {
   },
  },
  [19022] = {
-  name = "Worn Chest",
+  name = "Подержанный сундук",
   locations = {
    {1,1,0.5442,0.354},
   },
+  openedby = {
+   ["Деревянный ключ"] = 1
+  }
  },
  [175950] = {
   name = "Sixth Mosh\'aru Tablet",
@@ -2974,7 +2977,7 @@ QuestieNewObjects = {
   },
  },
  [1621] = {
-  name = "Briarthorn",
+  name = "Остротерн",
   locations = {
    {2,16,0.4912,0.3357},
    {2,16,0.5243,0.5669},
@@ -3573,7 +3576,7 @@ QuestieNewObjects = {
   },
  },
  [179922] = {
-  name = "Vessel of Tainted Blood",
+  name = "Сосуд с порченой кровью",
   locations = {
    {2,20,0.6757,0.6697},
    {2,20,0.6352,0.8398},
@@ -6032,10 +6035,10 @@ QuestieNewObjects = {
   },
  },
  [175565] = {
-  name = "Alien Egg",
+  name = "Странное яйцо",
   locations = {
-   {1,18,0.5636,0.5039},
-   {1,18,0.5234,0.5525},
+   {1,19,0.5636,0.5039},
+   {1,19,0.5234,0.5525},
   },
  },
  [271] = {

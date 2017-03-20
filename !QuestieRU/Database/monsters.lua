@@ -20024,7 +20024,7 @@ QuestieDropTable = {
 		["Ослоп скалящегося пса"] = 1,
 		["Потертая драконья чешуя"] = 213,
 	},
-	["\"Pretty Boy\" Duncan"] = {
+	["\"Красавчик\" Дункан"] = {
 		["Легкий ятаган"] = 1,
 		["Шелковый материал"] = 499,
 		["Свиток силы II"] = 4,
@@ -51594,7 +51594,7 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1
   },
-  ["\"Stinky\" Ignatz"] = {
+  ["\"Вонючка\" Игнац"] = {
     ["locations"] = {
       [1] = {10.0, 0.4723, 0.1853, 100.0},
       [2] = {10.0, 0.4925, 0.2349, 2.0}
@@ -56911,7 +56911,7 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Remy \"Two Times\""] = {
+  ["Реми Повторюх"] = {
     ["locations"] = {
       [1] = {37.0, 0.4214, 0.6719, 100.0}
     },
@@ -65905,7 +65905,7 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1
   },
-  ["\"Swamp Eye\" Jarl"] = {
+  ["Ярл \"Болотный Глаз\""] = {
     ["locations"] = {
       [1] = {10.0, 0.5542, 0.2629, 100.0}
     },
@@ -81431,7 +81431,7 @@ QuestieMonsters = {
     ["looted"] = 1534,
     ["locationCount"] = 1
   },
-  ["\"Pretty Boy\" Duncan"] = {
+  ["\"Красавчик\" Дункан"] = {
     ["locations"] = {
       [1] = {38.0, 0.2752, 0.6942, 100.0}
     },
@@ -87030,7 +87030,7 @@ QuestieMonsters = {
     ["looted"] = 4719,
     ["locationCount"] = 1
   },
-  ["Renzik \"The Shiv\""] = {
+  ["Рензик Нож"] = {
     ["locations"] = {
       [1] = {36.0, 0.7596, 0.6014, 100.0}
     },
@@ -89820,7 +89820,7 @@ QuestieMonsters = {
     ["looted"] = 6571,
     ["locationCount"] = 2
   },
-  ["\"Shaky\" Phillipe"] = {
+  ["Филипп \"Трусишка\""] = {
     ["locations"] = {
       [1] = {38.0, 0.269, 0.7363, 100.0}
     },
@@ -91759,7 +91759,7 @@ QuestieMonsters = {
     ["looted"] = 1685,
     ["locationCount"] = 5
   },
-  ["Tapoke \"Slim\" Jahn"] = {
+  ["Ян \"Проныра\" Тапоке"] = {
     ["locations"] = {
       [1] = {51.0, 0.1067, 0.6001, 100.0}
     },
@@ -105439,7 +105439,7 @@ QuestieMonsters = {
     },
     ["locationCount"] = 5
   },
-  ["\"Auntie\" Bernice Stonefield"] = {
+  ["\"Тетушка\" Бернис Стоунфилд"] = {
     ["locations"] = {
       [1] = {37.0, 0.345, 0.8429, 100.0}
     },

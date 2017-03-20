@@ -37,14 +37,15 @@ Database\hash.lua
 Database\finishers.lua
 Database\objects.lua
 Database\newObjects.lua
+Database\reputations.lua
 Database\addendum.lua
 Astrolabe\Astrolabe.lua
 
 # Questie
 Questie.lua
 Modules\QuestieArrow.lua
+Modules\QuestieGUI.lua
 Modules\QuestieNotes.lua
 Modules\QuestieQuest.lua
 Modules\QuestieTracker.lua
-Modules\QuestieGUI.lua
 Questie.xml

@@ -21,25 +21,13 @@ QuestieEvents = {
     },
     ["locationCount"] = 5
   },
-  ["Captured Protectorate Vanguard Escorted"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.589, 0.3243, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Blacksilt Scouts Tagged"] = {
-    ["locations"] = {
-      [1] = {9.0, 0.5177, 0.9019, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["История Зимаэля."] = {
     ["locations"] = {
       [1] = {32.0, 0.2959, 0.2638, 100.0}
     },
     ["locationCount"] = 1
   },
-  ["Hit 8 braziers."] = {
+  ["Попадите в 8 жаровен."] = {
     ["locations"] = {
       [1] = {36.0, 0.3921, 0.6171, 100.0},
       [5] = {45.0, 0.6858, 0.0788, 6.0},
@@ -52,19 +40,6 @@ QuestieEvents = {
   ["Лекарство готово."] = {
     ["locations"] = {
       [1] = {48.0, 0.6157, 0.1921, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Siphon Bloodgem Crystal"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.2542, 0.6651, 100.0},
-      [2] = {59.0, 0.2237, 0.6573, 2.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Information Gathering"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.4818, 0.8408, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -1987,12 +1962,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Rokdar the Sundered Lord Defeated"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.4334, 0.2071, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Нападение на лагерь кобольдов"] = {
     ["locations"] = {
       [1] = {37.0, 0.4934, 0.3586, 100.0}
@@ -2005,21 +1974,9 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Escort Bessy on her way home."] = {
-    ["locations"] = {
-      [1] = {59.0, 0.5771, 0.8497, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Охраняйте караван Гизлтона на пути мимо деревни кентавров из племени Колкар."] = {
     ["locations"] = {
       [1] = {4.0, 0.6717, 0.5662, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Brokentoe Defeated"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.4332, 0.2072, 100.0}
     },
     ["locationCount"] = 1
   }
