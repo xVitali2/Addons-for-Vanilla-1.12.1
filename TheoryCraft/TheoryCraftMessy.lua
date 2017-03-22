@@ -16,7 +16,7 @@ end
 local function round(arg1, decplaces)
 	if (decplaces == nil) then decplaces = 0 end
 	if arg1 == nil then arg1 = 0 end
-	return string.format ("%."..decplaces.."f", arg1)
+	return string.format("%."..decplaces.."f", arg1)
 end
 
 local function getmanacost(frame)
@@ -56,6 +56,7 @@ function TheoryCraft_getMinMax(spelldata, returndata, frame)
 	local plusdam = (returndata["damfinal"] or 0)*gearbaseincrease
 	local plusdam2 = returndata["plusdam2"] or 0
 	local to = TheoryCraft_Locale.to
+	local to_print = TheoryCraft_Locale.to_print
 	returndata["backstabmult"] = 1
 
 	if spelldata.autoattack then
@@ -426,7 +427,6 @@ function TheoryCraft_getMinMax(spelldata, returndata, frame)
 		local lengthofdamagetext = string.len(minDamage..to..maxDamage);
 		minDamage = minDamage*baseincrease + plusdam
 		maxDamage = maxDamage*baseincrease + plusdam
-
 		local minHeal = string.sub(description, string.find(description, "%d+"..to.."%d+")+lengthofdamagetext)
 		minHeal = findpattern(minHeal, "%d+"..to.."%d+")
 		local maxHeal = findpattern(minHeal, to.."%d+")
@@ -434,20 +434,17 @@ function TheoryCraft_getMinMax(spelldata, returndata, frame)
 		maxHeal = findpattern(maxHeal, "%d+")
 		local basehealincrease = TheoryCraft_GetStat("Allbaseincrease")+(TheoryCraft_GetStat("Holybaseincrease") or 0)+(TheoryCraft_GetStat("Healingbaseincrease") or 0)
 		local plusheal = (TheoryCraft_GetStat("All") + TheoryCraft_GetStat("Holy") + TheoryCraft_GetStat("Healing"))*spelldata.percentheal
-
 		local lengthofhealtext = string.len(minHeal..to..maxHeal);
 		minHeal = (minHeal + plusheal)*basehealincrease
 		maxHeal = (maxHeal + plusheal)*basehealincrease
-
-		description = 	string.sub(description, 0, string.find(description, "%d+"..to.."%d+", 0)-1)..
-				round(minDamage)..to..round(maxDamage)..
+		description = string.sub(description, 0, string.find(description, "%d+"..to.."%d+", 0)-1)..round(minDamage)..to_print..round(maxDamage)..
 				string.sub(description, string.find(description, "%d+"..to.."%d+", 0)+lengthofdamagetext)
 		local descriptionbegin = string.sub(description, 0, string.find(description, "%d+"..to.."%d+")+string.len(minDamage..to..maxDamage))
-		-- local descriptionrest = string.sub(description, string.find(description, "%d+"..to.."%d+")+string.len(minDamage..to..maxDamage)+1)
-		-- descriptionrest=string.sub(descriptionrest, 0, string.find(descriptionrest, "%d+"..to.."%d+", 0)-1)..
-				-- round(minHeal)..to..round(maxHeal)..
-				-- string.sub(descriptionrest, string.find(descriptionrest, "%d+"..to.."%d+", 0)+lengthofhealtext)
-		description = descriptionbegin--..descriptionrest
+		local descriptionrest = string.sub(description, string.find(description, "%d+"..to.."%d+")+string.len(minDamage..to..maxDamage)+1)
+		descriptionrest = string.sub(descriptionrest, 0, string.find(descriptionrest, "%d+"..to.."%d+", 0)-1)..
+				round(minHeal)..to_print..round(maxHeal)..
+				string.sub(descriptionrest, string.find(descriptionrest, "%d+"..to.."%d+", 0)+lengthofhealtext)
+		description = descriptionbegin..descriptionrest
 		returndata["description"] = description
 		returndata["critdmgchance"] = returndata["critchance"]
 		returndata["crithealchance"] = returndata["critchance"]
