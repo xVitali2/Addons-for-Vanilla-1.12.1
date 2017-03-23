@@ -361,8 +361,8 @@ function Questie:UpdateGameClientCache()
                     local splitIndex = findLast(objectiveName, ":");
                     if splitIndex ~= nil then
                         objectiveName = string.sub(objectiveName, 1, splitIndex-1);
-                        if (string.find(objectiveName, " slain")) then
-                            objectiveName = string.sub(objectiveName, 1, string.len(objectiveName)-6);
+                        if (string.find(objectiveName, " - убито")) then
+                            objectiveName = string.sub(objectiveName, 1, string.len(objectiveName)-13);
                         end
                     end
                     if (QuestieHandledQuests[hash] and QuestieHandledQuests[hash]["objectives"] and QuestieHandledQuests[hash]["objectives"][index]["name"] ~= objectiveName) then
@@ -370,9 +370,9 @@ function Questie:UpdateGameClientCache()
                         Questie:debug_Print("Quest:UpdateGameClientCache --> Questie:AddQuestToMap(): [Name: "..QuestieHandledQuests[hash]["objectives"][index]["name"].."]");
                     QuestieTracker:addQuestToTrackerCache(hash, id, level);
                     Questie:debug_Print("Quest:UpdateGameClientCache --> Questie:addQuestToTrackerCache(): [Hash: "..hash.."]");
-                end
-            end
-        end
+					end
+				end
+			end
             if not isHeader then
                 qc = qc + 1;
             end
