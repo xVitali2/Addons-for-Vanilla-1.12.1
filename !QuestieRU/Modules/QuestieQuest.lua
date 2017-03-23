@@ -1091,7 +1091,7 @@ end
 function Questie:getQuestHash(name, level, objectiveText)
     local hashLevel = level or "hashLevel";
     local hashText = objectiveText or "hashText";
-    if QuestieQuestHashCache[name..hashLevel..hashText] then
+    if name and QuestieQuestHashCache[name..hashLevel..hashText] then
         return QuestieQuestHashCache[name..hashLevel..hashText];
     end
     local questLookup = QuestieLevLookup[name];
