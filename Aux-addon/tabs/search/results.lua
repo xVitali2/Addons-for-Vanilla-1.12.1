@@ -369,7 +369,7 @@ do
 	function find_auction(record)
 		local search = current_search
 
-		if not search.table:ContainsRecord(record) or is_player(record.owner) then
+		if not search.table:ContainsRecord(record) or cache.is_player(record.owner) then
 			return
 		end
 
