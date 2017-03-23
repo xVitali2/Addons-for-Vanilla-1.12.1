@@ -1,6 +1,6 @@
 Questie.minimapButton = CreateFrame('Button', 'QuestieMinimap', Minimap)
-if QuestieMinimapPosition==nil then
-	QuestieMinimapPosition = 0
+if (QuestieMinimapPosition == nil) then
+    QuestieMinimapPosition = -90
 end
 
 Questie.minimapButton:SetMovable(true)
