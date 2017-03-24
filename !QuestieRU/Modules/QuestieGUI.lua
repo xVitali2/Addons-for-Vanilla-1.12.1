@@ -1,3 +1,8 @@
+---------------------------------------------------------------------------------------------------
+-- Minimap button creation is in a function so that it can be called upon the ADDON_LOADED event,
+-- when SavedVariables (position) are available.
+---------------------------------------------------------------------------------------------------
+function Questie.CreateMinimapButton()
 Questie.minimapButton = CreateFrame('Button', 'QuestieMinimap', Minimap)
 if (QuestieMinimapPosition == nil) then
     QuestieMinimapPosition = -90
@@ -37,26 +42,24 @@ end)
 Questie.minimapButton:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 Questie.minimapButton:SetScript("OnClick", function()
     if ( arg1 == "LeftButton" ) then
-        Questie:Toggle()
-    end
-    if (arg1 == "RightButton") then
-        QuestieConfig.hideMinimapIcons = not QuestieConfig.hideMinimapIcons
-        if QuestieConfig.hideMinimapIcons then
-            DEFAULT_CHAT_FRAME:AddMessage("QuestieStarters:|c0000ffc0 (Are now being hidden) |r")
-        else
-            DEFAULT_CHAT_FRAME:AddMessage("QuestieStarters:|c0000ffc0 (Are now being shown) |r")
+			if QuestieOptionsForm:IsShown() then --by CFM
+				QuestieOptionsForm:Hide()--by CFM
+			else--by CFM
+				Questie:OptionsForm_Display()
+			end--by CFM
         end
-        Questie:AddEvent("DRAWNOTES", 0.1);
+        if (arg1 == "RightButton") then
+        Questie:Toggle()
     end
 end)
 Questie.minimapButton:SetScript("OnEnter", function()
-    QuestieTooltip:SetOwner(Questie.minimapButton, "ANCHOR_BOTTOMLEFT")
-    QuestieTooltip:ClearLines()
-    QuestieTooltip:SetText("Questie\n\n<LeftClick>: Toggle all notes\n<RightClick>: Toggle minimap notes")
-    QuestieTooltip:Show()
+        GameTooltip:SetOwner(Questie.minimapButton, "ANCHOR_BOTTOMLEFT")
+        GameTooltip:ClearLines()
+        GameTooltip:SetText("QuestieRU\n<ЛКМ>: Открыть настройки\n<ПКМ>: Переключить значки")--by CFM
+        GameTooltip:Show()
 end)
 Questie.minimapButton:SetScript("OnLeave", function()
-    QuestieTooltip:Hide()
+        GameTooltip:Hide()
 end)
 
 Questie.minimapButton.overlay = Questie.minimapButton:CreateTexture(nil, 'OVERLAY')
@@ -67,6 +70,7 @@ Questie.minimapButton.overlay:SetPoint('TOPLEFT', 0,0)
 Questie.minimapButton.icon = Questie.minimapButton:CreateTexture(nil, 'BACKGROUND')
 Questie.minimapButton.icon:SetWidth(20)
 Questie.minimapButton.icon:SetHeight(20)
-Questie.minimapButton.icon:SetTexture('Interface\\AddOns\\!QuestieRU\\Icons\\available')
+Questie.minimapButton.icon:SetTexture('Interface\\AddOns\\!QuestieRU\\Icons\\available')  ---------by CFM
 Questie.minimapButton.icon:SetTexCoord(0.05, 0.95, 0.05, 0.95)
 Questie.minimapButton.icon:SetPoint('CENTER',1,1)
+end

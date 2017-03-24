@@ -238,12 +238,12 @@ end
 ---------------------------------------------------------------------------------------------------
 function Questie:ParseQuestLoot(arg1)
     local msg, item, loot
-    if string.find(arg1, "(Ваша добыча%:) (.+)") then
-        _, _, msg, item = string.find(arg1, "(Ваша добыча%:) (.+)");
-    elseif string.find(arg1, "(Получен предмет%:) (.+)") then
-        _, _, msg, item = string.find(arg1, "(Получен предмет%:) (.+)");
-    elseif string.find(arg1, "(Вы получаете предмет%:) (.+)") then
-        _, _, msg, item = string.find(arg1, "(Вы получаете предмет%:) (.+)");
+    if string.find(arg1, "(Ваша добыча%:) (.+)") then---------by CFM
+        _, _, msg, item = string.find(arg1, "(Ваша добыча%:) (.+)");---------by CFM
+    elseif string.find(arg1, "(Получен предмет%:) (.+)") then---------by CFM
+        _, _, msg, item = string.find(arg1, "(Получен предмет%:) (.+)");---------by CFM
+    elseif string.find(arg1, "(Вы получаете предмет%:) (.+)") then---------by CFM
+        _, _, msg, item = string.find(arg1, "(Вы получаете предмет%:) (.+)");---------by CFM
     end
     if item then
         _, _, loot = string.find(item, "%[(.+)%].+");
@@ -361,8 +361,8 @@ function Questie:UpdateGameClientCache()
                     local splitIndex = findLast(objectiveName, ":");
                     if splitIndex ~= nil then
                         objectiveName = string.sub(objectiveName, 1, splitIndex-1);
-                        if (string.find(objectiveName, " - убито")) then
-                            objectiveName = string.sub(objectiveName, 1, string.len(objectiveName)-13);
+                        if (string.find(objectiveName, " - убито")) then---------by CFM
+                            objectiveName = string.sub(objectiveName, 1, string.len(objectiveName)-13);---------by CFM
                         end
                     end
                     if (QuestieHandledQuests[hash] and QuestieHandledQuests[hash]["objectives"] and QuestieHandledQuests[hash]["objectives"][index]["name"] ~= objectiveName) then
@@ -813,8 +813,8 @@ function Questie:GetQuestObjectivePaths(questHash)
             local splitIndex = findLast(objectiveName, ":");
             if splitIndex ~= nil then
                 objectiveName = string.sub(objectiveName, 1, splitIndex-1);
-                if (string.find(objectiveName, " - убито")) then
-                    objectiveName = string.sub(objectiveName, 1, string.len(objectiveName)-13);
+                if (string.find(objectiveName, " - убито")) then---------by CFM
+                    objectiveName = string.sub(objectiveName, 1, string.len(objectiveName)-13);---------by CFM
                 end
             end
             locations = typeFunction(objectiveName);
@@ -970,8 +970,8 @@ AstroobjectiveProcessors = {
     ['monster'] = function(quest, name, amount, selected, mapid)
         local list = {};
         local monster = {};
-        if (string.find(name, " - убито")) then
-            name = string.sub(name, 1, string.len(name)-13);
+        if (string.find(name, " - убито")) then---------by CFM
+            name = string.sub(name, 1, string.len(name)-13);---------by CFM
         end
         monster["name"] = name;
         monster["type"] = "slay";
@@ -1091,7 +1091,7 @@ end
 function Questie:getQuestHash(name, level, objectiveText)
     local hashLevel = level or "hashLevel";
     local hashText = objectiveText or "hashText";
-    if name and QuestieQuestHashCache[name..hashLevel..hashText] then
+    if name and QuestieQuestHashCache[name..hashLevel..hashText] then---------by CFM
         return QuestieQuestHashCache[name..hashLevel..hashText];
     end
     local questLookup = QuestieLevLookup[name];
@@ -1238,8 +1238,8 @@ function Questie:GetAvailableQuestHashes(mapFileName, levelFrom, levelTo)
         c = QuestieZones[mapFileName][4];
         z = QuestieZones[mapFileName][5];
     end
-    local _, class = UnitClass("Player");
-    local _, race = UnitRace("Player");
+    local _, class = UnitClass("Player"); ---------by CFM
+    local _, race = UnitRace("Player");---------by CFM
     local hashes = {};
     for l = 0,100 do
         if QuestieZoneLevelMap[c] and QuestieZoneLevelMap[c][z] then

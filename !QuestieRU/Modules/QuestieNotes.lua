@@ -296,8 +296,8 @@ function Questie:Tooltip(this, forceShow, bag, slot)
     if (QuestieConfig.showToolTips == false) then return end
 
     -- Don't show detailed tooltip for regular minimap icons
-    -- local anchorType = GameTooltip:GetAnchorType()
-    -- if anchorType == "ANCHOR_CURSOR" then return end
+    -- local anchorType = GameTooltip:GetAnchorType() ---------by CFM
+    -- if anchorType == "ANCHOR_CURSOR" then return end ---------by CFM
 
     -- Don't show detailed tooltip for questie minimap icons
     local owner = GameTooltip.owner
@@ -417,23 +417,23 @@ function Questie:GetTooltipLines(path, indent, highlightInfo, lines)
     for sourceType, sources in pairs(path) do
         local prefix;
         if sourceType == "drop" then
-            prefix = "Выпадает с";
+            prefix = "Выпадает с";       ---------by CFM
         elseif sourceType == "rewardedby" then
-            prefix = "Награда с";
+            prefix = "Награда с";       ---------by CFM
         elseif sourceType == "contained" then
-            prefix = "Находится в";
+            prefix = "Находится в";      ---------by CFM
         elseif sourceType == "contained_id" then
-            prefix = "Находится в";
+            prefix = "Находится в";       ---------by CFM
         elseif sourceType == "containedi" then
-            prefix = "Открывается в";
+            prefix = "Открывается в";     ---------by CFM
         elseif sourceType == "created" then
-            prefix = "Создается из";
+            prefix = "Создается из";       ---------by CFM
         elseif sourceType == "openedby" then
-            prefix = "Открывается из";
+            prefix = "Открывается из";       ---------by CFM
         elseif sourceType == "transforms" then
-            prefix = "Используется на";
+            prefix = "Используется на";       ---------by CFM
         elseif sourceType == "transformedby" then
-            prefix = "Создается из";
+            prefix = "Создается из";         ---------by CFM
         end
         if prefix then
             for sourceName, sourcePath in pairs(sources) do
@@ -452,7 +452,7 @@ function Questie:GetTooltipLines(path, indent, highlightInfo, lines)
                     end
                 end
                 if countDown > 0 then
-                    combinedNames = combinedNames.." и "..countDown.." более...";
+                    combinedNames = combinedNames.." и "..countDown.." более...";--by CFM
                 end
                 table.insert(lines, indentString..prefix..": |cFFa6a6a6"..combinedNames.."|r");
                 Questie:GetTooltipLines(sourcePath, indent+1, highlightInfo, lines, sourceNames);
@@ -513,8 +513,8 @@ function Questie_Tooltip_OnEnter()
                         end
                     end
                 else
-                    Tooltip:AddLine("["..QuestieHashMap[data.questHash].questLevel.."] "..Quest["name"].." |cFF33FF00(Завершено)|r");
-                    Tooltip:AddLine("Завершить у: |cFFa6a6a6"..QuestieHashMap[data.questHash].finishedBy.."|r",1,1,1);
+                    Tooltip:AddLine("["..QuestieHashMap[data.questHash].questLevel.."] "..Quest["name"].." |cFF33FF00(Завершено)|r"); ---------by CFM
+                    Tooltip:AddLine("Завершить у: |cFFa6a6a6"..QuestieHashMap[data.questHash].finishedBy.."|r",1,1,1);   ---------by CFM
                 end
             else
                 questOb = nil;
@@ -534,16 +534,16 @@ function Questie_Tooltip_OnEnter()
                 end
                 local questLine = "["..QuestieHashMap[data.questHash].questLevel.."] "..QuestieHashMap[data.questHash].name;
                 if data.icontype == "available" then
-                    questLine = questLine.." |cFF33FF00(Доступно)|r";
+                    questLine = questLine.." |cFF33FF00(Доступно)|r"; ---------by CFM
                 elseif data.icontype == "availablesoon" then
-                    questLine = questLine.." |cFFa6a6a6(Недоступно)|r";
+                    questLine = questLine.." |cFFa6a6a6(Недоступно)|r";   ---------by CFM
                 end
                 Tooltip:AddLine(questLine);
-                Tooltip:AddLine("Мин. уровень: |cFFa6a6a6"..QuestieHashMap[data.questHash].level.."|r",1,1,1);
-                Tooltip:AddLine("Начинает: |cFFa6a6a6"..QuestieHashMap[data.questHash].startedBy.."|r",1,1,1);
+                Tooltip:AddLine("Мин. уровень: |cFFa6a6a6"..QuestieHashMap[data.questHash].level.."|r",1,1,1);  ---------by CFM
+                Tooltip:AddLine("Начинает: |cFFa6a6a6"..QuestieHashMap[data.questHash].startedBy.."|r",1,1,1);  ---------by CFM
                 Questie:AddPathToTooltip(Tooltip, questMeta['path'], 1);
                 if questOb ~= nil then
-                    Tooltip:AddLine("Описание: |cFFa6a6a6"..questOb.."|r",1,1,1,true);
+                    Tooltip:AddLine("Описание: |cFFa6a6a6"..questOb.."|r",1,1,1,true);  ---------by CFM
                 end
                 canManualComplete = 1;
             end
@@ -553,7 +553,7 @@ function Questie_Tooltip_OnEnter()
             if count > 1 then
                 Tooltip:AddLine(" ");
             end
-            Tooltip:AddLine("Shift+Click: |cFFa6a6a6Вручную завершить задание!|r",1,1,1);
+            Tooltip:AddLine("Shift+Click: |cFFa6a6a6Вручную завершить задание!|r",1,1,1); ---------by CFM
         end
         if(NOTES_DEBUG and IsAltKeyDown()) then
             Tooltip:AddLine("!DEBUG!", 1, 0, 0);
@@ -604,8 +604,8 @@ function Questie_AvailableQuestClick()
                 local hash = quest.questHash;
                 local questName = "["..QuestieHashMap[hash].questLevel.."] "..QuestieHashMap[hash]['name'];
                 Questie:finishAndRecurse(hash);
-                DEFAULT_CHAT_FRAME:AddMessage("Завершено задание |cFF00FF00\"" .. questName .. "\"|r и последующее задание: "..hash);
-                Questie:debug_Print("Notes:Questie_AvailableQuestClick --> Refreshing QuestNPC Icons: [AddEvent:DRAWNOTES]");
+                DEFAULT_CHAT_FRAME:AddMessage("Завершено задание |cFF00FF00\"" .. questName .. "\"|r и последующее задание: "..hash);  ---------by CFM
+                --Questie:debug_Print("Notes:Questie_AvailableQuestClick --> Refreshing QuestNPC Icons: [AddEvent:DRAWNOTES]");
                 Questie:AddEvent("DRAWNOTES", 0.1);
             end
         end
@@ -668,7 +668,7 @@ function Questie_AvailableQuestClick()
                 registerDewdrop(WorldMapFrame, this.quests, 'cursorX', true, 'cursorY', true);
             elseif (not IsAddOnLoaded("Cartographer")) or (not IsAddOnLoaded("MetaMap")) and (QuestieConfig.resizeWorldmap == false) then
                 registerDewdrop(this, this.quests, 'point', "TOPLEFT", 'relativePoint', "BOTTOMRIGHT");
-            elseif (IsAddOnLoaded("Cartographer")) and (CartographerDB["disabledModules"]) and (CartographerDB["disabledModules"]["Default"]["Look 'n' Feel"] == true) then
+            elseif (IsAddOnLoaded("Cartographer")) and (CartographerDB["disabledModules"]) and (CartographerDB["disabledModules"]["Default"]["Look 'n' Feel"] == true) then  ---------by CFM
                 registerDewdrop(this, this.quests, 'point', "TOPLEFT", 'relativePoint', "BOTTOMRIGHT");
             end
         end
@@ -1407,42 +1407,42 @@ end
 QuestieIcons = {
     ["complete"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!QuestieRU\\Icons\\complete",
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\complete", ---------by CFM
         priority = 1
     },
     ["available"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!QuestieRU\\Icons\\available",
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\available",  ---------by CFM
         priority = 2
     },
     ["availablesoon"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!QuestieRU\\Icons\\availablesoon",
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\availablesoon",  ---------by CFM
         priority = 2
     },
     ["loot"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!QuestieRU\\Icons\\loot",
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\loot",  ---------by CFM
         priority = 3
     },
     ["item"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!QuestieRU\\Icons\\loot",
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\loot",  ---------by CFM
         priority = 3
     },
     ["event"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!QuestieRU\\Icons\\event",
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\event",  ---------by CFM
         priority = 3
     },
     ["object"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!QuestieRU\\Icons\\object",
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\object",  ---------by CFM
         priority = 3
     },
     ["slay"] = {
         text = "Complete",
-        path = "Interface\\AddOns\\!QuestieRU\\Icons\\slay",
+        path = "Interface\\AddOns\\!QuestieRU\\Icons\\slay",  ---------by CFM
         priority = 3
 	}
 };

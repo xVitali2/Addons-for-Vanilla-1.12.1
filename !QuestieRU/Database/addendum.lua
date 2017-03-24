@@ -1,5 +1,5 @@
 local N = UnitName("player");
-local _, R = UnitRace("player");
+local _, R = UnitRace("player");---------by CFM
 QuestieLevLookup = {
  ["Питомцы Элуны"]={
   ["Поговорите с верховным друидом Фэндралом Оленьим Шлемом в Дарнасе."]={77,1617756149},
@@ -55738,4 +55738,4 @@ for k,v in pairs(QuestieHashMap) do
 end
 
 local ttl = GetTime() - start;
-DEFAULT_CHAT_FRAME:AddMessage("Инициализированы AvailableQuests за " .. math.floor(ttl*1000) .. "мс");
+DEFAULT_CHAT_FRAME:AddMessage("Инициализированы AvailableQuests за " .. math.floor(ttl*1000) .. "мс");---------by CFM

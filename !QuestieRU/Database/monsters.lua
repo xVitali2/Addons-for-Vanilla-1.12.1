@@ -115396,4 +115396,4 @@ for k,v in pairs(QuestieItems) do
 end
 
 local ttl = GetTime() - start;
-DEFAULT_CHAT_FRAME:AddMessage("Questie: инициализация MonsterDB за " .. math.floor(ttl*1000) .. "мс"); -- log function may not be created yet
+DEFAULT_CHAT_FRAME:AddMessage("Questie: инициализация MonsterDB за " .. math.floor(ttl*1000) .. "мс"); -- log function may not be created yet   ---------by CFM
