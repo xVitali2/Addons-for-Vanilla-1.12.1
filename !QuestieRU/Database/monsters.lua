@@ -1,34 +1,4 @@
 QuestieDropTable = {
-	["Подозрительный след копыта"] = {
-    ["locations"] = {
-      [1] = {11.0, 0.509, 0.786, 100.0}
-    },
-    ["locationCount"] = 1,
-  },
-  ["Черный щит"] = {
-    ["locations"] = {
-      [1] = {11.0, 0.509, 0.792, 100.0}
-    },
-    ["locationCount"] = 1,
-  },
-  ["Кокарда Тераморской стражи"] = {
-    ["locations"] = {
-      [1] = {11.0, 0.510, 0.790, 100.0}
-    },
-    ["locationCount"] = 1,
-  },
-  ["Wanted Poster: Andre Firebeard"] = {
-    ["locations"] = {
-      [1] = {8.0, 0.518, 0.270, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Wanted Poster: Caliph Scorpidsting"] = {
-    ["locations"] = {
-      [1] = {8.0, 0.518, 0.270, 100.0}
-    },
-    ["locationCount"] = 1
-  },
 	["Даларанский чудотворец"] = {
 		["Легкий ятаган"] = 5,
 		["Шелковый материал"] = 1048,
@@ -7218,6 +7188,7 @@ QuestieDropTable = {
 	["Capataz Hierro Negro"] = {
 		["Daga bañada en torio"] = 714,
 	},
+	
 	["Охотник из клана Черной горы"] = {
 		["Парчовые перчатки"] = 2,
 		["Свиток духа II"] = 2,
@@ -44426,6 +44397,43 @@ QuestieDropTable = {
 }
 
 QuestieMonsters = {
+  ["Подозрительный след копыта"] = {
+    ["locations"] = {
+      [1] = {11.0, 0.509, 0.786, 100.0}
+    },
+    ["locationCount"] = 1,
+  },
+  ["Черный щит"] = {
+    ["locations"] = {
+      [1] = {11.0, 0.509, 0.792, 100.0}
+    },
+    ["locationCount"] = 1,
+  },
+  ["Кокарда Тераморской стражи"] = {
+    ["locations"] = {
+      [1] = {11.0, 0.510, 0.790, 100.0}
+    },
+    ["locationCount"] = 1,
+  },
+  ["Wanted Poster: Andre Firebeard"] = {
+    ["locations"] = {
+      [1] = {8.0, 0.518, 0.270, 100.0}
+    },
+    ["locationCount"] = 1
+  },
+  ["Wanted Poster: Caliph Scorpidsting"] = {
+    ["locations"] = {
+      [1] = {8.0, 0.518, 0.270, 100.0}
+    },
+    ["locationCount"] = 1
+  },
+  ["Приручено Кодо"] = {
+    ["locations"] = {
+		[1] = {4.0, 0.53, 0.59, 100.0},
+		[2] = {4.0, 0.6068, 0.6197, 5.0}
+    },
+	["locationCount"] = 2,
+  },
   ["Warp Monstrosity"] = {
     ["locations"] = {
       [1] = {59.0, 0.3379, 0.3144, 100.0},

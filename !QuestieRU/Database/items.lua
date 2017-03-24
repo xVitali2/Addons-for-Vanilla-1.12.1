@@ -9900,11 +9900,9 @@ QuestieItems = {
     ["locationCount"] = 3
   },
   ["Кость кодо"] = {
-    ["locations"] = {
-      [1] = {4.0, 0.5337, 0.6015, 100.0},
-      [2] = {4.0, 0.4953, 0.5881, 3.0}
-    },
-    ["locationCount"] = 2
+        contained_id = {
+            [176751] = 1,
+        },
   },
   ["Массивный камень"] = {
     ["locations"] = {
@@ -16036,12 +16034,6 @@ QuestieItems = {
       ["Ashtongue Primalist"] = 1
     },
     ["opened"] = 1
-  },
-  ["Кость кодо"] = {
-    ["locations"] = {
-      [1] = {4.0, 0.5294, 0.5989, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Сердце ящера"] = {
     ["drop"] = {
