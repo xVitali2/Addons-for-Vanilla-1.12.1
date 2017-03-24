@@ -408,6 +408,7 @@ function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 
         Questie:CreateMinimapButton();
     -------------------------------------------------
     elseif (event == "CHAT_MSG_LOOT") then
+        --Questie:debug_Print("OnEvent: CHAT_MSG_LOOT");
         Questie:ParseQuestLoot(arg1);
     -------------------------------------------------
     elseif (event == "MINIMAP_UPDATE_ZOOM" ) then

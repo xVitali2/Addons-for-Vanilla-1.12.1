@@ -201,8 +201,9 @@ function Questie:OptionsForm_ApplyOptions()
         StaticPopup_Show("OPTIONS_WARNING_F")
     end
 
-    Questie:Toggle()
-    Questie:Toggle()
+    Questie:AddEvent("SYNCLOG", 0.1)
+    Questie:AddEvent("DRAWNOTES", 0.2)
+    Questie:AddEvent("TRACKER", 0.3)
 
     QuestieOptionsForm:Hide()
 end
