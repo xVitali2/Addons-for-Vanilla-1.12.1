@@ -248,12 +248,12 @@ function QuestieTracker:createOrGetTrackingButton(index)
                     end
                 end
                 if questOb ~= nil and (quest["isComplete"] or quest["leaderboards"] == 0) then
-                    Tooltip:AddLine("|cFFa6a6a6To finish this quest... |r",1,1,1,true);
+                    Tooltip:AddLine("|cFFa6a6a6Для завершения этого задания:|r",1,1,1,true);
                     Tooltip:AddLine("|cffffffff"..questOb.."|r",1,1,1,true);
                 elseif questOb == nil then
-                    Tooltip:AddLine("Quest *Objective* not found in Questie Database!", 1, .8, .8);
-                    Tooltip:AddLine("Please file a bug report on our GitHub portal:)", 1, .8, .8);
-                    Tooltip:AddLine("https://github.com/AeroScripts/QuestieDev/issues", 1, .8, .8);
+                    Tooltip:AddLine("Цели задания не найдены в базе QuestieRU!", 1, .8, .8);
+                    Tooltip:AddLine("Пожалуйста, напишите багрепорт на портале GitHub:)", 1, .8, .8);
+                    Tooltip:AddLine("https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/issues", 1, .8, .8);
                 end
                 Tooltip:Show();
             end
