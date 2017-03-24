@@ -1,10 +1,7 @@
 ﻿## Interface: 11200
-## Title: Postal
+## Title: postal
 ## Notes: Mailbox automation
-## Notes-ruRU: Массовая отправка почты
 ## Author: shirsig
-## SavedVariablesPerCharacter: Postal_To
-## SavedVariables: Postal_Characters
-
-Postal.xml
-Localization.lua
+## SavedVariablesPerCharacter: postal_To
+## SavedVariables: postal_Characters
+postal.xml
