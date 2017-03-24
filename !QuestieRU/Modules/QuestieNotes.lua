@@ -296,14 +296,14 @@ function Questie:Tooltip(this, forceShow, bag, slot)
     if (QuestieConfig.showToolTips == false) then return end
 
     -- Don't show detailed tooltip for regular minimap icons
-    -- local anchorType = GameTooltip:GetAnchorType() ---------by CFM
+     --local anchorType = GameTooltip:GetAnchorType() ---------by CFM
     -- if anchorType == "ANCHOR_CURSOR" then return end ---------by CFM
 
     -- Don't show detailed tooltip for questie minimap icons
     local owner = GameTooltip.owner
     if owner and owner.type == "MiniMapNote" then return end
 
-        local monster = UnitName("mouseover")
+    local monster = UnitName("mouseover")
     local objective = GameTooltipTextLeft1:GetText()
     local cacheKey = ""-- .. monster .. objective
     local validKey = false
@@ -452,7 +452,7 @@ function Questie:GetTooltipLines(path, indent, highlightInfo, lines)
                     end
                 end
                 if countDown > 0 then
-                    combinedNames = combinedNames.." и "..countDown.." более...";--by CFM
+                    combinedNames = combinedNames.." и еще "..countDown;--by CFM
                 end
                 table.insert(lines, indentString..prefix..": |cFFa6a6a6"..combinedNames.."|r");
                 Questie:GetTooltipLines(sourcePath, indent+1, highlightInfo, lines, sourceNames);
