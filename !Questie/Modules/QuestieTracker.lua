@@ -68,7 +68,7 @@ function QuestieTracker_OnUpdate()
         end
     end
     if GetTime() - QuestieTracker.trackerUpdate >= 2 then
-        if (QuestieConfig.showMapAids == true) or (QuestieConfig.alwaysShowObjectives == true) then
+        if (QuestieConfig.showMapNotes == true) or (QuestieConfig.alwaysShowObjectives == true) then
             QuestieTracker:SortTrackingFrame();
         end
         QuestieTracker.trackerUpdate = GetTime();
@@ -83,7 +83,7 @@ QuestieTracker:SetScript("OnUpdate", QuestieTracker_OnUpdate);
 -- Automatically Calculates QuestieTracker Height and Width
 ---------------------------------------------------------------------------------------------------
 function QuestieTracker:updateTrackingFrameSize()
-    if (QuestieConfig.trackerBackground == true) then
+    if (QuestieConfig.trackerEnabled == true) then
         if (QuestieTracker.highestIndex == 0) or (QGet_NumQuestLogEntries == 0) then
             QuestieTracker.frame:SetHeight(0.1);
             QuestieTracker.frame:SetWidth(0.1);
@@ -595,6 +595,16 @@ function QuestieTracker:FillTrackingFrame()
         index = index + 1;
     end
     if (QuestieConfig.trackerEnabled == true) and (QuestieConfig.trackerMinimize == false) then
+        if (QuestieTracker.highestIndex >= 1) and (QuestieConfig.trackerBackground == false) then
+            trackerWidth = QuestieTracker.questButtons.maxWidth;
+            if (QuestieConfig.trackerList == false) then
+                trackerHeight = QuestieTracker.frame:GetTop() - QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetBottom();
+            else
+                trackerHeight = QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetTop() - QuestieTracker.frame:GetBottom();
+            end
+            QuestieTracker.frame:SetWidth(trackerWidth);
+            QuestieTracker.frame:SetHeight(trackerHeight);
+        end
         QuestieTracker.MaxButtonWidths = {};
         QuestieTracker:updateTrackingFrameSize();
     end
@@ -604,8 +614,9 @@ end
 ---------------------------------------------------------------------------------------------------
 function QuestieTracker:createTrackingFrame()
     QuestieTracker.frame = CreateFrame("Frame", "QuestieTrackerFrame", UIParent, "ActionButtonTemplate");
-    QuestieTracker.frame:SetWidth(1);
-    QuestieTracker.frame:SetHeight(1);
+    if trackerWidth or trackerHeight == nil then trackerWidth = 1; trackerHeight = 1; end
+    QuestieTracker.frame:SetWidth(trackerWidth);
+    QuestieTracker.frame:SetHeight(trackerHeight);
     QuestieTracker.frame:SetPoint(
         QuestieTrackerVariables["position"]["point"],
         QuestieTrackerVariables["position"]["relativeTo"],
