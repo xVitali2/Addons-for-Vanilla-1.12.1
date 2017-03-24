@@ -72,8 +72,9 @@ end
 QuestRewardCompleteButton = QuestRewardCompleteButton_OnClick;
 QuestRewardCompleteButton_OnClick = function()
     if IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest") then
-        if Questie:CheckPlayerInventory() == 0 then
-            DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Quest:QuestRewardCompleteButton: Unable to auto complete quest. Player inventory is full!");
+        local numAvailSlots = Questie:CheckPlayerInventory();
+        if numAvailSlots < 1 then
+            DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Quest:QuestRewardCompleteButton: Check your bags. Inventory appears to be full!");
             PlaySound("igQuestLogAbandonQuest");
             DeclineQuest();
             HideUIPanel(QuestFrame);
@@ -105,15 +106,6 @@ end
 QuestProgressCompleteButton = QuestProgressCompleteButton_OnClick;
 QuestProgressCompleteButton_OnClick = function()
     if IsQuestCompletable() then
-        if IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest") then
-            if Questie:CheckPlayerInventory() == 0 then
-                DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Quest:QuestProgressCompleteButton: Unable to auto complete quest. Player inventory is full!");
-                PlaySound("igQuestLogAbandonQuest");
-                DeclineQuest();
-                HideUIPanel(QuestFrame);
-                return
-            end
-        end
         local questTitle = QGet_TitleText();
         local _, _, qlevel, qName = string.find(questTitle, "%[(.+)%] (.+)");
         if qName == nil then
@@ -139,7 +131,7 @@ end
 ---------------------------------------------------------------------------------------------------
 QuestDetailAcceptButton = QuestDetailAcceptButton_OnClick;
 function QuestDetailAcceptButton_OnClick()
-    Questie:UpdateGameClientCache();
+    Questie:CheckQuestLogStatus();
     QuestDetailAcceptButton();
 end
 ---------------------------------------------------------------------------------------------------
@@ -150,20 +142,6 @@ function Questie:CompleteQuest()
     if IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest") then
         if (QuestlogOptions[EQL3_Player].AutoCompleteQuests == 1) then
             if (IsQuestCompletable()) then
-                local Questie_EQL3ToggleSave = nil;
-                if Questie:CheckPlayerInventory() == 0 then
-                    Questie_EQL3ToggleSave = QuestlogOptions[EQL3_Player].AutoCompleteQuests
-                    if QuestlogOptions[EQL3_Player].AutoCompleteQuests == 1 then
-                        QuestlogOptions[EQL3_Player].AutoCompleteQuests = 0;
-                    end
-                    DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Quest:CompleteQuest: Unable to auto complete quest. Player inventory is full!");
-                    PlaySound("igQuestLogAbandonQuest");
-                    DeclineQuest();
-                    HideUIPanel(QuestFrame);
-                    return
-                elseif Questie_EQL3ToggleSave ~= nil then
-                    QuestlogOptions[EQL3_Player].AutoCompleteQuests = Questie_EQL3ToggleSave;
-                end
                 local questTitle = QGet_TitleText();
                 local _, _, qlevel, qName = string.find(questTitle, "%[(.+)%] (.+)");
                 if qName == nil then
@@ -195,13 +173,14 @@ end
 function Questie:GetQuestReward()
     if IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest") then
         if (QuestlogOptions[EQL3_Player].AutoCompleteQuests) and (GetNumQuestChoices() == 0) then
-            if GetNumQuestRewards() > Questie:CheckPlayerInventory() then
+            local numAvailSlots = Questie:CheckPlayerInventory();
+            if numAvailSlots < 1 then
                 local Questie_EQL3ToggleSave = nil;
                 Questie_EQL3ToggleSave = QuestlogOptions[EQL3_Player].AutoCompleteQuests
                 if QuestlogOptions[EQL3_Player].AutoCompleteQuests == 1 then
                     QuestlogOptions[EQL3_Player].AutoCompleteQuests = 0;
                 end
-                DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Quest:GetQuestReward: Player inventory is full or not enough slots for rewards!");
+                DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Quest:GetQuestReward: Check your bags. Inventory appears to be full!");
                 PlaySound("igQuestLogAbandonQuest");
                 DeclineQuest();
                 HideUIPanel(QuestFrame);
@@ -243,15 +222,38 @@ function Questie:DetectQuestItem(itemName)
             if (desc) then
                 local  _, _, questItem, itemHave, itemNeed = string.find(desc, "(.+)%: (%d+)/(%d+)");
                 if itemName == questItem and itemHave ~= itemNeed then
-                    --Questie:debug_Print("Quest:DetectQuestItem: [questItem: "..questItem.."] | [itemHave: "..itemHave.."] | [itemNeed: "..itemNeed.."]");
                     --Questie:debug_Print("Quest:DetectQuestItem: TRUE");
+                    --Questie:debug_Print("Quest:DetectQuestItem: [itemName: "..itemName.."] | [questItem: "..questItem.."] | [itemHave: "..itemHave.."] | [itemNeed: "..itemNeed.."]");
                     return true
+                else
+                    --Questie:debug_Print("Quest:DetectQuestItem: FALSE");
+                    return false
                 end
             end
         end
     end
-    --Questie:debug_Print("Quest:DetectQuestItem: FALSE");
-    return false
+end
+---------------------------------------------------------------------------------------------------
+--Parses loot messages then passes item to DetectQuestItem for verification
+---------------------------------------------------------------------------------------------------
+function Questie:ParseQuestLoot(arg1)
+    local msg, item, loot
+    if string.find(arg1, "(You receive loot%:) (.+)") then
+        _, _, msg, item = string.find(arg1, "(You receive loot%:) (.+)");
+    elseif string.find(arg1, "(Received item%:) (.+)") then
+        _, _, msg, item = string.find(arg1, "(Received item%:) (.+)");
+    elseif string.find(arg1, "(You receive item%:) (.+)") then
+        _, _, msg, item = string.find(arg1, "(You receive item%:) (.+)");
+    end
+    if item then
+        _, _, loot = string.find(item, "%[(.+)%].+");
+        if Questie:DetectQuestItem(loot) then
+            --Questie:debug_Print("Quest:ParseQuestLoot --> [POST] Quest Loot: [ "..loot.." ] was found.");
+            Questie:CheckQuestLogStatus();
+        else
+            --Questie:debug_Print("Quest:ParseQuestLoot --> [POST] Quest Loot: [ "..loot.." ] is not a quest item.");
+        end
+    end
 end
 ---------------------------------------------------------------------------------------------------
 --Used to make sure the players inventory isn't full before auto-completing quest.
@@ -341,52 +343,42 @@ end
 --This is especially important if this data isn't already in the WoW game clients local cache.
 ---------------------------------------------------------------------------------------------------
 function Questie:UpdateGameClientCache()
-    if (GetTime() - QUESTIE_LAST_UPDATECACHE > 0.1) then
-        Questie:debug_Print();
-        Questie:debug_Print("****************| Running Quest:UpdateGameClientCache |****************");
-        local UpdateCacheTime = GetTime();
-        local prevQuestLogSelection = QGet_QuestLogSelection();
-        local id = 1;
-        local qc = 0;
-        local nEntry, nQuests = QGet_NumQuestLogEntries();
-        while qc < nQuests do
-            local questName, level, questTag, isHeader, isCollapsed, isComplete = QGet_QuestLogTitle(id);
-            if not isHeader and not isCollapsed then
-                QSelect_QuestLogEntry(id);
-                local questText, objectiveText = QGet_QuestLogQuestText();
-                local hash = Questie:getQuestHash(questName, level, objectiveText);
-                for index=1, QGet_NumQuestLeaderBoards(id) do
-                    local desc = QGet_QuestLogLeaderBoard(index, id);
-                    local objectiveName = desc;
-                    local splitIndex = findLast(objectiveName, ":");
-                    if splitIndex ~= nil then
-                        objectiveName = string.sub(objectiveName, 1, splitIndex-1);
-                        if (string.find(objectiveName, " slain")) then
-                            objectiveName = string.sub(objectiveName, 1, string.len(objectiveName)-6);
-                        end
-                    end
-                    if (QuestieHandledQuests[hash] and QuestieHandledQuests[hash]["objectives"] and QuestieHandledQuests[hash]["objectives"][index]["name"] ~= objectiveName) then
-                        Questie:AddQuestToMap(hash);
-                        Questie:debug_Print("Quest:UpdateGameClientCache --> Questie:AddQuestToMap(): [Name: "..QuestieHandledQuests[hash]["objectives"][index]["name"].."]");
+    Questie:debug_Print();
+    Questie:debug_Print("****************| Running Quest:UpdateGameClientCache |****************");
+    local prevQuestLogSelection = QGet_QuestLogSelection();
+    local id = 1;
+    local qc = 0;
+    local nEntry, nQuests = QGet_NumQuestLogEntries();
+    while qc < nQuests do
+        local questName, level, questTag, isHeader, isCollapsed, isComplete = QGet_QuestLogTitle(id);
+        if not isHeader and not isCollapsed then
+            QSelect_QuestLogEntry(id);
+            local questText, objectiveText = QGet_QuestLogQuestText();
+            local hash = Questie:getQuestHash(questName, level, objectiveText);
+            for index=1, QGet_NumQuestLeaderBoards(id) do
+                local desc = QGet_QuestLogLeaderBoard(index, id);
+                local objectiveName = desc;
+                local splitIndex = findLast(objectiveName, ":");
+                if splitIndex ~= nil then
+                    objectiveName = string.sub(objectiveName, 1, splitIndex-1);
+                    if (string.find(objectiveName, " slain")) then
+                        objectiveName = string.sub(objectiveName, 1, string.len(objectiveName)-6);
                     end
                 end
-                if (QuestieCachedQuests[hash] and QuestieCachedQuests[hash]["questName"] ~= questName) then
+                if (QuestieHandledQuests[hash] and QuestieHandledQuests[hash]["objectives"] and QuestieHandledQuests[hash]["objectives"][index]["name"] ~= objectiveName) then
+                    Questie:AddQuestToMap(hash);
+                    Questie:debug_Print("Quest:UpdateGameClientCache --> Questie:AddQuestToMap(): [Name: "..QuestieHandledQuests[hash]["objectives"][index]["name"].."]");
                     QuestieTracker:addQuestToTrackerCache(hash, id, level);
                     Questie:debug_Print("Quest:UpdateGameClientCache --> Questie:addQuestToTrackerCache(): [Hash: "..hash.."]");
                 end
             end
-            if not isHeader then
-                qc = qc + 1;
-            end
-            id = id + 1;
         end
-        QSelect_QuestLogEntry(prevQuestLogSelection);
-        Questie:debug_Print("****************| Quest:UpdateGameClientCache Took: "..tostring((GetTime()- UpdateCacheTime)*1000).." ms |****************");
-        Questie:debug_Print();
-        QUESTIE_LAST_UPDATECACHE = GetTime();
-    else
-        QUESTIE_LAST_UPDATECACHE = GetTime();
+        if not isHeader then
+            qc = qc + 1;
+        end
+        id = id + 1;
     end
+    QSelect_QuestLogEntry(prevQuestLogSelection);
 end
 ---------------------------------------------------------------------------------------------------
 --Checks the players quest log
@@ -396,7 +388,6 @@ function Questie:CheckQuestLog()
     if (not LastQuestLogHashes) then
         Questie:debug_Print();
         Questie:debug_Print("****************| Running [PRE] Quest:CheckQuestLog |****************");
-        local CheckLogTime = GetTime();
         --Clears abandoned quests
         for k, v in pairs(QuestieSeenQuests) do
             if (QuestieSeenQuests[k] == -1) then
@@ -437,10 +428,7 @@ function Questie:CheckQuestLog()
                 Questie:debug_Print("Quest:CheckQuestLog: --> Quest found in QuestDB not in QuestLog - Removed: [Hash: "..k.."]");
             end
         end
-        --QuestieTracker:FillTrackingFrame();
         QUESTIE_LAST_UPDATE_FINISHED = GetTime();
-        Questie:debug_Print("****************| [PRE] Quest:CheckQuestLog Took: "..tostring((GetTime()- CheckLogTime)*1000).." ms |****************");
-        Questie:debug_Print();
         return;
     end
     local CheckLogTime = GetTime();
@@ -486,7 +474,9 @@ function Questie:CheckQuestLog()
                 QuestieTracker:addQuestToTrackerCache(v["hash"], v["logId"], v["level"]);
                 Questie:debug_Print("Quest:CheckQuestLog: --> Add quest to Tracker and MapNotes caches: [Hash: "..v["hash"].."]");
                 RemoveCrazyArrow(v["hash"]);
-                QuestieTracker:syncWOWQuestLog();
+                if (AUTO_QUEST_WATCH == "1") then
+                    AddQuestWatch(v["logId"]);
+                end
             end
             MapChanged = true;
         elseif not Questie.collapsedThisRun then
@@ -494,6 +484,7 @@ function Questie:CheckQuestLog()
             --This clears cache of finished quests
             if (QuestieSeenQuests[v["hash"]] == 1) then
                 QuestieTracker:removeQuestFromTracker(v["hash"]);
+                RemoveQuestWatch(v["logId"]);
                 Questie:finishAndRecurse(v["hash"]);
                 Questie:debug_Print("Quest:CheckQuestLog: --> Quest:finishAndRecurse() [Hash: "..v["hash"].."]");
                 if (not QuestieCompletedQuestMessages[v["name"]]) then
@@ -501,6 +492,7 @@ function Questie:CheckQuestLog()
                 end
             --This clears cache of abandoned quests
             elseif (QuestieSeenQuests[v["hash"]] == -1) then
+                QuestieTracker:removeQuestFromTracker(v["hash"]);
                 QuestieCachedQuests[v["hash"]] = nil;
                 QuestieSeenQuests[v["hash"]] = nil;
                 QUEST_WATCH_LIST[v["hash"]] = nil;
@@ -525,12 +517,9 @@ function Questie:CheckQuestLog()
     LastQuestLogCount = QuestsCount;
     if (MapChanged == true) then
         Questie:debug_Print("Quest:CheckQuestLog: QuestLog Changed --> Questie:RefreshQuestStatus()");
-        Questie:CheckQuestLog();
         Questie:RefreshQuestStatus();
         QUESTIE_LAST_UPDATE_FINISHED = GetTime();
         Questie:debug_Print("Quest:CheckQuestLog: UPON EXIT: [QuestsCount: "..QuestsCount.."] | [LastCount: "..LastQuestLogCount.."]");
-        Questie:debug_Print("****************| [POST] Quest:CheckQuestLog Took: "..tostring((GetTime()- CheckLogTime)*1000).." ms |****************");
-        Questie:debug_Print();
         return true;
     else
         QUESTIE_LAST_UPDATE_FINISHED = GetTime();
@@ -627,10 +616,8 @@ function Questie:UpdateQuestInZone(Zone, force)
             end
             if (Refresh) then
                 Questie:AddQuestToMap(hash, true);
-                if (QuestieCachedQuests[hash]) then
-                    QuestieTracker:updateTrackerCache(hash, i, level);
-                end
-            elseif foundChange and QuestieConfig.trackerEnabled == true then
+            end
+            if (foundChange and QuestieConfig.trackerEnabled == true) then
                 if (QuestieCachedQuests[hash]) then
                     QuestieTracker:updateTrackerCache(hash, i, level);
                 end
@@ -836,6 +823,7 @@ function Questie:GetQuestObjectivePaths(questHash)
             objectivePaths[i]['done'] = done;
             objectivePaths[i]['type'] = type;
             objectivePaths[i]['name'] = objectiveName;
+            objectivePaths[i]['desc'] = desc
         end
     end
     QSelect_QuestLogEntry(prevQuestLogSelection);
