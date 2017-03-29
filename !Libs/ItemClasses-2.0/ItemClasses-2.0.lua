@@ -1,12 +1,12 @@
 --[[
-Name: ItemClasses-2.0
-Revision: $Rev: 12179 $
-Author(s): Dreyruugr (dreyruugr@gmail.com)
-Website: http://wiki.wowace.com/index.php/ItemClasses-2.0
-Documentation: http://wiki.wowace.com/index.php/ItemClasses-2.0_API_Documentation
-SVN: http://svn.wowace.com/root/trunk/ItemClassLib/ItemClasses-2.0
-Description: A set of classes used to describe and execute usable items/actions (spells, macros, etc...)
-Dependencies: AceLibrary, AceOO-2.0, AceHook-2.0
+	Name: ItemClasses-2.0
+	Revision: $Rev: 12179 $
+	Author(s): Dreyruugr (dreyruugr@gmail.com)
+	Website: http://wiki.wowace.com/index.php/ItemClasses-2.0
+	Documentation: http://wiki.wowace.com/index.php/ItemClasses-2.0_API_Documentation
+	SVN: http://svn.wowace.com/root/trunk/ItemClassLib/ItemClasses-2.0
+	Description: A set of classes used to describe and execute usable items/actions (spells, macros, etc...)
+	Dependencies: AceLibrary, AceOO-2.0, AceHook-2.0
 ]]
 
 local MAJOR_VERSION = "ItemClasses-2.0"
@@ -168,7 +168,7 @@ function CursorItem.prototype:PickupSpell( spellID, bookType )
 	self.CursorObject.type = "spell";
 	self.CursorObject.spellName, spellRank = GetSpellName(spellID, bookType );
 	self.CursorObject.iconTexture = GetSpellTexture( spellID, bookType );
-
+	
 	self.CursorObject.spellRank = 0;
 	if ( spellRank ) then
 		for rank in string.gfind( spellRank, "%d+" ) do
@@ -190,7 +190,7 @@ function CursorItem.prototype:PickupMacro( index )
 	self.CursorObject.type = "macro";
 	self.CursorObject.macroIndex = index;
 	self.CursorObject.macroName, self.CursorObject.iconTexture, _, _ = GetMacroInfo( index );
-
+	
 	self.hooks.PickupMacro.orig( index );
 end
 
@@ -203,21 +203,21 @@ function CursorItem.prototype:PickupContainerItem( bagID, slot )
 		self.CursorObject.itemName = GetItemNameFromLink( itemLink );
 		self.CursorObject.iconTexture, _, _, _, _ = GetContainerItemInfo( bagID, slot );
 	end
-
+	
 	self.hooks.PickupContainerItem.orig( bagID, slot );
 end
 
 
 function CursorItem.prototype:PickupInventoryItem( slotID )
 	self.CursorObject = {};
-
+	
 	local itemLink = GetInventoryItemLink( "player", slotID );
 	if ( itemLink ) then
 		self.CursorObject.type = "item";
 		self.CursorObject.itemName = GetItemNameFromLink( itemLink );
 		self.CursorObject.iconTexture = GetInventoryItemTexture( "player", slotID );
 	end
-
+	
 	self.hooks.PickupInventoryItem.orig( slotID );
 end
 
@@ -228,18 +228,18 @@ function CursorItem.prototype:PickupAction( slot )
 	CursorItemTooltip:SetAction( slot )
 	local actionName = GetActionText( slot )
 	local iconTexture = GetActionTexture( slot )
-
+	
 	self.hooks.PickupAction.orig( slot );
-
+	
 	self.CursorObject = {};
 	if ( CursorHasSpell() ) then
 		local spellRank;
-
+		
 		self.CursorObject.type = "spell";
 		self.CursorObject.spellName = CursorItemTooltipTextLeft1:GetText();
 		spellRank = CursorItemTooltipTextRight1:GetText();
 		self.CursorObject.iconTexture = iconTexture;
-
+		
 		self.CursorObject.spellRank = 0;
 		if ( spellRank ) then
 			for rank in string.gfind( spellRank, "%d+" ) do
@@ -305,7 +305,7 @@ local SpellItem = AceOO.Class( AceLibrary(ITEMDEF_MAJOR_VERSION) )
 
 function SpellItem.prototype:init( object )
 	AceLibrary(SPELLITEM_MAJOR_VERSION).super.prototype.init(self, "spell", (object.iconTexture or "Interface\\Icons\\INV_Sword_04")) -- very important. Will fail without this.
-
+	
 	self.spellName = (object.spellName or "Attack")
 	self.spellRank = (object.spellRank or 0)
 	if ( object.useOnSelf ~= nil ) then
@@ -389,7 +389,7 @@ local MacroItem = AceOO.Class( AceLibrary(ITEMDEF_MAJOR_VERSION) )
 
 function MacroItem.prototype:init( object )
 	AceLibrary(MACROITEM_MAJOR_VERSION).super.prototype.init(self, "macro", object.iconTexture) -- very important. Will fail without this.
-
+	
 	self.type = "macro"
 	self.macroIndex = object.macroIndex
 	self.macroName = object.macroName
@@ -417,7 +417,7 @@ end
 
 function MacroItem.prototype:Verify()
 	local name, iconTextureID, body, isLocal = GetMacroInfo( self.macroIndex )
-
+	
 	if ( name == self.macroName ) then
 		return true
 	else
@@ -452,7 +452,7 @@ local UnitItem = AceOO.Class( AceLibrary(ITEMDEF_MAJOR_VERSION) )
 
 function UnitItem.prototype:init( object )
 	AceLibrary(UNITITEM_MAJOR_VERSION).super.prototype.init(self, "unit", (object.iconTexture or "Interface\\CharacterFrame\\TemporaryPortrait")) -- very important. Will fail without this.
-
+	
 	self.unitID = (object.unitID or "target")
 end
 
@@ -481,16 +481,16 @@ end
 
 function UnitItem.prototype:ExecItem()
 	--[[
-	if ( SpellIsTargeting() ) then
+		if ( SpellIsTargeting() ) then
 		if ( SpellCanTargetUnit( self.unitID ) ) then
-			SpellTargetUnit( self.unitID )
-			return true
+		SpellTargetUnit( self.unitID )
+		return true
 		end
 	else
 		TargetUnit( self.unitID )
-	end
+		end
 	]]
-
+	
 	TargetUnit( self.unitID )
 	return false;
 end
@@ -507,7 +507,7 @@ local UseItem = AceOO.Class( AceLibrary(ITEMDEF_MAJOR_VERSION) )
 
 function UseItem.prototype:init( object )
 	AceLibrary(USEITEM_MAJOR_VERSION).super.prototype.init(self, "item", object.iconTexture) -- very important. Will fail without this.
-
+	
 	assert( object.itemName and object.iconTexture)
 	self.itemName = object.itemName
 	if ( object.showCount ~= nil ) then 
@@ -515,7 +515,7 @@ function UseItem.prototype:init( object )
 	else
 		self.showCount = true
 	end
-
+	
 	if ( object.useOnSelf ~= nil ) then 
 		self.useOnSelf = object.useOnSelf
 	else
@@ -596,7 +596,7 @@ local ActionItem = AceOO.Class( AceLibrary(ITEMDEF_MAJOR_VERSION) )
 
 function ActionItem.prototype:init( object )
 	AceLibrary(ACTIONITEM_MAJOR_VERSION).super.prototype.init(self, "action") -- very important. Will fail without this.
-
+	
 	self.slotID = (object.slotID or 1)
 	self.barID = (object.barID or 1)
 	if ( object.showCount ~= nil ) then 
@@ -604,7 +604,7 @@ function ActionItem.prototype:init( object )
 	else
 		self.showCount = true
 	end
-
+	
 	if ( object.useOnSelf ~= nil ) then 
 		self.useOnSelf = object.useOnSelf
 	else
@@ -635,7 +635,7 @@ function ActionItem.prototype:GetTitle()
 	end
 	
 	local actionName = GetActionText( self:GetSlotID() );
-
+	
 	if ( not actionName ) then
 		ActionItemTooltip:SetOwner( UIParent, "ANCHOR_NONE" );
 		ActionItemTooltip:ClearLines()
@@ -675,14 +675,14 @@ function ActionItem.prototype:ExecItem()
 	if ( start > 0 and duration > 0 and enable > 0 ) then
 		return false
 	end
-
+	
 	-- AddOn's hooking "UseAction" might assume that 'this' is an actual ActionButton
 	ActionItemVirtualButton:SetID( self.slotID );
 	local tempThis = this
 	this = ActionItemVirtualButton
 	UseAction( self:GetSlotID(), 0, self.useOnSelf )
 	this = tempThis
-
+	
 	return true
 end
 
@@ -721,7 +721,7 @@ function GetItemCount( itemName )
 			
 			if ( itemLink ) then
 				if ( GetItemNameFromLink( itemLink ) == itemName ) then
-					 _, thisCount, _, _, _ = GetContainerItemInfo( container, slot )
+					_, thisCount, _, _, _ = GetContainerItemInfo( container, slot )
 					if ( not itemCount ) then
 						itemCount = 0
 					end
@@ -732,7 +732,7 @@ function GetItemCount( itemName )
 	end
 	for slot = 0, 19 do
 		itemLink = GetInventoryItemLink( "player", slot )
-
+		
 		if ( itemLink ) then
 			if ( GetItemNameFromLink( itemLink ) == itemName ) then
 				if ( not itemCount ) then
@@ -742,17 +742,15 @@ function GetItemCount( itemName )
 			end
 		end
 	end
-
+	
 	return itemCount
 end
-
-
 
 
 function FindItemInInventory( itemName )
 	for slot = 0, 19 do
 		itemLink = GetInventoryItemLink( "player", slot )
-
+		
 		if ( itemLink ) then
 			invItemName = GetItemNameFromLink( itemLink )
 			
@@ -802,22 +800,22 @@ function GetItemNameFromLink( itemLink )
 end
 
 function splitStringBy(str, pat)
-   local t = {n = 0}
-   local fpat = "(.-)"..pat
-   local last_end = 1
-   local s,e,cap = string.find(str, fpat, 1)
-   while s ~= nil do
-      if s~=1 or cap~="" then
-	 table.insert(t,cap)
-      end
-      last_end = e+1
-      s,e,cap = string.find(str, fpat, last_end)
-   end
-   if last_end<=string.len(str) then
-      cap = string.sub(str,last_end)
-      table.insert(t,cap)
-   end
-   return t
+	local t = {n = 0}
+	local fpat = "(.-)"..pat
+	local last_end = 1
+	local s,e,cap = string.find(str, fpat, 1)
+	while s ~= nil do
+		if s~=1 or cap~="" then
+			table.insert(t,cap)
+		end
+		last_end = e+1
+		s,e,cap = string.find(str, fpat, last_end)
+	end
+	if last_end<=string.len(str) then
+		cap = string.sub(str,last_end)
+		table.insert(t,cap)
+	end
+	return t
 end
 
 function splitMacroBody( str )
@@ -826,28 +824,28 @@ function splitMacroBody( str )
 end
 
 function ExecSlashCommand( text )
-
+	
 	if ( strlen(text) <= 0 ) then
 		return false;
 	end
-
+	
 	if ( strsub(text, 1, 1) ~= "/" ) then
 		return false;
 	end
-
+	
 	-- If the string is in the format "/cmd blah", command will be "cmd"
 	local command = gsub(text, "/([^%s]+)%s(.*)", "/%1", 1);
 	local msg = "";
-
+	
 	if ( command ~= text ) then
 		msg = strsub(text, strlen(command) + 2);
 	end
-
+	
 	command = gsub(command, "%s+", "");
 	command = strupper(command);
-
+	
 	local channel = gsub(command, "/([0-9]+)", "%1");
-
+	
 	if( strlen(channel) > 0 and channel >= "0" and channel <= "9" ) then
 		local channelNum, channelName = GetChannelName(channel);
 		if ( channelNum > 0 ) then
@@ -867,7 +865,7 @@ function ExecSlashCommand( text )
 			end
 		end
 	end
-
+	
 	for index, value in SlashCmdList do
 		local i = 1;
 		local cmdString = TEXT(getglobal("SLASH_"..index..i));
@@ -881,7 +879,7 @@ function ExecSlashCommand( text )
 			cmdString = TEXT(getglobal("SLASH_"..index..i));
 		end
 	end
-
+	
 	local i = 1;
 	local j = 1;
 	local cmdString = TEXT(getglobal("EMOTE"..i.."_CMD"..j));
@@ -901,7 +899,7 @@ function ExecSlashCommand( text )
 			cmdString = TEXT(getglobal("EMOTE"..i.."_CMD"..j));
 		end
 	end
-
+	
 	return false;
 end
 
@@ -936,4 +934,4 @@ if ( not MacroItemEditBox ) then
 	for i = 1, NUM_REMEMBERED_TELLS, 1 do
 		chatFrame.lastTell[i] = ""
 	end
-end	
+end

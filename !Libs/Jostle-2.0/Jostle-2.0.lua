@@ -1,12 +1,12 @@
 --[[
-Name: Jostle-2.0
-Revision: $Rev: 9867 $
-Author(s): ckknight (ckknight@gmail.com)
-Website: http://ckknight.wowinterface.com/
-Documentation: http://wiki.wowace.com/index.php/Jostle-2.0
-SVN: http://svn.wowace.com/root/trunk/JostleLib/Jostle-2.0
-Description: A library to handle rearrangement of blizzard's frames when bars are added to the sides of the screen.
-Dependencies: AceLibrary, AceOO-2.0, AceEvent-2.0
+	Name: Jostle-2.0
+	Revision: $Rev: 9867 $
+	Author(s): ckknight (ckknight@gmail.com)
+	Website: http://ckknight.wowinterface.com/
+	Documentation: http://wiki.wowace.com/index.php/Jostle-2.0
+	SVN: http://svn.wowace.com/root/trunk/JostleLib/Jostle-2.0
+	Description: A library to handle rearrangement of blizzard's frames when bars are added to the sides of the screen.
+	Dependencies: AceLibrary, AceOO-2.0, AceEvent-2.0
 ]]
 
 local MAJOR_VERSION = "Jostle-2.0"

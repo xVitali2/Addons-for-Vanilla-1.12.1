@@ -1,13 +1,13 @@
 --[[
-Name: AceHook-2.1
-Revision: $Rev: 17638 $
-Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
-Inspired By: Ace 1.x by Turan (turan@gryphon.com)
-Website: http://www.wowace.com/
-Documentation: http://www.wowace.com/index.php/AceHook-2.1
-SVN: http://svn.wowace.com/root/trunk/Ace2/AceHook-2.1
-Description: Mixin to allow for safe hooking of functions, methods, and scripts.
-Dependencies: AceLibrary, AceOO-2.0
+	Name: AceHook-2.1
+	Revision: $Rev: 17638 $
+	Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
+	Inspired By: Ace 1.x by Turan (turan@gryphon.com)
+	Website: http://www.wowace.com/
+	Documentation: http://www.wowace.com/index.php/AceHook-2.1
+	SVN: http://svn.wowace.com/root/trunk/Ace2/AceHook-2.1
+	Description: Mixin to allow for safe hooking of functions, methods, and scripts.
+	Dependencies: AceLibrary, AceOO-2.0
 ]]
 
 local MAJOR_VERSION = "AceHook-2.1"
@@ -21,22 +21,22 @@ if loadstring("return function(...) return ... end") and AceLibrary:HasInstance(
 if not AceLibrary:HasInstance("AceOO-2.0") then error(MAJOR_VERSION .. " requires AceOO-2.0") end
 
 --[[---------------------------------------------------------------------------------
-  Create the library object
+	Create the library object
 ----------------------------------------------------------------------------------]]
 
 local AceOO = AceLibrary:GetInstance("AceOO-2.0")
 local AceHook = AceOO.Mixin {
-								"Hook",
-								"HookScript",
-								"SecureHook",
-								"Unhook",
-								"UnhookAll",
-								"HookReport",
-								"IsHooked",
-							}
+	"Hook",
+	"HookScript",
+	"SecureHook",
+	"Unhook",
+	"UnhookAll",
+	"HookReport",
+	"IsHooked",
+}
 
 --[[---------------------------------------------------------------------------------
-  Library Definitions
+	Library Definitions
 ----------------------------------------------------------------------------------]]
 
 local protFuncs = {
@@ -86,7 +86,7 @@ local protectedScripts = {
 local handlers, scripts, actives, registry
 
 --[[---------------------------------------------------------------------------------
-  Private definitions (Not exposed)
+	Private definitions (Not exposed)
 ----------------------------------------------------------------------------------]]
 
 local new, del
@@ -239,7 +239,7 @@ local function hookFunction(self, func, handler, secure)
 	if not handler then
 		handler = func
 	end
-
+	
 	if registry[self][func] then
 		local uid = registry[self][func]
 		

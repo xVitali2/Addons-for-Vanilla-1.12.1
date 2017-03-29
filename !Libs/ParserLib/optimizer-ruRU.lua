@@ -1,6 +1,4 @@
-
 if GetLocale() == "ruRU" then
-
 	if not ParserLibOptimizer then
 		ParserLibOptimizer = {
 			AURAADDEDOTHERHARMFUL = "находится",
@@ -205,11 +203,7 @@ if GetLocale() == "ruRU" then
 			VSENVIRONMENTALDAMAGE_DROWNING_OTHER = "тонет",
 			UNITDIESSELF = "умерли",
 			UNITDIESOTHER = "погибает",
-			UNITDESTROYEDOTHER = "Уничтожено",
-			
+			UNITDESTROYEDOTHER = "Уничтожено",	
 		}
-
 	end
-
 end
-

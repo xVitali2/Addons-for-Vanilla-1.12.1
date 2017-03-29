@@ -6,7 +6,7 @@ AceAddonClass = AceAddon
 
 
 --[[--------------------------------------------------------------------------
-  Register For Load With AceState
+	Register For Load With AceState
 -----------------------------------------------------------------------------]]
 
 function AceAddon:RegisterForLoad()
@@ -15,12 +15,12 @@ end
 
 
 --[[--------------------------------------------------------------------------
-  Addon Enabling/Disabling
+	Addon Enabling/Disabling
 -----------------------------------------------------------------------------]]
 
 function AceAddon:EnableAddon()
 	if( (not self.disabled) or (not self.Enable) ) then return end
-
+	
 	self.disabled = FALSE
 	if( self.db ) then self.db:set(self.profilePath, "disabled") end
 	self:Enable()
@@ -32,7 +32,7 @@ AceAddon.CmdEnable = AceAddon.EnableAddon
 
 function AceAddon:DisableAddon(nomsg)
 	if( self.disabled or (not self.Enable) ) then return end
-
+	
 	self.disabled = TRUE
 	if( self.db ) then self.db:set(self.profilePath, "disabled", TRUE) end
 	if( self.Disable ) then self:Disable() end

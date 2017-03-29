@@ -6,7 +6,7 @@ AceModuleClass = AceModule
 
 
 --[[--------------------------------------------------------------------------
-  Event Handling
+	Event Handling
 -----------------------------------------------------------------------------]]
 
 function AceModule:RegisterEvent(event, method)
@@ -27,7 +27,7 @@ end
 
 
 --[[--------------------------------------------------------------------------
-   Function Hooking  & Script Hooking
+	Function Hooking  & Script Hooking
 -----------------------------------------------------------------------------]]
 
 ace.hook:Embed(AceModule)

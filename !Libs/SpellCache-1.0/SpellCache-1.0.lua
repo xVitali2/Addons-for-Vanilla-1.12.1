@@ -1,12 +1,12 @@
 --[[
-Name: SpellCache-1.0
-Revision: $Rev: 15969 $
-Author(s): Nightdew (denzsolnightdew@gmail.com)
-Website: http://www.wowace.com/index.php/SpellCache-1.0
-Documentation: http://www.wowace.com/index.php/SpellCache-1.0
-SVN: http://svn.wowace.com/root/trunk/SpellCache/SpellCache-1.0
-Description: Library that caches spells to speed up look ups
-Dependencies: AceLibrary, AceDebug-2.0, AceEvent-2.0, Deformat-2.0
+	Name: SpellCache-1.0
+	Revision: $Rev: 15969 $
+	Author(s): Nightdew (denzsolnightdew@gmail.com)
+	Website: http://www.wowace.com/index.php/SpellCache-1.0
+	Documentation: http://www.wowace.com/index.php/SpellCache-1.0
+	SVN: http://svn.wowace.com/root/trunk/SpellCache/SpellCache-1.0
+	Description: Library that caches spells to speed up look ups
+	Dependencies: AceLibrary, AceDebug-2.0, AceEvent-2.0, Deformat-2.0
 ]]
 
 --, Gratuity-2.0
@@ -78,29 +78,29 @@ local function ResetVariables(self)
 	if (not self:IsInitialized()) then
 		return
 	end
-
+	
 	--clear hash
 	setmetatable(self.hash, nil) 
 	for k in pairs(self.hash) do 
 		self.hash[k] = nil
 	end
 	table.setn(self.hash, 0);
-
+	
     local spellTabCount = GetNumSpellTabs()
     local tabName, tabTexture, tabStart, tabOffset = GetSpellTabInfo(spellTabCount)
     local spellCount = tabStart + tabOffset
-
+	
 	self:LevelDebug(3, "ResetVariables", spellTabCount, tabName, tabTexture, tabStart, tabOffset, spellCount)
     
     local spellData, spellName, spellRank, spellNamePrevious, spellNameNew = nil;
     for i = 1, spellCount do
         spellName, spellRank = GetSpellName(i, BOOKTYPE_SPELL)
-
+		
 		spellNameNew = spellNamePrevious ~= spellName
 		spellNamePrevious = spellName
-	
+		
 		spellData = self.data[spellName] or {}
-
+		
 		if (spellNameNew) then
 			self.hash[i] = spellName
 			self.data[spellName] = spellData
@@ -108,7 +108,7 @@ local function ResetVariables(self)
 		else
 			self.hash[i] = spellData.IdStart
 		end
-
+		
 		spellData.IdStop = i
 		
 		spellData.Rank = GetSpellRankNumber(self, spellRank);
@@ -118,7 +118,7 @@ local function ResetVariables(self)
 			spellData.IdStop,
 			spellData.Rank 
 		)
-    end
+	end
    	self:TriggerEvent("SpellCache_Updated")
 end
 
@@ -162,12 +162,12 @@ local function activate(self, oldLib, oldDeactivate)
 	if (oldLib) then
 		oldLib:UnregisterAllEvents()
 	end
-
+	
 	--Default code to clean up the oldlib
 	if (oldDeactivate) then
 		oldDeactivate(oldLib)
 	end
-
+	
 	InitializeVariables(self)
 	InitializeEventRegisters(self)	
 end
@@ -197,12 +197,12 @@ end
 
 function SpellCache:GetRanklessSpellName(spellName)
 	self:argCheck(spellName, 2, "string")
-
+	
 	--self:LevelDebug(2, "GetRanklessSpellName1", spellName)
 	--For those that like to cast spells with SpellName() lets take out the () 
 	spellName = string.gsub(spellName, "%(%)$", "")
 	--self:LevelDebug(2, "GetRanklessSpellName2", spellName)
-
+	
 	if (self.FullPattern) then
 		local sName, sRank = deformat:Deformat(spellName, self.FullPattern)
 		self:LevelDebug(2, "GetRanklessSpellName", spellName, sName, sRank)
@@ -216,7 +216,7 @@ end
 function SpellCache:GetSpellNameText(spellName, spellRankNumber)
 	self:argCheck(spellName, 2, "string")
 	self:argCheck(spellRankNumber, 3, "number", "nil")
-
+	
 	local fullSpellName
 	if (not spellRankNumber) then
 		fullSpellName = spellName
@@ -238,7 +238,7 @@ function SpellCache:GetSpellData(spellNameOrId, spellRankNumberOrText)
 	self:argCheck(spellNameOrId, 2, "string", "number")
 	self:argCheck(spellRank, 3, "string", "number", "nil")
 	self:LevelDebug(2, ">GetSpellData", spellNameOrId, spellRankNumberOrText)
-
+	
 	local sId, sName, sRank
 	if (type(spellNameOrId) == "number") then
 		sId = tonumber(spellNameOrId)
@@ -254,7 +254,7 @@ function SpellCache:GetSpellData(spellNameOrId, spellRankNumberOrText)
 		self:LevelDebug(2, "GetSpellData1", sId, sName)
 	else
 		sName, sRank = self:GetRanklessSpellName(spellNameOrId)
-
+		
 		if (not sRank) then
 			sRank = spellRankNumberOrText;
 			if (type(sRank) == "string") then
@@ -271,7 +271,7 @@ function SpellCache:GetSpellData(spellNameOrId, spellRankNumberOrText)
 		self:LevelDebug(1, "<GetSpellData", spellNameOrId)
 		return;
 	end;
-		
+	
 	if (sId) then
 		sRank = spellData.Rank and sId - spellData.IdStart + 1 or nil
 	else
@@ -286,13 +286,13 @@ function SpellCache:GetSpellData(spellNameOrId, spellRankNumberOrText)
 		end
 		sId = sRank and spellData.IdStart + sRank -1 or spellData.IdStart
 	end
-
+	
 	local sRankText, sFullText
 	if (sRank) then
 		sRankText = self:GetRankText(sRank)
 	end
 	sFullText = self:GetSpellNameText(sName, sRank)
-		
+	
 	self:LevelDebug(1, "<GetSpellData", sName, sRankText, sId, sFullText, sRank, spellData.IdStart, spellData.IdStop, spellData.Rank)
 	return sName, sRankText, sId, sFullText, sRank, spellData.IdStart, spellData.IdStop, spellData.Rank
 end

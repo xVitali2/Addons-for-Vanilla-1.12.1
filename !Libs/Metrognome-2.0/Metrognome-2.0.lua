@@ -1,13 +1,13 @@
 
 --[[
-Name: Metrognome-2.0
-Revision: $Rev: 12749 $
-Author: Tekkub Stoutwrithe (tekkub@gmail.com)
-Website: http://wiki.wowace.com/index.php/Metrognome_Embedded_Library
-Documentation: http://wiki.wowace.com/index.php/Metrognome_Embedded_Library_Methods
-SVN: svn://svn.wowace.com/root/trunk/Metrognome/Metrognome-2.0
-Description: OnUpdate timer managing library
-Dependencies: AceLibrary, AceOO-2.0, Compost-2.0 (optional)
+	Name: Metrognome-2.0
+	Revision: $Rev: 12749 $
+	Author: Tekkub Stoutwrithe (tekkub@gmail.com)
+	Website: http://wiki.wowace.com/index.php/Metrognome_Embedded_Library
+	Documentation: http://wiki.wowace.com/index.php/Metrognome_Embedded_Library_Methods
+	SVN: svn://svn.wowace.com/root/trunk/Metrognome/Metrognome-2.0
+	Description: OnUpdate timer managing library
+	Dependencies: AceLibrary, AceOO-2.0, Compost-2.0 (optional)
 ]]
 
 local vmajor, vminor = "Metrognome-2.0", "$Revision: 12749 $"
@@ -48,7 +48,7 @@ function Metrognome:Register(name, func, rate, a1, a2, a3, a4, a5, a6)
 	Metrognome:argCheck(name, 2, "string")
 	Metrognome:argCheck(func, 3, "function")
 	Metrognome:assert(not Metrognome.var.handlers[name], "A timer with the name "..name.." is already registered")
-
+	
 	local t = getnewtable()
 	t.name, t.func, t.rate = name, func, rate or 0
 	t.a1, t.a2, t.a3, t.a4, t.a5, t.a6 = a1, a2, a3, a4, a5, a6
@@ -62,12 +62,12 @@ end
 -- Returns true if successful
 function Metrognome:Unregister(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10)
 	Metrognome:argCheck(a1, 2, "string")
-
+	
 	if not Metrognome.var.handlers[a1] then return end
 	reclaimtable(Metrognome.var.handlers[a1])
 	Metrognome.var.handlers[a1] = nil
 	if a2 then Metrognome:Unregister(a2,a3,a4,a5,a6,a7,a8,a9,a10)
-	elseif not Metrognome:HasHandlers() then Metrognome.var.frame:Hide() end
+elseif not Metrognome:HasHandlers() then Metrognome.var.frame:Hide() end
 	return true
 end
 
@@ -78,7 +78,7 @@ end
 -- Returns true if successful
 function Metrognome:Start(name, numexec)
 	Metrognome:argCheck(name, 2, "string")
-
+	
 	if not Metrognome.var.handlers[name] then return end
 	Metrognome.var.handlers[name].limit = numexec
 	Metrognome.var.handlers[name].elapsed = 0
@@ -93,7 +93,7 @@ end
 -- Returns true if successful
 function Metrognome:Stop(name)
 	Metrognome:argCheck(name, 2, "string")
-
+	
 	if not Metrognome.var.handlers[name] then return end
 	Metrognome.var.handlers[name].running = nil
 	Metrognome.var.handlers[name].limit = nil
@@ -110,17 +110,17 @@ end
 -- Returns true if successful
 function Metrognome:ChangeRate(name, newrate, n2,r2,n3,r3,n4,r4,n5,r5)
 	Metrognome:argCheck(name, 2, "string")
-
+	
 	if not Metrognome.var.handlers[name] then
 		if n2 then return nil, Metrognome:ChangeRate(n2,r2,n3,r3,n4,r4,n5,r5)
-		else return end
+	else return end
 	end
-
+	
 	local t = Metrognome.var.handlers[name]
 	t.elapsed = 0
 	t.rate = newrate or 0
 	if n2 then return true, Metrognome:ChangeRate(n2,r2,n3,r3,n4,r4,n5,r5)
-	else return true end
+else return true end
 end
 
 
@@ -128,16 +128,16 @@ end
 -- Accepts up to 10 timer names to clear
 function Metrognome:ClearStats(name, n2, n3, n4, n5, n6, n7, n8, n9, n10)
 	Metrognome:argCheck(name, 2, "string")
-
+	
 	if not Metrognome.var.handlers[name] then
 		if n2 then return nil, Metrognome:ClearStats(n2,r2,n3,r3,n4,r4,n5,r5)
-		else return end
+	else return end
 	end
-
+	
 	local t = Metrognome.var.handlers[name]
 	t.count, t.mem, t.time = 0, 0, 0
 	if n2 then return true, Metrognome:ClearStats(n2,r2,n3,r3,n4,r4,n5,r5)
-	else return true end
+else return true end
 end
 
 
@@ -150,7 +150,7 @@ end
 --          elapsed - time elapsed this cycle of the timer
 function Metrognome:Status(name)
 	Metrognome:argCheck(name, 2, "string")
-
+	
 	if not Metrognome.var.handlers[name] then return end
 	return true, Metrognome.var.handlers[name].rate, Metrognome.var.handlers[name].running, Metrognome.var.handlers[name].limit, Metrognome.var.handlers[name].elapsed
 end
@@ -164,7 +164,7 @@ end
 --          rate - the rate at which the timer triggers (0 means the default OnUpdate rate)
 function Metrognome:Profile(name)
 	Metrognome:argCheck(name, 2, "string")
-
+	
 	if not Metrognome.var.handlers[name] then return end
 	local t = Metrognome.var.handlers[name]
 	return t.mem, t.time, t.count, t.rate
@@ -214,7 +214,7 @@ end
 
 function Metrognome:UnregisterMetro(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10)
 	Metrognome:argCheck(a1, 2, "string")
-
+	
 	if Metrognome.var.addons[self] then Metrognome.var.addons[self][a1] = nil end
 	Metrognome:Unregister(a1)
 	if a2 then self:UnregisterMetro(a2,a3,a4,a5,a6,a7,a8,a9,a10) end
@@ -236,7 +236,7 @@ end
 
 function Metrognome:activate(oldLib, oldDeactivate)
 	Metrognome = self
-
+	
 	if oldLib then self.var = oldLib.var
 	else
 		self.var = {  -- "Local" variables go here
@@ -250,7 +250,7 @@ function Metrognome:activate(oldLib, oldDeactivate)
 	if not self.var.addons then self.var.addons = {} end
 	self.var.frame:SetScript("OnUpdate", self.OnUpdate)
 	self.var.frame.owner = self
-
+	
 	self.super.activate(self, oldLib, oldDeactivate)
 	if oldDeactivate then oldDeactivate(oldLib) end
 end
@@ -262,4 +262,3 @@ end
 
 
 AceLibrary:Register(Metrognome, vmajor, vminor, Metrognome.activate, nil, external)
-

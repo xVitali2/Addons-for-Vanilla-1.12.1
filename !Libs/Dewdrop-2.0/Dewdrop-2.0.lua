@@ -1,12 +1,12 @@
 --[[
-Name: Dewdrop-2.0
-Revision: $Rev: 17882 $
-Author(s): ckknight (ckknight@gmail.com)
-Website: http://ckknight.wowinterface.com/
-Documentation: http://wiki.wowace.com/index.php/Dewdrop-2.0
-SVN: http://svn.wowace.com/root/trunk/DewdropLib/Dewdrop-2.0
-Description: A library to provide a clean dropdown menu interface.
-Dependencies: AceLibrary
+	Name: Dewdrop-2.0
+	Revision: $Rev: 17882 $
+	Author(s): ckknight (ckknight@gmail.com)
+	Website: http://ckknight.wowinterface.com/
+	Documentation: http://wiki.wowace.com/index.php/Dewdrop-2.0
+	SVN: http://svn.wowace.com/root/trunk/DewdropLib/Dewdrop-2.0
+	Description: A library to provide a clean dropdown menu interface.
+	Dependencies: AceLibrary
 ]]
 
 local MAJOR_VERSION = "Dewdrop-2.0"
@@ -20,7 +20,7 @@ local Dewdrop = {}
 local VALIDATION_ERROR = "Validation error"
 local RESET_KEYBINDING_DESC = "Hit escape to clear the keybinding."
 if GetLocale() == "deDE" then
---	VALIDATION_ERROR = "some message here..."
+	--	VALIDATION_ERROR = "some message here..."
 end
 
 local lua51 = loadstring("return function(...) return ... end") and true or false
@@ -30,27 +30,27 @@ local table_setn = lua51 and function() end or table.setn
 local function new(k1, v1, k2, v2, k3, v3, k4, v4, k5, v5, k6, v6, k7, v7, k8, v8, k9, v9, k10, v10, k11, v11, k12, v12, k13, v13, k14, v14, k15, v15, k16, v16, k17, v17, k18, v18, k19, v19, k20, v20)
 	local t = {}
 	if k1 then t[k1] = v1
-	if k2 then t[k2] = v2
-	if k3 then t[k3] = v3
-	if k4 then t[k4] = v4
-	if k5 then t[k5] = v5
-	if k6 then t[k6] = v6
-	if k7 then t[k7] = v7
-	if k8 then t[k8] = v8
-	if k9 then t[k9] = v9
-	if k10 then t[k10] = v10
-	if k11 then t[k11] = v11
-	if k12 then t[k12] = v12
-	if k13 then t[k13] = v13
-	if k14 then t[k14] = v14
-	if k15 then t[k15] = v15
-	if k16 then t[k16] = v16
-	if k17 then t[k17] = v17
-	if k18 then t[k18] = v18
-	if k19 then t[k19] = v19
-	if k20 then t[k20] = v20
-	end end end end end end end end end end end end end end end end end end end end
-	return t
+		if k2 then t[k2] = v2
+			if k3 then t[k3] = v3
+				if k4 then t[k4] = v4
+					if k5 then t[k5] = v5
+						if k6 then t[k6] = v6
+							if k7 then t[k7] = v7
+								if k8 then t[k8] = v8
+									if k9 then t[k9] = v9
+										if k10 then t[k10] = v10
+											if k11 then t[k11] = v11
+												if k12 then t[k12] = v12
+													if k13 then t[k13] = v13
+														if k14 then t[k14] = v14
+															if k15 then t[k15] = v15
+																if k16 then t[k16] = v16
+																	if k17 then t[k17] = v17
+																		if k18 then t[k18] = v18
+																			if k19 then t[k19] = v19
+																				if k20 then t[k20] = v20
+																				end end end end end end end end end end end end end end end end end end end end
+																				return t
 end
 if lua51 then
 	new = loadstring("return function(...) local t = {}; for i = 1, select('#', ...), 2 do if select(i, ...) then t[select(i, ...)] = select(i+1, ...); else break; end; end; return t; end")()
@@ -69,26 +69,26 @@ do
 			end
 		else
 			if k1 then t[k1] = v1
-			if k2 then t[k2] = v2
-			if k3 then t[k3] = v3
-			if k4 then t[k4] = v4
-			if k5 then t[k5] = v5
-			if k6 then t[k6] = v6
-			if k7 then t[k7] = v7
-			if k8 then t[k8] = v8
-			if k9 then t[k9] = v9
-			if k10 then t[k10] = v10
-			if k11 then t[k11] = v11
-			if k12 then t[k12] = v12
-			if k13 then t[k13] = v13
-			if k14 then t[k14] = v14
-			if k15 then t[k15] = v15
-			if k16 then t[k16] = v16
-			if k17 then t[k17] = v17
-			if k18 then t[k18] = v18
-			if k19 then t[k19] = v19
-			if k20 then t[k20] = v20
-			end end end end end end end end end end end end end end end end end end end end
+				if k2 then t[k2] = v2
+					if k3 then t[k3] = v3
+						if k4 then t[k4] = v4
+							if k5 then t[k5] = v5
+								if k6 then t[k6] = v6
+									if k7 then t[k7] = v7
+										if k8 then t[k8] = v8
+											if k9 then t[k9] = v9
+												if k10 then t[k10] = v10
+													if k11 then t[k11] = v11
+														if k12 then t[k12] = v12
+															if k13 then t[k13] = v13
+																if k14 then t[k14] = v14
+																	if k15 then t[k15] = v15
+																		if k16 then t[k16] = v16
+																			if k17 then t[k17] = v17
+																				if k18 then t[k18] = v18
+																					if k19 then t[k19] = v19
+																						if k20 then t[k20] = v20
+																						end end end end end end end end end end end end end end end end end end end end
 		end
 		return t
 	end
@@ -104,27 +104,27 @@ do
 			t[k] = nil
 		end
 		if k1 then t[k1] = v1
-		if k2 then t[k2] = v2
-		if k3 then t[k3] = v3
-		if k4 then t[k4] = v4
-		if k5 then t[k5] = v5
-		if k6 then t[k6] = v6
-		if k7 then t[k7] = v7
-		if k8 then t[k8] = v8
-		if k9 then t[k9] = v9
-		if k10 then t[k10] = v10
-		if k11 then t[k11] = v11
-		if k12 then t[k12] = v12
-		if k13 then t[k13] = v13
-		if k14 then t[k14] = v14
-		if k15 then t[k15] = v15
-		if k16 then t[k16] = v16
-		if k17 then t[k17] = v17
-		if k18 then t[k18] = v18
-		if k19 then t[k19] = v19
-		if k20 then t[k20] = v20
-		end end end end end end end end end end end end end end end end end end end end
-		return t
+			if k2 then t[k2] = v2
+				if k3 then t[k3] = v3
+					if k4 then t[k4] = v4
+						if k5 then t[k5] = v5
+							if k6 then t[k6] = v6
+								if k7 then t[k7] = v7
+									if k8 then t[k8] = v8
+										if k9 then t[k9] = v9
+											if k10 then t[k10] = v10
+												if k11 then t[k11] = v11
+													if k12 then t[k12] = v12
+														if k13 then t[k13] = v13
+															if k14 then t[k14] = v14
+																if k15 then t[k15] = v15
+																	if k16 then t[k16] = v16
+																		if k17 then t[k17] = v17
+																			if k18 then t[k18] = v18
+																				if k19 then t[k19] = v19
+																					if k20 then t[k20] = v20
+																					end end end end end end end end end end end end end end end end end end end end
+																					return t
 	end
 	if lua51 then
 		tmp2 = loadstring("local t = {}; return function(...) for k in pairs(t) do t[k] = nil end; for i = 1, select('#', ...), 2 do if select(i, ...) then t[select(i, ...)] = select(i+1, ...) else break; end; end; return t; end")()
@@ -292,7 +292,7 @@ local function ReleaseButton(self, level, index)
 	if button.highlight then
 		button.highlight:Hide()
 	end
---	button.arrow:SetVertexColor(1, 1, 1)
+	--	button.arrow:SetVertexColor(1, 1, 1)
 	button.arrow:SetHeight(16)
 	button.arrow:SetWidth(16)
 	table.remove(level.buttons, index)
@@ -949,7 +949,7 @@ function Dewdrop:FeedAceOptionsTable(options, difference)
 	end
 	if not validatedOptions[options] then
 		local err, position = validateOptions(options)
-
+		
 		if err then
 			if position then
 				Dewdrop:error(position .. ": " .. err)
@@ -957,7 +957,7 @@ function Dewdrop:FeedAceOptionsTable(options, difference)
 				Dewdrop:error(err)
 			end
 		end
-
+		
 		validatedOptions[options] = true
 	end
 	local level = levels[currentLevel]
@@ -970,7 +970,7 @@ function Dewdrop:FeedAceOptionsTable(options, difference)
 		end
 		table_setn(values, 0)
 	end
-
+	
 	local current = level
 	while current do
 		if current.num == difference + 1 then
@@ -979,7 +979,7 @@ function Dewdrop:FeedAceOptionsTable(options, difference)
 		table.insert(values, current.value)
 		current = levels[current.num - 1]
 	end
-
+	
 	local realOptions = options
 	local handler = options.handler
 	local passTable
@@ -994,7 +994,7 @@ function Dewdrop:FeedAceOptionsTable(options, difference)
 		handler = options.handler or handler
 		passValue = passTable and value or nil
 	end
-
+	
 	if options.type == "group" then
 		for k in pairs(options.args) do
 			table.insert(values, k)
@@ -1270,7 +1270,7 @@ function Dewdrop:FeedAceOptionsTable(options, difference)
 						end
 						
 						local editBoxValidateFunc, editBoxValidateArg1
-
+						
 						if v.validate and v.validate ~= "keybinding" then
 							if type(v.validate) == "function" then
 								editBoxValidateFunc = v.validate
@@ -1457,14 +1457,14 @@ function Refresh(self, level)
 						)
 					end
 				end
---			elseif level.parentText then
---				self:AddLine(
---					'text', level.parentText,
---					'tooltipTitle', level.parentTooltipTitle,
---					'tooltipText', level.parentTooltipText,
---					'tooltipFunc', level.parentTooltipFunc,
---					'isTitle', true
---				)
+				--		elseif level.parentText then
+				--				self:AddLine(
+				--					'text', level.parentText,
+				--					'tooltipTitle', level.parentTooltipTitle,
+				--					'tooltipText', level.parentTooltipText,
+				--					'tooltipFunc', level.parentTooltipFunc,
+				--					'isTitle', true
+				--				)
 			end
 			self:FeedAceOptionsTable(baseFunc)
 			if currentLevel == 1 then
@@ -1474,15 +1474,15 @@ function Refresh(self, level)
 				)
 			end
 		else
---			if level.parentText then
---				self:AddLine(
---					'text', level.parentText,
---					'tooltipTitle', level.parentTooltipTitle,
---					'tooltipText', level.parentTooltipText,
---					'tooltipFunc', level.parentTooltipFunc,
---					'isTitle', true
---				)
---			end
+			--			if level.parentText then
+			--				self:AddLine(
+			--					'text', level.parentText,
+			--					'tooltipTitle', level.parentTooltipTitle,
+			--					'tooltipText', level.parentTooltipText,
+			--					'tooltipFunc', level.parentTooltipFunc,
+			--					'isTitle', true
+			--				)
+			--			end
 			baseFunc(currentLevel, level.value, levels[level.num - 1] and levels[level.num - 1].value, levels[level.num - 2] and levels[level.num - 2].value, levels[level.num - 3] and levels[level.num - 3].value, levels[level.num - 4] and levels[level.num - 4].value)
 		end
 		currentLevel = nil
@@ -1677,13 +1677,13 @@ function OpenSlider(self, parent)
 	if not parent.sliderMin or not parent.sliderMax then
 		return
 	end
-
+	
 	if parent.arrow then
---		parent.arrow:SetVertexColor(0.2, 0.6, 0)
+		--		parent.arrow:SetVertexColor(0.2, 0.6, 0)
 		parent.arrow:SetHeight(24)
 		parent.arrow:SetWidth(24)
 	end
-
+	
 	if not parent.sliderValue then
 		parent.sliderValue = (parent.sliderMin + parent.sliderMax) / 2
 	end
@@ -1713,7 +1713,7 @@ function OpenSlider(self, parent)
 	else
 		sliderFrame.currentText:SetText(parent.sliderValue)
 	end
-
+	
 	sliderFrame.lastValue = parent.sliderValue
 	
 	local level = parent.level
@@ -1805,14 +1805,14 @@ function OpenEditBox(self, parent)
 		editBoxFrame:EnableMouse(true)
 		editBoxFrame:Hide()
 		editBoxFrame:SetPoint("CENTER", UIParent, "CENTER")
-
+		
 		local editBox = CreateFrame("EditBox", nil, editBoxFrame)
 		editBoxFrame.editBox = editBox
 		editBox:SetFontObject(ChatFontNormal)
 		editBox:SetWidth(160)
 		editBox:SetHeight(13)
 		editBox:SetPoint("CENTER", editBoxFrame, "CENTER", 0, 0)
-
+		
 		local left = editBox:CreateTexture(nil, "BACKGROUND")
 		left:SetTexture("Interface\\ChatFrame\\UI-ChatInputBorder-Left")
 		left:SetTexCoord(0, 100 / 256, 0, 1)
@@ -1825,7 +1825,7 @@ function OpenEditBox(self, parent)
 		right:SetWidth(100)
 		right:SetHeight(32)
 		right:SetPoint("RIGHT", editBox, "RIGHT", 10, 0)
-
+		
 		editBox:SetScript("OnEnterPressed", function()
 			if editBoxFrame.parent and editBoxFrame.parent.editBoxValidateFunc then
 				local a1,a2,a3,a4 = editBoxFrame.parent.editBoxValidateArg1, editBoxFrame.parent.editBoxValidateArg2, editBoxFrame.parent.editBoxValidateArg3, editBoxFrame.parent.editBoxValidateArg4
@@ -1876,7 +1876,7 @@ function OpenEditBox(self, parent)
 		end)
 		local changing = false
 		local skipNext = false
-
+		
 		function editBox:SpecialSetText(text)
 			local oldText = editBox:GetText() or ""
 			if not text then
@@ -1889,7 +1889,7 @@ function OpenEditBox(self, parent)
 				skipNext = true
 			end
 		end
-
+		
 		editBox:SetScript("OnTextChanged", function()
 			if skipNext then
 				skipNext = false
@@ -2020,13 +2020,13 @@ function OpenEditBox(self, parent)
 	editBoxFrame.editBox.keybinding = parent.editBoxIsKeybinding
 	editBoxFrame.editBox:EnableKeyboard(not parent.editBoxIsKeybinding)
 	editBoxFrame:EnableKeyboard(parent.editBoxIsKeybinding)
-
+	
 	if parent.arrow then
---		parent.arrow:SetVertexColor(0.2, 0.6, 0)
+		--		parent.arrow:SetVertexColor(0.2, 0.6, 0)
 		parent.arrow:SetHeight(24)
 		parent.arrow:SetWidth(24)
 	end
-
+	
 	local level = parent.level
 	editBoxFrame:Show()
 	editBoxFrame:ClearAllPoints()
@@ -2124,12 +2124,12 @@ function Open(self, parent, func, level, value, point, relativePoint, cursorX, c
 		baseFunc = func
 	end
 	levels[level].value = value
---	levels[level].parentText = parent.text and parent.text:GetText() or nil
---	levels[level].parentTooltipTitle = parent.tooltipTitle
---	levels[level].parentTooltipText = parent.tooltipText
---	levels[level].parentTooltipFunc = parent.tooltipFunc
+	--	levels[level].parentText = parent.text and parent.text:GetText() or nil
+	--	levels[level].parentTooltipTitle = parent.tooltipTitle
+	--	levels[level].parentTooltipText = parent.tooltipText
+	--	levels[level].parentTooltipFunc = parent.tooltipFunc
 	if parent.arrow then
---		parent.arrow:SetVertexColor(0.2, 0.6, 0)
+		--		parent.arrow:SetVertexColor(0.2, 0.6, 0)
 		parent.arrow:SetHeight(24)
 		parent.arrow:SetWidth(24)
 	end
@@ -2267,7 +2267,7 @@ function Dewdrop:Register(parent, k1, v1, k2, v2, k3, v3, k4, v4, k5, v5, k6, v6
 	local info = new(k1, v1, k2, v2, k3, v3, k4, v4, k5, v5, k6, v6, k7, v7, k8, v8, k9, v9, k10, v10, k11, v11, k12, v12, k13, v13, k14, v14, k15, v15, k16, v16, k17, v17, k18, v18, k19, v19, k20, v20)
 	if type(info.children) == "table" then
 		local err, position = validateOptions(info.children)
-
+		
 		if err then
 			if position then
 				Dewdrop:error(position .. ": " .. err)
@@ -2381,7 +2381,7 @@ function Dewdrop:Close(level)
 		for _,button in ipairs(buttons) do
 			button.arrow:SetWidth(16)
 			button.arrow:SetHeight(16)
---			button.arrow:SetVertexColor(1, 1, 1)
+			--			button.arrow:SetVertexColor(1, 1, 1)
 		end
 	end
 	if sliderFrame and sliderFrame.level >= level then
@@ -2639,7 +2639,7 @@ local function activate(self, oldLib, oldDeactivate)
 	else
 		self.registry = {}
 		self.onceRegistered = {}
-
+		
 		local WorldFrame_OnMouseDown = WorldFrame:GetScript("OnMouseDown")
 		local WorldFrame_OnMouseUp = WorldFrame:GetScript("OnMouseUp")
 		local oldX, oldY, clickTime
@@ -2650,7 +2650,7 @@ local function activate(self, oldLib, oldDeactivate)
 				WorldFrame_OnMouseDown()
 			end
 		end)
-
+		
 		WorldFrame:SetScript("OnMouseUp", function()
 			local x,y = GetCursorPosition()
 			if not oldX or not oldY or not x or not y or not clickTime then
@@ -2668,7 +2668,7 @@ local function activate(self, oldLib, oldDeactivate)
 				WorldFrame_OnMouseUp()
 			end
 		end)
-
+		
 		if hooksecurefunc then
 			hooksecurefunc(DropDownList1, "Show", function()
 				if levels[1] and levels[1]:IsVisible() then
@@ -2684,7 +2684,7 @@ local function activate(self, oldLib, oldDeactivate)
 				DropDownList1_Show(DropDownList1)
 			end
 		end
-
+		
 		if hooksecurefunc then
 			hooksecurefunc("HideDropDownMenu", function()
 				if levels[1] and levels[1]:IsVisible() then
@@ -2700,7 +2700,7 @@ local function activate(self, oldLib, oldDeactivate)
 				old_HideDropDownMenu(num)
 			end
 		end
-
+		
 		if hooksecurefunc then
 			hooksecurefunc("CloseDropDownMenus", function()
 				if levels[1] and levels[1]:IsVisible() then
@@ -2719,7 +2719,7 @@ local function activate(self, oldLib, oldDeactivate)
 	end
 	levels = {}
 	buttons = {}
-
+	
 	if oldDeactivate then
 		oldDeactivate(oldLib)
 	end

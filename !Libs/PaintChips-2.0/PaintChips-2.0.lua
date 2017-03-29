@@ -1,15 +1,15 @@
 
 --[[
-Name: PaintChips-2.0
-Revision: $Rev: 14862 $
-Author: Tekkub Stoutwrithe (tekkub@gmail.com)
-Website: http://wiki.wowace.com/index.php/Metrognome_Embedded_Library
-Documentation: http://wiki.wowace.com/index.php/Metrognome_Embedded_Library_Methods
-SVN: svn://svn.wowace.com/root/trunk/Metrognome/Metrognome-2.0
-Description: Color managing library
-Dependencies: AceLibrary
-
-Need hex codes?  http://www.december.com/html/spec/colorcodes.html
+	Name: PaintChips-2.0
+	Revision: $Rev: 14862 $
+	Author: Tekkub Stoutwrithe (tekkub@gmail.com)
+	Website: http://wiki.wowace.com/index.php/Metrognome_Embedded_Library
+	Documentation: http://wiki.wowace.com/index.php/Metrognome_Embedded_Library_Methods
+	SVN: svn://svn.wowace.com/root/trunk/Metrognome/Metrognome-2.0
+	Description: Color managing library
+	Dependencies: AceLibrary
+	
+	Need hex codes?  http://www.december.com/html/spec/colorcodes.html
 ]]
 
 local vmajor, vminor = "PaintChips-2.0", "$Revision: 14862 $"
@@ -35,7 +35,7 @@ local function activate(self, oldLib, oldDeactivate)
 			hex = {},
 		}
 	end
-
+	
 	-- Register the Blizzy UI's colors
 	for i,v in pairs(DebuffTypeColor) do self:RegisterColor("DebuffType"..i, v.r*255, v.g*255, v.b*255) end
 	for i,v in pairs(RAID_CLASS_COLORS) do self:RegisterColor(i, v.r*255, v.g*255, v.b*255) end
@@ -45,7 +45,7 @@ local function activate(self, oldLib, oldDeactivate)
 		self:RegisterColor("ItemQuality"..i, r,g,b)
 		self:RegisterColor("ItemQuality"..getglobal("ITEM_QUALITY".. i.. "_DESC"), r,g,b)
 	end
-
+	
 	if oldDeactivate then oldDeactivate(oldLib) end
 end
 
@@ -71,7 +71,7 @@ function lib:RegisterHex(hex)
 	local l = string.len(hex)
 	if l < 6 then self:error("Invalid hex string") end
 	if l > 6 then hex = string.sub(hex, l-5) end
-
+	
 	local name = string.lower(hex)
 	if not self.vars.hex[name] then self.vars.hex[name] = hex end
 end
@@ -80,12 +80,12 @@ end
 function lib:GetHex(name)
 	if not name then return end
 	name = string.lower(name)
-
+	
 	if not self.vars.hex[name] then
 		local _, _, hex = string.find(colors, " "..name..":(%S+)")
 		if hex then self.vars.hex[name] = hex end
 	end
-
+	
 	return self.vars.hex[name]
 end
 
@@ -93,14 +93,14 @@ end
 function lib:GetRGB(name)
 	local hex = self:GetHex(name)
 	if not hex then return end
-
+	
 	if not self.vars.rgb[hex] then
 		local rhex, ghex,bhex = string.sub(hex,1,2), string.sub(hex,3,4), string.sub(hex,5,6)
 		local r,g,b = tonumber(rhex, 16), tonumber(ghex, 16), tonumber(bhex, 16)
-
+		
 		self.vars.rgb[hex] = {r,g,b}
 	end
-
+	
 	return self.vars.rgb[hex], unpack(self.vars.rgb[hex])
 end
 
@@ -108,14 +108,14 @@ end
 function lib:GetRGBPercent(name)
 	local hex = self:GetHex(name)
 	if not hex then return end
-
+	
 	if not self.vars.rgbperc[hex] then
 		local rhex, ghex,bhex = string.sub(hex,1,2), string.sub(hex,3,4), string.sub(hex,5,6)
 		local r,g,b = tonumber(rhex, 16)/255, tonumber(ghex, 16)/255, tonumber(bhex, 16)/255
-
+		
 		self.vars.rgbperc[hex] = {r,g,b}
 	end
-
+	
 	return self.vars.rgbperc[hex], unpack(self.vars.rgbperc[hex])
 end
 
@@ -130,4 +130,3 @@ lib_mt.__call = lib.GetHex
 --      Load this bitch!      --
 --------------------------------
 AceLibrary:Register(lib, vmajor, vminor, activate)
-

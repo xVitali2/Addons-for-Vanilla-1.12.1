@@ -1,11 +1,11 @@
 --[[
-Name: GraphLib-1.0
-Revision: $Rev: 36224 $
-Author(s): Cryect (cryect@gmail.com)
-Website: http://www.wowace.com/
-Documentation: http://www.wowace.com/wiki/GraphLib
-SVN: http://svn.wowace.com/root/trunk/GraphLib/
-Description: Allows for easy creation of graphs
+	Name: GraphLib-1.0
+	Revision: $Rev: 36224 $
+	Author(s): Cryect (cryect@gmail.com)
+	Website: http://www.wowace.com/
+	Documentation: http://www.wowace.com/wiki/GraphLib
+	SVN: http://svn.wowace.com/root/trunk/GraphLib/
+	Description: Allows for easy creation of graphs
 ]]
 
 --Thanks to Nelson Minar for catching several errors where width was being used instead of height (damn copy and paste >_>)
@@ -32,13 +32,13 @@ function lib:CreateGraphRealtime(name,parent,relative,relativeTo,offsetX,offsetY
 	local graph
 	local i
 	graph = CreateFrame("Frame",name,parent)
-
+	
 	
 	graph:SetPoint(relative,parent,relativeTo,offsetX,offsetY)
 	graph:SetWidth(Width)
 	graph:SetHeight(Height)
 	graph:Show()
-
+	
 	--Create the bars
 	graph.Bars={}
 	graph.BarNum=Width
@@ -51,14 +51,14 @@ function lib:CreateGraphRealtime(name,parent,relative,relativeTo,offsetX,offsetY
 		bar:SetOrientation("VERTICAL")
 		bar:SetMinMaxValues(0,Height)
 		bar:SetStatusBarTexture("Interface\\Buttons\\WHITE8X8.blp")
-
+		
 		local t=bar:GetStatusBarTexture()		
 		t:SetGradientAlpha("VERTICAL",0.2,0.0,0.0,0.5,1.0,0.0,0.0,1.0)
 		
 		bar:Show()
 		table.insert(graph.Bars,bar)
 	end
-
+	
 	
 	
 	--Set the various functions
@@ -77,14 +77,14 @@ function lib:CreateGraphRealtime(name,parent,relative,relativeTo,offsetX,offsetY
 	graph.SetBarColors=GraphFunctions.SetBarColors
 	graph.SetMode=GraphFunctions.SetMode
 	graph.SetAutoScale=GraphFunctions.SetAutoScale
-
+	
 	graph.DrawLine=self.DrawLine
 	graph.HideLines=self.HideLines
-
-
+	
+	
 	--Set the update function
 	--graph:SetScript("OnUpdate", graph.OnUpdate)
-
+	
 	--Initialize Data
 	graph.GraphType="REALTIME"
 	graph.YMax=60
@@ -98,7 +98,7 @@ function lib:CreateGraphRealtime(name,parent,relative,relativeTo,offsetX,offsetY
 	graph.GridColor={0.5,0.5,0.5,0.5}
 	graph.AutoScale=false
 	graph.Data={}
-
+	
 	graph.BarHeight={}
 	graph.LastShift=GetTime()
 	graph.BarWidth=(graph.XMax-graph.XMin)/graph.BarNum
@@ -116,14 +116,14 @@ function lib:CreateGraphLine(name,parent,relative,relativeTo,offsetX,offsetY,Wid
 	local graph
 	local i
 	graph = CreateFrame("Frame",name,parent)
-
+	
 	
 	graph:SetPoint(relative,parent,relativeTo,offsetX,offsetY)
 	graph:SetWidth(Width)
 	graph:SetHeight(Height)
 	graph:Show()
-
-
+	
+	
 	
 	
 	--Set the various functions
@@ -141,25 +141,25 @@ function lib:CreateGraphLine(name,parent,relative,relativeTo,offsetX,offsetY,Wid
 	graph.SetYLabels=GraphFunctions.SetYLabels
 	graph.SetXLabels=GraphFunctions.SetXLabels
 	graph.OnUpdate=GraphFunctions.OnUpdateGraph
-
+	
 	graph.LockXMin=GraphFunctions.LockXMin
 	graph.LockXMax=GraphFunctions.LockXMax
 	graph.LockYMin=GraphFunctions.LockYMin
 	graph.LockYMax=GraphFunctions.LockYMax
 	
-
-
+	
+	
 	graph.DrawLine=self.DrawLine
 	graph.HideLines=self.HideLines
 	graph.HideFontStrings=GraphFunctions.HideFontStrings
 	graph.FindFontString=GraphFunctions.FindFontString
 	graph.ShowFontStrings=GraphFunctions.ShowFontStrings
-
+	
 	--Set the update function
 	graph:SetScript("OnUpdate", graph.OnUpdate)
 	graph.NeedsUpdate=false
-
-
+	
+	
 	--Initialize Data
 	graph.GraphType="LINE"
 	graph.YMax=1
@@ -179,7 +179,7 @@ function lib:CreateGraphLine(name,parent,relative,relativeTo,offsetX,offsetY,Wid
 	graph.LockOnYMax=false
 	graph.Data={}
 	graph.DataPoints={}
-
+	
 	
 	
 	return graph
@@ -191,14 +191,14 @@ function lib:CreateGraphScatterPlot(name,parent,relative,relativeTo,offsetX,offs
 	local graph
 	local i
 	graph = CreateFrame("Frame",name,parent)
-
+	
 	
 	graph:SetPoint(relative,parent,relativeTo,offsetX,offsetY)
 	graph:SetWidth(Width)
 	graph:SetHeight(Height)
 	graph:Show()
-
-
+	
+	
 	
 	
 	--Set the various functions
@@ -218,23 +218,23 @@ function lib:CreateGraphScatterPlot(name,parent,relative,relativeTo,offsetX,offs
 	graph.SetLinearFit=GraphFunctions.SetLinearFit
 	graph.SetAutoScale=GraphFunctions.SetAutoScale
 	graph.SetYLabels=GraphFunctions.SetYLabels
-
+	
 	graph.LockXMin=GraphFunctions.LockXMin
 	graph.LockXMax=GraphFunctions.LockXMax
 	graph.LockYMin=GraphFunctions.LockYMin
 	graph.LockYMax=GraphFunctions.LockYMax
-
+	
 	graph.DrawLine=self.DrawLine
 	graph.HideLines=self.HideLines
 	graph.HideTextures=GraphFunctions.HideTextures
 	graph.FindTexture=GraphFunctions.FindTexture
 	graph.HideFontStrings=GraphFunctions.HideFontStrings
 	graph.FindFontString=GraphFunctions.FindFontString
-
+	
 	--Set the update function
 	--graph:SetScript("OnUpdate", graph.OnUpdate)
 	--graph.NeedsUpdate=false
-
+	
 	--Initialize Data
 	graph.GraphType="SCATTER"
 	graph.YMax=1
@@ -263,21 +263,21 @@ function lib:CreateGraphPieChart(name,parent,relative,relativeTo,offsetX,offsetY
 	local graph
 	local i
 	graph = CreateFrame("Frame",name,parent)
-
+	
 	
 	graph:SetPoint(relative,parent,relativeTo,offsetX,offsetY)
 	graph:SetWidth(Width)
 	graph:SetHeight(Height)
 	graph:Show()
-
-
+	
+	
 	
 	
 	--Set the various functions
 	graph.AddPie=GraphFunctions.AddPie
 	graph.CompletePie=GraphFunctions.CompletePie
 	graph.ResetPie=GraphFunctions.ResetPie
-
+	
 	graph.DrawLine=self.DrawLine
 	graph.DrawLinePie=GraphFunctions.DrawLinePie
 	graph.HideLines=self.HideLines
@@ -285,10 +285,10 @@ function lib:CreateGraphPieChart(name,parent,relative,relativeTo,offsetX,offsetY
 	graph.FindTexture=GraphFunctions.FindTexture
 	--graph.OnUpdate=GraphFunctions.PieChart_OnUpdate
 	graph.SetSelectionFunc=GraphFunctions.SetSelectionFunc
-
+	
 	--graph:SetScript("OnUpdate", graph.OnUpdate)
 	
-
+	
 	--Initialize Data
 	graph.GraphType="PIE"
 	graph.PieUsed=0
@@ -301,7 +301,7 @@ function lib:CreateGraphPieChart(name,parent,relative,relativeTo,offsetX,offsetY
 	graph.Sections={}
 	graph.LastSection=nil
 	graph.onColor=1
-
+	
 	return graph
 end
 
@@ -352,7 +352,7 @@ end
 
 function GraphFunctions:SetMode(mode)
 	self.Mode=mode
-
+	
 	if mode=="FAST" then
 		self.LastShift=GetTime()+xmin
 	end
@@ -442,10 +442,10 @@ end
 function GraphFunctions:LinearRegression(data)
 	local alpha, beta
 	local n, SX,SY,SXX, SXY = 0,0,0,0,0
-
+	
 	for k,v in pairs(data) do
 		n=n+1
-
+		
 		SX=SX+v[1]
 		SXX=SXX+v[1]*v[1]
 		SY=SY+v[2]
@@ -454,7 +454,7 @@ function GraphFunctions:LinearRegression(data)
 	
 	beta=(n*SXY-SX*SY)/(n*SXX-SX*SX)
 	alpha=(SY-beta*SX)/n
-
+	
 	return alpha, beta
 end
 
@@ -465,12 +465,12 @@ end
 --Functions for Pie Chart
 -------------------------------------------------------------------------------
 local PiePieces={"Pie\\1-2";
-		 "Pie\\1-4";
- 		 "Pie\\1-8";
-		 "Pie\\1-16";
-		 "Pie\\1-32";
-		 "Pie\\1-64";
-		 "Pie\\1-128"}
+	"Pie\\1-4";
+	"Pie\\1-8";
+	"Pie\\1-16";
+	"Pie\\1-32";
+	"Pie\\1-64";
+"Pie\\1-128"}
 
 --26 Colors
 local ColorTable={
@@ -504,13 +504,13 @@ local ColorTable={
 function GraphFunctions:AddPie(Percent, Color)
 	local k,v
 	local PiePercent=self.PercentOn
-
+	
 	local CurPiece=50
 	local Angle=180
 	local CurAngle=PiePercent*360/100
 	local Section={}
 	Section.Textures={}
-
+	
 	if type(Color)~="table" then
 		if self.onColor<=26 then
 			Color=ColorTable[self.onColor]
@@ -519,7 +519,7 @@ function GraphFunctions:AddPie(Percent, Color)
 		end
 		self.onColor=self.onColor+1
 	end
-
+	
 	if PiePercent==0 then
 		self:DrawLinePie(0)
 	end
@@ -536,14 +536,14 @@ function GraphFunctions:AddPie(Percent, Color)
 			t:SetWidth(self:GetWidth())
 			GraphFunctions:RotateTexture(t,CurAngle)
 			t:Show()
-
+			
 			t:SetVertexColor(Color[1],Color[2],Color[3],1.0)
 			Percent=Percent-CurPiece
 			PiePercent=PiePercent+CurPiece
 			CurAngle=CurAngle+Angle
-
+			
 			table.insert(Section.Textures,t)
-
+			
 			if k == 7 then
 				LastPiece=0.09
 			end
@@ -551,7 +551,7 @@ function GraphFunctions:AddPie(Percent, Color)
 		CurPiece=CurPiece/2
 		Angle=Angle/2
 	end
-
+	
 	--Finish adding section data
 	Section.Color=Color
 	Section.Angle=CurAngle
@@ -560,7 +560,7 @@ function GraphFunctions:AddPie(Percent, Color)
 	self:DrawLinePie((PiePercent+LastPiece)*360/100)
 	self.PercentOn=PiePercent
 	self.Remaining=Percent
-
+	
 	return Color
 end
 
@@ -568,11 +568,11 @@ function GraphFunctions:CompletePie(Color)
 	local Percent=100-self.PercentOn
 	local k,v
 	local PiePercent=self.PercentOn
-
+	
 	local CurPiece=50
 	local Angle=180
 	local CurAngle=PiePercent*360/100
-
+	
 	local Section={}
 	Section.Textures={}
 	
@@ -598,12 +598,12 @@ function GraphFunctions:CompletePie(Color)
 				t:SetWidth(self:GetWidth())
 				GraphFunctions:RotateTexture(t,CurAngle)
 				t:Show()
-
+				
 				t:SetVertexColor(Color[1],Color[2],Color[3],1.0)
 				Percent=Percent-CurPiece
 				PiePercent=PiePercent+CurPiece
 				CurAngle=CurAngle+Angle
-
+				
 				table.insert(Section.Textures,t)
 			end
 			CurPiece=CurPiece/2
@@ -618,27 +618,27 @@ function GraphFunctions:CompletePie(Color)
 		t:SetWidth(self:GetWidth())
 		GraphFunctions:RotateTexture(t,CurAngle)
 		t:Show()
-
+		
 		t:SetVertexColor(Color[1],Color[2],Color[3],1.0)
 		table.insert(Section.Textures,t)
 	end
-
+	
 	--Finish adding section data
 	Section.Color=Color
 	Section.Angle=360
 	table.insert(self.Sections,Section)
-
-
+	
+	
 	self.PercentOn=PiePercent
 	self.Remaining=Percent
-
+	
 	return Color
 end
 
 function GraphFunctions:ResetPie()
 	self:HideTextures()
 	self:HideLines(self)
-
+	
 	self.PieUsed=0
 	self.PercentOn=0
 	self.Remaining=0
@@ -653,8 +653,8 @@ function GraphFunctions:DrawLinePie(angle)
 	local w,h
 	w=self:GetWidth()/2
 	h=self:GetHeight()/2
-
-
+	
+	
 	sx=w
 	sy=h
 	
@@ -669,13 +669,13 @@ function GraphFunctions:RotateTexture(texture,angle)
 	local Radian=math.pi*(45-angle)/180
 	local Radian2=math.pi*(45+90-angle)/180
 	local Radius=0.70710678118654752440084436210485
-
+	
 	local tx,ty,tx2,ty2
 	tx=Radius*math.cos(Radian)
 	ty=Radius*math.sin(Radian)
 	tx2=-ty
 	ty2=tx
-
+	
 	texture:SetTexCoord(0.5-tx,0.5-ty,0.5+tx2,0.5+ty2,0.5-tx2,0.5-ty2,0.5+tx,0.5+ty)
 end
 
@@ -690,18 +690,18 @@ function GraphFunctions:PieChart_OnUpdate()
 		local Scale=self:GetEffectiveScale()
 		local mX,mY=GetCursorPosition()
 		local dX,dY
-
+		
 		dX=mX/Scale-sX
 		dY=mY/Scale-sY
-
+		
 		local Angle=90-math.deg(math.atan(dY/dX))
 		dY=dY*self.Ratio
 		local Dist=dX*dX+dY*dY
-
+		
 		if dX<0 then
 			Angle=Angle+180
 		end
-
+		
 		--Are we on the Pie Chart?
 		if Dist<self.Radius then
 			--What section are we on?
@@ -716,25 +716,25 @@ function GraphFunctions:PieChart_OnUpdate()
 								t:SetVertexColor(Color[1],Color[2],Color[3],1.0)
 							end
 						end
-
+						
 						if self.SelectionFunc then
 							self:SelectionFunc(k)
 						end
 					end
-
+					
 					local ColorAdd=0.15*math.abs(math.fmod(GetTime(),3)-1.5)-0.1125
 					
 					Color={}
 					Color[1]=v.Color[1]+ColorAdd
 					Color[2]=v.Color[2]+ColorAdd
 					Color[3]=v.Color[3]+ColorAdd
-
+					
 					for _, t in pairs(v.Textures) do
 						t:SetVertexColor(Color[1],Color[2],Color[3],1.0)
 					end
-
+					
 					self.LastSection = k
-
+					
 					return
 				end
 			end
@@ -762,21 +762,21 @@ end
 -------------------------------------------------------------------------------
 function GraphFunctions:SetYMax(ymax)
 	self.YMax=ymax
-
+	
 	self.NeedsUpdate=true
 end
 
 function GraphFunctions:SetYAxis(ymin,ymax)
 	self.YMin=ymin
 	self.YMax=ymax
-
+	
 	self.NeedsUpdate=true
 end
 
 function GraphFunctions:SetXAxis(xmin,xmax)
 	self.XMin=xmin
 	self.XMax=xmax
-
+	
 	self.NeedsUpdate=true
 	
 	if self.GraphType=="REALTIME" then
@@ -788,7 +788,7 @@ end
 
 function GraphFunctions:SetAutoScale(auto)
 	self.AutoScale=auto
-
+	
 	self.NeedsUpdate=true
 end
 
@@ -833,26 +833,26 @@ end
 function GraphFunctions:SetAxisDrawing(xaxis, yaxis)
 	self.XAxisDrawn=xaxis
 	self.YAxisDrawn=yaxis
-
+	
 	self.NeedsUpdate=true
 end
 
 function GraphFunctions:SetGridSpacing(xspacing,yspacing)
 	self.XGridInterval=xspacing
 	self.YGridInterval=yspacing
-
+	
 	self.NeedsUpdate=true
 end
 
 function GraphFunctions:SetAxisColor(color)
 	self.AxisColor=color
-
+	
 	self.NeedsUpdate=true
 end
 
 function GraphFunctions:SetGridColor(color)
 	self.GridColor=color
-
+	
 	self.NeedsUpdate=true
 end
 
@@ -870,7 +870,7 @@ function GraphFunctions:CreateGridlines()
 	local Height=self:GetHeight()
 	self:HideLines(self)
 	self:HideFontStrings()
-
+	
 	if self.YGridInterval then
 		local LowerYGridLine,UpperYGridLine,TopSpace
 		LowerYGridLine=self.YMin/self.YGridInterval
@@ -883,7 +883,7 @@ function GraphFunctions:CreateGridlines()
 				local YPos,T,F
 				YPos=Height*(i*self.YGridInterval-self.YMin)/(self.YMax-self.YMin)
 				T=self:DrawLine(self,0,YPos,Width,YPos,24,self.GridColor,"BACKGROUND")
-
+				
 				if ((i~=UpperYGridLine) or (TopSpace>12)) then
 					if self.YLabelsLeft then
 						F=self:FindFontString()
@@ -894,7 +894,7 @@ function GraphFunctions:CreateGridlines()
 						F:SetText(floor(i*self.YGridInterval))
 						F:Show()
 					end
-
+					
 					if self.YLabelsRight then
 						F=self:FindFontString()
 						F:SetFontObject("GameFontHighlightSmall")
@@ -909,14 +909,14 @@ function GraphFunctions:CreateGridlines()
 			end
 		end
 	end
-
+	
 	if self.XGridInterval then
 		local LowerXGridLine,UpperXGridLine
 		LowerXGridLine=self.XMin/self.XGridInterval
 		LowerXGridLine=math.max(math.floor(LowerXGridLine),math.ceil(LowerXGridLine))
 		UpperXGridLine=self.XMax/self.XGridInterval
 		UpperXGridLine=math.min(math.floor(UpperXGridLine),math.ceil(UpperXGridLine))
-
+		
 		for i=LowerXGridLine,UpperXGridLine do
 			if i~=0 or not self.XAxisDrawn then
 				local XPos, T, F
@@ -935,13 +935,13 @@ function GraphFunctions:CreateGridlines()
 			end
 		end
 	end
-
+	
 	if self.YAxisDrawn and self.YMax>=0 and self.YMin<=0 then
 		local YPos,T
-
+		
 		YPos=Height*(-self.YMin)/(self.YMax-self.YMin)
 		self.yAxis = self:DrawLine(self,0,YPos,Width,YPos,24,self.AxisColor,"BACKGROUND")
-
+		
 		if self.YLabelsLeft  then
 			F=self:FindFontString()
 			F:SetFontObject("GameFontHighlightSmall")
@@ -961,10 +961,10 @@ function GraphFunctions:CreateGridlines()
 			F:Show()
 		end
 	end
-
+	
 	if self.XAxisDrawn and self.XMax>=0 and self.XMin<=0 then
 		local XPos;
-
+		
 		XPos=Width*(-self.XMin)/(self.XMax-self.XMin)
 		self.xAxis = self:DrawLine(self,XPos,0,XPos,Height,24,self.AxisColor,"BACKGROUND")
 	end
@@ -1003,7 +1003,7 @@ function GraphFunctions:OnUpdateGraphRealtime()
 		local k,v
 		local BarTimeRadius=(self.XMax-self.XMin)/self.BarNum
 		local DataValue=1/(2*self.TimeRadius)
-
+		
 		if self.Filter=="RECT" then
 			--Take the convolution of the dataset on to the bars wtih a rectangular filter
 			local DataValue=1/(2*self.TimeRadius)
@@ -1031,8 +1031,8 @@ function GraphFunctions:OnUpdateGraphRealtime()
 					local DataTime=v.Time-CurTime
 					local LowestBar=math.max(math.floor((DataTime-self.XMin-self.TimeRadius)/BarTimeRadius),1)
 					local HighestBar=math.min(math.ceil((DataTime-self.XMin+self.TimeRadius)/BarTimeRadius),self.BarNum)
-
-
+					
+					
 					for i=LowestBar,HighestBar do
 						self.BarHeight[i]=self.BarHeight[i]+v.Value*DataValue*math.abs(BarTimeRadius*i+self.XMin-DataTime)
 					end
@@ -1042,7 +1042,7 @@ function GraphFunctions:OnUpdateGraphRealtime()
 	elseif self.Mode=="FAST" then
 		local ShiftBars=math.floor((CurTime-self.LastShift)/self.BarWidth)
 		local RecalcBars=self.BarNum-(ShiftBars+self.FilterOverlap)+1
-
+		
 		for i=1,self.BarNum do
 			if i<RecalcBars then
 				self.BarHeight[i]=self.BarHeight[i+ShiftBars]
@@ -1050,14 +1050,14 @@ function GraphFunctions:OnUpdateGraphRealtime()
 				self.BarHeight[i]=0
 			end
 		end
-
+		
 		local k,v
 		local BarTimeRadius=(self.XMax-self.XMin)/self.BarNum
 		local DataValue=1/(2*self.TimeRadius)
-
+		
 		CurTime=self.LastShift+ShiftBars*self.BarWidth
 		self.LastShift=CurTime
-
+		
 		if self.Filter=="RECT" then
 			--Take the convolution of the dataset on to the bars wtih a rectangular filter
 			local DataValue=1/(2*self.TimeRadius)
@@ -1077,10 +1077,10 @@ function GraphFunctions:OnUpdateGraphRealtime()
 			end
 		end
 	end
-
+	
 	if self.AutoScale then
 		local MaxY=0
-
+		
 		for i=1,self.BarNum do
 			MaxY=math.max(MaxY,self.BarHeight[i])
 		end
@@ -1110,7 +1110,7 @@ end
 function GraphFunctions:RefreshLineGraph()
 	local k1, k2, series
 	self:HideLines(self)
-
+	
 	if self.AutoScale and self.Data then -- math.huge not implemented
 		local MinX, MaxX, MinY, MaxY = 1, -3, 200, -900
 		for k1, series in pairs(self.Data) do
@@ -1121,9 +1121,9 @@ function GraphFunctions:RefreshLineGraph()
 				MaxY=math.max(point[2],MaxY)
 			end
 		end
-
+		
 		local XBorder, YBorder
-
+		
 		XBorder=0.1*(MaxX-MinX)
 		YBorder=0.1*(MaxY-MinY)
 		
@@ -1140,20 +1140,20 @@ function GraphFunctions:RefreshLineGraph()
 			self.YMax=MaxY+YBorder
 		end
 	end
-
+	
 	self:CreateGridlines()
-
+	
 	local Width=self:GetWidth()
 	local Height=self:GetHeight()
-
+	
 	for k1, series in pairs(self.Data) do
 		local LastPoint
 		LastPoint=nil
-
+		
 		for k2, point in pairs(series.Points) do
 			if LastPoint then
 				local TPoint={x=point[1];y=point[2]}
-
+				
 				TPoint.x=Width*(TPoint.x-self.XMin)/(self.XMax-self.XMin)
 				TPoint.y=Height*(TPoint.y-self.YMin)/(self.YMax-self.YMin)
 				
@@ -1162,7 +1162,7 @@ function GraphFunctions:RefreshLineGraph()
 				else
 					self:DrawLine(self,LastPoint.x,LastPoint.y,TPoint.x,TPoint.y,32,series.Color[1])
 				end
-
+				
 				LastPoint=TPoint
 			else
 				LastPoint={x=point[1];y=point[2]}
@@ -1199,7 +1199,7 @@ end
 function GraphFunctions:RefreshScatterPlot()
 	local k1, k2, series, point
 	self:HideLines(self)
-
+	
 	if self.AutoScale and self.Data then
 		local MinX, MaxX, MinY, MaxY = math.huge, -math.huge, math.huge, -math.huge
 		for k1, series in pairs(self.Data) do
@@ -1210,12 +1210,12 @@ function GraphFunctions:RefreshScatterPlot()
 				MaxY=math.max(point[2],MaxY)
 			end
 		end
-
+		
 		local XBorder, YBorder
-
+		
 		XBorder=0.1*(MaxX-MinX)
 		YBorder=0.1*(MaxY-MinY)
-
+		
 		if not self.LockOnXMin then
 			self.XMin=MinX-XBorder
 		end
@@ -1229,9 +1229,9 @@ function GraphFunctions:RefreshScatterPlot()
 			self.YMax=MaxY+YBorder
 		end
 	end
-
+	
 	self:CreateGridlines()
-
+	
 	local Width=self:GetWidth()
 	local Height=self:GetHeight()
 	
@@ -1244,7 +1244,7 @@ function GraphFunctions:RefreshScatterPlot()
 			MaxX=math.max(point[1],MaxX)
 			x=Width*(point[1]-self.XMin)/(self.XMax-self.XMin)
 			y=Height*(point[2]-self.YMin)/(self.YMax-self.YMin)
-
+			
 			local g=self:FindTexture()
 			g:SetTexture("Spells\\GENERICGLOW2_64.blp")
 			g:SetWidth(6)
@@ -1254,7 +1254,7 @@ function GraphFunctions:RefreshScatterPlot()
 			g:SetVertexColor(series.Color[1],series.Color[2],series.Color[3],series.Color[4]);
 			g:Show()
 		end
-
+		
 		if self.LinearFit then
 			local alpha, beta = self:LinearRegression(series.Points)
 			local sx,sy,ex,ey
@@ -1263,12 +1263,12 @@ function GraphFunctions:RefreshScatterPlot()
 			sy=beta*sx+alpha
 			ex=MaxX
 			ey=beta*ex+alpha
-
+			
 			sx=Width*(sx-self.XMin)/(self.XMax-self.XMin)
 			sy=Height*(sy-self.YMin)/(self.YMax-self.YMin)
 			ex=Width*(ex-self.XMin)/(self.XMax-self.XMin)
 			ey=Height*(ey-self.YMin)/(self.YMax-self.YMin)
-
+			
 			self:DrawLine(self,sx,sy,ex,ey,32,series.Color)
 		end
 	end
@@ -1297,14 +1297,14 @@ local TAXIROUTE_LINEFACTOR_2 = TAXIROUTE_LINEFACTOR / 2; -- Half o that
 function lib:DrawLine(C, sx, sy, ex, ey, w, color, layer)
 	local T, lineNum, relPoint;
 	if (not relPoint) then relPoint = "BOTTOMLEFT"; end
-
-
+	
+	
 	if not C.GraphLib_Lines then
 		C.GraphLib_Lines={}
 	end
-
+	
 	T=nil;
-
+	
 	for k,v in pairs(C.GraphLib_Lines) do
 		if not v:IsShown() and not T then
 			T=v;
@@ -1312,40 +1312,40 @@ function lib:DrawLine(C, sx, sy, ex, ey, w, color, layer)
 			T:Show();		
 		end
 	end
-
+	
 	if not T then
 		T=C:CreateTexture(C:GetName().."_Line"..(getn(C.GraphLib_Lines)+1), "ARTWORK");
 		T:SetTexture(TextureDirectory.."line");
 		tinsert(C.GraphLib_Lines,T);
 	end
-
+	
 	if layer then
 		T:SetDrawLayer(layer)
 	end
-
+	
 	T:SetVertexColor(color[1],color[2],color[3],color[4]);
 	-- Determine dimensions and center point of line
 	local dx,dy = ex - sx, ey - sy;
 	local cx,cy = (sx + ex) / 2, (sy + ey) / 2;
-
+	
 	-- Normalize direction if necessary
 	if (dx < 0) then
 		dx,dy = -dx,-dy;
 	end
-
+	
 	-- Calculate actual length of line
 	local l = sqrt((dx * dx) + (dy * dy));
-
+	
 	-- Quick escape if it's zero length
 	if (l == 0) then
 		T:Hide()
 		return;
 	end
-
+	
 	-- Sin and Cosine of rotation, and combination (for later)
 	local s,c = -dy / l, dx / l;
 	local sc = s * c;
-
+	
 	-- Calculate bounding box size and texture coordinates
 	local Bwid, Bhgt, BLx, BLy, TLx, TLy, TRx, TRy, BRx, BRy;
 	if (dy >= 0) then
@@ -1361,13 +1361,13 @@ function lib:DrawLine(C, sx, sy, ex, ey, w, color, layer)
 		BRy, TLx, TLy, TRy = BLx, 1 - BRx, 1 - BLx, 1 - BLy;
 		TRx = TLy;
 	end
-
+	
 	-- Set texture coordinates and anchors
 	T:ClearAllPoints();
 	T:SetTexCoord(TLx, TLy, BLx, BLy, TRx, TRy, BRx, BRy);
 	T:SetPoint("BOTTOMLEFT", C, relPoint, cx - Bwid, cy - Bhgt);
 	T:SetPoint("TOPRIGHT",	C, relPoint, cx + Bwid, cy + Bhgt);
-
+	
 	return T
 end
 
@@ -1375,7 +1375,7 @@ function lib:HideLines(C)
 	if not C.GraphLib_Lines then
 		return
 	end
-
+	
 	for k,v in pairs(C.GraphLib_Lines) do
 		v:Hide()
 	end
@@ -1383,7 +1383,7 @@ function lib:HideLines(C)
 	if not C.ppoints then
 		return
 	end
-
+	
 	for k,v in pairs(C.ppoints) do
 		v:Hide()
 	end
@@ -1428,7 +1428,7 @@ function TestRealtimeGraph()
 	g:SetXAxis(-11,-1)
 	g:SetFilterRadius(1)
 	g:SetBarColors({0.2,0.0,0.0,0.4},{1.0,0.0,0.0,1.0})
-
+	
 	local f = CreateFrame("Frame",name,parent)
 	f:SetScript("OnUpdate",function() g:AddTimeData(1) end)
 	f:Show()
@@ -1445,10 +1445,10 @@ function TestLineGraph()
 	g:SetAxisDrawing(true,true)
 	g:SetAxisColor({1.0,1.0,1.0,1.0})
 	g:SetAutoScale(true)
-
+	
 	local Data1={{0.05,0.05},{0.2,0.3},{0.4,0.2},{0.9,0.6}}
 	local Data2={{0.05,0.8},{0.3,0.1},{0.5,0.4},{0.95,0.05}}
-
+	
 	g:AddDataSeries(Data1,{1.0,0.0,0.0,0.8})
 	g:AddDataSeries(Data2,{0.0,1.0,0.0,0.8})
 end
@@ -1456,7 +1456,7 @@ end
 function TestScatterPlot()
 	local Graph=AceLibrary("Graph-1.0")
 	local g=Graph:CreateGraphScatterPlot("TestScatterPlot",UIParent,"CENTER","CENTER",90,-90,150,150)
-
+	
 	g:SetXAxis(-1,1)
 	g:SetYAxis(-1,1)
 	g:SetGridSpacing(0.25,0.25)
@@ -1465,10 +1465,10 @@ function TestScatterPlot()
 	g:SetAxisColor({1.0,1.0,1.0,1.0})
 	g:SetLinearFit(true)
 	g:SetAutoScale(true)
-
+	
 	local Data1={{0.05,0.05},{0.2,0.3},{0.4,0.2},{0.9,0.6}}
 	local Data2={{0.05,0.8},{0.3,0.1},{0.5,0.4},{0.95,0.05}}
-
+	
 	g:AddDataSeries(Data1,{1.0,0.0,0.0,0.8})
 	g:AddDataSeries(Data2,{0.0,1.0,0.0,0.8})
 end
@@ -1476,7 +1476,7 @@ end
 function TestPieChart()
 	local Graph=AceLibrary("Graph-1.0")
 	local g=Graph:CreateGraphPieChart("TestPieChart",UIParent,"CENTER","CENTER",-90,-90,150,150)
-
+	
 	g:AddPie(35,{1.0,0.0,0.0})
 	g:AddPie(15,{0.0,1.0,0.0})	
 	g:AddPie(50,{1.0,1.0,1.0})

@@ -1,12 +1,12 @@
 --[[
-Name: Surface-1.0
-Revision: $Revision: 16890 $
-Author: Haste/Otravi (troeks@gmail.com)
-Website: http://fuxsake.net/f15-SurfaceLib.html
-Documentation: http://fuxsake.net/t18-Documentation.html
-SVN: http://svn.wowace.com/wowace/trunk/SurfaceLib/Surface-1.0/
-Description: Shared handling of StatusBar textures between add ons.
-Dependencies: AceLibrary, AceEvent-2.0
+	Name: Surface-1.0
+	Revision: $Revision: 16890 $
+	Author: Haste/Otravi (troeks@gmail.com)
+	Website: http://fuxsake.net/f15-SurfaceLib.html
+	Documentation: http://fuxsake.net/t18-Documentation.html
+	SVN: http://svn.wowace.com/wowace/trunk/SurfaceLib/Surface-1.0/
+	Description: Shared handling of StatusBar textures between add ons.
+	Dependencies: AceLibrary, AceEvent-2.0
 ]]
 
 local vmajor, vminor = "Surface-1.0", "$Revision: 16890 $"
@@ -64,11 +64,11 @@ function lib:SetGlobal(n)
 end
 
 function lib:Usage()
-		t = {}
-		for k in pairs(self.vars) do
-			table.insert(t, k)
-		end
-		return "{" .. table.concat(t, " || ") .. "}"
+	t = {}
+	for k in pairs(self.vars) do
+		table.insert(t, k)
+	end
+	return "{" .. table.concat(t, " || ") .. "}"
 end
 
 function lib:IsValid(a1)
@@ -76,8 +76,11 @@ function lib:IsValid(a1)
 end
 
 local function activate(self, oldLib, oldDeactivate)
-	if(oldLib) then self.vars = oldLib.vars
-	else self.vars = {Blizzard = "Interface\\TargetingFrame\\UI-StatusBar"} end
+	if(oldLib) then 
+		self.vars = oldLib.vars
+	else
+		self.vars = {Blizzard = "Interface\\TargetingFrame\\UI-StatusBar"} 
+	end
 	if(oldDeactivate) then oldDeactivate(oldLib) end
 end
 

@@ -1,13 +1,13 @@
 
 --[[
-Name: Compost-2.0
-Revision: $Rev: 17406 $
-Author: Tekkub Stoutwrithe (tekkub@gmail.com)
-Website: http://wiki.wowace.com/index.php/CompostLib
-Documentation: http://wiki.wowace.com/index.php/Compost-2.0_API_Documentation
-SVN: svn://svn.wowace.com/root/trunk/CompostLib/Compost-2.0
-Description: Recycle tables to reduce garbage generation
-Dependencies: AceLibrary
+	Name: Compost-2.0
+	Revision: $Rev: 17406 $
+	Author: Tekkub Stoutwrithe (tekkub@gmail.com)
+	Website: http://wiki.wowace.com/index.php/CompostLib
+	Documentation: http://wiki.wowace.com/index.php/Compost-2.0_API_Documentation
+	SVN: svn://svn.wowace.com/root/trunk/CompostLib/Compost-2.0
+	Description: Recycle tables to reduce garbage generation
+	Dependencies: AceLibrary
 ]]
 
 local vmajor, vminor = "Compost-2.0", "$Revision: 17406 $"
@@ -31,7 +31,7 @@ local function activate(self, oldLib, oldDeactivate)
 			cache = {},
 			secondarycache = {},
 		}
-
+		
 		-- This makes the secondary cache table a weak table, any values in it will be reclaimed
 		-- during a GC if there are no other references to them
 		setmetatable(self.var.secondarycache, {__mode = "v"})
@@ -50,7 +50,7 @@ end
 -- or generates a new table if none available
 function lib:GetTable()
 	if lua51 or self.var.disabled then return {} end
-
+	
 	if table.getn(self.var.cache) > 0 then
 		for i in pairs(self.var.cache) do
 			local t = table.remove(self.var.cache, i)
@@ -65,7 +65,7 @@ function lib:GetTable()
 			end
 		end
 	end
-
+	
 	if next(self.var.secondarycache) then
 		for i in pairs(self.var.secondarycache) do
 			local t = table.remove(self.var.secondarycache, i)
@@ -80,7 +80,7 @@ function lib:GetTable()
 			end
 		end
 	end
-
+	
 	self:IncDec("numnew", 1)
 	return {}
 end
@@ -89,11 +89,11 @@ end
 -- Returns a table, populated with any variables passed
 -- basically: return {a1, a2, ... a20}
 if lua51 then
---[[
-	function lib:Acquire(...)
+	--[[
+		function lib:Acquire(...)
 		return self:Populate({}, ...)
-	end
-]]
+		end
+	]]
 	lib.Acquire = loadstring([[return function(self, ...)
 		return self:Populate({}, ...)
 	end]])()
@@ -108,11 +108,11 @@ end
 -- Acquires a table and fills it with values, hash style
 -- basically: return {k1 = v1, k2 = v2, ... k10 = v10}
 if lua51 then
---[[
-	function lib:AcquireHash(...)
+	--[[
+		function lib:AcquireHash(...)
 		return self:PopulateHash({}, ...)
-	end
-]]
+		end
+	]]
 	lib.AcquireHash = loadstring([[return function(self, ...)
 		return self:PopulateHash({}, ...)
 	end]])()
@@ -127,12 +127,12 @@ end
 -- Erases the table passed, fills it with the args passed, and returns it
 -- Essentially the same as doing Reclaim then Acquire, except the same table is reused
 if lua51 then
---[[
-	function lib:Recycle(t, ...)
+	--[[
+		function lib:Recycle(t, ...)
 		t = self:Erase(t)
 		return self:Populate(t, ...)
-	end
-]]
+		end
+	]]
 	lib.Recycle = loadstring([[return function(self, t, ...)
 		t = self:Erase(t)
 		return self:Populate(t, ...)
@@ -148,12 +148,12 @@ end
 -- Erases the table passed, fills it with the args passed, and returns it
 -- Essentially the same as doing Reclaim then AcquireHash, except the same table is reused
 if lua51 then
---[[
-	function lib:RecycleHash(t, ...)
+	--[[
+		function lib:RecycleHash(t, ...)
 		t = self:Erase(t)
 		return self:PopulateHash(t, ...)
-	end
-]]
+		end
+	]]
 	lib.RecycleHash = loadstring([[return function(self, t, ...)
 		t = self:Erase(t)
 		return self:PopulateHash(t, ...)
@@ -175,9 +175,9 @@ else
 	function lib:Reclaim(t, depth)
 		if type(t) ~= "table" or self.var.disabled then return end
 		self:assert(not self.var.tablechecks[t], "Cannot reclaim a table twice")
-
+		
 		if not self:ItemsInSecondaryCache() then self.var.totn = table.getn(self.var.cache) end
-
+		
 		if depth and depth > 0 then
 			for i in pairs(t) do
 				if type(t[i]) == "table" then self:Reclaim(t[i], depth - 1) end
@@ -238,21 +238,21 @@ end
 
 -- Fills the table passed with the args passed
 if lua51 then
---[[
-	function lib:Populate(t, a, ...)
+	--[[
+		function lib:Populate(t, a, ...)
 		if not t then return
-		elseif a ~= nil then
-			table.insert(t, a)
-			return self:Populate(t, ...)
-		else return t end
-	end
-]]
+	elseif a ~= nil then
+		table.insert(t, a)
+		return self:Populate(t, ...)
+	else return t end
+		end
+	]]
 	lib.Populate = loadstring([[return function(self, t, a, ...)
 		if not t then return
-		elseif a ~= nil then
-			table.insert(t, a)
-			return self:Populate(t, ...)
-		else return t end
+	elseif a ~= nil then
+		table.insert(t, a)
+		return self:Populate(t, ...)
+	else return t end
 	end]])()
 else
 	function lib:Populate(t,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
@@ -283,21 +283,21 @@ end
 
 -- Same as Populate, but takes 10 key-value pairs instead
 if lua51 then
---[[
-	function lib:PopulateHash(t, k, v, ...)
+	--[[
+		function lib:PopulateHash(t, k, v, ...)
 		if not t then return
-		elseif k ~= nil then
-			t[k] = v
-			return self:PopulateHash(t, ...)
-		else return t end
-	end
-]]
+	elseif k ~= nil then
+		t[k] = v
+		return self:PopulateHash(t, ...)
+	else return t end
+		end
+	]]
 	lib.PopulateHash = loadstring([[return function(self, t, k, v, ...)
 		if not t then return
-		elseif k ~= nil then
-			t[k] = v
-			return self:PopulateHash(t, ...)
-		else return t end
+	elseif k ~= nil then
+		t[k] = v
+		return self:PopulateHash(t, ...)
+	else return t end
 	end]])()
 else
 	function lib:PopulateHash(t,k1,v1,k2,v2,k3,v3,k4,v4,k5,v5,k6,v6,k7,v7,k8,v8,k9,v9,k10,v10)
@@ -337,17 +337,17 @@ end
 -- /script CompostLib:GetInstance("compost-1"):Stats()
 function lib:Stats()
 	if self.var.disabled then ChatFrame1:AddMessage("CompostLib is disabled!")
-	else ChatFrame1:AddMessage(
-		string.format(
-			"|cff00ff00New: %d|r | |cffffff00Recycled: %d|r | |cff00ffffMain: %d|r | |cffff0000Secondary: %d|r | |cffff8800Max %d|r | |cff888888Erases: %d|r | |cffff00ffMem Saved: %d KiB|r | |cffff0088Lost to GC: %d",
-			self.var.numnew or 0,
-			self.var.numrecycled or 0,
-			table.getn(self.var.cache),
-			self:GetSecondaryCacheSize(),
-			self.var.maxn or 0,
-			(self.var.numerased or 0) - (self.var.numreclaim or 0),
-			(self.var.memfreed or 0) + 32/1024*(self.var.numrecycled or 0),
-			(self.var.numreclaim or 0) - (self.var.numrecycled or 0) - table.getn(self.var.cache)))
+	else
+		ChatFrame1:AddMessage(string.format(
+		"|cff00ff00New: %d|r | |cffffff00Recycled: %d|r | |cff00ffffMain: %d|r | |cffff0000Secondary: %d|r | |cffff8800Max %d|r | |cff888888Erases: %d|r | |cffff00ffMem Saved: %d KiB|r | |cffff0088Lost to GC: %d",
+		self.var.numnew or 0,
+		self.var.numrecycled or 0,
+		table.getn(self.var.cache),
+		self:GetSecondaryCacheSize(),
+		self.var.maxn or 0,
+		(self.var.numerased or 0) - (self.var.numreclaim or 0),
+		(self.var.memfreed or 0) + 32/1024*(self.var.numrecycled or 0),
+		(self.var.numreclaim or 0) - (self.var.numrecycled or 0) - table.getn(self.var.cache)))
 	end
 end
 

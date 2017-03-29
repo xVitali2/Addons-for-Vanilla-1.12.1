@@ -1,10 +1,10 @@
 --[[--------------------------------------------------------------------------------
-
-  Ace
-
-  Author:  Kaelten (kaelten@gmail.com)
-  Website: http://www.wowace.com
-
+	
+	Ace
+	
+	Author:  Kaelten (kaelten@gmail.com)
+	Website: http://www.wowace.com
+	
 -----------------------------------------------------------------------------------]]
 local MYADDONS_TABLE = {
 	audio			= "MYADDONS_CATEGORY_AUDIO",
@@ -57,7 +57,7 @@ SlashCmdList["RELOAD"] = ReloadUI
 
 
 --[[--------------------------------------------------------------------------------
-  Class Setup
+	Class Setup
 -----------------------------------------------------------------------------------]]
 
 -- AceCore just provides a debug method for all Ace classes.
@@ -74,13 +74,13 @@ end
 
 function AceCore:debug(...)
 	if( ace.debugger ) then
-		ace.debugger:Message((self.app or {}).name or self.name or ACE_NAME, arg)
+		ace.debugger:Message((self.app or {}).name or self.name or "Ace", arg)
 	end
 end
 
 -- The class for the main Ace object
 Ace = AceCore:new({
-	name		= ACE_NAME,
+	name		= "Ace",
 	description = ACE_DESCRIPTION,
 	version		= ACE_VERSION,
 	website		= ACE_WEBSITE,
@@ -88,7 +88,7 @@ Ace = AceCore:new({
 	gVersion	= 0,
 	tVersion	= 0,
 	fVersion	= 0,
-	langs 		= {"deDE", "frFR", "koKR", "usEN", "zhCN"},
+	langs 		= {"deDE", "frFR", "ruRU", "koKR", "zhCN", "zhTW"},
 	_load		= {},
 	category	= "development",
 })
@@ -101,7 +101,7 @@ end
 
 
 --[[--------------------------------------------------------------------------------
-  Core Ace Methods
+	Core Ace Methods
 -----------------------------------------------------------------------------------]]
 
 function Ace:call(obj, meth, ...)
@@ -118,7 +118,7 @@ end
 
 
 --[[--------------------------------------------------------------------------------
-  Addon Registering
+	Addon Registering
 -----------------------------------------------------------------------------------]]
 
 function Ace:LoadTranslation(id)
@@ -157,7 +157,7 @@ function Ace:RegisterGlobals(globals)
 		if( (ver >= self.gVersion) or ((trans == GetLocale()) and (ver >= self.tVersion)) or
 			(not getglobal(name))
 		) then
-			setglobal(name,val)
+		setglobal(name,val)
 		end
 	end
 	if( ver > self.gVersion ) then self.gVersion = ver end
@@ -172,12 +172,12 @@ end
 
 
 --[[--------------------------------------------------------------------------------
-  Dynamic Loading of Ace Addons
+	Dynamic Loading of Ace Addons
 -----------------------------------------------------------------------------------]]
 
 function Ace:LoadAddon()
 	local id = strlower(arg1)
-
+	
 	if( not self.addons.list[id] ) then
 		local _, title, _, _, loadable = GetAddOnInfo(arg1)
 		self.addons.list[id] = {
@@ -186,11 +186,11 @@ function Ace:LoadAddon()
 			loadable = TRUE
 		}
 	end
-
+	
 	self.addons.list[id].name	= arg1
 	self.addons.list[id].loaded = TRUE
 	self.addons.numLoaded = self.addons.numLoaded + 1
-
+	
 	for _, dep in {GetAddOnDependencies(arg1)} do
 		if( strlower(dep) == "ace" ) then
 			self.addons.list[id].ace = TRUE
@@ -198,15 +198,15 @@ function Ace:LoadAddon()
 			break
 		end
 	end
-
+	
 	if( getn(self._load) < 1 ) then	return end
-
+	
 	local _, _, notes = GetAddOnInfo(arg1)
 	local apps = {unpack(self._load)}
 	self.addons.list[id].apps = self._load
-	self.addons.numAceApps	 = self.addons.numAceApps + getn(self._load)
+	self.addons.numAceApps = self.addons.numAceApps + getn(self._load)
 	self._load = {}
-
+	
 	for _, app in self.addons.list[id].apps do
 		if( not app.description ) then app.description = notes end
 		if( self.initialized ) then self:InitializeApp(app) end
@@ -215,7 +215,7 @@ end
 
 function Ace:InitializeAppDB(app)
 	if( app.db ) then
-		app.db.app	 = app
+		app.db.app = app
 		-- Deprecated 'addon' variable
 		app.db.addon = app
 		app.db:Initialize()
@@ -227,14 +227,14 @@ function Ace:InitializeApp(app)
 		app.aceMismatch = TRUE
 		return
 	end
-
+	
 	self:InitializeAppDB(app)
 	self.db:LoadAddonProfile(app)
-
+	
 	if( app.db ) then
 		app.disabled = app.db:get(app.profilePath, "disabled")
 	end
-
+	
 	if( app.cmd ) then
 		app.cmd.app	  = app
 		-- Deprecated 'addon' variable
@@ -247,7 +247,7 @@ function Ace:InitializeApp(app)
 	self:RegisterAddon(app)
 	app.initialized = TRUE
 	self.event:TriggerEvent(strupper(app.name).."_LOADED")
-
+	
 	if( (not app.disabled) and app.Enable ) then app.Enable(app) end
 	if( not app.disabled ) then
 		self.event:TriggerEvent(strupper(app.name).."_ENABLED")
@@ -274,7 +274,7 @@ end
 
 
 --[[--------------------------------------------------------------------------------
-  Core Utilities Used by Ace
+	Core Utilities Used by Ace
 -----------------------------------------------------------------------------------]]
 
 function Ace.ParseWords(str, pat)
@@ -304,7 +304,7 @@ function Ace.CopyTable(into, from)
 	if (getn(from)) then
 		table.setn(into, getn(from))		
 	end
-
+	
 	return into
 end
 
@@ -336,13 +336,11 @@ function Ace.concat(t,sep)
 	local msg = ""
 	if( getn(t) > 0 ) then
 		for key, val in ipairs(t) do
-			if( msg ~= "" and sep ) then msg = msg..sep end
-			msg = msg..ace.tostr(val)
+			if( msg ~= "" and sep ) then msg = msg..sep end msg = msg..ace.tostr(val)
 		end
 	else
 		for key, val in t do
-			if( msg ~= "" and sep ) then msg = msg..sep end
-			msg = msg..key.."="..ace.tostr(val)
+			if( msg ~= "" and sep ) then msg = msg..sep end msg = msg..key.."="..ace.tostr(val)
 		end
 	end
 	return msg
@@ -382,7 +380,7 @@ end
 
 
 --[[--------------------------------------------------------------------------------
-  Helpful References
+	Helpful References
 -----------------------------------------------------------------------------------]]
 
 -- Pointer to maintain backwards reference compatibility

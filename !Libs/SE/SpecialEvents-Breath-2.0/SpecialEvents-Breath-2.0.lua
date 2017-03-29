@@ -1,10 +1,10 @@
 --[[
-Name: SpecialEvents-Breath-2.0
-Revision: $Rev: 14940 $
-Author: Tekkub Stoutwrithe (tekkub@gmail.com)
-Website: http://www.wowace.com/
-Description: Special events for player holding breath (swimming)
-Dependencies: AceLibrary, AceEvent-2.0
+	Name: SpecialEvents-Breath-2.0
+	Revision: $Rev: 14940 $
+	Author: Tekkub Stoutwrithe (tekkub@gmail.com)
+	Website: http://www.wowace.com/
+	Description: Special events for player holding breath (swimming)
+	Dependencies: AceLibrary, AceEvent-2.0
 ]]
 
 
@@ -31,14 +31,14 @@ function activate(self, oldLib, oldDeactivate)
 		self.vars = {}
 	end
 	self:RegisterEvent("MIRROR_TIMER_START")
-
+	
 	if oldDeactivate then oldDeactivate(oldLib) end
 end
 
 
 function lib:MIRROR_TIMER_START(timer, a2, a3, rate)
 	if timer ~= "BREATH" then return end
-
+	
 	if rate == -1 then
 		self.vars.holdbreath = true
 		self:TriggerEvent("SpecialEvents_PlayerHoldingBreath")
@@ -62,5 +62,3 @@ end
 --      Load this bitch!      --
 --------------------------------
 AceLibrary:Register(lib, vmajor, vminor, activate)
-
-

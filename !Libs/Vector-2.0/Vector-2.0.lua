@@ -1,12 +1,12 @@
 --[[
-Name: Vector-2.0
-Revision: $Rev: 13373 $
-Author(s): Dreyruugr (dreyruugr@gmail.com)
-Website: http://wiki.wowace.com/index.php/Vector-2.0
-Documentation: http://wiki.wowace.com/index.php/Vector-2.0_API_Documentation
-SVN: http://svn.wowace.com/root/trunk/VectorLib/Vector-2.0
-Description: A simple set of vector libraries
-Dependencies: AceLibrary, AceOO-2.0
+	Name: Vector-2.0
+	Revision: $Rev: 13373 $
+	Author(s): Dreyruugr (dreyruugr@gmail.com)
+	Website: http://wiki.wowace.com/index.php/Vector-2.0
+	Documentation: http://wiki.wowace.com/index.php/Vector-2.0_API_Documentation
+	SVN: http://svn.wowace.com/root/trunk/VectorLib/Vector-2.0
+	Description: A simple set of vector libraries
+	Dependencies: AceLibrary, AceOO-2.0
 ]]
 
 local MAJOR_VERSION = "Vector-2.0"

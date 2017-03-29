@@ -11,7 +11,7 @@ if not AceLibrary:HasInstance("AceLocale-2.1") then error(MAJOR_VERSION .. " req
 if not AceLibrary:HasInstance("AceDB-2.0") then error(MAJOR_VERSION .. " requires AceDB-2.0.") end
 
 OneStorage = AceLibrary("AceAddon-2.0"):new("AceEvent-2.0", "AceHook-2.0")
- 
+
 local AL = AceLibrary("AceLocale-2.1")
 
 AL:RegisterTranslation("OneStorage", "enUS", function() return { ["Quiver"] = true, ["Soul Bag"] = true, ["Container"] = true, ["Bag"] = true, ["Player of Realm"] = "(.+) .* (.+)" } end) -- (.+) of (.+) not working... wtf?!
@@ -50,55 +50,55 @@ function OneStorage:SetupEventsAndInitialSave()
 	self:RegisterEvent("BANKFRAME_CLOSED", 				function() self.bankOpened = false end)
 	self:RegisterEvent("PLAYERBANKSLOTS_CHANGED",	 	function() self:SaveBag(-1) end)
 	self:RegisterEvent("PLAYERBANKBAGSLOTS_CHANGED"	, 	function() self:SaveBag(-1) end)
-
+	
 	self:RegisterEvent("UNIT_INVENTORY_CHANGED", "SaveEquipment")
 	
 	self:RegisterEvent("PLAYER_MONEY", "SaveMoney")
 	self:SaveEquipment()
 	self:SaveMoney()
-
+	
 	for bag = 0, 4 do
 		self:SaveBag(bag)
 	end
     
     self.db.account.updatedAt = time()
 end
- 
+
 function OneStorage:SaveMoney()
     self.db.account[self.faction][self.charId]["money"] = GetMoney()
 end
- 
+
 function OneStorage:SaveBag(bag)
-   local size = GetContainerNumSlots(bag) or 0
-   
-   if (bag > 4 and bag <= 10) and not self.bankOpened then return end
-   
-   if bag > 0 then
-	local link = GetInventoryItemLink("player", bag < 5 and bag + 19 or bag + 59)
-	local _, _, code = strfind(link or "", "(item:%d+:%d+:%d+:%d+)")
-	local info = code and (code .. "," .. size) or nil
-	isAmmo, isSoul, isProf = self:GetBagTypes(bag)
-	if info then
-		info = format("%s,%s,%s,%s", info, tostring(isAmmo), tostring(isSoul), tostring(isProf))
+	local size = GetContainerNumSlots(bag) or 0
+	
+	if (bag > 4 and bag <= 10) and not self.bankOpened then return end
+	
+	if bag > 0 then
+		local link = GetInventoryItemLink("player", bag < 5 and bag + 19 or bag + 59)
+		local _, _, code = strfind(link or "", "(item:%d+:%d+:%d+:%d+)")
+		local info = code and (code .. "," .. size) or nil
+		isAmmo, isSoul, isProf = self:GetBagTypes(bag)
+		if info then
+			info = format("%s,%s,%s,%s", info, tostring(isAmmo), tostring(isSoul), tostring(isProf))
+		end
+		self.db.account[self.faction][self.charId][bag .. 0] = info
+	elseif(bag == 0) then
+		self.db.account[self.faction][self.charId][bag .. 0] = "nil,16,false,false,false"
+	elseif(bag == -1) then
+		self.db.account[self.faction][self.charId][bag .. 0] = "nil,24,false,false,false"
 	end
-	self.db.account[self.faction][self.charId][bag .. 0] = info
-   elseif(bag == 0) then
-	  self.db.account[self.faction][self.charId][bag .. 0] = "nil,16,false,false,false"
-   elseif(bag == -1) then
-	  self.db.account[self.faction][self.charId][bag .. 0] = "nil,24,false,false,false"
-   end
-   
-   for slot = 1, size do
-	  local link = GetContainerItemLink(bag, slot)
-	  local _, qty = GetContainerItemInfo(bag, slot)
-	  local _, _, code = strfind(link or "", "(item:%d+:%d+:%d+:%d+)")
-	  local info = code and (code .. "," .. qty) or nil
-	  self.db.account[self.faction][self.charId][bag .. slot] = info
+	
+	for slot = 1, size do
+		local link = GetContainerItemLink(bag, slot)
+		local _, qty = GetContainerItemInfo(bag, slot)
+		local _, _, code = strfind(link or "", "(item:%d+:%d+:%d+:%d+)")
+		local info = code and (code .. "," .. qty) or nil
+		self.db.account[self.faction][self.charId][bag .. slot] = info
 	end
 end
 
 function OneStorage:SaveEquipment()
-   for slot = 0, 19 do
+	for slot = 0, 19 do
 		local link = GetInventoryItemLink("player",slot)
 		if (link) then 
 			local _, _, code = strfind(link or "", "(item:%d+:%d+:%d+:%d+)")
@@ -155,7 +155,7 @@ function OneStorage:EquipmentInfo(faction, charId, slot)
 end
 
 function OneStorage:GetMoney(faction, charId)
-  return self.db.account[faction or self.faction][charId or self.charId]["money"]
+	return self.db.account[faction or self.faction][charId or self.charId]["money"]
 end
 
 function OneStorage:GetBagTypes(bag)
@@ -181,21 +181,21 @@ function OneStorage:GetCharListByServerId()
                 if not list[serverId] then list[serverId] = {} end
                 table.insert(list[serverId], string.format("%s - %s", name, k2) )
                 sort(list[serverId])
-            end
-        end
-    end
+			end
+		end
+	end
     return list
 end
 
 local function activate(self, oldLib, oldDeactivate)
 	OneStorage = self
-
+	
 	if oldLib then
 		self.db = oldLib.db
         self.faction = oldLib.FACTION
         self.charId = oldLib.CHAR_ID
 	end
-
+	
 	if oldDeactivate then
 		oldDeactivate(oldLib)
 	end

@@ -112,7 +112,7 @@ function AceData:LoadAddonProfile(addon)
 	if( addon.initialized and addon.db ) then
 		if( addon.db:get(addon.profilePath, "disabled") ) then
 			addon:DisableAddon()
-		else
+	else
 			addon:EnableAddon()
 		end
 	end

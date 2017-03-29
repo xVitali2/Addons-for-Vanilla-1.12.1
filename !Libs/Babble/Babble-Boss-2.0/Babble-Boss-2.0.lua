@@ -1,12 +1,12 @@
 --[[
-Name: Babble-Boss-2.0
-Revision: $Rev: 14112 $
-Author(s): ckknight (ckknight@gmail.com)
-Website: http://ckknight.wowinterface.com/
-Documentation: http://wiki.wowace.com/index.php/Babble-Boss-2.0
-SVN: http://svn.wowace.com/root/trunk/BabbleLib/Babble-Boss-2.0
-Description: A library to provide localizations for bosses.
-Dependencies: AceLibrary, AceLocale-2.0
+	Name: Babble-Boss-2.0
+	Revision: $Rev: 14112 $
+	Author(s): ckknight (ckknight@gmail.com)
+	Website: http://ckknight.wowinterface.com/
+	Documentation: http://wiki.wowace.com/index.php/Babble-Boss-2.0
+	SVN: http://svn.wowace.com/root/trunk/BabbleLib/Babble-Boss-2.0
+	Description: A library to provide localizations for bosses.
+	Dependencies: AceLibrary, AceLocale-2.0
 ]]
 
 local MAJOR_VERSION = "Babble-Boss-2.0"
@@ -238,7 +238,7 @@ BabbleBoss:RegisterTranslations("enUS", function()
 		["Wolf Master Nandos"] = true,
 		["Rend Blackhand"] = true,
 		["Kurinnaxx"] = true,
-
+		
 		["Maur Grimtotem"] = true,
 		["Oggleflint"] = true,
 		["Taragaman the Hungerer"] = true,
@@ -898,7 +898,7 @@ BabbleBoss:RegisterTranslations("deDE", function()
 		["The Beast"] = "Die Bestie",
 		["The Ravenian"] = "Der Ravenier",
 		["War Master Voone"] = "Kriegsmeister Voone",
-
+		
 		-- From Mendeleev
 		["Cho'Rush the Observer"] = "Cho'Rush der Beobachter",
 		["Lord Hel'nurath"] = "Lord Hel'nurath",
@@ -1537,7 +1537,7 @@ BabbleBoss:RegisterTranslations("zhTW", function()
 		["Zevrim Thornhoof"] = "瑟雷姆‧刺蹄",
 		["Zolo"] = "祖羅",
 		["Zul'Lor"] = "祖羅爾",
-
+		
 		-- From Mendeleev
 		["Cho'Rush the Observer"] = "觀察者克魯什",
 		["Lord Hel'nurath"] = "赫爾努拉斯",

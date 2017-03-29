@@ -6,7 +6,7 @@ AceState = AceCore:new({_initIndex=1,_appList={}})
 
 
 --[[--------------------------------------------------------------------------------
-  State and Addon Initialization
+	State and Addon Initialization
 -----------------------------------------------------------------------------------]]
 
 function AceState:BuildAddonList()
@@ -27,7 +27,7 @@ function AceState:SetGameState()
 	-- space on the end (e.g., "Archimonde "). So trim everything just to be safe.
 	local realmName = ace.trim(GetCVar("realmName"))
 	local charName  = ace.trim(UnitName("player"))
-
+	
 	ace.char = {
 		realm	= realmName,
 		name	= charName,
@@ -37,7 +37,7 @@ function AceState:SetGameState()
 		sex		= ace.trim(UnitSex("player")), -- 1 means female
 		faction = ace.trim(UnitFactionGroup("player"))
 	}
-
+	
 	ace.db:Initialize()
 	ace.db:SetCurrentProfile()
 	ace.cmd:Register()
@@ -54,9 +54,9 @@ end
 
 function AceState:Finish()
 	if( (not self.varsLoaded) or (not self.playerEnter) ) then return end
-
+	
 	self:SetGameState()
-
+	
 	AceStateFrame:Show()
 	for i = self._initIndex, getn(self._appList) do
 		self._initIndex = self._initIndex + 1
@@ -66,49 +66,40 @@ function AceState:Finish()
 		end
 	end
 	AceStateFrame:Hide()
-
+	
 	ace.initialized = TRUE
-
+	
 	self:LoadOnDemandAddons()
-
+	
 	if( ace.db:GetOpt("loadMsg") ~= "none" ) then self:DisplayLoadMsgSummary() end
-
+	
 	-- Remove any existing Ace translations.
 	for _, lang in ace.langs do
 		setglobal("Ace_Locals_"..lang, nil)
 	end
-
+	
 	-- Get rid of AceState entirely.
 	ace.event:UnregisterAllEvents(AceState)
 	AceState = nil
-
+	
 	-- Register ADDON_LOADED on the ace object so addons can be loaded later on demand.
 	ace.event:RegisterEvent(ace, "ADDON_LOADED", "LoadAddon")
 	ace.event:TriggerEvent("ACE_ADDONS_LOADED")
 end
 
 function AceState:DisplayLoadMsgSummary(addon)
-	-- ace:print(format(ACE_LOAD_MSG_SUMMARY,
-					 -- ace.addons.numAceApps,
-					 -- ace.db.profileName
-					-- )
-			 -- )
+	--ace:print(format(ACE_LOAD_MSG_SUMMARY, ace.addons.numAceApps, ace.db.profileName))
 end
 
 function AceState:DisplayLoadMsg(app)
-	ace:print(app.disabled and ACE_ADDON_STANDBY.." " or "",
-			  format(ACE_ADDON_LOADED, app.name, app.version, app.author),
-			  ((app.cmd and app.cmd.commands)
-				and " "..format(ACE_ADDON_CHAT_COMMAND, app.cmd.commands[1])
-				or  ""
-			  ),
-			  app.aceMismatch and " "..ACE_VERSION_MISMATCH
-			 )
+	ace:print(app.disabled and ACE_ADDON_STANDBY.." " or "", format(ACE_ADDON_LOADED, app.name, app.version, app.author),
+	((app.cmd and app.cmd.commands) and " "..format(ACE_ADDON_CHAT_COMMAND, app.cmd.commands[1]) or  ""),
+	app.aceMismatch and " "..ACE_VERSION_MISMATCH)
 end
 
 
 --[[--------------------------------------------------------------------------------
-  Events
+	Events
 -----------------------------------------------------------------------------------]]
 
 function AceState:ADDON_LOADED()

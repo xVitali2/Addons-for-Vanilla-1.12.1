@@ -1,13 +1,13 @@
 --[[
-Name: AceDebug-2.0
-Revision: $Rev: 17638 $
-Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
-Inspired By: Ace 1.x by Turan (turan@gryphon.com)
-Website: http://www.wowace.com/
-Documentation: http://www.wowace.com/index.php/AceDebug-2.0
-SVN: http://svn.wowace.com/root/trunk/Ace2/AceDebug-2.0
-Description: Mixin to allow for simple debugging capabilities.
-Dependencies: AceLibrary, AceOO-2.0
+	Name: AceDebug-2.0
+	Revision: $Rev: 17638 $
+	Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
+	Inspired By: Ace 1.x by Turan (turan@gryphon.com)
+	Website: http://www.wowace.com/
+	Documentation: http://www.wowace.com/index.php/AceDebug-2.0
+	SVN: http://svn.wowace.com/root/trunk/Ace2/AceDebug-2.0
+	Description: Mixin to allow for simple debugging capabilities.
+	Dependencies: AceLibrary, AceOO-2.0
 ]]
 
 local MAJOR_VERSION = "AceDebug-2.0"
@@ -68,19 +68,19 @@ local tmp
 
 function AceDebug:CustomDebug(r, g, b, frame, delay, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20)
 	if not self.debugging then return end
-
+	
 	local output = string.format("|cff7fff7f(DEBUG) %s:[%s%3d]|r",  tostring(self), date("%H:%M:%S"), math_mod(GetTime(), 1) * 1000)
-
+	
 	if string.find(tostring(a1), "%%") then
 		output = output .. " " .. string.format(tostring(a1), tostring(a2), tostring(a3), tostring(a4), tostring(a5), tostring(a6), tostring(a7), tostring(a8), tostring(a9), tostring(a10), tostring(a11), tostring(a12), tostring(a13), tostring(a14), tostring(a15), tostring(a16), tostring(a17), tostring(a18), tostring(a19), tostring(a20))
 	else
 		if not tmp then
 			tmp = {}
 		end
-
+		
 		-- This block dynamically rebuilds the tmp array stopping on the first nil.
 		table.insert(tmp, output)
-
+		
 		table.insert(tmp, tostring(a1))
 		table.insert(tmp, a2)
 		table.insert(tmp, a3)
@@ -107,15 +107,15 @@ function AceDebug:CustomDebug(r, g, b, frame, delay, a1, a2, a3, a4, a5, a6, a7,
 		for k = 1, table.getn(tmp) do
 			tmp[k] = tostring(tmp[k])
 		end
-
+		
 		output = table.concat(tmp, " ")
-
+		
 		for k,v in pairs(tmp) do
 			tmp[k] = nil
 		end
 		table_setn(tmp, 0)
 	end
-
+	
 	print(output, r, g, b, frame or self.debugFrame, delay)
 end
 
@@ -141,10 +141,10 @@ function AceDebug:SetDebugLevel(level)
     if not level then
         self.debuglevel = nil
         return
-    end
+	end
     if level < 1 or level > 3 then
         AceDebug:error("Bad argument #1 to `SetDebugLevel`, must be a number 1-3")
-    end
+	end
     self.debuglevel = level
 end
 
@@ -157,21 +157,21 @@ function AceDebug:CustomLevelDebug(level, r, g, b, frame, delay, a1, a2, a3, a4,
     AceDebug:argCheck(level, 1, "number")
     if level < 1 or level > 3 then
         AceDebug:error("Bad argument #1 to `LevelDebug`, must be a number 1-3")
-    end
+	end
     if level > self.debuglevel then return end
-
+	
 	local output = string.format("|cff7fff7f(DEBUG) %s:[%s.%3d]|r",  tostring(self), date("%H:%M:%S"), math_mod(GetTime(), 1) * 1000)
-
+	
 	if string.find(tostring(a1), "%%") then
 		output = output .. " " .. string.format(tostring(a1), tostring(a2), tostring(a3), tostring(a4), tostring(a5), tostring(a6), tostring(a7), tostring(a8), tostring(a9), tostring(a10), tostring(a11), tostring(a12), tostring(a13), tostring(a14), tostring(a15), tostring(a16), tostring(a17), tostring(a18), tostring(a19), tostring(a20))
 	else
 		if not tmp then
 			tmp = {}
 		end
-
+		
 		-- This block dynamically rebuilds the tmp array stopping on the first nil.
 		table.insert(tmp, output)
-
+		
 		table.insert(tmp, tostring(a1))
 		table.insert(tmp, a2)
 		table.insert(tmp, a3)
@@ -198,15 +198,15 @@ function AceDebug:CustomLevelDebug(level, r, g, b, frame, delay, a1, a2, a3, a4,
 		for k = 1, table.getn(tmp) do
 			tmp[k] = tostring(tmp[k])
 		end
-
+		
 		output = table.concat(tmp, " ")
-
+		
 		for k,v in pairs(tmp) do
 			tmp[k] = nil
 		end
 		table_setn(tmp, 0)
 	end
-
+	
 	print(output, r, g, b, frame or self.debugFrame, delay)
 end
 
@@ -215,9 +215,9 @@ function AceDebug:LevelDebug(level, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11
     AceDebug:argCheck(level, 1, "number")
     if level < 1 or level > 3 then
         AceDebug:error("Bad argument #1 to `LevelDebug`, must be a number 1-3")
-    end
+	end
     if level > self.debuglevel then return end
-
+	
 	AceDebug.CustomLevelDebug(self, level, nil, nil, nil, nil, nil, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20)
 end
 

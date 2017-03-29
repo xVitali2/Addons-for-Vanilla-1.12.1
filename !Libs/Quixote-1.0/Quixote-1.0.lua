@@ -1,12 +1,12 @@
 --[[
-Name: Quixote-1.0
-Revision: $Revision: 15999 $
-Author(s): Kemayo (kemayo@gmail.com)
-Website: <http://link.to.recent.version/here>
-Documentation: <http://link.to.documentation/here>
-SVN: http://svn.wowace.com/wowace/trunk/Quixote/
-Description: Abstracts out questlog handling.
-Dependencies: AceLibrary, AceEvent, Deformat, (optional) Compost
+	Name: Quixote-1.0
+	Revision: $Revision: 15999 $
+	Author(s): Kemayo (kemayo@gmail.com)
+	Website: <http://link.to.recent.version/here>
+	Documentation: <http://link.to.documentation/here>
+	SVN: http://svn.wowace.com/wowace/trunk/Quixote/
+	Description: Abstracts out questlog handling.
+	Dependencies: AceLibrary, AceEvent, Deformat, (optional) Compost
 ]]
 
 local MAJOR_VERSION = "Quixote-1.0"
@@ -247,10 +247,10 @@ function Quixote:SortQuests(quests)
 			local bb = q[b].level*4
 			if q[a].tag == TAG_ELITE then aa = aa+1
 			elseif q[a].tag == TAG_DUNGEON then aa = aa+2
-			elseif q[a].tag == TAG_RAID then aa = aa+3 end
+		elseif q[a].tag == TAG_RAID then aa = aa+3 end
 			if q[b].tag == TAG_ELITE then bb = bb+1
 			elseif q[b].tag == TAG_DUNGEON then bb = bb+2
-			elseif q[b].tag == TAG_RAID then bb = bb+3 end
+		elseif q[b].tag == TAG_RAID then bb = bb+3 end
 			if aa == bb then
 				return q[a].title < q[b].title
 			end
@@ -258,7 +258,7 @@ function Quixote:SortQuests(quests)
 		end
 	end
 	table.sort(quests, mySort)
-
+	
 	return quests
 end
 
@@ -301,8 +301,8 @@ function Quixote:QuestsByLevel()
 end
 
 function Quixote:GetQuest(q)
-	 if type(q)=='number' then return self:GetQuestById(q)
-	 else return self:GetQuestByName(q) end
+	if type(q)=='number' then return self:GetQuestById(q)
+else return self:GetQuestByName(q) end
 end
 
 function Quixote:GetQuestById(q)

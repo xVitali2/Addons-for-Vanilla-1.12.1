@@ -1,6 +1,4 @@
-
 if GetLocale() == "zhTW" then
-
 	if not ParserLibOptimizer then
 		ParserLibOptimizer = {
 			AURAADDEDOTHERHARMFUL = "受到",
@@ -205,11 +203,7 @@ if GetLocale() == "zhTW" then
 			VSENVIRONMENTALDAMAGE_DROWNING_OTHER = "溺水狀態",
 			UNITDIESSELF = "死亡",
 			UNITDIESOTHER = "死亡",
-			UNITDESTROYEDOTHER = "摧毀",
-			
+			UNITDESTROYEDOTHER = "摧毀",	
 		}
-
 	end
-
 end
-

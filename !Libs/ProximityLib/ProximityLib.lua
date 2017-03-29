@@ -15,15 +15,15 @@ local stubobj = getglobal(stubvarname)
 if not stubobj then
 	stubobj = {}
 	setglobal(stubvarname, stubobj)
-
-
+	
+	
 	-- Instance replacement method, replace contents of old with that of new
 	function stubobj:ReplaceInstance(old, new)
-		 for k,v in pairs(old) do old[k]=nil end
-		 for k,v in pairs(new) do old[k]=v end
+		for k,v in pairs(old) do old[k]=nil end
+		for k,v in pairs(new) do old[k]=v end
 	end
-
-
+	
+	
 	-- Get a new copy of the stub
 	function stubobj:NewStub(name)
 		local newStub = {}
@@ -33,15 +33,15 @@ if not stubobj then
 		newStub.versions = {}
 		return newStub
 	end
-
-
+	
+	
 	-- Get instance version
 	function stubobj:NeedsUpgraded(vmajor, vminor)
 		local versionData = self.versions[vmajor]
 		if not versionData or versionData.minor < vminor then return true end
 	end
-
-
+	
+	
 	-- Get instance version
 	function stubobj:GetInstance(version)
 		if not version then version = self.lastVersion end
@@ -49,35 +49,35 @@ if not stubobj then
 		if not versionData then print(string.format("<%s> Cannot find library version: %s", self.libName, version or "")) return end
 		return versionData.instance
 	end
-
-
+	
+	
 	-- Register new instance
 	function stubobj:Register(newInstance)
-		 local version,minor = newInstance:GetLibraryVersion()
-		 self.lastVersion = version
-		 local versionData = self.versions[version]
-		 if not versionData then
-				-- This one is new!
-				versionData = {
-					instance = newInstance,
-					minor = minor,
-					old = {},
-				}
-				self.versions[version] = versionData
-				newInstance:LibActivate(self)
-				return newInstance
-		 end
-		 -- This is an update
-		 local oldInstance = versionData.instance
-		 local oldList = versionData.old
-		 versionData.instance = newInstance
-		 versionData.minor = minor
-		 local skipCopy = newInstance:LibActivate(self, oldInstance, oldList)
-		 table.insert(oldList, oldInstance)
-		 if not skipCopy then
-				for i, old in ipairs(oldList) do self:ReplaceInstance(old, newInstance) end
-		 end
-		 return newInstance
+		local version,minor = newInstance:GetLibraryVersion()
+		self.lastVersion = version
+		local versionData = self.versions[version]
+		if not versionData then
+			-- This one is new!
+			versionData = {
+				instance = newInstance,
+				minor = minor,
+				old = {},
+			}
+			self.versions[version] = versionData
+			newInstance:LibActivate(self)
+			return newInstance
+		end
+		-- This is an update
+		local oldInstance = versionData.instance
+		local oldList = versionData.old
+		versionData.instance = newInstance
+		versionData.minor = minor
+		local skipCopy = newInstance:LibActivate(self, oldInstance, oldList)
+		table.insert(oldList, oldInstance)
+		if not skipCopy then
+			for i, old in ipairs(oldList) do self:ReplaceInstance(old, newInstance) end
+		end
+		return newInstance
 	end
 end
 
@@ -107,7 +107,7 @@ local events = {
 	CHAT_MSG_COMBAT_CREATURE_VS_SELF_HITS = ".+ c?[rh]its (%a+) for .+",
 	CHAT_MSG_COMBAT_CREATURE_VS_PARTY_HITS = ".+ c?[rh]its (%a+) for .+",
 	CHAT_MSG_COMBAT_CREATURE_VS_CREATURE_HITS = ".+ c?[rh]its (%a+) for .+",
-
+	
 	CHAT_MSG_SPELL_CREATURE_VS_SELF_DAMAGE = {".+'s .+ c?[rh]its (%a+) for .+", ".+'s .+ was resisted by (%a+)%."},
 	CHAT_MSG_SPELL_CREATURE_VS_PARTY_DAMAGE = {".+'s .+ c?[rh]its (%a+) for .+", ".+'s .+ was resisted by (%a+)%."},
 	CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE = {".+'s .+ c?[rh]its (%a+) for .+", ".+'s .+ was resisted by (%a+)%."},
@@ -131,7 +131,7 @@ if ( GetLocale() == "koKR" ) then
 		CHAT_MSG_COMBAT_CREATURE_VS_SELF_HITS = ".-의 공격을 받아 %d+의 [^%s]+ 입었습니다",
 		CHAT_MSG_COMBAT_CREATURE_VS_PARTY_HITS = ".+|1이;가; ([^%s]+)|1을;를; 공격하여 %d+의 [^%s]+ 입혔습니다",
 		CHAT_MSG_COMBAT_CREATURE_VS_CREATURE_HITS = ".+|1이;가; ([^%s]+)|1을;를; 공격하여 %d+의 [^%s]+ 입혔습니다",
-
+		
 		CHAT_MSG_SPELL_CREATURE_VS_SELF_DAMAGE = {".-|1이;가; .+|1으로;로; 당신에게 %d+의 .- 입혔습니다", ".-|1이;가; .-|1으로;로; 공격했지만 저항했습니다"},
 		CHAT_MSG_SPELL_CREATURE_VS_PARTY_DAMAGE = {".-|1이;가; .+|1으로;로; (.-)에게 %d+의 .- 입혔습니다", ".-|1이;가; .-|1으로;로; (.-)|1을;를; 공격했지만 저항했습니다"},
 		CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE = {".-|1이;가; .+|1으로;로; (.-)에게 %d+의 .- 입혔습니다", ".-|1이;가; .-|1으로;로; (.-)|1을;를; 공격했지만 저항했습니다"},
@@ -261,7 +261,7 @@ function lib:UpdateUnit(unit, inlogrange)
 	assert(unit, "No unit passed")
 	local unitid = self.vars.roster[unit]
 	if not unitid then return end
-
+	
 	if CheckInteractDistance(unitid, 1) then
 		self.vars.ranges[unit] = 10
 		self.vars.times[unit] = GetTime()
@@ -276,7 +276,7 @@ function lib:UpdateUnit(unit, inlogrange)
 		self.vars.times[unit] = GetTime()
 	end
 	self.vars.updatetimes[unit] = GetTime()
---	print("UpdateUnit", self.vars.ranges[unit], self.vars.times[unit])
+	--	print("UpdateUnit", self.vars.ranges[unit], self.vars.times[unit])
 end
 
 
@@ -287,7 +287,7 @@ end
 function lib:GetUnitRange(unitid)
 	assert(unitid, "No unitID passed")
 	if UnitIsUnit(unitid, "player") then return 0, GetTime() end
-
+	
 	local unit = UnitName(unitid)
 	return self.vars.ranges[unit], self.vars.times[unit]
 end
@@ -330,7 +330,7 @@ local function NextUnit()
 			unitcount = unitcount + 1
 			if UnitExists(unit) then return unit end
 		end
-	-- STEP 4: party units
+		-- STEP 4: party units
 	elseif pmem > 0 then
 		-- STEP 3a: pet units
 		for i = petcount, pmem do

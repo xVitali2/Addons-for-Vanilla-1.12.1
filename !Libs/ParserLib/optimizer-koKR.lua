@@ -1,6 +1,4 @@
-
 if GetLocale() == "koKR" then
-
 	if not ParserLibOptimizer then
 		ParserLibOptimizer = {
 			AURAADDEDOTHERHARMFUL = "걸렸습니다.",
@@ -205,11 +203,7 @@ if GetLocale() == "koKR" then
 			VSENVIRONMENTALDAMAGE_DROWNING_OTHER = "숨을 쉴 수 없어",
 			UNITDIESSELF = "당신은 죽었습니다.",
 			UNITDIESOTHER = "죽었습니다.",
-			UNITDESTROYEDOTHER = "파괴되었습니다.",
-			
+			UNITDESTROYEDOTHER = "파괴되었습니다.",	
 		}
-
 	end
-
 end
-

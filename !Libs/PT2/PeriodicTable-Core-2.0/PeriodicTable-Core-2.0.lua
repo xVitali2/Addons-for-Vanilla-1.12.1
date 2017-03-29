@@ -1,11 +1,11 @@
 
 --[[
-Name: PeriodicTable-Core-2.0
-Revision: $Rev: 15147 $
-Author: Tekkub Stoutwrithe (tekkub@gmail.com)
-Website: http://www.wowace.com/
-Description: Optomized itemid database
-Dependencies: AceLibrary
+	Name: PeriodicTable-Core-2.0
+	Revision: $Rev: 15147 $
+	Author: Tekkub Stoutwrithe (tekkub@gmail.com)
+	Website: http://www.wowace.com/
+	Description: Optomized itemid database
+	Dependencies: AceLibrary
 ]]
 
 
@@ -30,7 +30,7 @@ function activate(self, oldLib, oldDeactivate)
 		self.vars, self.k = {numcustoms = 0}, {}
 	end
 	self.compost = AceLibrary:HasInstance("Compost-2.0") and AceLibrary("Compost-2.0")
-
+	
 	if oldDeactivate then oldDeactivate(oldLib) end
 end
 
@@ -42,7 +42,7 @@ end
 function lib:AddModule(name, table)
 	assert(name, "No module name passed")
 	assert(table, "No module dataset passed")
-
+	
 	if self.k[name] and self.compost then self.compost:Reclaim(self.k[name]) end
 	self.k[name] = table
 	self.vars.cache = {}
@@ -55,10 +55,10 @@ end
 
 function lib:CacheSet(set)
 	if not set then return end
-
+	
 	local rset = self:GetSet(set)
 	if not rset or type(rset) ~= "string" then return end
-
+	
 	if not self.vars.cache then self.vars.cache = {} end
 	if not self.vars.cache[set] then
 		self.vars.cache[set] = {}
@@ -68,7 +68,7 @@ function lib:CacheSet(set)
 			self.vars.cache[set][id] = val
 		end
 	end
-
+	
 	return true
 end
 
@@ -105,7 +105,7 @@ function lib:GetSetString(set)
 				retval = retval and string.format("%s %s", retval, valstr) or valstr
 			end
 		end
-
+		
 		return retval
 	end
 end
@@ -118,7 +118,7 @@ end
 function lib:ItemInSet(item, set)
 	local item = self:GetID(item)
 	if not item then return end
-
+	
 	if type(set) == "string" then
 		local rset = self:GetSet(set)
 		if rset and type(rset) == "string" then
@@ -142,7 +142,7 @@ end
 function lib:ItemInSets(item, sets)
 	local item = self:GetID(item)
 	if not item then return end
-
+	
 	if type(sets) == "string" then
 		local rset = self:GetSet(sets)
 		if type(rset) == "string" then
@@ -153,14 +153,14 @@ function lib:ItemInSets(item, sets)
 		end
 	elseif type(sets) == "table" then
 		local founds
-
+		
 		for i,s in pairs(sets) do
 			if self:ItemInSet(item, s) then
 				if not founds then founds = self.compost and self.compost:Acquire() or {} end
 				table.insert(founds, s)
 			end
 		end
-
+		
 		return founds
 	end
 end
@@ -170,16 +170,16 @@ local iterbag, iterslot, iterset, iterself
 local function iter()
 	if iterslot > GetContainerNumSlots(iterbag) then iterbag, iterslot = iterbag + 1, 1 end
 	if iterbag > 4 then return end
-
+	
 	for b=iterbag,4 do
 		for s=iterslot,GetContainerNumSlots(b) do
 			iterslot = s + 1
-
+			
 			local link = GetContainerItemLink(b,s)
 			local val = link and iterself:ItemInSet(link, iterset)
 			if val then return b, s, val end
 		end
-
+		
 		iterbag, iterslot = b+1, 1
 	end
 end
@@ -187,7 +187,7 @@ end
 
 function lib:BagIter(set)
 	if not set then return end
-
+	
 	iterself, iterbag, iterslot, iterset = self, 0, 1, set
 	return iter
 end
@@ -199,10 +199,10 @@ function lib:GetBest(set, comparefunc, validatefunc)
 	comparefunc = comparefunc or defaultcomparefunc
 	validatefunc = validatefunc or defaultvalidatefunc
 	local ibag, islot, ival
-
+	
 	for bag,slot,val in self:BagIter(set) do
 		if validatefunc(bag,slot,val) and (not ival or comparefunc(bag, slot, val, ibag, islot, ival)) then
-				ibag, islot, ival = bag, slot, val
+			ibag, islot, ival = bag, slot, val
 		end
 	end
 	return ibag, islot, ival
@@ -218,7 +218,7 @@ function lib:RegisterCustomSet(setcode, name)
 	local setname = name or "customset"..self.vars.numcustoms
 	if not setcode then return end
 	if self:GetSetModule(setname) then return end
-
+	
 	self.k.customsets = self.k.customsets or {}
 	self.k.customsets[setname] = setcode
 	if not name then self.vars.numcustoms = self.vars.numcustoms + 1 end

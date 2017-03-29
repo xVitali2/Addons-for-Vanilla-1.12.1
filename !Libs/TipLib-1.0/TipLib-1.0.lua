@@ -59,11 +59,11 @@ function TipLib.AddLine(tooltip, textL, rL, gL, bL, aL, textR, rR, gR, bR, aR,te
 			fsShow(fsRight)
 		end
 		tooltip.unusedLines = tooltip.unusedLines - 1
-		elseif tooltip.numLines == 0 then
+	elseif tooltip.numLines == 0 then
 		
 		tooltip:SetText(textL, rL, gL, bL, aL, textWrap, textR, rR, gR, bR, aR)
 		
-		elseif tooltip.numLines then
+	elseif tooltip.numLines then
 		tooltip.numLines = tooltip.numLines + 1
 		fsLeft = fCreateFontString(tooltip, strformat("%s%s%d", fGetName(tooltip), "TextLeft", tooltip.numLines), "ARTWORK", "GameTooltipText")
 		fsSetText(fsLeft, textL)
@@ -150,7 +150,7 @@ function TipLib.SetOwner(tooltip,owner,anchor,x,y)
 	if anchor == "ANCHOR_CURSOR" then
 		tooltip.OffX, tooltip.OffY = x or 0,y or 0
 		fSetScript(tooltip, "OnUpdate", tooltip.tlOnUpdate)
-		elseif anchor ~= "ANCHOR_NONE" then
+	elseif anchor ~= "ANCHOR_NONE" then
 		_,_,anchor = strfind(anchor, "ANCHOR_(.+)",1)
 		fSetPoint(tooltip, anchor,owner,anchor,x or 0,y or 0)
 	end

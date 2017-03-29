@@ -21,7 +21,7 @@ if GetLocale() == "koKR" then
 		
 		--problematic strings
 		-- %s의
-	  return string.gsub(str, "(%%%d?$?s)(의)", "%1% %2") -- by mundi4
+		return string.gsub(str, "(%%%d?$?s)(의)", "%1% %2") -- by mundi4
 	end
 else
 	function FixGlobalString(pName, str)

@@ -1,12 +1,12 @@
 --[[
-Name: FuBarPlugin-2.0
-Revision: $Rev: 16321 $
-Author: Cameron Kenneth Knight (ckknight@gmail.com)
-Website: http://wiki.wowace.com/index.php/FuBarPlugin-2.0
-Documentation: http://wiki.wowace.com/index.php/FuBarPlugin-2.0
-SVN: svn://svn.wowace.com/root/branches/FuBar/FuBarPlugin-2.0/FuBarPlugin-2.0/
-Description: Plugin for FuBar.
-Dependencies: AceLibrary, AceOO-2.0, AceEvent-2.0, Tablet-2.0, Dewdrop-2.0
+	Name: FuBarPlugin-2.0
+	Revision: $Rev: 16321 $
+	Author: Cameron Kenneth Knight (ckknight@gmail.com)
+	Website: http://wiki.wowace.com/index.php/FuBarPlugin-2.0
+	Documentation: http://wiki.wowace.com/index.php/FuBarPlugin-2.0
+	SVN: svn://svn.wowace.com/root/branches/FuBar/FuBarPlugin-2.0/FuBarPlugin-2.0/
+	Description: Plugin for FuBar.
+	Dependencies: AceLibrary, AceOO-2.0, AceEvent-2.0, Tablet-2.0, Dewdrop-2.0
 ]]
 
 local MAJOR_VERSION = "FuBarPlugin-2.0"
@@ -25,27 +25,6 @@ local Dewdrop = AceLibrary:HasInstance("Dewdrop-2.0") and AceLibrary("Dewdrop-2.
 
 local epsilon = 1e-5
 local _G = getfenv(0)
-
-local SHOW_ICON = "Show icon"
-local SHOW_ICON_DESC = "Show the plugins icon on the panel."
-local SHOW_TEXT = "Show text"
-local SHOW_TEXT_DESC = "Show the plugins text on the panel."
-local SHOW_COLORED_TEXT = "Show colored text"
-local SHOW_COLORED_TEXT_DESC = "Allow the plugin to color its text."
-local DETACH_TOOLTIP = "Detach tooltip"
-local DETACH_TOOLTIP_DESC = "Detach the tooltip from the panel."
-local LOCK_TOOLTIP = "Lock tooltip"
-local LOCK_TOOLTIP_DESC = "Lock the tooltips position. When the tooltip is locked, you must use Alt to access it with your mouse."
-local POSITION = "Position"
-local POSITION_DESC = "Position the plugin on the panel."
-local POSITION_LEFT = "Left"
-local POSITION_RIGHT = "Right"
-local POSITION_CENTER = "Center"
-local ATTACH_TO_MINIMAP = "Attach to minimap"
-local ATTACH_TO_MINIMAP_DESC = "Attach the plugin to the minimap instead of the panel."
-local HIDE_FUBAR_PLUGIN = "Hide plugin"
-local HIDE_FUBAR_PLUGIN_CMD = "Hidden"
-local HIDE_FUBAR_PLUGIN_DESC = "Hide the plugin from the panel or minimap, leaving the addon running."
 
 if GetLocale() == "ruRU" then
 	SHOW_ICON = "Показать иконку"
@@ -173,52 +152,73 @@ elseif GetLocale() == "zhTW" then
 	HIDE_FUBAR_PLUGIN = "隱藏FuBar插件"
 	HIDE_FUBAR_PLUGIN_CMD = "Hidden"
 	HIDE_FUBAR_PLUGIN_DESC = "在面板上隱藏該插件."
+else
+	SHOW_ICON = "Show icon"
+	SHOW_ICON_DESC = "Show the plugins icon on the panel."
+	SHOW_TEXT = "Show text"
+	SHOW_TEXT_DESC = "Show the plugins text on the panel."
+	SHOW_COLORED_TEXT = "Show colored text"
+	SHOW_COLORED_TEXT_DESC = "Allow the plugin to color its text."
+	DETACH_TOOLTIP = "Detach tooltip"
+	DETACH_TOOLTIP_DESC = "Detach the tooltip from the panel."
+	LOCK_TOOLTIP = "Lock tooltip"
+	LOCK_TOOLTIP_DESC = "Lock the tooltips position. When the tooltip is locked, you must use Alt to access it with your mouse."
+	POSITION = "Position"
+	POSITION_DESC = "Position the plugin on the panel."
+	POSITION_LEFT = "Left"
+	POSITION_RIGHT = "Right"
+	POSITION_CENTER = "Center"
+	ATTACH_TO_MINIMAP = "Attach to minimap"
+	ATTACH_TO_MINIMAP_DESC = "Attach the plugin to the minimap instead of the panel."
+	HIDE_FUBAR_PLUGIN = "Hide plugin"
+	HIDE_FUBAR_PLUGIN_CMD = "Hidden"
+	HIDE_FUBAR_PLUGIN_DESC = "Hide the plugin from the panel or minimap, leaving the addon running."
 end
 
 local FuBarPlugin = AceLibrary("AceOO-2.0").Mixin {
-													"GetTitle",
-													"GetName",
-													"GetCategory",
-													"SetFontSize",
-													"GetFrame",
-													"Show",
-													"Hide",
-													"GetPanel",
-													"IsTextColored",
-													"ToggleTextColored",
-													"IsMinimapAttached",
-													"ToggleMinimapAttached",
-													"Update",
-													"UpdateDisplay",
-													"UpdateData",
-													"UpdateText",
-													"UpdateTooltip",
-													"SetIcon",
-													"GetIcon",
-													"CheckWidth",
-													"SetText",
-													"GetText",
-													"IsIconShown",
-													"ToggleIconShown",
-													"ShowIcon",
-													"HideIcon",
-													"IsTextShown",
-													"ToggleTextShown",
-													"ShowText",
-													"HideText",
-													"IsTooltipDetached",
-													"ToggleTooltipDetached",
-													"DetachTooltip",
-													"ReattachTooltip",
-													"GetDefaultPosition",
-													"SetPanel",
-													"IsLoadOnDemand",
-													"IsDisabled",
-													"CreateBasicPluginFrame",
-													"CreatePluginChildFrame",
-													"OpenMenu",
-													"AddImpliedMenuOptions",
-												  }
+	"GetTitle",
+	"GetName",
+	"GetCategory",
+	"SetFontSize",
+	"GetFrame",
+	"Show",
+	"Hide",
+	"GetPanel",
+	"IsTextColored",
+	"ToggleTextColored",
+	"IsMinimapAttached",
+	"ToggleMinimapAttached",
+	"Update",
+	"UpdateDisplay",
+	"UpdateData",
+	"UpdateText",
+	"UpdateTooltip",
+	"SetIcon",
+	"GetIcon",
+	"CheckWidth",
+	"SetText",
+	"GetText",
+	"IsIconShown",
+	"ToggleIconShown",
+	"ShowIcon",
+	"HideIcon",
+	"IsTextShown",
+	"ToggleTextShown",
+	"ShowText",
+	"HideText",
+	"IsTooltipDetached",
+	"ToggleTooltipDetached",
+	"DetachTooltip",
+	"ReattachTooltip",
+	"GetDefaultPosition",
+	"SetPanel",
+	"IsLoadOnDemand",
+	"IsDisabled",
+	"CreateBasicPluginFrame",
+	"CreatePluginChildFrame",
+	"OpenMenu",
+	"AddImpliedMenuOptions",
+}
 
 local good = nil
 local function CheckFuBar()
@@ -451,7 +451,7 @@ function FuBarPlugin:Hide(check)
 	if self.minimapFrame then
 		self.minimapFrame:Hide()
 	end
-
+	
 	if Dewdrop:IsOpen(self.frame) or (self.minimapFrame and Dewdrop:IsOpen(self.minimapFrame)) then
 		Dewdrop:Close()
 	end
@@ -748,7 +748,7 @@ function FuBarPlugin:OnInstanceInit(target)
 		self:error(MAJOR_VERSION .. " requires Dewdrop-2.0.")
 	end
 	self.registry[target] = true
-
+	
 	local _,_,folderName = string.find(debugstack(6, 1, 0), "\\AddOns\\(.*)\\")
 	target.folderName = folderName
 	self.folderNames[target] = folderName
@@ -764,7 +764,7 @@ function FuBarPlugin:CreateBasicPluginFrame(name)
 	frame:SetWidth(150)
 	frame:SetHeight(24)
 	frame:SetPoint("CENTER", UIParent, "CENTER")
-
+	
 	frame:SetScript("OnClick", function()
 		if type(self.OnClick) == "function" then
 			self:OnClick(arg1)
@@ -857,7 +857,7 @@ function FuBarPlugin:OpenMenu(frame)
 		return
 	end
 	Tablet:Close()
-
+	
 	if not Dewdrop:IsRegistered(self:GetFrame()) then
 		if type(self.OnMenuRequest) == "table" and (not self.OnMenuRequest.handler or self.OnMenuRequest.handler == self) and self.OnMenuRequest.type == "group" then
 			Dewdrop:InjectAceOptionsTable(self, self.OnMenuRequest)
@@ -873,12 +873,12 @@ function FuBarPlugin:OpenMenu(frame)
 						'isTitle', true
 					)
 				end
-
+				
 				if level == 1 then
 					if self.OnMenuRequest then
 						self:OnMenuRequest(level, value, false, valueN_1, valueN_2, valueN_3, valueN_4)
 					end
-
+					
 					if not self.overrideMenu then
 						if self.MenuSettings then
 							Dewdrop:AddLine()
@@ -947,12 +947,12 @@ function FuBarPlugin.OnEmbedInitialize(FuBarPlugin, self)
 		local frame = _G[name]
 		if not frame or not _G[name .. "Text"] or not _G[name .. "Icon"] then
 			frame = self:CreateBasicPluginFrame(name)
-
+			
 			local icon = frame:CreateTexture(name .. "Icon", "ARTWORK")
 			icon:SetWidth(16)
 			icon:SetHeight(16)
 			icon:SetPoint("LEFT", frame, "LEFT")
-
+			
 			local text = frame:CreateFontString(name .. "Text", "ARTWORK")
 			text:SetWidth(134)
 			text:SetHeight(24)
@@ -965,16 +965,16 @@ function FuBarPlugin.OnEmbedInitialize(FuBarPlugin, self)
 	else
 		self.userDefinedFrame = true
 	end
-
+	
 	self.frame.plugin = self
 	self.frame:SetParent(UIParent)
 	self.frame:SetPoint("RIGHT", UIParent, "LEFT", -5, 0)
 	self.frame:Hide()
-
+	
 	if self.hasIcon then
 		self:SetIcon(self.hasIcon)
 	end
-
+	
 	if CheckFuBar() then
 		FuBar:RegisterPlugin(self)
 	end
@@ -997,7 +997,7 @@ function FuBarPlugin.OnEmbedEnable(FuBarPlugin, self)
 		end
 	end
 	self:CheckWidth(true)
-
+	
 	if not self.hideWithoutStandby or (self.db and not self.db.profile.hidden) then
 		if FuBarPlugin.enabledPlugins[self] then
 			CheckShow(self, self.panelIdTmp)
@@ -1006,11 +1006,11 @@ function FuBarPlugin.OnEmbedEnable(FuBarPlugin, self)
 		end
 	end
 	FuBarPlugin.enabledPlugins[self] = true
-
+	
 	if not self.overrideTooltip and not self.cannotDetachTooltip and self.db and self.db.profile.detachedTooltip and self.db.profile.detachedTooltip.detached then
 		FuBarPlugin:ScheduleEvent(self.DetachTooltip, 0, self)
 	end
-
+	
 	if self:IsLoadOnDemand() and CheckFuBar() then
 		if not FuBar.db.profile.loadOnDemand then
 			FuBar.db.profile.loadOnDemand = {}
@@ -1020,7 +1020,7 @@ function FuBarPlugin.OnEmbedEnable(FuBarPlugin, self)
 		end
 		FuBar.db.profile.loadOnDemand[self.folderName].disabled = nil
 	end
-
+	
 	if CheckFuBar() and AceLibrary:HasInstance("AceConsole-2.0") then
 		if not recheckPlugins then
 			local AceConsole = AceLibrary("AceConsole-2.0")
@@ -1039,7 +1039,7 @@ end
 
 function FuBarPlugin.OnEmbedDisable(FuBarPlugin, self)
 	self:Hide(false)
-
+	
 	if self:IsLoadOnDemand() and CheckFuBar() then
 		if not FuBar.db.profile.loadOnDemand then
 			FuBar.db.profile.loadOnDemand = {}
@@ -1195,13 +1195,13 @@ end
 
 local function activate(self, oldLib, oldDeactivate)
 	FuBarPlugin = self
-
+	
 	if oldLib then
 		self.registry = oldLib.registry
 		self.folderNames = oldLib.folderNames
 		self.enabledPlugins = oldLib.enabledPlugins
 	end
-
+	
 	if not self.registry then
 		self.registry = {}
 	end
@@ -1211,9 +1211,9 @@ local function activate(self, oldLib, oldDeactivate)
 	if not self.enabledPlugins then
 		self.enabledPlugins = {}
 	end
-
+	
 	FuBarPlugin.activate(self, oldLib, oldDeactivate)
-
+	
 	if oldDeactivate then
 		oldDeactivate(oldLib)
 	end
@@ -1222,7 +1222,7 @@ end
 local function external(self, major, instance)
 	if major == "AceEvent-2.0" then
 		AceEvent = instance
-
+		
 		AceEvent:embed(self)
 	elseif major == "Tablet-2.0" then
 		Tablet = instance
@@ -1282,7 +1282,7 @@ function MinimapContainer:AddPlugin(plugin)
 		icon:SetHeight(20)
 		icon:SetPoint("TOPLEFT", frame, "TOPLEFT", 7, -5)
 		local overlay = frame:CreateTexture(frame:GetName() .. "Overlay","OVERLAY")
-overlay:SetTexture("Interface\\Minimap\\MiniMap-TrackingBorder")
+		overlay:SetTexture("Interface\\Minimap\\MiniMap-TrackingBorder")
 		overlay:SetWidth(53)
 		overlay:SetHeight(53)
 		overlay:SetPoint("TOPLEFT",frame,"TOPLEFT")
@@ -1485,15 +1485,15 @@ end
 
 local function activate(self, oldLib, oldDeactivate)
 	MinimapContainer = self
-
+	
 	if oldLib then
 		self.plugins = oldLib.plugins
 	end
-
+	
 	if not self.plugins then
 		self.plugins = {}
 	end
-
+	
 	if oldDeactivate then
 		oldDeactivate(oldLib)
 	end

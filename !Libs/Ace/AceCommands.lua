@@ -1,15 +1,15 @@
 
 -- Class Setup
-AceCommands = AceChatCmd:new(ACE_COMMANDS, ACE_CMD_OPTIONS)
+AceCommands = AceChatCmd:new({"/ace"}, ACE_CMD_OPTIONS)
 
 
 --[[--------------------------------------------------------------------------
-  Ace Information
+	Ace Information
 -----------------------------------------------------------------------------]]
 
 function AceCommands:DisplayInfo()
 	local mem = gcinfo()
-
+	
 	self:report(ACE_INFO_HEADER, {
 		{text=ACE_INFO_PROFILE_LOADED, val=ace.db.profileName},
 		{text=ACE_TEXT_MEM_USAGE, val=format("%.3f", mem/1024)},
@@ -24,7 +24,7 @@ end
 
 
 --[[--------------------------------------------------------------------------
-  Enable/Disable Addons
+	Enable/Disable Addons
 -----------------------------------------------------------------------------]]
 
 function AceCommands:EnableAddon(addon)
@@ -54,11 +54,11 @@ end
 
 
 --[[--------------------------------------------------------------------------
-  Addon Lists
+	Addon Lists
 -----------------------------------------------------------------------------]]
 
 function AceCommands:ListAddons(opt)
-	ace:print(format(ACE_CMD_RESULT, ACE_CMD_OPT_LIST_ADDONS, ""))
+	ace:print(format("|cffffff78%s:|r %s", ACE_CMD_OPT_LIST_ADDONS, ""))
 	if( (opt or "") == "" ) then
 		for _, addon in ace.sort(ace.GetTableKeys(ace.addons.list)) do
 			self:DisplayAddon(ace.addons.list[addon], addon == "ace")
@@ -91,17 +91,13 @@ function AceCommands:DisplayAddon(addon, isAce, showNotLoaded)
 end
 
 function AceCommands:DisplayAceAddon(addon, app, prefix)
-	ace:print(prefix or " - "..addon.title,
-			  ((app.cmd and app.cmd.commands)
-				and " "..format(ACE_ADDON_CHAT_COMMAND, app.cmd.commands[1])
-				or  "") or "",
-			  (app.disabled and " "..ACE_ADDON_STANDBY) or "",
-			  app.aceMismatch and " "..ACE_VERSION_MISMATCH
-			 )
+	ace:print(prefix or " - "..addon.title, ((app.cmd and app.cmd.commands) and " "..format("|cffffff78(%s)", 
+		app.cmd.commands[1]) or  "") or "", (app.disabled and " "..ACE_ADDON_STANDBY) or "", app.aceMismatch and " "..ACE_VERSION_MISMATCH
+	)
 end
 
 function AceCommands:ListAddonsAce()
-	ace:print(format(ACE_CMD_RESULT, ACE_CMD_OPT_LIST_ADDONS, ""))
+	ace:print(format("|cffffff78%s:|r %s", ACE_CMD_OPT_LIST_ADDONS, ""))
 	for _, addon in ace.sort(ace.GetTableKeys(ace.addons.list)) do
 		if( ace.addons.list[addon].ace or (addon == "ace") ) then
 			self:DisplayAddon(ace.addons.list[addon], addon == "ace")
@@ -110,7 +106,7 @@ function AceCommands:ListAddonsAce()
 end
 
 function AceCommands:ListAddonsOther()
-	ace:print(format(ACE_CMD_RESULT, ACE_CMD_OPT_LIST_ADDONS, ""))
+	ace:print(format("|cffffff78%s:|r %s", ACE_CMD_OPT_LIST_ADDONS, ""))
 	for _, addon in ace.sort(ace.GetTableKeys(ace.addons.list)) do
 		if( (not ace.addons.list[addon].ace) and (addon ~= "ace") ) then
 			self:DisplayAddon(ace.addons.list[addon])
@@ -119,7 +115,7 @@ function AceCommands:ListAddonsOther()
 end
 
 function AceCommands:ListAddonsLoadable()
-	ace:print(format(ACE_CMD_RESULT, ACE_CMD_OPT_LIST_ADDONS, ""))
+	ace:print(format("|cffffff78%s:|r %s", ACE_CMD_OPT_LIST_ADDONS, ""))
 	for i = 1, GetNumAddOns() do
 		local name, _, _, _, loadable = GetAddOnInfo(i)
 		if( loadable and (not IsAddOnLoaded(i)) ) then
@@ -130,7 +126,7 @@ end
 
 
 --[[--------------------------------------------------------------------------
-  Addon Loading
+	Addon Loading
 -----------------------------------------------------------------------------]]
 
 function AceCommands:LoadAddon(addon)
@@ -138,7 +134,7 @@ function AceCommands:LoadAddon(addon)
 		self:result(format(ACE_CMD_OPT_LOAD_IS_LOADED, addon))
 		return
 	end
-
+	
 	local loaded, reason = LoadAddOn(addon)
 	if( loaded ) then
 		self:result(format(ACE_CMD_OPT_LOAD_LOADED, GetAddOnInfo(addon)))
@@ -161,7 +157,7 @@ end
 
 
 --[[--------------------------------------------------------------------------
-  Configurations
+	Configurations
 -----------------------------------------------------------------------------]]
 
 function AceCommands:ChangeLoadMsgAddon()
@@ -181,18 +177,16 @@ end
 
 
 --[[--------------------------------------------------------------------------
-  Profile Options
+	Profile Options
 -----------------------------------------------------------------------------]]
 
 function AceCommands:ProfileInfo()
 	local profile = ace.db:GetProfile(ace.db.profileName)
-
-
 end
 
 function AceCommands:SetProfile(profile, key, msg)
 	if( (key or "") ~= "" ) then
-		if( strlower(key) == ACE_CMD_PROFILE_ALL ) then
+		if( strlower(key) == "all" ) then
 			for _, addon in ace.registry:get() do
 				if( addon.db and (not ace.db:GetAddonProfile(profile, addon, profile)) ) then
 					ace.db:SetAddonProfile(profile, addon, profile)
@@ -215,7 +209,7 @@ function AceCommands:SetProfile(profile, key, msg)
 			msg = nil
 		end
 	end
-
+	
 	-- Load the profile last so that any individual addons added to it will be set to
 	-- the correct path.
 	self:LoadProfile(profile, msg)
@@ -238,8 +232,8 @@ end
 
 function AceCommands:UseProfileClass(addon)
 	self:SetProfile(ace.char.class, addon,
-					format(ACE_PROFILE_LOADED_CLASS, ace.char.class, ace.char.id)
-				   )
+		format(ACE_PROFILE_LOADED_CLASS, ace.char.class, ace.char.id)
+	)
 end
 
 function AceCommands:UseProfileDefault()
@@ -250,4 +244,3 @@ end
 
 ace.cmd = AceCommands
 ace.cmd.app = ace
-

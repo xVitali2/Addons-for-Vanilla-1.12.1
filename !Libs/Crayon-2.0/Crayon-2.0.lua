@@ -1,12 +1,12 @@
 --[[
-Name: Crayon-2.0
-Revision: $Rev: 7622 $
-Author(s): ckknight (ckknight@gmail.com)
-Website: http://ckknight.wowinterface.com/
-Documentation: http://wiki.wowace.com/index.php/Crayon-2.0
-SVN: http://svn.wowace.com/root/trunk/CrayonLib/Crayon-2.0
-Description: A library to provide coloring tools.
-Dependencies: AceLibrary
+	Name: Crayon-2.0
+	Revision: $Rev: 7622 $
+	Author(s): ckknight (ckknight@gmail.com)
+	Website: http://ckknight.wowinterface.com/
+	Documentation: http://wiki.wowace.com/index.php/Crayon-2.0
+	SVN: http://svn.wowace.com/root/trunk/CrayonLib/Crayon-2.0
+	Description: A library to provide coloring tools.
+	Dependencies: AceLibrary
 ]]
 
 --Theondry (theondry@gmail.com) added the purple.  yell at me if it's wrong, please

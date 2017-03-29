@@ -1,12 +1,12 @@
 --[[
-Name: ParserLib
-Revision: $Revision: 15186 $
-Author(s): rophy (rophy123@gmail.com)
-Website: http://www.wowace.com/index.php/ParserLib
-Documentation: http://www.wowace.com/index.php/ParserLib
-SVN: http://svn.wowace.com/root/trunk/ParserLib
-Description: An embedded combat log parser, which works on all localizations.
-Dependencies: CompostLib (optional) or Compost-2.0 (optional).
+	Name: ParserLib
+	Revision: $Revision: 15186 $
+	Author(s): rophy (rophy123@gmail.com)
+	Website: http://www.wowace.com/index.php/ParserLib
+	Documentation: http://www.wowace.com/index.php/ParserLib
+	SVN: http://svn.wowace.com/root/trunk/ParserLib
+	Description: An embedded combat log parser, which works on all localizations.
+	Dependencies: CompostLib (optional) or Compost-2.0 (optional).
 ]]
 
 ---------------------------------------------------------------------------
@@ -42,13 +42,13 @@ local stubobj = getglobal(stubvarname)
 if not stubobj then
 	stubobj = {}
 	setglobal(stubvarname, stubobj)
-
+	
 	-- Instance replacement method, replace contents of old with that of new
 	function stubobj:ReplaceInstance(old, new)
-		 for k,v in pairs(old) do old[k]=nil end
-		 for k,v in pairs(new) do old[k]=v end
+		for k,v in pairs(old) do old[k]=nil end
+		for k,v in pairs(new) do old[k]=v end
 	end
-
+	
 	-- Get a new copy of the stub
 	function stubobj:NewStub(name)
 		local newStub = {}
@@ -58,15 +58,15 @@ if not stubobj then
 		newStub.versions = {}
 		return newStub
 	end
-
-
+	
+	
 	-- Get instance version
 	function stubobj:NeedsUpgraded(vmajor, vminor)
 		local versionData = self.versions[vmajor]
 		if not versionData or versionData.minor < vminor then return true end
 	end
-
-
+	
+	
 	-- Get instance version
 	function stubobj:GetInstance(version)
 		if not version then version = self.lastVersion end
@@ -74,35 +74,35 @@ if not stubobj then
 		if not versionData then print(string.format("<%s> Cannot find library version: %s", self.libName, version or "")) return end
 		return versionData.instance
 	end
-
-
+	
+	
 	-- Register new instance
 	function stubobj:Register(newInstance)
-		 local version,minor = newInstance:GetLibraryVersion()
-		 self.lastVersion = version
-		 local versionData = self.versions[version]
-		 if not versionData then
-				-- This one is new!
-				versionData = {
-					instance = newInstance,
-					minor = minor,
-					old = {},
-				}
-				self.versions[version] = versionData
-				newInstance:LibActivate(self)
-				return newInstance
-		 end
-		 -- This is an update
-		 local oldInstance = versionData.instance
-		 local oldList = versionData.old
-		 versionData.instance = newInstance
-		 versionData.minor = minor
-		 local skipCopy = newInstance:LibActivate(self, oldInstance, oldList)
-		 table.insert(oldList, oldInstance)
-		 if not skipCopy then
-				for i, old in ipairs(oldList) do self:ReplaceInstance(old, newInstance) end
-		 end
-		 return newInstance
+		local version,minor = newInstance:GetLibraryVersion()
+		self.lastVersion = version
+		local versionData = self.versions[version]
+		if not versionData then
+			-- This one is new!
+			versionData = {
+				instance = newInstance,
+				minor = minor,
+				old = {},
+			}
+			self.versions[version] = versionData
+			newInstance:LibActivate(self)
+			return newInstance
+		end
+		-- This is an update
+		local oldInstance = versionData.instance
+		local oldList = versionData.old
+		versionData.instance = newInstance
+		versionData.minor = minor
+		local skipCopy = newInstance:LibActivate(self, oldInstance, oldList)
+		table.insert(oldList, oldInstance)
+		if not skipCopy then
+			for i, old in ipairs(oldList) do self:ReplaceInstance(old, newInstance) end
+		end
+		return newInstance
 	end
 end
 
@@ -125,7 +125,7 @@ end
 -- Activate a new instance of this library
 function lib:LibActivate(stub, oldLib, oldList)
 	local maj, min = self:GetLibraryVersion()
-
+	
 	if oldLib then
 		local omaj, omin = oldLib:GetLibraryVersion()
 		----------------------------------------------------
@@ -135,7 +135,7 @@ function lib:LibActivate(stub, oldLib, oldList)
 		----------------------------------------------------
 		self.frame = oldLib.frame
 		self:OnLoad()
-
+		
 		if omin < 11 and oldLib.clients then
 			for event in pairs(oldLib.clients) do
 				for i in pairs(oldLib.clients[event]) do
@@ -146,7 +146,7 @@ function lib:LibActivate(stub, oldLib, oldList)
 			end
 		end
 		self.clients = oldLib.clients
-
+		
 		
 	else
 		---------------------------------------------------
@@ -159,19 +159,13 @@ function lib:LibActivate(stub, oldLib, oldList)
 	-- nil return makes stub do object copy
 end
 
-
-
-
-
-
-
 ----------------------------------------------
 --	*ParserLib Public Methods*      --
 ----------------------------------------------
 
 -- Register an event to ParserLib.
 function lib:RegisterEvent(addonID, event, handler)
-
+	
 	local eventExist
 	for i, v in pairs(self.supportedEvents) do
 		if v == event then
@@ -185,13 +179,13 @@ function lib:RegisterEvent(addonID, event, handler)
 		return
 	end
 	
-
+	
 	-- self:Print(string.format("Registering %s for addon %s.", event, addonID) );	 -- debug
-
+	
 	if type(handler) == "string" then handler = getglobal(handler) end
 	
 	-- if not handler then self:Print("nil handler from " .. addonID, 1, 0, 0) end -- debug
-
+	
 	if self.clients[event] == nil then
 		self.clients[event] = {};	
 	end
@@ -201,7 +195,7 @@ function lib:RegisterEvent(addonID, event, handler)
 	
 	table.insert(self.clients[event], { ["id"]=addonID, ["func"]=handler } );
 	self.frame:RegisterEvent(event);
-
+	
 end
 
 -- Check if you have registered an event.
@@ -247,7 +241,7 @@ function lib:UnregisterAllEvents(addonID)
 			if v.id == addonID then
 				-- self:Print( format("Removing %s for %s", v.id, event) ) -- debug
 				table.remove(self.clients[event], i)
---				self.clients[event][index] = nil;
+				--				self.clients[event][index] = nil;
 			else
 				empty = false;
 			end
@@ -260,7 +254,7 @@ function lib:UnregisterAllEvents(addonID)
 		end
 		
 	end	
-
+	
 end
 
 -- Parse custom messages, check documentation.html for more info.
@@ -311,12 +305,12 @@ local function PatternCompare(a, b)
 	
 	if not pa then ChatFrame1:AddMessage("|cffff0000Nil pattern: ".. a.."|r") end
 	if not pb then ChatFrame1:AddMessage("|cffff0000Nil pattern: ".. b.."|r") end
-		
+	
 	local ca=0
 	for _ in string_gmatch(pa, "%%%d?%$?[sd]") do ca=ca+1 end
 	local cb=0
 	for _ in string_gmatch(pb, "%%%d?%$?[sd]") do cb=cb+1 end
-
+	
 	pa = string.gsub(pa, "%%%d?%$?[sd]", "")	
 	pb = string.gsub(pb, "%%%d?%$?[sd]", "")
 	
@@ -343,7 +337,7 @@ local FindString = {
 
 -- Currently supported event list.
 lib.supportedEvents = {
-
+	
 	"CHAT_MSG_COMBAT_CREATURE_VS_CREATURE_HITS",
 	"CHAT_MSG_COMBAT_CREATURE_VS_CREATURE_MISSES",
 	"CHAT_MSG_COMBAT_CREATURE_VS_PARTY_HITS",
@@ -400,13 +394,13 @@ lib.supportedEvents = {
 	"CHAT_MSG_SPELL_SELF_BUFF",
 	"CHAT_MSG_SPELL_SELF_DAMAGE",
 	"CHAT_MSG_SPELL_TRADESKILLS",
-
+	
 }
 
 function lib:GetCompost()
-
-	if self.vars.noCompost then
 	
+	if self.vars.noCompost then
+		
 		if not self.myCompost then
 			self.myCompost = {
 				Recycle = function() return {} end,
@@ -415,9 +409,9 @@ function lib:GetCompost()
 			}					
 		end
 		return self.myCompost
-
+		
 	else
-	
+		
 		if not self.compost then
 			if AceLibrary and AceLibrary:HasInstance("Compost-2.0") then
 				self.compost = AceLibrary:GetInstance("Compost-2.0")
@@ -430,7 +424,7 @@ function lib:GetCompost()
 			end			
 		end
 		return self.compost
-
+		
 	end
 	
 end
@@ -441,20 +435,20 @@ end
 --    "(.-) reflects (%+) (.-) damage to (.-)%.",  4 1 2 3. 
 --  (    [1]=2,[2]=3,[3]=4,[4]=1  Reverting indexes and become  [1]=4, [2]=[1],[3]=2,[4]=3. )
 function lib:ConvertPattern(pattern, anchor)
-
+	
 	local seq
-
+	
 	-- Add % to escape all magic characters used in LUA pattern matching, except $ and %
 	pattern = string.gsub(pattern,"([%^%(%)%.%[%]%*%+%-%?])","%%%1");
 	
 	-- Do these AFTER escaping the magic characters.
 	pattern = string.gsub(pattern,"%%s","(.-)"); -- %s to (.-)
 	pattern = string.gsub(pattern,"%%d","(%-?%%d+)"); -- %d to (%d+)			
-
+	
 	if string.find(pattern,"%$") then
 		seq = {}; -- fills with ordered list of $s as they appear
 		local idx = 1; -- incremental index into field[]
-
+		
 		local tmpSeq = {}
 		for i in string_gmatch(pattern,"%%(%d)%$.") do
 			tmpSeq[idx] = tonumber(i);
@@ -467,10 +461,10 @@ function lib:ConvertPattern(pattern, anchor)
 		pattern = string.gsub(pattern,"%%%d%$s","(.-)"); -- %1$s to (.-)
 		pattern = string.gsub(pattern,"%%%d%$d","(%-?%%d+)"); -- %1$d to (%d+)
 	end
-
+	
 	-- Escape $ now.
 	pattern = string.gsub(pattern,"%$","%%$");
-
+	
 	-- Anchor tag can improve string.find() performance by 100%.
 	if anchor then pattern = "^"..pattern end	
 	
@@ -485,7 +479,7 @@ function lib:ConvertPattern(pattern, anchor)
 end
 
 function lib:OnLoad()
-
+	
 	-- Both table starts out empty, and load the data only when required.
 	self.eventTable = {}
 	self.patternTable = {}
@@ -509,7 +503,7 @@ function lib:OnLoad()
 			Compost_Reclaim = 0,
 		}
 	end
-
+	
 	if not self.clients then self.clients = {} end
 	
 	if not self.frame then
@@ -520,31 +514,31 @@ function lib:OnLoad()
 	
 	
 end
-	
-function lib:OnEvent(e, a1)
 
+function lib:OnEvent(e, a1)
+	
 	if not e then e = event end
 	if not a1 then a1 = arg1 end
-
+	
 	-- self:Print("Event: |cff3333ff"..e.."|r") -- debug
 	
 	-- Titan Honor+ was changing the global events... just change it back.
 	if e == "CHAT_MSG_HONORPLUS" then e = "CHAT_MSG_COMBAT_HONOR_GAIN" end
 	
-
+	
 	if self:ParseMessage(a1, e) then
 		
--- 		local timer = GetTime() -- timer
+		-- 		local timer = GetTime() -- timer
 		self:NotifyClients(e)
--- 		self.timer.NotifyClients = self.timer.NotifyClients + GetTime() - timer -- timer
-				
+		-- 		self.timer.NotifyClients = self.timer.NotifyClients + GetTime() - timer -- timer
+		
 	end
 	
-
+	
 end
 
 function lib:NotifyClients(event)
-
+	
 	if not self.clients or not self.clients[event] then 
 		-- self:Print(event .. " has no client to notify.") -- debug
 		return 
@@ -556,14 +550,14 @@ function lib:NotifyClients(event)
 		self.clients[event][1].func(event, self.info)
 		return
 	end
-
--- 	local timer = GetTime() -- timer
+	
+	-- 	local timer = GetTime() -- timer
 	local info = self:GetCompost():Acquire()	
--- 	self.timer.Compost_Acquire = GetTime() - timer + self.timer.Compost_Acquire -- timer
-
+	-- 	self.timer.Compost_Acquire = GetTime() - timer + self.timer.Compost_Acquire -- timer
+	
 	for i, client in pairs(self.clients[event]) do
 		-- self:Print(event .. ", calling " .. client.id) -- debug
-				
+		
 		-- I can just do a compost:Recycle() here, but I hope this can improve the performance.
 		for j in pairs(info) do if not self.info[j] then info[j] = nil end end
 		for j, v in pairs(self.info) do info[j] = v end
@@ -571,10 +565,10 @@ function lib:NotifyClients(event)
 		client.func(event, info)
 	end
 	
--- 	timer = GetTime() -- timer
+	-- 	timer = GetTime() -- timer
 	self:GetCompost():Reclaim(info)
--- 	self.timer.reclaim = GetTime() - timer + self.timer.reclaim -- timer
-
+	-- 	self.timer.reclaim = GetTime() - timer + self.timer.reclaim -- timer
+	
 end
 
 lib.Print = print
@@ -597,33 +591,33 @@ end
 -- info : the table which will store the passed result, so THIS IS THE OUTPUT.
 -- return : true if pattern found and parsed, nil otherwise.
 function lib:ParseMessage(message, event)
-
--- --	local currTime -- timer
-
 	
--- 	currTime = GetTime() -- timer
+	-- --	local currTime -- timer
+	
+	
+	-- 	currTime = GetTime() -- timer
 	if not self.eventTable[event] then self.eventTable[event] = self:LoadPatternList(event) end -- loaded by registering already
 	local list = self.eventTable[event]
--- 	self.timer.ParseMessage_LoadPatternList = self.timer.ParseMessage_LoadPatternList + GetTime() - currTime -- timer
+	-- 	self.timer.ParseMessage_LoadPatternList = self.timer.ParseMessage_LoadPatternList + GetTime() - currTime -- timer
 	
 	if not list then return end
-
+	
 	-- Get the table to store parsed results.
 	if not self.info then 
--- 		timer = GetTime() -- timer
+		-- 		timer = GetTime() -- timer
 		self.info = self:GetCompost():Acquire() 
--- 		self.timer.Compost_Acquire = GetTime() - timer + self.timer.Compost_Acquire -- timer
+		-- 		self.timer.Compost_Acquire = GetTime() - timer + self.timer.Compost_Acquire -- timer
 	else 
--- 		timer = GetTime() -- timer
+		-- 		timer = GetTime() -- timer
 		self.info = self:GetCompost():Recycle(self.info) 
--- 		self.timer.Compost_Recycle = GetTime() - timer + self.timer.Compost_Recycle -- timer
+		-- 		self.timer.Compost_Recycle = GetTime() - timer + self.timer.Compost_Recycle -- timer
 	end
-
 	
--- 	currTime = GetTime() -- timer
+	
+	-- 	currTime = GetTime() -- timer
 	local pattern = self:FindPattern(message, list)
--- 	self.timer.ParseMessage_FindPattern = GetTime() - currTime + self.timer.ParseMessage_FindPattern -- timer
-
+	-- 	self.timer.ParseMessage_FindPattern = GetTime() - currTime + self.timer.ParseMessage_FindPattern -- timer
+	
 	
 	if not pattern then 
 		-- create "unknown" event type.
@@ -632,23 +626,23 @@ function lib:ParseMessage(message, event)
 		return true
 	end
 	
--- 	currTime = GetTime() -- timer
+	-- 	currTime = GetTime() -- timer
 	self:ParseInformation(pattern)
--- 	self.timer.ParseMessage_ParseInformation = GetTime() - currTime + self.timer.ParseMessage_ParseInformation -- timer
+	-- 	self.timer.ParseMessage_ParseInformation = GetTime() - currTime + self.timer.ParseMessage_ParseInformation -- timer
 	
 	
--- 	currTime = GetTime() -- timer
+	-- 	currTime = GetTime() -- timer
 	if self.info.type == "hit" or self.info.type == "environment" then
 		self:ParseTrailers(message)
 	end
--- 	self.timer.ParseMessage_ParseTrailers = GetTime() - currTime + self.timer.ParseMessage_ParseTrailers -- timer
+	-- 	self.timer.ParseMessage_ParseTrailers = GetTime() - currTime + self.timer.ParseMessage_ParseTrailers -- timer
 	
--- 	currTime = GetTime() -- timer
+	-- 	currTime = GetTime() -- timer
 	self:ConvertTypes(self.info)
--- 	self.timer.ParseMessage_ConvertTypes = GetTime() - currTime + self.timer.ParseMessage_ConvertTypes -- timer
-
+	-- 	self.timer.ParseMessage_ConvertTypes = GetTime() - currTime + self.timer.ParseMessage_ConvertTypes -- timer
+	
 	return true
-
+	
 	
 end
 
@@ -657,33 +651,33 @@ end
 function lib:FindPattern(message, patternList)
 	
 	local pt, timer, found
-
-	for i, v in pairs(patternList) do
 	
--- 		timer = GetTime() -- timer
+	for i, v in pairs(patternList) do
+		
+		-- 		timer = GetTime() -- timer
 		if not self.patternTable[v] then self.patternTable[v] = self:LoadPatternInfo(v) end -- loaded by registering already
--- 		self.timer.ParseMessage_FindPattern_LoadPatternInfo = GetTime() - timer + self.timer.ParseMessage_FindPattern_LoadPatternInfo -- timer
+		-- 		self.timer.ParseMessage_FindPattern_LoadPatternInfo = GetTime() - timer + self.timer.ParseMessage_FindPattern_LoadPatternInfo -- timer
 		
 		pt = self.patternTable[v]
 		
 		found = false
-
+		
 		if not pt then return end -- check patternTable
 		
--- 		timer = GetTime() -- timer
+		-- 		timer = GetTime() -- timer
 		if self:OptimizerCheck(message, v) then
--- 			timer = GetTime() -- timer
+			-- 			timer = GetTime() -- timer
 			found, self.info = FindString[pt.tc](message, pt.pattern, self.info)
--- 			self.timer.ParseMessage_FindPattern_Regexp_FindString = GetTime() - timer + self.timer.ParseMessage_FindPattern_Regexp_FindString -- timer
+			-- 			self.timer.ParseMessage_FindPattern_Regexp_FindString = GetTime() - timer + self.timer.ParseMessage_FindPattern_Regexp_FindString -- timer
 		end
--- 		self.timer.ParseMessage_FindPattern_Regexp = GetTime() - timer + self.timer.ParseMessage_FindPattern_Regexp -- timer
+		-- 		self.timer.ParseMessage_FindPattern_Regexp = GetTime() - timer + self.timer.ParseMessage_FindPattern_Regexp -- timer
 		
 		if found then 
 			-- self:Print(message.." = " .. v .. ":" .. pt.pattern)  -- debug
 			return v	
 		end
-
-
+		
+		
 	end
 	
 	
@@ -732,14 +726,14 @@ function lib:ParseTrailers(message)
 	if found then 
 		info.amountVulnerable = amount
 	end
-
+	
 end
 
 function lib:ParseInformation(patternName)
-
+	
 	local patternInfo = self.patternTable[patternName]
 	local info = self.info
-
+	
 	-- Create an info table from pattern table, copies everything except the pattern string.	
 	for i, v in pairs(patternInfo) do
 		if i == 1 then
@@ -752,14 +746,14 @@ function lib:ParseInformation(patternName)
 			end
 		end
 	end
-
+	
 	if info.type == "honor" and not info.amount then
 		info.isDishonor = true
-	
+		
 	elseif info.type == "durability" and not info.item  then
 		info.isAllItems = true
 	end
-
+	
 	for i in ipairs(info) do
 		info[i] = nil
 	end
@@ -773,7 +767,7 @@ function lib:ConvertTypes(info)
 end
 
 function lib:OptimizerCheck(message, patternName)
-
+	
 	--if 1 then return true end
 	if not ParserLibOptimizer then return true end
 	
@@ -813,7 +807,7 @@ function lib:Curry(pattern)
 			f[i] = tonumber
 		end
 	end
-
+	
 	if not cp[1] then
 		if n == 0 then
 			return function() end
@@ -890,13 +884,13 @@ function lib:Curry(pattern)
 				if o[1] then
 					return f[cp[1]](o[cp[1]])
 				end
-			end				elseif n == 2 then
+			end			elseif n == 2 then
 			return function(text)
 				_, _, o[1], o[2] = string.find(text, cp.p)
 				if o[1] then
 					return f[cp[1]](o[cp[1]]), f[cp[2]](o[cp[2]])
 				end
-			end				elseif n == 3 then
+			end			elseif n == 3 then
 			return function(text)
 				_, _, o[1], o[2], o[3] = string.find(text, cp.p)
 				if o[1] then
@@ -909,31 +903,31 @@ function lib:Curry(pattern)
 				if o[1] then
 					return f[cp[1]](o[cp[1]]), f[cp[2]](o[cp[2]]), f[cp[3]](o[cp[3]]), f[cp[4]](o[cp[4]])
 				end
-			end				elseif n == 5 then
+			end			elseif n == 5 then
 			return function(text)
 				_, _, o[1], o[2], o[3], o[4], o[5] = string.find(text, cp.p)
 				if o[1] then
 					return f[cp[1]](o[cp[1]]), f[cp[2]](o[cp[2]]), f[cp[3]](o[cp[3]]), f[cp[4]](o[cp[4]]), f[cp[5]](o[cp[5]])
 				end
-			end				elseif n == 6 then
+			end			elseif n == 6 then
 			return function(text)
 				_, _, o[1], o[2], o[3], o[4], o[5], o[6] = string.find(text, cp.p)
 				if o[1] then
 					return f[cp[1]](o[cp[1]]), f[cp[2]](o[cp[2]]), f[cp[3]](o[cp[3]]), f[cp[4]](o[cp[4]]), f[cp[5]](o[cp[5]]), f[cp[6]](o[cp[6]])
 				end
-			end				elseif n == 7 then
+			end			elseif n == 7 then
 			return function(text)
 				_, _, o[1], o[2], o[3], o[4], o[5], o[6], o[7] = string.find(text, cp.p)
 				if o[1] then
 					return f[cp[1]](o[cp[1]]), f[cp[2]](o[cp[2]]), f[cp[3]](o[cp[3]]), f[cp[4]](o[cp[4]]), f[cp[5]](o[cp[5]]), f[cp[6]](o[cp[6]]), f[cp[7]](o[cp[7]])
 				end
-			end				elseif n == 8 then
+			end			elseif n == 8 then
 			return function(text)
 				_, _, o[1], o[2], o[3], o[4], o[5], o[6], o[7], o[8] = string.find(text, cp.p)
 				if o[1] then
 					return f[cp[1]](o[cp[1]]), f[cp[2]](o[cp[2]]), f[cp[3]](o[cp[3]]), f[cp[4]](o[cp[4]]), f[cp[5]](o[cp[5]]), f[cp[6]](o[cp[6]]), f[cp[7]](o[cp[7]]), f[cp[8]](o[cp[8]])
 				end
-			end				elseif n == 9 then
+			end			elseif n == 9 then
 			return function(text)
 				_, _, o[1], o[2], o[3], o[4], o[5], o[6], o[7], o[8], o[9] = string.find(text, cp.p)
 				if o[1] then
@@ -958,7 +952,7 @@ function lib:TestPatterns(sendToClients)
 	
 	self:LoadEverything()
 	
-
+	
 	-- Creating the combat messages.	
 	local testNumber = 123
 	local message
@@ -980,7 +974,7 @@ function lib:TestPatterns(sendToClients)
 		end
 	end
 	
-
+	
 	-- Begin the test.
 	
 	local info, msg
@@ -995,8 +989,8 @@ function lib:TestPatterns(sendToClients)
 				info = self.info
 				for i, v in ipairs(messages[pattern]) do
 					if not info[v] 
-					or ( string.find(v, "^amount") and info[v] ~= testNumber ) 
-					or ( not string.find(v, "^amount") and info[v] ~= string.upper(v) ) then
+						or ( string.find(v, "^amount") and info[v] ~= testNumber ) 
+						or ( not string.find(v, "^amount") and info[v] ~= string.upper(v) ) then
 						self:Print("Event: " .. event)
 						self:Print("Pattern: " .. pattern)
 						self:Print("Message: " .. msg)
@@ -1007,15 +1001,15 @@ function lib:TestPatterns(sendToClients)
 			end
 		end
 	end
-
+	
 	self:Print( string.format("Test completed in %.4fs, memory cost %.2fKB.", GetTime() - startTime, gcinfo() - startMem) )
-
+	
 	self:GetCompost():Reclaim(messages, 1)
 	
 end
 
 function lib:LoadEverything()
-
+	
 	-- Load all patterns and events.
 	for _, v in pairs(self.supportedEvents) do
 		for _, w in pairs(self:LoadPatternList(v)) do
@@ -1029,12 +1023,12 @@ end
 
 function lib:PrintTimers()
 	if not self.timer then return end
-
+	
 	local total = 0
 	for i in pairs(self.timer) do
 		total = total + self.timer[i]
 	end
-
+	
 	if not self.timerIndex then 
 		self.timerIndex = {}
 		for i in pairs(self.timer) do
@@ -1042,7 +1036,7 @@ function lib:PrintTimers()
 		end
 		table.sort(self.timerIndex)
 	end
-
+	
 	DEFAULT_CHAT_FRAME:AddMessage("Time\t%\tDescription")
 	for i, idx in pairs(self.timerIndex) do
 		DEFAULT_CHAT_FRAME:AddMessage(string.format("%.3f\t%.1f\t%s", self.timer[idx], 100*self.timer[idx]/total, idx) )
@@ -1054,14 +1048,14 @@ end
 function lib:LoadPatternList(eventName)
 	local list
 	
---------------- Melee Hits ----------------	
-
-	if eventName == "CHAT_MSG_COMBAT_SELF_HITS" then		
+	--------------- Melee Hits ----------------	
 	
+	if eventName == "CHAT_MSG_COMBAT_SELF_HITS" then		
+		
 		if not self.eventTable["CHAT_MSG_COMBAT_SELF_HITS"] then
 			
 			self.eventTable["CHAT_MSG_COMBAT_SELF_HITS"] = 
-				self:LoadPatternCategoryTree(
+			self:LoadPatternCategoryTree(
 				{
 					"HitSelf",
 					"EnvSelf",
@@ -1069,74 +1063,74 @@ function lib:LoadPatternList(eventName)
 			)
 			
 		end
-
+		
 		list = self.eventTable["CHAT_MSG_COMBAT_SELF_HITS"] 
 		
 	elseif eventName == "CHAT_MSG_COMBAT_CREATURE_VS_CREATURE_HITS" 
-	or eventName == "CHAT_MSG_COMBAT_CREATURE_VS_PARTY_HITS" 
-	or eventName == "CHAT_MSG_COMBAT_FRIENDLYPLAYER_HITS" 
-	or eventName == "CHAT_MSG_COMBAT_PARTY_HITS" 
-	or eventName == "CHAT_MSG_COMBAT_PET_HITS" then
-
+		or eventName == "CHAT_MSG_COMBAT_CREATURE_VS_PARTY_HITS" 
+		or eventName == "CHAT_MSG_COMBAT_FRIENDLYPLAYER_HITS" 
+		or eventName == "CHAT_MSG_COMBAT_PARTY_HITS" 
+		or eventName == "CHAT_MSG_COMBAT_PET_HITS" then
+		
 		if not self.eventTable["CHAT_MSG_COMBAT_FRIENDLYPLAYER_HITS"] then 
 			self.eventTable["CHAT_MSG_COMBAT_FRIENDLYPLAYER_HITS"] = 
-				self:LoadPatternCategoryTree( {
-					"HitOtherOther",
-					"EnvOther",
-				} )
+			self:LoadPatternCategoryTree( {
+				"HitOtherOther",
+				"EnvOther",
+			} )
 		end
 		list = self.eventTable["CHAT_MSG_COMBAT_FRIENDLYPLAYER_HITS"]
-	
-	
+		
+		
 	elseif eventName == "CHAT_MSG_COMBAT_HOSTILEPLAYER_HITS" 
-	or eventName == "CHAT_MSG_COMBAT_CREATURE_VS_SELF_HITS"  then
-
+		or eventName == "CHAT_MSG_COMBAT_CREATURE_VS_SELF_HITS"  then
+		
 		if not self.eventTable["CHAT_MSG_COMBAT_HOSTILEPLAYER_HITS"] then 
 			self.eventTable["CHAT_MSG_COMBAT_HOSTILEPLAYER_HITS"] = 
-				self:LoadPatternCategoryTree( {
-					{
-						"HitOtherOther",
-						"HitOtherSelf",
-					},
-					"EnvOther",
-				} )
+			self:LoadPatternCategoryTree( {
+				{
+					"HitOtherOther",
+					"HitOtherSelf",
+				},
+				"EnvOther",
+			} )
 		end
 		list = self.eventTable["CHAT_MSG_COMBAT_HOSTILEPLAYER_HITS"]
-
-	
-
---------------- Melee Misses ----------------	
-
-
+		
+		
+		
+		--------------- Melee Misses ----------------	
+		
+		
 		
 	elseif eventName == "CHAT_MSG_COMBAT_SELF_MISSES" then
 		if not self.eventTable["CHAT_MSG_COMBAT_SELF_MISSES"] then
 			self.eventTable["CHAT_MSG_COMBAT_SELF_MISSES"] = 
-				self:LoadPatternCategoryTree( {
-					"MissSelf",
-				} )
+			self:LoadPatternCategoryTree( {
+				"MissSelf",
+			} )
 		end
 		list = self.eventTable["CHAT_MSG_COMBAT_SELF_MISSES"]
 		
 	elseif eventName == "CHAT_MSG_COMBAT_CREATURE_VS_CREATURE_MISSES"
-	or eventName == "CHAT_MSG_COMBAT_CREATURE_VS_PARTY_MISSES"
-	or eventName == "CHAT_MSG_COMBAT_FRIENDLYPLAYER_MISSES"
-	or eventName == "CHAT_MSG_COMBAT_PARTY_MISSES"
-	or eventName == "CHAT_MSG_COMBAT_PET_MISSES" then
-
+		or eventName == "CHAT_MSG_COMBAT_CREATURE_VS_PARTY_MISSES"
+		or eventName == "CHAT_MSG_COMBAT_FRIENDLYPLAYER_MISSES"
+		or eventName == "CHAT_MSG_COMBAT_PARTY_MISSES"
+		or eventName == "CHAT_MSG_COMBAT_PET_MISSES" then
+		
 		if not self.eventTable["CHAT_MSG_COMBAT_FRIENDLYPLAYER_MISSES"] then
 			self.eventTable["CHAT_MSG_COMBAT_FRIENDLYPLAYER_MISSES"] = 
 			self:LoadPatternCategoryTree( {
-					"MissOtherOther",
+				"MissOtherOther",
 			} )
 		end
-
+		
 		list = self.eventTable["CHAT_MSG_COMBAT_FRIENDLYPLAYER_MISSES"]	
-	
-	
+		
+		
 	elseif eventName == "CHAT_MSG_COMBAT_CREATURE_VS_SELF_MISSES"
-	or eventName == "CHAT_MSG_COMBAT_HOSTILEPLAYER_MISSES" then
-
+		or eventName == "CHAT_MSG_COMBAT_HOSTILEPLAYER_MISSES" then
+		
 		if not self.eventTable["CHAT_MSG_COMBAT_HOSTILEPLAYER_MISSES"] then
 			self.eventTable["CHAT_MSG_COMBAT_HOSTILEPLAYER_MISSES"] = 
 			self:LoadPatternCategoryTree( {
@@ -1146,74 +1140,74 @@ function lib:LoadPatternList(eventName)
 				}
 			} )
 		end
-
+		
 		list = self.eventTable["CHAT_MSG_COMBAT_HOSTILEPLAYER_MISSES"]	
 		
---------------- Spell Buffs ----------------	
+		--------------- Spell Buffs ----------------	
 	elseif eventName == "CHAT_MSG_SPELL_SELF_BUFF" then
 		if not self.eventTable["CHAT_MSG_SPELL_SELF_BUFF"] then
-		
+			
 			if GetLocale() ~= "deDE"  then
-			self.eventTable["CHAT_MSG_SPELL_SELF_BUFF"] =  self:LoadPatternCategoryTree(
-				{
-					"HealSelf",
-					"EnchantSelf",
-					"CastSelf",
-					"PerformSelf",
-					"DispelFailSelf",
-					"SPELLCASTSELFSTART",
-					"SPELLPERFORMSELFSTART",
+				self.eventTable["CHAT_MSG_SPELL_SELF_BUFF"] =  self:LoadPatternCategoryTree(
 					{
-						"DrainSelf",
-						"PowerGainSelf",
-						"ExtraAttackSelf",
-					},
-					"SPELLSPLITDAMAGESELFOTHER",
-					{
-						"ProcResistSelf",
-						"SpellMissSelf",
+						"HealSelf",
+						"EnchantSelf",
+						"CastSelf",
+						"PerformSelf",
+						"DispelFailSelf",
+						"SPELLCASTSELFSTART",
+						"SPELLPERFORMSELFSTART",
+						{
+							"DrainSelf",
+							"PowerGainSelf",
+							"ExtraAttackSelf",
+						},
+						"SPELLSPLITDAMAGESELFOTHER",
+						{
+							"ProcResistSelf",
+							"SpellMissSelf",
+						}
 					}
-				}
-			)
-
+				)
+				
 			else
-			self.eventTable["CHAT_MSG_SPELL_SELF_BUFF"] =  self:LoadPatternCategoryTree(
-				{
-					"HealSelf",
-					"CastSelf",
-					"PerformSelf",
-					"DispelFailSelf",
-					"SPELLCASTSELFSTART",
-					"SPELLPERFORMSELFSTART",
+				self.eventTable["CHAT_MSG_SPELL_SELF_BUFF"] =  self:LoadPatternCategoryTree(
 					{
-						"DrainSelf",
-						"PowerGainSelf",
-						"ExtraAttackSelf",
-					},
-					"SPELLSPLITDAMAGESELFOTHER",
-					{
-						"ProcResistSelf",
-						"SpellMissSelf",
+						"HealSelf",
+						"CastSelf",
+						"PerformSelf",
+						"DispelFailSelf",
+						"SPELLCASTSELFSTART",
+						"SPELLPERFORMSELFSTART",
+						{
+							"DrainSelf",
+							"PowerGainSelf",
+							"ExtraAttackSelf",
+						},
+						"SPELLSPLITDAMAGESELFOTHER",
+						{
+							"ProcResistSelf",
+							"SpellMissSelf",
+						}
 					}
-				}
-			)
+				)
 			end
-
+			
 		end		
-
+		
 		list = self.eventTable["CHAT_MSG_SPELL_SELF_BUFF"]
-
+		
 		
 	elseif eventName == "CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF"
-	or eventName == "CHAT_MSG_SPELL_CREATURE_VS_PARTY_BUFF"  
-	or eventName == "CHAT_MSG_SPELL_CREATURE_VS_SELF_BUFF"  
-	or eventName == "CHAT_MSG_SPELL_FRIENDLYPLAYER_BUFF"  
-	or eventName == "CHAT_MSG_SPELL_HOSTILEPLAYER_BUFF" 
-	or eventName == "CHAT_MSG_SPELL_PARTY_BUFF" 
-	or eventName == "CHAT_MSG_SPELL_PET_BUFF" then
-	
-		if not self.eventTable["CHAT_MSG_SPELL_HOSTILEPLAYER_BUFF"] then
+		or eventName == "CHAT_MSG_SPELL_CREATURE_VS_PARTY_BUFF"  
+		or eventName == "CHAT_MSG_SPELL_CREATURE_VS_SELF_BUFF"  
+		or eventName == "CHAT_MSG_SPELL_FRIENDLYPLAYER_BUFF"  
+		or eventName == "CHAT_MSG_SPELL_HOSTILEPLAYER_BUFF" 
+		or eventName == "CHAT_MSG_SPELL_PARTY_BUFF" 
+		or eventName == "CHAT_MSG_SPELL_PET_BUFF" then
 		
+		if not self.eventTable["CHAT_MSG_SPELL_HOSTILEPLAYER_BUFF"] then
+			
 			if GetLocale() ~= "deDE"  then
 				self.eventTable["CHAT_MSG_SPELL_HOSTILEPLAYER_BUFF"] = self:LoadPatternCategoryTree(
 					{
@@ -1236,7 +1230,7 @@ function lib:LoadPatternList(eventName)
 						"DispelFailOther",
 					}
 				)
-
+				
 			else -- Remove "EnchantOther" from German, since it's 100% ambiguous with SIMPLECASTOTHEROTHER, which is unsolvable.
 				self.eventTable["CHAT_MSG_SPELL_HOSTILEPLAYER_BUFF"] = self:LoadPatternCategoryTree(
 					{
@@ -1262,179 +1256,179 @@ function lib:LoadPatternList(eventName)
 		end
 		
 		list = self.eventTable["CHAT_MSG_SPELL_HOSTILEPLAYER_BUFF"]
-
-
---------------- Spell Damages ----------------	
+		
+		
+		--------------- Spell Damages ----------------	
 		
 	elseif eventName == "CHAT_MSG_SPELL_SELF_DAMAGE" then	
 		if not self.eventTable["CHAT_MSG_SPELL_SELF_DAMAGE"] then
 			self.eventTable["CHAT_MSG_SPELL_SELF_DAMAGE"] = 
-				self:LoadPatternCategoryTree( {
-					"SpellHitSelf",
-					{
-						"CastSelf",
-						"DurabilityDamageSelf",
-					},
-					"PerformSelf",
-					"SpellMissSelf",
-					"SPELLCASTSELFSTART",
-					"SPELLPERFORMSELFSTART",
-					"InterruptSelf",
-					"DispelFailSelf",
-					"ExtraAttackSelf",
-					"DrainSelf",
-					
-				} )
-
+			self:LoadPatternCategoryTree( {
+				"SpellHitSelf",
+				{
+					"CastSelf",
+					"DurabilityDamageSelf",
+				},
+				"PerformSelf",
+				"SpellMissSelf",
+				"SPELLCASTSELFSTART",
+				"SPELLPERFORMSELFSTART",
+				"InterruptSelf",
+				"DispelFailSelf",
+				"ExtraAttackSelf",
+				"DrainSelf",
+				
+			} )
+			
 		end		
 		list = self.eventTable["CHAT_MSG_SPELL_SELF_DAMAGE"]	
-
-
+		
+		
 	elseif eventName == "CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE" 
-	or eventName == "CHAT_MSG_SPELL_CREATURE_VS_PARTY_DAMAGE"  
-	or eventName == "CHAT_MSG_SPELL_CREATURE_VS_SELF_DAMAGE"  
-	or eventName == "CHAT_MSG_SPELL_FRIENDLYPLAYER_DAMAGE"  
-	or eventName == "CHAT_MSG_SPELL_HOSTILEPLAYER_DAMAGE" 
-	or eventName == "CHAT_MSG_SPELL_PARTY_DAMAGE"  
-	or eventName == "CHAT_MSG_SPELL_PET_DAMAGE"  then
-
+		or eventName == "CHAT_MSG_SPELL_CREATURE_VS_PARTY_DAMAGE"  
+		or eventName == "CHAT_MSG_SPELL_CREATURE_VS_SELF_DAMAGE"  
+		or eventName == "CHAT_MSG_SPELL_FRIENDLYPLAYER_DAMAGE"  
+		or eventName == "CHAT_MSG_SPELL_HOSTILEPLAYER_DAMAGE" 
+		or eventName == "CHAT_MSG_SPELL_PARTY_DAMAGE"  
+		or eventName == "CHAT_MSG_SPELL_PET_DAMAGE"  then
+		
 		if not self.eventTable["CHAT_MSG_SPELL_HOSTILEPLAYER_DAMAGE"] then
 			self.eventTable["CHAT_MSG_SPELL_HOSTILEPLAYER_DAMAGE"] = 
-				self:LoadPatternCategoryTree( {
-					"SpellHitOther",
-					"SPELLCASTOTHERSTART",
-					"SPELLPERFORMOTHERSTART",
-					"DrainOther",
-					"SpellMissOther",
-					{
-						"INSTAKILLOTHER",
-						"INSTAKILLSELF",
-					},
-					{
-						"PROCRESISTOTHEROTHER",
-						"PROCRESISTOTHERSELF",
-					},
-					"SplitDamageOther",
-					{
-						"CastOther",
-						"InterruptOther",
-						"DurabilityDamageOther",
-					},
-					"PerformOther",
-					"ExtraAttackOther",
-					{
-						"DISPELFAILEDOTHEROTHER",
-						"DISPELFAILEDOTHERSELF",						
-					},
-				})
-
+			self:LoadPatternCategoryTree( {
+				"SpellHitOther",
+				"SPELLCASTOTHERSTART",
+				"SPELLPERFORMOTHERSTART",
+				"DrainOther",
+				"SpellMissOther",
+				{
+					"INSTAKILLOTHER",
+					"INSTAKILLSELF",
+				},
+				{
+					"PROCRESISTOTHEROTHER",
+					"PROCRESISTOTHERSELF",
+				},
+				"SplitDamageOther",
+				{
+					"CastOther",
+					"InterruptOther",
+					"DurabilityDamageOther",
+				},
+				"PerformOther",
+				"ExtraAttackOther",
+				{
+					"DISPELFAILEDOTHEROTHER",
+					"DISPELFAILEDOTHERSELF",						
+				},
+			})
+			
 		end
 		list = self.eventTable["CHAT_MSG_SPELL_HOSTILEPLAYER_DAMAGE"]
-	
 		
---------------- Periodic Buffs ----------------	
+		
+		--------------- Periodic Buffs ----------------	
 		
 	elseif eventName == "CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS" then
-	
-		if not self.eventTable["CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS"] then
 		
+		if not self.eventTable["CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS"] then
+			
 			self.eventTable["CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS"] = 
-				self:LoadPatternCategoryTree( {
-					{
-						"HotOther",
-						"HotSelf",
-					},
-					{
-						"BuffSelf",
-						"BuffOther",
-						"PowerGainOther",
-						"PowerGainSelf",
-					},
-					"DrainSelf",
-					"DotSelf",	-- Don't think this will hapen but add it anyway.
-				} )
+			self:LoadPatternCategoryTree( {
+				{
+					"HotOther",
+					"HotSelf",
+				},
+				{
+					"BuffSelf",
+					"BuffOther",
+					"PowerGainOther",
+					"PowerGainSelf",
+				},
+				"DrainSelf",
+				"DotSelf",	-- Don't think this will hapen but add it anyway.
+			} )
 		end		
 		list = self.eventTable["CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS"]	
-
-
+		
+		
 	elseif eventName == "CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS"
-	or eventName == "CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_BUFFS"
-	or eventName == "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_BUFFS"
-	or eventName == "CHAT_MSG_SPELL_PERIODIC_PARTY_BUFFS" then
+		or eventName == "CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_BUFFS"
+		or eventName == "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_BUFFS"
+		or eventName == "CHAT_MSG_SPELL_PERIODIC_PARTY_BUFFS" then
 		
 		if not self.eventTable["CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_BUFFS"] then
 			self.eventTable["CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_BUFFS"] = 
-				self:LoadPatternCategoryTree( {
-					{
-						"HotOther",
---						"DrainOther",	-- Dont think this would happen but add it anyway.
-					},
-					{
-						"BuffOther",
-						"PowerGainOther",
-						"DrainOther",	-- When other players use Skull of Impending Doom.
-					},
-					"DotOther",	-- Dont think this will happen but add anyway.
-					"DebuffOther", -- Was fired on older WoW version.
-				} )
+			self:LoadPatternCategoryTree( {
+				{
+					"HotOther",
+					--						"DrainOther",	-- Dont think this would happen but add it anyway.
+				},
+				{
+					"BuffOther",
+					"PowerGainOther",
+					"DrainOther",	-- When other players use Skull of Impending Doom.
+				},
+				"DotOther",	-- Dont think this will happen but add anyway.
+				"DebuffOther", -- Was fired on older WoW version.
+			} )
 		end
 		
 		list = self.eventTable["CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_BUFFS"]
-
-
 		
---------------- Periodic Damages ----------------	
+		
+		
+		--------------- Periodic Damages ----------------	
 		
 	elseif eventName == "CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE" then
 		if not self.eventTable["CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE"] then
-		
+			
 			self.eventTable["CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE"] = 
-				self:LoadPatternCategoryTree( {
-					{
-						"DotSelf",
-						"DotOther",
-					},
-					{
-						"DebuffSelf",
-						"DebuffOther",
-					},
-					{
-						"SPELLLOGABSORBOTHEROTHER",
-						"SPELLLOGABSORBOTHERSELF",
-						"SPELLLOGABSORBSELFSELF",
-						"SPELLLOGABSORBSELFOTHER",
-					},
-					"DrainSelf",
-				}	)
+			self:LoadPatternCategoryTree( {
+				{
+					"DotSelf",
+					"DotOther",
+				},
+				{
+					"DebuffSelf",
+					"DebuffOther",
+				},
+				{
+					"SPELLLOGABSORBOTHEROTHER",
+					"SPELLLOGABSORBOTHERSELF",
+					"SPELLLOGABSORBSELFSELF",
+					"SPELLLOGABSORBSELFOTHER",
+				},
+				"DrainSelf",
+			}	)
 		end	
 		list = self.eventTable["CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE"]	
 		
 		
-
+		
 	elseif eventName == "CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE"
-	or eventName == "CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE"
-	or eventName == "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
-	or eventName == "CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE" then
-	
+		or eventName == "CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE"
+		or eventName == "CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"
+		or eventName == "CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE" then
+		
 		if not self.eventTable["CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"] then
 			self.eventTable["CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"] = 
-				self:LoadPatternCategoryTree( {
-					"DebuffOther",
-					"DotOther",
-					{
-						"SPELLLOGABSORBOTHEROTHER",
-						"SPELLLOGABSORBSELFOTHER",
-					},					
-					"DrainOther",
-					{
-						"PowerGainOther",
-						"BuffOther", -- Was fired on older WoW version.					
-					}
-				} )
+			self:LoadPatternCategoryTree( {
+				"DebuffOther",
+				"DotOther",
+				{
+					"SPELLLOGABSORBOTHEROTHER",
+					"SPELLLOGABSORBSELFOTHER",
+				},					
+				"DrainOther",
+				{
+					"PowerGainOther",
+					"BuffOther", -- Was fired on older WoW version.					
+				}
+			} )
 		end			
 		list = self.eventTable["CHAT_MSG_SPELL_PERIODIC_HOSTILEPLAYER_DAMAGE"]
-
---------------- Damage Shields ----------------	
+		
+		--------------- Damage Shields ----------------	
 		
 		
 	elseif eventName == "CHAT_MSG_SPELL_DAMAGESHIELDS_ON_SELF" then
@@ -1463,11 +1457,11 @@ function lib:LoadPatternList(eventName)
 		
 		
 		
---------------- Auras ----------------	
-
+		--------------- Auras ----------------	
+		
 	elseif eventName == "CHAT_MSG_SPELL_AURA_GONE_PARTY"
-	or eventName == "CHAT_MSG_SPELL_AURA_GONE_OTHER" then
-	
+		or eventName == "CHAT_MSG_SPELL_AURA_GONE_OTHER" then
+		
 		if not self.eventTable["CHAT_MSG_SPELL_AURA_GONE_OTHER"] then
 			self.eventTable["CHAT_MSG_SPELL_AURA_GONE_OTHER"] = {
 				"AURAREMOVEDOTHER",
@@ -1475,9 +1469,9 @@ function lib:LoadPatternList(eventName)
 			table.sort(self.eventTable["CHAT_MSG_SPELL_AURA_GONE_OTHER"] , PatternCompare)
 		end
 		list = self.eventTable["CHAT_MSG_SPELL_AURA_GONE_OTHER"]
-	
+		
 	elseif  eventName == "CHAT_MSG_SPELL_AURA_GONE_SELF" then
-	
+		
 		if not self.eventTable["CHAT_MSG_SPELL_AURA_GONE_SELF"] then
 			self.eventTable["CHAT_MSG_SPELL_AURA_GONE_SELF"] = {
 				"AURAREMOVEDOTHER",
@@ -1488,7 +1482,7 @@ function lib:LoadPatternList(eventName)
 		list = self.eventTable["CHAT_MSG_SPELL_AURA_GONE_SELF"]
 		
 	elseif eventName == "CHAT_MSG_SPELL_BREAK_AURA" then
-	
+		
 		if not self.eventTable["CHAT_MSG_SPELL_BREAK_AURA"] then
 			self.eventTable["CHAT_MSG_SPELL_BREAK_AURA"] = {
 				"AURADISPELSELF",
@@ -1501,7 +1495,7 @@ function lib:LoadPatternList(eventName)
 		
 		
 	elseif eventName == "CHAT_MSG_SPELL_ITEM_ENCHANTMENTS" then
-	
+		
 		if not self.eventTable["CHAT_MSG_SPELL_ITEM_ENCHANTMENTS"] then
 			self.eventTable["CHAT_MSG_SPELL_ITEM_ENCHANTMENTS"] = {
 				"ITEMENCHANTMENTADDSELFSELF",
@@ -1512,9 +1506,9 @@ function lib:LoadPatternList(eventName)
 			table.sort(self.eventTable["CHAT_MSG_SPELL_ITEM_ENCHANTMENTS"] , PatternCompare)
 		end			
 		list = self.eventTable["CHAT_MSG_SPELL_ITEM_ENCHANTMENTS"]	
-
---------------- Trade Skills ----------------	
-
+		
+		--------------- Trade Skills ----------------	
+		
 		
 	elseif eventName == "CHAT_MSG_SPELL_TRADESKILLS" then
 		if not self.eventTable["CHAT_MSG_SPELL_TRADESKILLS"] then
@@ -1529,7 +1523,7 @@ function lib:LoadPatternList(eventName)
 		list = self.eventTable["CHAT_MSG_SPELL_TRADESKILLS"]	
 		
 	elseif eventName == "CHAT_MSG_SPELL_FAILED_LOCALPLAYER" then
-	
+		
 		if not self.eventTable["CHAT_MSG_SPELL_FAILED_LOCALPLAYER"] then
 			self.eventTable["CHAT_MSG_SPELL_FAILED_LOCALPLAYER"] = {
 				"SPELLFAILPERFORMSELF",
@@ -1538,12 +1532,12 @@ function lib:LoadPatternList(eventName)
 			table.sort(self.eventTable["CHAT_MSG_SPELL_FAILED_LOCALPLAYER"], PatternCompare)
 		end		
 		list = self.eventTable["CHAT_MSG_SPELL_FAILED_LOCALPLAYER"] 	
-			
-	
-	elseif eventName == "CHAT_MSG_COMBAT_FACTION_CHANGE" then
-	
-		if not self.eventTable["CHAT_MSG_COMBAT_FACTION_CHANGE"] then
 		
+		
+	elseif eventName == "CHAT_MSG_COMBAT_FACTION_CHANGE" then
+		
+		if not self.eventTable["CHAT_MSG_COMBAT_FACTION_CHANGE"] then
+			
 			self.eventTable["CHAT_MSG_COMBAT_FACTION_CHANGE"] = {
 				"FACTION_STANDING_CHANGED",
 				"FACTION_STANDING_DECREASED",
@@ -1554,18 +1548,18 @@ function lib:LoadPatternList(eventName)
 		list = self.eventTable["CHAT_MSG_COMBAT_FACTION_CHANGE"]
 		
 	elseif eventName == "CHAT_MSG_COMBAT_HONOR_GAIN" then
-	
+		
 		if not self.eventTable["CHAT_MSG_COMBAT_HONOR_GAIN"] then
 			self.eventTable["CHAT_MSG_COMBAT_HONOR_GAIN"] = {
-			"COMBATLOG_HONORAWARD",
-			"COMBATLOG_HONORGAIN",
-			"COMBATLOG_DISHONORGAIN",
+				"COMBATLOG_HONORAWARD",
+				"COMBATLOG_HONORGAIN",
+				"COMBATLOG_DISHONORGAIN",
 			}
 			table.sort(self.eventTable["CHAT_MSG_COMBAT_HONOR_GAIN"] , PatternCompare)
 		end		
 		list = self.eventTable["CHAT_MSG_COMBAT_HONOR_GAIN"]
 	elseif eventName == "CHAT_MSG_COMBAT_XP_GAIN" then
-	
+		
 		if not self.eventTable["CHAT_MSG_COMBAT_XP_GAIN"] then
 			self.eventTable["CHAT_MSG_COMBAT_XP_GAIN"] = {
 				"COMBATLOG_XPGAIN",
@@ -1594,8 +1588,8 @@ function lib:LoadPatternList(eventName)
 		list = self.eventTable["CHAT_MSG_COMBAT_XP_GAIN"]		
 		
 	elseif eventName == "CHAT_MSG_COMBAT_FRIENDLY_DEATH" 
-	or eventName == "CHAT_MSG_COMBAT_HOSTILE_DEATH" then
-	
+		or eventName == "CHAT_MSG_COMBAT_HOSTILE_DEATH" then
+		
 		if not self.eventTable["CHAT_MSG_COMBAT_HOSTILE_DEATH"] then
 			self.eventTable["CHAT_MSG_COMBAT_HOSTILE_DEATH"] = {
 				"SELFKILLOTHER",
@@ -1608,336 +1602,336 @@ function lib:LoadPatternList(eventName)
 			table.sort(self.eventTable["CHAT_MSG_COMBAT_HOSTILE_DEATH"] , PatternCompare)
 		end		
 		list = self.eventTable["CHAT_MSG_COMBAT_HOSTILE_DEATH"]	
-
+		
 	end
-
-
+	
+	
 	if not list then
 		-- self:Print(string.format("Event '%s' not found.", eventName), 1, 0,0); -- debug
 	end
-
+	
 	return list
-
+	
 end
 
 function lib:LoadPatternCategory(category)
-
+	
 	local list
-
+	
 	if category == "AuraChange" then		list = {
-			"AURACHANGEDOTHER",
-			"AURACHANGEDSELF",
-		}
-	elseif category == "AuraDispel" then		list = {
-			"AURADISPELOTHER",
-			"AURADISPELSELF",
-		}
-	elseif category == "BuffOther" then		list = {
-			"AURAADDEDOTHERHELPFUL",
-			"AURAAPPLICATIONADDEDOTHERHELPFUL",
-		}
-	elseif category == "BuffSelf" then		list = {
-			"AURAADDEDSELFHELPFUL",
-			"AURAAPPLICATIONADDEDSELFHELPFUL",
-		}
-	elseif category == "CastOther" then	list = {
-			"SIMPLECASTOTHEROTHER",
-			"SIMPLECASTOTHERSELF",
-			"SPELLTERSE_OTHER",
-		}
-	elseif category == "CastSelf" then	list = {
-			"SIMPLECASTSELFOTHER",
-			"SIMPLECASTSELFSELF",
-			"SPELLTERSE_SELF",
-		}
-	elseif category == "DebuffOther" then		list = {
-			"AURAADDEDOTHERHARMFUL",
-			"AURAAPPLICATIONADDEDOTHERHARMFUL",
-		}
-	elseif category == "DebuffSelf" then		list = {
-			"AURAADDEDSELFHARMFUL",
-			"AURAAPPLICATIONADDEDSELFHARMFUL",
-		}
-	elseif category == "DispelFailOther" then	list = {
-			"DISPELFAILEDOTHEROTHER",
-			"DISPELFAILEDOTHERSELF",
+		"AURACHANGEDOTHER",
+		"AURACHANGEDSELF",
+	}
+elseif category == "AuraDispel" then		list = {
+		"AURADISPELOTHER",
+		"AURADISPELSELF",
+	}
+elseif category == "BuffOther" then		list = {
+		"AURAADDEDOTHERHELPFUL",
+		"AURAAPPLICATIONADDEDOTHERHELPFUL",
+	}
+elseif category == "BuffSelf" then		list = {
+		"AURAADDEDSELFHELPFUL",
+		"AURAAPPLICATIONADDEDSELFHELPFUL",
+	}
+elseif category == "CastOther" then	list = {
+		"SIMPLECASTOTHEROTHER",
+		"SIMPLECASTOTHERSELF",
+		"SPELLTERSE_OTHER",
+	}
+elseif category == "CastSelf" then	list = {
+		"SIMPLECASTSELFOTHER",
+		"SIMPLECASTSELFSELF",
+		"SPELLTERSE_SELF",
+	}
+elseif category == "DebuffOther" then		list = {
+		"AURAADDEDOTHERHARMFUL",
+		"AURAAPPLICATIONADDEDOTHERHARMFUL",
+	}
+elseif category == "DebuffSelf" then		list = {
+		"AURAADDEDSELFHARMFUL",
+		"AURAAPPLICATIONADDEDSELFHARMFUL",
+	}
+elseif category == "DispelFailOther" then	list = {
+		"DISPELFAILEDOTHEROTHER",
+		"DISPELFAILEDOTHERSELF",
 		
-		}
-	elseif category == "DispelFailSelf" then		list = {
-			"DISPELFAILEDSELFOTHER",
-			"DISPELFAILEDSELFSELF",
-		}
-	elseif category == "DmgShieldOther" then list = {
-			"DAMAGESHIELDOTHEROTHER",
-			"DAMAGESHIELDOTHERSELF",
-		}
-	elseif category == "DmgShieldSelf" then		list = {
-			"DAMAGESHIELDSELFOTHER",
-		}
-	elseif category == "DurabilityDamageSelf" then list = {
+	}
+elseif category == "DispelFailSelf" then		list = {
+		"DISPELFAILEDSELFOTHER",
+		"DISPELFAILEDSELFSELF",
+	}
+elseif category == "DmgShieldOther" then list = {
+		"DAMAGESHIELDOTHEROTHER",
+		"DAMAGESHIELDOTHERSELF",
+	}
+elseif category == "DmgShieldSelf" then		list = {
+		"DAMAGESHIELDSELFOTHER",
+	}
+elseif category == "DurabilityDamageSelf" then list = {
 		"SPELLDURABILITYDAMAGEALLSELFOTHER",
 		"SPELLDURABILITYDAMAGESELFOTHER",	
 	}
-	elseif category == "DurabilityDamageOther" then list = {
-			"SPELLDURABILITYDAMAGEALLOTHEROTHER",
-			"SPELLDURABILITYDAMAGEALLOTHERSELF", 
-			"SPELLDURABILITYDAMAGEOTHEROTHER", 
-			"SPELLDURABILITYDAMAGEOTHERSELF",
+elseif category == "DurabilityDamageOther" then list = {
+		"SPELLDURABILITYDAMAGEALLOTHEROTHER",
+		"SPELLDURABILITYDAMAGEALLOTHERSELF", 
+		"SPELLDURABILITYDAMAGEOTHEROTHER", 
+		"SPELLDURABILITYDAMAGEOTHERSELF",
 	}
-	elseif category == "EnchantOther" then		list  =  {
-			"ITEMENCHANTMENTADDOTHEROTHER",
-			"ITEMENCHANTMENTADDOTHERSELF",
-		}
-	elseif category == "EnchantSelf" then		list = {
-			"ITEMENCHANTMENTADDSELFOTHER",
-			"ITEMENCHANTMENTADDSELFSELF",
-		}
-	elseif category == "ExtraAttackOther" then		list = {
-			"SPELLEXTRAATTACKSOTHER",
-			"SPELLEXTRAATTACKSOTHER_SINGULAR",
-		}		
-	elseif category == "ExtraAttackSelf" then		list = {
-			"SPELLEXTRAATTACKSSELF",
-			"SPELLEXTRAATTACKSSELF_SINGULAR",
-		}		
-	elseif category == "Fade" then		list = {
-			"AURAREMOVEDOTHER",
-			"AURAREMOVEDSELF",
-		}
-	elseif category == "HealOther" then		list = {
-			"HEALEDCRITOTHEROTHER",
-			"HEALEDCRITOTHERSELF",
-			"HEALEDOTHEROTHER",
-			"HEALEDOTHERSELF",
-		}
-	elseif category == "HealSelf" then		list = {
-			"HEALEDCRITSELFOTHER",
-			"HEALEDCRITSELFSELF",
-			"HEALEDSELFOTHER",
-			"HEALEDSELFSELF",
-		}
-	elseif category == "HitOtherOther" then		list = {
-			"COMBATHITCRITOTHEROTHER",
-			"COMBATHITCRITSCHOOLOTHEROTHER",
-			"COMBATHITOTHEROTHER",
-			"COMBATHITSCHOOLOTHEROTHER",
-		}
-	elseif category == "HitOtherSelf" then		list = {
-	
-			"COMBATHITCRITOTHERSELF",
-			"COMBATHITCRITSCHOOLOTHERSELF",
-			"COMBATHITOTHERSELF",
-			"COMBATHITSCHOOLOTHERSELF",
-		}
-	elseif category == "HitSelf" then		list = {
-			"COMBATHITSCHOOLSELFOTHER",
-			"COMBATHITSELFOTHER",
-			"COMBATHITCRITSCHOOLSELFOTHER",
-			"COMBATHITCRITSELFOTHER",
-		}
-	elseif category == "MissOtherOther" then	list = {
-			"MISSEDOTHEROTHER",
-			"VSABSORBOTHEROTHER",
-			"VSBLOCKOTHEROTHER",
-			"VSDEFLECTOTHEROTHER",
-			"VSDODGEOTHEROTHER",
-			"VSEVADEOTHEROTHER",
-			"VSIMMUNEOTHEROTHER",
-			"VSPARRYOTHEROTHER",
-			"VSRESISTOTHEROTHER",
-			"IMMUNEDAMAGECLASSOTHEROTHER",
-			"IMMUNEOTHEROTHER",
-			
-		}	
-	elseif category == "MissOtherSelf" then	list = {
-			"MISSEDOTHERSELF",
-			"VSABSORBOTHERSELF",
-			"VSBLOCKOTHERSELF",
-			"VSDEFLECTOTHERSELF",
-			"VSDODGEOTHERSELF",
-			"VSEVADEOTHERSELF",
-			"VSIMMUNEOTHERSELF",
-			"VSPARRYOTHERSELF",
-			"VSRESISTOTHERSELF",	
-			"IMMUNEDAMAGECLASSOTHERSELF",
-			"IMMUNEOTHERSELF",
-		}	
-	elseif category == "MissSelf" then	list = {
-				"MISSEDSELFOTHER",
-				"VSABSORBSELFOTHER",
-				"VSBLOCKSELFOTHER",
-				"VSDEFLECTSELFOTHER",
-				"VSDODGESELFOTHER",
-				"VSEVADESELFOTHER",
-				"VSIMMUNESELFOTHER",
-				"VSPARRYSELFOTHER",
-				"VSRESISTSELFOTHER",
-				"IMMUNEDAMAGECLASSSELFOTHER",
-				"IMMUNESELFOTHER",
-				"IMMUNESELFSELF",
-		}
-	elseif category == "PowerGainOther" then		list = {
-			"POWERGAINOTHEROTHER",
-			"POWERGAINOTHERSELF",
-		}
-	elseif category == "PerformOther" then list = {
-			"OPEN_LOCK_OTHER",
-			"SIMPLEPERFORMOTHEROTHER",
-			"SIMPLEPERFORMOTHERSELF",
-			"SPELLTERSEPERFORM_OTHER",
-		}
-	elseif category == "PerformSelf" then	list = {
-			"OPEN_LOCK_SELF",
-			"SIMPLEPERFORMSELFOTHER",
-			"SIMPLEPERFORMSELFSELF",
-			"SPELLTERSEPERFORM_SELF",
-		}
-	elseif category == "ProcResistOther" then list = {
-			"PROCRESISTOTHEROTHER",
-			"PROCRESISTOTHERSELF",
-		}
-	elseif category == "ProcResistSelf" then	list = {
-			"PROCRESISTSELFOTHER",
-			"PROCRESISTSELFSELF",
-		}
-	elseif category == "EnvOther" then list = {
-			"VSENVIRONMENTALDAMAGE_DROWNING_OTHER",
-			"VSENVIRONMENTALDAMAGE_FALLING_OTHER",
-			"VSENVIRONMENTALDAMAGE_FATIGUE_OTHER",
-			"VSENVIRONMENTALDAMAGE_FIRE_OTHER",
-			"VSENVIRONMENTALDAMAGE_LAVA_OTHER",
-			"VSENVIRONMENTALDAMAGE_SLIME_OTHER",
-		}
-	elseif category == "EnvSelf" then	list = {
-			"VSENVIRONMENTALDAMAGE_DROWNING_SELF",
-			"VSENVIRONMENTALDAMAGE_FALLING_SELF",
-			"VSENVIRONMENTALDAMAGE_FATIGUE_SELF",
-			"VSENVIRONMENTALDAMAGE_FIRE_SELF",
-			"VSENVIRONMENTALDAMAGE_LAVA_SELF",
-			"VSENVIRONMENTALDAMAGE_SLIME_SELF",
-		}
+elseif category == "EnchantOther" then		list  =  {
+		"ITEMENCHANTMENTADDOTHEROTHER",
+		"ITEMENCHANTMENTADDOTHERSELF",
+	}
+elseif category == "EnchantSelf" then		list = {
+		"ITEMENCHANTMENTADDSELFOTHER",
+		"ITEMENCHANTMENTADDSELFSELF",
+	}
+elseif category == "ExtraAttackOther" then		list = {
+		"SPELLEXTRAATTACKSOTHER",
+		"SPELLEXTRAATTACKSOTHER_SINGULAR",
+	}		
+elseif category == "ExtraAttackSelf" then		list = {
+		"SPELLEXTRAATTACKSSELF",
+		"SPELLEXTRAATTACKSSELF_SINGULAR",
+	}		
+elseif category == "Fade" then		list = {
+		"AURAREMOVEDOTHER",
+		"AURAREMOVEDSELF",
+	}
+elseif category == "HealOther" then		list = {
+		"HEALEDCRITOTHEROTHER",
+		"HEALEDCRITOTHERSELF",
+		"HEALEDOTHEROTHER",
+		"HEALEDOTHERSELF",
+	}
+elseif category == "HealSelf" then		list = {
+		"HEALEDCRITSELFOTHER",
+		"HEALEDCRITSELFSELF",
+		"HEALEDSELFOTHER",
+		"HEALEDSELFSELF",
+	}
+elseif category == "HitOtherOther" then		list = {
+		"COMBATHITCRITOTHEROTHER",
+		"COMBATHITCRITSCHOOLOTHEROTHER",
+		"COMBATHITOTHEROTHER",
+		"COMBATHITSCHOOLOTHEROTHER",
+	}
+elseif category == "HitOtherSelf" then		list = {
+		
+		"COMBATHITCRITOTHERSELF",
+		"COMBATHITCRITSCHOOLOTHERSELF",
+		"COMBATHITOTHERSELF",
+		"COMBATHITSCHOOLOTHERSELF",
+	}
+elseif category == "HitSelf" then		list = {
+		"COMBATHITSCHOOLSELFOTHER",
+		"COMBATHITSELFOTHER",
+		"COMBATHITCRITSCHOOLSELFOTHER",
+		"COMBATHITCRITSELFOTHER",
+	}
+elseif category == "MissOtherOther" then	list = {
+		"MISSEDOTHEROTHER",
+		"VSABSORBOTHEROTHER",
+		"VSBLOCKOTHEROTHER",
+		"VSDEFLECTOTHEROTHER",
+		"VSDODGEOTHEROTHER",
+		"VSEVADEOTHEROTHER",
+		"VSIMMUNEOTHEROTHER",
+		"VSPARRYOTHEROTHER",
+		"VSRESISTOTHEROTHER",
+		"IMMUNEDAMAGECLASSOTHEROTHER",
+		"IMMUNEOTHEROTHER",
+		
+	}	
+elseif category == "MissOtherSelf" then	list = {
+		"MISSEDOTHERSELF",
+		"VSABSORBOTHERSELF",
+		"VSBLOCKOTHERSELF",
+		"VSDEFLECTOTHERSELF",
+		"VSDODGEOTHERSELF",
+		"VSEVADEOTHERSELF",
+		"VSIMMUNEOTHERSELF",
+		"VSPARRYOTHERSELF",
+		"VSRESISTOTHERSELF",	
+		"IMMUNEDAMAGECLASSOTHERSELF",
+		"IMMUNEOTHERSELF",
+	}	
+elseif category == "MissSelf" then	list = {
+		"MISSEDSELFOTHER",
+		"VSABSORBSELFOTHER",
+		"VSBLOCKSELFOTHER",
+		"VSDEFLECTSELFOTHER",
+		"VSDODGESELFOTHER",
+		"VSEVADESELFOTHER",
+		"VSIMMUNESELFOTHER",
+		"VSPARRYSELFOTHER",
+		"VSRESISTSELFOTHER",
+		"IMMUNEDAMAGECLASSSELFOTHER",
+		"IMMUNESELFOTHER",
+		"IMMUNESELFSELF",
+	}
+elseif category == "PowerGainOther" then		list = {
+		"POWERGAINOTHEROTHER",
+		"POWERGAINOTHERSELF",
+	}
+elseif category == "PerformOther" then list = {
+		"OPEN_LOCK_OTHER",
+		"SIMPLEPERFORMOTHEROTHER",
+		"SIMPLEPERFORMOTHERSELF",
+		"SPELLTERSEPERFORM_OTHER",
+	}
+elseif category == "PerformSelf" then	list = {
+		"OPEN_LOCK_SELF",
+		"SIMPLEPERFORMSELFOTHER",
+		"SIMPLEPERFORMSELFSELF",
+		"SPELLTERSEPERFORM_SELF",
+	}
+elseif category == "ProcResistOther" then list = {
+		"PROCRESISTOTHEROTHER",
+		"PROCRESISTOTHERSELF",
+	}
+elseif category == "ProcResistSelf" then	list = {
+		"PROCRESISTSELFOTHER",
+		"PROCRESISTSELFSELF",
+	}
+elseif category == "EnvOther" then list = {
+		"VSENVIRONMENTALDAMAGE_DROWNING_OTHER",
+		"VSENVIRONMENTALDAMAGE_FALLING_OTHER",
+		"VSENVIRONMENTALDAMAGE_FATIGUE_OTHER",
+		"VSENVIRONMENTALDAMAGE_FIRE_OTHER",
+		"VSENVIRONMENTALDAMAGE_LAVA_OTHER",
+		"VSENVIRONMENTALDAMAGE_SLIME_OTHER",
+	}
+elseif category == "EnvSelf" then	list = {
+		"VSENVIRONMENTALDAMAGE_DROWNING_SELF",
+		"VSENVIRONMENTALDAMAGE_FALLING_SELF",
+		"VSENVIRONMENTALDAMAGE_FATIGUE_SELF",
+		"VSENVIRONMENTALDAMAGE_FIRE_SELF",
+		"VSENVIRONMENTALDAMAGE_LAVA_SELF",
+		"VSENVIRONMENTALDAMAGE_SLIME_SELF",
+	}
 	-- HoT effects on others. (not casted by others)
-	elseif category == "HotOther" then	list = {
-			"PERIODICAURAHEALOTHEROTHER",
-			"PERIODICAURAHEALSELFOTHER",
-		}
+elseif category == "HotOther" then	list = {
+		"PERIODICAURAHEALOTHEROTHER",
+		"PERIODICAURAHEALSELFOTHER",
+	}
 	-- HoT effects on you. (not casted by you)
-	elseif category == "HotSelf" then	list = {
-			"PERIODICAURAHEALSELFSELF",
-			"PERIODICAURAHEALOTHERSELF",
-		}
-	elseif category == "PowerGainSelf" then	list = {
-			"POWERGAINSELFSELF",
-			"POWERGAINSELFOTHER",
-		}
-	elseif category == "BuffOther" then	list = {
+elseif category == "HotSelf" then	list = {
+		"PERIODICAURAHEALSELFSELF",
+		"PERIODICAURAHEALOTHERSELF",
+	}
+elseif category == "PowerGainSelf" then	list = {
+		"POWERGAINSELFSELF",
+		"POWERGAINSELFOTHER",
+	}
+elseif category == "BuffOther" then	list = {
 		"AURAAPPLICATIONADDEDOTHERHELPFUL",
 		"AURAADDEDOTHERHELPFUL",
-		}
-	elseif category == "BuffSelf" then	list = {
-			"AURAADDEDSELFHELPFUL",
-			"AURAAPPLICATIONADDEDSELFHELPFUL",
-		}
-	elseif category == "DrainSelf" then	list = {	
-			"SPELLPOWERLEECHSELFOTHER",
-			"SPELLPOWERDRAINSELFOTHER",
-			"SPELLPOWERDRAINSELFSELF",
-		}
-	elseif category == "DrainOther" then	list = {	
-			"SPELLPOWERLEECHOTHEROTHER",
-			"SPELLPOWERLEECHOTHERSELF",
-			"SPELLPOWERDRAINOTHEROTHER",
-			"SPELLPOWERDRAINOTHERSELF",
-		}
+	}
+elseif category == "BuffSelf" then	list = {
+		"AURAADDEDSELFHELPFUL",
+		"AURAAPPLICATIONADDEDSELFHELPFUL",
+	}
+elseif category == "DrainSelf" then	list = {	
+		"SPELLPOWERLEECHSELFOTHER",
+		"SPELLPOWERDRAINSELFOTHER",
+		"SPELLPOWERDRAINSELFSELF",
+	}
+elseif category == "DrainOther" then	list = {	
+		"SPELLPOWERLEECHOTHEROTHER",
+		"SPELLPOWERLEECHOTHERSELF",
+		"SPELLPOWERDRAINOTHEROTHER",
+		"SPELLPOWERDRAINOTHERSELF",
+	}
 	-- DoT effects on others (not casted by others)
-	elseif category == "DotOther" then	list = {
-			"PERIODICAURADAMAGEOTHEROTHER",
-			"PERIODICAURADAMAGESELFOTHER",
-		}
+elseif category == "DotOther" then	list = {
+		"PERIODICAURADAMAGEOTHEROTHER",
+		"PERIODICAURADAMAGESELFOTHER",
+	}
 	-- DoT effects on you (not casted by you)
-	elseif category == "DotSelf" then	list = {
-			"PERIODICAURADAMAGEOTHERSELF",
-			"PERIODICAURADAMAGESELFSELF",
-		}
-	elseif category == "SpellHitOther" then	list = {
-			"SPELLLOGCRITOTHEROTHER",
-			"SPELLLOGCRITOTHERSELF",
-			"SPELLLOGCRITSCHOOLOTHEROTHER",
-			"SPELLLOGCRITSCHOOLOTHERSELF",
-			"SPELLLOGOTHEROTHER",
-			"SPELLLOGOTHERSELF",
-			"SPELLLOGSCHOOLOTHEROTHER",
-			"SPELLLOGSCHOOLOTHERSELF",
-		}
-	elseif category == "SpellHitSelf" then	list = {
-			"SPELLLOGCRITSELFOTHER",
-			"SPELLLOGCRITSELFSELF",
-			"SPELLLOGCRITSCHOOLSELFOTHER",
-			"SPELLLOGCRITSCHOOLSELFSELF",
-			"SPELLLOGSELFOTHER",
-			"SPELLLOGSELFSELF",
-			"SPELLLOGSCHOOLSELFOTHER",
-			"SPELLLOGSCHOOLSELFSELF",
-		}
-	elseif category == "SpellMissSelf" then		list = {
-			"IMMUNESPELLSELFOTHER",
-			"IMMUNESPELLSELFSELF",
-			"SPELLBLOCKEDSELFOTHER",
-			"SPELLDEFLECTEDSELFOTHER",
-			"SPELLDEFLECTEDSELFSELF",
-			"SPELLDODGEDSELFOTHER",
-			"SPELLDODGEDSELFSELF",
-			"SPELLEVADEDSELFOTHER",
-			"SPELLEVADEDSELFSELF",
-			"SPELLIMMUNESELFOTHER",
-			"SPELLIMMUNESELFSELF",
-			"SPELLLOGABSORBSELFOTHER",
-			"SPELLLOGABSORBSELFSELF",
-			"SPELLMISSSELFOTHER",
-			"SPELLMISSSELFSELF",
-			"SPELLPARRIEDSELFOTHER",
-			"SPELLPARRIEDSELFSELF",
-			"SPELLREFLECTSELFOTHER",
-			"SPELLREFLECTSELFSELF",
-			"SPELLRESISTSELFOTHER",
-			"SPELLRESISTSELFSELF",
-		}
-	elseif category == "SpellMissOther" then		list = {
-			"IMMUNESPELLOTHEROTHER",
-			"IMMUNESPELLOTHERSELF",
-			"SPELLBLOCKEDOTHEROTHER",
-			"SPELLBLOCKEDOTHERSELF",
-			"SPELLDODGEDOTHEROTHER",
-			"SPELLDODGEDOTHERSELF",
-			"SPELLDEFLECTEDOTHEROTHER",
-			"SPELLDEFLECTEDOTHERSELF",
-			"SPELLEVADEDOTHEROTHER",
-			"SPELLEVADEDOTHERSELF",
-			"SPELLIMMUNEOTHEROTHER",
-			"SPELLIMMUNEOTHERSELF",
-			"SPELLLOGABSORBOTHEROTHER",
-			"SPELLLOGABSORBOTHERSELF",
-			"SPELLMISSOTHEROTHER",
-			"SPELLMISSOTHERSELF",
-			"SPELLPARRIEDOTHEROTHER",
-			"SPELLPARRIEDOTHERSELF",
-			"SPELLREFLECTOTHEROTHER",
-			"SPELLREFLECTOTHERSELF",
-			"SPELLRESISTOTHEROTHER",
-			"SPELLRESISTOTHERSELF",
-		}	
-	elseif category == "InterruptOther" then	list = {
-			"SPELLINTERRUPTOTHEROTHER",
-			"SPELLINTERRUPTOTHERSELF",
-		}
-	elseif category == "InterruptSelf" then	list = {
-			"SPELLINTERRUPTSELFOTHER",
-		}
-	elseif category == "SplitDamageOther" then list = {
+elseif category == "DotSelf" then	list = {
+		"PERIODICAURADAMAGEOTHERSELF",
+		"PERIODICAURADAMAGESELFSELF",
+	}
+elseif category == "SpellHitOther" then	list = {
+		"SPELLLOGCRITOTHEROTHER",
+		"SPELLLOGCRITOTHERSELF",
+		"SPELLLOGCRITSCHOOLOTHEROTHER",
+		"SPELLLOGCRITSCHOOLOTHERSELF",
+		"SPELLLOGOTHEROTHER",
+		"SPELLLOGOTHERSELF",
+		"SPELLLOGSCHOOLOTHEROTHER",
+		"SPELLLOGSCHOOLOTHERSELF",
+	}
+elseif category == "SpellHitSelf" then	list = {
+		"SPELLLOGCRITSELFOTHER",
+		"SPELLLOGCRITSELFSELF",
+		"SPELLLOGCRITSCHOOLSELFOTHER",
+		"SPELLLOGCRITSCHOOLSELFSELF",
+		"SPELLLOGSELFOTHER",
+		"SPELLLOGSELFSELF",
+		"SPELLLOGSCHOOLSELFOTHER",
+		"SPELLLOGSCHOOLSELFSELF",
+	}
+elseif category == "SpellMissSelf" then		list = {
+		"IMMUNESPELLSELFOTHER",
+		"IMMUNESPELLSELFSELF",
+		"SPELLBLOCKEDSELFOTHER",
+		"SPELLDEFLECTEDSELFOTHER",
+		"SPELLDEFLECTEDSELFSELF",
+		"SPELLDODGEDSELFOTHER",
+		"SPELLDODGEDSELFSELF",
+		"SPELLEVADEDSELFOTHER",
+		"SPELLEVADEDSELFSELF",
+		"SPELLIMMUNESELFOTHER",
+		"SPELLIMMUNESELFSELF",
+		"SPELLLOGABSORBSELFOTHER",
+		"SPELLLOGABSORBSELFSELF",
+		"SPELLMISSSELFOTHER",
+		"SPELLMISSSELFSELF",
+		"SPELLPARRIEDSELFOTHER",
+		"SPELLPARRIEDSELFSELF",
+		"SPELLREFLECTSELFOTHER",
+		"SPELLREFLECTSELFSELF",
+		"SPELLRESISTSELFOTHER",
+		"SPELLRESISTSELFSELF",
+	}
+elseif category == "SpellMissOther" then		list = {
+		"IMMUNESPELLOTHEROTHER",
+		"IMMUNESPELLOTHERSELF",
+		"SPELLBLOCKEDOTHEROTHER",
+		"SPELLBLOCKEDOTHERSELF",
+		"SPELLDODGEDOTHEROTHER",
+		"SPELLDODGEDOTHERSELF",
+		"SPELLDEFLECTEDOTHEROTHER",
+		"SPELLDEFLECTEDOTHERSELF",
+		"SPELLEVADEDOTHEROTHER",
+		"SPELLEVADEDOTHERSELF",
+		"SPELLIMMUNEOTHEROTHER",
+		"SPELLIMMUNEOTHERSELF",
+		"SPELLLOGABSORBOTHEROTHER",
+		"SPELLLOGABSORBOTHERSELF",
+		"SPELLMISSOTHEROTHER",
+		"SPELLMISSOTHERSELF",
+		"SPELLPARRIEDOTHEROTHER",
+		"SPELLPARRIEDOTHERSELF",
+		"SPELLREFLECTOTHEROTHER",
+		"SPELLREFLECTOTHERSELF",
+		"SPELLRESISTOTHEROTHER",
+		"SPELLRESISTOTHERSELF",
+	}	
+elseif category == "InterruptOther" then	list = {
+		"SPELLINTERRUPTOTHEROTHER",
+		"SPELLINTERRUPTOTHERSELF",
+	}
+elseif category == "InterruptSelf" then	list = {
+		"SPELLINTERRUPTSELFOTHER",
+	}
+elseif category == "SplitDamageOther" then list = {
 		"SPELLSPLITDAMAGEOTHEROTHER",
 		"SPELLSPLITDAMAGEOTHERSELF",
 	}		
-	else return { category }
+else return { category }
 	end
 	
 	return list
@@ -1952,7 +1946,7 @@ function lib:LoadPatternCategoryTree(catTree, reSort)
 	local list
 	
 	for i, v in pairs(catTree) do
-	
+		
 		if type(v) == "table" then
 			list = self:LoadPatternCategoryTree(v, true)
 		else -- should be string.		
@@ -1971,13 +1965,13 @@ function lib:LoadPatternCategoryTree(catTree, reSort)
 	end
 	
 	return resultList
-
-
+	
+	
 end
- 
+
 -- Used to load patternTable elements on demand.
 function lib:LoadPatternInfo(patternName)
-
+	
 	local patternInfo
 	
 	if patternName == "AURAADDEDOTHERHELPFUL" then
@@ -1988,7 +1982,7 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "buff", 1, 2, 3, }
 	elseif patternName == "AURAAPPLICATIONADDEDSELFHELPFUL" then
 		patternInfo = { "buff", ParserLib_SELF, 1, 2, }
-	
+		
 	elseif patternName == "OPEN_LOCK_OTHER" then
 		patternInfo = { "cast", 1, 2, 3, nil, true, }
 	elseif patternName == "OPEN_LOCK_SELF" then 
@@ -2025,12 +2019,12 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "cast", 1, 2, nil, nil, nil, }
 	elseif patternName == "SPELLTERSE_SELF" then
 		patternInfo = { "cast", ParserLib_SELF, 1, nil, nil, nil, }
-	
+		
 	elseif patternName == "TRADESKILL_LOG_FIRSTPERSON" then
 		patternInfo = { "create", ParserLib_SELF, 1, }
 	elseif patternName == "TRADESKILL_LOG_THIRDPERSON" then
 		patternInfo = { "create", 1, 2, }
-	
+		
 	elseif patternName == "PARTYKILLOTHER" then
 		patternInfo = { "death", 1, 2, nil, nil, }
 	elseif patternName == "SELFKILLOTHER" then
@@ -2045,8 +2039,8 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "death", 1, nil, 2, nil, }
 	elseif patternName == "INSTAKILLSELF" then
 		patternInfo = { "death", ParserLib_SELF, nil, true, nil }
-	
-	
+		
+		
 	elseif patternName == "AURAADDEDOTHERHARMFUL" then
 		patternInfo = { "debuff", 1, 2, nil, }
 	elseif patternName == "AURAADDEDSELFHARMFUL" then
@@ -2055,7 +2049,7 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "debuff", 1, 2, 3, }
 	elseif patternName == "AURAAPPLICATIONADDEDSELFHARMFUL" then
 		patternInfo = { "debuff", ParserLib_SELF, 1, 2, }
-	
+		
 	elseif patternName == "AURADISPELOTHER" then
 		patternInfo = { "dispel", 1, 2, nil, nil, }
 	elseif patternName == "AURADISPELSELF" then
@@ -2068,7 +2062,7 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "dispel", 1, 2, ParserLib_SELF, true, }
 	elseif patternName == "DISPELFAILEDSELFSELF" then
 		patternInfo = { "dispel", ParserLib_SELF, 1, ParserLib_SELF, true, }
-	
+		
 	elseif patternName == "SPELLPOWERDRAINOTHEROTHER" then
 		patternInfo = { "drain", 1, 5, 2, 3, 4, }
 	elseif patternName == "SPELLPOWERDRAINOTHERSELF" then
@@ -2077,7 +2071,7 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "drain", ParserLib_SELF, 4, 1, 2, 3, }
 	elseif patternName == "SPELLPOWERDRAINSELFSELF" then
 		patternInfo = { "drain", ParserLib_SELF, ParserLib_SELF, 1, 2, 3, }
-	
+		
 	elseif patternName == "SPELLDURABILITYDAMAGEALLOTHEROTHER" then
 		patternInfo = { "durability", 1, 2, 3, nil, }
 	elseif patternName == "SPELLDURABILITYDAMAGEALLOTHERSELF" then
@@ -2090,7 +2084,7 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "durability", 1, 2, ParserLib_SELF, 3, }
 	elseif patternName == "SPELLDURABILITYDAMAGESELFOTHER" then
 		patternInfo = { "durability", ParserLib_SELF, 1, 2, 3, }
-	
+		
 	elseif patternName == "ITEMENCHANTMENTADDOTHEROTHER" then
 		patternInfo = { "enchant", 1, 3, 2, 4, }
 	elseif patternName == "ITEMENCHANTMENTADDOTHERSELF" then
@@ -2099,7 +2093,7 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "enchant", ParserLib_SELF, 2, 1, 3, }
 	elseif patternName == "ITEMENCHANTMENTADDSELFSELF" then
 		patternInfo = { "enchant", ParserLib_SELF, ParserLib_SELF, 1, 2, }
-	
+		
 	elseif patternName == "VSENVIRONMENTALDAMAGE_DROWNING_OTHER" then
 		patternInfo = { "environment", 1, 2, "drown", }
 	elseif patternName == "VSENVIRONMENTALDAMAGE_DROWNING_SELF" then
@@ -2124,7 +2118,7 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "environment", 1, 2, "slime", }
 	elseif patternName == "VSENVIRONMENTALDAMAGE_SLIME_SELF" then
 		patternInfo = { "environment", ParserLib_SELF, 1, "slime", }
-	
+		
 	elseif patternName == "COMBATLOG_XPGAIN" then
 		patternInfo = { "experience", 2, nil, nil, nil, nil, nil, nil, nil, 1, }
 	elseif patternName == "COMBATLOG_XPGAIN_EXHAUSTION1" then
@@ -2165,7 +2159,7 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "experience", 1, nil, nil, nil, nil, nil, 2, nil, nil, }
 	elseif patternName == "COMBATLOG_XPLOSS_FIRSTPERSON_UNNAMED" then
 		patternInfo = { "experience", 1, nil, nil, nil, nil, nil, nil, nil, nil, }
-	
+		
 	elseif patternName == "SPELLEXTRAATTACKSOTHER" then
 		patternInfo = { "extraattack", 1, 3, 2, }
 	elseif patternName == "SPELLEXTRAATTACKSOTHER_SINGULAR" then
@@ -2174,22 +2168,22 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "extraattack", ParserLib_SELF, 2, 1, }
 	elseif patternName == "SPELLEXTRAATTACKSSELF_SINGULAR" then
 		patternInfo = { "extraattack", ParserLib_SELF, 2, 1, }
-	
+		
 	elseif patternName == "AURAREMOVEDOTHER" then
 		patternInfo = { "fade", 2, 1, }
 	elseif patternName == "AURAREMOVEDSELF" then
 		patternInfo = { "fade", ParserLib_SELF, 1, }
-	
+		
 	elseif patternName == "SPELLFAILCASTSELF" then
 		patternInfo = { "fail", ParserLib_SELF, 1, 2, }
 	elseif patternName == "SPELLFAILPERFORMSELF" then
 		patternInfo = { "fail", ParserLib_SELF, 1, 2, }
-	
+		
 	elseif patternName == "FEEDPET_LOG_FIRSTPERSON" then
 		patternInfo = { "feedpet", ParserLib_SELF, 1, }
 	elseif patternName == "FEEDPET_LOG_THIRDPERSON" then
 		patternInfo = { "feedpet", 1, 2, }
-	
+		
 	elseif patternName == "POWERGAINOTHEROTHER" then
 		patternInfo = { "gain", 4, 1, 5, 2, 3, }
 	elseif patternName == "POWERGAINOTHERSELF" then
@@ -2198,7 +2192,7 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "gain", ParserLib_SELF, 1, 4, 2, 3, }
 	elseif patternName == "POWERGAINSELFSELF" then
 		patternInfo = { "gain", ParserLib_SELF, ParserLib_SELF, 3, 1, 2, }
-	
+		
 	elseif patternName == "HEALEDCRITOTHEROTHER" then
 		patternInfo = { "heal", 1, 3, 2, 4, true, nil, }
 	elseif patternName == "HEALEDCRITOTHERSELF" then
@@ -2223,7 +2217,7 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "heal", ParserLib_SELF, 1, 3, 2, nil, true, }
 	elseif patternName == "PERIODICAURAHEALSELFSELF" then
 		patternInfo = { "heal", ParserLib_SELF, ParserLib_SELF, 2, 1, nil, true, }
-	
+		
 	elseif patternName == "COMBATHITCRITOTHEROTHER" then
 		patternInfo = { "hit", 1, 2, ParserLib_MELEE, 3, nil, true, nil, nil, }
 	elseif patternName == "COMBATHITCRITOTHERSELF" then
@@ -2300,28 +2294,28 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "hit", 1, ParserLib_SELF, 2, 3, nil, nil, nil, true, }
 	elseif patternName == "SPELLSPLITDAMAGESELFOTHER" then
 		patternInfo = { "hit", ParserLib_SELF, 2, 1, 3, nil, nil, nil, true, }
-	
+		
 	elseif patternName == "COMBATLOG_DISHONORGAIN" then
 		patternInfo = { "honor", nil, 1, nil, }
 	elseif patternName == "COMBATLOG_HONORAWARD" then
 		patternInfo = { "honor", 1, nil, nil, }
 	elseif patternName == "COMBATLOG_HONORGAIN" then
 		patternInfo = { "honor", 3, 1, 2, }
-	
+		
 	elseif patternName == "SPELLINTERRUPTOTHEROTHER" then
 		patternInfo = { "interrupt", 1, 2, 3, }
 	elseif patternName == "SPELLINTERRUPTOTHERSELF" then
 		patternInfo = { "interrupt", 1, ParserLib_SELF, 2, }
 	elseif patternName == "SPELLINTERRUPTSELFOTHER" then
 		patternInfo = { "interrupt", ParserLib_SELF, 1, 2, }
-	
+		
 	elseif patternName == "SPELLPOWERLEECHOTHEROTHER" then
 		patternInfo = { "leech", 1, 5, 2, 3, 4, 6, 7, 8, }
 	elseif patternName == "SPELLPOWERLEECHOTHERSELF" then
 		patternInfo = { "leech", 1, ParserLib_SELF, 2, 3, 4, 5, 6, 7, }
 	elseif patternName == "SPELLPOWERLEECHSELFOTHER" then
 		patternInfo = { "leech", ParserLib_SELF, 4, 1, 2, 3, ParserLib_SELF, 5, 6, }
-	
+		
 	elseif patternName == "IMMUNEDAMAGECLASSOTHEROTHER" then
 		patternInfo = { "miss", 2, 1, ParserLib_MELEE, "immune", }
 	elseif patternName == "IMMUNEDAMAGECLASSOTHERSELF" then
@@ -2484,7 +2478,7 @@ function lib:LoadPatternInfo(patternName)
 		patternInfo = { "miss", 1, ParserLib_SELF, ParserLib_MELEE, "resist", }
 	elseif patternName == "VSRESISTSELFOTHER" then
 		patternInfo = { "miss", ParserLib_SELF, 1, ParserLib_MELEE, "resist", }
-	
+		
 	elseif patternName == "FACTION_STANDING_CHANGED" then
 		patternInfo = { "reputation", 2, nil, 1, nil, }
 	elseif patternName == "FACTION_STANDING_DECREASED" then
@@ -2517,10 +2511,10 @@ function lib:LoadPatternInfo(patternName)
 	
 	-- Convert string.format tokens into LUA regexp tokens.
 	pattern = { self:ConvertPattern(pattern, true) }		
-
+	
 	local n = table.getn(pattern)	
 	if n > 1 then	-- Extra return values are the remapped token sequences.
-	
+		
 		for j in pairs(patternInfo) do
 			if type(patternInfo[j]) == "number" and patternInfo[j] < 100 then
 				patternInfo[j] = pattern[patternInfo[j]+1]	-- Remap to correct token sequence.
@@ -2528,12 +2522,12 @@ function lib:LoadPatternInfo(patternName)
 		end
 		
 	end	
-
+	
 	patternInfo.tc = tc
 	patternInfo.pattern = pattern[1]
 	
 	return patternInfo
-
+	
 end
 
 -- Fields of the patternTable.

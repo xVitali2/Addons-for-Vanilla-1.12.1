@@ -1,12 +1,12 @@
 --[[
-Name: Deformat-2.0
-Revision: $Rev: 6804 $
-Author(s): ckknight (ckknight@gmail.com)
-Website: http://ckknight.wowinterface.com/
-Documentation: http://wiki.wowace.com/index.php/Deformat-2.0
-SVN: http://svn.wowace.com/root/trunk/Deformat/Deformat-2.0
-Description: A library to deformat format strings.
-Dependencies: AceLibrary
+	Name: Deformat-2.0
+	Revision: $Rev: 6804 $
+	Author(s): ckknight (ckknight@gmail.com)
+	Website: http://ckknight.wowinterface.com/
+	Documentation: http://wiki.wowace.com/index.php/Deformat-2.0
+	SVN: http://svn.wowace.com/root/trunk/Deformat/Deformat-2.0
+	Description: A library to deformat format strings.
+	Dependencies: AceLibrary
 ]]
 
 local MAJOR_VERSION = "Deformat-2.0"

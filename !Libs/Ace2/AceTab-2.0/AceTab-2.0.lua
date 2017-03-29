@@ -1,12 +1,12 @@
 --[[
-Name: AceTab-2.0
-Revision: $Rev: 17638 $
-Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
-Website: http://www.wowace.com/
-Documentation: http://www..wowace.com/index.php/AceTab-2.0
-SVN: http://svn.wowace.com/root/trunk/Ace2/AceTab-2.0
-Description: A tab-completion library
-Dependencies: AceLibrary, AceEvent-2.0
+	Name: AceTab-2.0
+	Revision: $Rev: 17638 $
+	Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
+	Website: http://www.wowace.com/
+	Documentation: http://www..wowace.com/index.php/AceTab-2.0
+	SVN: http://svn.wowace.com/root/trunk/Ace2/AceTab-2.0
+	Description: A tab-completion library
+	Dependencies: AceLibrary, AceEvent-2.0
 ]]
 
 local MAJOR_VERSION = "AceTab-2.0"
@@ -29,19 +29,19 @@ function AceTab:RegisterTabCompletion(descriptor, regex, wlfunc, usage, editfram
 	self:argCheck(wlfunc, 4, "string", "function", "nil")
 	self:argCheck(usage, 5, "string", "function", "boolean", "nil")
 	self:argCheck(editframe, 6, "string", "table", "nil")
-
+	
 	if type(regex) == "string" then regex = {regex} end
-
+	
 	if type(wlfunc) == "string" and type(self[wlfunc]) ~= "function" then
 		self:error("Cannot register function %q; it does not exist", wlfunc)
 	end
-
+	
 	if type(usage) == "string" and type(self[usage]) ~= "function" then
 		self:error("Cannot register usage function %q; it does not exist", usage)
 	end
-
+	
 	if not editframes then editframes = {"ChatFrameEditBox"} end
-
+	
 	if type(editframes) == "table" and editframes.Show then editframes = {editframes:GetName()} end
 	
 	for _, frame in pairs(editframes) do
@@ -52,7 +52,7 @@ function AceTab:RegisterTabCompletion(descriptor, regex, wlfunc, usage, editfram
 		else
 			Gframe = _G[frame]
 		end
-
+		
 		if type(Gframe) ~= "table" or not Gframe.Show then
 			self:error("Cannot register frame %q; it does not exist", frame)
 			frame = nil
@@ -175,15 +175,15 @@ function AceTab:OnTabPressed()
 	if ost then this:SetScript("OnTextSet", ost) end
 	local fulltext = this:GetText()
 	local text = string.sub(fulltext, 0, pos) or ""
-
+	
 	local left = string.find(string.sub(text, 1, pos), "%w+$")
 	left = left and left-1 or pos
 	if not left or left == 1 and string.sub(text, 1, 1) == "/" then return true end
-
+	
 	local _, _, word = string.find(string.sub(text, left, pos), "(%w+)")
 	word = word or ""
 	this.lMatch = this.curMatch > 0 and (this.lMatch or this.origWord)
-
+	
 	if this.lMatch and this.lMatch ~= "" and string.find(string.sub(text, 1, pos), this.lMatch.."$") then
 		return CycleTab()
 	else
@@ -191,7 +191,7 @@ function AceTab:OnTabPressed()
 		this.curMatch = 0
 		this.lMatch = nil
 	end
-
+	
 	local completions = {}
 	local numMatches = 0
 	local firstMatch, hasNonFallback
@@ -229,7 +229,7 @@ function AceTab:OnTabPressed()
 			end
 		end
 	end
-
+	
 	local _, set = next(this.matches)
 	if not set or numMatches == 0 and not hasNonFallback then return true end
 	
@@ -314,11 +314,11 @@ local function activate(self, oldLib, oldDeactivate)
 	if oldLib then
 		self.registry = oldLib.registry
 	end
-
+	
 	if not self.registry then
 		self.registry = {}
 	end
-
+	
 	if oldDeactivate then
 		oldDeactivate(oldLib)
 	end

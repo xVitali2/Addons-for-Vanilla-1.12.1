@@ -25,7 +25,7 @@ function AceEvent:RegisterEvent(obj, event, method)
 		self.registry[event] = {}
 		self.frame:RegisterEvent(event)
 	end
-
+	
 	self.registry[event][obj] = (method or event)
 end
 

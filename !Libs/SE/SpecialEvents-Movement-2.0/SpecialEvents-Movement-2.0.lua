@@ -1,11 +1,11 @@
 
 --[[
-Name: SpecialEvents-Movement-2.0
-Revision: $Rev: 14918 $
-Author: Tekkub Stoutwrithe (tekkub@gmail.com)
-Website: http://www.wowace.com/
-Description: Special events for movement
-Dependencies: AceLibrary, AceEvent-2.0
+	Name: SpecialEvents-Movement-2.0
+	Revision: $Rev: 14918 $
+	Author: Tekkub Stoutwrithe (tekkub@gmail.com)
+	Website: http://www.wowace.com/
+	Description: Special events for movement
+	Dependencies: AceLibrary, AceEvent-2.0
 ]]
 
 
@@ -27,10 +27,10 @@ function activate(self, oldLib, oldDeactivate)
 		oldLib:UnregisterAllEvents()
 	end
 	if not self.vars then self.vars = {} end
-
+	
 	self:RegisterEvent("ZONE_CHANGED_NEW_AREA", SetMapToCurrentZone)
 	self:ScheduleRepeatingEvent(self.OnTick, 0.2, self)
-
+	
 	if oldDeactivate then oldDeactivate(oldLib) end
 end
 
@@ -38,7 +38,7 @@ end
 function lib:OnTick()
 	local x, y = GetPlayerMapPosition("player")
 	if not self.vars.lastx then self.vars.lastx, self.vars.lasty = x, y end
-
+	
 	if (not self.vars.moving and (self.vars.lastx ~= x or self.vars.lasty ~= y)) then
 		self.vars.moving = true
 		self:TriggerEvent("SpecialEvents_PlayerMoving")
@@ -46,7 +46,7 @@ function lib:OnTick()
 		self.vars.moving = nil
 		self:TriggerEvent("SpecialEvents_PlayerStationary")
 	end
-
+	
 	self.vars.lastx, self.vars.lasty = x, y
 end
 

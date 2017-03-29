@@ -1,14 +1,14 @@
 --[[
-Name: AceComm-2.0
-Revision: $Rev: 17723 $
-Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
-Inspired By: Ace 1.x by Turan (turan@gryphon.com)
-Website: http://www.wowace.com/
-Documentation: http://www.wowace.com/index.php/AceComm-2.0
-SVN: http://svn.wowace.com/wowace/trunk/Ace2/AceComm-2.0
-Description: Mixin to allow for inter-player addon communications.
-Dependencies: AceLibrary, AceOO-2.0, AceEvent-2.0,
-              ChatThrottleLib by Mikk (included)
+	Name: AceComm-2.0
+	Revision: $Rev: 17723 $
+	Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
+	Inspired By: Ace 1.x by Turan (turan@gryphon.com)
+	Website: http://www.wowace.com/
+	Documentation: http://www.wowace.com/index.php/AceComm-2.0
+	SVN: http://svn.wowace.com/wowace/trunk/Ace2/AceComm-2.0
+	Description: Mixin to allow for inter-player addon communications.
+	Dependencies: AceLibrary, AceOO-2.0, AceEvent-2.0,
+	ChatThrottleLib by Mikk (included)
 ]]
 
 local MAJOR_VERSION = "AceComm-2.0"
@@ -25,17 +25,17 @@ local _G = getfenv(0)
 local AceOO = AceLibrary("AceOO-2.0")
 local Mixin = AceOO.Mixin
 local AceComm = Mixin {
-						"SendCommMessage",
-						"SendPrioritizedCommMessage",
-						"RegisterComm",
-						"UnregisterComm",
-						"UnregisterAllComms",
-						"IsCommRegistered",
-						"SetDefaultCommPriority",
-						"SetCommPrefix",
-						"RegisterMemoizations",
-						"IsUserInChannel",
-					  }
+	"SendCommMessage",
+	"SendPrioritizedCommMessage",
+	"RegisterComm",
+	"UnregisterComm",
+	"UnregisterAllComms",
+	"IsCommRegistered",
+	"SetDefaultCommPriority",
+	"SetCommPrefix",
+	"RegisterMemoizations",
+	"IsUserInChannel",
+}
 AceComm.hooks = {}
 
 local AceEvent = AceLibrary:HasInstance("AceEvent-2.0") and AceLibrary("AceEvent-2.0")
@@ -144,9 +144,9 @@ do
 		local len = string_len(text)
 		for i = 1, len, 3 do
 			counter = math_mod(counter*8257, 16777259) +
-				(string_byte(text,i)) +
-				((string_byte(text,i+1) or 1)*127) +
-				((string_byte(text,i+2) or 2)*16383)
+			(string_byte(text,i)) +
+			((string_byte(text,i+1) or 1)*127) +
+			((string_byte(text,i+2) or 2)*16383)
 		end
 		return math_mod(counter, 16777213)
 	end
@@ -168,7 +168,7 @@ do
 		-- \000, \n, |, °, s, S, \015, \020
 		if a == 0 or a == 10 or a == 124 or a == 176 or a == 115 or a == 83 or a == 15 or a == 20 or a == 37 then
 			a = a + 1
-		-- \t, \255
+			-- \t, \255
 		elseif a == 9 or a == 255 then
 			a = a - 1
 		end
@@ -542,11 +542,11 @@ do
 			elseif v ~= v then
 				return string_char(33 --[[byte_nan]])
 			end
---			do
---				local s = tostring(v)
---				local len = string_len(s)
---				return string_char(byte_plus, len) .. s
---			end
+			--			do
+			--				local s = tostring(v)
+			--				local len = string_len(s)
+			--				return string_char(byte_plus, len) .. s
+			--			end
 			local sign = v < 0 or v == 0 and tostring(v) == "-0"
 			if sign then
 				v = -v
@@ -2413,7 +2413,7 @@ function ChatThrottleLib.PipeBin:Tidy()
 	if(self.count < 25) then
 		return;
 	end
-		
+	
 	if(self.count > 100) then
 		n=self.count-90;
 	else
@@ -2484,7 +2484,7 @@ function ChatThrottleLib:Init()
 	
 	self.avail = self.avail or 0;							-- v5
 	self.nTotalSent = self.nTotalSent or 0;		-- v5
-
+	
 	
 	-- Set up a frame to get OnUpdate events
 	if(not self.Frame) then
@@ -2544,7 +2544,7 @@ end
 function ChatThrottleLib:UpdateAvail()
 	local now = GetTime();
 	local newavail = MAX_CPS * (now-self.LastAvailUpdate);
-
+	
 	if(now - self.HardThrottlingBeginTime < 5) then
 		-- First 5 seconds after startup/zoning: VERY hard clamping to avoid irritating the server rate limiter, it seems very cranky then
 		self.avail = min(self.avail + (newavail*0.1), MAX_CPS*0.5);
@@ -2611,7 +2611,7 @@ function ChatThrottleLib.OnUpdate()
 	if(self.avail<0) then
 		return; -- argh. some bastard is spewing stuff past the lib. just bail early to save cpu.
 	end
-
+	
 	-- See how many of or priorities have queued messages
 	local n=0;
 	for prioname,Prio in pairs(self.Prio) do
@@ -2644,7 +2644,7 @@ function ChatThrottleLib.OnUpdate()
 			end
 		end
 	end
-
+	
 	-- Expire recycled tables if needed	
 	self.MsgBin:Tidy();
 	self.PipeBin:Tidy();
@@ -2701,7 +2701,7 @@ function ChatThrottleLib:SendChatMessage(prio, prefix,   text, chattype, languag
 	msg[4]=destination;
 	msg.n = 4
 	msg.nSize = nSize;
-
+	
 	self:Enqueue(prio, format("%s/%s/%s", prefix, chattype, destination or ""), msg);
 end
 
@@ -2742,13 +2742,11 @@ end
 ChatThrottleLib:Init();
 
 --[[ WoWBench debugging snippet
-if(WOWB_VER) then
+	if(WOWB_VER) then
 	local function SayTimer()
-		print("SAY: "..GetTime().." "..arg1);
+	print("SAY: "..GetTime().." "..arg1);
 	end
 	ChatThrottleLib.Frame:SetScript("OnEvent", SayTimer);
 	ChatThrottleLib.Frame:RegisterEvent("CHAT_MSG_SAY");
-end
+	end
 ]]
-
-

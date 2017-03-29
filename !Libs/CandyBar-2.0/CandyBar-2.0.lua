@@ -1,15 +1,15 @@
 --[[
-Name: CandyBar-2.0
-Revision: $Rev: 15771 $
-Author: Ammo (wouter@muze.nl)
-Website: http://www.wowace.com/
-Documentation: http://www.wowace.com/
-SVN: svn://svn.wowace.com/root/trunk/CandyBar/CandyBar-2.0
-Description: A timer bars library
-Dependencies: AceLibrary, AceOO-2.0, PaintChips-2.0, (optional) Compost-2.0
+	Name: CandyBar-2.0
+	Revision: $Rev: 15772 $
+	Author: Ammo (wouter@muze.nl), improved by Dorann
+	Website: http://www.wowace.com/
+	Documentation: http://www.wowace.com/
+	SVN: svn://svn.wowace.com/root/trunk/CandyBar/CandyBar-2.0
+	Description: A timer bars library
+	Dependencies: AceLibrary, AceOO-2.0, PaintChips-2.0, (optional) Compost-2.0
 ]]
 
-local vmajor, vminor = "CandyBar-2.0", "$Revision: 15771 $"
+local vmajor, vminor = "CandyBar-2.0", "$Revision: 15772 $"
 
 if not AceLibrary then error(vmajor .. " requires AceLibrary.") end
 if not AceLibrary:IsNewVersion(vmajor, vminor) then return end
@@ -39,10 +39,15 @@ local CandyBar = Mixin {
 	"SetCandyBarWidth",
 	"SetCandyBarHeight",
 	"SetCandyBarBackgroundColor",
+    "SetCandyBarBackgroundColorRGB",
 	"SetCandyBarTextColor",
 	"SetCandyBarTimerTextColor",
 	"SetCandyBarFontSize",
 	"SetCandyBarPoint",
+	"GetCandyBarPoint",
+    "GetCandyBarCenter",
+	"GetCandyBarOffsets",
+	"GetCandyBarEffectiveScale",
 	"SetCandyBarGradient",
 	"SetCandyBarScale",
 	"SetCandyBarTimeFormat",
@@ -55,6 +60,7 @@ local CandyBar = Mixin {
 	"SetCandyBarGroupPoint",
 	"SetCandyBarGroupGrowth",
 	"UpdateCandyBarGroup",
+	"GetCandyBarNextBarPointInGroup",
 	"RegisterCandyBarWithGroup",
 	"UnregisterCandyBarWithGroup",
 	"IsCandyBarRegisteredWithGroup",
@@ -110,7 +116,7 @@ function CandyBar:Unregister(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10)
 	reclaimtable(CandyBar.var.handlers[a1])
 	CandyBar.var.handlers[a1] = nil
 	if a2 then CandyBar:Unregister(a2,a3,a4,a5,a6,a7,a8,a9,a10)
-	elseif not CandyBar:HasHandlers() then CandyBar.var.frame:Hide() end
+elseif not CandyBar:HasHandlers() then CandyBar.var.frame:Hide() end
 	return true
 end
 
@@ -150,7 +156,7 @@ function CandyBar:Start( name, fireforget )
 	if CandyBar.var.handlers[name].group then CandyBar:UpdateGroup( CandyBar.var.handlers[name].group ) end -- update the group
 	CandyBar.var.frame:Show()
 	return true
-
+	
 end
 
 -- Stop a bar
@@ -159,10 +165,10 @@ end
 function CandyBar:Stop( name)
 	CandyBar:argCheck(name, 2, "string")
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	CandyBar.var.handlers[name].running = nil
 	CandyBar.var.handlers[name].paused = nil
-
+	
 	if CandyBar.var.handlers[name].fadeout then
 		CandyBar.var.handlers[name].frame.spark:Hide()
 		CandyBar.var.handlers[name].fading = true
@@ -171,7 +177,7 @@ function CandyBar:Stop( name)
 		if CandyBar.var.handlers[name].endtime > t then
 			CandyBar.var.handlers[name].endtime = t
 		end
-
+		
 		local reversed = CandyBar.var.handlers[name].reversed
 	else
 		CandyBar.var.handlers[name].frame:Hide()
@@ -235,16 +241,16 @@ function CandyBar:SetTimeLeft(name, time)
 	CandyBar:argCheck(time, 3, "number")
 	if not CandyBar.var.handlers[name] then return end
 	if CandyBar.var.handlers[name].time < time or time < 0 then return end
-
+	
 	local e = CandyBar.var.handlers[name].time - time
 	local d = CandyBar.var.handlers[name].elapsed - e
 	if CandyBar.var.handlers[name].starttime and CandyBar.var.handlers[name].endtime then
 		CandyBar.var.handlers[name].starttime = CandyBar.var.handlers[name].starttime + d
 		CandyBar.var.handlers[name].endtime = CandyBar.var.handlers[name].endtime + d
 	end
-
+	
 	CandyBar.var.handlers[name].elapsed = e
-
+	
 	return true
 end
 
@@ -254,19 +260,19 @@ end
 -- returns true when succesful
 function CandyBar:SetGradient(name, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
 	CandyBar:argCheck(name, 2, "string")
-
+	
 	CandyBar:argCheck(c1, 3, "string")
 	CandyBar:argCheck(c2, 4, "string")
-
+	
 	if not CandyBar.var.handlers[name] then return end
 	if not c1 or not c2 then return end
-
-
+	
+	
 	local gtable = {}
-
+	
 	gtable[1] = {}
 	gtable[2] = {}
-
+	
 	if not paint:GetRGBPercent(c1) then c1 = "green" end
 	if not paint:GetRGBPercent(c2) then c2 = "green" end
 	if c3 and not paint:GetRGBPercent(c3) then c3 = "green" end
@@ -277,7 +283,7 @@ function CandyBar:SetGradient(name, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
 	if c8 and not paint:GetRGBPercent(c8) then c8 = "green" end
 	if c9 and not paint:GetRGBPercent(c9) then c9 = "green" end
 	if c10 and not paint:GetRGBPercent(c10) then c10 = "green" end
-
+	
 	_, gtable[1][1], gtable[1][2], gtable[1][3] = paint:GetRGBPercent(c1)
 	_, gtable[2][1], gtable[2][2], gtable[2][3] = paint:GetRGBPercent(c2)
 	if c3 then gtable[3] = {} _, gtable[3][1], gtable[3][2], gtable[3][3] = paint:GetRGBPercent(c3) end
@@ -288,21 +294,21 @@ function CandyBar:SetGradient(name, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
 	if c8 then gtable[8] = {} _, gtable[8][1], gtable[8][2], gtable[8][3] = paint:GetRGBPercent(c8) end
 	if c9 then gtable[9] = {} _, gtable[9][1], gtable[9][2], gtable[9][3] = paint:GetRGBPercent(c9) end
 	if c10 then gtable[10] = {} _, gtable[10][1], gtable[10][2], gtable[10][3] = paint:GetRGBPercent(c10) end
-
-
-
+	
+	
+	
 	local max = table.getn(gtable)
-
+	
 	for i = 1, max do
 		if not gtable[i][4] then gtable[i][4] = 1 end
 		gtable[i][5] = (i-1) / (max-1)
 	end
-
+	
 	self.var.handlers[name].gradienttable = gtable
 	self.var.handlers[name].gradient = true
-
+	
 	CandyBar.var.handlers[name].frame.statusbar:SetStatusBarColor( gtable[1][1], gtable[1][2], gtable[1][3], gtable[1][4])
-
+	
 	return true
 end
 
@@ -314,22 +320,22 @@ end
 function CandyBar:SetColor(name, color, alpha)
 	CandyBar:argCheck(name, 2, "string")
 	CandyBar:argCheck(color, 3, "string")
-
+	
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	if not paint:GetRGBPercent(color) then return end
-
+	
 	local ctable = {}
-
+	
 	_, ctable[1], ctable[2], ctable[3] = paint:GetRGBPercent(color)
-
+	
 	if alpha then ctable[4] = alpha else ctable[4] = 1 end
-
+	
 	CandyBar.var.handlers[name].color = ctable
 	CandyBar.var.handlers[name].gradient = nil
-
+	
 	CandyBar.var.handlers[name].frame.statusbar:SetStatusBarColor( ctable[1], ctable[2], ctable[3], ctable[4] )
-
+	
 	return true
 end
 
@@ -341,21 +347,41 @@ end
 function CandyBar:SetBackgroundColor(name, color, alpha)
 	CandyBar:argCheck(name, 2, "string")
 	CandyBar:argCheck(color, 3, "string")
-
+	
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	if not paint:GetRGBPercent(color) then return end
-
+	
 	local ctable = {}
-
+	
 	_, ctable[1], ctable[2], ctable[3] = paint:GetRGBPercent(color)
-
+	
 	if alpha then ctable[4] = alpha else ctable[4] = 1 end
-
+	
 	CandyBar.var.handlers[name].bgcolor = ctable
-
+	
 	CandyBar.var.handlers[name].frame.statusbarbg:SetStatusBarColor( ctable[1], ctable[2], ctable[3], ctable[4] )
-
+	
+	return true
+end
+function CandyBar:SetBackgroundColorRGB(name, r, g, b, alpha)
+	CandyBar:argCheck(name, 2, "string")
+	CandyBar:argCheck(r, 1, "number")
+    CandyBar:argCheck(g, 1, "number")
+    CandyBar:argCheck(b, 1, "number")
+	
+	if not CandyBar.var.handlers[name] then return end
+	
+	local ctable = {}
+    
+    ctable[1], ctable[2], ctable[3] = r, g, b
+	
+	if alpha then ctable[4] = alpha else ctable[4] = 1 end
+	
+	CandyBar.var.handlers[name].bgcolor = ctable
+	
+	CandyBar.var.handlers[name].frame.statusbarbg:SetStatusBarColor( ctable[1], ctable[2], ctable[3], ctable[4] )
+	
 	return true
 end
 
@@ -367,22 +393,22 @@ end
 function CandyBar:SetTextColor(name, color, alpha)
 	CandyBar:argCheck(name, 2, "string")
 	CandyBar:argCheck(color, 3, "string")
-
+	
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	if not paint:GetRGBPercent(color) then return end
-
+	
 	local ctable = {}
-
+	
 	_, ctable[1], ctable[2], ctable[3] = paint:GetRGBPercent(color)
-
+	
 	if alpha then ctable[4] = alpha else ctable[4] = 1 end
-
-
+	
+	
 	CandyBar.var.handlers[name].textcolor = ctable
-
+	
 	CandyBar.var.handlers[name].frame.text:SetTextColor( ctable[1], ctable[2], ctable[3], ctable[4] )
-
+	
 	return true
 end
 
@@ -392,22 +418,22 @@ end
 --	 alpha - new alpha of the text
 -- returns true when succesful
 function CandyBar:SetTimerTextColor(name, color, alpha)
-        CandyBar:argCheck(name, 2, "string")
-        CandyBar:argCheck(color, 3, "string")
+	CandyBar:argCheck(name, 2, "string")
+	CandyBar:argCheck(color, 3, "string")
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	if not paint:GetRGBPercent(color) then return end
-
+	
 	local ctable = {}
-
+	
 	_, ctable[1], ctable[2], ctable[3] = paint:GetRGBPercent(color)
-
+	
 	if alpha then ctable[4] = alpha else ctable[4] = 1 end
-
+	
 	CandyBar.var.handlers[name].timertextcolor = ctable
-
+	
 	CandyBar.var.handlers[name].frame.timertext:SetTextColor( ctable[1], ctable[2], ctable[3], ctable[4] )
-
+	
 	return true
 end
 
@@ -419,10 +445,10 @@ function CandyBar:SetText(name, text)
 	CandyBar:argCheck(name, 2, "string")
 	CandyBar:argCheck(text, 2, "string")
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	CandyBar.var.handlers[name].text = text
 	CandyBar.var.handlers[name].frame.text:SetText(text)
-
+	
 	return true
 end
 
@@ -433,20 +459,20 @@ end
 function CandyBar:SetFontSize(name, fontsize)
 	CandyBar:argCheck(name, 2, "string")
 	CandyBar:argCheck(fontsize, 3, "number")
-
+	
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	local font, _, _ = GameFontHighlight:GetFont()
 	local timertextwidth = fontsize * 3
 	local width = CandyBar.var.handlers[name].width or CandyBar.var.defaults.width
 	local f = CandyBar.var.handlers[name].frame
-
+	
 	CandyBar.var.handlers[name].fontsize = fontsize
 	f.timertext:SetFont(font, fontsize)
 	f.text:SetFont(font, fontsize)
 	f.timertext:SetWidth( timertextwidth )
 	f.text:SetWidth( ( width - timertextwidth ) * .9 )
-
+	
 	return true
 end
 
@@ -460,20 +486,69 @@ end
 -- 	 yoffset -- y offset
 -- returns true when succesful
 function CandyBar:SetPoint(name, point, rframe, rpoint, xoffset, yoffset)
-        CandyBar:argCheck(name, 2, "string")
-
+	CandyBar:argCheck(name, 2, "string")
+	
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	CandyBar.var.handlers[name].point = point
 	CandyBar.var.handlers[name].rframe = rframe
 	CandyBar.var.handlers[name].rpoint = rpoint
 	CandyBar.var.handlers[name].xoffset = xoffset
 	CandyBar.var.handlers[name].yoffset = yoffset
-
+	
 	CandyBar.var.handlers[name].frame:ClearAllPoints()
 	CandyBar.var.handlers[name].frame:SetPoint(point, rframe,rpoint,xoffset,yoffset)
-
+	
 	return true
+end
+
+function CandyBar:GetPoint(name)
+	CandyBar:argCheck(name, 2, "string")
+	
+	local handler = CandyBar.var.handlers[name]
+	if not handler then
+		return
+	end
+	
+	return handler.point, handler.rframe, handler.rpoint, handler.xoffset, handler.yoffset
+end
+
+function CandyBar:GetCenter(name)
+	CandyBar:argCheck(name, 2, "string")
+	
+	local handler = CandyBar.var.handlers[name]
+	if not handler then
+		return
+	end
+	
+	return handler.frame:GetCenter()
+end
+
+function CandyBar:GetOffsets(name)
+	CandyBar:argCheck(name, 2, "string")
+	
+	local handler = CandyBar.var.handlers[name]
+	if not handler then
+		return
+	end
+	
+	local bottom = handler.frame:GetBottom()
+	local top = handler.frame:GetTop()
+	local left = handler.frame:GetLeft()
+	local right = handler.frame:GetRight()
+	
+	return left, top, bottom, right
+end
+
+function CandyBar:GetEffectiveScale(name)
+	CandyBar:argCheck(name, 2, "string")
+	
+	local handler = CandyBar.var.handlers[name]
+	if not handler then
+		return
+	end
+	
+	return handler.frame:GetEffectiveScale()
 end
 
 -- Set the width for a bar
@@ -481,11 +556,11 @@ end
 --       width - new width of the candybar
 -- returns true when succesful
 function CandyBar:SetWidth(name, width)
-        CandyBar:argCheck(name, 2, "string")
-        CandyBar:argCheck(width, 3, "number")
-
+	CandyBar:argCheck(name, 2, "string")
+	CandyBar:argCheck(width, 3, "number")
+	
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	local height = CandyBar.var.handlers[name].height or CandyBar.var.defaults.height
 	local fontsize = CandyBar.var.handlers[name].fontsize or CandyBar.var.defaults.fontsize
 	local timertextwidth = fontsize * 3
@@ -493,12 +568,12 @@ function CandyBar:SetWidth(name, width)
 	f:SetWidth( width + height )
 	f.statusbar:SetWidth( width )
 	f.statusbarbg:SetWidth( width )
-
+	
 	f.timertext:SetWidth( timertextwidth )
 	f.text:SetWidth( ( width - timertextwidth ) * .9 )
-
+	
 	CandyBar.var.handlers[name].width = width
-
+	
 	return true
 end
 
@@ -507,14 +582,14 @@ end
 --       height - new height for the bar
 -- returs true when succesful
 function CandyBar:SetHeight(name, height)
-        CandyBar:argCheck(name, 2, "string")
-        CandyBar:argCheck(height, 3, "number")
-
+	CandyBar:argCheck(name, 2, "string")
+	CandyBar:argCheck(height, 3, "number")
+	
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	local width = CandyBar.var.handlers[name].width or CandyBar.var.defaults.width
 	local f = CandyBar.var.handlers[name].frame
-
+	
 	f:SetWidth( width + height )
 	f:SetHeight( height )
 	f.icon:SetWidth( height )
@@ -522,13 +597,13 @@ function CandyBar:SetHeight(name, height)
 	f.statusbar:SetHeight( height )
 	f.statusbarbg:SetHeight( height )
 	f.spark:SetHeight( height + 25 )
-
+	
 	f.statusbarbg:SetPoint( "TOPLEFT", f, "TOPLEFT", height, 0)
 	f.statusbar:SetPoint("TOPLEFT", f, "TOPLEFT", height, 0)
-
+	
 	CandyBar.var.handlers[name].height = height
-
-
+	
+	
 	return true
 end
 
@@ -537,15 +612,15 @@ end
 -- 	 scale - new scale of the bar
 -- returns true when succesful
 function CandyBar:SetScale(name, scale)
-        CandyBar:argCheck(name, 2, "string")
-        CandyBar:argCheck(scale, 3, "number")
-
+	CandyBar:argCheck(name, 2, "string")
+	CandyBar:argCheck(scale, 3, "number")
+	
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	CandyBar.var.handlers[name].scale = scale
-
+	
 	CandyBar.var.handlers[name].frame:SetScale( scale )
-
+	
 	return true
 end
 
@@ -558,7 +633,7 @@ end
 function CandyBar:SetTimeFormat(name, func, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
 	CandyBar:argCheck(name, 2, "string")
 	CandyBar:argCheck(func, 3, "function")
-
+	
 	if not CandyBar.var.handlers[name] then return end
 	CandyBar.var.handlers[name].timeformat = func
 	CandyBar.var.handlers[name].timeformat1 = a1
@@ -571,7 +646,7 @@ function CandyBar:SetTimeFormat(name, func, a1, a2, a3, a4, a5, a6, a7, a8, a9, 
 	CandyBar.var.handlers[name].timeformat8 = a8
 	CandyBar.var.handlers[name].timeformat9 = a9
 	CandyBar.var.handlers[name].timeformat10 = a10
-
+	
 	return true
 end
 
@@ -583,7 +658,7 @@ end
 function CandyBar:SetCompletion(name, func, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
 	CandyBar:argCheck(name, 2, "string")
 	CandyBar:argCheck(func, 3, "function")
-
+	
 	if not CandyBar.var.handlers[name] then return end
 	CandyBar.var.handlers[name].completion = func
 	CandyBar.var.handlers[name].completion1 = a1
@@ -596,9 +671,9 @@ function CandyBar:SetCompletion(name, func, a1, a2, a3, a4, a5, a6, a7, a8, a9, 
 	CandyBar.var.handlers[name].completion8 = a8
 	CandyBar.var.handlers[name].completion9 = a9
 	CandyBar.var.handlers[name].completion10 = a10
-
+	
 	return true
-
+	
 end
 
 -- Set the on click function for a bar
@@ -609,7 +684,7 @@ end
 function CandyBar:SetOnClick(name, func, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10)
 	CandyBar:argCheck(name, 2, "string")
 	if func then CandyBar:argCheck(func, 3, "function") end
-
+	
 	if not CandyBar.var.handlers[name] then return end
 	CandyBar.var.handlers[name].onclick = func
 	CandyBar.var.handlers[name].onclick1 = a1
@@ -622,7 +697,7 @@ function CandyBar:SetOnClick(name, func, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10
 	CandyBar.var.handlers[name].onclick8 = a8
 	CandyBar.var.handlers[name].onclick9 = a9
 	CandyBar.var.handlers[name].onclick10 = a10
-
+	
 	if func then
 		-- enable mouse
 		CandyBar.var.handlers[name].frame:EnableMouse(true)
@@ -639,26 +714,26 @@ function CandyBar:SetOnClick(name, func, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10
 		CandyBar.var.handlers[name].frame.icon:RegisterForClicks()
 		CandyBar.var.handlers[name].frame.icon:SetScript("OnClick", nil )	
 	end
-
+	
 	return true
-
+	
 end
 -- Set the texture for a bar
 -- Args: name - name of the candybar
 --	 texture - new texture, if passed nil, the texture is reset to default
 -- returns true when succesful
 function CandyBar:SetTexture(name, texture)
-        CandyBar:argCheck(name, 2, "string")
+	CandyBar:argCheck(name, 2, "string")
 	if texture then CandyBar:argCheck(texture, 3, "string") end
-
+	
 	if not CandyBar.var.handlers[name] then return end
 	if not texture then texture = CandyBar.var.defaults.texture end
-
+	
 	CandyBar.var.handlers[name].texture = texture
-
+	
 	CandyBar.var.handlers[name].frame.statusbar:SetStatusBarTexture(texture)
 	CandyBar.var.handlers[name].frame.statusbarbg:SetStatusBarTexture(texture)
-
+	
 	return true
 end
 
@@ -668,18 +743,18 @@ end
 -- returns true when succesful
 function CandyBar:SetIcon(name, icon)
 	CandyBar:argCheck(name, 2, "string")
-        CandyBar:argCheck(icon, 3, "string")
-
+	CandyBar:argCheck(icon, 3, "string")
+	
 	if not CandyBar.var.handlers[name] then return end
 	CandyBar.var.handlers[name].icon = icon
-
+	
 	if not icon then
 		CandyBar.var.hanlders[name].frame.icon:Hide()
 	else
 		CandyBar.var.handlers[name].frame.icon:SetNormalTexture( icon )
 		CandyBar.var.handlers[name].frame.icon:Show()
 	end
-
+	
 	return true
 end
 
@@ -691,10 +766,10 @@ function CandyBar:SetFade(name, time, fade)
 	CandyBar:argCheck(name, 2, "string")
 	CandyBar:argCheck(time, 3, "number")
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	CandyBar.var.handlers[name].fadetime = time
 	CandyBar.var.handlers[name].fadeout = true
-
+	
 	return true
 end
 
@@ -711,7 +786,7 @@ end
 function CandyBar:IsReversed(name)
 	CandyBar:argCheck(name, 2, "string")
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	return CandyBar.var.handlers[name].reversed
 end
 
@@ -723,16 +798,16 @@ end
 function CandyBar:RegisterWithGroup( name, group )
 	CandyBar:argCheck(name, 2, "string")
 	CandyBar:argCheck(group, 3, "string")
-
+	
 	if not CandyBar.var.handlers[name] or not CandyBar.var.groups[group] then return end
-
+	
 	CandyBar:UnregisterWithGroup(name)
-
+	
 	table.insert( CandyBar.var.groups[group].bars, name)
 	-- CandyBar.var.groups[group].bars[name] = name
 	CandyBar.var.handlers[name].group = group
 	CandyBar:UpdateGroup(group)
-
+	
 	return true
 end
 
@@ -744,10 +819,10 @@ function CandyBar:UnregisterWithGroup( name )
 	CandyBar:argCheck(name, 2, "string")
 	if not CandyBar.var.handlers[name] then return end
 	--if not CandyBar.var.handlers[name].group then return end
-
+	
 	local group = CandyBar.var.handlers[name].group
 	if not CandyBar.var.groups[group] then return end
-
+	
 	for k,v in pairs( CandyBar.var.groups[group].bars ) do
 		if v == name then
 			table.remove( CandyBar.var.groups[group].bars, k)
@@ -755,11 +830,11 @@ function CandyBar:UnregisterWithGroup( name )
 	end
 	-- CandyBar.var.groups[group].bars[name] = nil
 	CandyBar.var.handlers[name].group = nil
-
+	
 	CandyBar:UpdateGroup(group)
-
+	
 	return true
-
+	
 end
 
 
@@ -770,16 +845,16 @@ end
 function CandyBar:RegisterGroup( name )
 	CandyBar:argCheck(name, 2, "string")
 	if CandyBar.var.groups[name] then return end
-
+	
 	local t = getnewtable()
-
+	
 	t.point = "CENTER"
 	t.rframe = UIParent
 	t.rpoint = "CENTER"
 	t.xoffset = 0
 	t.yoffset = 0
 	t.bars = {}
-
+	
 	CandyBar.var.groups[name] = t
 	return true
 end
@@ -793,9 +868,9 @@ function CandyBar:UnregisterGroup( a1, a2, a3, a4, a5, a6, a7, a8, a9, a10 )
 	if not CandyBar.var.groups[a1] then return end
 	reclaimtable(CandyBar.var.groups[a1])
 	CandyBar.var.groups[a1] = nil
-
+	
 	if a2 then CandyBar:UnregisterGroup( a2, a3,a4, a5, a6, a7, a8, a9, a10 )	end
-
+	
 	return true
 end
 
@@ -815,7 +890,7 @@ end
 function CandyBar:IsRegisteredWithGroup( name, group )
 	CandyBar:argCheck(name, 2, "string")
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	if group then
 		if not CandyBar.var.groups[group] then return false end
 		if CandyBar.var.handlers[name].group == group then return true end
@@ -838,7 +913,7 @@ end
 function CandyBar:SetGroupPoint(name, point, rframe, rpoint, xoffset, yoffset )
 	CandyBar:argCheck(name, 2, "string")
 	if not CandyBar.var.groups[name] then return end
-
+	
 	CandyBar.var.groups[name].point = point
 	CandyBar.var.groups[name].rframe = rframe
 	CandyBar.var.groups[name].rpoint = rpoint
@@ -856,13 +931,13 @@ end
 function CandyBar:SetGroupGrowth( name, growup )
 	CandyBar:argCheck(name, 2, "string")
 	CandyBar:argCheck(growup, 3, "boolean")
-
+	
 	if not CandyBar.var.groups[name] then return end
-
+	
 	CandyBar.var.groups[name].growup = growup
-
+	
 	CandyBar:UpdateGroup(name)
-
+	
 	return true
 end
 
@@ -870,7 +945,7 @@ function CandyBar:SortGroup( name )
 	if not CandyBar.var.groups[name] then return end
 	table.sort( CandyBar.var.groups[name].bars,
 		function( a, b )
-				return CandyBar.var.handlers[a].endtime < CandyBar.var.handlers[b].endtime
+			return CandyBar.var.handlers[a].endtime < CandyBar.var.handlers[b].endtime
 		end
 	)
 end
@@ -882,7 +957,7 @@ end
 
 function CandyBar:UpdateGroup( name )
 	if not CandyBar.var.groups[name] then return end
-
+	
 	local point = CandyBar.var.groups[name].point
 	local rframe = CandyBar.var.groups[name].rframe
 	local rpoint = CandyBar.var.groups[name].rpoint
@@ -890,12 +965,12 @@ function CandyBar:UpdateGroup( name )
 	local yoffset = CandyBar.var.groups[name].yoffset
 	local m = -1
 	if CandyBar.var.groups[name].growup then m = 1 end
-
+	
 	local bar = 0
 	local barh = 0
-
+	
 	CandyBar:SortGroup( name )
-
+	
 	for c,n in pairs(CandyBar.var.groups[name].bars) do
 		if CandyBar.var.handlers[n] then
 			if CandyBar.var.handlers[n].frame:IsShown() then
@@ -908,18 +983,51 @@ function CandyBar:UpdateGroup( name )
 	return true
 end
 
+function CandyBar:GetNextBarPointInGroup(name)
+	CandyBar:argCheck(name, 2, "string")
+	
+	local group = CandyBar.var.groups[name]
+	if not CandyBar.var.groups[name] then
+		return
+	end
+	
+	local xoffset = group.xoffset
+	local yoffset = group.yoffset
+	local m = -1
+	if group.growup then
+		m = 1
+	end
+	
+	local bar = 0
+	local barh = 0
+	
+	local vertspacing = group.vertspacing or 0
+	
+	for c,n in pairs(group.bars) do
+		local handler = CandyBar.var.handlers[n]
+		if handler then
+			if handler.frame:IsShown() then
+				barh = handler.height or CandyBar.var.defaults.height
+				bar = bar + barh + vertspacing
+			end
+		end
+	end
+	
+	return xoffset, yoffset + (m * bar)
+end
+
 -- Internal Method
 -- Update a bar on screen
 function CandyBar:Update( name )
-
+	
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	local t = CandyBar.var.handlers[name].time - CandyBar.var.handlers[name].elapsed
-
+	
 	local timetext
-
+	
 	local reversed = CandyBar.var.handlers[name].reversed
-
+	
 	if CandyBar.var.handlers[name].timeformat then
 		local c = CandyBar.var.handlers[name]
 		timetext = CandyBar.var.handlers[name].timeformat(t, c.timeformat1, c.timeformat2, c.timeformat3, c.timeformat4, c.timeformat5, c.timeformat6, c.timeformat7, c.timeformat8, c.timeformat9, c.timeformat10 )
@@ -939,17 +1047,17 @@ function CandyBar:Update( name )
 		end
 	end
 	CandyBar.var.handlers[name].frame.timertext:SetText(timetext)
-
+	
 	local perc = t / CandyBar.var.handlers[name].time
-
+	
 	CandyBar.var.handlers[name].frame.statusbar:SetValue(reversed and 1-perc or perc)
-
+	
 	local width = CandyBar.var.handlers[name].width or CandyBar.var.defaults.width
-
+	
 	local sp = width * perc
 	sp = reversed and -sp or sp
 	CandyBar.var.handlers[name].frame.spark:SetPoint("CENTER", CandyBar.var.handlers[name].frame.statusbar, reversed and "RIGHT" or "LEFT", sp, 0)
-
+	
 	if CandyBar.var.handlers[name].gradient then
 		local p = CandyBar.var.handlers[name].elapsed / CandyBar.var.handlers[name].time
 		local gstart, gend, gp
@@ -957,7 +1065,7 @@ function CandyBar:Update( name )
 		for i = 1, table.getn(CandyBar.var.handlers[name].gradienttable)-1 do
 			if CandyBar.var.handlers[name].gradienttable[i][5] < p and p <= CandyBar.var.handlers[name].gradienttable[i+1][5] then
 				-- the bounds are to assure no divide by zero error here.
-
+				
 				gstart = self.var.handlers[name].gradienttable[i]
 				gend = self.var.handlers[name].gradienttable[i+1]
 				gp = (p - gstart[5]) / (gend[5] - gstart[5])
@@ -972,7 +1080,7 @@ function CandyBar:Update( name )
 				color[i] = gstart[i]*(1-gp) + gend[i]*(gp)
 			end
 			CandyBar.var.handlers[name].frame.statusbar:SetStatusBarColor( color[1], color[2], color[3], color[4])
-
+			
 			reclaimtable(color)
 			color = nil
 		end
@@ -984,7 +1092,7 @@ end
 function CandyBar:UpdateFade( name )
 	if not CandyBar.var.handlers[name] then return end
 	if not CandyBar.var.handlers[name].fading then return end
-
+	
 	-- if the fade is done go and keel the bar.
 	if CandyBar.var.handlers[name].fadeelapsed > CandyBar.var.handlers[name].fadetime then
 		CandyBar.var.handlers[name].fading = nil
@@ -1006,7 +1114,7 @@ function CandyBar:UpdateFade( name )
 		local bgcolora = bgcolor[4] * p
 		local textcolora = textcolor[4] * p
 		local timertextcolora = timertextcolor[4] * p
-
+		
 		CandyBar.var.handlers[name].frame.statusbarbg:SetStatusBarColor( bgcolor[1], bgcolor[2], bgcolor[3], bgcolora)
 		CandyBar.var.handlers[name].frame.statusbar:SetStatusBarColor( color[1], color[2], color[3], colora)
 		CandyBar.var.handlers[name].frame.text:SetTextColor( textcolor[1], textcolor[2], textcolor[3], textcolora )
@@ -1022,9 +1130,9 @@ end
 -- Returns the frame
 function CandyBar:AcquireBarFrame( name )
 	if not CandyBar.var.handlers[name] then return end
-
+	
 	local f = CandyBar.var.handlers[name].frame
-
+	
 	local color = CandyBar.var.handlers[name].color or CandyBar.var.defaults.color
 	local bgcolor = CandyBar.var.handlers[name].bgcolor or CandyBar.var.defaults.bgcolor
 	local icon = CandyBar.var.handlers[name].icon or nil
@@ -1044,12 +1152,12 @@ function CandyBar:AcquireBarFrame( name )
 	if not scale then scale = 1 end
 	local timertextwidth = fontsize * 3
 	local font, _, _ = GameFontHighlight:GetFont()
-
-
+	
+	
 	if not f and table.getn(CandyBar.var.framepool) > 0 then
 		f = table.remove(CandyBar.var.framepool)
 	end
-
+	
 	if not f then f = CreateFrame("Button", nil, UIParent) end
 	f:Hide()
 	f.owner = name
@@ -1063,7 +1171,7 @@ function CandyBar:AcquireBarFrame( name )
 	f:RegisterForClicks()
 	f:SetScript("OnClick", nil)
 	f:SetScale( scale )
-
+	
 	if not f.icon then f.icon = CreateFrame("Button", nil, f) end
 	f.icon:ClearAllPoints()
 	f.icon.owner = name
@@ -1077,7 +1185,7 @@ function CandyBar:AcquireBarFrame( name )
 	f.icon:SetNormalTexture(icon)
 	f.icon:SetAlpha(1)
 	f.icon:Show()
-
+	
 	if not f.statusbarbg then
 		f.statusbarbg = CreateFrame("StatusBar", nil, f )
 		f.statusbarbg:SetFrameLevel(f.statusbarbg:GetFrameLevel() - 1)
@@ -1091,7 +1199,7 @@ function CandyBar:AcquireBarFrame( name )
 	f.statusbarbg:SetStatusBarColor( bgcolor[1],bgcolor[2],bgcolor[3],bgcolor[4])
 	f.statusbarbg:SetMinMaxValues(0,100)
 	f.statusbarbg:SetValue(100)
-
+	
 	if not f.statusbar then f.statusbar = CreateFrame("StatusBar", nil, f ) end
 	f.statusbar:ClearAllPoints()
 	f.statusbar:SetHeight( height )
@@ -1102,15 +1210,15 @@ function CandyBar:AcquireBarFrame( name )
 	f.statusbar:SetStatusBarColor( color[1], color[2], color[3], color[4] )
 	f.statusbar:SetMinMaxValues(0,1)
 	f.statusbar:SetValue(1)
-
-
+	
+	
 	if not f.spark then f.spark = f.statusbar:CreateTexture(nil, "OVERLAY") end
 	f.spark:SetTexture("Interface\\CastingBar\\UI-CastingBar-Spark")
 	f.spark:SetWidth(16)
 	f.spark:SetHeight( height + 25 )
 	f.spark:SetBlendMode("ADD")
 	f.spark:Show()
-
+	
 	if not f.timertext then f.timertext = f.statusbar:CreateFontString(nil, "OVERLAY") end
 	f.timertext:SetFontObject(GameFontHighlight)
 	f.timertext:SetFont( font, fontsize )
@@ -1120,7 +1228,7 @@ function CandyBar:AcquireBarFrame( name )
 	f.timertext:SetJustifyH("RIGHT")
 	f.timertext:SetText("0")
 	f.timertext:SetTextColor(timertextcolor[1], timertextcolor[2], timertextcolor[3], timertextcolor[4])
-
+	
 	if not f.text then f.text = f.statusbar:CreateFontString(nil, "OVERLAY") end
 	f.text:SetFontObject(GameFontHighlight)
 	f.text:SetFont( font, fontsize)
@@ -1130,7 +1238,7 @@ function CandyBar:AcquireBarFrame( name )
 	f.text:SetJustifyH("LEFT")
 	f.text:SetText(text)
 	f.text:SetTextColor(textcolor[1], textcolor[2], textcolor[3], textcolor[4])
-
+	
 	if CandyBar.var.handlers[name].onclick then
 		f:EnableMouse(true)
 		f:RegisterForClicks("LeftButtonUp", "RightButtonUp", "MiddleButtonUp", "Button4Up", "Button5Up")
@@ -1139,8 +1247,8 @@ function CandyBar:AcquireBarFrame( name )
 		f.icon:RegisterForClicks("LeftButtonUp", "RightButtonUp", "MiddleButtonUp", "Button4Up", "Button5Up")
 		f.icon:SetScript("OnClick", function() CandyBar:OnClick() end )	
 	end
-
-
+	
+	
 	return f
 end
 
@@ -1218,10 +1326,15 @@ CandyBar.SetCandyBarColor = CandyBar.SetColor
 CandyBar.SetCandyBarText = CandyBar.SetText
 CandyBar.SetCandyBarIcon = CandyBar.SetIcon
 CandyBar.SetCandyBarBackgroundColor = CandyBar.SetBackgroundColor
+CandyBar.SetCandyBarBackgroundColorRGB = CandyBar.SetBackgroundColorRGB
 CandyBar.SetCandyBarTextColor = CandyBar.SetTextColor
 CandyBar.SetCandyBarTimerTextColor = CandyBar.SetTimerTextColor
 CandyBar.SetCandyBarFontSize = CandyBar.SetFontSize
 CandyBar.SetCandyBarPoint = CandyBar.SetPoint
+CandyBar.GetCandyBarPoint = CandyBar.GetPoint
+CandyBar.GetCandyBarCenter = CandyBar.GetCenter
+CandyBar.GetCandyBarOffsets = CandyBar.GetOffsets
+CandyBar.GetCandyBarEffectiveScale = CandyBar.GetEffectiveScale
 CandyBar.SetCandyBarScale = CandyBar.SetScale
 CandyBar.SetCandyBarTimeFormat = CandyBar.SetTimeFormat
 CandyBar.SetCandyBarTimeLeft = CandyBar.SetTimeLeft
@@ -1232,6 +1345,7 @@ CandyBar.IsCandyBarGroupRegistered = CandyBar.IsGroupRegistered
 CandyBar.SetCandyBarGroupPoint = CandyBar.SetGroupPoint
 CandyBar.SetCandyBarGroupGrowth = CandyBar.SetGroupGrowth
 CandyBar.UpdateCandyBarGroup = CandyBar.UpdateGroup
+CandyBar.GetCandyBarNextBarPointInGroup = CandyBar.GetNextBarPointInGroup
 CandyBar.SetCandyBarOnClick = CandyBar.SetOnClick
 CandyBar.SetCandyBarFade = CandyBar.SetFade
 CandyBar.RegisterCandyBarWithGroup = CandyBar.RegisterWithGroup
@@ -1273,7 +1387,7 @@ end
 
 function CandyBar:activate(oldLib, oldDeactivate)
 	CandyBar = self
-
+	
 	if oldLib then self.var = oldLib.var
 	else
 		local _,_,ourpath = string.find(debugstack(), "\\AddOns\\(.-)CandyBar%-2%.0%.lua")
@@ -1306,7 +1420,7 @@ function CandyBar:activate(oldLib, oldDeactivate)
 	end
 	self.var.frame:SetScript("OnUpdate", self.OnUpdate)
 	self.var.frame.owner = self
-
+	
 	if oldDeactivate then oldDeactivate(oldLib) end
 end
 

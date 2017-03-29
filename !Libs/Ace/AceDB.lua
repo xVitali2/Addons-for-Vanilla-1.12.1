@@ -21,17 +21,17 @@ end
 function AceDatabase:Initialize()
 	if( self.initialized ) then return end
 	self.initialized = TRUE
-
+	
 	self._table = getglobal(self.name)
 	if( self._table ) then return end
-
+	
 	self._table = {}
 	setglobal(self.name, self._table)
 	if( self.seed ) then
 		ace.CopyTable(self._table, self.seed)
 	end
 	self.created = TRUE
-
+	
 	return self.created
 end
 

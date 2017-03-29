@@ -1,11 +1,11 @@
 
 --[[
-Name: SpecialEvents-Equipped-2.0
-Revision: $Rev: 15013 $
-Author: Tekkub Stoutwrithe (tekkub@gmail.com)
-Website: http://www.wowace.com/
-Description: Special events for equipment changes
-Dependencies: AceLibrary, AceEvent-2.0
+	Name: SpecialEvents-Equipped-2.0
+	Revision: $Rev: 15013 $
+	Author: Tekkub Stoutwrithe (tekkub@gmail.com)
+	Website: http://www.wowace.com/
+	Description: Special events for equipment changes
+	Dependencies: AceLibrary, AceEvent-2.0
 ]]
 
 
@@ -31,7 +31,7 @@ function activate(self, oldLib, oldDeactivate)
 	self:RegisterEvent("PLAYER_LEAVING_WORLD")
 	if AceLibrary("AceEvent-2.0"):IsFullyInitialized() then self:AceEvent_FullyInitialized()
 	else self:RegisterEvent("AceEvent_FullyInitialized") end
-
+	
 	if oldDeactivate then oldDeactivate(oldLib) end
 end
 
@@ -58,7 +58,7 @@ end
 
 function lib:UNIT_INVENTORY_CHANGED()
 	if arg1 ~= "player" then return end
-
+	
 	for i=0,19 do
 		local link = GetInventoryItemLink("player", i)
 		if self.vars.inv[i] ~= link then
@@ -77,7 +77,7 @@ end
 -- If no slot is passed returns the index of the first slot that has the item equipped
 function lib:ItemIsEquipped(itemlink, slot)
 	if slot then return self.vars.inv[slot] == itemlink
-	else
+		else
 		for i,v in pairs(self.vars.inv) do
 			if v == itemlink then return i end
 		end
@@ -89,5 +89,3 @@ end
 --      Load this bitch!      --
 --------------------------------
 AceLibrary:Register(lib, vmajor, vminor, activate)
-
-

@@ -1,17 +1,19 @@
 ## Interface: 11200
 ## Title: !|cff7fff7fLibs|r (AIO Library Package)
 ## Notes: A package of all the Ace SVN libraries
-## Notes-ruRU: Пакет всех библиотек Ace SVN
+## Notes-ruRU: Пакет всех Ace SVN библиотек
 ## Notes-koKR: ACE SVN 통합 라이브러리 패키지
 ## Author: Various
 ## Version: 1.0
 ## OptionalDeps: !!Warmup, !BugGrabber
 ## X-Category: Library
+## X-Credits: Maus & Co. (Updating, localizing libraries)
+## X-Website: https://vk.com/wowruru
 
 Ace\Ace.xml
-Ace\AceLocals_deDE.lua
-Ace\AceLocals_ruRU.lua
-Ace\AceLocals.lua
+Ace\Locale\AceLocals_deDE.lua
+Ace\Locale\AceLocals_ruRU.lua
+Ace\Locale\AceLocals.lua
 Ace\Ace.lua
 Ace\AceDB.lua
 Ace\AceData.lua
@@ -132,5 +134,5 @@ FiveSecLib-1.0\FiveSecLib-1.0.lua
 HealComm-1.0\HealComm-1.0.lua
 DruidManaLib-1.0\DruidManaLib-1.0.lua
 CastLib-1.0\CastLib-1.0.lua
-
+Waterfall-1.0\Waterfall-1.0.lua
 FAIAP.lua

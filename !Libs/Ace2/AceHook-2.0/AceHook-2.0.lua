@@ -1,13 +1,13 @@
 --[[
-Name: AceHook-2.0
-Revision: $Rev: 17638 $
-Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
-Inspired By: Ace 1.x by Turan (turan@gryphon.com)
-Website: http://www.wowace.com/
-Documentation: http://www.wowace.com/index.php/AceHook-2.0
-SVN: http://svn.wowace.com/root/trunk/Ace2/AceHook-2.0
-Description: Mixin to allow for safe hooking of functions, methods, and scripts.
-Dependencies: AceLibrary, AceOO-2.0
+	Name: AceHook-2.0
+	Revision: $Rev: 17638 $
+	Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
+	Inspired By: Ace 1.x by Turan (turan@gryphon.com)
+	Website: http://www.wowace.com/
+	Documentation: http://www.wowace.com/index.php/AceHook-2.0
+	SVN: http://svn.wowace.com/root/trunk/Ace2/AceHook-2.0
+	Description: Mixin to allow for safe hooking of functions, methods, and scripts.
+	Dependencies: AceLibrary, AceOO-2.0
 ]]
 
 local MAJOR_VERSION = "AceHook-2.0"
@@ -21,18 +21,18 @@ if loadstring("return function(...) return ... end") and AceLibrary:HasInstance(
 if not AceLibrary:HasInstance("AceOO-2.0") then error(MAJOR_VERSION .. " requires AceOO-2.0") end
 
 --[[---------------------------------------------------------------------------------
-  Create the library object
+	Create the library object
 ----------------------------------------------------------------------------------]]
 
 local AceOO = AceLibrary:GetInstance("AceOO-2.0")
 local AceHook = AceOO.Mixin {
-								"Hook",
-								"Unhook",
-								"UnhookAll",
-								"HookReport",
-								"IsHooked",
-								"HookScript",
-							}
+	"Hook",
+	"Unhook",
+	"UnhookAll",
+	"HookReport",
+	"IsHooked",
+	"HookScript",
+}
 
 local table_setn
 do
@@ -46,7 +46,7 @@ do
 end
 
 --[[---------------------------------------------------------------------------------
-  Library Definitions
+	Library Definitions
 ----------------------------------------------------------------------------------]]
 
 local protFuncs = {
@@ -69,7 +69,7 @@ local _G = getfenv(0)
 local handlers, funcs, scripts, actives
 
 --[[---------------------------------------------------------------------------------
-  Private definitions (Not exposed)
+	Private definitions (Not exposed)
 ----------------------------------------------------------------------------------]]
 
 --[[----------------------------------------------------------------------
@@ -204,7 +204,7 @@ local function _hookFunc(self, func, handler)
 	end
 	
 	if not handler then handler = func end
-
+	
 	if self.hooks[func] then
 		local orig = self.hooks[func].orig
 		-- We have an active hook from this source.  Don't multi-hook
@@ -244,11 +244,11 @@ end
 --[[----------------------------------------------------------------------
 	AceHook:UnhookFunc - internal method
 	o If you attempt to unhook a function that has never been hooked, or to unhook in a
-	  system that has never had a hook before, the system will error with a stack trace
+	system that has never had a hook before, the system will error with a stack trace
 	o If we own the global function, then put the original back in its place and remove
-	  all references to the Hooks[func] structure.
+	all references to the Hooks[func] structure.
 	o If we don't own the global function (we've been hooked) we deactivate the hook,
-	  forcing the handler to passthrough.
+	forcing the handler to passthrough.
 -------------------------------------------------------------------------]]		
 local function _unhookFunc(self, func)
 	if not self.hooks[func] or not funcs[self.hooks[func].orig] then
@@ -323,7 +323,7 @@ local function _hookMeth(self, obj, method, handler, script)
 		if not orig then
 			orig = function() end
 		end
-	-- Method
+		-- Method
 	else
 		orig = obj[method]
 	end
@@ -353,11 +353,11 @@ end
 --[[----------------------------------------------------------------------
 	AceHook:UnhookMeth - Internal method
 	o If you attempt to unhook a method that has never been hooked, or to unhook in a
-	  system that has never had a hook before, the system will error with a stack trace
+	system that has never had a hook before, the system will error with a stack trace
 	o If we own the global method, then put the original back in its place and remove
-	  all references to the Hooks[obj][method] structure.
+	all references to the Hooks[obj][method] structure.
 	o If we don't own the global method (we've been hooked) we deactivate the hook,
-	  forcing the handler to passthrough.
+	forcing the handler to passthrough.
 -------------------------------------------------------------------------]]		
 local function _unhookMeth(self, obj, method)
 	if not self.hooks[obj] or not self.hooks[obj][method] or not funcs[self.hooks[obj][method].orig] then
@@ -433,8 +433,8 @@ AceHook.OnManualEmbed = AceHook.OnInstanceInit
 
 --[[----------------------------------------------------------------------
 	AceHook:Hook
-		self:Hook("functionName", ["handlerName" | handler])
-		self:Hook(ObjectName, "Method", ["Handler" | handler])
+	self:Hook("functionName", ["handlerName" | handler])
+	self:Hook(ObjectName, "Method", ["Handler" | handler])
 -------------------------------------------------------------------------]]		
 function AceHook:Hook(arg1, arg2, arg3)
 	if type(arg1)== "string" then
@@ -458,12 +458,12 @@ end
 
 --[[----------------------------------------------------------------------
 	AceHook:IsHooked()
-		self:Hook("functionName")
-		self:Hook(ObjectName, "Method")
-		
-		Returns whether or not the given function is hooked in the current	
-		namespace.  A hooked, but inactive function is considered NOT
-		hooked in this context.
+	self:Hook("functionName")
+	self:Hook(ObjectName, "Method")
+	
+	Returns whether or not the given function is hooked in the current	
+	namespace.  A hooked, but inactive function is considered NOT
+	hooked in this context.
 -------------------------------------------------------------------------]]		
 function AceHook:IsHooked(obj, method)
 	if method and obj then
@@ -481,8 +481,8 @@ end
 
 --[[----------------------------------------------------------------------
 	AceHook:Unhook
-		self:Unhook("functionName")
-		self:Unhook(ObjectName, "Method")
+	self:Unhook("functionName")
+	self:Unhook(ObjectName, "Method")
 -------------------------------------------------------------------------]]		
 function AceHook:Unhook(arg1, arg2)
 	if type(arg1) == "string" then
@@ -511,7 +511,7 @@ end
 function AceHook:OnEmbedDisable(target)
 	self.UnhookAll(target)
 end
-	
+
 --[[----------------------------------------------------------------------
 	AceHook:HookReport - Lists registered hooks from this source
 -------------------------------------------------------------------------]]		
@@ -519,7 +519,7 @@ end
 function AceHook:HookReport()
 	_debug(self, "This is a list of all active hooks for this object:")
 	if not self.hooks then _debug(self, "No registered hooks.") return end
-
+	
 	for key, value in pairs(self.hooks) do
 		if type(value) == "table" then
 			for method in pairs(value) do
@@ -532,7 +532,7 @@ function AceHook:HookReport()
 end
 
 --[[---------------------------------------------------------------------------------
-  Stub and Library registration
+	Stub and Library registration
 ----------------------------------------------------------------------------------]]
 
 local function activate(self, oldLib, oldDeactivate)

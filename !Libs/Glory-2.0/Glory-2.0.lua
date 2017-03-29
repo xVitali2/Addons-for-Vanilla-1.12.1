@@ -1,16 +1,16 @@
 --[[
-Name: Glory-2.0
-Revision: $Rev: 14737 $
-Author(s): ckknight (ckknight@gmail.com)
-           Elkano (elkano@gmx.de)
-           hyperactiveChipmunk (hyperactiveChipmunk@gmail.com)
-Website: http://ckknight.wowinterface.com/
-Documentation: http://wiki.wowace.com/index.php/Glory-2.0
-SVN: http://svn.wowace.com/root/trunk/GloryLib/Glory-2.0
-Description: A library for PvP and Battlegrounds.
-Dependencies: AceLibrary, Babble-Zone-2.2, Deformat-2.0, AceEvent-2.0, AceConsole-2.0 (optional)
-
-Notes: To use this library, the per-character saved variable Glory2DB must be available.
+	Name: Glory-2.0
+	Revision: $Rev: 14737 $
+	Author(s): ckknight (ckknight@gmail.com)
+	Elkano (elkano@gmx.de)
+	hyperactiveChipmunk (hyperactiveChipmunk@gmail.com)
+	Website: http://ckknight.wowinterface.com/
+	Documentation: http://wiki.wowace.com/index.php/Glory-2.0
+	SVN: http://svn.wowace.com/root/trunk/GloryLib/Glory-2.0
+	Description: A library for PvP and Battlegrounds.
+	Dependencies: AceLibrary, Babble-Zone-2.2, Deformat-2.0, AceEvent-2.0, AceConsole-2.0 (optional)
+	
+	Notes: To use this library, the per-character saved variable Glory2DB must be available.
 ]]
 
 local MAJOR_VERSION = "Glory-2.0"
@@ -96,52 +96,52 @@ if locale == "koKR" then
 		UNCONTROLLED = "미점령 지역",
 		DESTROYED = "파괴됨",
 	}
-
+	
 	BGChatAnnouncements = {
 		BGObjectiveClaimedAnnouncements = {
 			PATTERN_OBJECTIVE_CLAIMED_AB = "|1이;가 (.-)|1을;를; 공격했습니다! 방어하지 못하면 1분 안에 (.-)에 넘어갈 것입니다",
 		},
-
+		
 		BGObjectiveAttackedAnnouncements = {
 			PATTERN_OBJECTIVE_ATTACKED_AB = "^(.-)|1이;가; (.+)|1을;를; 공격했습니다",
 			PATTERN_OBJECTIVE_ATTACKED_AV0 = "^(.+)|1이;가; 공격 받고 있습니다",
 		},
-
+		
 		BGObjectiveDefendedAnnouncements = {
 			PATTERN_OBJECTIVE_DEFENDED_AB = "^(.-)|1이;가; (.+)|1을;를; 방어했습니다",
 		},
-
+		
 		BGObjectiveCapturedAnnouncements = {
 			PATTERN_OBJECTIVE_CAPTURED_AB = "^(.-)|1이;가; (.+)|1을;를; 점령했습니다",
 			PATTERN_OBJECTIVE_CAPTURED_AV0 = "^(.-)|1이;가; (.+)|1을;를; 점령했습니다",
 			PATTERN_OBJECTIVE_CAPTURED_AV1 = "the ([%w ]+) is.*MINE", --and the Irondeep Mine is...MINE!
 			PATTERN_OBJECTIVE_CAPTURED_AV2 = "|1이;가;* (.-)|을;를; 공격했습니다!",   --Snivvle claims the Coldtooth Mine!
 		},
-
+		
 		BGObjectiveDestroyedAnnouncements = {
 			PATTERN_OBJECTIVE_DESTROYED_AV0 = "|1이;가; (.-)|1을;를; 파괴했습니다",
 		},
 	}
-
+	
 	BGPatternReplacements = {
 	}
-
+	
 	BGAcronyms = {
 		[ALTERAC_VALLEY] = "AV", -- CHECK
 		[ARATHI_BASIN] = "AB", -- CHECK
 		[WARSONG_GULCH] = "WSG", -- CHECK
 	}
-
+	
 	PATTERN_GWSUII_SCORE = "(%d+/%d+)"			  --for lifting the score out of the first return value of GetWorldStateUIInfo(index)
 	PATTERN_GWSUII_BASES = "거점: (%d+)"		   --for lifting the number of bases held in Arathi Basin
 	PATTERN_GWSUII_RESOURCES = "자원: (%d+)"   --for lifting the number of bases held in Arathi Basin
 	PATTERN_OBJECTIVE_HOLDER = "(.+) 점령지"
-
+	
 	RACE_ORC = "오크" 
 	RACE_TROLL = "트롤" 
 	RACE_TAUREN = "타우렌" 
 	RACE_UNDEAD = "언데드"
-
+	
 elseif locale == "deDE" then
 	PATTERN_HORDE_FLAG_PICKED_UP = "([^!]+) hat die [Ff]lagge der Horde aufgenommen!"
 	PATTERN_HORDE_FLAG_DROPPED = "(%a+) hat die [Ff]lagge der Horde fallen lassen!"
@@ -165,7 +165,7 @@ elseif locale == "deDE" then
 		UNCONTROLLED = "Unkontrolliert",
 		DESTROYED = "Zerst\195\182rt",
 	}
-
+	
 	BGChatAnnouncements = {
 		BGObjectiveClaimedAnnouncements = {
 			PATTERN_OBJECTIVE_CLAIMED_AB0 = "hat das (.+) besetzt.* die (%a+) in",
@@ -174,7 +174,7 @@ elseif locale == "deDE" then
 			PATTERN_OBJECTIVE_CLAIMED_AB3 = "hat (S\195\164gewerk) besetzt.* die (%a+) in",
 			PATTERN_OBJECTIVE_CLAIMED_AV0 = "hat den (.+) besetzt.* erlangt die (%a+) die Kontrolle"
 		},
-
+		
 		BGObjectiveAttackedAnnouncements = {
 			PATTERN_OBJECTIVE_ATTACKED_AB0 = "das (.+) angegriffen",
 			PATTERN_OBJECTIVE_ATTACKED_AB1 = "den (.+) angegriffen",
@@ -183,13 +183,13 @@ elseif locale == "deDE" then
 			PATTERN_OBJECTIVE_ATTACKED_AV1 = "Der (.+) wird angegriffen.*wird die (%a+) ihn",
 			PATTERN_OBJECTIVE_ATTACKED_AV2 = "Die (.+) wird angegriffen.*wird die (%a+) sie",
 		},
-
+		
 		BGObjectiveDefendedAnnouncements = {
 			PATTERN_OBJECTIVE_DEFENDED_AB0 = "das (.+) verteidigt",
 			PATTERN_OBJECTIVE_DEFENDED_AB1 = "den (.+) verteidigt",
 			PATTERN_OBJECTIVE_DEFENDED_AB2 = "die (.+) verteidigt",
 		},
-
+		
 		BGObjectiveCapturedAnnouncements = {
 			PATTERN_OBJECTIVE_CAPTURED_AB0 = "Die (%a+) hat das (.+) eingenommen",
 			PATTERN_OBJECTIVE_CAPTURED_AB1 = "Die (%a+) hat den (.+) eingenommen",
@@ -198,34 +198,34 @@ elseif locale == "deDE" then
 			PATTERN_OBJECTIVE_CAPTURED_AV1 = "Der (.+) wurde von der (%a+) erobert",
 			PATTERN_OBJECTIVE_CAPTURED_AV2 = "geh\195\182rt jetzt die (.+)!",
 		},
-
+		
 		BGObjectiveDestroyedAnnouncements = {
 			PATTERN_OBJECTIVE_DESTROYED_AV0 = "Der (.+) wurde von der (%a+) zerst\195\182rt",
 		},
 	}
-
+	
 	BGPatternReplacements = {
 		["Schmiede"] = "Schmied",
 		["Mine"] = "Goldmine",
 		["s\195\188dlichen Hof"] = "Hof",
 	}
-
+	
 	BGAcronyms = {
 		[ALTERAC_VALLEY] = "AV", -- CHECK
 		[ARATHI_BASIN] = "AB", -- CHECK
 		[WARSONG_GULCH] = "WSG", -- CHECK
 	}
-
+	
 	PATTERN_GWSUII_SCORE = "(%d+/%d+)"	  --for lifting the score out of the first return value of GetWorldStateUIInfo(index)
 	PATTERN_GWSUII_BASES = "Basen: (%d+)"   --for lifting the number of bases held in Arathi Basin
 	PATTERN_GWSUII_RESOURCES = "Ressourcen: (%d+)"   --for lifting the number of bases held in Arathi Basin -- CHECK
 	PATTERN_OBJECTIVE_HOLDER = "Kontrolliert von der ([%w ]+)"
-
+	
 	RACE_ORC = "Orc" 
 	RACE_TROLL = "Troll" 
 	RACE_TAUREN = "Tauren" 
 	RACE_UNDEAD = "Untoter"
-
+	
 elseif locale == "ruRU" then
 	PATTERN_HORDE_FLAG_PICKED_UP = "([^!]+) $gподобрал:подобрала; [Фф]лаг Орды!"
 	PATTERN_HORDE_FLAG_DROPPED = "(%a+) $gпотерял:потеряла; [Фф]лаг Орды!!"
@@ -249,22 +249,22 @@ elseif locale == "ruRU" then
 		UNCONTROLLED = "Неконтролируемый", --?
 		DESTROYED = "Разрушено",
 	}
-
+	
 	BGChatAnnouncements = {
 		BGObjectiveClaimedAnnouncements = {
 			PATTERN_OBJECTIVE_CLAIMED_AB = "претендует на захват ([%w ]+).* (%a+) получит контроль",
 		},
-
+		
 		BGObjectiveAttackedAnnouncements = {
 			PATTERN_OBJECTIVE_ATTACKED_AB = "штурмует ([%w ]+)",
 			PATTERN_OBJECTIVE_ATTACKED_AV0 = "([%w ]+) напали", -- возможно должно быть наоборот...
 			PATTERN_OBJECTIVE_ATTACKED_AV1 = "^([%w ]+) подверглось атаке",
 		},
-
+		
 		BGObjectiveDefendedAnnouncements = {
 			PATTERN_OBJECTIVE_DEFENDED_AB = "$gотстоял:отстояла; ([%w ]+)",
 		},
-
+		
 		BGObjectiveCapturedAnnouncements = {
 			PATTERN_OBJECTIVE_CAPTURED_AB = "(%a+) захватил(а) ([%w ]+)",
 			PATTERN_OBJECTIVE_CAPTURED_AV0 = "([%w ]+) было захвачено (%a+)",
@@ -272,29 +272,29 @@ elseif locale == "ruRU" then
 			PATTERN_OBJECTIVE_CAPTURED_AV2 = "the ([%w ]+) is.*MINE", --and the Irondeep Mine is...MINE!
 			PATTERN_OBJECTIVE_CAPTURED_AV3 = "претендует на ([%w ]+)",   --Snivvle claims the Coldtooth Mine!
 		},
-
+		
 		BGObjectiveDestroyedAnnouncements = {
 			PATTERN_OBJECTIVE_DESTROYED_AV0 = "([%w ]+) был разрушен(а)",
 			PATTERN_OBJECTIVE_DESTROYED_AV1 = "^([%w ]+) был разрушен(а)",
 		},
 	}
-
+	
 	BGPatternReplacements = {
 		["mine"] = "gold mine",
 		["southern farm"] = "farm"
 	}
-
+	
 	BGAcronyms = {
 		[ALTERAC_VALLEY] = "AV",
 		[ARATHI_BASIN] = "AB",
 		[WARSONG_GULCH] = "WSG",
 	}
-
+	
 	PATTERN_GWSUII_SCORE = "(%d+/%d+)"			  --for lifting the score out of the first return value of GetWorldStateUIInfo(index)
 	PATTERN_GWSUII_BASES = "Базы: (%d+)"		   --for lifting the number of bases held in Arathi Basin
 	PATTERN_GWSUII_RESOURCES = "Ресурсы: (%d+)"   --for lifting the number of bases held in Arathi Basin
 	PATTERN_OBJECTIVE_HOLDER = "([%w ]+) под контролем"
-
+	
 	RACE_ORC = "Орк" 
 	RACE_TROLL = "Тролль" 
 	RACE_TAUREN = "Таурен" 
@@ -322,22 +322,22 @@ else
 		UNCONTROLLED = "Uncontrolled",
 		DESTROYED = "Destroyed",
 	}
-
+	
 	BGChatAnnouncements = {
 		BGObjectiveClaimedAnnouncements = {
 			PATTERN_OBJECTIVE_CLAIMED_AB = "claims the ([%w ]+).* (%a+) will control",
 		},
-
+		
 		BGObjectiveAttackedAnnouncements = {
 			PATTERN_OBJECTIVE_ATTACKED_AB = "assaulted the ([%w ]+)",
 			PATTERN_OBJECTIVE_ATTACKED_AV0 = "The ([%w ]+) is under attack",
 			PATTERN_OBJECTIVE_ATTACKED_AV1 = "^([%w ]+) is under attack",
 		},
-
+		
 		BGObjectiveDefendedAnnouncements = {
 			PATTERN_OBJECTIVE_DEFENDED_AB = "defended the ([%w ]+)",
 		},
-
+		
 		BGObjectiveCapturedAnnouncements = {
 			PATTERN_OBJECTIVE_CAPTURED_AB = "The (%a+) has taken the ([%w ]+)",
 			PATTERN_OBJECTIVE_CAPTURED_AV0 = "The ([%w ]+) was taken by the (%a+)",
@@ -345,24 +345,24 @@ else
 			PATTERN_OBJECTIVE_CAPTURED_AV2 = "the ([%w ]+) is.*MINE", --and the Irondeep Mine is...MINE!
 			PATTERN_OBJECTIVE_CAPTURED_AV3 = "claims the ([%w ]+)",   --Snivvle claims the Coldtooth Mine!
 		},
-
+		
 		BGObjectiveDestroyedAnnouncements = {
 			PATTERN_OBJECTIVE_DESTROYED_AV0 = "The ([%w ]+) was destroyed",
 			PATTERN_OBJECTIVE_DESTROYED_AV1 = "^([%w ]+) was destroyed",
 		},
 	}
-
+	
 	BGPatternReplacements = {
 		["mine"] = "gold mine",
 		["southern farm"] = "farm"
 	}
-
+	
 	BGAcronyms = {
 		[ALTERAC_VALLEY] = "AV",
 		[ARATHI_BASIN] = "AB",
 		[WARSONG_GULCH] = "WSG",
 	}
-
+	
 	PATTERN_GWSUII_SCORE = "(%d+/%d+)"			  --for lifting the score out of the first return value of GetWorldStateUIInfo(index)
 	PATTERN_GWSUII_BASES = "Bases: (%d+)"		   --for lifting the number of bases held in Arathi Basin
 	PATTERN_GWSUII_RESOURCES = "Resources: (%d+)"   --for lifting the number of bases held in Arathi Basin
@@ -623,7 +623,7 @@ function events:CHAT_MSG_BG_SYSTEM_HORDE(text)
 		events:BattlefieldObjectiveEventProcessing(text)
 	end
 end
- 
+
 function events:CHAT_MSG_BG_SYSTEM_ALLIANCE(text)
 	if Glory:IsInWarsongGulch() then
 		local _, _, allianceFC = string.find(text, PATTERN_HORDE_FLAG_PICKED_UP)
@@ -694,7 +694,7 @@ function events:CHAT_MSG_MONSTER_YELL(text)
 		end
 	end
 end
- 
+
 function events:BattlefieldObjectiveEventProcessing(text) 
 	local node, faction
 	for k, pattern in pairs(BGChatAnnouncements.BGObjectiveClaimedAnnouncements) do
@@ -832,8 +832,8 @@ function events:UPDATE_BATTLEFIELD_SCORE()
 end
 
 function Glory:IsInBattlegrounds()
---	local zone = GetRealZoneText()
---	return zone == WARSONG_GULCH or zone == ARATHI_BASIN or zone == ALTERAC_VALLEY
+	--	local zone = GetRealZoneText()
+	--	return zone == WARSONG_GULCH or zone == ARATHI_BASIN or zone == ALTERAC_VALLEY
 	return (MiniMapBattlefieldFrame.status == "active")
 end
 
@@ -1584,7 +1584,7 @@ else
 	Glory.GetFriendlyTTV = Glory.GetAllianceTTV
 	Glory.GetHostileTTV = Glory.GetHordeTTV
 end
-	
+
 function Glory:GetAllianceScoreString()
 	local _, s = GetWorldStateUIInfo(1)
 	if s then

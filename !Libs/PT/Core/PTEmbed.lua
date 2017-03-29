@@ -17,15 +17,15 @@ local stubobj = TekLibStub
 if not stubobj then
 	stubobj = {}
 	TekLibStub = stubobj
-
-
+	
+	
 	-- Instance replacement method, replace contents of old with that of new
 	function stubobj:ReplaceInstance(old, new)
-		 for k,v in pairs(old) do old[k]=nil end
-		 for k,v in pairs(new) do old[k]=v end
+		for k,v in pairs(old) do old[k]=nil end
+		for k,v in pairs(new) do old[k]=v end
 	end
-
-
+	
+	
 	-- Get a new copy of the stub
 	function stubobj:NewStub(name)
 		local newStub = {}
@@ -35,15 +35,15 @@ if not stubobj then
 		newStub.versions = {}
 		return newStub
 	end
-
-
+	
+	
 	-- Get instance version
 	function stubobj:NeedsUpgraded(vmajor, vminor)
 		local versionData = self.versions[vmajor]
 		if not versionData or versionData.minor < vminor then return true end
 	end
-
-
+	
+	
 	-- Get instance version
 	function stubobj:GetInstance(version)
 		if not version then version = self.lastVersion end
@@ -51,35 +51,35 @@ if not stubobj then
 		if not versionData then print(string.format("<%s> Cannot find library version: %s", self.libName, version or "")) return end
 		return versionData.instance
 	end
-
-
+	
+	
 	-- Register new instance
 	function stubobj:Register(newInstance)
-		 local version,minor = newInstance:GetLibraryVersion()
-		 self.lastVersion = version
-		 local versionData = self.versions[version]
-		 if not versionData then
-				-- This one is new!
-				versionData = {
-					instance = newInstance,
-					minor = minor,
-					old = {},
-				}
-				self.versions[version] = versionData
-				newInstance:LibActivate(self)
-				return newInstance
-		 end
-		 -- This is an update
-		 local oldInstance = versionData.instance
-		 local oldList = versionData.old
-		 versionData.instance = newInstance
-		 versionData.minor = minor
-		 local skipCopy = newInstance:LibActivate(self, oldInstance, oldList)
-		 table.insert(oldList, oldInstance)
-		 if not skipCopy then
-				for i, old in ipairs(oldList) do self:ReplaceInstance(old, newInstance) end
-		 end
-		 return newInstance
+		local version,minor = newInstance:GetLibraryVersion()
+		self.lastVersion = version
+		local versionData = self.versions[version]
+		if not versionData then
+			-- This one is new!
+			versionData = {
+				instance = newInstance,
+				minor = minor,
+				old = {},
+			}
+			self.versions[version] = versionData
+			newInstance:LibActivate(self)
+			return newInstance
+		end
+		-- This is an update
+		local oldInstance = versionData.instance
+		local oldList = versionData.old
+		versionData.instance = newInstance
+		versionData.minor = minor
+		local skipCopy = newInstance:LibActivate(self, oldInstance, oldList)
+		table.insert(oldList, oldInstance)
+		if not skipCopy then
+			for i, old in ipairs(oldList) do self:ReplaceInstance(old, newInstance) end
+		end
+		return newInstance
 	end
 end
 
@@ -101,7 +101,7 @@ end
 -- Activate a new instance of this library
 function lib:LibActivate(stub, oldLib, oldList)
 	local maj, min = self:GetLibraryVersion()
-
+	
 	if oldLib then
 		local omaj, omin = oldLib:GetLibraryVersion()
 		self.vars, self.k, self.loadstats = oldLib.vars, oldLib.k, oldLib.loadstats
@@ -131,10 +131,10 @@ end
 -- Called internally, you probably shouldn't be calling it directly, but hey do what you want :P
 function lib:CacheSet(set)
 	if not set then return end
-
+	
 	local rset = self:GetSet(set)
 	if not rset or type(rset) ~= "string" then return end
-
+	
 	if not self.vars.cache then self.vars.cache = {} end
 	if not self.vars.cache[set] then
 		self.vars.cache[set] = {}
@@ -144,7 +144,7 @@ function lib:CacheSet(set)
 			self.vars.cache[set][id] = val
 		end
 	end
-
+	
 	return true
 end
 
@@ -181,7 +181,7 @@ function lib:GetSetString(set)
 				retval = retval and string.format("%s %s", retval, valstr) or valstr
 			end
 		end
-
+		
 		return retval
 	end
 end
@@ -209,7 +209,7 @@ function lib:MergeSetToTable(table, set)
 	if t then
 		for item,val in t do
 			if table[item] then table[item] = table[item] + 1
-			else table[item] = 1 end
+		else table[item] = 1 end
 		end
 	end
 	return table
@@ -236,7 +236,7 @@ function lib:RemoveWorldDrops(set)
 				if retval == "" then retval = v else retval = retval.." "..v end
 			end
 		end
-
+		
 		return retval
 	end
 end
@@ -271,7 +271,7 @@ end
 function lib:ItemInSet(item, set)
 	local item = self:GetID(item)
 	if not item then return end
-
+	
 	if type(set) == "string" then
 		local rset = self:GetSet(set)
 		if rset and type(rset) == "string" then
@@ -300,7 +300,7 @@ end
 function lib:ItemInSets(item, sets)
 	local item = self:GetID(item)
 	if not item then return end
-
+	
 	if type(sets) == "string" then
 		local rset = self:GetSet(sets)
 		if type(rset) == "string" then
@@ -311,14 +311,14 @@ function lib:ItemInSets(item, sets)
 		end
 	elseif type(sets) == "table" then
 		local founds
-
+		
 		for i,s in pairs(sets) do
 			if self:ItemInSet(item, s) then
 				if not founds then founds = self.compost and self.compost:Acquire() or {} end
 				table.insert(founds, s)
 			end
 		end
-
+		
 		return founds
 	end
 end
@@ -328,16 +328,16 @@ local iterbag, iterslot, iterset
 local iter = function()
 	if iterslot > GetContainerNumSlots(iterbag) then iterbag, iterslot = iterbag + 1, 1 end
 	if iterbag > 4 then return end
-
+	
 	for b=iterbag,4 do
 		for s=iterslot,GetContainerNumSlots(b) do
 			iterslot = s + 1
-
+			
 			local link = GetContainerItemLink(b,s)
 			local val = link and lib:ItemInSet(link, iterset)
 			if val then return b, s, val end
 		end
-
+		
 		iterbag, iterslot = b+1, 1
 	end
 end
@@ -347,7 +347,7 @@ end
 -- Returns back bag, slot, value
 function lib:BagIter(set)
 	if not set then return end
-
+	
 	iterbag, iterslot, iterset = 0, 1, set
 	return iter
 end
@@ -370,10 +370,10 @@ function lib:GetBest(set, comparefunc, validatefunc)
 	comparefunc = comparefunc or defaultcomparefunc
 	validatefunc = validatefunc or defaultvalidatefunc
 	local ibag, islot, ival
-
+	
 	for bag,slot,val in self:BagIter(set) do
 		if validatefunc(bag,slot,val) and (not ival or comparefunc(bag, slot, val, ibag, islot, ival)) then
-				ibag, islot, ival = bag, slot, val
+			ibag, islot, ival = bag, slot, val
 		end
 	end
 	return ibag, islot, ival
@@ -401,7 +401,7 @@ function lib:RegisterCustomSet(setcode, name)
 	local setname = name or "customset"..self.vars.numcustoms
 	if not setcode then return end
 	if self:GetSetModule(setname) then return end
-
+	
 	self.k.customsets = self.k.customsets or {}
 	self.k.customsets[setname] = setcode
 	if not name then self.vars.numcustoms = self.vars.numcustoms + 1 end
@@ -413,14 +413,14 @@ end
 function lib:Benchmark()
 	self.vars.cache = {}
 	collectgarbage()
-
+	
 	local loadsize, tt, tmem = 0, GetTime(), gcinfo()
 	for i,vals in self.k do
 		local t, mem = GetTime(), gcinfo()
 		for j,v in vals do
 			if (type(v) == "string") then self:CacheSet(j) end
 		end
-
+		
 		local compsize = self.loadstats[i] or 0
 		loadsize = loadsize + compsize
 		t, mem = (GetTime() - t), (gcinfo() - mem)

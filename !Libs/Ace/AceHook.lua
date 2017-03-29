@@ -1,12 +1,12 @@
 --[[---------------------------------------------------------------------------------
-  AceHook Library - Embeddable (standalone) or for use through Ace
+	AceHook Library - Embeddable (standalone) or for use through Ace
 ------------------------------------------------------------------------------------]]
 
 local VERSION = 1.0
 
 if not AceHook or AceHook.VERSION < VERSION then
 	-- We need to load this version of the library
-
+	
 	if AceCore then
 		if AceHook then
 			ace:print("|cffff0000[AceHook] REPLACING THE SUPPLIED ACEHOOK WITH AN EMBEDDED VERSION ("..VERSION..").");
@@ -16,12 +16,12 @@ if not AceHook or AceHook.VERSION < VERSION then
 	else
 		AceHook = {}
 	end
-
---[[----------------------------------------------------------------------
-	AceHook:Hook
+	
+	--[[----------------------------------------------------------------------
+		AceHook:Hook
 		self:Hook("functionName", ["handlerName" | handler])
 		self:Hook(ObjectName, "Method", ["Handler" | handler])
--------------------------------------------------------------------------]]		
+	-------------------------------------------------------------------------]]		
 	function AceHook:Hook(arg1, arg2, arg3)
 		if not self.Hooks then self.Hooks = {} end
 		if type(arg1) == "string" then
@@ -30,18 +30,18 @@ if not AceHook or AceHook.VERSION < VERSION then
 			self:HookMeth(arg1, arg2, arg3)
 		end
 	end
-
+	
 	function AceHook:HookScript(arg1, arg2, arg3)
 		if not self.Hooks then self.Hooks = {} end
 		
 		self:HookMeth(arg1, arg2, arg3, true)
 	end
 	
---[[----------------------------------------------------------------------
-	AceHook:Unhook
+	--[[----------------------------------------------------------------------
+		AceHook:Unhook
 		self:Unhook("functionName")
 		self:Unhook(ObjectName, "Method")
--------------------------------------------------------------------------]]		
+	-------------------------------------------------------------------------]]		
 	function AceHook:Unhook(arg1, arg2)
 		if type(arg1) == "string" then
 			self:UnhookFunc(arg1)
@@ -49,10 +49,10 @@ if not AceHook or AceHook.VERSION < VERSION then
 			self:UnhookMeth(arg1, arg2)
 		end
 	end			
-
---[[----------------------------------------------------------------------
-	AceHook:UnhookAll - Unhooks all active hooks from the calling source
--------------------------------------------------------------------------]]		
+	
+	--[[----------------------------------------------------------------------
+		AceHook:UnhookAll - Unhooks all active hooks from the calling source
+	-------------------------------------------------------------------------]]		
 	function AceHook:UnhookAll(script)
 		if not self.Hooks then return end
 		for key, value in pairs(self.Hooks) do
@@ -67,15 +67,15 @@ if not AceHook or AceHook.VERSION < VERSION then
 			end
 		end
 	end
-
+	
 	function AceHook:UnhookAllScripts()
 		self:UnhookAll(true)
 	end
 	
---[[----------------------------------------------------------------------
-	AceHook:Print - Utility function for HookReport, for embedding
-	AceHook:HookReport - Lists registered hooks from this source
--------------------------------------------------------------------------]]		
+	--[[----------------------------------------------------------------------
+		AceHook:Print - Utility function for HookReport, for embedding
+		AceHook:HookReport - Lists registered hooks from this source
+	-------------------------------------------------------------------------]]		
 	function AceHook:Print(message)
 		if AceCore then 
 			ace:print(message)
@@ -83,11 +83,11 @@ if not AceHook or AceHook.VERSION < VERSION then
 			DEFAULT_CHAT_FRAME:AddMessage(message)
 		end
 	end
-
+	
 	function AceHook:HookReport()
 		AceHook:Print("|cffffff00 AceHook: HookReport()")
 		if not self.Hooks then AceHook:Print("No registered hooks.") return end
-	
+		
 		for key, value in pairs(self.Hooks) do
 			if type(key) == "table" then
 				for method in pairs(value) do
@@ -98,20 +98,20 @@ if not AceHook or AceHook.VERSION < VERSION then
 			end
 		end
 	end
-
---[[----------------------------------------------------------------------
-	AceHook:CallHook("functionName" [, arg1, arg2, arg3, ...])
-	AceHook:CallHook(ObjectName, "Method" [, arg1, arg2, arg3, ...])
-
-	DEPRECATED: This function has been deprecated and replaced by a direct
-	call from the self.Hooks table.  This avoids function calls and decreases
-	the overhead from a CallHook.  The new wrapper functions limit any
-	CallHook to 20 arguments.  The new forms are as follows:
 	
-	self.Hooks.functionName.orig(arg1, arg2, arg3)
-	self.Hooks[ObjectName].MethodName.orig(ObjectName, arg1, arg2, arg3)
--------------------------------------------------------------------------]]		
-
+	--[[----------------------------------------------------------------------
+		AceHook:CallHook("functionName" [, arg1, arg2, arg3, ...])
+		AceHook:CallHook(ObjectName, "Method" [, arg1, arg2, arg3, ...])
+		
+		DEPRECATED: This function has been deprecated and replaced by a direct
+		call from the self.Hooks table.  This avoids function calls and decreases
+		the overhead from a CallHook.  The new wrapper functions limit any
+		CallHook to 20 arguments.  The new forms are as follows:
+		
+		self.Hooks.functionName.orig(arg1, arg2, arg3)
+		self.Hooks[ObjectName].MethodName.orig(ObjectName, arg1, arg2, arg3)
+	-------------------------------------------------------------------------]]		
+	
 	function AceHook:CallHook(obj,meth,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
 		if type(obj) == "string" then
 			-- Function Call
@@ -129,15 +129,15 @@ if not AceHook or AceHook.VERSION < VERSION then
 			end
 		end
 	end
-
---[[----------------------------------------------------------------------
-	AceHook:HookFunc - internal method.
-	o You can only hook each function once from each source. 
-	o If there is an inactive hook for this func/handler pair, we reactivate it
-	o If there is an inactive hook for another handler, we error out.
-	o Looks for handler as a method of the calling class, error if not available
-	o If handler is a function, it just uses it directly through the wrapper
--------------------------------------------------------------------------]]		
+	
+	--[[----------------------------------------------------------------------
+		AceHook:HookFunc - internal method.
+		o You can only hook each function once from each source. 
+		o If there is an inactive hook for this func/handler pair, we reactivate it
+		o If there is an inactive hook for another handler, we error out.
+		o Looks for handler as a method of the calling class, error if not available
+		o If handler is a function, it just uses it directly through the wrapper
+	-------------------------------------------------------------------------]]		
 	function AceHook:HookFunc(func, handler)	
 		if not handler then handler = func end
 		if self.Hooks[func] then
@@ -156,7 +156,7 @@ if not AceHook or AceHook.VERSION < VERSION then
 		end	
 		
 		local methodHandler
-	
+		
 		if type(handler) == "string" then
 			if self[handler] then
 				methodHandler = true
@@ -166,7 +166,7 @@ if not AceHook or AceHook.VERSION < VERSION then
 		elseif type(handler) ~= "function" then
 			error( "Could not find the handler you supplied when hooking " .. func,3)
 		end
-	
+		
 		self.Hooks[func] = {}
 		self.Hooks[func].orig = getglobal(func)
 		self.Hooks[func].active = true
@@ -174,16 +174,16 @@ if not AceHook or AceHook.VERSION < VERSION then
 		self.Hooks[func].func = self:_getFunctionHook(func, handler, methodHandler)
 		setglobal(func, self.Hooks[func].func)
 	end
-
---[[----------------------------------------------------------------------
-	AceHook:UnhookFunc - internal method
-	o If you attempt to unhook a function that has never been hooked, or to unhook in a 
-	  system that has never had a hook before, the system will error with a stack trace
-	o If we own the global function, then put the original back in its place and remove
-	  all references to the Hooks[func] structure.
-	o If we don't own the global function (we've been hooked) we deactivate the hook, 
-	  forcing the handler to passthrough.
--------------------------------------------------------------------------]]		
+	
+	--[[----------------------------------------------------------------------
+		AceHook:UnhookFunc - internal method
+		o If you attempt to unhook a function that has never been hooked, or to unhook in a 
+		system that has never had a hook before, the system will error with a stack trace
+		o If we own the global function, then put the original back in its place and remove
+		all references to the Hooks[func] structure.
+		o If we don't own the global function (we've been hooked) we deactivate the hook, 
+		forcing the handler to passthrough.
+	-------------------------------------------------------------------------]]		
 	function AceHook:UnhookFunc(func)
 		if not self.Hooks or not self.Hooks[func] then 
 			if self.debug then self:debug("Attempt to unhook a function that is not currently hooked.") end
@@ -200,40 +200,40 @@ if not AceHook or AceHook.VERSION < VERSION then
 			end
 		end
 	end
-
---[[----------------------------------------------------------------------
-	AceHook:_getFunctionHook- internal method
--------------------------------------------------------------------------]]		
-
+	
+	--[[----------------------------------------------------------------------
+		AceHook:_getFunctionHook- internal method
+	-------------------------------------------------------------------------]]		
+	
 	function AceHook:_getFunctionHook(func, handler, methodHandler)
 		if methodHandler then
 			-- The handler is a method, need to self it
 			return 
-				function(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
-					if self.Hooks[func].active then 
-						return self[handler](self, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
-					else
-						return self.Hooks[func].orig(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
-					end
+			function(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
+				if self.Hooks[func].active then 
+					return self[handler](self, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
+				else
+					return self.Hooks[func].orig(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
 				end
+			end
 		else
 			-- The handler is a function, just call it
 			return 
-				function(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
-					if self.Hooks[func].active then 
-						return handler(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
-					else
-						return self.Hooks[func].orig(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
-					end
-				end	
+			function(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
+				if self.Hooks[func].active then 
+					return handler(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
+				else
+					return self.Hooks[func].orig(a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
+				end
+			end	
 		end
 	end
-
---[[----------------------------------------------------------------------
-	AceHook:HookMeth - Takes an optional fourth argument
-	o script - Signifies whether this is a script hook or not
--------------------------------------------------------------------------]]		
-
+	
+	--[[----------------------------------------------------------------------
+		AceHook:HookMeth - Takes an optional fourth argument
+		o script - Signifies whether this is a script hook or not
+	-------------------------------------------------------------------------]]		
+	
 	function AceHook:HookMeth(obj, method, handler, script)
 		if not handler then handler = method end
 		if self.Hooks[obj] and self.Hooks[obj][method] then
@@ -276,7 +276,7 @@ if not AceHook or AceHook.VERSION < VERSION then
 			end
 			-- Sometimes there is not a original function for a script.
 			orig = obj:GetScript(method) or function () end
-		-- Method
+			-- Method
 		else
 			orig = obj[method] 
 		end
@@ -296,16 +296,16 @@ if not AceHook or AceHook.VERSION < VERSION then
 			obj[method] = self.Hooks[obj][method].func
 		end
 	end	
-
---[[----------------------------------------------------------------------
-	AceHook:UnhookMeth - Internal method
-	o If you attempt to unhook a method that has never been hooked, or to unhook in a 
-	  system that has never had a hook before, the system will error with a stack trace
-	o If we own the global method, then put the original back in its place and remove
-	  all references to the Hooks[obj][method] structure.
-	o If we don't own the global method (we've been hooked) we deactivate the hook, 
-	  forcing the handler to passthrough.
--------------------------------------------------------------------------]]		
+	
+	--[[----------------------------------------------------------------------
+		AceHook:UnhookMeth - Internal method
+		o If you attempt to unhook a method that has never been hooked, or to unhook in a 
+		system that has never had a hook before, the system will error with a stack trace
+		o If we own the global method, then put the original back in its place and remove
+		all references to the Hooks[obj][method] structure.
+		o If we don't own the global method (we've been hooked) we deactivate the hook, 
+		forcing the handler to passthrough.
+	-------------------------------------------------------------------------]]		
 	function AceHook:UnhookMeth(obj, method)
 		if not self.Hooks or not self.Hooks[obj] or not self.Hooks[obj][method] then 
 			if self.debug then self:debug( "Attempt to unhook a method ("..method..") that is not currently hooked.") end
@@ -338,37 +338,37 @@ if not AceHook or AceHook.VERSION < VERSION then
 			self.Hooks[obj] = nil
 		end
 	end
-
---[[----------------------------------------------------------------------
-	AceHook:_getMethodHook - Internal Method
--------------------------------------------------------------------------]]		
+	
+	--[[----------------------------------------------------------------------
+		AceHook:_getMethodHook - Internal Method
+	-------------------------------------------------------------------------]]		
 	function AceHook:_getMethodHook(obj, method, handler, methodHook)
 		if methodHook then
 			-- The handler is a method, need to self it
 			return 
-				function(o,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
-					if self.Hooks[obj][method].active then 
-						return self[handler](self, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
-					elseif self.Hooks[obj][method].orig then
-						return self.Hooks[obj][method].orig(obj, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
-					end
+			function(o,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
+				if self.Hooks[obj][method].active then 
+					return self[handler](self, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
+				elseif self.Hooks[obj][method].orig then
+					return self.Hooks[obj][method].orig(obj, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
 				end
+			end
 		else
 			-- The handler is a function, just call it
 			return 
-				function(o,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
-					if self.Hooks[obj][method].active then 
-						return handler(o,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
-					elseif self.Hooks[obj][method].orig then
-						return self.Hooks[obj][method].orig(obj,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
-					end
-				end	
+			function(o,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
+				if self.Hooks[obj][method].active then 
+					return handler(o,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
+				elseif self.Hooks[obj][method].orig then
+					return self.Hooks[obj][method].orig(obj,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20)
+				end
+			end	
 		end
 	end
 	
---[[----------------------------------------------------------------------
-	AceHook:Embed - Called to embed the vital methods into another object
--------------------------------------------------------------------------]]		
+	--[[----------------------------------------------------------------------
+		AceHook:Embed - Called to embed the vital methods into another object
+	-------------------------------------------------------------------------]]		
 	function AceHook:Embed(object)		
 		object.Hook 			= self.Hook
 		object.Unhook 			= self.Unhook
@@ -387,7 +387,6 @@ if not AceHook or AceHook.VERSION < VERSION then
 		object.UnhookAllScripts = self.UnhookAllScripts
 		object.CallScript		= self.CallHook
 	end
-
+	
 	if AceCore then ace.hook = AceHook end
-
 end
