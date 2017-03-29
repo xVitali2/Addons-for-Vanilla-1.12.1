@@ -1,0 +1,77 @@
+------------------------------------------------------------------------
+r12749 | kergoth | 2006-10-02 22:19:17 -0400 (Mon, 02 Oct 2006) | 1 line
+
+Line ending bits.
+------------------------------------------------------------------------
+r9484 | neronix | 2006-08-29 13:33:18 -0400 (Tue, 29 Aug 2006) | 1 line
+
+MobHealth3: Blizzard Frames - Updated metadata for 1.2 release
+------------------------------------------------------------------------
+r8040 | neronix | 2006-08-14 21:02:57 -0400 (Mon, 14 Aug 2006) | 1 line
+
+MobHealth3: Blizzard Frames - Possible fix for line 41 error
+------------------------------------------------------------------------
+r7781 | neronix | 2006-08-12 08:16:20 -0400 (Sat, 12 Aug 2006) | 1 line
+
+MobHealth3: Blizzard Frames - Updated changelog and metadata for 1.15 release
+------------------------------------------------------------------------
+r7778 | neronix | 2006-08-12 06:41:06 -0400 (Sat, 12 Aug 2006) | 6 lines
+
+MobHealth3: Blizzard Frames 
+- Health text now shows up when the target is dead
+- How was this implemented sans problems? Ask the pirates!
+"Captain! I see LAND!"
+"That's no land, matey, that's a BIG DIRTY HACK!"
+- Well, TargetDeadText:SetText() doesn't really count as a hack tbh
+------------------------------------------------------------------------
+r7687 | neronix | 2006-08-11 10:22:59 -0400 (Fri, 11 Aug 2006) | 3 lines
+
+MobHealth3: Blizzard Frames
+- Added changelog
+- Updated metadata for 1.1 release
+------------------------------------------------------------------------
+r7588 | neronix | 2006-08-10 10:44:29 -0400 (Thu, 10 Aug 2006) | 6 lines
+
+MobHealth3: Blizzard Frames
+- Added mana display
+- Added configurable percentage mana and health displays
+- Added config for toggling absolute health and mana displays
+- Added x and y offset options for health and mana displays
+- Slash commands: /mh3b and /mh3blizz
+------------------------------------------------------------------------
+r7236 | neronix | 2006-08-07 19:38:31 -0400 (Mon, 07 Aug 2006) | 1 line
+
+MobHealth3: Blizzard Frames - If the target's max health is => 100,000, then health will be displayed in K notation
+------------------------------------------------------------------------
+r7227 | neronix | 2006-08-07 18:17:08 -0400 (Mon, 07 Aug 2006) | 1 line
+
+MobHealth3: Blizzard Frames - Tweaked error message produced if MH3 isn't found
+------------------------------------------------------------------------
+r7214 | neronix | 2006-08-07 15:43:59 -0400 (Mon, 07 Aug 2006) | 1 line
+
+MobHealth3: Blizzard Frames - Updated for MH3 API change
+------------------------------------------------------------------------
+r7193 | neronix | 2006-08-07 12:04:38 -0400 (Mon, 07 Aug 2006) | 1 line
+
+MobHealth3: Blizzard Frames - Fixed syntax error
+------------------------------------------------------------------------
+r7179 | neronix | 2006-08-07 10:37:27 -0400 (Mon, 07 Aug 2006) | 1 line
+
+MobHealth3: Blizzard Frames - Health text now doesn't show for dead things
+------------------------------------------------------------------------
+r7119 | neronix | 2006-08-06 17:55:25 -0400 (Sun, 06 Aug 2006) | 1 line
+
+MobHealth3: Blizzard Frames - Minor tweak
+------------------------------------------------------------------------
+r7113 | neronix | 2006-08-06 16:42:54 -0400 (Sun, 06 Aug 2006) | 1 line
+
+MobHealth3: Blizzard Frames - Should work now
+------------------------------------------------------------------------
+r7089 | neronix | 2006-08-06 11:47:18 -0400 (Sun, 06 Aug 2006) | 1 line
+
+MobHealth3: Blizzard Frames - Attempt to fix the font error
+------------------------------------------------------------------------
+r7085 | neronix | 2006-08-06 11:31:34 -0400 (Sun, 06 Aug 2006) | 1 line
+
+MobHealth3: Blizzard Frames - Initial import. A MobHealth3 frontend for Blizzard's default unit frames. 112% untested
+------------------------------------------------------------------------

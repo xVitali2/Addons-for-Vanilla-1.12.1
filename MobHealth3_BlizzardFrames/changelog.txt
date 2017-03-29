@@ -1,0 +1,16 @@
+1.2 (2006-08-12)
+- TOC Update
+- Fixed error
+
+1.15 (2006-08-12)
+- Health text will now appear if the target is dead
+
+1.1 (2006-08-11)
+- Added mana display
+- Added configurable percentage mana and health displays
+- Added config for toggling absolute health and mana displays
+- Added x and y offset options for health and mana displays
+- Slash commands: /mh3b and /mh3blizz
+
+1.0 (2006-08-08)
+- Initial release
