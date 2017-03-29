@@ -154,6 +154,11 @@
 Изменение визуализации текста боя.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586591/c938390a-d0e3-11e6-899c-79f410f37bde.jpg" alt="mikscrollingbattletext"/>
 
+**MobHealth3**
+Расчитывает и отображает количество здоровья цели после нанесения урона.
+
+<img src="https://cloud.githubusercontent.com/assets/15636669/24476303/76e32cbe-14db-11e7-8286-6244287b650d.png" alt="mobhealth3"/>
+
 **ModifiedPowerAuras**
 Слежение за баффами/дебаффами игрока и цели.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586594/d793337e-d0e3-11e6-916e-a7055b5d2958.jpg" alt="modifiedpowerauras_1"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586595/d794ca4a-d0e3-11e6-8d60-92d214bc9c91.jpg" alt="modifiedpowerauras_2"/>
