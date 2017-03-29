@@ -1,0 +1,55 @@
+## Interface: 11200
+## Author: shirsig
+## Title: aux
+## Notes: Auction House replacement
+## Notes-ruRU: Замена интерфейса аукциона
+## Version: 29.03.2017
+## OptionalDeps: Informant
+## SavedVariables: aux, aux_scale, aux_post_bid, aux_ignore_owner, aux_items, aux_item_ids, aux_auctionable_items, aux_merchant_buy, aux_merchant_sell
+
+libs\inspect.lua
+libs\module.lua
+libs\T.lua
+localization.lua
+aux-addon.lua
+util.lua
+control.lua
+color.lua
+gui\core.lua
+frame.lua
+
+util\persistence.lua
+util\sort.lua
+util\money.lua
+util\info.lua
+util\filter.lua
+util\scan.lua
+util\completion.lua
+
+core\cache.lua
+core\history.lua
+core\disenchant.lua
+core\slash.lua
+core\scan.lua
+core\stack.lua
+core\post.lua
+core\tooltip.lua
+
+gui\listing.lua
+gui\auction_listing.lua
+gui\item_listing.lua
+
+tabs\search\core.lua
+tabs\search\results.lua
+tabs\search\saved.lua
+tabs\search\filter.lua
+tabs\search\frame.lua
+
+tabs\post\core.lua
+tabs\post\frame.lua
+
+tabs\auctions\core.lua
+tabs\auctions\frame.lua
+
+tabs\bids\core.lua
+tabs\bids\frame.lua
