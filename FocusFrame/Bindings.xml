@@ -1,0 +1,6 @@
+<Bindings>
+   <Binding name = "FOCUSFRAME_TOGGLE" header="FOCUSFRAME_HEADER">
+		local Focus=getglobal("FocusData")
+		Focus:SetFocus()
+   </Binding>
+</Bindings>
