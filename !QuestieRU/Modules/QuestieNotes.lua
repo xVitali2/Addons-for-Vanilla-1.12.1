@@ -351,7 +351,8 @@ function Questie:Tooltip(this, forceShow, bag, slot)
                         lineIndex = lineIndex + 1
                         Questie_TooltipCache[cacheKey]['lines'][lineIndex] = {
                             ['color'] = {1,1,1},
-                            ['data'] = title
+                            ['data'] = title,
+                            ['wrap'] = false
                         }
                         lineIndex = lineIndex + 1
                         drawnQuestTitle = true
@@ -360,7 +361,8 @@ function Questie:Tooltip(this, forceShow, bag, slot)
                     if objectiveInfo.done then
                             Questie_TooltipCache[cacheKey]['lines'][lineIndex] = {
                                 ['color'] = {0.2,1,0.3},
-                                ['data'] = desc
+                            ['data'] = desc,
+                            ['wrap'] = false
                         }
                             lineIndex = lineIndex + 1
                             Questie_TooltipCache[cacheKey]['lineCount'] = lineIndex
@@ -371,7 +373,8 @@ function Questie:Tooltip(this, forceShow, bag, slot)
                             desc = string.gsub(desc, objective, "|c"..unitColor..objective.."|r")
                             Questie_TooltipCache[cacheKey]['lines'][lineIndex] = {
                                 ['color'] = {1,1,1},
-                                ['data'] = desc
+                            ['data'] = desc,
+                            ['wrap'] = false
                         }
                             lineIndex = lineIndex + 1
                             for i, line in pairs(lines) do
@@ -390,7 +393,9 @@ function Questie:Tooltip(this, forceShow, bag, slot)
         end
         for k, v in pairs(Questie_TooltipCache[cacheKey]['lines']) do
             if (not __TT_LineCache[k]) or (not __TT_LineCache[k][v['data']]) then
-            GameTooltip:AddLine(v['data'], v['color'][1], v['color'][2], v['color'][3], true, k)
+            local wrap = v['wrap']
+            if wrap == nil then wrap = true end
+            GameTooltip:AddLine(v['data'], v['color'][1], v['color'][2], v['color'][3], wrap, k)
             end
         end
         if(QUESTIE_DEBUG_TOOLTIP) then
@@ -604,7 +609,7 @@ function Questie_AvailableQuestClick()
                 local hash = quest.questHash;
                 local questName = "["..QuestieHashMap[hash].questLevel.."] "..QuestieHashMap[hash]['name'];
                 Questie:finishAndRecurse(hash);
-                DEFAULT_CHAT_FRAME:AddMessage("Завершено задание |cFF00FF00\"" .. questName .. "\"|r и последующее задание: "..hash);  ---------by CFM
+                DEFAULT_CHAT_FRAME:AddMessage("Завершено задание |cFF00FF00\"" .. questName .. "\"|r ("..hash..") и последующее задание.");  ---------by CFM
                 --Questie:debug_Print("Notes:Questie_AvailableQuestClick --> Refreshing QuestNPC Icons: [AddEvent:DRAWNOTES]");
                 Questie:AddEvent("DRAWNOTES", 0.1);
             end

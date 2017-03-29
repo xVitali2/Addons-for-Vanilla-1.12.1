@@ -37,7 +37,6 @@ QAutoQuestWatch_CheckDeleted = nil;
 QAutoQuestWatch_Update = nil;
 QIsQuestWatched = nil;
 QAutoQuestWatch_OnUpdate = nil;
-QQuestWatch_Update = nil;
 ---------------------------------------------------------------------------------------------------
 -- OnEvent
 ---------------------------------------------------------------------------------------------------
@@ -48,32 +47,30 @@ end
 -- OnUpdate
 ---------------------------------------------------------------------------------------------------
 function QuestieTracker_OnUpdate()
+    if GetTime() - QuestieTracker.trackerUpdate >= 0.01 then
     if (IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest")) then
         if (QuestieConfig.trackerEnabled == true) then
             QuestWatchFrame:Hide();
             EQL3_QuestWatchFrame:Hide();
         else
-            QuestWatchFrame:Hide();
-            QuestieTracker:Hide();
-            QuestieTracker.frame:Hide();
-            QuestieTrackerHeader:Hide();
-        end
-    else
-        if (QuestieConfig.trackerEnabled == true) then
-            QuestWatchFrame:Hide();
+                QuestieTracker.frame:Hide();
+                QuestieTrackerHeader:Hide();
+            end
         else
-            QuestieTracker:Hide();
-            QuestieTracker.frame:Hide();
-            QuestieTrackerHeader:Hide();
+            if (QuestieConfig.trackerEnabled == true) then
+                QuestWatchFrame:Hide();
+            else
+                QuestieTracker.frame:Hide();
+                QuestieTrackerHeader:Hide();
+            end
         end
-    end
-    if GetTime() - QuestieTracker.trackerUpdate >= 2 then
+    elseif GetTime() - QuestieTracker.trackerUpdate >= 2 then
         if (QuestieConfig.showMapNotes == true) or (QuestieConfig.alwaysShowObjectives == true) then
             QuestieTracker:SortTrackingFrame();
         end
+    end
         QuestieTracker.trackerUpdate = GetTime();
     end
-end
 ---------------------------------------------------------------------------------------------------
 -- Register events
 ---------------------------------------------------------------------------------------------------
@@ -138,8 +135,8 @@ function QuestieTracker:updateTrackingFrameSize()
             end
             QuestieTracker.frame:SetBackdropColor(0,0,0,QuestieConfig.trackerAlpha);
         end
-    end
     QuestieTracker.frame:Show();
+end
 end
 ---------------------------------------------------------------------------------------------------
 -- Color quest objective scheme for quest tracker color option 2
@@ -247,6 +244,7 @@ function QuestieTracker:createOrGetTrackingButton(index)
                         questOb = k;
                     end
                 end
+                if (QuestieConfig.showToolTips == true) then
                 if questOb ~= nil and (quest["isComplete"] or quest["leaderboards"] == 0) then
                     Tooltip:AddLine("|cFFa6a6a6Для завершения этого задания:|r",1,1,1,true);
                     Tooltip:AddLine("|cffffffff"..questOb.."|r",1,1,1,true);
@@ -256,6 +254,7 @@ function QuestieTracker:createOrGetTrackingButton(index)
                     Tooltip:AddLine("https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/issues", 1, .8, .8);
                 end
                 Tooltip:Show();
+            end
             end
         end)
         btn:SetScript("OnLeave", function()
@@ -689,6 +688,7 @@ end
 --Credit to Shagu for this fix for EQL3's freezing and event flooding upon Login.
 --Let QuestWatch Update only be triggered once per second in the first 10 seconds after login.
 ---------------------------------------------------------------------------------------------------
+function Questie:LoadEQL3Fix()
 if (IsAddOnLoaded("EQL3")) and (not IsAddOnLoaded("ShaguQuest")) then
     local EQL_Loader = CreateFrame("Frame",nil);
     EQL_Loader.tick = GetTime();
@@ -715,9 +715,10 @@ if (IsAddOnLoaded("EQL3")) and (not IsAddOnLoaded("ShaguQuest")) then
             QuestWatchFrame:Hide();
             return;
         end
-        EQL_Loader.abort = true
+            EQL_Loader.abort = true;
         QQuestWatch_Update();
     end
+end
 end
 ---------------------------------------------------------------------------------------------------
 -- Adds or removes quests to be tracked from the quest tracker. Also handles 'chat linking'.

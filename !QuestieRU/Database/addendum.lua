@@ -21666,7 +21666,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Кокарда Тераморской стражи",
   ['finishedBy']="Капитан Гарран Ваймс",
-  ['level']=30,
+  ['level']=32,
   ['questLevel']='40',
   ['rr']=77
  },
