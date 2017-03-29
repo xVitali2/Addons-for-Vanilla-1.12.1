@@ -1,12 +1,11 @@
 # Addons-for-Vanilla-1.12.1-CFM
 
-#<a href="https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases/latest">Download HERE</a>
+#<a href="https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases/latest">Скачать</a>
 
 **AddOnOrganizer**
 Вкл/выкл аддонов прямо в игре.
 
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586245/c30db9b4-d0df-11e6-8b93-8c372c37574d.jpg" alt="addonorganizer_1"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586242/b7526c6e-d0df-11e6-85ce-0f29c2e57294.jpg" alt="addonorganizer_2"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586245/c30db9b4-d0df-11e6-8b93-8c372c37574d.jpg" alt="addonorganizer_1"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586242/b7526c6e-d0df-11e6-85ce-0f29c2e57294.jpg" alt="addonorganizer_2"/>
 
 **Atlas AI**
 Все для подземелий: показывает карту подземелий, задания для них, дроп с боссов и профит с профессий.
@@ -33,8 +32,7 @@
 **CallOfElements**
 Упращает использование тотемов Шамана.
 
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586286/5b16933e-d0e0-11e6-8034-c03c570916e3.jpg" alt="callofelements"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586696/b55d4474-d0e4-11e6-926a-7fd7f25b3d52.jpg" alt="callofelements_2"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586286/5b16933e-d0e0-11e6-8034-c03c570916e3.jpg" alt="callofelements"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586696/b55d4474-d0e4-11e6-926a-7fd7f25b3d52.jpg" alt="callofelements_2"/>
 
 **ChatBar**
 Быстрое переключение между чатами.
@@ -51,19 +49,16 @@
 **Decursive**
 Быстрое снятие дебаффов с себя, группы или рейда.
 
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586308/78c4018c-d0e0-11e6-8161-a61b66e0ef01.jpg" alt="decursive"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586307/78c23050-d0e0-11e6-949a-ebf043769668.jpg" alt="decursive_2"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586308/78c4018c-d0e0-11e6-8161-a61b66e0ef01.jpg" alt="decursive"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586307/78c23050-d0e0-11e6-949a-ebf043769668.jpg" alt="decursive_2"/>
 
 **DoTimer**
 Отслеживание дебаффов на цели и баффов на персонаже.
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586313/851bd842-d0e0-11e6-870a-f746ae61ec87.jpg" alt="dotimer"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586312/81e04a78-d0e0-11e6-8c92-164d160aac09.jpg" alt="dotimer_2"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586313/851bd842-d0e0-11e6-870a-f746ae61ec87.jpg" alt="dotimer"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586312/81e04a78-d0e0-11e6-8c92-164d160aac09.jpg" alt="dotimer_2"/>
 
 **DPSMate**
 Подсчет ДПС, диспелов и тд (Рекаунт для 1.12).
 
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586319/919ad712-d0e0-11e6-8dcc-7003a92abcee.jpg" alt="dpsmate"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586320/919e908c-d0e0-11e6-9f9f-2c427e71a281.jpg" alt="dpsmate_2"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586319/919ad712-d0e0-11e6-8dcc-7003a92abcee.jpg" alt="dpsmate"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586320/919e908c-d0e0-11e6-9f9f-2c427e71a281.jpg" alt="dpsmate_2"/>
 
 **EasyWho**
 Улучшенный список /who
@@ -72,13 +67,11 @@
 
 **enemyFrames**
 Показывает фреймы вражеской команды на бг, также важные дебаффы на цели.
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586367/70fc9c2e-d0e1-11e6-98ae-2ecaf05ef567.jpg" alt="enemyFrames"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/22146136/b3a52726-df14-11e6-9518-7063b3feb635.png" alt="enemyFrames_2"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586367/70fc9c2e-d0e1-11e6-98ae-2ecaf05ef567.jpg" alt="enemyFrames"/><img src="https://cloud.githubusercontent.com/assets/15636669/22146136/b3a52726-df14-11e6-9518-7063b3feb635.png" alt="enemyFrames_2"/>
 
 **EngBags**
 Сортировка предметов в сумках и в банке, удаленный банк.
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586323/a40d5500-d0e0-11e6-83fb-6e59fc3ced91.jpg" alt="engbags"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586324/a40d9006-d0e0-11e6-81df-311d9bec4463.jpg" alt="engbags_2"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586323/a40d5500-d0e0-11e6-83fb-6e59fc3ced91.jpg" alt="engbags"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586324/a40d9006-d0e0-11e6-81df-311d9bec4463.jpg" alt="engbags_2"/>
 
 **EnhancedTradeSkills**
 Включает информацию с содержащимся в банке при крафте.
@@ -133,8 +126,7 @@
 
 **JIM CooldownPulse**
 Уведомление о завершении перезарядки ваши важных способностей.
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586564/86111ab6-d0e3-11e6-82ee-072338e7d549.jpg" alt="jim_cooldownpulse"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586565/861131a4-d0e3-11e6-8b73-c8aa4a3bd70b.jpg" alt="jim_cooldownpulse_2"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586564/86111ab6-d0e3-11e6-82ee-072338e7d549.jpg" alt="jim_cooldownpulse"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586565/861131a4-d0e3-11e6-8b73-c8aa4a3bd70b.jpg" alt="jim_cooldownpulse_2"/>
 
 **KLHThreatMeter**
 Таблица с расчетом агро для каждого игрока на мобе/боссе.
@@ -164,8 +156,7 @@
 
 **ModifiedPowerAuras**
 Слежение за баффами/дебаффами игрока и цели.
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586594/d793337e-d0e3-11e6-916e-a7055b5d2958.jpg" alt="modifiedpowerauras_1"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586595/d794ca4a-d0e3-11e6-8d60-92d214bc9c91.jpg" alt="modifiedpowerauras_2"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586594/d793337e-d0e3-11e6-916e-a7055b5d2958.jpg" alt="modifiedpowerauras_1"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586595/d794ca4a-d0e3-11e6-8d60-92d214bc9c91.jpg" alt="modifiedpowerauras_2"/>
 
 **Modui** (не для русского клиента)
 Изменение всего интерфейса. (аналог pfUI)
@@ -174,8 +165,7 @@
 **OmniCC**
 Время перезарядки для всего(заклинаний, баффов...).
 
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586603/f03aec0a-d0e3-11e6-905b-b6ce54087124.jpg" alt="omnicc"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586604/f03e55a2-d0e3-11e6-8fb9-5e69437c844b.jpg" alt="omnicc_2"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586603/f03aec0a-d0e3-11e6-905b-b6ce54087124.jpg" alt="omnicc"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586604/f03e55a2-d0e3-11e6-8fb9-5e69437c844b.jpg" alt="omnicc_2"/>
 
 **NotGrid**
 Фреймы группы и рейда в минималистичном стиле.
@@ -192,8 +182,7 @@
 
 **Postal**
 Отправка через почту больше одного предмета , сбор всей почты
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586622/1f6a7c16-d0e4-11e6-8577-cbc570364d8b.jpg" alt="postal"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586621/1f6a6410-d0e4-11e6-8076-ab31f5f570e7.jpg" alt="postal2"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586622/1f6a7c16-d0e4-11e6-8577-cbc570364d8b.jpg" alt="postal"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586621/1f6a6410-d0e4-11e6-8076-ab31f5f570e7.jpg" alt="postal2"/>
 
 **Prat**
 Изменение окна чата.
@@ -202,9 +191,7 @@
 
 **Questie** (отдельно лежит русский вариант)
 Лучший аддон для заданий, показывает место выполнения заданий, а также места еще не взятых квестов. Ctrl+Shift+LClick для перемещения трекера заданий.
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586632/34857402-d0e4-11e6-8526-e9a14772fdd6.jpg" alt="questie"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586634/3485c4d4-d0e4-11e6-8e0a-82bd25c95a56.jpg" alt="questie_2"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586633/3485a9f4-d0e4-11e6-9d8e-95046c805f28.jpg" alt="questie_3"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586632/34857402-d0e4-11e6-8526-e9a14772fdd6.jpg" alt="questie"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586634/3485c4d4-d0e4-11e6-8e0a-82bd25c95a56.jpg" alt="questie_2"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586633/3485a9f4-d0e4-11e6-9d8e-95046c805f28.jpg" alt="questie_3"/>
 
 **RecipeRadar**
 Указывает о местоположении недостающих рецептов профессий.
@@ -229,9 +216,7 @@
 **SP_SwingTimer**
 Полоска следующей вашей автоатаки.
 
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586659/5e5b0102-d0e4-11e6-9ae6-e76814d0873b.jpg" alt="sp_swingtimer_1"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586660/5e5b6656-d0e4-11e6-8489-f37daf2a113d.jpg" alt="sp_swingtimer_2"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586658/5e5ada60-d0e4-11e6-8b0d-2d5606c1efac.jpg" alt="sp_swingtimer_3"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586659/5e5b0102-d0e4-11e6-9ae6-e76814d0873b.jpg" alt="sp_swingtimer_1"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586660/5e5b6656-d0e4-11e6-8489-f37daf2a113d.jpg" alt="sp_swingtimer_2"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586658/5e5ada60-d0e4-11e6-8b0d-2d5606c1efac.jpg" alt="sp_swingtimer_3"/>
 
 **SpamThrottle**
 Спам фильтр: голдселлеры и тд. уже не помешают
@@ -243,8 +228,7 @@
 
 **VanillaGuide** (нет русского языка)
 Путеводитель для прокачки персонажа и профессий.
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586676/8484efbe-d0e4-11e6-98de-9b0a7cee6722.jpg" alt="vanillaguide_1"/>
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586677/849c7a94-d0e4-11e6-8817-fff8af1e1527.jpg" alt="vanillaguide_2"/>
+<img src="https://cloud.githubusercontent.com/assets/15636669/21586676/8484efbe-d0e4-11e6-98de-9b0a7cee6722.jpg" alt="vanillaguide_1"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586677/849c7a94-d0e4-11e6-8817-fff8af1e1527.jpg" alt="vanillaguide_2"/>
 
 **vQueue**
 Поиск товарищей в подземелье или рейд(берет из чата).
