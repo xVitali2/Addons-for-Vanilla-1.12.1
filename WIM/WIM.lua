@@ -1171,6 +1171,8 @@ function WIM_LoadDefaultFilters()
 	WIM_Filters["CHEAP"]					= "Block";
 	WIM_Filters["WWW"]						= "Block";
 	WIM_Filters["1-60"]						= "Block";
+	WIM_Filters["MOJOVIKING.COM"]			= "Block";
+--	WIM_Filters[""]						= "Block";
 --	WIM_Filters[""]						= "Ignore";
 
 	WIM_FilteringScrollBar_Update();
