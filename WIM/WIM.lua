@@ -304,7 +304,7 @@ local function player_check(player, k)
 
 	for i=1, GetNumGuildMembers(true) do
 		name = GetGuildRosterInfo(i)
-		if strupper(name) == strupper(player) then
+		if player and name and strupper(name) == strupper(player) then
 			return k()
 		end
 	end
@@ -1171,8 +1171,6 @@ function WIM_LoadDefaultFilters()
 	WIM_Filters["CHEAP"]					= "Block";
 	WIM_Filters["WWW"]						= "Block";
 	WIM_Filters["1-60"]						= "Block";
-	WIM_Filters["MOJOVIKING.COM"]			= "Block";
---	WIM_Filters[""]						= "Block";
 --	WIM_Filters[""]						= "Ignore";
 
 	WIM_FilteringScrollBar_Update();
