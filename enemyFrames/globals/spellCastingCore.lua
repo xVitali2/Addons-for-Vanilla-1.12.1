@@ -118,7 +118,7 @@ end
 local updateDRtimers = function(time, drtab, bufftab)
 	for k, v in pairs(drtab) do
 		for i, j in pairs(bufftab) do
-			if j.target == v.target and SPELLINFO_BUFFS_TO_TRACK[j.spell]['dr'] then
+			if j and v and j.target == v.target and SPELLINFO_BUFFS_TO_TRACK[j.spell]['dr'] then
 				if SPELLINFO_BUFFS_TO_TRACK[j.spell]['dr'] == v.type then
 					v.timeEnd = time + v.k
 				end

@@ -10,7 +10,7 @@
 			
 			if ( index <= numScores ) then
 				name, _, _, _, _, _, _, _, class = GetBattlefieldScore(index)
-				if name ~= UnitName'player' then
+				if name and name ~= UnitName'player' and class then
 					class = changeEngClassName(class);
 					getglobal("WorldStateScoreButton"..i.."NameButtonName"):SetVertexColor(RAID_CLASS_COLORS[class].r, RAID_CLASS_COLORS[class].g, RAID_CLASS_COLORS[class].b)
 				end
