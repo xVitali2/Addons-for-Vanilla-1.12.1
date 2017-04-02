@@ -4,7 +4,8 @@
 ## Notes-ruRU: Пакет всех Ace SVN библиотек
 ## Notes-koKR: ACE SVN 통합 라이브러리 패키지
 ## Author: Various
-## Version: 1.0
+## Version: 1.0.1
+# SE\SpecialEvents-Mail-2: bigfix in ruRU (1.0.1)
 ## OptionalDeps: !!Warmup, !BugGrabber
 ## X-Category: Library
 ## X-Credits: Maus & Co. (Updating, localizing libraries)
