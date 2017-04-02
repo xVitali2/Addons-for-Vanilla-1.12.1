@@ -10,7 +10,7 @@ function Questie.CreateMinimapButton()
 
     Questie.minimapButton:SetMovable(true)
     Questie.minimapButton:EnableMouse(true)
-    Questie.minimapButton:SetFrameStrata('HIGH')
+    Questie.minimapButton:SetFrameStrata('LOW')
     Questie.minimapButton:SetWidth(31)
     Questie.minimapButton:SetHeight(31)
     Questie.minimapButton:SetFrameLevel(9)
@@ -42,7 +42,11 @@ function Questie.CreateMinimapButton()
     Questie.minimapButton:RegisterForClicks("LeftButtonUp", "RightButtonUp")
     Questie.minimapButton:SetScript("OnClick", function()
         if ( arg1 == "LeftButton" ) then
-            Questie:OptionsForm_Display()
+            if not QuestieOptionsForm:IsVisible() then
+                Questie:OptionsForm_Display()
+            else
+                QuestieOptionsForm:Hide()
+            end
         end
         if (arg1 == "RightButton") then
             Questie:Toggle()

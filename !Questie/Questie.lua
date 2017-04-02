@@ -37,7 +37,7 @@ function Questie:SetupDefaults()
         ["showProfessionQuests"] = false,
         ["showToolTips"] = true,
         ["showTrackerHeader"] = false,
-        ["trackerAlpha"] = 0.4,
+        ["trackerAlpha"] = 0.6,
         ["trackerBackground"] = false,
         ["trackerEnabled"] = true,
         ["trackerList"] = false,
@@ -114,7 +114,7 @@ function Questie:CheckDefaults()
         QuestieConfig.showToolTips = true;
     end
     if QuestieConfig.trackerAlpha == nil then
-        QuestieConfig.trackerAlpha = 0.4;
+        QuestieConfig.trackerAlpha = 0.6;
     end
     if QuestieConfig.trackerBackground == nil then
         QuestieConfig.trackerBackground = false;
@@ -361,19 +361,19 @@ end
 ---------------------------------------------------------------------------------------------------
 function Questie:CheckQuestLogStatus()
     QUESTIE_UPDATE_EVENT = 1;
-    if(GetTime() - QUESTIE_LAST_CHECKLOG > 0.1) then
-        Questie:AddEvent("CHECKLOG", 0.2);
-        QUESTIE_LAST_CHECKLOG = GetTime();
-    else
-        QUESTIE_LAST_CHECKLOG = GetTime();
-    end
-    if(GetTime() - QUESTIE_LAST_UPDATECACHE > 0.1) then
-        Questie:AddEvent("UPDATECACHE", 0.3);
+    if(GetTime() - QUESTIE_LAST_UPDATECACHE > 0.01) then
+        Questie:AddEvent("UPDATECACHE", 0.2);
         QUESTIE_LAST_UPDATECACHE = GetTime();
     else
         QUESTIE_LAST_UPDATECACHE = GetTime();
     end
-    if(GetTime() - QUESTIE_LAST_UPDATE > 0.1) then
+    if(GetTime() - QUESTIE_LAST_CHECKLOG > 0.01) then
+        Questie:AddEvent("CHECKLOG", 0.3);
+        QUESTIE_LAST_CHECKLOG = GetTime();
+    else
+        QUESTIE_LAST_CHECKLOG = GetTime();
+    end
+    if(GetTime() - QUESTIE_LAST_UPDATE > 0.01) then
         Questie:AddEvent("UPDATE", 0.4);
         QUESTIE_LAST_UPDATE = GetTime();
     else
@@ -437,8 +437,10 @@ function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 
         QuestieTracker:createTrackingFrame();
         QuestieTracker:LoadModule();
         Questie:BlockTranslations();
+        Astrolabe:isMinimapInCity();
+        Questie:LoadEQL3Fix();
+        Questie:AddEvent("UPDATECACHE", 1.8);
         Questie:AddEvent("CHECKLOG", 2.0);
-        Questie:AddEvent("UPDATECACHE", 2.1);
         Questie:AddEvent("UPDATE", 2.2);
         Questie:AddEvent("LOADEVENTS", 2.4);
         Questie:AddEvent("SYNCWATCH", 2.5);
@@ -460,7 +462,6 @@ function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 
     elseif (event == "QUEST_LOG_UPDATE") then
         --Questie:debug_Print("OnEvent: QUEST_LOG_UPDATE");
         Questie:CheckQuestLogStatus();
-        Questie:RefreshQuestStatus();
     -------------------------------------------------
     elseif (event == "QUEST_ITEM_UPDATE") then
         Questie:debug_Print("OnEvent: QUEST_ITEM_UPDATE");
@@ -483,18 +484,18 @@ end
 --Questie Worldmap Toggle Button
 ---------------------------------------------------------------------------------------------------
 function Questie:Toggle()
-    if (QuestieConfig.showMapNotes == true) or (QuestieConfig.alwaysShowObjectives == true) then
-        if (IsQuestieActive == true) then
-            IsQuestieActive = false;
-            QuestieMapNotes = {};
-            QuestieAvailableMapNotes = {};
-            Questie:CLEAR_ALL_NOTES();
-            LastQuestLogHashes = nil;
-        else
-            IsQuestieActive = true;
-            Questie:AddEvent("CHECKLOG", 0);
-            Questie:AddEvent("DRAWNOTES", 0.1);
-        end
+    if (QuestieConfig.showMapNotes == true) and (IsQuestieActive == true) then
+        QuestieConfig.showMapNotes = false;
+        IsQuestieActive = false;
+        QuestieMapNotes = {};
+        QuestieAvailableMapNotes = {};
+        Questie:CLEAR_ALL_NOTES();
+        LastQuestLogHashes = nil;
+    else
+        IsQuestieActive = true;
+        QuestieConfig.showMapNotes = true;
+        Questie:AddEvent("CHECKLOG", 0);
+        Questie:AddEvent("DRAWNOTES", 0.1);
     end
 end
 ---------------------------------------------------------------------------------------------------
@@ -601,12 +602,12 @@ QuestieFastSlash = {
         end
     end,
     ["backgroundalpha"] = function(args)
-    --Default: 4
+    --Default: 0.6 (60%)
         if args then
-            local val = tonumber(args)/10;
-            QuestieConfig.trackerAlpha = val;
+            local val = tonumber(args);
+            QuestieConfig.trackerAlpha = val/100;
             QuestieTracker:FillTrackingFrame();
-            DEFAULT_CHAT_FRAME:AddMessage("QuestieTracker:|c0000ffc0 (Background Alpha Set To: |r|c0000c0ff"..val.."|r|c0000ffc0)|r");
+            DEFAULT_CHAT_FRAME:AddMessage("QuestieTracker:|c0000ffc0 (Background Alpha Set To: |r|c0000c0ff"..val.."%|r|c0000ffc0)|r");
         else
             DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Error: Invalid Number Supplied! |r");
         end
@@ -765,13 +766,12 @@ QuestieFastSlash = {
     end,
     ["mapnotes"] = function()
     --Default: True
-        QuestieConfig.showMapNotes = not QuestieConfig.showMapNotes;
+        Questie:Toggle();
         if QuestieConfig.showMapNotes then
             DEFAULT_CHAT_FRAME:AddMessage("QuestieQuest:|c0000ffc0 (Map Notes On) |r");
         else
             DEFAULT_CHAT_FRAME:AddMessage("QuestieQuest:|c0000ffc0 (Map Notes Off) |r");
         end
-        Questie:Toggle();
     end,
     ["maxlevel"] = function()
     --Default: True
@@ -940,7 +940,7 @@ QuestieFastSlash = {
         DEFAULT_CHAT_FRAME:AddMessage("Questie SlashCommand Help Menu:", 1, 0.75, 0);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie arrow |r|c0000ffc0(toggle)|r QuestArrow: Toggle", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie background |r|c0000ffc0(toggle)|r QuestTracker: Background", 0.75, 0.75, 0.75);
-        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie backgroundalpha |r|c0000ffc0(1-9)|r QuestTracker: Background Alpha Level (default=4)", 0.75, 0.75, 0.75);
+        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie backgroundalpha |r|c0000ffc0(10-100%)|r QuestTracker: Background Alpha Level (default=60%)", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie clearconfig |r|c0000ffc0(Pop-up)|r UserSettings: Reset settings. Will NOT delete quest data.", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie cleartracker |r|c0000ffc0(Pop-up)|r QuestTracker: Reset & move tracker to center screen.", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie cluster |r|c0000ffc0(toggle)|r QuestMap: Groups nearby start/finish/objective icons together.", 0.75, 0.75, 0.75);
@@ -985,7 +985,11 @@ function Questie_SlashHandler(msgbase)
         args = string.sub(msgbase, space+2);
     end
     if QuestieFastSlash[msg] ~= nil then
-        QuestieFastSlash[msg](args);
+        if ( QuestieOptionsForm:IsVisible() ) then
+            DEFAULT_CHAT_FRAME:AddMessage("|cffff0000Error: cannot execute commands while the Questie options window is open.|r")
+        else
+            QuestieFastSlash[msg](args);
+        end
     else
         if (not msg or msg=="") then
             QuestieFastSlash["help"]();

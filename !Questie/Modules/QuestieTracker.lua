@@ -37,7 +37,6 @@ QAutoQuestWatch_CheckDeleted = nil;
 QAutoQuestWatch_Update = nil;
 QIsQuestWatched = nil;
 QAutoQuestWatch_OnUpdate = nil;
-QQuestWatch_Update = nil;
 ---------------------------------------------------------------------------------------------------
 -- OnEvent
 ---------------------------------------------------------------------------------------------------
@@ -48,31 +47,29 @@ end
 -- OnUpdate
 ---------------------------------------------------------------------------------------------------
 function QuestieTracker_OnUpdate()
-    if (IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest")) then
-        if (QuestieConfig.trackerEnabled == true) then
-            QuestWatchFrame:Hide();
-            EQL3_QuestWatchFrame:Hide();
+    if GetTime() - QuestieTracker.trackerUpdate >= 0.01 then
+        if (IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest")) then
+            if (QuestieConfig.trackerEnabled == true) then
+                QuestWatchFrame:Hide();
+                EQL3_QuestWatchFrame:Hide();
+            else
+                QuestieTracker.frame:Hide();
+                QuestieTrackerHeader:Hide();
+            end
         else
-            QuestWatchFrame:Hide();
-            QuestieTracker:Hide();
-            QuestieTracker.frame:Hide();
-            QuestieTrackerHeader:Hide();
+            if (QuestieConfig.trackerEnabled == true) then
+                QuestWatchFrame:Hide();
+            else
+                QuestieTracker.frame:Hide();
+                QuestieTrackerHeader:Hide();
+            end
         end
-    else
-        if (QuestieConfig.trackerEnabled == true) then
-            QuestWatchFrame:Hide();
-        else
-            QuestieTracker:Hide();
-            QuestieTracker.frame:Hide();
-            QuestieTrackerHeader:Hide();
-        end
-    end
-    if GetTime() - QuestieTracker.trackerUpdate >= 2 then
+    elseif GetTime() - QuestieTracker.trackerUpdate >= 2 then
         if (QuestieConfig.showMapNotes == true) or (QuestieConfig.alwaysShowObjectives == true) then
             QuestieTracker:SortTrackingFrame();
         end
-        QuestieTracker.trackerUpdate = GetTime();
     end
+    QuestieTracker.trackerUpdate = GetTime();
 end
 ---------------------------------------------------------------------------------------------------
 -- Register events
@@ -138,8 +135,8 @@ function QuestieTracker:updateTrackingFrameSize()
             end
             QuestieTracker.frame:SetBackdropColor(0,0,0,QuestieConfig.trackerAlpha);
         end
+        QuestieTracker.frame:Show();
     end
-    QuestieTracker.frame:Show();
 end
 ---------------------------------------------------------------------------------------------------
 -- Color quest objective scheme for quest tracker color option 2
@@ -247,15 +244,17 @@ function QuestieTracker:createOrGetTrackingButton(index)
                         questOb = k;
                     end
                 end
-                if questOb ~= nil and (quest["isComplete"] or quest["leaderboards"] == 0) then
-                    Tooltip:AddLine("|cFFa6a6a6To finish this quest... |r",1,1,1,true);
-                    Tooltip:AddLine("|cffffffff"..questOb.."|r",1,1,1,true);
-                elseif questOb == nil then
-                    Tooltip:AddLine("Quest *Objective* not found in Questie Database!", 1, .8, .8);
-                    Tooltip:AddLine("Please file a bug report on our GitHub portal:)", 1, .8, .8);
-                    Tooltip:AddLine("https://github.com/AeroScripts/QuestieDev/issues", 1, .8, .8);
+                if (QuestieConfig.showToolTips == true) then
+                    if questOb ~= nil and (quest["isComplete"] or quest["leaderboards"] == 0) then
+                        Tooltip:AddLine("|cFFa6a6a6To finish this quest... |r",1,1,1,true);
+                        Tooltip:AddLine("|cffffffff"..questOb.."|r",1,1,1,true);
+                    elseif questOb == nil then
+                        Tooltip:AddLine("Quest *Objective* not found in Questie Database!", 1, .8, .8);
+                        Tooltip:AddLine("Please file a bug report on our GitHub portal:)", 1, .8, .8);
+                        Tooltip:AddLine("https://github.com/AeroScripts/QuestieDev/issues", 1, .8, .8);
+                    end
+                    Tooltip:Show();
                 end
-                Tooltip:Show();
             end
         end)
         btn:SetScript("OnLeave", function()
@@ -689,34 +688,36 @@ end
 --Credit to Shagu for this fix for EQL3's freezing and event flooding upon Login.
 --Let QuestWatch Update only be triggered once per second in the first 10 seconds after login.
 ---------------------------------------------------------------------------------------------------
-if (IsAddOnLoaded("EQL3")) and (not IsAddOnLoaded("ShaguQuest")) then
-    local EQL_Loader = CreateFrame("Frame",nil);
-    EQL_Loader.tick = GetTime();
-    EQL_Loader.step = 0;
-    EQL_Loader:SetScript("OnUpdate", function()
-        if EQL_Loader.tick + 1 <= GetTime() then
-            EQL_Loader.abort = false;
-            QuestWatch_Update();
-            EQL_Loader.tick = GetTime();
-            if EQL_Loader.step < 10 then
-                EQL_Loader.step = EQL_Loader.step + 1;
-            else
-                EQL_Loader:Hide();
+function Questie:LoadEQL3Fix()
+    if (IsAddOnLoaded("EQL3")) and (not IsAddOnLoaded("ShaguQuest")) then
+        local EQL_Loader = CreateFrame("Frame",nil);
+        EQL_Loader.tick = GetTime();
+        EQL_Loader.step = 0;
+        EQL_Loader:SetScript("OnUpdate", function()
+            if EQL_Loader.tick + 1 <= GetTime() then
+                EQL_Loader.abort = false;
+                QuestWatch_Update();
+                EQL_Loader.tick = GetTime();
+                if EQL_Loader.step < 10 then
+                    EQL_Loader.step = EQL_Loader.step + 1;
+                else
+                    EQL_Loader:Hide();
+                end
             end
+        end)
+    ---------------------------------------------------------------------------------------------------
+    --Intercepts and injects extra code into EQL3
+    ---------------------------------------------------------------------------------------------------
+        local QQuestWatch_Update = QuestWatch_Update;
+        function QuestWatch_Update()
+            if EQL_Loader.abort == nil then EQL_Loader.abort = true end
+            if(not EQL3_Temp.hasManaged) or (EQL_Loader.abort == true and EQL_Loader.step < 10) then
+                QuestWatchFrame:Hide();
+                return;
+            end
+            EQL_Loader.abort = true;
+            QQuestWatch_Update();
         end
-    end)
----------------------------------------------------------------------------------------------------
---Intercepts and injects extra code into EQL3
----------------------------------------------------------------------------------------------------
-    local QQuestWatch_Update = QuestWatch_Update;
-    function QuestWatch_Update()
-        if EQL_Loader.abort == nil then EQL_Loader.abort = true end
-        if(not EQL3_Temp.hasManaged) or (EQL_Loader.abort == true and EQL_Loader.step < 10) then
-            QuestWatchFrame:Hide();
-            return;
-        end
-        EQL_Loader.abort = true
-        QQuestWatch_Update();
     end
 end
 ---------------------------------------------------------------------------------------------------

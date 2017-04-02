@@ -138,13 +138,18 @@ function SetArrowObjective(hash)
     end
     arrow_objective = hash
     arrow_data = nil
-    if not QuestieCachedQuests[hash]["arrowPoint"] or not QuestieCachedQuests[hash] then return end
+    if not QuestieCachedQuests[hash] or not QuestieCachedQuests[hash]["arrowPoint"] then return end
     local objective = QuestieCachedQuests[hash]["arrowPoint"]
     SetCrazyArrow(objective, objective.dist, objective.title)
 end
 ---------------------------------------------------------------------------------------------------
 function RemoveCrazyArrow(hash)
-    if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == hash or arrow_data) then
+    if hash then
+        if (TomTomCrazyArrow:IsVisible() ~= nil) and (arrow_objective == hash or arrow_data) then
+            TomTomCrazyArrow:Hide()
+        end
+    end
+    if (QuestieConfig.arrowEnabled == false) then
         TomTomCrazyArrow:Hide()
     end
 end
