@@ -270,7 +270,6 @@ end
 
 local function newbuff(tar, b, s, castOn, texture, debuff, magictype, debuffStack, noEvent)
 	local getTime = getTimeMinusPing()
-
 	-- remove buff if it exists
 	local i = 1
 	for k, v in pairs(buffList) do
@@ -282,17 +281,11 @@ local function newbuff(tar, b, s, castOn, texture, debuff, magictype, debuffStac
 		end
 		i = i + 1
 	end
-
 	local n = buff.create(tar, b, s, FOCUS_BUFFS_TO_TRACK[b], 1, getTime, texture, debuff, magictype, debuffStack)
 	tinsert(buffList, n)
 
 	if not noEvent then
 		if Focus:UnitIsFocus(tar, true) then
-			--[[if texture == "Interface\Icons\Ability_Rogue_FeignDeath" then
-				print("set")
-				Focus:SetData("feignDeath", 1)
-			end]]
-			-- triggers UNIT_AURA for focus
 			Focus:SetData("auraUpdate", 1)
 		end
 	end
@@ -332,7 +325,6 @@ local CastCraftPerform = function()
 
 	local fpcastFin = strfind(arg1, pcastFin)
 	local fcastFin = strfind(arg1, castFin)
-
 	if fbcast or fcraft then
 		local m = fbcast and bcast or fcraft and craft or fperform and perform
 		local c = gsub(arg1, m, '%1')
@@ -351,7 +343,6 @@ local CastCraftPerform = function()
 		local m = cast
 		local c = gsub(arg1, m, '%1')
 		local s = gsub(arg1, m, '%2')
-
 		if FOCUS_SPELLCASTS_TO_TRACK[s] then
 			newCast(c, s, false)
 		else

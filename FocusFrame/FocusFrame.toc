@@ -1,9 +1,12 @@
 ## Interface: 11200
 ## Title: FocusFrame
 ## Notes: Focus frame support for vanilla.
+## Notes-ruRU: Окно фокуса в классике.
 ## Author: Wardz
-## Version: 1.1.2
+## Version: 1.1.4
+## RequiredDeps:!Libs
 ## SavedVariables: FocusFrameDB
+#перевод и гор. клавиша от CFM
 
 libs\FocusData\Localization.lua
 libs\FocusData\spellcastingcore\buffs.lua

@@ -1,10 +1,10 @@
 local _G = getfenv(0)
 local Focus = _G.FocusData
 local AurasUpdate
-
+BINDING_HEADER_FOCUSFRAME_HEADER = "FocusFrame Bindings" -- by CFM
+BINDING_NAME_FOCUSFRAME_TOGGLE = "Set FocusFrame" -- by CFM
 FocusFrameDB = FocusFrameDB or { unlock = true, scale = 1 }
-BINDING_HEADER_FOCUSFRAME_HEADER = "FocusFrame Bindings"
-BINDING_NAME_FOCUSFRAME_TOGGLE = "Set FocusFrame"
+
 -- Local functions here can be post-hooked using Focus:OnEvent().
 -- See inside Init function in mods/classPortraits.lua for example.
 
