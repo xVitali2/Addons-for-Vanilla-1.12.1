@@ -4,8 +4,8 @@
 ## Notes-ruRU: Пакет всех Ace SVN библиотек
 ## Notes-koKR: ACE SVN 통합 라이브러리 패키지
 ## Author: Various
-## Version: 1.0.1
-# SE\SpecialEvents-Mail-2: bigfix in ruRU (1.0.1)
+## Version: 1.0.3
+# SE\SpecialEvents-Mail-2: bigfix in ruRU (1.0.1); Babble-Item-2.0 added (1.0.2) by CFM; Babble-Spell-2.2 added more neutral and bosses spells (1.0.3)
 ## OptionalDeps: !!Warmup, !BugGrabber
 ## X-Category: Library
 ## X-Credits: Maus & Co. (Updating, localizing libraries)
@@ -60,6 +60,7 @@ SE\SpecialEvents-Breath-2.0\SpecialEvents-Breath-2.0.lua
 SE\SpecialEvents-Equipped-2.0\SpecialEvents-Equipped-2.0.lua
 
 Babble\Babble-Boss-2.0\Babble-Boss-2.0.lua
+Babble\Babble-Item-2.0\Babble-Item-2.0.lua
 Babble\Babble-Class-2.0\Babble-Class-2.0.lua
 Babble\Babble-Race-2.0\Babble-Race-2.0.lua
 Babble\Babble-Spell-2.0\Babble-Spell-2.0.lua
