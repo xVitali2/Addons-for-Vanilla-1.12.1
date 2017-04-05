@@ -247,7 +247,7 @@ function start_search(queries, continuation)
 			total_scan_pages = total_scan_pages + (start_page - 1)
 			total_scan_pages = max(total_scan_pages, 1)
 			current_page = min(current_page, total_scan_pages)
-			search.status_bar:update_status((current_query - 1) / getn(queries), (current_page - 1) / total_scan_pages)
+			search.status_bar:update_status((current_query - 1) / getn(queries), current_page / total_scan_pages)
 			search.status_bar:set_text(format(SCANNING2, current_query, total_queries, current_page, total_scan_pages)) --byLichery
 		end,
 		on_page_scanned = function()
