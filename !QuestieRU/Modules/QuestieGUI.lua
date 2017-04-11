@@ -70,7 +70,7 @@ Questie.minimapButton.overlay:SetPoint('TOPLEFT', 0,0)
 Questie.minimapButton.icon = Questie.minimapButton:CreateTexture(nil, 'BACKGROUND')
 Questie.minimapButton.icon:SetWidth(20)
 Questie.minimapButton.icon:SetHeight(20)
-Questie.minimapButton.icon:SetTexture('Interface\\AddOns\\!QuestieRU\\Icons\\available')  ---------by CFM
+Questie.minimapButton.icon:SetTexture('Interface\\AddOns\\!QuestieRU\\Icons\\minimapIcon')  ---------by CFM
 Questie.minimapButton.icon:SetTexCoord(0.05, 0.95, 0.05, 0.95)
 Questie.minimapButton.icon:SetPoint('CENTER',1,1)
 end
