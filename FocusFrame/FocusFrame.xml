@@ -447,6 +447,7 @@
 				SetTextStatusBarTextZeroText(FocusFrameManaBar, "")
 				FocusFrameHealthBar.textLockable = 1
 				FocusFrameManaBar.textLockable = 1
+				DEFAULT_CHAT_FRAME:AddMessage('FocusFrame /foption',.5,.5,0)
 			</OnLoad>
 			<OnShow>
 				FocusFrame_OnShow()

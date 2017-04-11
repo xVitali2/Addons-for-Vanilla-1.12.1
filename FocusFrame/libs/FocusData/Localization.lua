@@ -86,7 +86,6 @@ else
     L['(.+) is slain by (.+).'] = '(.+) is slain by (.+).'
     L['You have slain (.+).']   = 'You have slain (.+).'
     L["(.+) attempts to run away in fear!"] = "(.+) attempts to run away in fear!"
-    -- Babble-Spell-2.2
 end
 
 FocusData_Locale = L
