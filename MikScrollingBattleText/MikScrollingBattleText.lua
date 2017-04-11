@@ -7,7 +7,7 @@
 -------------------------------------------------------------------------------------
 -- Public Constants.
 -------------------------------------------------------------------------------------
-
+local L = AceLibrary("AceLocale-2.2"):new("MikScrollingBattleText")
 -- Display types for incoming, outgoing, and notification events.
 MikSBT.DISPLAYTYPE_INCOMING			= 1;
 MikSBT.DISPLAYTYPE_OUTGOING			= 2;
@@ -1056,21 +1056,20 @@ function MikSBT.FormatEventText(animationEvent)
 	outputString = string.gsub(outputString, "-%%a", "\124cffff0000\124h-\124h\124r%%a");
 	
 	if (animationEvent.DamageType ~= nil) then
-		if animationEvent.DamageType == SPELL_SCHOOL1_CAP then
+		if animationEvent.DamageType == L["SPELL_SCHOOL1_CAP"] then
 			outputString = string.gsub(outputString, "%%a", "\124cffF6F99E\124h%%a\124h\124r");
-		elseif animationEvent.DamageType == SPELL_SCHOOL2_CAP then
+		elseif animationEvent.DamageType == L["SPELL_SCHOOL2_CAP"] then
 			outputString = string.gsub(outputString, "%%a", "\124cffFF8080\124h%%a\124h\124r");
-		elseif animationEvent.DamageType == SPELL_SCHOOL3_CAP then
+		elseif animationEvent.DamageType == L["SPELL_SCHOOL3_CAP"] then
 			outputString = string.gsub(outputString, "%%a", "\124cff80FF80\124h%%a\124h\124r");
-		elseif animationEvent.DamageType == SPELL_SCHOOL4_CAP then
+		elseif animationEvent.DamageType == L["SPELL_SCHOOL4_CAP"] then
 			outputString = string.gsub(outputString, "%%a", "\124cff8080FF\124h%%a\124h\124r");
-		elseif animationEvent.DamageType == SPELL_SCHOOL5_CAP then
+		elseif animationEvent.DamageType == L["SPELL_SCHOOL5_CAP"] then
 			outputString = string.gsub(outputString, "%%a", "\124cffA000A0\124h%%a\124h\124r");
-		elseif animationEvent.DamageType == SPELL_SCHOOL6_CAP then
+		elseif animationEvent.DamageType == L["SPELL_SCHOOL6_CAP"] then
 			outputString = string.gsub(outputString, "%%a", "\124cffFFB9FF\124h%%a\124h\124r");
 		elseif animationEvent.DamageType == "Inconnu" then
 			outputString = string.gsub(outputString, "%%a", "\124cffFFB9FF\124h%%a\124h\124r");
-			-- DEFAULT_CHAT_FRAME:AddMessage(animationEvent.DamageType)
 		end
 	end
  

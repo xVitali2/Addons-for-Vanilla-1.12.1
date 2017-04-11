@@ -36,5 +36,11 @@ L:RegisterTranslations("enUS", function()
 		["+%a (%n) (Pet)"]="+%a (%n) (Pet)",
 		["Killing Blow! (%s)"]="Killing Blow! (%s)",
 		["Low Health! (%1)"]="Low Health! (%1)",
+		["SPELL_SCHOOL1_CAP"]="Holy",
+		["SPELL_SCHOOL2_CAP"]="Fire",
+		["SPELL_SCHOOL3_CAP"]="Nature",
+		["SPELL_SCHOOL4_CAP"]="Frost",
+		["SPELL_SCHOOL5_CAP"]="Shadow",
+		["SPELL_SCHOOL6_CAP"]="Arcane";
     }
 end)

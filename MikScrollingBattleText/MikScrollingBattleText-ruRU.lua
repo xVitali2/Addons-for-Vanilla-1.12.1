@@ -1,5 +1,4 @@
 local L = AceLibrary("AceLocale-2.2"):new("MikScrollingBattleText")
-
 L:RegisterTranslations("ruRU", function()
     return {
 		["Debug mode has been enabled."] = "Debug mode включен.",
@@ -36,5 +35,11 @@ L:RegisterTranslations("ruRU", function()
 		["+%a (%n) (Pet)"]="+%a (%n) (Питомец)",
 		["Killing Blow! (%s)"]="Смертельный удар! (%s)",
 		["Low Health! (%1)"]="Мало здоровья! (%1)",
+		["SPELL_SCHOOL1_CAP"]="Свет",
+		["SPELL_SCHOOL2_CAP"]="Огонь",
+		["SPELL_SCHOOL3_CAP"]="Природа",
+		["SPELL_SCHOOL4_CAP"]="Лед",
+		["SPELL_SCHOOL5_CAP"]="Тьма",
+		["SPELL_SCHOOL6_CAP"]="Тайная магия";
     }
 end)

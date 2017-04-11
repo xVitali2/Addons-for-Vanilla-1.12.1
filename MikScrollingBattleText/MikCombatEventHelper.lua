@@ -6,7 +6,7 @@
 
 -- Create "namespace."
 MikCEH = {};
-
+local L = AceLibrary("AceLocale-2.2"):new("MikScrollingBattleText")
 -------------------------------------------------------------------------------------
 -- Public constants.
 -------------------------------------------------------------------------------------
@@ -3430,17 +3430,17 @@ function MikCEH.GetDamageTypeNumber(damageTypeString)
  -- Return the correct damage type number for the passed string.
  if (damageTypeString == SPELL_SCHOOL0_CAP) then
   return MikCEH.DAMAGETYPE_PHYSICAL;
- elseif (damageTypeString == SPELL_SCHOOL1_CAP) then
+ elseif (damageTypeString == L["SPELL_SCHOOL1_CAP"]) then
   return MikCEH.DAMAGETYPE_HOLY;
- elseif (damageTypeString == SPELL_SCHOOL2_CAP) then
+ elseif (damageTypeString == L["SPELL_SCHOOL2_CAP"]) then
   return MikCEH.DAMAGETYPE_FIRE;
- elseif (damageTypeString == SPELL_SCHOOL3_CAP) then
+ elseif (damageTypeString == L["SPELL_SCHOOL3_CAP"]) then
   return MikCEH.DAMAGETYPE_NATURE;
- elseif (damageTypeString == SPELL_SCHOOL4_CAP) then
+ elseif (damageTypeString == L["SPELL_SCHOOL4_CAP"]) then
   return MikCEH.DAMAGETYPE_FROST;
- elseif (damageTypeString == SPELL_SCHOOL5_CAP) then
+ elseif (damageTypeString == L["SPELL_SCHOOL5_CAP"]) then
   return MikCEH.DAMAGETYPE_SHADOW;
- elseif (damageTypeString == SPELL_SCHOOL6_CAP) then
+ elseif (damageTypeString == L["SPELL_SCHOOL6_CAP"]) then
   return MikCEH.DAMAGETYPE_ARCANE;
  elseif (damageTypeString == "Arcane") then
   return MikCEH.DAMAGETYPE_ARCANE;
@@ -3459,19 +3459,18 @@ function MikCEH.GetDamageTypeString(damageType)
  if (damageType == MikCEH.DAMAGETYPE_PHYSICAL) then
   return SPELL_SCHOOL0_CAP;
  elseif (damageType == MikCEH.DAMAGETYPE_HOLY) then
-  return SPELL_SCHOOL1_CAP;
+  return L["SPELL_SCHOOL1_CAP"];
  elseif (damageType == MikCEH.DAMAGETYPE_FIRE) then
-  return SPELL_SCHOOL2_CAP;
+  return L["SPELL_SCHOOL2_CAP"];
  elseif (damageType == MikCEH.DAMAGETYPE_NATURE) then
-  return SPELL_SCHOOL3_CAP;
+  return L["SPELL_SCHOOL3_CAP"];
  elseif (damageType == MikCEH.DAMAGETYPE_FROST) then
-  return SPELL_SCHOOL4_CAP;
+  return L["SPELL_SCHOOL4_CAP"];
  elseif (damageType == MikCEH.DAMAGETYPE_SHADOW) then
-  return SPELL_SCHOOL5_CAP;
+  return L["SPELL_SCHOOL5_CAP"];
  elseif (damageType == MikCEH.DAMAGETYPE_ARCANE) then
-  return SPELL_SCHOOL6_CAP;
+  return L["SPELL_SCHOOL6_CAP"];
  end
-
  -- Return the unknown damage type string.
  return UNKNOWN;
 end
