@@ -28335,8 +28335,7 @@ QuestieHashMap = {
   ['finishedBy']="Zureetha Fargaze",
   ['level']=2,
   ['questLevel']='5',
-  ['rr']=178,
-  ['rq']=611883498
+  ['rr']=178
  },
  [4210602997]={
   ['name']="To Ironforge for Yagyin's Digest",
