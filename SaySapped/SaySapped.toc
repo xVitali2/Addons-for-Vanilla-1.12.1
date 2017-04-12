@@ -1,10 +1,12 @@
 ## Interface: 11200
 ## Title: SaySapped
-## Version: 2013-10-01
-## Notes: Says "Sapped" to alert those around you whenever a rogue saps you. Great for Arenas, Battlegrounds and World PvP!
-## Notes-ruRU: Говорит "Sapped" всем вокруг что вас ошеломил разбойник.
-## Author: Bitbyte of Icecrown
-## X-eMail: saysapped at orgplay dot com
-## X-Category: Battlegrounds/PvP, Chat/Communication
+## Version: 2.0
+## Notes: Says "Sapped!" to alert those around you whenever a rogue saps you.
+## Notes-ruRU: Говорит всем вокруг что вас ошеломил разбойник.
+## Author: Coax - Anathema PvP, CFM - translate and rework, Original idea: Bitbyte of Icecrown
+## SavedVariablesPerCharacter: SaySappedConfig
 
 SaySapped.lua
+
+
+
