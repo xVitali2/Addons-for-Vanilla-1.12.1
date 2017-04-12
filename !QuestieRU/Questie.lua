@@ -1069,7 +1069,7 @@ function SetItemRef(link, text, button)
                             questOb = k;
                         end
                     end
-                    ItemRefTooltip:AddLine("Started by: |cFFa6a6a6"..QuestieHashMap[questHash].startedBy.."|r",1,1,1);
+                    ItemRefTooltip:AddLine("Начинается из: |cFFa6a6a6"..QuestieHashMap[questHash].startedBy.."|r",1,1,1);
                     if questOb ~= nil then
                         ItemRefTooltip:AddLine("|cffffffff"..questOb.."|r",1,1,1,true);
                     else
@@ -1080,7 +1080,7 @@ function SetItemRef(link, text, button)
                     local _, _, questLevel = string.find(QuestieHashMap[questHash].questLevel, "(%d+)");
                     if questLevel ~= 0 and questLevel ~= "0" then
                         local color = GetDifficultyColor(questLevel);
-                        ItemRefTooltip:AddLine("Quest Level " ..QuestieHashMap[questHash].questLevel, color.r, color.g, color.b);
+                        ItemRefTooltip:AddLine("Уровень задания " ..QuestieHashMap[questHash].questLevel, color.r, color.g, color.b);
                     end
                     ItemRefTooltip:Show();
                 else
