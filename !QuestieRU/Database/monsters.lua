@@ -4897,8 +4897,7 @@ QuestieDropTable = {
 		["Шелковый материал"] = 297,
 		["Свиток духа II"] = 4,
 	},
-	["Maury \"Club Foot\" Wilkins"] = {
-		["Captain's Leggings of the Falcon"] = 1,
+	["Моури \"Деревянная Нога\" Вилкинс"] = {
 		["Зеленые холмы Тернистой долины: стр. 26"] = 5,
 		["Стальной сейф"] = 1,
 		["Смесь Занзила"] = 189,
@@ -4912,14 +4911,10 @@ QuestieDropTable = {
 		["Сокрушающая кувалда"] = 1,
 		["Магическая ткань"] = 265,
 		["Зеленые холмы Тернистой долины: стр. 14"] = 10,
-		["Furious Falchion of the Bear"] = 1,
 		["Зеленые холмы Тернистой долины: стр. 27"] = 9,
 		["Переплетенные кольчужные наручи"] = 1,
 		["Зеленые холмы Тернистой долины: стр. 11"] = 7,
 		["Зеленые холмы Тернистой долины: стр. 21"] = 8,
-		["Goblin Nutcracker of the Bear"] = 1,
-		["Cabalist Cloak of the Bear"] = 1,
-		["Ranger Leggings of Agility"] = 1,
 	},
 	["Боевой голем"] = {
 		["Глубокоскальная соль"] = 22,
@@ -14483,14 +14478,9 @@ QuestieDropTable = {
 		["Поношенные кольчужные штаны"] = 2,
 	},
 	["Обсидион"] = {
-		["Coeur d'Obsidion"] = 107,
 		["Вязаный пояс"] = 1,
-		["Corazón de Obsidion"] = 107,
 		["Сердце Обсидиона"] = 107,
 		["Глубокоскальная соль"] = 19,
-	},
-	["Ghoul"] = {
-		["Shattered Hand Gauntlets of Fire Protection"] = 1,
 	},
 	["Налетчик Когтя Ворона"] = {
 		["Меч обывателя"] = 2,
@@ -14501,27 +14491,12 @@ QuestieDropTable = {
 		["Льняной материал"] = 132,
 		["Поношенные кольчужные штаны"] = 1,
 	},
-	["Chasseur Zanzil"] = {
-		["Mixture de Zanzil"] = 8,
-	},
 	["Шипастый краб"] = {
 		["Большой красный мешок"] = 1,
-	},
-	["Elémentaire marin"] = {
-		["Noyau d'élémentaire d'eau"] = 536,
-	},
-	["Rift Lord"] = {
-		["Knothide Leather"] = 816,
-		["Expedition Gloves of the Monkey"] = 1,
-		["Essence of Infinity"] = 85,
 	},
 	["Большой скальный вепрь"] = {
 		["Кусок кабанины"] = 1174,
 		["Ребро скального вепря"] = 1352,
-	},
-	["Dark Worg"] = {
-		["Daggerfen Gloves of the Monkey"] = 1,
-		["Severed Claw"] = 24,
 	},
 	["Даларанский чарокнижник"] = {
 		["Шерсть"] = 8,
@@ -14530,35 +14505,6 @@ QuestieDropTable = {
 	},
 	["Коворк"] = {
 		["Шелковый материал"] = 24,
-	},
-	["Schlammkreatur"] = {
-		["Schlammbesudelter Kern"] = 2543,
-	},
-	["Voleur Follengeance"] = {
-		["Sang de satyre"] = 2,
-	},
-	["Bone Sifter"] = {
-		["Fractured Carapace"] = 220,
-	},
-	["Naphthal'ar"] = {
-		["Fractured Carapace"] = 409,
-		["Eroded Mail Boots"] = 2,
-	},
-	["Pterrordáctilo demenciado"] = {
-		["Escama de pterrordáctilo palmeada"] = 3019,
-	},
-	["Void Anomaly"] = {
-		["Ситцевые ботинки"] = 5,
-		["Покоробленный плащ"] = 3,
-		["Простой кулачный щит"] = 1,
-		["Низкосортное взрывчатое вещество"] = 3,
-		["Ситцевый мундир"] = 1,
-		["Irradiated Crystal Shard"] = 431,
-		["Покоробленный кожаный жилет"] = 1,
-		["Поношенные кольчужные штаны"] = 2,
-	},
-	["Schurke der Wüstenläufer"] = {
-		["Wasserbeutel eines Wüstenläufers"] = 583,
 	},
 	["Заклинатель ветра из племени Чернолесья"] = {
 		["Ситцевые ботинки"] = 6,
@@ -14584,41 +14530,15 @@ QuestieDropTable = {
 		["Маленький флакон с зельем маны"] = 27,
 		["Покрытое грязью кольцо"] = 240,
 	},
-	["Chercheur solfurie"] = {
-		["Gants de chercheur solfurie"] = 159,
-	},
 	["Чернокнижник из клана Гордунни"] = {
-		["Ebon Scimitar of the Bear"] = 2,
 		["Стальной сейф"] = 4,
-		["Ebon Scimitar of the Monkey"] = 1,
 		["Большой флакон с лечебным зельем"] = 73,
 		["Вязаный пояс"] = 1,
-		["Sniper Rifle of the Eagle"] = 1,
 		["Кусок ветчины"] = 229,
 		["Раскалывающий боевой топор"] = 7,
 		["Сокрушающая кувалда"] = 1,
 		["Магическая ткань"] = 1548,
-		["Headstriker Sword of the Wolf"] = 1,
-		["Furious Falchion of the Bear"] = 1,
-		["Headstriker Sword of the Whale"] = 1,
-		["Warbringer's Sabatons  of the Boar"] = 2,
-		["Headstriker Sword of the Bear"] = 1,
-		["Imposing Bracers of the Whale"] = 2,
 		["Символическая корона"] = 1,
-		["Lunar Mantle of the Eagle"] = 1,
-	},
-	["Pterrordáctilo Fugalante"] = {
-		["Escama de pterrordáctilo palmeada"] = 1313,
-	},
-	["Pterrordáctilo"] = {
-		["Escama de pterrordáctilo palmeada"] = 1483,
-	},
-	["Großer Felselementar"] = {
-		["Armschienen der Steinbindung"] = 1323,
-	},
-	["Starving Helboar"] = {
-		["Eroded Mail Boots"] = 13,
-		["Loosely Threaded Gloves"] = 10,
 	},
 	["Пыледемон"] = {
 		["Прах пыледемона"] = 136,
@@ -14626,18 +14546,9 @@ QuestieDropTable = {
 	["Опустошитель-силитид"] = {
 		["Хрупкое крылышко насекомого"] = 18,
 	},
-	["Nocturno"] = {
-		["Sello llameante"] = 60,
-	},
 	["Сержант Язра Кровавый Рык"] = {
 		["Славная утренняя роса"] = 2,
 		["Руническая ткань"] = 150,
-	},
-	["Infinite Chrono-Lord"] = {
-		["Knothide Leather"] = 11,
-	},
-	["Jammal'an der Prophet"] = {
-		["Jammal'ans Kopf"] = 371,
 	},
 	["Низшее воплощение огня"] = {
 		["Тлеющий уголь"] = 2,
@@ -16807,10 +16718,6 @@ QuestieDropTable = {
 		["Цыганский плащ"] = 3,
 		["Разболтанные плетеные перчатки"] = 8,
 	},
-	["Blistering Rot"] = {
-		["Eroded Mail Boots"] = 4,
-		["Loosely Threaded Gloves"] = 3,
-	},
 	["Гонец из племени Зимней Спячки"] = {
 		["Руническая ткань"] = 1565,
 		["Воинский посох упорства"] = 5,
@@ -16820,16 +16727,7 @@ QuestieDropTable = {
 		["Славная утренняя роса"] = 56,
 		["Ящик Зимней Спячки"] = 1,
 		["Ритуальный тотем Зимней Спячки"] = 36,
-	},
-	["Silkwing"] = {
-		["Iridescent Wing"] = 808,
-		["Loosely Threaded Gloves"] = 1,
-	},
-	["Hound of Culuthas"] = {
-		["Shattered Hand Gauntlets of Strength"] = 1,
-	},
-	["鹽湖食腐鷲"] = {
-		["空心禿鷲骨"] = 3142,
+		["Ящик Зимней Спячки"] = 332,
 	},
 	["Громоголовый соправитель"] = {
 		["Плотная кожа"] = 68,
@@ -35718,19 +35616,6 @@ QuestieDropTable = {
 		["Пузырящаяся зеленая слизь"] = 112,
 		["Безжизненный череп"] = 66,
 	},
-	["Wrathscale Marauder"] = {
-		["Survey Data Crystal"] = 2,
-		["Покоробленный плащ"] = 7,
-		["Покоробленный кожаный жилет"] = 7,
-		["Ситцевый мундир"] = 11,
-		["Ситцевые штаны"] = 12,
-		["Irradiated Crystal Shard"] = 959,
-		["Ситцевые ботинки"] = 3,
-		["Поношенные кольчужные штаны"] = 2,
-	},
-	["Гонец из племени Зимней Спячки"] = {
-		["Ящик Зимней Спячки"] = 332,
-	},
 	["Тенегорнский горожанин"] = {
 		["Черный алмаз"] = 8,
 		["Пластины из темного железа"] = 218,
@@ -41691,9 +41576,6 @@ QuestieDropTable = {
 		["Sketh'lon Commander's Journal - Page 3"] = 25,
 		["Warmaul Legplates of the Champion"] = 1,
 		["Sketh'lon Commander's Journal - Page 1"] = 16,
-	},
-	["Моури \"Деревянная Нога\" Вилкинс"] = {
-		["Смесь Занзила"] = 189,
 	},
 	["Скелет-берсерк"] = {
 		["Плащ из многослойной чешуи"] = 1,
@@ -49828,15 +49710,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 2
   },
-  ["Краткое изложение тактической задачи X"] = {
-    ["locations"] = {
-      [1] = {5.0, 0.5025, 0.372, 100.0},
-      [3] = {5.0, 0.3294, 0.5232, 27.0},
-      [4] = {8.0, 0.5225, 0.2885, 2.0},
-      [2] = {5.0, 0.1528, 0.8642, 27.0}
-    },
-    ["locationCount"] = 4
-  },
   ["Мародер из племени Маграм"] = {
     ["locations"] = {
       [1] = {4.0, 0.7153, 0.7489, 100.0},
@@ -52234,13 +52107,6 @@ QuestieMonsters = {
     ["looted"] = 671,
     ["locationCount"] = 1
   },
-  ["Краткое изложение тактической задачи VIII"] = {
-    ["locations"] = {
-      [1] = {5.0, 0.5097, 0.3768, 100.0},
-      [2] = {60.0, 0.4856, 0.29, 2.0}
-    },
-    ["locationCount"] = 2
-  },
   ["Spectral Servant"] = {
     ["locations"] = {
       [1] = {47.0, 0.4675, 0.7451, 100.0}
@@ -52678,13 +52544,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Краткое изложение тактической задачи IV"] = {
-    ["locations"] = {
-      [1] = {5.0, 0.5022, 0.3725, 100.0},
-      [2] = {60.0, 0.4811, 0.2812, 3.0}
-    },
-    ["locationCount"] = 2
-  },
   ["Малфурион Ярость Бури"] = {
     ["locations"] = {
       [1] = {46.0, 0.7732, 0.3598, 100.0},
@@ -52710,29 +52569,6 @@ QuestieMonsters = {
     },
     ["looted"] = 3503,
     ["locationCount"] = 5
-  },
-  ["Oozes Dissolved"] = {
-    ["locations"] = {
-      [1] = {10.0, 0.532, 0.5625, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Huntress Kima"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.5443, 0.7149, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
-  ["Sunfury Arch Mage"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.5232, 0.872, 100.0},
-      [3] = {59.0, 0.4737, 0.841, 81.0},
-      [4] = {59.0, 0.5451, 0.8275, 3.0},
-      [2] = {59.0, 0.475, 0.804, 86.0}
-    },
-    ["looted"] = 1316,
-    ["locationCount"] = 4
   },
   ["Сул'литуз-поганище"] = {
     ["locations"] = {
@@ -60633,7 +60469,7 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Equinex Monolith"] = {
+  ["Монолит Равноденствия"] = {
     ["locations"] = {
       [1] = {17.0, 0.3885, 0.1317, 100.0}
     },
@@ -60645,14 +60481,6 @@ QuestieMonsters = {
     },
     ["looted"] = 799,
     ["locationCount"] = 1
-  },
-  ["Shattered Hand Guard"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.4658, 0.4403, 100.0},
-      [2] = {56.0, 0.4631, 0.5941, 3.0}
-    },
-    ["looted"] = 6717,
-    ["locationCount"] = 2
   },
   ["Медведь-ледолап"] = {
     ["locations"] = {
@@ -60710,32 +60538,6 @@ QuestieMonsters = {
     ["looted"] = 608,
     ["locationCount"] = 1
   },
-  ["Male Kaliri Hatchling"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.2556, 0.7506, 100.0}
-    },
-    ["looted"] = 2113,
-    ["locationCount"] = 1
-  },
-  ["Wind Trader Marid"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.5875, 0.3139, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Nizzle"] = {
-    ["locations"] = {
-      [1] = {38.0, 0.3819, 0.0406, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
-  ["Alexston Chrome"] = {
-    ["locations"] = {
-      [1] = {8.0, 0.6727, 0.4957, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Джарел Мур"] = {
     ["locations"] = {
       [1] = {36.0, 0.2864, 0.7511, 100.0}
@@ -60749,36 +60551,6 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1,
     ["faction"] = 1
-  },
-  ["Vir'aani Arcanist"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.3442, 0.6328, 100.0},
-      [3] = {58.0, 0.312, 0.7588, 26.0},
-      [4] = {58.0, 0.3665, 0.6619, 2.0},
-      [2] = {58.0, 0.4099, 0.7055, 83.0}
-    },
-    ["looted"] = 6004,
-    ["locationCount"] = 4
-  },
-  ["Vigilante-Ley Caidanis"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.4466, 0.531, 100.0}
-    },
-    ["faction"] = 2,
-    ["locationCount"] = 1
-  },
-  ["Deathshadow Agent slain"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.0865, 0.4368, 100.0},
-      [2] = {58.0, 0.1293, 0.3774, 3.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Borak, Son of Oronok"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.4754, 0.5722, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Лесной хищник"] = {
     ["locations"] = {
@@ -60805,16 +60577,6 @@ QuestieMonsters = {
     ["looted"] = 3008,
     ["locationCount"] = 1
   },
-  ["Sickly Gazelle cured"] = {
-    ["locations"] = {
-      [1] = {11.0, 0.5243, 0.198, 100.0},
-      [5] = {11.0, 0.4884, 0.2967, 5.0},
-      [3] = {11.0, 0.5058, 0.143, 64.0},
-      [4] = {11.0, 0.5341, 0.1244, 58.0},
-      [2] = {11.0, 0.4881, 0.2511, 73.0}
-    },
-    ["locationCount"] = 5
-  },
   ["Гигантский чащобный тенетник"] = {
     ["locations"] = {
       [1] = {24.0, 0.3939, 0.2649, 100.0},
@@ -60822,12 +60584,6 @@ QuestieMonsters = {
     },
     ["looted"] = 1162,
     ["locationCount"] = 2
-  },
-  ["Luma Skymother"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.4903, 0.3571, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Агерон Каргал"] = {
     ["locations"] = {
@@ -60843,40 +60599,11 @@ QuestieMonsters = {
     ["looted"] = 1323,
     ["locationCount"] = 1
   },
-  ["Jaedenar Hound slain"] = {
-    ["locations"] = {
-      [1] = {13.0, 0.3781, 0.6025, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Скелет-слуга"] = {
     ["locations"] = {
       [1] = {11.0, 0.5086, 0.9287, 100.0}
     },
     ["looted"] = 36,
-    ["locationCount"] = 1
-  },
-  ["Mag'har Prisoner"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.2735, 0.2446, 100.0},
-      [2] = {58.0, 0.2372, 0.2958, 7.0}
-    },
-    ["faction"] = 2,
-    ["locationCount"] = 2,
-    ["looted"] = 3
-  },
-  ["Innkeeper Biribi"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.5672, 0.5331, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
-  ["Talonpriest Zellek"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.6988, 0.7452, 100.0}
-    },
-    ["looted"] = 196,
     ["locationCount"] = 1
   },
   ["Задание мастера: большой ториевый боевой топор"] = {
@@ -65430,15 +65157,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Краткое изложение тактической задачи V"] = {
-    ["locations"] = {
-      [1] = {5.0, 0.5024, 0.3735, 100.0},
-      [3] = {8.0, 0.518, 0.2832, 36.0},
-      [4] = {5.0, 0.5129, 0.6876, 2.0},
-      [2] = {5.0, 0.4656, 0.4463, 36.0}
-    },
-    ["locationCount"] = 4
-  },
   ["Верховная жрица Макдонелл"] = {
     ["locations"] = {
       [1] = {50.0, 0.4294, 0.8443, 100.0}
@@ -69250,7 +68968,7 @@ QuestieMonsters = {
     ["looted"] = 8197,
     ["locationCount"] = 1
   },
-  ["Termite Barrel"] = {
+  ["Термитная бочка"] = {
     ["locations"] = {
       [1] = {50.0, 0.4835, 0.3196, 100.0}
     },
@@ -69491,13 +69209,6 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1,
     ["faction"] = 1
-  },
-  ["Краткое изложение тактической задачи II"] = {
-    ["locations"] = {
-      [1] = {5.0, 0.5051, 0.3719, 100.0},
-      [2] = {60.0, 0.4852, 0.2893, 3.0}
-    },
-    ["locationCount"] = 2
   },
   ["Мастифф клана Гордок"] = {
     ["locations"] = {
@@ -71760,7 +71471,7 @@ QuestieMonsters = {
     ["looted"] = 32390,
     ["locationCount"] = 5
   },
-  ["Altar of Hakkar"] = {
+  ["Алтарь Хаккара"] = {
     ["locations"] = {
       [1] = {46.0, 0.7733, 0.359, 100.0}
     },
@@ -78934,12 +78645,10 @@ QuestieMonsters = {
   },
   ["Атраманис"] = {
     ["locations"] = {
-      [1] = {60.0, 0.6698, 0.5714, 100.0},
-      [3] = {60.0, 0.6561, 0.5348, 2.0},
-      [2] = {1.0, 0.7901, 0.3111, 57.0}
+      [1] = {26.0, 0.395, 0.812, 100.0},
     },
     ["looted"] = 188,
-    ["locationCount"] = 3,
+    ["locationCount"] = 1,
     ["faction"] = 1
   },
   ["Нимей"] = {
@@ -80330,23 +80039,6 @@ QuestieMonsters = {
     },
     ["looted"] = 1382,
     ["locationCount"] = 1
-  },
-  ["Ashtongue Handler"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.5775, 0.3653, 100.0}
-    },
-    ["looted"] = 1118,
-    ["locationCount"] = 1
-  },
-  ["Карта сокровищ Куэрго"] = {
-    ["locations"] = {
-      [1] = {8.0, 0.7399, 0.466, 100.0},
-      [5] = {8.0, 0.5408, 0.9313, 3.0},
-      [3] = {8.0, 0.6681, 0.2281, 39.0},
-      [4] = {1.0, 0.505, 0.6979, 37.0},
-      [2] = {8.0, 0.5215, 0.2818, 52.0}
-    },
-    ["locationCount"] = 5
   },
   ["Кэрн Кровавое Копыто"] = {
     ["locations"] = {
@@ -82078,15 +81770,6 @@ QuestieMonsters = {
     ["looted"] = 2841,
     ["locationCount"] = 1
   },
-  ["Dreghood Brute"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.1489, 0.5878, 100.0},
-      [2] = {56.0, 0.1514, 0.6276, 3.0}
-    },
-    ["faction"] = 1,
-    ["locationCount"] = 2,
-    ["looted"] = 1647
-  },
   ["Деллия"] = {
     ["locations"] = {
       [1] = {24.0, 0.5957, 0.4082, 100.0}
@@ -82146,12 +81829,6 @@ QuestieMonsters = {
     ["looted"] = 20082,
     ["locationCount"] = 2
   },
-  ["Clunk slain"] = {
-    ["locations"] = {
-      [1] = {32.0, 0.3502, 0.5191, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Ландрия"] = {
     ["locations"] = {
       [1] = {21.0, 0.633, 0.6649, 100.0}
@@ -82182,13 +81859,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Shadowmaster Grieve"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.4024, 0.3894, 100.0}
-    },
-    ["looted"] = 566,
-    ["locationCount"] = 1
-  },
   ["Гликс Пивоправ"] = {
     ["locations"] = {
       [1] = {38.0, 0.2812, 0.7804, 100.0}
@@ -82202,13 +81872,6 @@ QuestieMonsters = {
     ["looted"] = 5495,
     ["locationCount"] = 1
   },
-  ["Arugoo of the Stillpine"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.4937, 0.5114, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
   ["Детеныш черной вдовы"] = {
     ["locations"] = {
       [1] = {31.0, 0.8122, 0.5494, 100.0},
@@ -82219,19 +81882,6 @@ QuestieMonsters = {
     },
     ["looted"] = 10179,
     ["locationCount"] = 5
-  },
-  ["Destroy Legion Hold Infernals"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.2268, 0.399, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Arcane Reaver"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.7858, 0.1996, 100.0}
-    },
-    ["looted"] = 2824,
-    ["locationCount"] = 1
   },
   ["Вендиго"] = {
     ["locations"] = {
@@ -82280,13 +81930,6 @@ QuestieMonsters = {
     },
     ["looted"] = 227,
     ["locationCount"] = 5
-  },
-  ["Harbinger Skyriss"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.7453, 0.5766, 100.0}
-    },
-    ["looted"] = 234,
-    ["locationCount"] = 1
   },
   ["Смоляной господин"] = {
     ["locations"] = {
@@ -82869,13 +82512,6 @@ QuestieMonsters = {
       [2] = {13.0, 0.4342, 0.157, 5.0}
     },
     ["looted"] = 6279,
-    ["locationCount"] = 2
-  },
-  ["Задание мастера: накладки из грубой кожи"] = {
-    ["locations"] = {
-      [1] = {34.0, 0.8101, 0.5806, 100.0},
-      [2] = {36.0, 0.549, 0.6777, 4.0}
-    },
     ["locationCount"] = 2
   },
   ["Душегубка из стаи Кровавой Ярости"] = {
@@ -84429,15 +84065,6 @@ QuestieMonsters = {
     },
     ["looted"] = 2000,
     ["locationCount"] = 1
-  },
-  ["Краткое изложение тактической задачи VI"] = {
-    ["locations"] = {
-      [1] = {5.0, 0.5014, 0.3681, 100.0},
-      [3] = {5.0, 0.4542, 0.5406, 33.0},
-      [4] = {8.0, 0.5559, 0.5342, 3.0},
-      [2] = {5.0, 0.3295, 0.5182, 55.0}
-    },
-    ["locationCount"] = 4
   },
   ["Темный душегуб Мортентал"] = {
     ["locations"] = {
@@ -86955,13 +86582,24 @@ QuestieMonsters = {
     ["looted"] = 2326,
     ["locationCount"] = 2
   },
+  ["Оскверненный кнутокорень"] = {
+    ["locations"] = {
+      [1] = {13.0, 0.401, 0.852, 30.0},
+	  [2] = {13.0, 0.506, 0.183, 20.0},
+	  [3] = {13.0, 0.494, 0.122, 10.0},
+	  [4] = {13.0, 0.407, 0.191, 10.0},
+	  [5] = {13.0, 0.430, 0.470, 10.0},
+	  [6] = {13.0, 0.341, 0.602, 20.0},
+    },
+    ["locationCount"] = 6
+  },
   ["Overmine Flayer slain"] = {
     ["locations"] = {
       [1] = {53.0, 0.7055, 0.8483, 100.0}
     },
     ["locationCount"] = 1
   },
-  ["Denalan's Planter"] = {
+  ["Кадка Деналана"] = {
     ["locations"] = {
       [1] = {24.0, 0.6082, 0.6849, 100.0}
     },
@@ -95049,7 +94687,7 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 2
   },
-  ["Maury \"Club Foot\" Wilkins"] = {
+  ["Моури \"Деревянная Нога\" Вилкинс"] = {
     ["locations"] = {
       [1] = {38.0, 0.3501, 0.5099, 100.0}
     },
@@ -96270,7 +95908,7 @@ QuestieMonsters = {
     ["looted"] = 2645,
     ["locationCount"] = 4
   },
-  ["Pirate's Treasure!"] = {
+  ["Пиратское сокровище!"] = {
     ["locations"] = {
       [1] = {8.0, 0.5426, 0.9361, 100.0}
     },
@@ -97672,7 +97310,7 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1
   },
-  ["Northern Crystal Pylon"] = {
+  ["Северный хрустальный пилон"] = {
     ["locations"] = {
       [1] = {18.0, 0.5661, 0.1246, 100.0}
     },
@@ -99897,7 +99535,7 @@ QuestieMonsters = {
     ["looted"] = 8498,
     ["locationCount"] = 5
   },
-  ["Corrupted Songflower"] = {
+  ["Оскверненный песнецвет"] = {
     ["locations"] = {
       [1] = {13.0, 0.5291, 0.8777, 100.0},
       [5] = {13.0, 0.4592, 0.8524, 3.0},
@@ -101502,16 +101140,6 @@ QuestieMonsters = {
     },
     ["looted"] = 1090,
     ["locationCount"] = 3
-  },
-  ["Краткое изложение тактической задачи IX"] = {
-    ["locations"] = {
-      [1] = {5.0, 0.4938, 0.368, 100.0},
-      [5] = {25.0, 0.3273, 0.651, 2.0},
-      [3] = {5.0, 0.5186, 0.3912, 22.0},
-      [4] = {23.0, 0.4689, 0.5827, 22.0},
-      [2] = {5.0, 0.3284, 0.5252, 36.0}
-    },
-    ["locationCount"] = 5
   },
   ["Менара Расщепительница Бездны"] = {
     ["locations"] = {
@@ -106037,9 +105665,15 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1
   },
-  ["Bubbling Cauldron"] = {
+  ["Бурлящий котел"] = {
     ["locations"] = {
       [1] = {38.0, 0.322, 0.2767, 100.0}
+    },
+    ["locationCount"] = 1
+  },
+  ["Тикающий подарочек"] = {
+    ["locations"] = {
+      [1] = {1.0, 0.495, 0.776, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -108583,6 +108217,12 @@ QuestieMonsters = {
   ["Запечатанный ящик"] = {
     ["locations"] = {
       [1] = {36.0, 0.2957, 0.6177, 100.0}
+    },
+    ["locationCount"] = 1
+  },
+  ["Запечатанный ящик с припасами"] = {
+    ["locations"] = {
+      [1] = {22.0, 0.537, 0.482, 100.0}
     },
     ["locationCount"] = 1
   },

@@ -1107,7 +1107,7 @@ function Questie:getQuestHash(name, level, objectiveText)
         local count = 0;
         local retval = 0;
         local bestDistance = 4294967295; --some high number (0xFFFFFFFF)
-        local race = UnitRace("Player");
+        local _, race = UnitRace("Player");
         for k,v in pairs(questLookup) do
             local rr = v[1];
             local adjustedDescription = k;
