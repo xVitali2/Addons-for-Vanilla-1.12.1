@@ -132,16 +132,21 @@ function SmartHeal:getConfig(option,module)
 end
 
 function SmartHeal:SlashCmd(arg1)
-
-	if (not SmartHeal:isActive()) then
-		SmartHeal:ErrorMsg(SH_IS_NOT_ACTIVE_CLASS)
-		return;
-	end;
-
-	if(not SH_OptionsFrame:IsShown()) then
-		SH_OptionsFrame:Show()
+	if arg1 == 'hot1' then
+		SmartHeal:HotListCast(SmartHeal:getConfig("hotkey1","hotlist"))
+	elseif arg1 == 'hot2' then
+		SmartHeal:HotListCast(SmartHeal:getConfig("hotkey2","hotlist"))
+	elseif arg1 == 'hot3' then
+		SmartHeal:HotListCast(SmartHeal:getConfig("hotkey3","hotlist"))
+	else
+		if (not SmartHeal:isActive()) then
+			SmartHeal:ErrorMsg(SH_IS_NOT_ACTIVE_CLASS)
+			return;
+		end;
+		if (not SH_OptionsFrame:IsShown()) then
+			SH_OptionsFrame:Show()
+		end
 	end
-	
 end
 
 function SmartHeal:doCast(spell,rank)

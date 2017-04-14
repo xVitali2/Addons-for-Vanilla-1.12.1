@@ -3,10 +3,10 @@
 ## Notes: Auto heal rank calculation and auto target healing
 ## Notes-ruRU: Автоматический расчет ранга способности лечения и автоматический выбор цели лечения
 ## Author: bolocos@gmail.com
-## Version: 1.27
+## Version: 1.28
 ## SavedVariables: SmartHeal_Config,SmartHeal_DebugMsg
 ## OptionalDeps: Discord Unit Frames, Telo's SelfCast, Nymbia's Perl Unitframes, CT_RaidAssist, Sage, Nurfed UnitFrames, Nurfed_UnitFrames, PerfectRaid |cff007fff -Ace-|r
-## Dependencies:
+
 BonusScanner\BonusScanner.xml
 Globals.lua
 Events.lua
