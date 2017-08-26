@@ -1,6 +1,6 @@
 -- Global Variables
 DPSMate = {}
-DPSMate.VERSION = 111
+DPSMate.VERSION = 124
 DPSMate.LOCALE = GetLocale()
 DPSMate.SYNCVERSION = DPSMate.VERSION..DPSMate.LOCALE
 DPSMate.Parser = CreateFrame("Frame", nil, UIParent)
@@ -309,6 +309,13 @@ function DPSMate:InitializeFrames()
 	DPSMate_ConfigMenu:SetToplevel(true)
 end
 
+function DPSMate:ProbZero(val)
+	if (val==0) then
+		return 1;
+	end
+	return val;
+end
+
 function DPSMate:TMax(t)
 	local max = 0
 	for _,val in pairs(t) do
@@ -556,7 +563,7 @@ end
 
 function DPSMate:GetClassColor(class)
 	if not classcolor[class] then
-		if class then
+		if class and DPSMateUser[class] then
 			class = DPSMateUser[class][2] or "warrior"
 		else
 			class = "warrior"

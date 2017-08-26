@@ -615,9 +615,26 @@ DPSMate.DB.VARIABLES_LOADED = function()
 		end
 
 		DPSMate:OnLoad()
-		DPSMate.Sync:OnLoad()
 		DPSMate.Options:InitializeSegments()
 		DPSMate.Options:InitializeHideShowWindow()
+
+		if not DPSMATERESET or DPSMATERESET<DPSMate.VERSION then
+			DPSMateUser = {}
+			DPSMateAbility = {}
+			DPSMATERESET = DPSMate.VERSION
+			DPSMate.Options:PopUpAccept(true, true)
+		end
+		
+		this.abilitylen = DPSMate:TableLength(DPSMateAbility)
+		this.userlen = DPSMate:TableLength(DPSMateUser)
+		if this.userlen==0 then
+			this.userlen = 1
+		end
+		if this.abilitylen == 0 then
+			this.abilitylen = 1
+		end
+
+		DPSMate.Sync:OnLoad()
 		
 		player = UnitName("player")
 		
@@ -627,19 +644,6 @@ DPSMate.DB.VARIABLES_LOADED = function()
 				_G("DPSMate_Details"..val):SetToplevel(true)
 			end
 		end
-		
-		if not DPSMateUser["LASTRESETDPSMATE"] or DPSMateUser["LASTRESETDPSMATE"][2]<DPSMate.VERSION then
-			DPSMateUser = {}
-			DPSMateAbility = {}
-			DPSMateUser["LASTRESETDPSMATE"] = {
-				[1] = 1,
-				[2] = DPSMate.VERSION
-			}
-			DPSMate.Options:PopUpAccept(true, true)
-		end
-		
-		this.abilitylen = DPSMate:TableLength(DPSMateAbility)
-		this.userlen = DPSMate:TableLength(DPSMateUser)
 		
 		DPSMate.Parser:GetPlayerValues()
 		this:OnGroupUpdate()
@@ -651,6 +655,19 @@ DPSMate.DB.VARIABLES_LOADED = function()
 		DPSMate.Sync:SetScript("OnUpdate", function() this:OnUpdate() end)
 		DPSMate.Options:SetScript("OnEvent", function() this[event]() end)
 		DPSMate.Options:SetScript("OnUpdate", function() this:OnUpdate() end)
+
+		SetCVar("CombatLogPeriodicSpells", 1);
+		
+		RegisterCVar("CombatLogRangeParty", 200);
+		RegisterCVar("CombatLogRangePartyPet", 200);
+		RegisterCVar("CombatLogRangeFriendlyPlayers", 200);
+		RegisterCVar("CombatLogRangeFriendlyPlayersPets", 200);
+		RegisterCVar("CombatLogRangeHostilePlayers", 200);
+		RegisterCVar("CombatLogRangeHostilePlayersPets", 200);
+		
+
+		RegisterCVar("CombatLogRangeCreature", 200);
+		RegisterCVar("CombatDeathLogRange", 200);
 
 		DPSMate:SendMessage("DPSMate build "..DPSMate.VERSION.." has been loaded!")
 		this.loaded = true
@@ -714,6 +731,7 @@ end
 DPSMate.DB.PLAYER_TARGET_CHANGED = function()
 	if UnitIsPlayer("target") then
 		local name = UnitName("target")
+		local pet = UnitName("targetpet")
 		local _, class = UnitClass("target")
 		local fac = UnitFactionGroup("target") or ""
 		local level = UL("target")
@@ -732,6 +750,17 @@ DPSMate.DB.PLAYER_TARGET_CHANGED = function()
 		end
 		if DPSMateUser[name][4] then
 			DPSMateUser[name][4] = false
+			DPSMateUser[name][5] = ""
+		end
+		if pet and pet ~= DPSMate.L["unknown"] and pet ~= "" then
+			this:BuildUser(pet, nil)
+			DPSMateUser[pet][4] = true
+			DPSMateUser[name][5] = pet
+			DPSMateUser[pet][6] = DPSMateUser[name][1]
+		end
+		if DPSMate.Parser.TargetParty[pet] then
+			DPSMateUser[pet][4] = false
+			DPSMateUser[pet][6] = ""
 			DPSMateUser[name][5] = ""
 		end
 	end
@@ -766,17 +795,17 @@ function DPSMate.DB:OnGroupUpdate()
 			local gname, _, _ = GetGuildInfo(type..i)
 			local level = UL(type..i)
 			self:BuildUser(name, strlower(classEng or ""))
-			self:BuildUser(pet)
 			if classEng then
 				DPSMateUser[name][2] = strlower(classEng)
 			end
 			DPSMateUser[name][4] = false
-			if pet and pet ~= DPSMate.L["unknown"] then
+			if pet and pet ~= DPSMate.L["unknown"] and pet ~= "" then
+				self:BuildUser(pet)
 				DPSMateUser[pet][4] = true
 				DPSMateUser[name][5] = pet
 				DPSMateUser[pet][6] = DPSMateUser[name][1]
 			end
-			if DPSMate.Parser.TargetParty[pet] then
+			if pet and DPSMate.Parser.TargetParty[pet] then
 				DPSMateUser[pet][4] = false
 				DPSMateUser[pet][6] = ""
 				DPSMateUser[name][5] = ""
@@ -801,8 +830,8 @@ function DPSMate.DB:OnGroupUpdate()
 	end
 	local pet = UnitName("pet")
 	local name = UnitName("player")
-	if pet and pet ~= DPSMate.L["unknown"] then
-		self:BuildUser(name, nil)
+	self:BuildUser(name, nil)
+	if pet and pet ~= DPSMate.L["unknown"] and pet ~= "" then
 		self:BuildUser(pet, nil)
 		DPSMateUser[pet][4] = true
 		DPSMateUser[name][5] = pet
@@ -1164,22 +1193,22 @@ function DPSMate.DB:DamageDone(Duser, Dname, Dhit, Dcrit, Dmiss, Dparry, Ddodge,
 			if Dhit == 1 then
 				if (Damount < path[2] or path[2] == 0) then path[2] = Damount end
 				if Damount > path[3] then path[3] = Damount end
-				path[4] = (path[4]*path[1]+Damount)/(path[1]+1)
+				path[4] = path[4] + Damount
 				path[1] = path[1] + 1
 			elseif Dcrit == 1 then
 				if (Damount < path[6] or path[6] == 0) then path[6] = Damount end
 				if Damount > path[7] then path[7] = Damount end
-				path[8] = (path[8]*path[5]+Damount)/(path[5]+1)
+				path[8] = path[8] + Damount
 				path[5] = path[5] + 1
 			elseif Dglance == 1 then
 				if (Damount < path[15] or path[15] == 0) then path[15] = Damount end
 				if Damount > path[16] then path[16] = Damount end
-				path[17] = (path[17]*path[14]+Damount)/(path[14]+1)
+				path[17] =  path[17] + Damount
 				path[14] = path[14] + 1
 			else
 				if (Damount < path[19] or path[19] == 0) then path[19] = Damount end
 				if Damount > path[20] then path[20] = Damount end
-				path[21] = (path[21]*path[18]+Damount)/(path[18]+1)
+				path[21] =  path[21] + Damount
 				path[18] = path[18] + 1
 			end
 			gen["i"] = gen["i"] + Damount
@@ -1242,22 +1271,22 @@ function DPSMate.DB:DamageTaken(Duser, Dname, Dhit, Dcrit, Dmiss, Dparry, Ddodge
 			if Dhit == 1 then
 				if (Damount < path[2] or path[2] == 0) then path[2] = Damount end
 				if Damount > path[3] then path[3] = Damount end
-				path[4] = (path[4]*path[1]+Damount)/(path[1]+1)
+				path[4] = path[4]+Damount
 				path[1] = path[1] + 1
 			elseif Dcrit == 1 then
 				if (Damount < path[6] or path[6] == 0) then path[6] = Damount end
 				if Damount > path[7] then path[7] = Damount end
-				path[8] = (path[8]*path[5]+Damount)/(path[5]+1)
+				path[8] = path[8]+Damount
 				path[5] = path[5] + 1
 			elseif Dcrush == 1 then
 				if (Damount < path[16] or path[16] == 0) then path[16] = Damount end
 				if Damount > path[17] then path[17] = Damount end
-				path[18] = (path[18]*path[15]+Damount)/(path[15]+1)
+				path[18] = path[18]+Damount
 				path[15] = path[15] + 1
 			else
 				if (Damount < path[21] or path[21] == 0) then path[21] = Damount end
 				if Damount > path[22] then path[22] = Damount end
-				path[23] = (path[23]*path[20]+Damount)/(path[20]+1)
+				path[23] = path[23]+Damount
 				path[20] = path[20] + 1
 			end
 			gen["i"] = gen["i"] + Damount
@@ -1340,22 +1369,22 @@ function DPSMate.DB:EnemyDamage(mode, arr, Duser, Dname, Dhit, Dcrit, Dmiss, Dpa
 			if Dhit == 1 then
 				if (Damount < path[2] or path[2] == 0) then path[2] = Damount end
 				if Damount > path[3] then path[3] = Damount end
-				path[4] = (path[4]*path[1]+Damount)/(path[1]+1)
+				path[4] = path[4] + Damount
 				path[1] = path[1] + 1
 			elseif Dcrit == 1 then
 				if (Damount < path[6] or path[6] == 0) then path[6] = Damount end
 				if Damount > path[7] then path[7] = Damount end
-				path[8] = (path[8]*path[5]+Damount)/(path[5]+1)
+				path[8] = path[8] + Damount
 				path[5] = path[5] + 1
 			elseif Dcrush == 1 then
 				if (Damount < path[19] or path[19] == 0) then path[19] = Damount end
 				if Damount > path[20] then path[20] = Damount end
-				path[21] = (path[21]*path[18]+Damount)/(path[18]+1)
+				path[21] = path[21] + Damount
 				path[18] = path[18] + 1
 			else
 				if (Damount < path[15] or path[15] == 0) then path[15] = Damount end
 				if Damount > path[16] then path[16] = Damount end
-				path[17] = (path[17]*path[14]+Damount)/(path[14]+1)
+				path[17] = path[17] + Damount
 				path[14] = path[14] + 1
 			end
 			gen[Duser]["i"] = gen[Duser]["i"] + Damount
@@ -1374,7 +1403,10 @@ function DPSMate.DB:EnemyDamage(mode, arr, Duser, Dname, Dhit, Dcrit, Dmiss, Dpa
 end
 
 function DPSMate.DB:Healing(mode, arr, Duser, Dname, Dhit, Dcrit, Damount)
-	if not DPSMateSettings["legacylogs"] and ((mode==0 and not DPSMate.RegistredModules["effectivehealing"] and not DPSMate.RegistredModules["healingandabsorbs"]) or (mode==1 and not DPSMate.RegistredModules["healing"]) or (mode==2 and not DPSMate.RegistredModules["overhealing"])) then return end
+	if not DPSMateSettings["legacylogs"] and (
+		(mode==0 and not DPSMate.RegistredModules["effectivehealing"] and not DPSMate.RegistredModules["healingandabsorbs"]) or 
+		(mode==1 and not DPSMate.RegistredModules["healing"]) or 
+		(mode==2 and not DPSMate.RegistredModules["overhealing"])) then return end
 	if not CombatState then return end
 	Duser = self:BuildUser(Duser)
 	Dname = self:BuildAbility(Dname)
@@ -1400,7 +1432,7 @@ function DPSMate.DB:Healing(mode, arr, Duser, Dname, Dhit, Dcrit, Damount)
 			path[1] = path[1]+Damount
 			gen["i"] = gen["i"]+Damount
 			if Dhit==1 then
-				path[4] = (path[4]*path[2]+Damount)/(path[2]+1) 
+				path[4] = path[4] + Damount 
 				if Damount<path[6] or path[6]==0 then
 					path[6] = Damount; 
 				end
@@ -1409,7 +1441,7 @@ function DPSMate.DB:Healing(mode, arr, Duser, Dname, Dhit, Dcrit, Damount)
 				end
 				path[2] = path[2]+1
 			else 
-				path[5] = (path[5]*path[3]+Damount)/(path[3]+1)
+				path[5] = path[5] + Damount 
 				if Damount<path[8] or path[8]==0 then
 					path[8] = Damount; 
 				end
@@ -1455,7 +1487,7 @@ function DPSMate.DB:HealingTaken(mode, arr, Duser, Dname, Dhit, Dcrit, Damount, 
 		if Damount > 0 then 
 			path[1] = path[1]+Damount
 			if Dhit==1 then
-				path[4] = (path[4]*path[2]+Damount)/(path[2]+1)
+				path[4] = path[4] + Damount 
 				if Damount<path[6] or path[6]==0 then
 					path[6] = Damount; 
 				end
@@ -1464,7 +1496,7 @@ function DPSMate.DB:HealingTaken(mode, arr, Duser, Dname, Dhit, Dcrit, Damount, 
 				end
 				path[2] = path[2]+1
 			else
-				path[5] = (path[5]*path[3]+Damount)/(path[3]+1)
+				path[5] = path[5] + Damount 
 				if Damount<path[8] or path[8]==0 then
 					path[8] = Damount; 
 				end
@@ -1912,7 +1944,7 @@ function DPSMate.DB:UnregisterDeath(target)
 			DPSMateDeaths[cat][target][1]["i"][2]=GameTime_GT()
 			if cat==1 and DPSMate.Parser.TargetParty[DPSMate:GetUserById(target)] then 
 				p = DPSMateDeaths[cat][target][1][1]
-				DPSMate:Broadcast(4, target, DPSMate:GetUserById(p[1]), DPSMate:GetAbilityById(p[2]), p[3]) 
+				DPSMate:Broadcast(4, DPSMate:GetUserById(target), DPSMate:GetUserById(p[1]), DPSMate:GetAbilityById(p[2]), p[3]) 
 			end
 		end
 	end
@@ -2315,12 +2347,12 @@ function DPSMate.DB:Attempt(mode, check, tar)
 	end
 end
 
-local banedItems = {
+local bannedItems = {
 	[20725] = true,
 	[18562] = true
 }
 function DPSMate.DB:Loot(user, quality, itemid)
-	if not DPSMateSettings["legacylogs"] and quality>3 and not banedItems[itemid] then
+	if DPSMateSettings["legacylogs"] and quality>3 and not bannedItems[itemid] then
 		local zone = GetRealZoneText()
 		if not DPSMateLoot[zone] then DPSMateLoot[zone] = {} end
 		if self.Zones[zone] then -- Need to find a solution for world bosses.

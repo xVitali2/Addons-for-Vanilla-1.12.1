@@ -702,7 +702,6 @@ function DPSMate.Options:RosterUpdate()
 			elseif DPSMateSettings["dataresetsjoinparty"] == 1 then
 				this:PopUpAccept(true, true)
 			end
-			DPSMate.DB:OnGroupUpdate()
 		elseif LastPartyNum ~= PartyNum	then
 			if DPSMateSettings["dataresetspartyamount"] == 3 then
 				if (GetTime()-LastPopUp) > TimeToNextPopUp then
@@ -712,7 +711,6 @@ function DPSMate.Options:RosterUpdate()
 			elseif DPSMateSettings["dataresetspartyamount"] == 1 then
 				this:PopUpAccept(true)
 			end
-			DPSMate.DB:OnGroupUpdate()
 		end
 	else
 		if LastPartyNum > PartyNum then
@@ -724,9 +722,9 @@ function DPSMate.Options:RosterUpdate()
 			elseif DPSMateSettings["dataresetsleaveparty"] == 1 then
 				this:PopUpAccept(true)
 			end
-			DPSMate.DB:OnGroupUpdate()
 		end
 	end
+	DPSMate.DB:OnGroupUpdate()
 end
 
 DPSMate.Options.PARTY_MEMBERS_CHANGED = function()
@@ -745,7 +743,7 @@ DPSMate.Options.PLAYER_ENTERING_WORLD = function()
 				LastPopUp = GetTime()
 			end
 		elseif DPSMateSettings["dataresetsworld"] == 1 and not DPSMate.Options:IsInParty() then
-			this:PopUpAccept(true)
+			DPSMate.Options:PopUpAccept(true)
 		end
 		DPSMate.Options:HideInPvP()
 		if DPSMateSettings["hideonlogin"] then
@@ -753,6 +751,7 @@ DPSMate.Options.PLAYER_ENTERING_WORLD = function()
 				DPSMate.Options:Hide(_G("DPSMate_"..val["name"]))
 			end
 		end
+		DPSMate.DB:OnGroupUpdate()
 	end
 end
 
@@ -984,6 +983,7 @@ function DPSMate.Options:PopUpAccept(bool, bypass)
 				val["options"][2]["total"] = true
 			end
 		end
+		DPSMate.DB:DamageDone(UnitName("player"), "Init", 0, 0, 0, 0, 0, 0, 0, 0, 0) -- Hackfix to fix the hunter issue where the player is not shown if pet damage is merged
 		DPSMate.Options:InitializeSegments()
 		DPSMate:SetStatusBarValue()
 	end
@@ -1720,12 +1720,14 @@ function DPSMate.Options:NewSegment(segname)
 			name = DPSMate:GetUserById(a) or DPSMate.L["unknown"]
 			extra = " - CBT: "..self:FormatTime(DPSMateCombatTime["current"])
 		end
-		if DPSMateSettings["onlybossfights"] then
-			if DPSMate.BabbleBoss:Contains(name) then
+		if name ~= DPSMate.L["unknown"] or (name == DPSMate.L["unknown"] and max > 100) then
+			if DPSMateSettings["onlybossfights"] then
+				if DPSMate.BabbleBoss:Contains(name) then
+					DPSMate.Options:CreateSegment(name..extra)
+				end
+			else
 				DPSMate.Options:CreateSegment(name..extra)
 			end
-		else
-			DPSMate.Options:CreateSegment(name..extra)
 		end
 		
 		DPSMateDamageDone[2] = {}
