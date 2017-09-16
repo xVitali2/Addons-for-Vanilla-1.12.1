@@ -1,7 +1,7 @@
 ---------------------------------------------------------------------------------------------------
 --Name: Questie for Vanilla WoW
---Revision: 3.70
---Authors: Aero/Schaka/Logon/Dyaxler/Muehe/Zoey/everyone else
+--Revision: 3.80
+--Authors: KasVital & Aero/Schaka/Logon/Dyaxler/Muehe/Zoey/everyone else
 --Website: https://github.com/AeroScripts/QuestieDev
 --Description: Questie started out being a simple backport of QuestHelper but it has grown beyond
 --it's original design into something better. Questie will show you where quests are available and
@@ -12,7 +12,7 @@
 --///////////////////////////////////////////////////////////////////////////////////////////////--
 ---------------------------------------------------------------------------------------------------
 Questie = CreateFrame("Frame", "QuestieLua", UIParent, "ActionButtonTemplate");
-QuestieVersion = 3.70;
+QuestieVersion = 3.80;
 ---------------------------------------------------------------------------------------------------
 --Setup Default Profile
 ---------------------------------------------------------------------------------------------------
@@ -1069,7 +1069,7 @@ function SetItemRef(link, text, button)
                             questOb = k;
                         end
                     end
-                    ItemRefTooltip:AddLine("Начинается из: |cFFa6a6a6"..QuestieHashMap[questHash].startedBy.."|r",1,1,1);
+                    ItemRefTooltip:AddLine("Начинается из: |cFFa6a6a6"..QuestieHashMap[questHash].startedBy.."|r",1,1,1);---------by CFM
                     if questOb ~= nil then
                         ItemRefTooltip:AddLine("|cffffffff"..questOb.."|r",1,1,1,true);
                     else
@@ -1080,7 +1080,7 @@ function SetItemRef(link, text, button)
                     local _, _, questLevel = string.find(QuestieHashMap[questHash].questLevel, "(%d+)");
                     if questLevel ~= 0 and questLevel ~= "0" then
                         local color = GetDifficultyColor(questLevel);
-                        ItemRefTooltip:AddLine("Уровень задания " ..QuestieHashMap[questHash].questLevel, color.r, color.g, color.b);
+                        ItemRefTooltip:AddLine("Уровень задания " ..QuestieHashMap[questHash].questLevel, color.r, color.g, color.b);---------by CFM
                     end
                     ItemRefTooltip:Show();
                 else

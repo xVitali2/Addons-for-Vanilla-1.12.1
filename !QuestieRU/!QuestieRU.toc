@@ -1,9 +1,9 @@
 ## Interface: 11200
 ## Title: QuestieRU
-## Author: Aero/Schaka/Logonz/Dyaxler/Muehe/Zoey & all of our contributors
+## Author: KasVital & Aero/Schaka/Logonz/Dyaxler/Muehe/Zoey + all of our contributors
 ## Notes: A standalone Vanilla QuestHelper
-## Notes-ruRU: Квестхелпер для классики v3.70
-## Version: 3.70
+## Notes-ruRU: Квестхелпер для классики v3.80
+## Version: 3.80
 ## OptionalDeps: !Libs, Cartographer, MetaMap, EQL3, ShaguQuest
 ## SavedVariablesPerCharacter: QuestieSeenQuests, QuestieCachedQuests, QuestieConfig, QuestieTrackerVariables, QuestieMinimapPosition
 

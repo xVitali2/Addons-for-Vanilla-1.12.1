@@ -223,7 +223,7 @@ function QuestieTracker:createOrGetTrackingButton(index)
         btn:SetScript("OnEnter", function()
             local questHash = btn.hash;
             local quest = QuestieCachedQuests[questHash];
-			if quest["questName"] then
+			if quest["questName"] then---------by CFM
 			local questTitle = quest["questName"];
             Tooltip = GameTooltip;
             local questOb = nil;
@@ -247,12 +247,12 @@ function QuestieTracker:createOrGetTrackingButton(index)
                 end
                 if (QuestieConfig.showToolTips == true) then
                 if questOb ~= nil and (quest["isComplete"] or quest["leaderboards"] == 0) then
-                    Tooltip:AddLine("|cFFa6a6a6Для завершения этого задания:|r",1,1,1,true);
+                    Tooltip:AddLine("|cFFa6a6a6Для завершения этого задания:|r",1,1,1,true);---------by CFM
                     Tooltip:AddLine("|cffffffff"..questOb.."|r",1,1,1,true);
                 elseif questOb == nil then
-                    Tooltip:AddLine("Цели задания не найдены в базе QuestieRU!", 1, .8, .8);
-                    Tooltip:AddLine("Пожалуйста, напишите багрепорт на портале GitHub:)", 1, .8, .8);
-                    Tooltip:AddLine("https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/issues", 1, .8, .8);
+                    Tooltip:AddLine("Цели задания не найдены в базе QuestieRU!", 1, .8, .8);---------by CFM
+                    Tooltip:AddLine("Пожалуйста, напишите багрепорт на портале GitHub:)", 1, .8, .8);---------by CFM
+                    Tooltip:AddLine("https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/issues", 1, .8, .8);---------by CFM
                 end
                 Tooltip:Show();
             end
@@ -599,14 +599,14 @@ function QuestieTracker:FillTrackingFrame()
         if (QuestieTracker.highestIndex >= 1) and (QuestieConfig.trackerBackground == false) then
             trackerWidth = QuestieTracker.questButtons.maxWidth;
             if (QuestieConfig.trackerList == false) then
-				if QuestieTracker.frame:GetTop() and QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetBottom() then
+				if QuestieTracker.frame:GetTop() and QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetBottom() then---------by CFM
 					trackerHeight = QuestieTracker.frame:GetTop() - QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetBottom();
 				end
-            else
-				if QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetTop() and QuestieTracker.frame:GetBottom() then
+            else---------by CFM
+				if QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetTop() and QuestieTracker.frame:GetBottom() then---------by CFM
 					trackerHeight = QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetTop() - QuestieTracker.frame:GetBottom();
 				end
-            end
+            end---------by CFM
             QuestieTracker.frame:SetWidth(trackerWidth);
             QuestieTracker.frame:SetHeight(trackerHeight);
         end
@@ -977,6 +977,22 @@ function QuestieTracker:addQuestToTrackerCache(hash, logId, level)
     end
 end
 ---------------------------------------------------------------------------------------------------
+-- This function is used to update the quest log index of a quest in the QUEST_WATCH_LIST and
+-- QuestieCachedQuests tables when another quest is added/removed from the quest log, and therefore
+-- the index might have changed. It's currently only called from updateTrackerCache and syncQuestLog
+-- in this file, which might have to be changed yet, but testing has shown no errors so far.
+---------------------------------------------------------------------------------------------------
+function QuestieTracker:updateQuestWatchLogId(hash, logId)
+    if QUEST_WATCH_LIST[hash] and QUEST_WATCH_LIST[hash].questIndex ~= logId then
+        Questie:debug_Print("Tracker:updateQuestWatchLogId: QUEST_WATCH_LIST["..hash.."].questIndex changed from "..QUEST_WATCH_LIST[hash].questIndex.." to "..logId)
+        QUEST_WATCH_LIST[hash].questIndex = logId
+    end
+    if QuestieCachedQuests[hash] and QuestieCachedQuests[hash].logId ~= logId then
+        Questie:debug_Print("Tracker:updateQuestWatchLogId: QuestieCachedQuests["..hash.."].logId changed from "..QuestieCachedQuests[hash].logId.." to "..logId)
+        QuestieCachedQuests[hash].logId = logId
+    end
+end
+---------------------------------------------------------------------------------------------------
 -- If a quest is tracked, update quest on tracker and also update quest data cache
 ---------------------------------------------------------------------------------------------------
 function QuestieTracker:updateTrackerCache(hash, logId, level)
@@ -1003,6 +1019,7 @@ function QuestieTracker:updateTrackerCache(hash, logId, level)
     QuestieCachedQuests[hash]["level"] = level;
     QuestieCachedQuests[hash]["logId"] = logId;
     QuestieCachedQuests[hash]["leaderboards"] = QGet_NumQuestLeaderBoards(logId);
+    QuestieTracker:updateQuestWatchLogId(hash, logId);
     local uggo = 0;
     for i=1, QGet_NumQuestLeaderBoards(logId) do
         local desc, type, done = QGet_QuestLogLeaderBoard(i, logId);
@@ -1162,12 +1179,14 @@ function QuestieTracker:syncQuestLog()
     local qc = 0;
     local nEntry, nQuests = QGet_NumQuestLogEntries();
     while qc < nQuests do
+        local isWatched = QuestLogSync(id);
         local questName, level, questTag, isHeader, isCollapsed, isComplete = QGet_QuestLogTitle(id);
         if not isHeader and not isCollapsed then
             QSelect_QuestLogEntry(id);
             local questText, objectiveText = QGet_QuestLogQuestText();
             local hash = Questie:getQuestHash(questName, level, objectiveText);
-            if not isHeader and QuestLogSync(id) and (QuestieCachedQuests[hash] and QuestieCachedQuests[hash]["tracked"] ~= true) then
+            QuestieTracker:updateQuestWatchLogId(hash, id);
+            if (isWatched) and (QuestieCachedQuests[hash] and QuestieCachedQuests[hash]["tracked"] ~= true) then
                 if QuestieCachedQuests[hash] then
                     Questie:debug_Print("Tracker:syncQuestLog --> addQuestToTracker: Flagging [Hash: "..hash.."] TRUE");
                     QuestieTracker:addQuestToTracker(hash);
@@ -1177,7 +1196,7 @@ function QuestieTracker:syncQuestLog()
                     QuestieTracker:addQuestToTrackerCache(hash, id, level);
                     QuestieTracker:addQuestToTracker(hash);
                 end
-            elseif not isHeader and not QuestLogSync(id) and (QuestieCachedQuests[hash] and QuestieCachedQuests[hash]["tracked"] ~= false) then
+            elseif (not isWatched) and (QuestieCachedQuests[hash] and QuestieCachedQuests[hash]["tracked"] ~= false) then
                 Questie:debug_Print("Tracker:syncQuestLog --> removeQuestFromTracker: Flagging [Hash: "..hash.."] FALSE");
                 QuestieTracker:removeQuestFromTracker(hash);
             end

@@ -74,7 +74,7 @@ QuestRewardCompleteButton_OnClick = function()
     if IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest") then
         local numAvailSlots = Questie:CheckPlayerInventory();
         if numAvailSlots < 1 then
-            DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Questie: Проверьте сумки. Инвентарь полон!");
+            DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Questie: Проверьте сумки. Инвентарь полон!");---------by CFM
             PlaySound("igQuestLogAbandonQuest");
             DeclineQuest();
             HideUIPanel(QuestFrame);
@@ -180,7 +180,7 @@ function Questie:GetQuestReward()
                 if QuestlogOptions[EQL3_Player].AutoCompleteQuests == 1 then
                     QuestlogOptions[EQL3_Player].AutoCompleteQuests = 0;
                 end
-                DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Questie: Проверьте сумки. Инвентарь полон!");
+                DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Questie: Проверьте сумки. Инвентарь полон!");---------by CFM
                 PlaySound("igQuestLogAbandonQuest");
                 DeclineQuest();
                 HideUIPanel(QuestFrame);
@@ -372,7 +372,7 @@ function Questie:UpdateGameClientCache(force)
                             objectiveName = string.sub(objectiveName, 1, string.len(objectiveName)-13);---------by CFM
                         end
                     end
-					Questie:debug_Print(objectiveName);
+					
                 if (not LastQuestLogHashes and not force) or (QuestieHandledQuests[hash] and QuestieHandledQuests[hash]["objectives"] and QuestieHandledQuests[hash]["objectives"][index]["name"] ~= objectiveName) then
                         Questie:AddQuestToMap(hash);
                         Questie:debug_Print("Quest:UpdateGameClientCache --> Questie:AddQuestToMap(): [Name: "..QuestieHandledQuests[hash]["objectives"][index]["name"].."]");
@@ -494,7 +494,7 @@ function Questie:CheckQuestLog()
             --This clears cache of finished quests
             if (QuestieSeenQuests[v["hash"]] == 1) then
                 QuestieTracker:removeQuestFromTracker(v["hash"]);
-                RemoveQuestWatch(v["logId"]);
+                QUEST_WATCH_LIST[v["hash"]] = nil;
                 Questie:finishAndRecurse(v["hash"]);
                 Questie:debug_Print("Quest:CheckQuestLog: --> Quest:finishAndRecurse() [Hash: "..v["hash"].."]");
                 if (not QuestieCompletedQuestMessages[v["name"]]) then
@@ -1114,7 +1114,7 @@ function Questie:getQuestHash(name, level, objectiveText)
         local count = 0;
         local retval = 0;
         local bestDistance = 4294967295; --some high number (0xFFFFFFFF)
-        local _, race = UnitRace("Player");
+        local _, race = UnitRace("Player");---------by CFM
         for k,v in pairs(questLookup) do
             local rr = v[1];
             local adjustedDescription = k;
@@ -1168,7 +1168,7 @@ end
 function Questie:IsQuestFinished(questHash)
     local id = Questie:GetQuestIdFromHash(questHash);
     if (not id) then
-        return nil;
+        return nil;---------by CFM
     end
     local prevQuestLogSelection = QGet_QuestLogSelection()
     local FinishedQuests = {};
