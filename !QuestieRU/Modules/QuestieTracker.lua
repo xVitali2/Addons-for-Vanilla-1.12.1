@@ -223,7 +223,8 @@ function QuestieTracker:createOrGetTrackingButton(index)
         btn:SetScript("OnEnter", function()
             local questHash = btn.hash;
             local quest = QuestieCachedQuests[questHash];
-            local questTitle = quest["questName"];
+			if quest["questName"] then
+			local questTitle = quest["questName"];
             Tooltip = GameTooltip;
             local questOb = nil;
             if questTitle then
@@ -256,6 +257,7 @@ function QuestieTracker:createOrGetTrackingButton(index)
                 Tooltip:Show();
             end
             end
+			end
         end)
         btn:SetScript("OnLeave", function()
             Tooltip:SetFrameStrata("TOOLTIP");

@@ -73,12 +73,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Investigate the Spawning Glen"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.151, 0.6121, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Войти на Мертвое поле"] = {
     ["locations"] = {
       [1] = {35.0, 0.4591, 0.2127, 100.0}
@@ -137,24 +131,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["The Warmaul Champion Defeated"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.4337, 0.2069, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Crimson Sigil Forces Annihilated"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.5175, 0.7279, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Free the Mag'har Captive"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.3177, 0.3878, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Отправляйтесь к маяку Западного Края."] = {
     ["locations"] = {
       [1] = {49.0, 0.3041, 0.8561, 100.0}
@@ -182,12 +158,6 @@ QuestieEvents = {
   ["Отыскать и исследовать Северный хрустальный пилон."] = {
     ["locations"] = {
       [1] = {18.0, 0.5651, 0.1241, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Listen to Greatmother Geyah"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.5666, 0.3431, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -228,12 +198,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 2
   },
-  ["First triangulation point discovered"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.6667, 0.3385, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Найти, где держат в плену Гол'дира."] = {
     ["locations"] = {
       [1] = {26.0, 0.6058, 0.4386, 100.0}
@@ -247,12 +211,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 2
   },
-  ["The Dark Portal Opened"] = {
-    ["locations"] = {
-      [1] = {8.0, 0.5721, 0.6292, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Защитите профессора Физзлторпа."] = {
     ["locations"] = {
       [1] = {39.0, 0.3387, 0.806, 100.0}
@@ -262,28 +220,6 @@ QuestieEvents = {
   ["Подслушайте разговор Лесковара и Марзона"] = {
     ["locations"] = {
       [1] = {36.0, 0.6866, 0.1444, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Victory in Alterac Valley"] = {
-    ["locations"] = {
-      [1] = {60.0, 0.6749, 0.3431, 100.0},
-      [5] = {25.0, 0.7009, 0.9026, 2.0},
-      [3] = {1.0, 0.7909, 0.311, 52.0},
-      [4] = {36.0, 0.8212, 0.1283, 51.0},
-      [2] = {60.0, 0.6685, 0.5704, 93.0}
-    },
-    ["locationCount"] = 5
-  },
-  ["Trope the Filth-Belcher Defeated"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.6475, 0.85, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Protect Apprentice Mirveda"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.543, 0.7102, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -299,26 +235,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Magwin Escorted to Safety"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.1638, 0.9414, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Dornaa taken to Farseer Nobundo"] = {
-    ["locations"] = {
-      [1] = {12.0, 0.308, 0.2988, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Rescue the Skyguard Prisoner."] = {
-    ["locations"] = {
-      [1] = {55.0, 0.6977, 0.7598, 100.0},
-      [3] = {55.0, 0.7394, 0.883, 9.0},
-      [2] = {55.0, 0.6241, 0.7385, 94.0}
-    },
-    ["locationCount"] = 3
-  },
   ["Совет с Эйтриггом."] = {
     ["locations"] = {
       [1] = {1.0, 0.3414, 0.3926, 100.0}
@@ -331,33 +247,9 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Sal'salabim Persuaded"] = {
-    ["locations"] = {
-      [1] = {60.0, 0.7668, 0.3396, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Поговорите с кем-нибудь в Кабестане о светящемся осколке."] = {
     ["locations"] = {
       [1] = {11.0, 0.6297, 0.3721, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Attempt to purify the Darkstone of Terrok"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.3084, 0.4203, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Attack thwarted"] = {
-    ["locations"] = {
-      [1] = {60.0, 0.5162, 0.2069, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Listen to the plan of the Twilight Cultists"] = {
-    ["locations"] = {
-      [1] = {2.0, 0.0915, 0.1241, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -373,31 +265,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Protect the Explorers"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.3012, 0.709, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Salandria taken to the Throne of the Elements"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.605, 0.227, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Test Tally's Experiment"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.601, 0.6884, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Journal Entry Read"] = {
-    ["locations"] = {
-      [1] = {47.0, 0.4657, 0.7049, 100.0},
-      [2] = {47.0, 0.4677, 0.745, 7.0}
-    },
-    ["locationCount"] = 2
-  },
   ["Помогите Вонючке найти листья болотного боба."] = {
     ["locations"] = {
       [1] = {10.0, 0.4887, 0.2458, 100.0}
@@ -407,12 +274,6 @@ QuestieEvents = {
   ["Спасите Далинду Малем."] = {
     ["locations"] = {
       [1] = {4.0, 0.5827, 0.3091, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Hear the Tale of the Blademaster"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.7382, 0.6259, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -428,49 +289,9 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Fully Investigate The Blood Furnace"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.4589, 0.5193, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Tame a Greater Timberstrider"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.3646, 0.3549, 100.0},
-      [3] = {3.0, 0.4025, 0.3231, 21.0},
-      [4] = {3.0, 0.4027, 0.3765, 2.0},
-      [2] = {3.0, 0.3516, 0.3099, 29.0}
-    },
-    ["locationCount"] = 4
-  },
   ["Исследуйте беседку на озере Мистраль, из которой открывается вид на соседний форт Альянса."] = {
     ["locations"] = {
       [1] = {2.0, 0.4892, 0.696, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Salandria taken to the Caverns of Time"] = {
-    ["locations"] = {
-      [1] = {8.0, 0.6053, 0.5772, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Survey Alcaz Island"] = {
-    ["locations"] = {
-      [1] = {10.0, 0.6996, 0.1955, 100.0},
-      [2] = {10.0, 0.6736, 0.5087, 4.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Illidan's Pupil"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.2736, 0.4307, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Launch to Ruuan Weald."] = {
-    ["locations"] = {
-      [1] = {54.0, 0.6018, 0.6862, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -480,27 +301,9 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Dornaa taken to the Dark Portal"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.8826, 0.5032, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Защитите Арко'нарин при побеге из Оплота Теней."] = {
     ["locations"] = {
       [1] = {13.0, 0.3545, 0.5906, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Investigate the Amani Catacombs"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.6291, 0.3098, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Ruse of the Ashtongue"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.7388, 0.6376, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -517,39 +320,15 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Corlok the Vet Defeated"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.6472, 0.8475, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Вас подоили."] = {
     ["locations"] = {
       [1] = {40.0, 0.6511, 0.2368, 100.0}
     },
     ["locationCount"] = 1
   },
-  ["Stillpine Furbolg Language Primer Read"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.4929, 0.5107, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["The Blue Brothers Defeated"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.4326, 0.2076, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Искупление?"] = {
     ["locations"] = {
       [1] = {50.0, 0.5386, 0.2432, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Escort Wounded Blood Elf Pilgrim to Falcon Watch"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.2709, 0.6192, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -572,12 +351,6 @@ QuestieEvents = {
   ["Создание факела."] = {
     ["locations"] = {
       [1] = {32.0, 0.3902, 0.3897, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Free the Kurenai Captive"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.3159, 0.3878, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -611,12 +384,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Millhouse Manastorm Rescued"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.745, 0.5767, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Освободите душу Обена Яростного Когтя."] = {
     ["locations"] = {
       [1] = {24.0, 0.4552, 0.5871, 100.0}
@@ -641,27 +408,9 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Dornaa taken to Aeris Landing"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.3147, 0.5745, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["15 пациентов спасено!"] = {
     ["locations"] = {
       [1] = {10.0, 0.6779, 0.4906, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Singing crystal resonant frequency gauged"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.5977, 0.7383, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Murg \"Oldie\" Muckjaw Defeated"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.6476, 0.8505, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -671,27 +420,11 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Skra'gath Defeated"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.4326, 0.2077, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Проводите ККX-22/FE в порт на Забытом Берегу"] = {
     ["locations"] = {
       [1] = {17.0, 0.4563, 0.4339, 100.0}
     },
     ["locationCount"] = 1
-  },
-  ["Secure a Spirit Tower"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.4898, 0.6029, 100.0},
-      [5] = {55.0, 0.4048, 0.7799, 6.0},
-      [3] = {55.0, 0.3247, 0.5786, 67.0},
-      [4] = {55.0, 0.472, 0.7229, 65.0},
-      [2] = {55.0, 0.4249, 0.54, 89.0}
-    },
-    ["locationCount"] = 5
   },
   ["Обнаружить секретную фразу."] = {
     ["locations"] = {
@@ -723,42 +456,12 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Ark of Ssslith safely returned to Sporeggar"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.1971, 0.5072, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Victory in the Eye of the Storm"] = {
-    ["locations"] = {
-      [1] = {60.0, 0.674, 0.3408, 100.0},
-      [3] = {25.0, 0.7004, 0.8998, 2.0},
-      [2] = {36.0, 0.8251, 0.1369, 52.0}
-    },
-    ["locationCount"] = 3
-  },
-  ["Mogor, Hero of the Warmaul Defeated"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.4331, 0.2072, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Приручите чащобного тенетника."] = {
     ["locations"] = {
       [1] = {24.0, 0.5918, 0.5807, 100.0},
       [2] = {24.0, 0.5397, 0.6229, 2.0}
     },
     ["locationCount"] = 2
-  },
-  ["Matis the Cruel Captured"] = {
-    ["locations"] = {
-      [1] = {9.0, 0.2563, 0.5352, 100.0},
-      [5] = {9.0, 0.4088, 0.4513, 3.0},
-      [3] = {9.0, 0.2951, 0.5136, 76.0},
-      [4] = {9.0, 0.3781, 0.4644, 48.0},
-      [2] = {9.0, 0.3274, 0.4802, 84.0}
-    },
-    ["locationCount"] = 5
   },
   ["Зажгите священный огонь жизни."] = {
     ["locations"] = {
@@ -795,15 +498,6 @@ QuestieEvents = {
       [1] = {49.0, 0.5474, 0.4544, 100.0}
     },
     ["locationCount"] = 1
-  },
-  ["Apexis Emanations attained"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.287, 0.4664, 100.0},
-      [3] = {54.0, 0.3342, 0.519, 25.0},
-      [4] = {54.0, 0.3182, 0.6362, 2.0},
-      [2] = {54.0, 0.273, 0.6839, 29.0}
-    },
-    ["locationCount"] = 4
   },
   ["Проведите разведку в Яшмовой шахте."] = {
     ["locations"] = {
@@ -842,16 +536,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Catch 10 torches in a row."] = {
-    ["locations"] = {
-      [1] = {36.0, 0.375, 0.598, 100.0},
-      [5] = {12.0, 0.4163, 0.2255, 5.0},
-      [3] = {1.0, 0.4711, 0.3669, 67.0},
-      [4] = {23.0, 0.2217, 0.2694, 57.0},
-      [2] = {25.0, 0.6204, 0.2783, 86.0}
-    },
-    ["locationCount"] = 5
-  },
   ["Совет от госпожи Престор."] = {
     ["locations"] = {
       [1] = {36.0, 0.7804, 0.1796, 100.0}
@@ -868,45 +552,15 @@ QuestieEvents = {
     },
     ["locationCount"] = 5
   },
-  ["Declaration of Power"] = {
-    ["locations"] = {
-      [1] = {9.0, 0.6852, 0.6788, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Umbrafen Lake Investigated"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.7089, 0.8051, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Проводите караван Гизлтона через Поле Маннорок."] = {
     ["locations"] = {
       [1] = {4.0, 0.5569, 0.6779, 100.0}
     },
     ["locationCount"] = 1
   },
-  ["Unkor Submits"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.2002, 0.6305, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Escort the Maxx A. Million Mk. V safely through the Ruins of Enkaat"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.3154, 0.5647, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Защищайте Белнистраза, пока он будет проводить ритуал, чтобы разрушить идола."] = {
     ["locations"] = {
       [1] = {11.0, 0.5086, 0.9287, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Throw caution to the wind."] = {
-    ["locations"] = {
-      [1] = {54.0, 0.6033, 0.6889, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -940,55 +594,9 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Dornaa taken to the Ring of Observance"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.3971, 0.646, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Legion Gateway Destroyed"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.5851, 0.185, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Vector Coil Destroyed and Sironas Slain"] = {
-    ["locations"] = {
-      [1] = {9.0, 0.1486, 0.5484, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Hit 20 braziers."] = {
-    ["locations"] = {
-      [1] = {36.0, 0.392, 0.6172, 100.0},
-      [5] = {23.0, 0.2099, 0.2646, 4.0},
-      [3] = {1.0, 0.4667, 0.3813, 69.0},
-      [4] = {45.0, 0.6862, 0.0801, 52.0},
-      [2] = {25.0, 0.65, 0.2368, 95.0}
-    },
-    ["locationCount"] = 5
-  },
-  ["Burning Legion warp-gate sabotaged"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.4814, 0.6338, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Рассказ Карана"] = {
     ["locations"] = {
       [1] = {32.0, 0.271, 0.7254, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Investigate An'daroth"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.3713, 0.1615, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Deathblow to the Legion"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.2956, 0.1429, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -997,16 +605,6 @@ QuestieEvents = {
       [1] = {13.0, 0.4942, 0.1454, 100.0}
     },
     ["locationCount"] = 1
-  },
-  ["Victory in Warsong Gulch"] = {
-    ["locations"] = {
-      [1] = {60.0, 0.6662, 0.5745, 100.0},
-      [5] = {25.0, 0.705, 0.8956, 4.0},
-      [3] = {1.0, 0.7903, 0.3065, 82.0},
-      [4] = {36.0, 0.825, 0.1326, 81.0},
-      [2] = {60.0, 0.674, 0.3464, 98.0}
-    },
-    ["locationCount"] = 5
   },
   ["Приручите северного волка и приведите его к конюшенному."] = {
     ["locations"] = {
@@ -1017,19 +615,6 @@ QuestieEvents = {
       [2] = {60.0, 0.668, 0.5659, 100.0}
     },
     ["locationCount"] = 5
-  },
-  ["Help Akama and Maiev enter the Black Temple."] = {
-    ["locations"] = {
-      [1] = {53.0, 0.7105, 0.4611, 100.0},
-      [2] = {53.0, 0.6629, 0.4406, 3.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Salandria taken to the Dark Portal"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.8833, 0.5019, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Выслушайте историю о Тауриссане."] = {
     ["locations"] = {
@@ -1042,20 +627,6 @@ QuestieEvents = {
       [1] = {49.0, 0.481, 0.4641, 100.0}
     },
     ["locationCount"] = 1
-  },
-  ["Second triangulation point discovered"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.2892, 0.4125, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Tame a Mistbat"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.4829, 0.1342, 100.0},
-      [3] = {44.0, 0.5059, 0.1586, 2.0},
-      [2] = {44.0, 0.5522, 0.1122, 25.0}
-    },
-    ["locationCount"] = 3
   },
   ["Отыщите Теснину Зловещего Шепота."] = {
     ["locations"] = {
@@ -1075,13 +646,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Tame a Nightstalker"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.3641, 0.4024, 100.0},
-      [2] = {3.0, 0.3582, 0.3714, 2.0}
-    },
-    ["locationCount"] = 2
-  },
   ["Выведите Руула за пределы владений Колючего Меха."] = {
     ["locations"] = {
       [1] = {2.0, 0.3853, 0.3732, 100.0}
@@ -1091,24 +655,6 @@ QuestieEvents = {
   ["Очистите Колодец Заиндевевшего Копыта."] = {
     ["locations"] = {
       [1] = {22.0, 0.5361, 0.662, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Beat Down \"Dirty\" Larry and Get Information"] = {
-    ["locations"] = {
-      [1] = {60.0, 0.4386, 0.2797, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Sun Portal Site Confirmed"] = {
-    ["locations"] = {
-      [1] = {9.0, 0.5292, 0.2232, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Forge Camps Surveyed"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.2722, 0.4305, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -1130,21 +676,9 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Wing Commander Ichman Defeated"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.6477, 0.8509, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Выучите танец радости Омошей."] = {
     ["locations"] = {
       [1] = {1.0, 0.7928, 0.223, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Lakes of Zangarmarsh Explored"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.7726, 0.4512, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -1153,21 +687,6 @@ QuestieEvents = {
       [1] = {16.0, 0.4457, 0.85, 100.0}
     },
     ["locationCount"] = 1
-  },
-  ["Reach the Sky's Limit."] = {
-    ["locations"] = {
-      [1] = {54.0, 0.6025, 0.6855, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Apexis Vibrations attained"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.3346, 0.5184, 100.0},
-      [3] = {54.0, 0.2739, 0.684, 25.0},
-      [4] = {54.0, 0.3182, 0.6405, 2.0},
-      [2] = {54.0, 0.2879, 0.4668, 76.0}
-    },
-    ["locationCount"] = 4
   },
   ["Найдите остров духов Воды."] = {
     ["locations"] = {
@@ -1190,13 +709,6 @@ QuestieEvents = {
       [1] = {37.0, 0.5357, 0.4703, 100.0}
     },
     ["locationCount"] = 1
-  },
-  ["Murkblood Information Gathered"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.7306, 0.8226, 100.0},
-      [2] = {53.0, 0.6863, 0.7981, 3.0}
-    },
-    ["locationCount"] = 2
   },
   ["Доказательство представлено."] = {
     ["locations"] = {
@@ -1235,42 +747,15 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Tame an Elder Springpaw"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.6195, 0.6461, 100.0},
-      [2] = {41.0, 0.6477, 0.5993, 4.0}
-    },
-    ["locationCount"] = 2
-  },
   ["Отыщите лагерь охотников"] = {
     ["locations"] = {
       [1] = {38.0, 0.3573, 0.1082, 100.0}
     },
     ["locationCount"] = 1
   },
-  ["Explore the Boha'mu Ruins"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.4413, 0.6897, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["История Тириона."] = {
     ["locations"] = {
       [1] = {34.0, 0.0751, 0.4369, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Victory in Eye of the Storm"] = {
-    ["locations"] = {
-      [1] = {60.0, 0.6702, 0.5614, 100.0},
-      [3] = {60.0, 0.639, 0.5834, 2.0},
-      [2] = {1.0, 0.7921, 0.3008, 50.0}
-    },
-    ["locationCount"] = 3
-  },
-  ["Illidan's Message Delivered"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.4646, 0.7186, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -1346,24 +831,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Dornaa taken to the Caverns of Time"] = {
-    ["locations"] = {
-      [1] = {8.0, 0.6052, 0.5774, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Escort Anchorite Truuen to Uther's Tomb"] = {
-    ["locations"] = {
-      [1] = {50.0, 0.5206, 0.8326, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Meeting with Illidan Stormrage"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.6593, 0.8615, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Создать скипетр Келебраса."] = {
     ["locations"] = {
       [1] = {4.0, 0.3597, 0.6441, 100.0}
@@ -1401,28 +868,9 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Energize a Crystal Ward"] = {
-    ["locations"] = {
-      [1] = {64.0, 0.477, 0.3452, 100.0},
-      [2] = {64.0, 0.4843, 0.3121, 3.0}
-    },
-    ["locationCount"] = 2
-  },
   ["Встать на решетку, чтобы начать Побоище"] = {
     ["locations"] = {
       [1] = {11.0, 0.6861, 0.4872, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Complete the Second Trial"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.4334, 0.287, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Escort Ranger Lilatha back to the Farstrider Enclave"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.7224, 0.3021, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -1432,21 +880,9 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Final Thunderlord artifact discovered"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.5276, 0.5889, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Дайте верный ответ на вопрос Брауга Тусклого Духа."] = {
     ["locations"] = {
       [1] = {6.0, 0.7875, 0.4563, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Escort Skywing"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.5571, 0.6968, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -1499,18 +935,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["The Cipher of Damnation - History and Truth"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.539, 0.2348, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Earthmender Wilda Escorted to Safety"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.5314, 0.2518, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Войдите в пещеры Ретбана."] = {
     ["locations"] = {
       [1] = {30.0, 0.1922, 0.2525, 100.0}
@@ -1523,14 +947,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Negotiations with Overseer Nuaar complete"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.6222, 0.3178, 100.0},
-      [3] = {54.0, 0.5946, 0.3584, 4.0},
-      [2] = {54.0, 0.5986, 0.4022, 95.0}
-    },
-    ["locationCount"] = 3
-  },
   ["Испытать модель яйцехладоскопа"] = {
     ["locations"] = {
       [1] = {32.0, 0.4078, 0.9566, 100.0}
@@ -1540,30 +956,6 @@ QuestieEvents = {
   ["Осмотреть Дольный Очаг с высоты"] = {
     ["locations"] = {
       [1] = {50.0, 0.457, 0.185, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["City of Light"] = {
-    ["locations"] = {
-      [1] = {60.0, 0.5045, 0.4293, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Speak to Greatmother Geyah"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.5666, 0.3431, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Drain Located"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.5044, 0.4091, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Find Krun Spinebreaker"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.3359, 0.4362, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -1592,47 +984,9 @@ QuestieEvents = {
     },
     ["locationCount"] = 2
   },
-  ["Catch 4 torches in a row."] = {
-    ["locations"] = {
-      [1] = {36.0, 0.3765, 0.5998, 100.0},
-      [5] = {23.0, 0.2195, 0.2674, 5.0},
-      [3] = {45.0, 0.6458, 0.0808, 60.0},
-      [4] = {1.0, 0.4702, 0.3683, 55.0},
-      [2] = {25.0, 0.6215, 0.2758, 89.0}
-    },
-    ["locationCount"] = 5
-  },
-  ["The Tale of Neltharaku"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.6689, 0.5979, 100.0},
-      [5] = {53.0, 0.5988, 0.5421, 4.0},
-      [3] = {53.0, 0.594, 0.5867, 91.0},
-      [4] = {53.0, 0.6321, 0.5588, 62.0},
-      [2] = {53.0, 0.6348, 0.6071, 92.0}
-    },
-    ["locationCount"] = 5
-  },
   ["Проводите капрала Кеешана до Красногорья."] = {
     ["locations"] = {
       [1] = {30.0, 0.3336, 0.487, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Ethereum Conduit Sabotaged"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.5642, 0.4266, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Draenei Survivors Saved"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.7522, 0.4688, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Salandria taken to Sporeggar"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.1922, 0.5123, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -1648,28 +1002,9 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Caverns of Time Explained"] = {
-    ["locations"] = {
-      [1] = {8.0, 0.5887, 0.543, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Доставить Ринго к Муче Кусора в Укрытие Маршалла."] = {
     ["locations"] = {
       [1] = {18.0, 0.4371, 0.0829, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["The Path of Conquest Discovered"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.5123, 0.6275, 100.0},
-      [2] = {53.0, 0.5245, 0.5919, 4.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Master's Touch"] = {
-    ["locations"] = {
-      [1] = {8.0, 0.5721, 0.6295, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -1688,18 +1023,6 @@ QuestieEvents = {
       [2] = {60.0, 0.6711, 0.5666, 81.0}
     },
     ["locationCount"] = 5
-  },
-  ["Mana-Tombs Stasis Chamber Investigated"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.3963, 0.5754, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Subdue Reth'hedron the Subduer"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.087, 0.4279, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Схватка у рудника Горного эха"] = {
     ["locations"] = {
@@ -1739,19 +1062,6 @@ QuestieEvents = {
       [2] = {28.0, 0.3704, 0.4495, 40.0}
     },
     ["locationCount"] = 3
-  },
-  ["Tame a Crazed Dragonhawk"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.6039, 0.5909, 100.0},
-      [2] = {41.0, 0.6123, 0.6508, 2.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Defend Theramore Docks from Tethyr"] = {
-    ["locations"] = {
-      [1] = {10.0, 0.7001, 0.5188, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Защитите Фиро Железнорука."] = {
     ["locations"] = {
@@ -1810,18 +1120,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Meeting with Kolphis Darkscale attended"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.3261, 0.3745, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Dornaa taken to the Seat of the Naaru"] = {
-    ["locations"] = {
-      [1] = {12.0, 0.5665, 0.4073, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Злобные фамильяры"] = {
     ["locations"] = {
       [1] = {7.0, 0.4394, 0.573, 100.0}
@@ -1833,16 +1131,6 @@ QuestieEvents = {
       [1] = {1.0, 0.3178, 0.3781, 100.0}
     },
     ["locationCount"] = 1
-  },
-  ["Victory in Arathi Basin"] = {
-    ["locations"] = {
-      [1] = {60.0, 0.6658, 0.5623, 100.0},
-      [5] = {25.0, 0.7012, 0.8941, 4.0},
-      [3] = {36.0, 0.8245, 0.1292, 83.0},
-      [4] = {1.0, 0.7939, 0.3008, 71.0},
-      [2] = {60.0, 0.6738, 0.338, 97.0}
-    },
-    ["locationCount"] = 5
   },
   ["Жала скорпидов"] = {
     ["locations"] = {
@@ -1880,14 +1168,6 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Tame a Barbed Crawler"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.2029, 0.6487, 100.0},
-      [3] = {3.0, 0.2057, 0.689, 4.0},
-      [2] = {3.0, 0.2204, 0.7229, 54.0}
-    },
-    ["locationCount"] = 3
-  },
   ["Позвольте врачу поставить диагноз."] = {
     ["locations"] = {
       [1] = {36.0, 0.7804, 0.59, 100.0}
@@ -1913,52 +1193,15 @@ QuestieEvents = {
     },
     ["locationCount"] = 1
   },
-  ["Captain Skyshatter Defeated"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.6471, 0.8505, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Dragonmaw Forces Defeated"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.5687, 0.5818, 100.0},
-      [2] = {53.0, 0.6427, 0.3101, 3.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Escort Isla Starmane to safety"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.6751, 0.3728, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Печальная история"] = {
     ["locations"] = {
       [1] = {46.0, 0.3424, 0.6602, 100.0}
     },
     ["locationCount"] = 1
   },
-  ["Escort Cryo-Engineer Sha'heen"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.3962, 0.5757, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Wing Commander Mulverick Defeated"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.6477, 0.8436, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Получите благословение Элуны."] = {
     ["locations"] = {
       [1] = {20.0, 0.6389, 0.625, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Escort Kayra Longmane to safety"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.7976, 0.7109, 100.0}
     },
     ["locationCount"] = 1
   },

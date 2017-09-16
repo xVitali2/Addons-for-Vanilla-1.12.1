@@ -74,7 +74,7 @@ QuestRewardCompleteButton_OnClick = function()
     if IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest") then
         local numAvailSlots = Questie:CheckPlayerInventory();
         if numAvailSlots < 1 then
-            DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Quest:QuestRewardCompleteButton: Check your bags. Inventory appears to be full!");
+            DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Questie: Проверьте сумки. Инвентарь полон!");
             PlaySound("igQuestLogAbandonQuest");
             DeclineQuest();
             HideUIPanel(QuestFrame);
@@ -180,7 +180,7 @@ function Questie:GetQuestReward()
                 if QuestlogOptions[EQL3_Player].AutoCompleteQuests == 1 then
                     QuestlogOptions[EQL3_Player].AutoCompleteQuests = 0;
                 end
-                DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Quest:GetQuestReward: Check your bags. Inventory appears to be full!");
+                DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Questie: Проверьте сумки. Инвентарь полон!");
                 PlaySound("igQuestLogAbandonQuest");
                 DeclineQuest();
                 HideUIPanel(QuestFrame);
@@ -372,6 +372,7 @@ function Questie:UpdateGameClientCache(force)
                             objectiveName = string.sub(objectiveName, 1, string.len(objectiveName)-13);---------by CFM
                         end
                     end
+					Questie:debug_Print(objectiveName);
                 if (not LastQuestLogHashes and not force) or (QuestieHandledQuests[hash] and QuestieHandledQuests[hash]["objectives"] and QuestieHandledQuests[hash]["objectives"][index]["name"] ~= objectiveName) then
                         Questie:AddQuestToMap(hash);
                         Questie:debug_Print("Quest:UpdateGameClientCache --> Questie:AddQuestToMap(): [Name: "..QuestieHandledQuests[hash]["objectives"][index]["name"].."]");
@@ -1167,7 +1168,7 @@ end
 function Questie:IsQuestFinished(questHash)
     local id = Questie:GetQuestIdFromHash(questHash);
     if (not id) then
-        return false;
+        return nil;
     end
     local prevQuestLogSelection = QGet_QuestLogSelection()
     local FinishedQuests = {};
