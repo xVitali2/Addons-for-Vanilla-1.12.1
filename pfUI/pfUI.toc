@@ -2,7 +2,7 @@
 ## Title: |cff33ffccpf|cffffffffUI
 ## Author: Shagu
 ## Notes: A complete user interface replacement.
-## Version: 2.0.5
+## Version: 3.1.2
 ## SavedVariables: pfUI_profiles
 ## SavedVariablesPerCharacter: pfUI_config, pfUI_init, pfUI_playerDB
 
@@ -20,6 +20,16 @@ env\locales_frFR.lua
 env\locales_deDE.lua
 env\locales_zhCN.lua
 env\locales_ruRU.lua
+env\locales_koKR.lua
+
+# translations
+env\translations_enUS.lua
+env\translations_frFR.lua
+env\translations_deDE.lua
+env\translations_zhCN.lua
+env\translations_zhTW.lua
+env\translations_ruRU.lua
+env\translations_koKR.lua
 
 # environment
 env\tables.lua
@@ -29,16 +39,20 @@ env\fonts.lua
 # modules
 modules\firstrun.lua
 modules\gui.lua
+modules\unlock.lua
 modules\pixelperfect.lua
 modules\hoverbind.lua
 modules\actionbar.lua
 modules\hunterbar.lua
+modules\rangecheck.lua
 modules\chat.lua
 modules\addons.lua
 modules\minimap.lua
 modules\panel.lua
 modules\player.lua
+modules\focus.lua
 modules\target.lua
+modules\combopoints.lua
 modules\targettarget.lua
 modules\pet.lua
 modules\group.lua
@@ -48,10 +62,10 @@ modules\castbar.lua
 modules\skin.lua
 modules\xpbar.lua
 modules\autoshift.lua
+modules\autovendor.lua
 modules\bags.lua
 modules\cooldown.lua
 modules\tooltip.lua
-modules\uf_tukui.lua
 modules\thirdparty.lua
 modules\buff.lua
 modules\nameplates.lua
@@ -61,3 +75,7 @@ modules\infight.lua
 modules\sellvalue.lua
 modules\eqcompare.lua
 modules\map.lua
+modules\debuffs.lua
+modules\uf_tukui.lua
+modules\custom.lua
+modules\gm.lua
