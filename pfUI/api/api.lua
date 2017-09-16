@@ -1,6 +1,7 @@
 pfUI.api = { }
-pfUI.api._G = getfenv(0)
 local _G = getfenv(0)
+local T, C, L = pfUI.env.T, pfUI.env.C, pfUI.env.L
+
 -- [ strsplit ]
 -- Splits a string using a delimiter.
 -- 'delimiter'  [string]        characters that will be interpreted as delimiter
@@ -12,6 +13,48 @@ function pfUI.api.strsplit(delimiter, subject)
   local pattern = string.format("([^%s]+)", delimiter)
   string.gsub(subject, pattern, function(c) fields[table.getn(fields)+1] = c end)
   return unpack(fields)
+end
+
+-- [ UnitInRange ]
+-- Returns whether a party/raid member is nearby. It uses spells with a distance of around 40 yards.
+-- unit         [string]        A unit to query (string, unitID)
+-- return:      [bool]          "1" if in range otherwise "nil"
+local RangeCache = {}
+function pfUI.api.UnitInRange(unit)
+    if not UnitExists(unit) or not UnitIsVisible(unit) then
+      return nil
+    end
+
+    if CheckInteractDistance(unit, 4) then
+      return 1
+    else if not pfUI.rangecheck or not pfUI.rangecheck.slot then
+      return nil
+    else
+      -- Extended Range Check
+      if not RangeCache[unit] or RangeCache[unit].time + pfUI.rangecheck.interval < GetTime() then
+        RangeCache[unit] = {}
+        RangeCache[unit].time  = GetTime()
+
+        if not UnitIsUnit("target", unit) then
+          pfScanActive = true
+          TargetUnit(unit)
+        end
+
+        if IsActionInRange(pfUI.rangecheck.slot) == 1 then
+          RangeCache[unit].range = 1
+        else
+          RangeCache[unit].range = nil
+        end
+
+        if pfScanActive then
+          TargetLastTarget()
+          pfScanActive = false
+        end
+      end
+
+      return RangeCache[unit].range
+    end
+  end
 end
 
 -- [ strvertical ]
@@ -39,6 +82,61 @@ function pfUI.api.round(input, places)
     for i = 1, places do pow = pow * 10 end
     return floor(input * pow + 0.5) / pow
   end
+end
+
+-- [ GetItemLinkByName ]
+-- Returns an itemLink for the given itemname
+-- 'name'       [string]         name of the item
+-- returns:     [string]         entire itemLink for the given item
+function pfUI.api.GetItemLinkByName(name)
+  for itemID = 1, 25818 do
+    local itemName, hyperLink, itemQuality = GetItemInfo(itemID)
+    if (itemName and itemName == name) then
+      local _, _, _, hex = GetItemQualityColor(tonumber(itemQuality))
+      return hex.. "|H"..hyperLink.."|h["..itemName.."]|h|r"
+    end
+  end
+end
+
+-- [ GetItemCount ]
+-- Returns information about how many of a given item the player has.
+-- 'itemName'   [string]         name of the item
+-- returns:     [int]            the number of the given item
+function pfUI.api.GetItemCount(itemName)
+  local count = 0
+  for bag = 4, 0, -1 do
+    for slot = 1, GetContainerNumSlots(bag) do
+      local _, itemCount = GetContainerItemInfo(bag, slot);
+      if itemCount then
+			  local itemLink = GetContainerItemLink(bag,slot)
+        local _, _, itemParse = strfind(itemLink, "(%d+):")
+				local queryName, _, _, _, _, _ = GetItemInfo(itemParse)
+        if queryName and queryName ~= "" then
+          if queryName == itemName then
+            count = count + itemCount;
+          end
+        end
+      end
+    end
+  end
+
+  return count
+end
+
+-- [ Abbreviate ]
+-- Abbreviates a number from 1234 to 1.23k
+-- 'number'     [number]           the number that should be abbreviated
+-- 'returns:    [string]           the abbreviated value
+function pfUI.api.Abbreviate(number)
+  if pfUI_config.unitframes.abbrevnum == "1" then
+    if number > 1000000 then
+      return pfUI.api.round(number/1000000,2) .. "m"
+    elseif number > 1000 then
+      return pfUI.api.round(number/1000,2) .. "k"
+    end
+  end
+
+  return number
 end
 
 -- [ hooksecurefunc ]
@@ -85,6 +183,57 @@ function pfUI.api.CreateGoldString(money)
   string = string .. "|cffffffff " .. copper .. "|cffeda55fc"
 
   return string
+end
+
+-- [ Enable Movable ]
+-- Set all necessary functions to make a already existing frame movable.
+-- 'name'       [string]        Name of the Frame that should be movable
+-- 'addon'      [string]        Addon that must be loaded before being able to access the frame
+-- 'blacklist'  [table]         A list of frames that should be deactivated for mouse usage
+function pfUI.api.EnableMovable(name, addon, blacklist)
+  if addon then
+    local scan = CreateFrame("Frame")
+    scan:RegisterEvent("ADDON_LOADED")
+    scan:SetScript("OnEvent", function()
+      if arg1 == addon then
+        local frame = _G[name]
+
+        if blacklist then
+          for _, disable in pairs(blacklist) do
+            _G[disable]:EnableMouse(false)
+          end
+        end
+
+        frame:SetMovable(true)
+        frame:EnableMouse(true)
+        frame:SetScript("OnMouseDown",function()
+          this:StartMoving()
+        end)
+
+        frame:SetScript("OnMouseUp",function()
+          this:StopMovingOrSizing()
+        end)
+        this:UnregisterAllEvents()
+      end
+    end)
+  else
+    if blacklist then
+      for _, disable in pairs(blacklist) do
+        _G[disable]:EnableMouse(false)
+      end
+    end
+
+    local frame = _G[name]
+    frame:SetMovable(true)
+    frame:EnableMouse(true)
+    frame:SetScript("OnMouseDown",function()
+      this:StartMoving()
+    end)
+
+    frame:SetScript("OnMouseUp",function()
+      this:StopMovingOrSizing()
+    end)
+  end
 end
 
 -- [ Copy Table ]
@@ -215,6 +364,9 @@ end
 -- 'legacy'     [bool]          use legacy backdrop instead of creating frames.
 -- 'transp'     [bool]          force default transparency of 0.8.
 function pfUI.api.CreateBackdrop(f, inset, legacy, transp)
+  -- exit if now frame was given
+  if not f then return end
+
   -- use default inset if nothing is given
   local border = inset
   if not border then
@@ -322,6 +474,19 @@ function pfUI.api.CreateQuestionDialog(text, yes, no, editbox)
     return
   end
 
+  local yes, no = yes, no
+  local yescap, nocap = YES, NO
+
+  if yes and type(yes) == "table" then
+    yescap = yes[1]
+    yes = yes[2]
+  end
+
+  if no and type(no) == "table" then
+    nocap = no[1]
+    no = no[2]
+  end
+
   if not text then text = "Are you sure?" end
 
   local border = tonumber(pfUI_config.appearance.border.default)
@@ -341,7 +506,7 @@ function pfUI.api.CreateQuestionDialog(text, yes, no, editbox)
   question:SetScript("OnMouseUp",function()
     this:StopMovingOrSizing()
   end)
-  pfUI.api.CreateBackdrop(question)
+  pfUI.api.CreateBackdrop(question, nil, nil, .85)
 
   -- text
   question.text = question:CreateFontString("Status", "LOW", "GameFontNormal")
@@ -369,33 +534,33 @@ function pfUI.api.CreateQuestionDialog(text, yes, no, editbox)
   question.yes = CreateFrame("Button", "pfQuestionDialogYes", question, "UIPanelButtonTemplate")
   pfUI.api.SkinButton(question.yes)
   question.yes:SetWidth(100)
-  question.yes:SetHeight(20)
-  question.yes:SetText("Yes")
+  question.yes:SetHeight(22)
+  question.yes:SetText(yescap)
   question.yes:SetScript("OnClick", function()
     if yes then yes() end
     this:GetParent():Hide()
   end)
 
   if question.input then
-    question.yes:SetPoint("TOPLEFT", question.input, "BOTTOMLEFT", -border, -padding)
+    question.yes:SetPoint("TOPRIGHT", question.input, "BOTTOM", -3*border, -padding)
   else
-    question.yes:SetPoint("TOPLEFT", question.text, "BOTTOMLEFT", 0, -padding)
+    question.yes:SetPoint("TOPRIGHT", question.text, "BOTTOM", -3*border, -padding)
   end
 
   question.no = CreateFrame("Button", "pfQuestionDialogNo", question, "UIPanelButtonTemplate")
   pfUI.api.SkinButton(question.no)
-  question.no:SetWidth(85)
-  question.no:SetHeight(20)
-  question.no:SetText("No")
+  question.no:SetWidth(100)
+  question.no:SetHeight(22)
+  question.no:SetText(nocap)
   question.no:SetScript("OnClick", function()
     if no then no() end
     this:GetParent():Hide()
   end)
 
   if question.input then
-    question.no:SetPoint("TOPRIGHT", question.input, "BOTTOMRIGHT", border, -padding)
+    question.no:SetPoint("TOPLEFT", question.input, "BOTTOM", 3*border, -padding)
   else
-    question.no:SetPoint("TOPRIGHT", question.text, "BOTTOMRIGHT", 0, -padding)
+    question.no:SetPoint("TOPLEFT", question.text, "BOTTOM", 3*border, -padding)
   end
 
   question.close = CreateFrame("Button", "pfQuestionDialogClose", question)

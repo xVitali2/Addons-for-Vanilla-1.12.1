@@ -28,10 +28,12 @@ pfUI.environment = {}
 pfUI.movables = {}
 pfUI.version = {}
 pfUI.hooks = {}
+pfUI.env = {}
 
 pfUI_playerDB = {}
 pfUI_config = {}
 pfUI_locale = {}
+pfUI_translation = {}
 
 pfUI:SetScript("OnEvent", function()
 
@@ -64,23 +66,34 @@ pfUI:SetScript("OnEvent", function()
     pfUI.environment:UpdateColors()
 
     -- unify module environment
-    local env_pfui = {}
-    setmetatable(env_pfui, {__index = getfenv(0)})
+    setmetatable(pfUI.env, {__index = getfenv(0)})
 
     -- load api into environment
     for m, func in pairs(pfUI.api) do
-      env_pfui[m] = func
+      pfUI.env[m] = func
     end
 
-    env_pfui.C = pfUI_config
-    env_pfui.L = pfUI_locale[GetLocale()] or pfUI_locale["enUS"]
+    pfUI.env._G = getfenv(0)
+    pfUI.env.C = pfUI_config
+    pfUI.env.L = pfUI_locale[GetLocale()] or pfUI_locale["enUS"]
+
+    local language = GetLocale()
+    if pfUI_config.global.language and pfUI_translation[pfUI_config.global.language] then
+      language = pfUI_config.global.language
+    end
+
+    pfUI.env.T = setmetatable(pfUI_translation[language] or {}, { __index = function(tab,key)
+      local value = tostring(key)
+      rawset(tab,key,value)
+      return value
+    end})
 
     for i,m in pairs(this.modules) do
       -- do not load disabled modules
       if pfUI_config["disabled"] and pfUI_config["disabled"][m]  == "1" then
         -- message("DEBUG: module " .. m .. " has been disabled")
       else
-        setfenv(pfUI.module[m], env_pfui)
+        setfenv(pfUI.module[m], pfUI.env)
         pfUI.module[m]()
       end
     end

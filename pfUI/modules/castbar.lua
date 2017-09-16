@@ -1,5 +1,8 @@
 pfUI:RegisterModule("castbar", function ()
 
+  local font = C.castbar.use_unitfonts == "1" and pfUI.font_unit or pfUI.font_default
+  local font_size = C.castbar.use_unitfonts == "1" and C.global.font_unit_size or C.global.font_size
+
   local default_border = C.appearance.border.default
   if C.appearance.border.unitframes ~= "-1" then
     default_border = C.appearance.border.unitframes
@@ -15,7 +18,7 @@ pfUI:RegisterModule("castbar", function ()
 
   -- [[ pfPlayerCastbar ]] --
   pfUI.castbar.player = CreateFrame("Frame", "pfPlayerCastbar", UIParent)
-  pfUI.castbar.player:SetFrameStrata("HIGH")
+  pfUI.castbar.player:SetFrameStrata("MEDIUM")
   CreateBackdrop(pfUI.castbar.player, default_border)
   pfUI.castbar.player:SetHeight(C.global.font_size + default_border)
 
@@ -49,7 +52,7 @@ pfUI:RegisterModule("castbar", function ()
   pfUI.castbar.player.bar.left:SetNonSpaceWrap(false)
   pfUI.castbar.player.bar.left:SetFontObject(GameFontWhite)
   pfUI.castbar.player.bar.left:SetTextColor(1,1,1,1)
-  pfUI.castbar.player.bar.left:SetFont(pfUI.font_default, C.global.font_size, "OUTLINE")
+  pfUI.castbar.player.bar.left:SetFont(font, font_size, "OUTLINE")
   pfUI.castbar.player.bar.left:SetText("left")
   pfUI.castbar.player.bar.left:SetJustifyH("left")
 
@@ -61,7 +64,7 @@ pfUI:RegisterModule("castbar", function ()
   pfUI.castbar.player.bar.right:SetNonSpaceWrap(false)
   pfUI.castbar.player.bar.right:SetFontObject(GameFontWhite)
   pfUI.castbar.player.bar.right:SetTextColor(1,1,1,1)
-  pfUI.castbar.player.bar.right:SetFont(pfUI.font_default, C.global.font_size, "OUTLINE")
+  pfUI.castbar.player.bar.right:SetFont(font, font_size, "OUTLINE")
   pfUI.castbar.player.bar.right:SetText("right")
   pfUI.castbar.player.bar.right:SetJustifyH("right")
 
@@ -78,8 +81,31 @@ pfUI:RegisterModule("castbar", function ()
   local scanner = CreateFrame("GameTooltip", "pfSpellScanner", nil, "GameTooltipTemplate")
   scanner:SetOwner(WorldFrame, "ANCHOR_NONE")
 
+  local delayByLag = CreateFrame("Frame", "pfDelayCast", nil)
+  delayByLag.currentCast = nil
+  delayByLag.startTime = nil
+
+  function delayByLag:SetCast(cast)
+    if not delayByLag.currentCast and pfUI.castbar.player[cast] then
+      delayByLag.currentCast = cast
+      delayByLag.startTime = GetTime()
+    end
+  end
+
+  delayByLag:SetScript("OnUpdate", function()
+    if this.currentCast and this.startTime then
+      local _,_, lag = GetNetStats()
+      if this.startTime + lag/1000 < GetTime() then
+        pfUI.castbar.player[this.currentCast](true)
+        this.currentCast = nil
+        this.startTime = nil
+      end
+    end
+  end)
+
   local aimedshot = L["customcast"]["AIMEDSHOT"]
   local multishot = L["customcast"]["MULTISHOT"]
+
 
   pfUI.castbar.player[aimedshot] = function(begin)
     if begin then
@@ -103,7 +129,9 @@ pfUI:RegisterModule("castbar", function ()
         end
       end
 
-      pfUI.castbar.player:SpellcastStart(aimedshot, duration)
+      if not pfUI.castbar.player.casting then
+        pfUI.castbar.player:SpellcastStart(aimedshot, duration)
+      end
     else
       pfUI.castbar.player:SpellcastStop()
     end
@@ -112,7 +140,9 @@ pfUI:RegisterModule("castbar", function ()
   pfUI.castbar.player[multishot] = function(begin)
     if begin then
       local duration = 500
-      pfUI.castbar.player:SpellcastStart(multishot, duration)
+      if not pfUI.castbar.player.casting then
+        pfUI.castbar.player:SpellcastStart(multishot, duration)
+      end
     else
       pfUI.castbar.player:SpellcastStop()
     end
@@ -120,15 +150,11 @@ pfUI:RegisterModule("castbar", function ()
 
   hooksecurefunc("CastSpell", function(id, bookType)
     local spellName = GetSpellName(id, bookType)
-    if pfUI.castbar.player[spellName] then
-      pfUI.castbar.player[spellName](true)
-    end
+    delayByLag:SetCast(spellName)
   end, true)
 
   hooksecurefunc("CastSpellByName", function(spellName, target)
-    if pfUI.castbar.player[spellName] then
-      pfUI.castbar.player[spellName](true)
-    end
+    delayByLag:SetCast(spellName)
   end, true)
 
   hooksecurefunc("UseAction", function(slot, target, button)
@@ -136,9 +162,7 @@ pfUI:RegisterModule("castbar", function ()
     scanner:ClearLines()
     scanner:SetAction(slot)
     local spellName = pfSpellScannerTextLeft1:GetText()
-    if pfUI.castbar.player[spellName] then
-      pfUI.castbar.player[spellName](true)
-    end
+    delayByLag:SetCast(spellName)
   end, true)
 
   function pfUI.castbar.player:SpellcastStart(spell, duration)
@@ -162,6 +186,9 @@ pfUI:RegisterModule("castbar", function ()
   end
 
   function pfUI.castbar.player:SpellcastStop()
+    delayByLag.currentCast = nil
+    delayByLag.startTime = nil
+
     if pfUI.castbar.player.casting then
       pfUI.castbar.player.fadeout = 1
       pfUI.castbar.player.casting = nil
@@ -190,6 +217,9 @@ pfUI:RegisterModule("castbar", function ()
   end
 
   function pfUI.castbar.player:SpellcastChannelStop()
+    delayByLag.currentCast = nil
+    delayByLag.startTime = nil
+
     if pfUI.castbar.player.channeling then
       pfUI.castbar.player.fadeout = 1
       pfUI.castbar.player.channeling = nil
@@ -256,9 +286,9 @@ pfUI:RegisterModule("castbar", function ()
 
       if delay > 0 then
         delay = "|cffffaaaa+" .. round(delay,1) .. " |r "
-        pfUI.castbar.player.bar.right:SetText(delay .. round(cur,1) .. " / " .. round(max,1))
+        pfUI.castbar.player.bar.right:SetText(delay .. string.format("%.1f",cur) .. " / " .. round(max,1))
       else
-        pfUI.castbar.player.bar.right:SetText(round(cur,1) .. " / " .. round(max,1))
+        pfUI.castbar.player.bar.right:SetText(string.format("%.1f",cur) .. " / " .. round(max,1))
       end
 
       return
@@ -303,7 +333,7 @@ pfUI:RegisterModule("castbar", function ()
 
   -- [[ pfTargetCastbar ]] --
   pfUI.castbar.target = CreateFrame("Frame", "pfTargetCastbar", UIParent)
-  pfUI.castbar.target:SetFrameStrata("HIGH")
+  pfUI.castbar.target:SetFrameStrata("MEDIUM")
   CreateBackdrop(pfUI.castbar.target, default_border)
   pfUI.castbar.target:SetHeight(C.global.font_size + default_border)
 
@@ -337,7 +367,7 @@ pfUI:RegisterModule("castbar", function ()
   pfUI.castbar.target.bar.left:SetNonSpaceWrap(false)
   pfUI.castbar.target.bar.left:SetFontObject(GameFontWhite)
   pfUI.castbar.target.bar.left:SetTextColor(1,1,1,1)
-  pfUI.castbar.target.bar.left:SetFont(pfUI.font_default, C.global.font_size, "OUTLINE")
+  pfUI.castbar.target.bar.left:SetFont(font, font_size, "OUTLINE")
   pfUI.castbar.target.bar.left:SetText("left")
   pfUI.castbar.target.bar.left:SetJustifyH("left")
 
@@ -349,7 +379,7 @@ pfUI:RegisterModule("castbar", function ()
   pfUI.castbar.target.bar.right:SetNonSpaceWrap(false)
   pfUI.castbar.target.bar.right:SetFontObject(GameFontWhite)
   pfUI.castbar.target.bar.right:SetTextColor(1,1,1,1)
-  pfUI.castbar.target.bar.right:SetFont(pfUI.font_default, C.global.font_size, "OUTLINE")
+  pfUI.castbar.target.bar.right:SetFont(font, font_size, "OUTLINE")
   pfUI.castbar.target.bar.right:SetText("right")
   pfUI.castbar.target.bar.right:SetJustifyH("right")
 
@@ -384,6 +414,8 @@ pfUI:RegisterModule("castbar", function ()
   pfUI.castbar.target.SPELL_CRIT = string.gsub(string.gsub(string.gsub(SPELLLOGCRITSELFOTHER,"%d%$",""),"%%d","%%d+"),"%%s","(.+)")
   pfUI.castbar.target.OTHER_SPELL_HIT = string.gsub(string.gsub(string.gsub(SPELLLOGOTHEROTHER,"%d%$",""), "%%s", "(.+)"), "%%d", "%%d+")
   pfUI.castbar.target.OTHER_SPELL_CRIT = string.gsub(string.gsub(string.gsub(SPELLLOGOTHEROTHER,"%d%$",""), "%%s", "(.+)"), "%%d", "%%d+")
+  pfUI.castbar.target.SPELL_INTERRUPT = string.gsub(string.gsub(SPELLINTERRUPTSELFOTHER, "%d%$",""),"%%s","(.+)")
+  pfUI.castbar.target.OTHER_SPELL_INTERRUPT = string.gsub(string.gsub(SPELLINTERRUPTOTHEROTHER,"%d%$",""),"%%s", "(.+)")
 
   pfUI.castbar.target:RegisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE")
   pfUI.castbar.target:RegisterEvent("CHAT_MSG_SPELL_HOSTILEPLAYER_DAMAGE")
@@ -469,6 +501,18 @@ pfUI:RegisterModule("castbar", function ()
         pfUI.castbar.target:StopAction(mob, spell)
         return
       end
+
+      -- You interrupt (.+)'s (.+).";
+      for mob, spell in string.gfind(arg1, pfUI.castbar.target.SPELL_INTERRUPT) do
+        pfUI.castbar.target:StopAction(mob, "INTERRUPT")
+        return
+      end
+
+      -- (.+) interrupts (.+)'s (.+).
+      for _, mob, spell in string.gfind(arg1, pfUI.castbar.target.OTHER_SPELL_INTERRUPT) do
+        pfUI.castbar.target:StopAction(mob, "INTERRUPT")
+        return
+      end
     end
   end)
 
@@ -490,7 +534,7 @@ pfUI:RegisterModule("castbar", function ()
   end
 
   function pfUI.castbar.target:StopAction(mob, spell)
-    if pfUI.castbar.target.casterDB[mob] and L["interrupts"][spell] ~= nil then
+    if pfUI.castbar.target.casterDB[mob] and ( L["interrupts"][spell] ~= nil or spell == "INTERRUPT" ) then
       pfUI.castbar.target.casterDB[mob] = nil
     end
   end

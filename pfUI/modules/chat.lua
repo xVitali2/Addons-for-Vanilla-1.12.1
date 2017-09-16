@@ -1,22 +1,24 @@
 pfUI:RegisterModule("chat", function ()
-  pfUI.firstrun:AddStep("chat_right", function() pfUI.chat.SetupRightChat(true) end, function() pfUI.chat.SetupRightChat(false) end, "|cff33ffccChat: \"Loot & Spam\"|r\n\n"..
-  "Do you want me to create and manage a specific Chatframe called \"Loot & Spam\"?\n"..
-  "This chat will display world channels, loot information and miscellaneous messages,\n" ..
-  "that would otherwise clutter your main chatframe.")
+  if pfUI.firstrun then
+    local txt = T["|cff33ffccChat: \"Loot & Spam\"|r\n\nDo you want me to create and manage a specific Chatframe called \"Loot & Spam\"?\nThis chat will display world channels, loot information and miscellaneous messages,\nthat would otherwise clutter your main chatframe."]
+    pfUI.firstrun:AddStep("chat_right", function() pfUI.chat.SetupRightChat(true) end, function() pfUI.chat.SetupRightChat(false) end, txt)
 
-  pfUI.firstrun:AddStep("chat_position", function() pfUI.chat.SetupPositions() end, nil, "|cff33ffccChat: \"Layout\"|r\n\n" ..
-  "Do you want me to adjust the layout of your chatframes?\n" ..
-  "This would make sure, that every window is placed on its dedicated position.")
+    local txt = T["|cff33ffccChat: \"Layout\"|r\n\nDo you want me to adjust the layout of your chatframes?\nThis would make sure, that every window is placed on its dedicated position."]
+    pfUI.firstrun:AddStep("chat_position", function() pfUI.chat.SetupPositions() end, nil, txt)
 
-  pfUI.firstrun:AddStep("chat_channels", function() pfUI.chat.SetupChannels() end, nil, "|cff33ffccChat: \"Channels\"|r\n\n"..
-  "Do you want me to setup the chat channels of your chatframes?\n"..
-  "This would set important or personal messages to the left chat\n" ..
-  "and world channels and lootinformation to the right chat.")
+    local txt = T["|cff33ffccChat: \"Channels\"|r\n\nDo you want me to setup the chat channels of your chatframes?\nThis would set important or personal messages to the left chat\nand world channels and lootinformation to the right chat."]
+    pfUI.firstrun:AddStep("chat_channels", function() pfUI.chat.SetupChannels() end, nil, txt)
+  end
+
+  local panelfont = C.panel.use_unitfonts == "1" and pfUI.font_unit or pfUI.font_default
+  local panelfont_size = C.panel.use_unitfonts == "1" and C.global.font_unit_size or C.global.font_size
 
   local default_border = C.appearance.border.default
   if C.appearance.border.chat ~= "-1" then
     default_border = C.appearance.border.chat
   end
+
+  _G.CHAT_FONT_HEIGHTS = { 8, 10, 12, 14, 16, 18, 20 }
 
   pfUI.chat = CreateFrame("Frame",nil,UIParent)
 
@@ -43,6 +45,74 @@ pfUI:RegisterModule("chat", function ()
   pfUI.chat.left.panelTop:SetPoint("TOPRIGHT", pfUI.chat.left, "TOPRIGHT", -default_border, -default_border)
   if C.chat.global.tabdock == "1" then
     CreateBackdrop(pfUI.chat.left.panelTop, default_border, nil, .8)
+  end
+
+  -- url copy dialog
+  function pfUI.chat:FormatLink(link)
+    return " |cffccccff|Hurl:" .. link .. "|h[" .. link .. "]|h|r "
+  end
+
+  pfUI.chat.urlcopy = CreateFrame("Frame", "pfURLCopy", UIParent)
+  pfUI.chat.urlcopy:Hide()
+  pfUI.chat.urlcopy:SetWidth(270)
+  pfUI.chat.urlcopy:SetHeight(65)
+  pfUI.chat.urlcopy:SetPoint("CENTER", 0, 0)
+  CreateBackdrop(pfUI.chat.urlcopy, nil, nil, 0.8)
+
+  pfUI.chat.urlcopy:SetMovable(true)
+  pfUI.chat.urlcopy:EnableMouse(true)
+  pfUI.chat.urlcopy:SetScript("OnMouseDown",function()
+    this:StartMoving()
+  end)
+
+  pfUI.chat.urlcopy:SetScript("OnMouseUp",function()
+    this:StopMovingOrSizing()
+  end)
+
+  pfUI.chat.urlcopy:SetScript("OnShow", function()
+    this.text:HighlightText()
+  end)
+
+  pfUI.chat.urlcopy.text = CreateFrame("EditBox", "pfURLCopyEditBox", pfUI.chat.urlcopy)
+  pfUI.chat.urlcopy.text:SetTextColor(.2,1,.8,1)
+  pfUI.chat.urlcopy.text:SetJustifyH("CENTER")
+
+  pfUI.chat.urlcopy.text:SetWidth(250)
+  pfUI.chat.urlcopy.text:SetHeight(20)
+  pfUI.chat.urlcopy.text:SetPoint("TOP", pfUI.chat.urlcopy, "TOP", 0, -10)
+  pfUI.chat.urlcopy.text:SetFontObject(GameFontNormal)
+  CreateBackdrop(pfUI.chat.urlcopy.text)
+
+  pfUI.chat.urlcopy.text:SetScript("OnEscapePressed", function(self)
+    pfUI.chat.urlcopy:Hide()
+  end)
+
+  pfUI.chat.urlcopy.text:SetScript("OnEditFocusLost", function(self)
+    pfUI.chat.urlcopy:Hide()
+  end)
+
+  pfUI.chat.urlcopy.close = CreateFrame("Button", "pfURLCopyClose", pfUI.chat.urlcopy, "UIPanelButtonTemplate")
+  pfUI.api.SkinButton(pfUI.chat.urlcopy.close)
+  pfUI.chat.urlcopy.close:SetWidth(70)
+  pfUI.chat.urlcopy.close:SetHeight(18)
+  pfUI.chat.urlcopy.close:SetPoint("BOTTOMRIGHT", pfUI.chat.urlcopy, "BOTTOMRIGHT", -10, 10)
+
+  pfUI.chat.urlcopy.close:SetText("Close")
+  pfUI.chat.urlcopy.close:SetScript("OnClick", function()
+    pfUI.chat.urlcopy:Hide()
+  end)
+
+  pfUI.chat.urlcopy.SetItemRef = SetItemRef
+
+  function _G.SetItemRef(link, text, button)
+    if (strsub(link, 1, 3) == "url") then
+      if string.len(link) > 4 and string.sub(link,1,4) == "url:" then
+        pfUI.chat.urlcopy.text:SetText(string.sub(link,5, string.len(link)))
+        pfUI.chat.urlcopy:Show()
+      end
+      return
+    end
+    pfUI.chat.urlcopy.SetItemRef(link, text, button)
   end
 
   -- whisper forwarding
@@ -110,9 +180,9 @@ pfUI:RegisterModule("chat", function ()
     end
   end)
 
-  pfUI.chat.left.panelTop.proxyName = CreateFrame("Frame", "leftChatWhisperProxyName")
+  pfUI.chat.left.panelTop.proxyName = CreateFrame("Frame", "leftChatWhisperProxyName", UIParent)
   pfUI.chat.left.panelTop.proxyName:SetPoint("CENTER", 0, 0)
-  pfUI.chat.left.panelTop.proxyName:SetHeight(100)
+  pfUI.chat.left.panelTop.proxyName:SetHeight(90)
   pfUI.chat.left.panelTop.proxyName:SetWidth(200)
   CreateBackdrop(pfUI.chat.left.panelTop.proxyName, default_border)
   pfUI.chat.left.panelTop.proxyName:SetScript("OnShow", function()
@@ -120,18 +190,18 @@ pfUI:RegisterModule("chat", function ()
   end)
 
   pfUI.chat.left.panelTop.proxyName.caption = pfUI.chat.left.panelTop.proxyName:CreateFontString("Status", "LOW", "GameFontNormal")
-  pfUI.chat.left.panelTop.proxyName.caption:SetFont(pfUI.font_default, C.global.font_size + 2, "OUTLINE")
-  pfUI.chat.left.panelTop.proxyName.caption:SetPoint("TOP", 0, -20)
+  pfUI.chat.left.panelTop.proxyName.caption:SetFont(pfUI.font_default, C.global.font_size, "OUTLINE")
+  pfUI.chat.left.panelTop.proxyName.caption:SetPoint("TOP", 0, -10)
   pfUI.chat.left.panelTop.proxyName.caption:SetFontObject(GameFontWhite)
   pfUI.chat.left.panelTop.proxyName.caption:SetJustifyH("CENTER")
-  pfUI.chat.left.panelTop.proxyName.caption:SetText("Forward all whispers to:")
+  pfUI.chat.left.panelTop.proxyName.caption:SetText(T["Forward all whispers to:"])
 
   pfUI.chat.left.panelTop.proxyName.input = CreateFrame("EditBox", nil, pfUI.chat.left.panelTop.proxyName)
   pfUI.chat.left.panelTop.proxyName.input:SetTextColor(.2,1.1,1)
   pfUI.chat.left.panelTop.proxyName.input:SetJustifyH("CENTER")
   CreateBackdrop(pfUI.chat.left.panelTop.proxyName.input, default_border)
-  pfUI.chat.left.panelTop.proxyName.input:SetPoint("TOPLEFT" , pfUI.chat.left.panelTop.proxyName, "TOPLEFT", 20, -40)
-  pfUI.chat.left.panelTop.proxyName.input:SetPoint("BOTTOMRIGHT" , pfUI.chat.left.panelTop.proxyName, "BOTTOMRIGHT", -20, 40)
+  pfUI.chat.left.panelTop.proxyName.input:SetPoint("TOPLEFT" , pfUI.chat.left.panelTop.proxyName, "TOPLEFT", 10, -30)
+  pfUI.chat.left.panelTop.proxyName.input:SetPoint("BOTTOMRIGHT" , pfUI.chat.left.panelTop.proxyName, "BOTTOMRIGHT", -10, 40)
   pfUI.chat.left.panelTop.proxyName.input:SetFontObject(GameFontWhite)
   pfUI.chat.left.panelTop.proxyName.input:SetAutoFocus(false)
   pfUI.chat.left.panelTop.proxyName.input:SetText(pfUI.chat.left.panelTop.proxy.forwardto)
@@ -150,7 +220,7 @@ pfUI:RegisterModule("chat", function ()
   pfUI.chat.left.panelTop.proxyName.okay.text:SetAllPoints(pfUI.chat.left.panelTop.proxyName.okay)
   pfUI.chat.left.panelTop.proxyName.okay.text:SetPoint("CENTER", 0, 0)
   pfUI.chat.left.panelTop.proxyName.okay.text:SetFontObject(GameFontWhite)
-  pfUI.chat.left.panelTop.proxyName.okay.text:SetText("Save")
+  pfUI.chat.left.panelTop.proxyName.okay.text:SetText(T["Save"])
   pfUI.chat.left.panelTop.proxyName.okay:SetScript("OnClick", function()
     pfUI.chat.left.panelTop.proxy.forwardto = pfUI.chat.left.panelTop.proxyName.input:GetText()
     if pfUI.chat.left.panelTop.proxy.enabled == true then
@@ -170,7 +240,7 @@ pfUI:RegisterModule("chat", function ()
   pfUI.chat.left.panelTop.proxyName.abort.text:SetAllPoints(pfUI.chat.left.panelTop.proxyName.abort)
   pfUI.chat.left.panelTop.proxyName.abort.text:SetPoint("CENTER", 0, 0)
   pfUI.chat.left.panelTop.proxyName.abort.text:SetFontObject(GameFontWhite)
-  pfUI.chat.left.panelTop.proxyName.abort.text:SetText("Abort")
+  pfUI.chat.left.panelTop.proxyName.abort.text:SetText(T["Abort"])
   pfUI.chat.left.panelTop.proxyName.abort:SetScript("OnClick", function()
     pfUI.chat.left.panelTop.proxyName:Hide()
   end)
@@ -234,7 +304,6 @@ pfUI:RegisterModule("chat", function ()
       local frame = _G["ChatFrame"..i]
       local tab = _G["ChatFrame"..i.."Tab"]
 
-
       if C.chat.global.fadeout == "1" then
         frame:SetFading(true)
         frame:SetTimeVisible(tonumber(C.chat.global.fadetime))
@@ -242,20 +311,36 @@ pfUI:RegisterModule("chat", function ()
         frame:SetFading(false)
       end
 
-      if i == 3 and C.chat.right.enable == "1" then
+      if i == 1 then
+        -- General
+        FCF_DockFrame(frame)
+        tab:SetParent(pfUI.chat.left.panelTop)
+        frame:SetParent(pfUI.chat.left)
+        frame:SetPoint("TOPLEFT", pfUI.chat.left ,"TOPLEFT", default_border, -panelheight)
+        frame:SetPoint("BOTTOMRIGHT", pfUI.chat.left ,"BOTTOMRIGHT", -default_border, panelheight)
+      elseif i == 2 then
+        -- Combat Log
+        if C.chat.global.combathide == "1" then
+          FCF_UnDockFrame(frame)
+          FCF_Close(frame)
+        elseif frame.isDocked then
+          FCF_DockFrame(frame)
+          tab:SetParent(pfUI.chat.left.panelTop)
+          frame:SetParent(pfUI.chat.left)
+          frame:SetPoint("TOPLEFT", pfUI.chat.left ,"TOPLEFT", default_border, -panelheight)
+          frame:SetPoint("BOTTOMRIGHT", pfUI.chat.left ,"BOTTOMRIGHT", -default_border, panelheight)
+        end
+      elseif i == 3 and C.chat.right.enable == "1" then
+        -- Loot & Spam
         tab:SetParent(pfUI.chat.right.panelTop)
         frame:SetParent(pfUI.chat.right)
         frame:ClearAllPoints()
         frame:SetPoint("TOPLEFT", pfUI.chat.right ,"TOPLEFT", default_border, -panelheight)
         frame:SetPoint("BOTTOMRIGHT", pfUI.chat.right ,"BOTTOMRIGHT", -default_border, panelheight)
         frame:Show()
-      else
-        tab:SetParent(pfUI.chat.left.panelTop)
-        frame:SetParent(pfUI.chat.left)
-        frame:ClearAllPoints()
-        frame:SetPoint("TOPLEFT", pfUI.chat.left ,"TOPLEFT", default_border, -panelheight)
-        frame:SetPoint("BOTTOMRIGHT", pfUI.chat.left ,"BOTTOMRIGHT", -default_border, panelheight)
       end
+
+      FCF_DockUpdate()
 
       -- hide textures
       for j,v in ipairs({tab:GetRegions()}) do
@@ -271,10 +356,11 @@ pfUI:RegisterModule("chat", function ()
       _G["ChatFrame" .. i .. "TabMiddle"]:SetAlpha(0)
       _G["ChatFrame" .. i .. "TabRight"]:SetAlpha(0)
       _G["ChatFrame" .. i .. "TabFlash"]:SetAlpha(0)
+      _G["ChatFrame" .. i .. "TabFlash"]:SetAllPoints(_G["ChatFrame" .. i .. "TabText"])
 
       local _, class = UnitClass("player")
       _G["ChatFrame" .. i .. "TabText"]:SetTextColor(RAID_CLASS_COLORS[class].r + .3 * .5, RAID_CLASS_COLORS[class].g + .3 * .5, RAID_CLASS_COLORS[class].b + .3 * .5, 1)
-      _G["ChatFrame" .. i .. "TabText"]:SetFont(pfUI.font_default, C.global.font_size, "OUTLINE")
+      _G["ChatFrame" .. i .. "TabText"]:SetFont(panelfont,panelfont_size, "OUTLINE")
 
       if _G["ChatFrame" .. i].isDocked or _G["ChatFrame" .. i]:IsVisible() then
         _G["ChatFrame" .. i .. "Tab"]:Show()
@@ -297,6 +383,19 @@ pfUI:RegisterModule("chat", function ()
         end
       end)
     end
+  end
+
+  if C.chat.global.tabmouse == "1" then
+    pfUI.chat.mouseovertab = CreateFrame("Frame")
+    pfUI.chat.mouseovertab:SetScript("OnUpdate", function()
+      if MouseIsOver(pfUI.chat.left) or MouseIsOver(pfUI.chat.right) then
+        pfUI.chat.left.panelTop:Show()
+        pfUI.chat.right.panelTop:Show()
+      else
+        pfUI.chat.left.panelTop:Hide()
+        pfUI.chat.right.panelTop:Hide()
+      end
+    end)
   end
 
   function pfUI.chat.SetupRightChat(state)
@@ -340,7 +439,7 @@ pfUI:RegisterModule("chat", function ()
     if C.chat.right.enable == "1" then
       -- set position of Loot & Spam
       FCF_SetLocked(ChatFrame3, 1)
-      FCF_SetWindowName(ChatFrame3, "Loot & Spam")
+      FCF_SetWindowName(ChatFrame3, T["Loot & Spam"])
       FCF_SetWindowColor(ChatFrame3, 0, 0, 0)
       FCF_SetWindowAlpha(ChatFrame3, 0)
       FCF_SetChatWindowFontSize(ChatFrame3, 12)
@@ -365,10 +464,7 @@ pfUI:RegisterModule("chat", function ()
     ChatFrame_RemoveAllChannels(ChatFrame2)
     ChatFrame_RemoveAllChannels(ChatFrame3)
 
-    local normalg = {"SAY", "EMOTE", "YELL", "GUILD", "OFFICER", "GUILD_ACHIEVEMENT", "WHISPER",
-      "MONSTER_SAY", "MONSTER_EMOTE", "MONSTER_YELL", "MONSTER_WHISPER", "MONSTER_BOSS_EMOTE", "MONSTER_BOSS_WHISPER",
-      "PARTY", "PARTY_LEADER", "RAID", "RAID_LEADER", "RAID_WARNING", "BATTLEGROUND", "BATTLEGROUND_LEADER",
-      "BG_HORDE", "BG_ALLIANCE", "BG_NEUTRAL", "SYSTEM", "ERRORS", "AFK", "DND", "IGNORED", "BN_WHISPER", "BN_CONVERSATION"}
+    local normalg = {"SYSTEM", "SAY", "YELL", "WHISPER", "PARTY", "GUILD", "CREATURE", "CHANNEL"}
     for _,group in pairs(normalg) do
       ChatFrame_AddMessageGroup(ChatFrame1, group)
     end
@@ -376,7 +472,7 @@ pfUI:RegisterModule("chat", function ()
     ChatFrame_ActivateCombatMessages(ChatFrame2)
 
     if C.chat.right.enable == "1" then
-      local spamg = { "COMBAT_XP_GAIN", "COMBAT_HONOR_GAIN", "COMBAT_FACTION_CHANGE", "SKILL", "LOOT", "MONEY" }
+      local spamg = { "COMBAT_XP_GAIN", "COMBAT_HONOR_GAIN", "COMBAT_FACTION_CHANGE", "SKILL", "LOOT" }
       for _,group in pairs(spamg) do
         ChatFrame_AddMessageGroup(ChatFrame3, group)
       end
@@ -405,7 +501,9 @@ pfUI:RegisterModule("chat", function ()
           if L["class"] and L["class"][Class] then
             Class = L["class"][Class]
           end
-          pfUI_playerDB[Name] = { class = Class, level = Level }
+          if Name and Level and Class and pfUI_playerDB then
+            pfUI_playerDB[Name] = { class = Class, level = Level }
+          end
         end
       elseif event == "GUILD_ROSTER_UPDATE" or event == "PLAYER_ENTERING_WORLD" then
         local Name, Class, Level
@@ -426,24 +524,34 @@ pfUI:RegisterModule("chat", function ()
           if L["class"] and L["class"].Class then
             Class = L["class"][Class]
           end
-          pfUI_playerDB[Name] = { class = Class, level = Level }
+          if Name and Level and Class and pfUI_playerDB then
+            pfUI_playerDB[Name] = { class = Class, level = Level }
+          end
         end
 
       elseif event == "PARTY_MEMBERS_CHANGED" or event == "PLAYER_ENTERING_WORLD" then
-        local Class, Unit
+        local Name, Class, Level, Unit
         for i = 1, GetNumPartyMembers() do
           Unit = "party" .. i
           _, Class = UnitClass(Unit)
-          pfUI_playerDB[UnitName(Unit)] = { class = Class, level = UnitLevel(Unit) }
+          Name = UnitName(Unit)
+          Level = UnitLevel(Unit)
+          if Name and Level and Class and pfUI_playerDB then
+            pfUI_playerDB[Name] = { class = Class, level = Level }
+          end
         end
 
       elseif event == "PLAYER_TARGET_CHANGED" then
-        local Class
+        local Name, Class, Level
         if not UnitIsPlayer("target") or not UnitIsFriend("player", "target") then
           return
         end
         _, Class = UnitClass("target")
-        pfUI_playerDB[UnitName("target")] = { class = Class, level = UnitLevel("target") }
+        Level = UnitLevel("target")
+        Name = UnitName("target")
+        if Name and Level and Class and pfUI_playerDB then
+          pfUI_playerDB[Name] = { class = Class, level = Level }
+        end
 
       elseif event == "WHO_LIST_UPDATE" or event == "CHAT_MSG_SYSTEM" then
         local Name, Class, Level
@@ -452,7 +560,9 @@ pfUI:RegisterModule("chat", function ()
           if L["class"] and L["class"][Class] then
             Class = L["class"][Class]
           end
-          pfUI_playerDB[Name] = { class = Class, level = Level }
+          if Name and Level and Class and pfUI_playerDB then
+            pfUI_playerDB[Name] = { class = Class, level = Level }
+          end
         end
       end
     end)
@@ -566,24 +676,24 @@ pfUI:RegisterModule("chat", function ()
   ChatFrameEditBox:SetAltArrowKeyMode(false)
 
   local default = " " .. "%s" .. "|r:" .. "\32"
-  CHAT_CHANNEL_GET = "%s" .. "|r:" .. "\32"
-  CHAT_GUILD_GET = '[G]' .. default
-  CHAT_OFFICER_GET = '[O]'.. default
-  CHAT_PARTY_GET = '[P]' .. default
-  CHAT_RAID_GET = '[R]' .. default
-  CHAT_RAID_LEADER_GET = '[RL]' .. default
-  CHAT_RAID_WARNING_GET = '[RW]' .. default
-  CHAT_BATTLEGROUND_GET = '[BG]' .. default
-  CHAT_BATTLEGROUND_LEADER_GET = '[BL]' .. default
-  CHAT_SAY_GET = '[S]' .. default
+  _G.CHAT_CHANNEL_GET = "%s" .. "|r:" .. "\32"
+  _G.CHAT_GUILD_GET = '[G]' .. default
+  _G.CHAT_OFFICER_GET = '[O]'.. default
+  _G.CHAT_PARTY_GET = '[P]' .. default
+  _G.CHAT_RAID_GET = '[R]' .. default
+  _G.CHAT_RAID_LEADER_GET = '[RL]' .. default
+  _G.CHAT_RAID_WARNING_GET = '[RW]' .. default
+  _G.CHAT_BATTLEGROUND_GET = '[BG]' .. default
+  _G.CHAT_BATTLEGROUND_LEADER_GET = '[BL]' .. default
+  _G.CHAT_SAY_GET = '[S]' .. default
 
   local cr, cg, cb, ca = strsplit(",", C.chat.global.whisper)
   cr, cg, cb = tonumber(cr), tonumber(cg), tonumber(cb)
   local wcol = string.format("%02x%02x%02x",cr * 255,cg * 255, cb * 255)
 
   if C.chat.global.whispermod == "1" then
-    CHAT_WHISPER_GET = '|cff' .. wcol .. '[W]' .. default
-    CHAT_WHISPER_INFORM_GET = '[W]' .. default
+    _G.CHAT_WHISPER_GET = '|cff' .. wcol .. '[W]' .. default
+    _G.CHAT_WHISPER_INFORM_GET = '[W]' .. default
   end
 
   CHAT_YELL_GET = '[Y]' .. default
@@ -594,6 +704,16 @@ pfUI:RegisterModule("chat", function ()
     end
     _G["ChatFrame"..i].AddMessage = function (frame, text, ...)
       if text then
+
+        if C.chat.text.detecturl == "1" then
+          text = string.gsub (text, " www%.([_A-Za-z0-9-]+)%.(%S+)%s?", pfUI.chat:FormatLink("www.%1.%2"))
+          text = string.gsub (text, " (%a+)://(%S+)%s?", pfUI.chat:FormatLink("%1://%2"))
+          text = string.gsub (text, " ([_A-Za-z0-9-%.]+)@([_A-Za-z0-9-]+)(%.+)([_A-Za-z0-9-%.]+)%s?", pfUI.chat:FormatLink("%1@%2%3%4"))
+          text = string.gsub (text, " (%d%d?%d?)%.(%d%d?%d?)%.(%d%d?%d?)%.(%d%d?%d?):(%d%d?%d?%d?%d?)%s?", pfUI.chat:FormatLink("%1.%2.%3.%4:%5"))
+          text = string.gsub (text, " (%d%d?%d?)%.(%d%d?%d?)%.(%d%d?%d?)%.(%d%d?%d?)%s?", pfUI.chat:FormatLink("%1.%2.%3.%4"))
+          text = string.gsub (text, " ([_A-Za-z0-9-]+)%.([_A-Za-z0-9-]+)%.(%S+)%s?", pfUI.chat:FormatLink("%1.%2.%3"))
+          text = string.gsub (text, " ([_A-Za-z0-9-]+)%.([_A-Za-z0-9-]+)%.(%S+)%:([_0-9-]+)%s?", pfUI.chat:FormatLink("%1.%2.%3:%4"))
+        end
 
         if C.chat.text.classcolor == "1" then
           local Name = string.gsub(text, ".*|Hplayer:(.-)|h.*", "%1")
@@ -610,20 +730,15 @@ pfUI:RegisterModule("chat", function ()
           text = string.gsub(text, "|Hplayer:(.-)|h%[.-%]|h(.-:-)", "[|Hplayer:%1|h" .. Name .. "|h]" .. "%2")
         end
 
-        if C.chat.global.whispermod == "1" then
-          -- patch incoming whisper string to match the colors
-          if string.find(text, '|cff'..wcol, 1) == 1 then
-            text = string.gsub(text, "|r", "|cff" .. wcol)
+        if C.chat.text.channelnumonly == "1" then
+          local pattern = "%]%s+(.*|Hplayer)"
+          local channel = string.gsub(text, ".*%[(.-)" .. pattern ..".+", "%1")
+          if string.find(channel, "%d+%. ") then
+            channel = string.gsub(channel, "(%d+)%..*", "channel%1")
+            channel = string.gsub(channel, "channel", "")
+            pattern = "%[%d+%..-" .. pattern
+            text = string.gsub(text, pattern, "["..channel.."] ".."%1")
           end
-        end
-
-        local pattern = "%]%s+(.*|Hplayer)"
-        local channel = string.gsub(text, ".*%[(.-)" .. pattern ..".+", "%1")
-        if string.find(channel, "%d+%. ") then
-          channel = string.gsub(channel, "(%d+)%..*", "channel%1")
-          channel = string.gsub(channel, "channel", "")
-          pattern = "%[%d+%..-" .. pattern
-          text = string.gsub(text, pattern, "["..channel.."] ".."%1")
         end
 
         -- show timestamp in chat
@@ -634,6 +749,13 @@ pfUI:RegisterModule("chat", function ()
           local r,g,b,a = strsplit(",", C.chat.text.timecolor)
           local chex = string.format("%02x%02x%02x%02x", a*255, r*255, g*255, b*255)
           text = "|c" .. chex .. left .. date(C.chat.text.timeformat) .. right .. "|r " .. text
+        end
+
+        if C.chat.global.whispermod == "1" then
+          -- patch incoming whisper string to match the colors
+          if string.find(text, '|cff'..wcol, 1) == 1 then
+            text = string.gsub(text, "|r", "|cff" .. wcol)
+          end
         end
 
         _G["ChatFrame"..i].HookAddMessage(frame, text, unpack(arg))

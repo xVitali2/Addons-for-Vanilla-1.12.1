@@ -4,56 +4,52 @@ pfUI:RegisterModule("autoshift", function ()
 
   pfUI.autoshift.lastError = ""
   pfUI.autoshift.CastSpellByName = _G["CastSpellByName"]
+  pfUI.autoshift.scanString = string.gsub(SPELL_FAILED_ONLY_SHAPESHIFT, "%%s", "(.+)")
 
-  hooksecurefunc("CastSpell", function(spellId, spellbookTabNum)
-    if pfUI.autoshift.lastError == L["stances"]['wantBattleStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['BattleStance'])
-    elseif pfUI.autoshift.lastError == L["stances"]['wantBattleDefStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['BattleStance'])
-    elseif pfUI.autoshift.lastError == L["stances"]['wantBattleBerserkStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['BerserkerStance'])
-    elseif pfUI.autoshift.lastError == L["stances"]['wantBerserkerStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['BerserkerStance'])
-    elseif pfUI.autoshift.lastError == L["stances"]['wantDefensiveStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['DefensiveStance'])
+  function pfUI.autoshift:SwitchStance()
+    for stance in string.gfind(pfUI.autoshift.lastError, pfUI.autoshift.scanString) do
+      for _, stance in pairs({ strsplit(",", stance)}) do
+        pfUI.autoshift.CastSpellByName(string.gsub(stance,"^%s*(.-)%s*$", "%1"))
+      end
     end
     pfUI.autoshift.lastError = ""
+  end
+
+  hooksecurefunc("CastSpell", function(spellId, spellbookTabNum)
+    pfUI.autoshift:SwitchStance()
   end)
 
   hooksecurefunc("CastSpellByName", function(spellName, onSelf)
-    if pfUI.autoshift.lastError == L["stances"]['wantBattleStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['BattleStance'])
-    elseif pfUI.autoshift.lastError == L["stances"]['wantBattleDefStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['BattleStance'])
-    elseif pfUI.autoshift.lastError == L["stances"]['wantBattleBerserkStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['BerserkerStance'])
-    elseif pfUI.autoshift.lastError == L["stances"]['wantBerserkerStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['BerserkerStance'])
-    elseif pfUI.autoshift.lastError == L["stances"]['wantDefensiveStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['DefensiveStance'])
-    end
-    pfUI.autoshift.lastError = ""
+    pfUI.autoshift:SwitchStance()
   end)
 
   hooksecurefunc("UseAction", function(slot, checkCursor, onSelf)
-    if pfUI.autoshift.lastError == L["stances"]['wantBattleStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['BattleStance'])
-    elseif pfUI.autoshift.lastError == L["stances"]['wantBattleDefStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['BattleStance'])
-    elseif pfUI.autoshift.lastError == L["stances"]['wantBattleBerserkStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['BerserkerStance'])
-    elseif pfUI.autoshift.lastError == L["stances"]['wantBerserkerStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['BerserkerStance'])
-    elseif pfUI.autoshift.lastError == L["stances"]['wantDefensiveStance'] then
-      pfUI.autoshift.CastSpellByName(L["stances"]['DefensiveStance'])
-    end
-    pfUI.autoshift.lastError = ""
+    pfUI.autoshift:SwitchStance()
   end)
 
   pfUI.autoshift.buffs = { "spell_nature_swiftness", "_mount_", "_qirajicrystal_",
     "ability_racial_bearform", "ability_druid_catform", "ability_druid_travelform",
-    "spell_nature_forceofnature", "ability_druid_aquaticform", "spell_shadow_shadowform",
-    "spell_nature_spiritwolf" }
+    "ability_druid_aquaticform", "spell_shadow_shadowform", "spell_nature_spiritwolf" }
+
+  -- an agility buff exists which has the same icon as the moonkin form
+  -- therefore only add the moonkin icon to the removable buffs if
+  -- moonkin is skilled and player is druid. Frame is required as talentpoints
+  -- are only accessible after certain events.
+  local moonkin_scan = CreateFrame("Frame")
+  moonkin_scan:RegisterEvent("PLAYER_ENTERING_WORLD")
+  moonkin_scan:RegisterEvent("UNIT_NAME_UPDATE")
+  moonkin_scan:SetScript("OnEvent", function()
+    local _, class = UnitClass("player")
+    if class == "DRUID" then
+      local _,_,_,_,moonkin = GetTalentInfo(1,16)
+      if moonkin == 1 then
+        table.insert(pfUI.autoshift.buffs, "spell_nature_forceofnature")
+        moonkin_scan:UnregisterAllEvents()
+      end
+    else
+      moonkin_scan:UnregisterAllEvents()
+    end
+  end)
 
   pfUI.autoshift.errors = { SPELL_FAILED_NOT_MOUNTED, ERR_ATTACK_MOUNTED, ERR_TAXIPLAYERALREADYMOUNTED,
     SPELL_FAILED_NOT_SHAPESHIFT, SPELL_FAILED_NO_ITEMS_WHILE_SHAPESHIFTED, SPELL_NOT_SHAPESHIFTED,

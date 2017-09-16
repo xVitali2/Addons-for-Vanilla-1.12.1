@@ -19,11 +19,10 @@ pfUI:RegisterModule("firstrun", function ()
     table.insert(pfUI.firstrun.steps, step)
   end
 
-  pfUI.firstrun:AddStep("cvars", function() pfUI.SetupCVars() end, nil, "|cff33ffccBlizzard: \"Interface Options\"|r\n\n"..
-  "Do you want me to setup the recommended blizzard UI settings?\n"..
-  "This will enable settings that can be found in the Interface section of your client.\n"..
-  "Options like Buff Durations, Instant Quest Text, Auto Selfcast and others will be set.\n")
+  local txt = T["|cff33ffccBlizzard: \"Interface Options\"|r\n\nDo you want me to setup the recommended blizzard UI settings?\nThis will enable settings that can be found in the Interface section of your client.\nOptions like Buff Durations, Instant Quest Text, Auto Selfcast and others will be set."]
+  pfUI.firstrun:AddStep("cvars", function() pfUI.SetupCVars() end, nil, txt)
 
+  local all_yes = false
   function pfUI.firstrun:NextStep()
     if pfUI_init and next(pfUI_init) == nil then
       local yes = function()
@@ -34,15 +33,14 @@ pfUI:RegisterModule("firstrun", function ()
 
       local no = function()
         this:GetParent():Hide()
+        pfUI_init["welcome"] = true
+        all_yes = true
+        pfUI.firstrun:NextStep()
       end
 
-      CreateQuestionDialog("Welcome to |cff33ffccpf|cffffffffUI|r!\n\n"..
-      "I'm the first run wizzard that will guide you through some basic configuration.\n"..
-      "You'll now be prompted for several questions. To get a default installation,\n"..
-      "you might want to click \"Yes\" everywhere. A few settings are client settings\n"..
-      "(e.g chat questions) so if you don't want to lose your chat configurations, you\n"..
-      "should be careful with your choices.\n\n"..
-      "Visit |cff33ffcchttp://shagu.org|r to check for the latest version.", yes, no)
+      local txt = T["Welcome to |cff33ffccpf|cffffffffUI|r!\n\nI'm the first run wizzard that will guide you through some basic configuration.\nIf you're lazy, feel free to hit the \"Use Defaults\" button. If you whish to run this\ndialog again, go to the settings and hit the \"Reset Firstrun\" button.\n\nVisit |cff33ffcchttp://shagu.org|r to check for the latest version."]
+
+      CreateQuestionDialog(txt, { T["Customize"], yes } , { T["Use Defaults"], no })
       return
     end
 
@@ -62,6 +60,11 @@ pfUI:RegisterModule("firstrun", function ()
           if step.nfunc then step.nfunc() end
           this:GetParent():Hide()
           pfUI.firstrun:NextStep()
+        end
+
+        if all_yes == true then
+          yes()
+          return
         end
 
         if step.cmpnt and step.cmpnt == "edit" then

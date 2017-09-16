@@ -15,20 +15,20 @@ CreateBackdrop(GameTooltip, nil, nil, alpha)
     for i, unit in pairs({"mouseover", "player", "pet", "target", "party", "partypet", "raid", "raidpet"}) do
       if unit == "party" or unit == "partypet" then
         for i=1,4 do
-          if UnitName(unit .. i) == GameTooltipTextLeft1:GetText() or UnitPVPName(unit .. i) == GameTooltipTextLeft1:GetText() then
+          if UnitExists(unit .. i) and ( UnitName(unit .. i) == GameTooltipTextLeft1:GetText() or UnitPVPName(unit .. i) == GameTooltipTextLeft1:GetText() ) then
             pfUI.tooltip.unit = unit .. i
             return pfUI.tooltip.unit
           end
         end
       elseif unit == "raid" or unit == "raidpet" then
         for i=1,40 do
-          if UnitName(unit .. i) == GameTooltipTextLeft1:GetText() or UnitPVPName(unit .. i) == GameTooltipTextLeft1:GetText() then
+          if UnitExists(unit .. i) and ( UnitName(unit .. i) == GameTooltipTextLeft1:GetText() or UnitPVPName(unit .. i) == GameTooltipTextLeft1:GetText() ) then
             pfUI.tooltip.unit = unit .. i
             return pfUI.tooltip.unit
           end
         end
       else
-        if UnitName(unit) == GameTooltipTextLeft1:GetText() or UnitPVPName(unit) == GameTooltipTextLeft1:GetText() then
+        if UnitExists(unit) and ( UnitName(unit) == GameTooltipTextLeft1:GetText() or UnitPVPName(unit) == GameTooltipTextLeft1:GetText() ) then
           pfUI.tooltip.unit = unit
           return pfUI.tooltip.unit
         end
@@ -46,12 +46,28 @@ CreateBackdrop(GameTooltip, nil, nil, alpha)
           if pfUI.panel then
             GameTooltip:SetPoint("BOTTOMRIGHT", pfUI.panel.right, "TOPRIGHT", 0, C.appearance.border.default*2)
           else
-            GameTooltip:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", 0, -C.appearance.border.default*2)
+            GameTooltip:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -5, 5)
           end
         elseif C.tooltip.position == "chat" then
-          local anchor = ChatFrame3
-          if pfUI.chat then anchor = pfUI.chat.right end
-          GameTooltip:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, C.appearance.border.default*2)
+          local anchor = nil
+
+          if pfUI.panel and pfUI.panel.right:IsShown() then
+            anchor = pfUI.panel.right
+          end
+
+          if pfUI.chat and pfUI.chat.right:IsShown() then
+            anchor = pfUI.chat.right
+          end
+
+          if pfUI.bag and pfUI.bag.right and pfUI.bag.right:IsShown() then
+            anchor = pfUI.bag.right
+          end
+
+          if anchor then
+            GameTooltip:SetPoint("BOTTOMRIGHT", anchor, "TOPRIGHT", 0, C.appearance.border.default*2)
+          else
+            GameTooltip:SetPoint("BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", -5, 5)
+          end
         end
       end
     end)
@@ -64,7 +80,10 @@ CreateBackdrop(GameTooltip, nil, nil, alpha)
       if hp and hpm then
         if hp >= 1000 then hp = round(hp / 1000, 1) .. "k" end
         if hpm >= 1000 then hpm = round(hpm / 1000, 1) .. "k" end
-        pfUI.tooltipStatusBar.HP:SetText(hp .. " / " .. hpm)
+
+        if pfUI.tooltipStatusBar and pfUI.tooltipStatusBar.HP then
+          pfUI.tooltipStatusBar.HP:SetText(hp .. " / " .. hpm)
+        end
       end
   end)
 
