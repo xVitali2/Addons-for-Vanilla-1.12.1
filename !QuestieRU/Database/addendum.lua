@@ -12440,7 +12440,8 @@ QuestieHashMap = {
   ['startedBy']="Керлониан Вечный Сумрак",
   ['finishedBy']="Лиладрис Лунная Река",
   ['level']=17,
-  ['questLevel']='20'
+  ['questLevel']='20',
+  ['rr']=77
  },
  [1094582384]={
   ['name']="Новые ящики с ресурсами",
@@ -13541,7 +13542,8 @@ QuestieHashMap = {
   ['startedBy']="Баритас Лунный Сумрак",
   ['finishedBy']="Баритас Лунный Сумрак",
   ['level']=12,
-  ['questLevel']='17'
+  ['questLevel']='17',
+  ['rr']=77
  },
  [1960089301]={
   ['name']="Оружие из серой стали",
@@ -17649,7 +17651,8 @@ QuestieHashMap = {
   ['startedBy']="Археолог Холли",
   ['finishedBy']="Геолог Сомнамбулер",
   ['level']=15,
-  ['questLevel']='20'
+  ['questLevel']='20',
+  ['rr']=77
  },
  [4068439925]={
   ['name']="Путешествие к Пику Каменного Когтя",
@@ -21345,7 +21348,8 @@ QuestieHashMap = {
   ['startedBy']="Бацбах Кривошип",
   ['finishedBy']="Жужжалка 827",
   ['level']=7,
-  ['questLevel']='10'
+  ['questLevel']='10',
+  ['rr']=77
  },
  [2359135096]={
   ['name']="Разговор с Сальфой",
@@ -21771,7 +21775,8 @@ QuestieHashMap = {
   ['startedBy']="Груббер Блумп",
   ['finishedBy']="Груббер Блумп",
   ['level']=10,
-  ['questLevel']='14'
+  ['questLevel']='14',
+  ['rr']=77
  },
  [299964888]={
   ['name']="Сапоги для стражей",
@@ -22931,7 +22936,8 @@ QuestieHashMap = {
   ['startedBy']="Терентис",
   ['finishedBy']="Терентис",
   ['level']=10,
-  ['questLevel']='14'
+  ['questLevel']='14',
+  ['rr']=77
  },
  [3974063584]={
   ['name']="Защита Джунглей – Магический знак защиты",
@@ -23493,7 +23499,8 @@ QuestieHashMap = {
   ['startedBy']="Плакат Разыскивается: Глубомрак!",
   ['finishedBy']="Часовой Глинда Нал'Шия",
   ['level']=15,
-  ['questLevel']='18'
+  ['questLevel']='18',
+  ['rr']=77
  },
  [3853921301]={
   ['name']="Камни захватчиков Плети",
@@ -25890,7 +25897,8 @@ QuestieHashMap = {
   ['startedBy']="Эйнар Камнехват",
   ['finishedBy']="Джеймс Халлоран",
   ['level']=18,
-  ['questLevel']='21'
+  ['questLevel']='21',
+  ['rr']=77
  },
  [3324038501]={
   ['name']="Месть Вайрины",
@@ -26015,7 +26023,8 @@ QuestieHashMap = {
   ['startedBy']="Гвеннид Блай'Леггонд",
   ['finishedBy']="Гвеннид Блай'Леггонд",
   ['level']=11,
-  ['questLevel']='13'
+  ['questLevel']='13',
+  ['rr']=77
  },
  [1410924408]={
   ['name']="Справедливое вознаграждение",
@@ -26235,7 +26244,8 @@ QuestieHashMap = {
   ['startedBy']="Часовой Тиша Лунный Клинок",
   ['finishedBy']="Часовой Тиша Лунный Клинок",
   ['level']=9,
-  ['questLevel']='12'
+  ['questLevel']='12',
+  ['rr']=77
  },
  [3425634232]={
   ['name']="Башня Алталакса",
@@ -27921,7 +27931,8 @@ QuestieHashMap = {
   ['startedBy']="Тандрис Ветропряд",
   ['finishedBy']="Астерион",
   ['level']=8,
-  ['questLevel']='12'
+  ['questLevel']='12',
+  ['rr']=77
  },
  [2354020498]={
   ['name']="Отыскать ключ!",
@@ -30067,7 +30078,8 @@ QuestieHashMap = {
   ['startedBy']="Чудолиственник",
   ['finishedBy']="Деналан",
   ['level']=7,
-  ['questLevel']='10'
+  ['questLevel']='10',
+  ['rr']=77
  },
  [707978325]={
   ['name']="Треснувший некротический кристалл",
@@ -31445,7 +31457,8 @@ QuestieHashMap = {
   ['startedBy']="Терентис",
   ['finishedBy']="Терентис",
   ['level']=12,
-  ['questLevel']='20'
+  ['questLevel']='20',
+  ['rr']=77
  },
  [3581614600]={
   ['name']="Жидкий камень",
@@ -31787,7 +31800,8 @@ QuestieHashMap = {
   ['startedBy']="Сида",
   ['finishedBy']="Сида",
   ['level']=19,
-  ['questLevel']='24'
+  ['questLevel']='24',
+  ['rr']=77
  },
  [1794852181]={
   ['name']="Эрион Шепот Тени",
@@ -31849,7 +31863,8 @@ QuestieHashMap = {
   ['startedBy']="Первый помощник Фитсиммонс",
   ['finishedBy']="Ретиль Страж Природы",
   ['level']=20,
-  ['questLevel']='21'
+  ['questLevel']='21',
+  ['rr']=77
  },
  [4037951261]={
   ['name']="Записка для мэра",
@@ -32025,7 +32040,8 @@ QuestieHashMap = {
   ['startedBy']="Горбольд Сталерук",
   ['finishedBy']="Горбольд Сталерук",
   ['level']=13,
-  ['questLevel']='17'
+  ['questLevel']='17',
+  ['rr']=77
  },
  [1418328922]={
   ['name']="Разорванные союзы",
@@ -34287,7 +34303,8 @@ QuestieHashMap = {
   ['startedBy']="Гелхак Гиромачт",
   ['finishedBy']="Гелхак Гиромачт",
   ['level']=14,
-  ['questLevel']='20'
+  ['questLevel']='20',
+  ['rr']=77
  },
  [2474230512]={
   ['name']="Во имя вечной любви",
@@ -34296,7 +34313,8 @@ QuestieHashMap = {
   ['startedBy']="Кириллиан Белый Коготь",
   ['finishedBy']="Кириллиан Белый Коготь",
   ['level']=11,
-  ['questLevel']='16'
+  ['questLevel']='16',
+  ['rr']=77
  },
  [2113842295]={
   ['name']="Происхождение кузнечного искусства",
@@ -38482,10 +38500,10 @@ QuestieHashMap = {
  },
  [3306746192]={
   ['name']="Броня ветерана",
-  ['startedType']="item",
-  ['finishedType']="unknown",
-  ['startedBy']="",
-  ['finishedBy']="unknown",
+  ['startedType']="monster",
+  ['finishedType']="monster",
+  ['startedBy']="Варгус",
+  ['finishedBy']="Варгус",
   ['level']=55,
   ['questLevel']='60'
  },
@@ -38496,7 +38514,8 @@ QuestieHashMap = {
   ['startedBy']="Тарнариун Исцелитель Деревьев",
   ['finishedBy']="Тарнариун Исцелитель Деревьев",
   ['level']=10,
-  ['questLevel']='14'
+  ['questLevel']='14',
+  ['rr']=77
  },
  [4111597912]={
   ['name']="Ремень сновидца",
@@ -45717,7 +45736,8 @@ QuestieHashMap = {
   ['startedBy']="Карл Боран",
   ['finishedBy']="Карл Боран",
   ['level']=20,
-  ['questLevel']='22'
+  ['questLevel']='22',
+  ['rr']=77
  },
  [2121066264]={
   ['name']="Обессиливающий сглаз",
@@ -45872,7 +45892,8 @@ QuestieHashMap = {
   ['startedBy']="Терилун",
   ['finishedBy']="Тересиль",
   ['level']=14,
-  ['questLevel']='18'
+  ['questLevel']='18',
+  ['rr']=77
  },
  [931212808]={
   ['name']="Справедливое вознаграждение",
@@ -46193,7 +46214,8 @@ QuestieHashMap = {
   ['startedBy']="Ретиль Страж Природы",
   ['finishedBy']="Ретиль Страж Природы",
   ['level']=20,
-  ['questLevel']='21'
+  ['questLevel']='21',
+  ['rr']=77
  },
  [369586104]={
   ['name']="Плащ Незримого пути",
@@ -50383,7 +50405,8 @@ QuestieHashMap = {
   ['startedBy']="Часовой Арания Проблеск Солнца",
   ['finishedBy']="Часовой Арания Проблеск Солнца",
   ['level']=6,
-  ['questLevel']='11'
+  ['questLevel']='11',
+  ['rr']=77
  },
  [3043387784]={
   ['name']="Успокоить Гневливого",
@@ -52871,7 +52894,8 @@ QuestieHashMap = {
   ['startedBy']="Чудоягодник",
   ['finishedBy']="Деналан",
   ['level']=6,
-  ['questLevel']='10'
+  ['questLevel']='10',
+  ['rr']=77
  },
  [2440867712]={
   ['name']="Табличка Темного Камня",
@@ -52985,7 +53009,8 @@ QuestieHashMap = {
   ['startedBy']="Груббер Блумп",
   ['finishedBy']="Груббер Блумп",
   ['level']=15,
-  ['questLevel']='17'
+  ['questLevel']='17',
+  ['rr']=77
  },
  [3519581912]={
   ['name']="Наследие Черного Железа",
@@ -53485,7 +53510,7 @@ QuestieHashMap = {
   ['finishedType']="monster",
   ['startedBy']="Опытный аптекарь Фаранелл",
   ['finishedBy']="Опытный аптекарь Фаранелл",
-  ['level']=1,
+  ['level']=30,
   ['questLevel']='33D',
   ['rr']=178
  },
@@ -53708,7 +53733,8 @@ QuestieHashMap = {
   ['startedBy']="Тандрис Ветропряд",
   ['finishedBy']="Тандрис Ветропряд",
   ['level']=9,
-  ['questLevel']='12'
+  ['questLevel']='12',
+  ['rr']=77
  },
  [1102241341]={
   ['name']="Кошмары",
@@ -54255,9 +54281,7 @@ QuestieHashMap = {
   ['rq']=2074767136
  },
 }
-local function print(text)
-	DEFAULT_CHAT_FRAME:AddMessage(text)
-end
+
 function GetEntityLocations(entity)
     local locations = {}
     local mapIds = {}
@@ -54355,7 +54379,7 @@ function GetEntityLocations(entity)
             end
         end
         if sourceType == "locations" then
-            local added = false
+           -- local added = false
             for i, location in pairs(sources) do
                 local reformattedLocation
                 if location[2] >= 1 then
@@ -54370,12 +54394,12 @@ function GetEntityLocations(entity)
                 if reformattedLocation then
                     if locations[sourceType] == nil then locations[sourceType] = {} end
                     table.insert(locations[sourceType], reformattedLocation)
-                    if added == false then
+                   -- if added == false then
                         local c, z = reformattedLocation[1], reformattedLocation[2]
                         if mapIds[c] == nil then mapIds[c] = {} end
                         mapIds[c][z] = true
-                        added = true
-                    end
+                       -- added = true
+                   -- end
                 else
                     --sources[i] = nil
                 end
