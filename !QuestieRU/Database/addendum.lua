@@ -8797,8 +8797,8 @@ QuestieLevLookup = {
  ["Предок Тотем Ярости"]={
   [""]={0,1422101768},
  },
- ["Watcher Callahan"]={
-  ["Speak with Watcher Callahan."]={77,582117461},
+ ["Дозорный Каллахан"]={
+  ["Поговорите с Дозорным Каллахан."]={77,582117461},
  },
  ["Подлинные хозяева"]={
   ["Отправьтесь в Приозерье и доставьте письмо Хелендиса Речного Мыса мировому судье Соломону."]={77,1056900837},
@@ -25345,11 +25345,11 @@ QuestieHashMap = {
   ['questLevel']='0'
  },
  [582117461]={
-  ['name']="Watcher Callahan",
-  ['startedType']="item",
-  ['finishedType']="unknown",
-  ['startedBy']="",
-  ['finishedBy']="unknown",
+  ['name']="Дозорный Каллахан",
+  ['startedType']="monster",
+  ['finishedType']="monster",
+  ['startedBy']="Дозорный Додс",
+  ['finishedBy']="Дозорный Каллахан",
   ['level']=21,
   ['questLevel']='60',
   ['rr']=77

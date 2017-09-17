@@ -22937,19 +22937,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Xerintha Ravenoak"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.6244, 0.4026, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Earthcaller Ryga"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.3213, 0.2831, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
-  },
   ["Коралловая черепашка"] = {
     ["locations"] = {
       [1] = {15.0, 0.6827, 0.0788, 100.0},
@@ -22986,13 +22973,6 @@ QuestieMonsters = {
     ["locations"] = {
       [1] = {34.0, 0.8169, 0.5803, 100.0}
     },
-    ["locationCount"] = 1
-  },
-  ["Illidari Watcher"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.522, 0.7221, 100.0}
-    },
-    ["looted"] = 73,
     ["locationCount"] = 1
   },
   ["Шаман Огненной пропасти"] = {
@@ -23046,18 +23026,6 @@ QuestieMonsters = {
     ["looted"] = 1321,
     ["locationCount"] = 2
   },
-  ["Keleth"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.7919, 0.6547, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Foreman Razelcraz"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.5134, 0.3057, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Леди Хотешем"] = {
     ["locations"] = {
       [1] = {36.0, 0.8263, 0.1263, 100.0}
@@ -23065,14 +23033,6 @@ QuestieMonsters = {
     ["faction"] = 1,
     ["locationCount"] = 1,
     ["looted"] = 3
-  },
-  ["Enraged Water Spirit"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.4941, 0.2369, 100.0},
-      [2] = {53.0, 0.4589, 0.2792, 3.0}
-    },
-    ["looted"] = 2238,
-    ["locationCount"] = 2
   },
   ["Маршал Макбрайд"] = {
     ["locations"] = {
