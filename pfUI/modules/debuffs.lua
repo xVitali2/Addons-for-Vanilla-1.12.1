@@ -102,10 +102,10 @@ pfUI:RegisterModule("debuffs", function ()
         return
       end
 
-      for effect, _ in string.gfind(arg1, pfUI.debuffs.SPELLREFLECTSELFOTHER) do -- "Your %s is reflected back by %s.";
-        pfUI.debuffs:RemovePending(pfUI.debuffs.lastUnit, pfUI.debuffs.lastLevel, effect)
-        return
-      end
+     -- for effect, _ in string.gfind(arg1, pfUI.debuffs.SPELLREFLECTSELFOTHER) do -- "Your %s is reflected back by %s.";
+     --   pfUI.debuffs:RemovePending(pfUI.debuffs.lastUnit, pfUI.debuffs.lastLevel, effect)
+     --   return
+     -- end
 
       for effect, _ in string.gfind(arg1, pfUI.debuffs.SPELLPARRIEDSELFOTHER) do -- "Your %s is parried by %s.";
         pfUI.debuffs:RemovePending(pfUI.debuffs.lastUnit, pfUI.debuffs.lastLevel, effect)
