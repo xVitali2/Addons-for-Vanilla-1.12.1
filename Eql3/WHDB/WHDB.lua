@@ -554,11 +554,7 @@ function WHDB_PlotNotesOnMap()
 				BWP_DisplayFrame:Show();
 				firstNote = 0;
 				end
-			end
-			
-			
-			
-			
+			end	
 		end
 		if (Cartographer_Notes ~= nil) then
 			if (nData[6] == 0) then
