@@ -31,13 +31,13 @@ TheoryCraft_Data.Talents["manamultiplier"] = 1
 TheoryCraft_Data.Talents["healthmultiplier"] = 1
 local _, class = UnitClass("player")
 local _, race = UnitRace("player")
-if (race == "Gnome") then
+if (race == "GNOME") then
 	TheoryCraft_Data.Talents["intmultiplier"] = 1.05
 end
-if (race == "Human") then
+if (race == "HUMAN") then
 	TheoryCraft_Data.Talents["spiritmultiplier"] = 1.05
 end
-if (race == "Tauren") then
+if (race == "TAUREN") then
 	TheoryCraft_Data.Talents["healthmultiplier"] = 1.05
 end
 TheoryCraft_Data.Talents["strmultiplierreal"] = 1
@@ -754,7 +754,7 @@ function TheoryCraft_OnEvent()
 	elseif event == "PLAYER_COMBO_POINTS" then
 		TheoryCraft_DeleteTable(TheoryCraft_UpdatedButtons)
 	elseif (event == "UNIT_MANA") and (arg1 == "player") then
-		if UnitClass("player") == "DRUID" then
+		if class == "DRUID" then
 			local _, _, catform = GetShapeshiftFormInfo(3)
 			if catform then
 				TheoryCraft_DeleteTable(TheoryCraft_UpdatedButtons)

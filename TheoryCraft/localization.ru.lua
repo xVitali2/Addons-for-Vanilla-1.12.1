@@ -446,6 +446,7 @@ TheoryCraft_Locale = {
 		["Overpower"] = "Превосходство",
 		["Whirlwind"] = "Вихрь",
 		["Heroic Strike"] = "Удар героя",
+		["Rend"] = "Кровопускание",
 		["Cleave"] = "Рассекающий удар",
 		["Block"] = "Блок",
 		["Thunder Clap"] = "Удар грома",

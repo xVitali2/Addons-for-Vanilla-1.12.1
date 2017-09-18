@@ -343,6 +343,8 @@ TheoryCraft_Spells = {
 			Schools={ "Melee" } },
 		{ id="Whirlwind", ismelee=1, cancrit=1, armor=1,
 			Schools={ "Melee" } },
+		{ id="Rend", ismelee=1, cancrit=0,
+			Schools={ "Melee" } },
 		{ id="Heroic Strike", nextattack=1, ismelee=1, cancrit=1, armor=1,
 			Schools={ "Melee" } },
 		{ id="Cleave", nextattack=1, ismelee=1, cancrit=1, armor=1,
