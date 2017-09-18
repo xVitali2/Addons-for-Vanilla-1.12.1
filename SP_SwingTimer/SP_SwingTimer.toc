@@ -1,7 +1,7 @@
 ## Interface: 11200
 ## Title: SP_SwingTimer
 ## Author: Bulldozer@Emerald Dream
-## Version: 1.3
+## Version: 1.4
 ## Notes: Auto-Attack Swing Timer. Parry support. Slam support. In-battle Weapon swap support. Chat command: |cffa050ff/st|r
 ## Notes-ruRU: Таймер автоатаки.
 ## SavedVariables: SP_ST_GS

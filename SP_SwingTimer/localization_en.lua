@@ -19,4 +19,5 @@ SWINGT_L_YOURMISSES="Your (.+) misses";
 SWINGT_L_HEROICSTRIKE="Heroic Strike";
 SWINGT_L_CLEAVE="Cleave";
 SWINGT_L_SLAM="Slam";
+SWINGT_L_MAUL=true;
 SWINGT_L_ATTACKSYOUPARRY=".* attacks. You parry.";

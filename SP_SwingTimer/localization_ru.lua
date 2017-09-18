@@ -20,5 +20,6 @@ SWINGT_L_YOURMISSES="Ваше заклинание \"(.+)\" не попадае�
 SWINGT_L_HEROICSTRIKE="Удар героя";
 SWINGT_L_CLEAVE="Рассекающий удар";
 SWINGT_L_SLAM="Мощный удар";
+SWINGT_L_MAUL="Трепка";
 SWINGT_L_ATTACKSYOUPARRY="Вы парируете атаку .*";
 end

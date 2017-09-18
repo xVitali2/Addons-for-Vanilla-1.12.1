@@ -159,7 +159,7 @@ function SP_ST_OnEvent()
 		if not spell then a,b,spell = string.find(arg1, SWINGT_L_YOURIS) end
 		if not spell then a,b,spell = string.find(arg1, SWINGT_L_YOURMISSES) end
 		
-		if spell == SWINGT_L_HEROICSTRIKE or spell == SWINGT_L_CLEAVE or spell == SWINGT_L_SLAM then
+		if spell == SWINGT_L_HEROICSTRIKE or spell == SWINGT_L_CLEAVE or spell == SWINGT_L_SLAM or spell == SWINGT_L_MAUL then
 			SP_ST_Reset()
 		end
 		
