@@ -13,6 +13,3 @@ TrinketMenuOpt.lua
 TrinketMenuOpt.xml
 TrinketMenuQueue.lua
 TrinketMenuQueue.xml
-
-localization.lua
-localization.ruRU.lua
