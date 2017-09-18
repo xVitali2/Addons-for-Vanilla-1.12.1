@@ -9,8 +9,7 @@ EW:SetAllPoints()
 EW:RegisterEvent("ADDON_LOADED")
 EW:RegisterEvent("PLAYER_ENTERING_WORLD")
 EW:SetScript("OnEvent", function()
-  if event=="ADDON_LOADED" then
-	  if arg1=="EasyWho" then
+  if event=="ADDON_LOADED" and arg1=="EasyWho" then
 		DEFAULT_CHAT_FRAME:AddMessage("EasyWho " .. EW.version .. " " .. EW_LOADED, 0, 1, 1);
 		local frame = getglobal("WhoFrame");
 		local show = frame:GetScript("OnShow");
@@ -23,7 +22,6 @@ EW:SetScript("OnEvent", function()
 			EW:Hide();
 			if hide then hide(); end
 			end);
-	  end
   elseif event=="PLAYER_ENTERING_WORLD" then
 	if not EW.Horde then
 		if UnitFactionGroup("player")=="Horde" then EW.Horde=true; end
