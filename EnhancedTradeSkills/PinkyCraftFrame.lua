@@ -36,10 +36,10 @@ function CraftFrame_Update()
 --    end;
 
 	local TS_Title = format(GetCraftName())
-	if ( TS_Title == BEAST_TRAIN ) then 
+	if ( TS_Title and TS_Title == BEAST_TRAIN ) then 
 		CraftFrameTitleText:SetText(TS_Title);
 		ETS_CFILTERSONOFF:Hide();
-	else
+	elseif (TS_Title) then
 		CraftFrameTitleText:SetText(Pinky_TradeSkillTitle(TS_Title, p_player));
 		ETS_CFILTERSONOFF:Show();
 	end;
