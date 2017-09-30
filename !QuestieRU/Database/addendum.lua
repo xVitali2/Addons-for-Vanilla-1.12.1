@@ -362,7 +362,7 @@ QuestieLevLookup = {
   [""]={77,2205284885},
  },
  ["Справедливое вознаграждение"]={
-  ["Принесите пояс дикого cердца и пару перчаток дикого cердца в Стальгорн Делиане."]={0,621327048},
+  ["Принесите пояс дикого сердца и пару перчаток дикого cердца в Стальгорн Делиане."]={0,621327048},
   ["Принесите Моквару в Оргриммар пояс дикого cердца и перчатки дикого cердца."]={0,2335190056},
   ["Принесите пояс загонщика и пару перчаток загонщика в Стальгорн Делиане."]={0,2234789208},
   ["Принесите пояс Магистра и пару перчаток Магистра в Стальгорн Делиане."]={0,2692737408},
@@ -504,9 +504,6 @@ QuestieLevLookup = {
  },
  ["Обучение воина"]={
   ["Поговорите с Гарри Берлгардом."]={77,2166890269},
- },
- ["Archmage Timolain's Remains"]={
-  ["The description of this quest is missing"]={0,4121469272},
  },
  ["Защита пламени"]={
   ["Найдите знак Рагнароса и принесите его Каларану Ветрорезу."]={0,4044378808},
@@ -3636,20 +3633,6 @@ QuestieLevLookup = {
   ["Поговорите с жрицей Жозеттой в Элвиннском лесу."]={77,1668161109},
   ["Поговорите с Максаном Ковальней в Дун Мороге."]={77,4085112117},
  },
- ["The Alliance needs you!"]={
-  ["Speak to Master Wood in the old town."]={1,129018385},
-  ["Meet Mathiel in Warrior's Terrace."]={8,3794329248},
-  ["Head for the Eastvale Logging Camp in the far east of Elwynn Forest and speak to Katie Hunter."]={1,856771705},
-  ["Seargeant Instructor in Northshire Valley wants you to head for Stormwind Keep where you have to deliver the recommendation letter to Highlord Bolvar Fordragon."]={1,3147959985},
-  ["Sergeant Instructor of Coldridge Valley  wants you to head for the High Seat in Ironforge where you have to deliver the recommendation letter to High Tinker Mekkatorque."]={64,29530392},
-  ["Talk to Tormus Deepforge in the Great Forge."]={4,1524688508},
-  ["Meet Veron Amberstill in the Amberstill Ranch."]={4,2182672628},
-  ["Seargeant Instructor in Shadowglen wants you to head for the Cenarion Enclave, in Darnassus where you have to deliver the recommendation letter to Arch Druid Fandral Staghelm."]={8,3655495576},
-  ["Seargeant Instructor in Coldridge Valley wants you to head for the High Seat in Ironforge where you have to deliver the recommendation letter to King Magni Bronzebeard."]={4,377112156},
-  ["Talk to Lelanai in the Cenarion Enclave."]={8,976810128},
-  ["Talk to Tormus Deepforge in the Great Forge."]={64,1524709048},
-  ["Meet Milli Featherwhistle in Steelgrill's depot."]={64,3377023392},
- },
  ["Приманка для Лар'корви"]={
   ["С помощью предметов из мешочка Торвы выманите Лар'корви и сразите его. Принесите голову Лар'корви землепроходцу Торве ко входу в Кратер Ун'Горо."]={0,1982936520},
  },
@@ -4698,9 +4681,6 @@ QuestieLevLookup = {
  ["Охота на беговых оленей"]={
   ["Добудьте 4 железы здорового мохоногого оленя и принесите их Огтинку в Азшару. Огтинк обитает среди скал в северо-востоку от руин Эльдарата."]={0,134546824},
  },
- ["Libram of Rapidity"]={
-  ["Bring a Libram of Rapidity, 1 Pristine Black Diamond, 2 Large Brilliant Shards, and 2 Blood of Heroes to Lorekeeper Lydros in Dire Maul to receive an Arcanum of Rapidity."]={178,2443149634},
- },
  ["Возвращение в Лагерь Промозглого Ветра"]={
   ["Принесите полную бутылку с поля Джанис верховной жрице Макдонелл в лагерь Промозглого Ветра, что в Западных Чумных землях."]={77,3347115677},
   ["Принесите полную бутылку с поля Слез Далсона верховной жрице Макдонелл из лагеря Промозглого Ветра, что в Западных Чумных землях."]={77,541179957},
@@ -5221,9 +5201,6 @@ QuestieLevLookup = {
  },
  ["Смерть со дна морского"]={
   ["Защитите Мураша О'Брина во время атаки наг."]={0,3211146496},
- },
- ["Super Healing Potion"]={
-  [""]={0,1891692680},
  },
  ["РАЗЫСКИВАЕТСЯ: Калиф Жало Скорпида"]={
   ["Принесите голову Калифа Жало Скорпида главному инженеру Чепухастеру в Прибамбасск."]={0,1717509584},
@@ -5961,9 +5938,6 @@ QuestieLevLookup = {
   ["Принесите 10 кусков плотной кожи Пратту Макгруббену в Крепость Оперенной Луны."]={77,2160381133},
   ["Принесите 10 кусков плотной кожи Джангору Быстрому Страннику в Лагерь Мохаче."]={178,1631369402},
  },
- ["Rapport de reconnaissance de la Ruche Regal"]={
-  ["obj"]={0,958351072},
- },
  ["Звезда, Рука и Сердце"]={
   ["Доставьте предметы, перечисленные в записке Костохвата, Геррику Костохвату в Стальгорн."]={77,1730592261},
   ["Прочитайте записку Бел'дугура. Принесите перечисленные в записке предметы Бел'дугуру в Подгород."]={178,519548298},
@@ -6035,9 +6009,6 @@ QuestieLevLookup = {
  },
  ["Донесение разведчика из Улья Регал"]={
   ["Свяжитесь с кенарийским разведчиком Ландионом в Улье Регал и отнесите донесение разведчика из Улья Регал Зовущей из клана Гордый Рог в Крепость Кенария. Кроме того, принесите тактическую задачу VII."]={0,2951269952},
- },
- ["Neltharion"]={
-  ["TODO"]={0,1225420984},
  },
  ["Гнев синих драконов"]={
   ["Если у вас есть желание продолжить, поговорите снова с Хале."]={0,3173918120},
@@ -8176,9 +8147,6 @@ QuestieLevLookup = {
  ["Частицы магии"]={
   ["Наложите заклинание превращения на тварей Бича Злобы в Азшаре и убейте клонов, которые появятся несколько мгновений спустя. Убейте 50 клонов и возвращайтесь к верховному магу Ксилему в Азшару."]={0,967027528},
  },
- ["Zombie Cleansing"]={
-  ["Kill 5 Wretched Zombies"]={0,1844999240},
- },
  ["Водяная нечисть"]={
   ["Реми Повторюх просит вас найти в Златоземье маршала Дугхана и поговорить с ним."]={77,876615453},
  },
@@ -8396,7 +8364,7 @@ QuestieLevLookup = {
   ["Отведите своего подопечного в приют Штормграда, вернув вернув детскую свистульку попечительнице сирот Найтингейл в Храмовый квартал."]={77,3621304805},
  },
  ["Фрагменты прошлого"]={
-  ["Найдите Священные письмена высокорожденных в Храме Зин-Малор, в Азшаре и принесите их Авроре Зову Небес к Башне Северного перевалa, в Восточных Чумных землях."]={77,3296956597},
+  ["Найдите Священные письмена высокорожденных в Храме Зин-Малор, в Азшаре и принесите их Авроре Зову Небес к Башне Северного перевала, в Восточных Чумных землях."]={77,3296956597},
   ["Принесите зачарованный слиток тория, 5 кристаллов Восстановления и фиал пугающей воды Авроре Зову Небес к башне Северного Перевала, в Восточных Чумных землях."]={77,1537464149},
  },
  ["Атака на башню"]={
@@ -8424,9 +8392,6 @@ QuestieLevLookup = {
  },
  ["Покровительство братства, кровь горы"]={
   [""]={0,4172507912},
- },
- ["Alexstrasza"]={
-  ["TODO"]={0,1494373048},
  },
  ["Пробуждение земельника"]={
   ["Откройте резонитовую емкость при помощи зачарованного кристалла резонита и затем убейте Гоггерока. Вернитесь к Мор'рогалу с новостями и зачарованным кристаллом резонита."]={178,3317295978},
@@ -9147,9 +9112,6 @@ QuestieLevLookup = {
  ["Праматерь стаи"]={
   ["Убейте Халикон, праматерь стаи воргов Кровавого Топора."]={178,1603523098},
  },
- ["Libram of Protection"]={
-  ["Bring a Libram of Protection, 1 Pristine Black Diamond, 2 Large Brilliant Shards, and 1 Frayed Abomination Stitching to Lorekeeper Lydros in Dire Maul to receive an Arcanum of Protection."]={178,1967508922},
- },
  ["Зачистка территории"]={
   ["Убейте 10 скелетов-живодеров и 10 слюнявых вурдалаков на холме Печали.\n\nВернитесь к командиру Ашламу Неутомимому в Лагерь Промозглого Ветра в Западных Чумных землях."]={77,2218066621},
  },
@@ -9375,7 +9337,7 @@ QuestieLevLookup = {
  ["Скромный подарок"]={
   ["Принесите 1 скипетр Бездны Аурели Золотой Лист из Крепости Кенария в Силитусе. Кроме того, вы должны добиться уважительного отношения Круга Кенария."]={0,2675034016},
  },
- ["A Donation of Wool"]={
+ ["Пожертвование – шерсть"]={
   [""]={77,3500292437},
  },
  ["Сложная задача"]={
@@ -9571,9 +9533,6 @@ QuestieLevLookup = {
  ["Тайные послания"]={
   ["Принесите 10 зашифрованных Сумрачных текстов Бору Буйногривому в Крепость Кенария."]={0,1000323016},
  },
- ["Plainsrunning"]={
-  ["Speak to Saern Priderunner again to learn the Plainsrunning skill."]={178,1272667394},
- },
  ["Сила горы Мугамба"]={
   [""]={0,339075336},
   [""]={0,339075848},
@@ -9675,8 +9634,8 @@ QuestieLevLookup = {
  ["Ошеломляющая истина"]={
   ["Отнесите голову Бальназара герцогу Николасу Зверенхоффу в Восточные Чумные земли."]={0,2331092192},
  },
- ["Baron Aquanis"]={
-  ["Bring the Strange Water Globe to Je'neu Sancrea at Zoram'gar Outpost, Ashenvale."]={178,2511922},
+ ["Барон Акванис"]={
+  ["Принесите странную водяную сферу Дже'неу Санкри в Непроглядную Пучину."]={178,2511922},
  },
  ["Рассветница для Крепости Оперенной Луны"]={
   [""]={77,425872597},
@@ -9885,9 +9844,6 @@ QuestieLevLookup = {
   ["Поговорите с верховным жрецом Роханом в Стальгорне."]={4,1930229260},
   ["Поговорите с верховным жрецом Роханом в Стальгорне."]={0,1929180424},
  },
- ["Swearing to Gakin"]={
-  ["Announces you to Gakin the Darkbinder in the Magic quarter of Stormwind."]={0,573349400},
- },
  ["Покров Тьмы"]={
   ["Вернитесь к павшему герою Орды со своими находками."]={0,3503883176},
  },
@@ -9902,9 +9858,6 @@ QuestieLevLookup = {
  },
  ["Ивар Нечистый"]={
   ["Убейте Ивара Нечистого и принесите его голову Ран Йорик на делянку Ивара."]={0,1543412384},
- },
- ["Rapport de reconnaissance de la Ruche Zora"]={
-  ["obj"]={0,421156064},
  },
  ["Оружие вихря"]={
   [""]={0,586758664},
@@ -10145,8 +10098,8 @@ QuestieLevLookup = {
  ["Матиас и Братство Справедливости"]={
   ["Найдите посланницу Кеарнен в Западном Крае и поговорите с ней."]={77,1967278517},
  },
- ["The Glowing Shard"]={
-  ["Travel to Ratchet to find the meaning behind the Nightmare Shard."]={0,1664466328},
+ ["Светящийся осколок"]={
+  ["Отправляйтесь в Кабестан и найдите там кого-нибудь, кто сможет вам рассказать об этом светящемся осколке."]={0,1664466328},
  },
  ["Верховный вождь племени Зимней Спячки"]={
   ["По просьбе Доновы Снегоноры из Зимних Ключей убейте верховного вождя племени Зимней Спячки."]={0,1391450624},
@@ -10172,8 +10125,8 @@ QuestieLevLookup = {
   ["Геолог Ехидная из Крепости Кенария просит вас собрать 8 фрагментов Сумеречной таблички."]={0,2531457464},
  },
  ["Донесение Кадраку"]={
-  ["Доложитесь Кадраку в сторожевой башне в северных Степях."]={178,1473805922},
   ["Доложитесь Кадраку в сторожевой башне в северных Степях."]={178,1473806434},
+  ["Доложитесь Кадраку в сторожевой башне в северных Степях."]={178,1473805922},
  },
  ["Золото Куэрго"]={
   ["Найдите золото Куэрго!"]={0,3524637664},
@@ -10343,9 +10296,6 @@ QuestieLevLookup = {
  },
  ["Базиль Тредд"]={
   ["Поговорите с надзирателем Телвотером в тюрьме."]={77,3847081565},
- },
- ["Oops, We Killed Them Again."]={
-  ["Missing text"]={0,2213724416},
  },
  ["Наплеч Искупления"]={
   ["Командир Элигор Вестник Рассвета из Часовни Последней Надежды, что в Восточных Чумных землях, готов сделать наплеч Искупления, если вы принесете ему следующее: 1 испоганенный наплеч, 12 обломков доспехов, 2 слитка арканита и 2 кристалла-источника."]={0,2338737480},
@@ -11020,16 +10970,6 @@ QuestieHashMap = {
   ['level']=1,
   ['questLevel']='60PVP',
   ['rq']=3865308536
- },
- [1891692680]={
-  ['name']="Super Healing Potion",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Интендант из ордена Серебряного Рассвета",
-  ['finishedBy']="Интендант из ордена Серебряного Рассвета",
-  ['level']=50,
-  ['questLevel']='58',
-  ['rq']=3124958920
  },
  [247541384]={
   ['name']="Рас Ледяной Шепот – гибель",
@@ -11914,17 +11854,6 @@ QuestieHashMap = {
   ['level']=45,
   ['questLevel']='52',
   ['rq']=3650520216
- },
- [3377023392]={
-  ['name']="The Alliance needs you!",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Тормус Подземная Кузня",
-  ['finishedBy']="Милли Перосвист",
-  ['level']=55,
-  ['questLevel']='55',
-  ['rr']=64,
-  ['rq']=1524709048
  },
  [3580671360]={
   ['name']="Выгодная сделка",
@@ -23026,15 +22955,6 @@ QuestieHashMap = {
   ['level']=60,
   ['questLevel']='60+'
  },
- [816576992]={
-  ['name']="Альянсу нужна твоя помощь!",
-  ['startedType']="item",
-  ['finishedType']="unknown",
-  ['startedBy']="",
-  ['finishedBy']="unknown",
-  ['level']=0,
-  ['questLevel']='0'
- },
  [3296070970]={
   ['name']="Припасы Всадников",
   ['startedType']="monster",
@@ -24010,7 +23930,7 @@ QuestieHashMap = {
   ['rr']=178
  },
  [3500292437]={
-  ['name']="A Donation of Wool",
+  ['name']="Пожертвование – шерсть",
   ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Райдон Сумеречный Воитель",
@@ -24969,17 +24889,6 @@ QuestieHashMap = {
   ['level']=56,
   ['questLevel']='60D',
   ['rq']=3487354992
- },
- [976810128]={
-  ['name']="The Alliance needs you!",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Матиль",
-  ['finishedBy']="Леланай",
-  ['level']=55,
-  ['questLevel']='55',
-  ['rr']=8,
-  ['rq']=3794329248
  },
  [4184142797]={
   ['name']="Похвальба охотника",
@@ -26342,15 +26251,6 @@ QuestieHashMap = {
   ['questLevel']='51+',
   ['rq']=3122502320
  },
- [1494373048]={
-  ['name']="Alexstrasza",
-  ['startedType']="item",
-  ['finishedType']="unknown",
-  ['startedBy']="",
-  ['finishedBy']="unknown",
-  ['level']=30,
-  ['questLevel']='60'
- },
  [744613837]={
   ['name']="Телcамарские кровяные колбаски",
   ['startedType']="monster",
@@ -27321,17 +27221,6 @@ QuestieHashMap = {
   ['finishedBy']="Бор Буйногривый",
   ['level']=57,
   ['questLevel']='60'
- },
- [1524709048]={
-  ['name']="The Alliance needs you!",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Главный механик Меггакрут",
-  ['finishedBy']="Тормус Подземная Кузня",
-  ['level']=55,
-  ['questLevel']='55',
-  ['rr']=64,
-  ['rq']=29530392
  },
  [730310621]={
   ['name']="Неумение + реактивы = потеха!",
@@ -28927,17 +28816,6 @@ QuestieHashMap = {
   ['rc']=8,
   ['rq']=1794852181
  },
- [129018385]={
-  ['name']="The Alliance needs you!",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Верховный лорд Болвар Фордрагон",
-  ['finishedBy']="Мастер Дуб",
-  ['level']=55,
-  ['questLevel']='55',
-  ['rr']=1,
-  ['rq']=3147959985
- },
  [3299535112]={
   ['name']="Оружие войны",
   ['startedType']="monster",
@@ -29449,15 +29327,6 @@ QuestieHashMap = {
   ['finishedBy']="Главный инженер Чепухастер",
   ['level']=40,
   ['questLevel']='47D'
- },
- [421156064]={
-  ['name']="Rapport de reconnaissance de la Ruche Zora",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Кенарийская разведчица Азенель",
-  ['finishedBy']="Кенарийская разведчица Азенель",
-  ['level']=60,
-  ['questLevel']='60+'
  },
  [1777976322]={
   ['name']="Битва за Ущелье Песни Войны",
@@ -32445,16 +32314,6 @@ QuestieHashMap = {
   ['level']=31,
   ['questLevel']='31'
  },
- [377112156]={
-  ['name']="The Alliance needs you!",
-  ['startedType']="item",
-  ['finishedType']="monster",
-  ['startedBy']="unknown",
-  ['finishedBy']="Король Магни Бронзобород",
-  ['level']=1,
-  ['questLevel']='1',
-  ['rr']=4
- },
  [2255509080]={
   ['name']="Мост Тандола",
   ['startedType']="monster",
@@ -33366,17 +33225,6 @@ QuestieHashMap = {
   ['finishedBy']="Подарок в яркой упаковке",
   ['level']=20,
   ['questLevel']='20'
- },
- [2443149634]={
-  ['name']="Libram of Rapidity",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Сказитель Лидрос",
-  ['finishedBy']="Сказитель Лидрос",
-  ['level']=60,
-  ['questLevel']='60D',
-  ['rr']=178,
-  ['rq']=3742544338
  },
  [2237584768]={
   ['name']="Испытание яда",
@@ -36540,17 +36388,6 @@ QuestieHashMap = {
   ['rs']=356,
   ['rsc']=1
  },
- [2182672628]={
-  ['name']="The Alliance needs you!",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Тормус Подземная Кузня",
-  ['finishedBy']="Верон Янтарлен",
-  ['level']=55,
-  ['questLevel']='55',
-  ['rr']=4,
-  ['rq']=1524688508
- },
  [2959565448]={
   ['name']="Запретное знание",
   ['startedType']="monster",
@@ -38171,7 +38008,7 @@ QuestieHashMap = {
   ['rr']=178
  },
  [2511922]={
-  ['name']="Baron Aquanis",
+  ['name']="Барон Акванис",
   ['startedType']="item",
   ['finishedType']="monster",
   ['startedBy']="Странная водяная сфера",
@@ -38541,15 +38378,6 @@ QuestieHashMap = {
   ['questLevel']='60R',
   ['rc']=1024,
   ['rq']=3004262272
- },
- [816579808]={
-  ['name']="Альянсу нужна твоя помощь!",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Старший сержант Тень Луны",
-  ['finishedBy']="Фельдмаршал Снегопад",
-  ['level']=1,
-  ['questLevel']='60PVP'
  },
  [234297786]={
   ['name']="Долгожданная свобода",
@@ -39441,15 +39269,6 @@ QuestieHashMap = {
   ['rr']=178,
   ['rq']=359851754
  },
- [4121469272]={
-  ['name']="Archmage Timolain's Remains",
-  ['startedType']="item",
-  ['finishedType']="unknown",
-  ['startedBy']="",
-  ['finishedBy']="unknown",
-  ['level']=56,
-  ['questLevel']='58'
- },
  [4227926256]={
   ['name']="Туманна",
   ['startedType']="monster",
@@ -39666,16 +39485,6 @@ QuestieHashMap = {
   ['level']=33,
   ['questLevel']='35',
   ['rr']=178
- },
- [3147959985]={
-  ['name']="The Alliance needs you!",
-  ['startedType']="item",
-  ['finishedType']="monster",
-  ['startedBy']="unknown",
-  ['finishedBy']="Верховный лорд Болвар Фордрагон",
-  ['level']=1,
-  ['questLevel']='1',
-  ['rr']=1
  },
  [2640504952]={
   ['name']="Задание мастера: светозарный венец",
@@ -41669,16 +41478,6 @@ QuestieHashMap = {
   ['rc']=8,
   ['rq']=2589407509
  },
- [3655495576]={
-  ['name']="The Alliance needs you!",
-  ['startedType']="item",
-  ['finishedType']="monster",
-  ['startedBy']="unknown",
-  ['finishedBy']="Верховный друид Фэндрал Олений Шлем",
-  ['level']=1,
-  ['questLevel']='1',
-  ['rr']=8
- },
  [158187280]={
   ['name']="Смесь Занзила и \"Дурацкое Крепкое\"",
   ['startedType']="monster",
@@ -42132,16 +41931,6 @@ QuestieHashMap = {
   ['finishedBy']="Сказитель Явон",
   ['level']=54,
   ['questLevel']='60D'
- },
- [1272667394]={
-  ['name']="Plainsrunning",
-  ['startedType']="item",
-  ['finishedType']="unknown",
-  ['startedBy']="",
-  ['finishedBy']="unknown",
-  ['level']=45,
-  ['questLevel']='60',
-  ['rr']=178
  },
  [2002862522]={
   ['name']="Стандартные припасы Всадников",
@@ -45010,16 +44799,6 @@ QuestieHashMap = {
   ['level']=55,
   ['questLevel']='60'
  },
- [29530392]={
-  ['name']="The Alliance needs you!",
-  ['startedType']="item",
-  ['finishedType']="monster",
-  ['startedBy']="unknown",
-  ['finishedBy']="Главный механик Меггакрут",
-  ['level']=1,
-  ['questLevel']='1',
-  ['rr']=64
- },
  [886713349]={
   ['name']="Легкая доставка",
   ['startedType']="monster",
@@ -45190,17 +44969,6 @@ QuestieHashMap = {
   ['questLevel']='60',
   ['rq']=1936559880
  },
- [1967508922]={
-  ['name']="Libram of Protection",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Сказитель Лидрос",
-  ['finishedBy']="Сказитель Лидрос",
-  ['level']=60,
-  ['questLevel']='60D',
-  ['rr']=178,
-  ['rq']=3742544338
- },
  [2763701690]={
   ['name']="Костяная лихорадка",
   ['startedType']="monster",
@@ -45335,16 +45103,6 @@ QuestieHashMap = {
   ['level']=53,
   ['questLevel']='53',
   ['rq']=3173836280
- },
- [1232588896]={
-  ['name']="The Horde needs you!",
-  ['startedType']="item",
-  ['finishedType']="monster",
-  ['startedBy']="unknown",
-  ['finishedBy']="Кэрн Кровавое Копыто",
-  ['level']=1,
-  ['questLevel']='1',
-  ['rr']=32
  },
  [1248670576]={
   ['name']="Эликсиры для клана Режущего Листа",
@@ -46112,15 +45870,6 @@ QuestieHashMap = {
   ['questLevel']='17',
   ['rq']=1152728088
  },
- [1844999240]={
-  ['name']="Zombie Cleansing",
-  ['startedType']="item",
-  ['finishedType']="unknown",
-  ['startedBy']="",
-  ['finishedBy']="unknown",
-  ['level']=1,
-  ['questLevel']='3PVP'
- },
  [1673050632]={
   ['name']="Бурлящий котел",
   ['startedType']="item",
@@ -46140,15 +45889,6 @@ QuestieHashMap = {
   ['questLevel']='33',
   ['rr']=77,
   ['rq']=1233045877
- },
- [1225420984]={
-  ['name']="Neltharion",
-  ['startedType']="item",
-  ['finishedType']="unknown",
-  ['startedBy']="",
-  ['finishedBy']="unknown",
-  ['level']=30,
-  ['questLevel']='60'
  },
  [1725325157]={
   ['name']="Кузнец Матиль",
@@ -49434,15 +49174,6 @@ QuestieHashMap = {
   ['level']=1,
   ['questLevel']='60PVP'
  },
- [573349400]={
-  ['name']="Swearing to Gakin",
-  ['startedType']="item",
-  ['finishedType']="unknown",
-  ['startedBy']="",
-  ['finishedBy']="unknown",
-  ['level']=40,
-  ['questLevel']='50'
- },
  [2503887112]={
   ['name']="Заслуженное почтение",
   ['startedType']="monster",
@@ -49954,17 +49685,6 @@ QuestieHashMap = {
   ['rc']=1024,
   ['rq']=116308325
  },
- [3794329248]={
-  ['name']="The Alliance needs you!",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Верховный друид Фэндрал Олений Шлем",
-  ['finishedBy']="Матиль",
-  ['level']=55,
-  ['questLevel']='55',
-  ['rr']=8,
-  ['rq']=3655495576
- },
  [1885007056]={
   ['name']="Огненная вода племени Зимней Спячки",
   ['startedType']="item",
@@ -50063,17 +49783,6 @@ QuestieHashMap = {
   ['level']=1,
   ['questLevel']='60PVP',
   ['rq']=436364848
- },
- [1524688508]={
-  ['name']="The Alliance needs you!",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Король Магни Бронзобород",
-  ['finishedBy']="Тормус Подземная Кузня",
-  ['level']=55,
-  ['questLevel']='55',
-  ['rr']=4,
-  ['rq']=377112156
  },
  [3597863632]={
   ['name']="Оплечье Призывателя Рока",
@@ -52542,7 +52251,7 @@ QuestieHashMap = {
   ['rc']=64
  },
  [1664466328]={
-  ['name']="The Glowing Shard",
+  ['name']="Светящийся осколок",
   ['startedType']="item",
   ['finishedType']="monster",
   ['startedBy']="Светящийся осколок",
@@ -53538,17 +53247,6 @@ QuestieHashMap = {
   ['finishedBy']="Локтос Зловещий Торговец",
   ['level']=60,
   ['questLevel']='60D'
- },
- [856771705]={
-  ['name']="The Alliance needs you!",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Мастер Дуб",
-  ['finishedBy']="Кати Охотница",
-  ['level']=55,
-  ['questLevel']='55',
-  ['rr']=1,
-  ['rq']=129018385
  },
  [2015889218]={
   ['name']="Что происходит?",
