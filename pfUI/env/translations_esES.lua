@@ -1,4 +1,4 @@
-pfUI_translation["deDE"] = {
+pfUI_translation["esES"] = {
   ["40y-Range Check Interval"] = nil,
   ["Abbreviate Numbers (4200 -> 4.2k)"] = nil,
   ["Abort"] = nil,

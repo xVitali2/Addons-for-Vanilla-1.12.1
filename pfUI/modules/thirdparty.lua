@@ -415,6 +415,10 @@ pfUI:RegisterModule("thirdparty", function ()
 
           pfWIM_WindowOnShow = _G.WIM_WindowOnShow
           _G.WIM_WindowOnShow = function()
+
+            -- blue shaman
+            _G.WIM_ClassColors[WIM_LOCALIZED_SHAMAN]	= "0070de"
+
             local windowname = this:GetName()
 
             CreateBackdrop(_G[windowname], nil, nil, .8)
@@ -611,9 +615,6 @@ pfUI:RegisterModule("thirdparty", function ()
           local healed = HealComm:getHeal(UnitName(unit))
 
           local health, maxHealth = UnitHealth(unit), UnitHealthMax(unit)
-          if strsub(unit,0,4) == "raid" and C.unitframes.raid.invert_healthbar == "1" then
-            health = maxHealth - health
-          end
 
           if( healed > 0 and (health < maxHealth or OVERHEALPERCENT > 0 )) and frame:IsVisible() then
             frame.incHeal:Show()
@@ -623,21 +624,59 @@ pfUI:RegisterModule("thirdparty", function ()
             if healthWidth + incWidth > width * (1+(OVERHEALPERCENT/100)) then
               incWidth = width * (1+OVERHEALPERCENT/100) - healthWidth
             end
-            frame.incHeal:SetWidth(incWidth)
             frame.incHeal:ClearAllPoints()
+            frame.incHeal:SetPoint("TOPLEFT", frame.hp.bar, "TOPLEFT", 0, 0)
 
-            if strsub(unit,0,4) == "raid" and C.unitframes.raid.invert_healthbar == "1" then
-              frame.incHeal:SetPoint("TOPLEFT", frame.hp.bar, "TOPLEFT", 0, 0)
+            if frame.config.invert_healthbar == "1" then
+              frame.incHeal:SetWidth(incWidth)
               frame.incHeal:SetFrameStrata("HIGH")
             else
-              frame.incHeal:SetPoint("TOPLEFT", frame.hp.bar, "TOPLEFT", healthWidth, 0)
+              frame.incHeal:SetWidth(incWidth + healthWidth)
+              frame.incHeal:SetFrameStrata("BACKGROUND")
             end
           else
             frame.incHeal:Hide()
           end
         end
 
+        function pfUI.healComm.onEventRes(unitname)
+          for _, f in pairs(pfUI.uf.frames) do
+            if UnitName(f.label .. f.id) == unitname then
+
+              if not f.ressIcon then
+                f.ressIcon = CreateFrame("Frame", nil, f.hp.bar)
+                f.ressIcon:SetFrameLevel(1)
+                f.ressIcon.base = f
+                f.ressIcon:RegisterEvent("PLAYER_TARGET_CHANGED")
+                f.ressIcon:SetScript("OnEvent", function()
+                  if HealComm:UnitisResurrecting(UnitName(this.base.label .. this.base.id)) then
+                    this:Show()
+                  else
+                    this:Hide()
+                  end
+                end)
+
+                f.ressIcon:SetWidth(32)
+                f.ressIcon:SetHeight(32)
+                f.ressIcon:SetPoint("CENTER", f, "CENTER", 0, 4)
+                f.ressIcon.texture = f.ressIcon:CreateTexture(nil,"BACKGROUND")
+                f.ressIcon.texture:SetTexture("Interface\\AddOns\\pfUI\\img\\ress")
+                f.ressIcon.texture:SetAllPoints(f.ressIcon)
+              end
+
+              if HealComm:UnitisResurrecting(unitname) then
+                f.ressIcon:Show()
+              else
+                f.ressIcon:Hide()
+              end
+
+            end
+          end
+
+        end
+
         AceEvent:RegisterEvent("HealComm_Healupdate", pfUI.healComm.onEvent)
+        AceEvent:RegisterEvent("HealComm_Ressupdate", pfUI.healComm.onEventRes)
         AceEvent:RegisterEvent("UNIT_HEALTH", pfUI.healComm.onEventHealthChange)
         AceEvent:RegisterEvent("PLAYER_TARGET_CHANGED", pfUI.healComm.TargetChanged)
       end
@@ -762,5 +801,21 @@ pfUI:RegisterModule("thirdparty", function ()
         end
       end)
     end
+  end
+
+  do -- FlightMap Integration
+    if C.thirdparty.flightmap.enable == "0" then return end
+    if not FlightMapTimesBorder and not FlightMapTimesFlash and not FlightMapTimesFrame and not FlightMapTimesText then return end
+
+    FlightMapTimesBorder:Hide()
+    FlightMapTimesFlash:Hide()
+
+    FlightMapTimesFrame:SetStatusBarTexture("Interface\\AddOns\\pfUI\\img\\bar")
+    FlightMapTimesFrame:SetHeight(18)
+    CreateBackdrop(FlightMapTimesFrame)
+
+    FlightMapTimesText:ClearAllPoints()
+    FlightMapTimesText:SetPoint("CENTER", FlightMapTimesFrame, "CENTER", 0, 0)
+    FlightMapTimesText:SetFont(pfUI.font_default, 12, "OUTLINE")
   end
 end)

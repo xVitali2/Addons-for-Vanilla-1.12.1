@@ -304,6 +304,23 @@ pfUI:RegisterModule("chat", function ()
       local frame = _G["ChatFrame"..i]
       local tab = _G["ChatFrame"..i.."Tab"]
 
+      if not frame.pfStartMoving then
+        frame.pfStartMoving = frame.StartMoving
+        frame.StartMoving = function(a1)
+          pfUI.chat.hideLock = true
+          frame.pfStartMoving(a1)
+        end
+      end
+
+      if not frame.pfStopMovingOrSizing then
+        frame.pfStopMovingOrSizing = frame.StopMovingOrSizing
+        frame.StopMovingOrSizing = function(a1)
+          frame.pfStopMovingOrSizing(a1)
+          pfUI.chat.RefreshChat()
+          pfUI.chat.hideLock = false
+        end
+      end
+
       if C.chat.global.fadeout == "1" then
         frame:SetFading(true)
         frame:SetTimeVisible(tonumber(C.chat.global.fadetime))
@@ -311,26 +328,7 @@ pfUI:RegisterModule("chat", function ()
         frame:SetFading(false)
       end
 
-      if i == 1 then
-        -- General
-        FCF_DockFrame(frame)
-        tab:SetParent(pfUI.chat.left.panelTop)
-        frame:SetParent(pfUI.chat.left)
-        frame:SetPoint("TOPLEFT", pfUI.chat.left ,"TOPLEFT", default_border, -panelheight)
-        frame:SetPoint("BOTTOMRIGHT", pfUI.chat.left ,"BOTTOMRIGHT", -default_border, panelheight)
-      elseif i == 2 then
-        -- Combat Log
-        if C.chat.global.combathide == "1" then
-          FCF_UnDockFrame(frame)
-          FCF_Close(frame)
-        elseif frame.isDocked then
-          FCF_DockFrame(frame)
-          tab:SetParent(pfUI.chat.left.panelTop)
-          frame:SetParent(pfUI.chat.left)
-          frame:SetPoint("TOPLEFT", pfUI.chat.left ,"TOPLEFT", default_border, -panelheight)
-          frame:SetPoint("BOTTOMRIGHT", pfUI.chat.left ,"BOTTOMRIGHT", -default_border, panelheight)
-        end
-      elseif i == 3 and C.chat.right.enable == "1" then
+      if i == 3 and C.chat.right.enable == "1" then
         -- Loot & Spam
         tab:SetParent(pfUI.chat.right.panelTop)
         frame:SetParent(pfUI.chat.right)
@@ -338,9 +336,22 @@ pfUI:RegisterModule("chat", function ()
         frame:SetPoint("TOPLEFT", pfUI.chat.right ,"TOPLEFT", default_border, -panelheight)
         frame:SetPoint("BOTTOMRIGHT", pfUI.chat.right ,"BOTTOMRIGHT", -default_border, panelheight)
         frame:Show()
+      elseif i == 2 and C.chat.global.combathide == "1" then
+        -- Combat Log
+        FCF_UnDockFrame(frame)
+        FCF_Close(frame)
+      elseif i == 1 or frame.isDocked then
+        -- Left Chat
+        FCF_DockFrame(frame)
+        tab:SetParent(pfUI.chat.left.panelTop)
+        frame:SetParent(pfUI.chat.left)
+        frame:SetPoint("TOPLEFT", pfUI.chat.left ,"TOPLEFT", default_border, -panelheight)
+        frame:SetPoint("BOTTOMRIGHT", pfUI.chat.left ,"BOTTOMRIGHT", -default_border, panelheight)
+      else
+        FCF_UnDockFrame(frame)
+        frame:SetParent(UIParent)
+        tab:SetParent(UIParent)
       end
-
-      FCF_DockUpdate()
 
       -- hide textures
       for j,v in ipairs({tab:GetRegions()}) do
@@ -355,8 +366,12 @@ pfUI:RegisterModule("chat", function ()
       _G["ChatFrame" .. i .. "TabLeft"]:SetAlpha(0)
       _G["ChatFrame" .. i .. "TabMiddle"]:SetAlpha(0)
       _G["ChatFrame" .. i .. "TabRight"]:SetAlpha(0)
-      _G["ChatFrame" .. i .. "TabFlash"]:SetAlpha(0)
-      _G["ChatFrame" .. i .. "TabFlash"]:SetAllPoints(_G["ChatFrame" .. i .. "TabText"])
+
+      if C.chat.global.chatflash == "1" then
+        _G["ChatFrame" .. i .. "TabFlash"]:SetAllPoints(_G["ChatFrame" .. i .. "TabText"])
+      else
+        _G["ChatFrame" .. i .. "TabFlash"].Show = function() return end
+      end
 
       local _, class = UnitClass("player")
       _G["ChatFrame" .. i .. "TabText"]:SetTextColor(RAID_CLASS_COLORS[class].r + .3 * .5, RAID_CLASS_COLORS[class].g + .3 * .5, RAID_CLASS_COLORS[class].b + .3 * .5, 1)
@@ -385,12 +400,20 @@ pfUI:RegisterModule("chat", function ()
     end
   end
 
+  hooksecurefunc("FCF_SaveDock", pfUI.chat.RefreshChat)
+
   if C.chat.global.tabmouse == "1" then
     pfUI.chat.mouseovertab = CreateFrame("Frame")
     pfUI.chat.mouseovertab:SetScript("OnUpdate", function()
-      if MouseIsOver(pfUI.chat.left) or MouseIsOver(pfUI.chat.right) then
+
+      if pfUI.chat.hideLock then return end
+
+      if MouseIsOver(pfUI.chat.left, 10, -10, -10, 10) then
         pfUI.chat.left.panelTop:Show()
+        FCF_DockUpdate()
+      elseif MouseIsOver(pfUI.chat.right, 10, -10, -10, 10) then
         pfUI.chat.right.panelTop:Show()
+        FCF_DockUpdate()
       else
         pfUI.chat.left.panelTop:Hide()
         pfUI.chat.right.panelTop:Hide()
@@ -451,8 +474,8 @@ pfUI:RegisterModule("chat", function ()
       ChatFrame3:SetUserPlaced(1)
     end
 
-    FCF_DockUpdate()
     pfUI.chat:RefreshChat()
+    FCF_DockUpdate()
   end
 
   function pfUI.chat.SetupChannels()
@@ -491,6 +514,7 @@ pfUI:RegisterModule("chat", function ()
   pfUI.chat:SetScript("OnEvent", function()
       if event == "PLAYER_ENTERING_WORLD" or event == "UI_SCALE_CHANGED" then
         pfUI.chat:RefreshChat()
+        FCF_DockUpdate()
         if C.chat.right.enable == "0" and C.chat.right.alwaysshow == "0" then
           pfUI.chat.right:Hide()
         end

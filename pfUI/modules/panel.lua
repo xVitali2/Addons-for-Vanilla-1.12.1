@@ -245,12 +245,14 @@ pfUI:RegisterModule("panel", function ()
     local usedslots = 0
 
     for bag = 0,4 do
-      local bagsize = GetContainerNumSlots(bag)
-      maxslots = maxslots + bagsize
-      for j = 1,bagsize do
-        link = GetContainerItemLink(bag,j)
-        if link then
-          usedslots = usedslots + 1
+      if C.panel.bag.ignorespecial ~= "1" or GetBagFamily(bag) == "BAG" then
+        local bagsize = GetContainerNumSlots(bag)
+        maxslots = maxslots + bagsize
+        for j = 1,bagsize do
+          link = GetContainerItemLink(bag,j)
+          if link then
+            usedslots = usedslots + 1
+          end
         end
       end
     end
@@ -644,6 +646,8 @@ pfUI:RegisterModule("panel", function ()
   pfUI.panel.minimap.text:SetFont(font, font_size, "OUTLINE")
   pfUI.panel.minimap.text:SetPoint("CENTER", 0, 0)
   pfUI.panel.minimap.text:SetFontObject(GameFontWhite)
+
+  if C.panel.other.minimap == "none" then pfUI.panel.minimap:Hide() end
 
   -- MicroButtons
   if C.panel.micro.enable == "1" then

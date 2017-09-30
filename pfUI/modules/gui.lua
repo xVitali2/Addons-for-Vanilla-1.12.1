@@ -1,219 +1,4 @@
 pfUI:RegisterModule("gui", function ()
-  -- innner padding
-  local spacing = 25
-
-  local function Createtabs(parent, align, outside)
-    local f = CreateFrame("Frame", nil, parent)
-
-    f:SetPoint("TOPLEFT", parent, "TOPLEFT", -5, 5)
-    f:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", 5, -5)
-
-    -- setup env
-    f.childs = { }
-    f.buttons = { }
-    f.align = align
-    f.outside = outside
-    f.bottomcount = 1
-
-    -- Create Child Frame
-    f.CreateChildFrame = function(self, title, bwidth, bheight, bottom, static)
-      -- setup env
-      local childcount = table.getn(self.childs) + 1
-      local button_width = bwidth or 150
-      local button_height = bheight or 20
-      local border = 4
-
-      -- create tab button
-      local b = CreateFrame("Button", "pfConfig" .. title .. "Button", self, "UIPanelButtonTemplate")
-      b:SetHeight(button_height)
-      b:SetWidth(button_width)
-      b:SetID(childcount)
-
-      if not self.align or self.align == "LEFT" then
-        local outside = self.outside and -2 * border - button_width or 0
-        if bottom then
-          b:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", border + outside, (self.bottomcount-1) * (button_height) + (self.bottomcount * border) )
-        else
-          b:SetPoint("TOPLEFT", self, "TOPLEFT", border + outside, -(childcount-1) * (button_height) - (childcount * border) )
-        end
-      elseif self.align == "TOP" then
-        local outside = self.outside and 2 * border + button_height or 0
-        b:SetPoint("TOPLEFT", self, "TOPLEFT", (childcount-1) * (button_width) + (childcount * border) + (self.outside and -border), -border + outside )
-      end
-
-      SkinButton(b,.2,1,.8)
-      b:SetText(title)
-
-      if childcount ~= 1 then
-        b:SetTextColor(.5,.5,.5)
-      else
-        b:SetTextColor(.2,1,.8)
-      end
-
-      b:SetScript("OnClick", function()
-        for k,v in pairs(self.childs) do
-          v:Hide()
-        end
-        self.childs[this:GetID()]:Show()
-
-        for k,v in pairs(self.buttons) do
-          v.active = false
-          v:SetTextColor(.5,.5,.5)
-        end
-        self.buttons[this:GetID()]:SetTextColor(.2,1,.8)
-      end)
-
-      self.buttons[childcount] = b
-      self.bottomcount = bottom and self.bottomcount + 1 or self.bottomcount
-
-      -- create child frame
-      local child = CreateFrame("ScrollFrame", "pfConfig" .. title .. "Frame", self)
-      if childcount ~= 1 then child:Hide() end
-
-      if not self.align or self.align == "LEFT" then
-        child:SetPoint("TOPLEFT", self, "TOPLEFT", button_width + 2*border + 5, -border -5)
-        child:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", -border -5 , border + 5)
-      elseif self.align == "TOP" then
-        if self.outside then
-          child:SetPoint("TOPLEFT", self, "TOPLEFT", 5, -5)
-          child:SetPoint("BOTTOMRIGHT", self, "BOTTOMRIGHT", -5, 5)
-        end
-      end
-
-      local backdrop = CreateFrame("Frame", nil, child)
-      backdrop:SetFrameLevel(1)
-      backdrop:SetPoint("TOPLEFT", child, "TOPLEFT", -5, 5)
-      backdrop:SetPoint("BOTTOMRIGHT", child, "BOTTOMRIGHT", 5, -5)
-      CreateBackdrop(backdrop, nil, true)
-
-      if not static then
-        child:EnableMouseWheel(1)
-
-        child.deco_up = CreateFrame("Frame", nil, child)
-        child.deco_up:SetPoint("TOPLEFT", child, "TOPLEFT", -4, 4)
-        child.deco_up:SetPoint("BOTTOMRIGHT", child, "TOPRIGHT", 4, -spacing)
-        child.deco_up.fader = child.deco_up:CreateTexture("OVERLAY")
-        child.deco_up.fader:SetTexture(1,1,1,1)
-        child.deco_up.fader:SetGradientAlpha("VERTICAL", 0, 0, 0, 0, 0, 0, 0, 1)
-        child.deco_up.fader:SetAllPoints(child.deco_up)
-
-        child.deco_up_indicator = CreateFrame("Frame", nil, child.deco_up)
-        child.deco_up_indicator:Hide()
-        child.deco_up_indicator:SetPoint("TOP", child.deco_up, "TOP", 0, -6)
-        child.deco_up_indicator:SetHeight(12)
-        child.deco_up_indicator:SetWidth(12)
-        child.deco_up_indicator.modifier = 0.03
-        child.deco_up_indicator:SetScript("OnUpdate", function()
-          local alpha = this:GetAlpha()
-          if alpha >= .75 then
-            this.modifier = -0.03
-          elseif alpha <= .25 then
-            this.modifier = 0.03
-          end
-
-          this:SetAlpha(alpha + this.modifier)
-        end)
-
-        child.deco_up_indicator.tex = child.deco_up_indicator:CreateTexture("OVERLAY")
-        child.deco_up_indicator.tex:SetTexture("Interface\\AddOns\\pfUI\\img\\up")
-        child.deco_up_indicator.tex:SetAllPoints(child.deco_up_indicator)
-
-        child.deco_down = CreateFrame("Frame", nil, child)
-        child.deco_down:SetPoint("BOTTOMLEFT", child, "BOTTOMLEFT", -4, -4)
-        child.deco_down:SetPoint("TOPRIGHT", child, "BOTTOMRIGHT", 4, spacing)
-        child.deco_down.fader = child.deco_down:CreateTexture("OVERLAY")
-        child.deco_down.fader:SetTexture(1,1,1,1)
-        child.deco_down.fader:SetGradientAlpha("VERTICAL", 0, 0, 0, 1, 0, 0, 0, 0)
-        child.deco_down.fader:SetAllPoints(child.deco_down)
-
-        child.deco_down_indicator = CreateFrame("Frame", nil, child.deco_down)
-        child.deco_down_indicator:Hide()
-        child.deco_down_indicator:SetPoint("BOTTOM", child.deco_down, "BOTTOM", 0, 6)
-        child.deco_down_indicator:SetHeight(12)
-        child.deco_down_indicator:SetWidth(12)
-        child.deco_down_indicator.modifier = 0.03
-
-        child.deco_down_indicator:SetScript("OnUpdate", function()
-          local alpha = this:GetAlpha()
-          if alpha >= .75 then
-            this.modifier = -0.03
-          elseif alpha <= .25 then
-            this.modifier = 0.03
-          end
-
-          this:SetAlpha(alpha + this.modifier)
-        end)
-
-        child.deco_down_indicator.tex = child.deco_down_indicator:CreateTexture("OVERLAY")
-        child.deco_down_indicator.tex:SetTexture("Interface\\AddOns\\pfUI\\img\\down")
-        child.deco_down_indicator.tex:SetAllPoints(child.deco_down_indicator)
-
-        child.UpdateScrollState = function(self)
-          -- Update Scroll Indicators: Hide/Show if required.
-          local current = floor(self:GetVerticalScroll())
-          local max = floor(self:GetVerticalScrollRange() + spacing)
-
-          if current > 0 then
-            self.deco_up_indicator:Show()
-          else
-            self.deco_up_indicator:Hide()
-          end
-
-          if max > spacing and current < max then
-            self.deco_down_indicator:Show()
-          else
-            self.deco_down_indicator:Hide()
-          end
-        end
-
-
-        child:SetScript("OnMouseWheel", function()
-          local current = this:GetVerticalScroll()
-          local new = current + arg1*-25
-          local max = this:GetVerticalScrollRange() + spacing
-
-          if max > spacing then
-
-            if new < 0 then
-              this:SetVerticalScroll(0)
-            elseif new > max then
-              this:SetVerticalScroll(max)
-            else
-              this:SetVerticalScroll(new)
-            end
-          end
-
-          this:UpdateScrollState()
-        end)
-
-        local scrollchild = CreateFrame("Frame", "pfConfig" .. title .. "ScrollChild", child)
-
-        -- dummy values required
-        scrollchild:SetWidth(1)
-        scrollchild:SetHeight(1)
-        scrollchild:SetAllPoints(child)
-
-        child:SetScrollChild(scrollchild)
-
-        -- OnShow is fired too early, postpone to the first frame draw
-        scrollchild:SetScript("OnUpdate", function()
-          child:UpdateScrollState()
-          this:SetScript("OnUpdate", nil)
-        end)
-
-        scrollchild.button = b
-        table.insert(self.childs, child)
-        return scrollchild
-      else
-        child.button = b
-        table.insert(self.childs, child)
-        return child
-      end
-    end
-
-    return f
-  end
-
   local function CreateConfig(parent, caption, category, config, widget, values, skip, named, type)
     -- parent object placement
     if parent.objectCount == nil then
@@ -466,13 +251,6 @@ pfUI:RegisterModule("gui", function ()
     return frame
   end
 
-  local function DelayChangedSettings()
-    if pfUI.gui.settingChanged then
-      pfUI.gui.settingChangedDelayed = true
-    end
-    pfUI.gui.settingChanged = nil
-  end
-
   pfUI.gui = CreateFrame("Frame", "pfConfigGUI", UIParent)
   pfUI.gui:Hide()
   pfUI.gui:SetWidth(640)
@@ -490,10 +268,8 @@ pfUI:RegisterModule("gui", function ()
   end
 
   pfUI.gui:SetScript("OnShow",function()
-    if pfUI.gui.settingChangedDelayed then
-      pfUI.gui.settingChanged = true
-      pfUI.gui.settingChangedDelayed = nil
-    end
+    pfUI.gui.settingChanged = pfUI.gui.delaySettingChanged
+    pfUI.gui.delaySettingChanged = nil
 
     -- exit unlock mode
     if pfUI.unlock and pfUI.unlock:IsShown() then
@@ -694,22 +470,30 @@ pfUI:RegisterModule("gui", function ()
     "elysium:" .. T["Elysium Based Core"],
   }
 
+  pfUI.gui.dropdowns.minimap_cords_position = {
+    "topleft:" .. T["Top Left"],
+    "topright:" .. T["Top Right"],
+    "bottomleft:" .. T["Bottom Left"],
+    "bottomright:" .. T["Bottom Right"],
+    "off:" .. T["Disabled"]
+  }
+
   pfUI.gui.dropdowns.num_actionbar_buttons = BarLayoutOptions(NUM_ACTIONBAR_BUTTONS)
   pfUI.gui.dropdowns.num_shapeshift_slots = BarLayoutOptions(NUM_SHAPESHIFT_SLOTS)
   pfUI.gui.dropdowns.num_pet_action_slots = BarLayoutOptions(NUM_PET_ACTION_SLOTS)
 
   -- main tab frame
-  pfUI.gui.tabs = Createtabs(pfUI.gui, "LEFT")
+  pfUI.gui.tabs = ui:CreateTabFrame(pfUI.gui, "LEFT")
   pfUI.gui.tabs:SetPoint("TOPLEFT", pfUI.gui, "TOPLEFT", 0, -25)
   pfUI.gui.tabs:SetPoint("BOTTOMRIGHT", pfUI.gui, "BOTTOMRIGHT", 0, 0)
 
 
   -- [[ Settings ]]
-  pfUI.gui.tabs.settings = pfUI.gui.tabs:CreateChildFrame(T["Settings"], nil, nil, nil, true)
-  pfUI.gui.tabs.settings.tabs = Createtabs(pfUI.gui.tabs.settings, "TOP", true)
+  pfUI.gui.tabs.settings = pfUI.gui.tabs:CreateTabChild(T["Settings"], nil, nil, nil, true)
+  pfUI.gui.tabs.settings.tabs = ui:CreateTabFrame(pfUI.gui.tabs.settings, "TOP", true)
 
   -- >> Global
-  pfUI.gui.tabs.settings.tabs.general = pfUI.gui.tabs.settings.tabs:CreateChildFrame(T["General"], 70)
+  pfUI.gui.tabs.settings.tabs.general = pfUI.gui.tabs.settings.tabs:CreateTabChild(T["General"], 70)
   pfUI.gui.tabs.settings.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Language"], C.global, "language", "dropdown", pfUI.gui.dropdowns.languages)
@@ -842,7 +626,7 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> Appearance
-  pfUI.gui.tabs.settings.tabs.appearance = pfUI.gui.tabs.settings.tabs:CreateChildFrame(T["Appearance"], 70)
+  pfUI.gui.tabs.settings.tabs.appearance = pfUI.gui.tabs.settings.tabs:CreateTabChild(T["Appearance"], 70)
   pfUI.gui.tabs.settings.tabs.appearance:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Background Color"], C.appearance.border, "background", "color")
@@ -859,7 +643,7 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> Cooldown
-  pfUI.gui.tabs.settings.tabs.cooldown = pfUI.gui.tabs.settings.tabs:CreateChildFrame(T["Cooldown"], 70)
+  pfUI.gui.tabs.settings.tabs.cooldown = pfUI.gui.tabs.settings.tabs:CreateTabChild(T["Cooldown"], 70)
   pfUI.gui.tabs.settings.tabs.cooldown:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Cooldown Color (Less than 3 Sec)"], C.appearance.cd, "lowcolor", "color")
@@ -875,7 +659,7 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> GM-Mode
-  pfUI.gui.tabs.settings.tabs.gm = pfUI.gui.tabs.settings.tabs:CreateChildFrame(T["GM-Mode"], 70)
+  pfUI.gui.tabs.settings.tabs.gm = pfUI.gui.tabs.settings.tabs:CreateTabChild(T["GM-Mode"], 70)
   pfUI.gui.tabs.settings.tabs.gm:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Disable GM-Mode"], C.gm, "disable", "checkbox")
@@ -887,11 +671,11 @@ pfUI:RegisterModule("gui", function ()
 
 
   -- [[ UnitFrames ]]
-  pfUI.gui.tabs.uf = pfUI.gui.tabs:CreateChildFrame(T["Unit Frames"], nil, nil, nil, true)
-  pfUI.gui.tabs.uf.tabs = Createtabs(pfUI.gui.tabs.uf, "TOP", true)
+  pfUI.gui.tabs.uf = pfUI.gui.tabs:CreateTabChild(T["Unit Frames"], nil, nil, nil, true)
+  pfUI.gui.tabs.uf.tabs = ui:CreateTabFrame(pfUI.gui.tabs.uf, "TOP", true)
 
   -- >> General
-  pfUI.gui.tabs.uf.tabs.general = pfUI.gui.tabs.uf.tabs:CreateChildFrame(T["General"], 70)
+  pfUI.gui.tabs.uf.tabs.general = pfUI.gui.tabs.uf.tabs:CreateTabChild(T["General"], 70)
   pfUI.gui.tabs.uf.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Disable pfUI Unit Frames"], C.unitframes, "disable", "checkbox")
@@ -916,7 +700,7 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> Player
-  pfUI.gui.tabs.uf.tabs.player = pfUI.gui.tabs.uf.tabs:CreateChildFrame(T["Player"], 70)
+  pfUI.gui.tabs.uf.tabs.player = pfUI.gui.tabs.uf.tabs:CreateTabChild(T["Player"], 70)
   pfUI.gui.tabs.uf.tabs.player:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Display Player Frame"], C.unitframes.player, "visible", "checkbox")
@@ -955,7 +739,7 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> Target
-  pfUI.gui.tabs.uf.tabs.target = pfUI.gui.tabs.uf.tabs:CreateChildFrame(T["Target"], 70)
+  pfUI.gui.tabs.uf.tabs.target = pfUI.gui.tabs.uf.tabs:CreateTabChild(T["Target"], 70)
   pfUI.gui.tabs.uf.tabs.target:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Display Target Frame"], C.unitframes.target, "visible", "checkbox")
@@ -995,7 +779,7 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> Target-Target
-  pfUI.gui.tabs.uf.tabs.targettarget = pfUI.gui.tabs.uf.tabs:CreateChildFrame(T["Target-Target"], 70)
+  pfUI.gui.tabs.uf.tabs.targettarget = pfUI.gui.tabs.uf.tabs:CreateTabChild(T["Target-Target"], 70)
   pfUI.gui.tabs.uf.tabs.targettarget:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Display Target of Target Frame"], C.unitframes.ttarget, "visible", "checkbox")
@@ -1034,10 +818,10 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> Pet
-  pfUI.gui.tabs.uf.tabs.pet = pfUI.gui.tabs.uf.tabs:CreateChildFrame(T["Pet"], 70)
+  pfUI.gui.tabs.uf.tabs.pet = pfUI.gui.tabs.uf.tabs:CreateTabChild(T["Pet"], 70)
   pfUI.gui.tabs.uf.tabs.pet:SetScript("OnShow", function()
     if not this.setup then
-      CreateConfig(this, T["Display Pet Frame"], C.unitframes.player, "visible", "checkbox")
+      CreateConfig(this, T["Display Pet Frame"], C.unitframes.pet, "visible", "checkbox")
       CreateConfig(this, T["Portrait Position"], C.unitframes.pet, "portrait", "dropdown", pfUI.gui.dropdowns.uf_portrait_position)
       CreateConfig(this, T["Health Bar Width"], C.unitframes.pet, "width")
       CreateConfig(this, T["Health Bar Height"], C.unitframes.pet, "height")
@@ -1073,7 +857,7 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> Focus
-  pfUI.gui.tabs.uf.tabs.focus = pfUI.gui.tabs.uf.tabs:CreateChildFrame(T["Focus"], 70)
+  pfUI.gui.tabs.uf.tabs.focus = pfUI.gui.tabs.uf.tabs:CreateTabChild(T["Focus"], 70)
   pfUI.gui.tabs.uf.tabs.focus:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Display Focus Frame"], C.unitframes.focus, "visible", "checkbox")
@@ -1112,11 +896,11 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- [[ GroupFrames ]]
-  pfUI.gui.tabs.gf = pfUI.gui.tabs:CreateChildFrame(T["Group Frames"], nil, nil, nil, true)
-  pfUI.gui.tabs.gf.tabs = Createtabs(pfUI.gui.tabs.gf, "TOP", true)
+  pfUI.gui.tabs.gf = pfUI.gui.tabs:CreateTabChild(T["Group Frames"], nil, nil, nil, true)
+  pfUI.gui.tabs.gf.tabs = ui:CreateTabFrame(pfUI.gui.tabs.gf, "TOP", true)
 
   -- >> General
-  pfUI.gui.tabs.gf.tabs.general = pfUI.gui.tabs.gf.tabs:CreateChildFrame(T["General"], 70)
+  pfUI.gui.tabs.gf.tabs.general = pfUI.gui.tabs.gf.tabs:CreateTabChild(T["General"], 70)
   pfUI.gui.tabs.gf.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Show Self in Group Frames"], C.unitframes, "selfingroup", "checkbox")
@@ -1137,7 +921,7 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> Raid
-  pfUI.gui.tabs.gf.tabs.raid = pfUI.gui.tabs.gf.tabs:CreateChildFrame(T["Raid"], 70)
+  pfUI.gui.tabs.gf.tabs.raid = pfUI.gui.tabs.gf.tabs:CreateTabChild(T["Raid"], 70)
   pfUI.gui.tabs.gf.tabs.raid:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Display Raid Frames"], C.unitframes.raid, "visible", "checkbox")
@@ -1176,7 +960,7 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> Group
-  pfUI.gui.tabs.gf.tabs.group = pfUI.gui.tabs.gf.tabs:CreateChildFrame(T["Group"], 70)
+  pfUI.gui.tabs.gf.tabs.group = pfUI.gui.tabs.gf.tabs:CreateTabChild(T["Group"], 70)
   pfUI.gui.tabs.gf.tabs.group:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Display Group Frames"], C.unitframes.group, "visible", "checkbox")
@@ -1215,7 +999,7 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> Group-Target
-  pfUI.gui.tabs.gf.tabs.grouptarget = pfUI.gui.tabs.gf.tabs:CreateChildFrame(T["Group-Target"], 70)
+  pfUI.gui.tabs.gf.tabs.grouptarget = pfUI.gui.tabs.gf.tabs:CreateTabChild(T["Group-Target"], 70)
   pfUI.gui.tabs.gf.tabs.grouptarget:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Display Group Target Frames"], C.unitframes.grouptarget, "visible", "checkbox")
@@ -1254,7 +1038,7 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> Group-Pet
-  pfUI.gui.tabs.gf.tabs.grouppet = pfUI.gui.tabs.gf.tabs:CreateChildFrame(T["Group-Pet"], 70)
+  pfUI.gui.tabs.gf.tabs.grouppet = pfUI.gui.tabs.gf.tabs:CreateTabChild(T["Group-Pet"], 70)
   pfUI.gui.tabs.gf.tabs.grouppet:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Display Group Pet Frames"], C.unitframes.grouppet, "visible", "checkbox")
@@ -1294,11 +1078,11 @@ pfUI:RegisterModule("gui", function ()
 
 
   -- [[ Combat ]]
-  pfUI.gui.tabs.combat = pfUI.gui.tabs:CreateChildFrame(T["Combat"], nil, nil, nil, true)
-  pfUI.gui.tabs.combat.tabs = Createtabs(pfUI.gui.tabs.combat, "TOP", true)
+  pfUI.gui.tabs.combat = pfUI.gui.tabs:CreateTabChild(T["Combat"], nil, nil, nil, true)
+  pfUI.gui.tabs.combat.tabs = ui:CreateTabFrame(pfUI.gui.tabs.combat, "TOP", true)
 
   -- >> General
-  pfUI.gui.tabs.combat.tabs.general = pfUI.gui.tabs.combat.tabs:CreateChildFrame(T["Combat"], 70)
+  pfUI.gui.tabs.combat.tabs.general = pfUI.gui.tabs.combat.tabs:CreateTabChild(T["Combat"], 70)
   pfUI.gui.tabs.combat.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Enable Combat Glow Effects On Screen Edges"], C.appearance.infight, "screen", "checkbox")
@@ -1310,11 +1094,11 @@ pfUI:RegisterModule("gui", function ()
 
 
   -- [[ Bags & Bank ]]
-  pfUI.gui.tabs.bags = pfUI.gui.tabs:CreateChildFrame(T["Bags & Bank"], nil, nil, nil, true)
-  pfUI.gui.tabs.bags.tabs = Createtabs(pfUI.gui.tabs.bags, "TOP", true)
+  pfUI.gui.tabs.bags = pfUI.gui.tabs:CreateTabChild(T["Bags & Bank"], nil, nil, nil, true)
+  pfUI.gui.tabs.bags.tabs = ui:CreateTabFrame(pfUI.gui.tabs.bags, "TOP", true)
 
   -- >> General
-  pfUI.gui.tabs.bags.tabs.general = pfUI.gui.tabs.bags.tabs:CreateChildFrame(T["Bags & Bank"], 70)
+  pfUI.gui.tabs.bags.tabs.general = pfUI.gui.tabs.bags.tabs:CreateTabChild(T["Bags & Bank"], 70)
   pfUI.gui.tabs.bags.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Disable Item Quality Color For \"Common\" Items"], C.appearance.bags, "borderlimit", "checkbox")
@@ -1327,30 +1111,32 @@ pfUI:RegisterModule("gui", function ()
 
 
   -- [[ Loot ]]
-  pfUI.gui.tabs.loot = pfUI.gui.tabs:CreateChildFrame(T["Loot"], nil, nil, nil, true)
-  pfUI.gui.tabs.loot.tabs = Createtabs(pfUI.gui.tabs.loot, "TOP", true)
+  pfUI.gui.tabs.loot = pfUI.gui.tabs:CreateTabChild(T["Loot"], nil, nil, nil, true)
+  pfUI.gui.tabs.loot.tabs = ui:CreateTabFrame(pfUI.gui.tabs.loot, "TOP", true)
 
   -- >> General
-  pfUI.gui.tabs.loot.tabs.general = pfUI.gui.tabs.loot.tabs:CreateChildFrame(T["Loot"], 70)
+  pfUI.gui.tabs.loot.tabs.general = pfUI.gui.tabs.loot.tabs:CreateTabChild(T["Loot"], 70)
   pfUI.gui.tabs.loot.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Enable Auto-Resize Loot Frame"], C.loot, "autoresize", "checkbox")
       CreateConfig(this, T["Disable Loot Confirmation Dialog (Without Group)"], C.loot, "autopickup", "checkbox")
       CreateConfig(this, T["Enable Loot Window On MouseCursor"], C.loot, "mousecursor", "checkbox")
+      CreateConfig(this, T["Enable Advanced Master Loot Menu"], C.loot, "advancedloot", "checkbox")
       this.setup = true
     end
   end)
 
 
   -- [[ Minimap ]]
-  pfUI.gui.tabs.minimap = pfUI.gui.tabs:CreateChildFrame(T["Minimap"], nil, nil, nil, true)
-  pfUI.gui.tabs.minimap.tabs = Createtabs(pfUI.gui.tabs.minimap, "TOP", true)
+  pfUI.gui.tabs.minimap = pfUI.gui.tabs:CreateTabChild(T["Minimap"], nil, nil, nil, true)
+  pfUI.gui.tabs.minimap.tabs = ui:CreateTabFrame(pfUI.gui.tabs.minimap, "TOP", true)
 
   -- >> General
-  pfUI.gui.tabs.minimap.tabs.general = pfUI.gui.tabs.minimap.tabs:CreateChildFrame(T["Minimap"], 70)
+  pfUI.gui.tabs.minimap.tabs.general = pfUI.gui.tabs.minimap.tabs:CreateTabChild(T["Minimap"], 70)
   pfUI.gui.tabs.minimap.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Enable Zone Text On Minimap Mouseover"], C.appearance.minimap, "mouseoverzone", "checkbox")
+      CreateConfig(this, T["Coordinates Location"], C.appearance.minimap, "coordsloc", "dropdown", pfUI.gui.dropdowns.minimap_cords_position)
       CreateConfig(this, T["Disable Minimap Buffs"], C.global, "hidebuff", "checkbox")
       CreateConfig(this, T["Disable Minimap Weapon Buffs"], C.global, "hidewbuff", "checkbox")
       CreateConfig(this, T["Show PvP Icon"], C.unitframes.player, "showPVPMinimap", "checkbox")
@@ -1360,11 +1146,11 @@ pfUI:RegisterModule("gui", function ()
 
 
   -- [[ Actionbar ]]
-  pfUI.gui.tabs.actionbar = pfUI.gui.tabs:CreateChildFrame(T["Actionbar"], nil, nil, nil, true)
-  pfUI.gui.tabs.actionbar.tabs = Createtabs(pfUI.gui.tabs.actionbar, "TOP", true)
+  pfUI.gui.tabs.actionbar = pfUI.gui.tabs:CreateTabChild(T["Actionbar"], nil, nil, nil, true)
+  pfUI.gui.tabs.actionbar.tabs = ui:CreateTabFrame(pfUI.gui.tabs.actionbar, "TOP", true)
 
   -- >> General
-  pfUI.gui.tabs.actionbar.tabs.general = pfUI.gui.tabs.actionbar.tabs:CreateChildFrame(T["General"], 70)
+  pfUI.gui.tabs.actionbar.tabs.general = pfUI.gui.tabs.actionbar.tabs:CreateTabChild(T["General"], 70)
   pfUI.gui.tabs.actionbar.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Icon Size"], C.bars, "icon_size")
@@ -1379,7 +1165,7 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> Autohide
-  pfUI.gui.tabs.actionbar.tabs.autohide = pfUI.gui.tabs.actionbar.tabs:CreateChildFrame(T["Autohide"], 70)
+  pfUI.gui.tabs.actionbar.tabs.autohide = pfUI.gui.tabs.actionbar.tabs:CreateTabChild(T["Autohide"], 70)
   pfUI.gui.tabs.actionbar.tabs.autohide:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Seconds Until Action Bars Autohide"], C.bars, "hide_time")
@@ -1395,7 +1181,7 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- >> Layout
-  pfUI.gui.tabs.actionbar.tabs.layout = pfUI.gui.tabs.actionbar.tabs:CreateChildFrame(T["Layout"], 70)
+  pfUI.gui.tabs.actionbar.tabs.layout = pfUI.gui.tabs.actionbar.tabs:CreateTabChild(T["Layout"], 70)
   pfUI.gui.tabs.actionbar.tabs.layout:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Main Actionbar (ActionMain)"], C.bars.actionmain, "formfactor", "dropdown", pfUI.gui.dropdowns.num_actionbar_buttons)
@@ -1411,11 +1197,11 @@ pfUI:RegisterModule("gui", function ()
 
 
   -- [[ Panel ]]
-  pfUI.gui.tabs.panel = pfUI.gui.tabs:CreateChildFrame(T["Panel"], nil, nil, nil, true)
-  pfUI.gui.tabs.panel.tabs = Createtabs(pfUI.gui.tabs.panel, "TOP", true)
+  pfUI.gui.tabs.panel = pfUI.gui.tabs:CreateTabChild(T["Panel"], nil, nil, nil, true)
+  pfUI.gui.tabs.panel.tabs = ui:CreateTabFrame(pfUI.gui.tabs.panel, "TOP", true)
 
   -- >> General
-  pfUI.gui.tabs.panel.tabs.general = pfUI.gui.tabs.panel.tabs:CreateChildFrame(T["Panel"], 70)
+  pfUI.gui.tabs.panel.tabs.general = pfUI.gui.tabs.panel.tabs:CreateTabChild(T["Panel"], 70)
   pfUI.gui.tabs.panel.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Use Unit Fonts"], C.panel, "use_unitfonts", "checkbox")
@@ -1427,6 +1213,7 @@ pfUI:RegisterModule("gui", function ()
       CreateConfig(this, T["Right Panel: Right"], C.panel.right, "right", "dropdown", pfUI.gui.dropdowns.panel_values)
       CreateConfig(this, T["Other Panel: Minimap"], C.panel.other, "minimap", "dropdown", pfUI.gui.dropdowns.panel_values)
       CreateConfig(this, T["Always Show Experience And Reputation Bar"], C.panel.xp, "showalways", "checkbox")
+      CreateConfig(this, T["Only Count Bagspace On Regular Bags"], C.panel.bag, "ignorespecial", "checkbox")
       CreateConfig(this, T["Enable Micro Bar"], C.panel.micro, "enable", "checkbox")
       CreateConfig(this, T["Enable 24h Clock"], C.global, "twentyfour", "checkbox")
       this.setup = true
@@ -1435,11 +1222,11 @@ pfUI:RegisterModule("gui", function ()
 
 
   -- [[ Tooltip ]]
-  pfUI.gui.tabs.tooltip = pfUI.gui.tabs:CreateChildFrame(T["Tooltip"], nil, nil, nil, true)
-  pfUI.gui.tabs.tooltip.tabs = Createtabs(pfUI.gui.tabs.tooltip, "TOP", true)
+  pfUI.gui.tabs.tooltip = pfUI.gui.tabs:CreateTabChild(T["Tooltip"], nil, nil, nil, true)
+  pfUI.gui.tabs.tooltip.tabs = ui:CreateTabFrame(pfUI.gui.tabs.tooltip, "TOP", true)
 
   -- >> General
-  pfUI.gui.tabs.tooltip.tabs.general = pfUI.gui.tabs.tooltip.tabs:CreateChildFrame(T["Tooltip"], 70)
+  pfUI.gui.tabs.tooltip.tabs.general = pfUI.gui.tabs.tooltip.tabs:CreateTabChild(T["Tooltip"], 70)
   pfUI.gui.tabs.tooltip.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Tooltip Position"], C.tooltip, "position", "dropdown", pfUI.gui.dropdowns.tooltip_position)
@@ -1453,11 +1240,11 @@ pfUI:RegisterModule("gui", function ()
 
 
   -- [[ Castbar ]]
-  pfUI.gui.tabs.castbar = pfUI.gui.tabs:CreateChildFrame(T["Castbar"], nil, nil, nil, true)
-  pfUI.gui.tabs.castbar.tabs = Createtabs(pfUI.gui.tabs.castbar, "TOP", true)
+  pfUI.gui.tabs.castbar = pfUI.gui.tabs:CreateTabChild(T["Castbar"], nil, nil, nil, true)
+  pfUI.gui.tabs.castbar.tabs = ui:CreateTabFrame(pfUI.gui.tabs.castbar, "TOP", true)
 
   -- >> General
-  pfUI.gui.tabs.castbar.tabs.general = pfUI.gui.tabs.castbar.tabs:CreateChildFrame(T["Castbar"], 70)
+  pfUI.gui.tabs.castbar.tabs.general = pfUI.gui.tabs.castbar.tabs:CreateTabChild(T["Castbar"], 70)
   pfUI.gui.tabs.castbar.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Use Unit Fonts"], C.castbar, "use_unitfonts", "checkbox")
@@ -1472,11 +1259,11 @@ pfUI:RegisterModule("gui", function ()
 
 
   -- [[ Chat ]]
-  pfUI.gui.tabs.chat = pfUI.gui.tabs:CreateChildFrame(T["Chat"], nil, nil, nil, true)
-  pfUI.gui.tabs.chat.tabs = Createtabs(pfUI.gui.tabs.chat, "TOP", true)
+  pfUI.gui.tabs.chat = pfUI.gui.tabs:CreateTabChild(T["Chat"], nil, nil, nil, true)
+  pfUI.gui.tabs.chat.tabs = ui:CreateTabFrame(pfUI.gui.tabs.chat, "TOP", true)
 
   -- >> General
-  pfUI.gui.tabs.chat.tabs.general = pfUI.gui.tabs.chat.tabs:CreateChildFrame(T["General"], 70)
+  pfUI.gui.tabs.chat.tabs.general = pfUI.gui.tabs.chat.tabs:CreateTabChild(T["General"], 70)
   pfUI.gui.tabs.chat.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Enable \"Loot & Spam\" Chat Window"], C.chat.right, "enable", "checkbox")
@@ -1497,6 +1284,7 @@ pfUI:RegisterModule("gui", function ()
       CreateConfig(this, T["Hide Combat Log"], C.chat.global, "combathide", "checkbox")
       CreateConfig(this, T["Enable Chat Dock Background"], C.chat.global, "tabdock", "checkbox")
       CreateConfig(this, T["Only Show Chat Dock On Mouseover"], C.chat.global, "tabmouse", "checkbox")
+      CreateConfig(this, T["Enable Chat Tab Flashing"], C.chat.global, "chatflash", "checkbox")
       CreateConfig(this, T["Enable Custom Colors"], C.chat.global, "custombg", "checkbox")
       CreateConfig(this, T["Chat Background Color"], C.chat.global, "background", "color")
       CreateConfig(this, T["Chat Border Color"], C.chat.global, "border", "color")
@@ -1511,11 +1299,11 @@ pfUI:RegisterModule("gui", function ()
 
 
   -- [[ Nameplates ]]
-  pfUI.gui.tabs.nameplates = pfUI.gui.tabs:CreateChildFrame(T["Nameplates"], nil, nil, nil, true)
-  pfUI.gui.tabs.nameplates.tabs = Createtabs(pfUI.gui.tabs.nameplates, "TOP", true)
+  pfUI.gui.tabs.nameplates = pfUI.gui.tabs:CreateTabChild(T["Nameplates"], nil, nil, nil, true)
+  pfUI.gui.tabs.nameplates.tabs = ui:CreateTabFrame(pfUI.gui.tabs.nameplates, "TOP", true)
 
   -- General
-  pfUI.gui.tabs.nameplates.tabs.general = pfUI.gui.tabs.nameplates.tabs:CreateChildFrame(T["Nameplates"], 70)
+  pfUI.gui.tabs.nameplates.tabs.general = pfUI.gui.tabs.nameplates.tabs:CreateTabChild(T["Nameplates"], 70)
   pfUI.gui.tabs.nameplates.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["Use Unit Fonts"], C.nameplates, "use_unitfonts", "checkbox")
@@ -1542,11 +1330,11 @@ pfUI:RegisterModule("gui", function ()
 
 
   -- [[ Thirdparty ]]
-  pfUI.gui.tabs.thirdparty = pfUI.gui.tabs:CreateChildFrame(T["Thirdparty"], nil, nil, nil, true)
-  pfUI.gui.tabs.thirdparty.tabs = Createtabs(pfUI.gui.tabs.thirdparty, "TOP", true)
+  pfUI.gui.tabs.thirdparty = pfUI.gui.tabs:CreateTabChild(T["Thirdparty"], nil, nil, nil, true)
+  pfUI.gui.tabs.thirdparty.tabs = ui:CreateTabFrame(pfUI.gui.tabs.thirdparty, "TOP", true)
 
   -- >> General
-  pfUI.gui.tabs.thirdparty.tabs.general = pfUI.gui.tabs.thirdparty.tabs:CreateChildFrame(T["Thirdparty"], 70)
+  pfUI.gui.tabs.thirdparty.tabs.general = pfUI.gui.tabs.thirdparty.tabs:CreateTabChild(T["Thirdparty"], 70)
   pfUI.gui.tabs.thirdparty.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       CreateConfig(this, T["DPSMate (Skin)"], C.thirdparty.dpsmate, "skin", "checkbox")
@@ -1558,17 +1346,18 @@ pfUI:RegisterModule("gui", function ()
       CreateConfig(this, T["WIM"], C.thirdparty.wim, "enable", "checkbox")
       CreateConfig(this, T["HealComm"], C.thirdparty.healcomm, "enable", "checkbox")
       CreateConfig(this, T["CleanUp"], C.thirdparty.cleanup, "enable", "checkbox")
+      CreateConfig(this, T["FlightMap"], C.thirdparty.flightmap, "enable", "checkbox")
       this.setup = true
     end
   end)
 
 
   -- [[ Modules ]]
-  pfUI.gui.tabs.modules = pfUI.gui.tabs:CreateChildFrame(T["Modules"], nil, nil, nil, true)
-  pfUI.gui.tabs.modules.tabs = Createtabs(pfUI.gui.tabs.modules, "TOP", true)
+  pfUI.gui.tabs.modules = pfUI.gui.tabs:CreateTabChild(T["Modules"], nil, nil, nil, true)
+  pfUI.gui.tabs.modules.tabs = ui:CreateTabFrame(pfUI.gui.tabs.modules, "TOP", true)
 
   -- General
-  pfUI.gui.tabs.modules.tabs.general = pfUI.gui.tabs.modules.tabs:CreateChildFrame(T["Modules"], 70)
+  pfUI.gui.tabs.modules.tabs.general = pfUI.gui.tabs.modules.tabs:CreateTabChild(T["Modules"], 70)
   pfUI.gui.tabs.modules.tabs.general:SetScript("OnShow", function()
     if not this.setup then
       for i,m in pairs(pfUI.modules) do
@@ -1583,23 +1372,25 @@ pfUI:RegisterModule("gui", function ()
   end)
 
   -- [[ Close ]]
-  pfUI.gui.tabs.close = pfUI.gui.tabs:CreateChildFrame(T["Close"], nil, nil, "BOTTOM")
+  pfUI.gui.tabs.close = pfUI.gui.tabs:CreateTabChild(T["Close"], nil, nil, "BOTTOM")
   pfUI.gui.tabs.close.button:SetScript("OnClick", function()
     pfUI.gui:Hide()
   end)
 
   -- [[ Unlock ]]
-  pfUI.gui.tabs.unlock = pfUI.gui.tabs:CreateChildFrame(T["Unlock"], nil, nil, "BOTTOM")
+  pfUI.gui.tabs.unlock = pfUI.gui.tabs:CreateTabChild(T["Unlock"], nil, nil, "BOTTOM")
   pfUI.gui.tabs.unlock.button:SetScript("OnClick", function()
-    DelayChangedSettings()
+    pfUI.gui.delaySettingChanged = pfUI.gui.settingChanged
+    pfUI.gui.settingChanged = nil
     pfUI.unlock:UnlockFrames()
   end)
 
   -- [[ Hoverbind ]]
-  pfUI.gui.tabs.hoverbind = pfUI.gui.tabs:CreateChildFrame(T["Hoverbind"], nil, nil, "BOTTOM")
+  pfUI.gui.tabs.hoverbind = pfUI.gui.tabs:CreateTabChild(T["Hoverbind"], nil, nil, "BOTTOM")
   pfUI.gui.tabs.hoverbind.button:SetScript("OnClick", function()
     if pfUI.hoverbind then
-      DelayChangedSettings()
+      pfUI.gui.delaySettingChanged = pfUI.gui.settingChanged
+      pfUI.gui.settingChanged = nil
       pfUI.hoverbind:Show()
     end
   end)

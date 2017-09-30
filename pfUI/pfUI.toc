@@ -9,27 +9,30 @@
 # main
 pfUI.lua
 
-# api
-api\api.lua
-api\config.lua
-api\unitframes.lua
-
 # locales
 env\locales_enUS.lua
+env\locales_koKR.lua
 env\locales_frFR.lua
 env\locales_deDE.lua
 env\locales_zhCN.lua
+env\locales_esES.lua
 env\locales_ruRU.lua
-env\locales_koKR.lua
 
 # translations
 env\translations_enUS.lua
+env\translations_koKR.lua
 env\translations_frFR.lua
 env\translations_deDE.lua
 env\translations_zhCN.lua
 env\translations_zhTW.lua
+env\translations_esES.lua
 env\translations_ruRU.lua
-env\translations_koKR.lua
+
+# api
+api\api.lua
+api\config.lua
+api\ui-widgets.lua
+api\unitframes.lua
 
 # environment
 env\tables.lua
@@ -79,3 +82,4 @@ modules\debuffs.lua
 modules\uf_tukui.lua
 modules\custom.lua
 modules\gm.lua
+modules\mirrortimers.lua

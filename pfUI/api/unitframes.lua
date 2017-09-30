@@ -1,4 +1,8 @@
 pfUI.uf = CreateFrame("Frame",nil,UIParent)
+pfUI.uf.frames = {}
+
+-- load pfUI environment
+setfenv(1, pfUI:GetEnvironment())
 
 local pfValidUnits = {}
 pfValidUnits["player"] = true
@@ -69,11 +73,6 @@ function pfUI.uf:CreateUnitFrame(unit, id, config, tick)
   f.id = id
   f.config = config or pfUI_config.unitframes.fallback
   f.tick = tick
-
-  if f.config.visible ~= "1" then
-    f:Hide()
-    return f
-  end
 
   f:SetFrameStrata("BACKGROUND")
 
@@ -165,6 +164,11 @@ function pfUI.uf:CreateUnitFrame(unit, id, config, tick)
   f.powerCenterText:SetPoint("TOPLEFT",f.power.bar, "TOPLEFT", 2*default_border, 1)
   f.powerCenterText:SetPoint("BOTTOMRIGHT",f.power.bar, "BOTTOMRIGHT", -2*default_border, 0)
 
+  if f.config.visible ~= "1" then
+    f:Hide()
+    return f
+  end
+
   f:RegisterForClicks('LeftButtonUp', 'RightButtonUp',
     'MiddleButtonUp', 'Button4Up', 'Button5Up')
 
@@ -238,8 +242,6 @@ function pfUI.uf:CreateUnitFrame(unit, id, config, tick)
     end)
 
   f:SetScript("OnUpdate", function()
-      if ( this.fpscontrol or 1) > GetTime() then return else this.fpscontrol = GetTime() + .02 end
-
       local unitname = ( this.label and UnitName(this.label) ) or ""
 
       -- focus unit detection
@@ -298,41 +300,60 @@ function pfUI.uf:CreateUnitFrame(unit, id, config, tick)
         if not this.cache then return end
         if not this.cache.hp or not this.cache.power then return end
 
-        local hpDisplay = this.hp.bar:GetValue()
-        local hpReal = this.cache.hp
-        local hpDiff = abs(hpReal - hpDisplay)
+        local hpDiff = abs(this.cache.hp - this.cache.hpdisplay)
+        local powerDiff = abs(this.cache.power - this.cache.powerdisplay)
 
-        if this.config.invert_healthbar == "1" then
-          hpDisplay = this.hp.bar:GetValue()
-          hpReal = this.cache.hpmax - this.cache.hp
-          hpDiff = abs(hpReal - hpDisplay)
-        end
+        if UnitName(this.label .. this.id) ~= ( this.lastUnit or "" ) then
+          -- instant refresh on unit change (e.g. target)
+          this.cache.hp = UnitHealth(this.label .. this.id)
+          this.cache.hpmax = UnitHealthMax(this.label .. this.id)
 
-        local powerDisplay = this.power.bar:GetValue()
-        local powerReal = this.cache.power
-        local powerDiff = abs(powerReal - powerDisplay)
-
-        if this.instantRefresh then
-          -- No Animations for new Units
-          this.hp.bar:SetValue(hpReal)
-          this.power.bar:SetValue(powerReal)
-          this.instantRefresh = nil
-        else
-          -- Animation
-          if hpDisplay < hpReal then
-            this.hp.bar:SetValue(hpDisplay + ceil(hpDiff / pfUI_config.unitframes.animation_speed))
-          elseif hpDisplay > hpReal then
-            this.hp.bar:SetValue(hpDisplay - ceil(hpDiff / pfUI_config.unitframes.animation_speed))
-          else
-            this.hp.bar:SetValue(hpReal)
+          if this.config.invert_healthbar == "1" then
+            this.cache.hp = this.cache.hpmax - this.cache.hp
           end
 
-          if powerDisplay < powerReal then
-            this.power.bar:SetValue(powerDisplay + ceil(powerDiff / pfUI_config.unitframes.animation_speed))
-          elseif powerDisplay > powerReal then
-            this.power.bar:SetValue(powerDisplay - ceil(powerDiff / pfUI_config.unitframes.animation_speed))
-          else
-            this.power.bar:SetValue(this.cache.power)
+          this.cache.hpdisplay = this.cache.hp
+          this.hp.bar:SetMinMaxValues(0, this.cache.hpmax)
+          this.hp.bar:SetValue(this.cache.hp)
+
+          this.cache.powermax = UnitManaMax(this.label .. this.id)
+          this.cache.powerdisplay = this.cache.power
+          this.power.bar:SetMinMaxValues(0, this.cache.powermax)
+          this.power.bar:SetValue(this.cache.power)
+
+          this.lastUnit = UnitName(this.label .. this.id)
+        else
+          -- smoothen animation based on framerate
+          local fpsmod = GetFramerate() / 30
+
+          -- health animation active
+          if this.cache.hpanimation then
+            if this.cache.hpdisplay < this.cache.hp then
+              this.cache.hpdisplay = this.cache.hpdisplay + ceil(hpDiff / (pfUI_config.unitframes.animation_speed * fpsmod))
+            elseif this.cache.hpdisplay > this.cache.hp then
+              this.cache.hpdisplay = this.cache.hpdisplay - ceil(hpDiff / (pfUI_config.unitframes.animation_speed * fpsmod))
+            else
+              this.cache.hpdisplay = this.cache.hp
+              this.cache.hpanimation = nil
+            end
+
+            -- set statusbar
+            this.hp.bar:SetValue(this.cache.hpdisplay)
+          end
+
+          -- power animation active
+          if this.cache.poweranimation then
+            if this.cache.powerdisplay < this.cache.power then
+              this.cache.powerdisplay = this.cache.powerdisplay + ceil(powerDiff / (pfUI_config.unitframes.animation_speed * fpsmod))
+            elseif this.cache.powerdisplay > this.cache.power then
+              this.cache.powerdisplay = this.cache.powerdisplay - ceil(powerDiff / (pfUI_config.unitframes.animation_speed * fpsmod))
+            else
+              this.cache.powerdisplay = this.cache.power
+              this.cache.poweranimation = nil
+            end
+
+            -- set statusbar
+            this.power.bar:SetValue(this.cache.powerdisplay)
           end
         end
       else
@@ -544,12 +565,14 @@ function pfUI.uf:CreateUnitFrame(unit, id, config, tick)
     end
   end
 
+  table.insert(pfUI.uf.frames, f)
   return f
 end
 
 function pfUI.uf:RefreshUnit(unit, component)
   if not unit.label then return end
   if not unit.hp then return end
+  if not unit.power then return end
 
   local component = component or ""
   -- break early on misconfigured UF's
@@ -583,11 +606,6 @@ function pfUI.uf:RefreshUnit(unit, component)
   end
 
   local C = pfUI_config
-
-  if UnitName(unit.label .. unit.id) ~= unit.lastUnit then
-    unit.instantRefresh = true
-    unit.lastUnit = UnitName(unit.label .. unit.id)
-  end
 
   -- hide and return early on unused frames
   if not ( pfUI.unlock and pfUI.unlock:IsShown() ) then
@@ -821,11 +839,34 @@ function pfUI.uf:RefreshUnit(unit, component)
   -- Unit HP/MP
   unit.cache.hp = UnitHealth(unit.label..unit.id)
   unit.cache.hpmax = UnitHealthMax(unit.label..unit.id)
+  unit.cache.hpdisplay = unit.hp.bar:GetValue()
+
   unit.cache.power = UnitMana(unit.label .. unit.id)
   unit.cache.powermax = UnitManaMax(unit.label .. unit.id)
+  unit.cache.powerdisplay = unit.power.bar:GetValue()
 
   unit.hp.bar:SetMinMaxValues(0, unit.cache.hpmax)
   unit.power.bar:SetMinMaxValues(0, unit.cache.powermax)
+
+  if unit.config.invert_healthbar == "1" then
+    unit.cache.hp = unit.cache.hpmax - unit.cache.hp
+  end
+
+  if unit.cache.hpdisplay ~= unit.cache.hp then
+    if pfUI_config.unitframes.animation_speed == "1" then
+      unit.hp.bar:SetValue(unit.cache.hp)
+    else
+      unit.cache.hpanimation = true
+    end
+  end
+
+  if unit.cache.powerdisplay ~= unit.cache.power then
+    if pfUI_config.unitframes.animation_speed == "1" then
+      unit.power.bar:SetValue(unit.cache.power)
+    else
+      unit.cache.poweranimation = true
+    end
+  end
 
   local color = { r = .2, g = .2, b = .2 }
   if UnitIsPlayer(unit.label..unit.id) then
@@ -1253,6 +1294,24 @@ function pfUI.uf:SetupBuffFilter()
   end
 end
 
+function pfUI.uf:GetLevelString(unitstr)
+  local level = UnitLevel(unitstr)
+  if level == -1 then level = "??" end
+
+  local elite = UnitClassification(unitstr)
+  if elite == "worldboss" then
+    level = level .. "B"
+  elseif elite == "rareelite" then
+    level = level .. "R+"
+  elseif elite == "elite" then
+    level = level .. "+"
+  elseif elite == "rare" then
+    level = level .. "R"
+  end
+
+  return level
+end
+
 function pfUI.uf:GetStatusValue(unit, pos)
   if not pos or not unit then return end
   local config = unit.config["txt"..pos]
@@ -1265,32 +1324,15 @@ function pfUI.uf:GetStatusValue(unit, pos)
   end
 
   if config == "unit" then
-    local level = UnitLevel(unitstr)
-    if level == -1 then level = "??" end
-
-    local name = UnitName(unitstr)
-
-    local elite = UnitClassification(unitstr)
-    if elite == "worldboss" then
-      level = level .. "B"
-    elseif elite == "rareelite" then
-      level = level .. "R+"
-    elseif elite == "elite" then
-      level = level .. "+"
-    elseif elite == "rare" then
-      level = level .. "R"
-    end
-    level = unit:GetColor("level") .. level
-    name = unit:GetColor("unit") .. name
-
+    local name = unit:GetColor("unit") .. UnitName(unitstr)
+    local level = unit:GetColor("level") .. pfUI.uf:GetLevelString(unitstr)
     return level .. "  " .. name
-
   elseif config == "name" then
     return unit:GetColor("unit") .. UnitName(unitstr)
   elseif config == "level" then
-    return unit:GetColor("level") .. UnitLevel(unitstr)
+    return unit:GetColor("level") .. pfUI.uf:GetLevelString(unitstr)
   elseif config == "class" then
-    return unit:GetColor("class") .. UnitClass(unitstr)
+    return unit:GetColor("class") .. (UnitClass(unitstr) or UNKNOWN)
 
   -- health
   elseif config == "health" then
@@ -1309,7 +1351,7 @@ function pfUI.uf:GetStatusValue(unit, pos)
     return unit:GetColor("health") .. ceil(UnitHealth(unitstr) / UnitHealthMax(unitstr) * 100)
   elseif config == "healthmiss" then
     local health = ceil(UnitHealth(unitstr) - UnitHealthMax(unitstr))
-    if health == 0 then
+    if health == 0 or UnitIsDead(unitstr) then
       return ""
     else
       return unit:GetColor("health") .. pfUI.api.Abbreviate(health)
@@ -1379,9 +1421,9 @@ function pfUI.uf.GetColor(self, preset)
 
   elseif preset == "class" and config["classcolor"] == "1" then
     local _, class = UnitClass(unitstr)
-    r = RAID_CLASS_COLORS[class].r
-    g = RAID_CLASS_COLORS[class].g
-    b = RAID_CLASS_COLORS[class].b
+    if RAID_CLASS_COLORS[class] then
+      r, g, b = RAID_CLASS_COLORS[class].r, RAID_CLASS_COLORS[class].g, RAID_CLASS_COLORS[class].b
+    end
 
   elseif preset == "reaction" and config["classcolor"] == "1" then
     r = UnitReactionColor[UnitReaction(unitstr, "player")].r
