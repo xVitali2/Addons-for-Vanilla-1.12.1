@@ -2507,7 +2507,7 @@ function vQueue_OnUpdate()
 						end
 					end
 					if timeDiff > (40) then -- remove vQueue groups after 40 seconds
-						if groups[leaderArgs[2]][k] ~= nil then
+						if leaderArgs[2] and k and groups[leaderArgs[2]][k] ~= nil then
 							local thisframe, bg, name, level, size, tank, healer, damage = groups[leaderArgs[2]][k]:GetRegions()
 							if size:GetText() ~= "?" then
 								groups[leaderArgs[2]][k]:Hide()
