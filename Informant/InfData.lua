@@ -3347,7 +3347,7 @@ Informant.SetDatabase({
 	[19107]="220858:44171:2:18:1:::0:0:", -- Bloodseeker
 	[18836]="107834:21566:2:18:1:::0:0:", -- Grand Marshal's Repeater
 	[18837]="108231:21646:2:18:1:::0:0:", -- High Warlord's Crossbow
-	[11287]="521:104:2:19:1:::0:0:", -- Lesser Magic Wand
+	[11287]="2544:508:2:19:1:::0:0:", -- Lesser Magic Wand
 	[5092]="1203:240:2:19:1:::0:0:", -- Charred Razormane Wand
 	[11288]="2330:466:2:19:1:::0:0:", -- Greater Magic Wand
 	[5208]="3340:668:2:19:1:::1:0:36,317,450", -- Smoldering Wand
