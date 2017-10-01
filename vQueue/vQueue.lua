@@ -2498,7 +2498,7 @@ function vQueue_OnUpdate()
 				local timeDiff = GetTime() - tonumber(leaderArgs[3])
 				if leaderArgs[3] ~= nil and type(tonumber(leaderArgs[3])) == "number" then
 					if timeDiff > (300) then -- delete chat entries after 5 minutes of no updates
-						if leaderArgs[2] and groups[leaderArgs[2]][k] ~= nil then
+						if k and leaderArgs[2] and groups[leaderArgs[2]][k] ~= nil then
 							groups[leaderArgs[2]][k]:Hide()
 							groups[leaderArgs[2]][k] = nil
 							leaderMessages[k] = nil
