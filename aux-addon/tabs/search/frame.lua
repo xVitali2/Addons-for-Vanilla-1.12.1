@@ -544,8 +544,8 @@ favorite_searches_listing:SetColInfo{{name=AUTO_BUY, width=.13, align='CENTER'},
 recent_searches_listing = listing.new(frame.saved.recent)
 recent_searches_listing:SetColInfo{{name=RECENT_SEARCHES, width=1}} --byLichery
 
-for listing in temp-S(favorite_searches_listing, recent_searches_listing) do
-	for k, v in handlers do
+for listing in pairs(temp-S(favorite_searches_listing, recent_searches_listing)) do
+	for k, v in pairs(handlers) do
 		listing:SetHandler(k, v)
 	end
 end

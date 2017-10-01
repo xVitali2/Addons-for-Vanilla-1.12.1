@@ -3,8 +3,8 @@ module 'aux'
 local gui = require 'aux.gui'
 
 function LOAD()
-	for i = 1, getn(tab_info) do
-		tabs:create_tab(tab_info[i].name)
+	for _, v in ipairs(tab_info) do
+		tabs:create_tab(v.name)
 	end
 end
 
@@ -37,7 +37,7 @@ end
 do
 	local btn = gui.button(AuxFrame)
 	btn:SetPoint('BOTTOMRIGHT', -5, 5)
-	gui.set_size(btn, 80, 24)
+	gui.set_size(btn, 80, 24) --Lichery
 	btn:SetText(CLOSE)
 	btn:SetScript('OnClick', function() AuxFrame:Hide() end)
 	close_button = btn
@@ -45,7 +45,7 @@ end
 do
 	local btn = gui.button(AuxFrame, gui.font_size.small)
 	btn:SetPoint('RIGHT', close_button, 'LEFT' , -5, 0)
-	gui.set_size(btn, 80, 24)
+	gui.set_size(btn, 80, 24) --Lichery
 	btn:SetText(color.blizzard'Blizzard UI')
 	btn:SetScript('OnClick',function()
 		if AuctionFrame:IsVisible() then HideUIPanel(AuctionFrame) else ShowUIPanel(AuctionFrame) end

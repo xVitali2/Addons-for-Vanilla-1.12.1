@@ -81,17 +81,17 @@ function update_form()
 
 	if blizzard_query.exact then
 		usable_checkbox:Disable()
-		for key in temp-S('min_level', 'max_level') do
+		for key in pairs(temp-S('min_level', 'max_level')) do
 			_M[key .. '_input']:EnableMouse(false)
 			_M[key .. '_input']:ClearFocus()
 		end
-		for key in temp-S('class', 'subclass', 'slot', 'quality') do
+		for key in pairs(temp-S('class', 'subclass', 'slot', 'quality')) do
 			_M[key .. '_dropdown'].button:Disable()
 		end
 		CloseDropDownMenus()
 	else
 		usable_checkbox:Enable()
-		for key in temp-S('min_level', 'max_level') do
+		for key in pairs(temp-S('min_level', 'max_level')) do
 			_M[key .. '_input']:EnableMouse(true)
 		end
 		class_dropdown.button:Enable()
@@ -152,8 +152,7 @@ end
 
 function set_form(filter)
 	clear_form()
-	for i = 1, getn(filter.components) do
-		local component = filter.components[i]
+	for _, component in ipairs(filter.components) do
 		if component[1] == 'blizzard' then
 			blizzard_query[component[2]] = component[4]
 		else
@@ -199,7 +198,7 @@ function formatted_post_filter(components)
 	local stack = temp-T
 	local str = ''
 
-	for i = 1, getn(components) do
+	for i, component in ipairs(components) do
 		local component = components[i]
 		if no_line_break then
 			str = str .. ' '

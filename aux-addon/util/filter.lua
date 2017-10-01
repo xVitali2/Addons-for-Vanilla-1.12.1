@@ -185,7 +185,7 @@ M.filters = {
 
 function operator(str)
     local operator = str == 'not' and A('operator', 'not', 1)
-    for name in temp-S('and', 'or') do
+    for name in pairs(temp-S('and', 'or')) do
 	    local arity = select(3, strfind(str, '^' .. name .. '(%d*)$'))
 	    if arity then
 		    arity = tonumber(arity)
@@ -214,12 +214,12 @@ do
 					end
 				end
 			end
-			for _, parser in temp-A(
+			for _, parser in pairs(temp-A(
 				temp-A('class', info.item_class_index),
 				temp-A('subclass', vararg-function(arg) return info.item_subclass_index(index(self.class, 2) or 0, unpack(arg)) end),
 				temp-A('slot', vararg-function(arg) return info.item_slot_index(index(self.class, 2) == 2 and 2 or 0, index(self.subclass, 2) or 0, unpack(arg)) end),
 				temp-A('quality', info.item_quality_index)
-			) do
+			)) do
 				if not self[parser[1]] then
 					tinsert(parser, str)
 					local index, label = parser[2](select(3, unpack(parser)))
@@ -313,8 +313,7 @@ function M.query(filter_string)
     end
 
     local polish_notation_counter = 0
-    for i = 1, getn(filter.post) do
-	    local component = filter.post[i]
+    for _, component in ipairs(filter.post) do
         if component[1] == 'operator' then
             polish_notation_counter = max(polish_notation_counter, 1)
             polish_notation_counter = polish_notation_counter + (tonumber(component[2]) or 1) - 1
@@ -325,7 +324,7 @@ function M.query(filter_string)
 
     if polish_notation_counter > 0 then
         local suggestions = T
-        for key in filters do
+        for key in pairs(filters) do
             tinsert(suggestions, strlower(key))
         end
         tinsert(suggestions, 'and')
@@ -344,8 +343,7 @@ end
 function M.queries(filter_string)
     local parts = split(filter_string, ';')
     local queries = T
-    for i = 1, getn(parts) do
-        local str = trim(parts[i])
+    for _, str in ipairs(parts) do
         local query, _, error = query(str)
         if not query then
 	        return nil, error
@@ -363,7 +361,7 @@ function suggestions(filter)
 
     tinsert(suggestions, 'and'); tinsert(suggestions, 'or'); tinsert(suggestions, 'not'); tinsert(suggestions, 'tooltip')
 
-    for key in filters do tinsert(suggestions, key) end
+    for key in pairs(filters) do tinsert(suggestions, key) end
 
     -- classes
     if not filter.blizzard.class then
@@ -394,8 +392,8 @@ function suggestions(filter)
 
     -- item names
     if getn(filter.components) == 0 then
-	    for i = 1, getn(aux_auctionable_items) do
-            tinsert(suggestions, aux_auctionable_items[i] .. '/exact')
+	    for _, name in ipairs(aux_auctionable_items) do
+            tinsert(suggestions, name .. '/exact')
         end
     end
 
@@ -404,8 +402,7 @@ end
 
 function M.filter_string(components)
     local query_builder = query_builder()
-    for i = 1, getn(components) do
-	    local component = components[i]
+    for _, component in ipairs(components) do
 	    if component[1] == 'blizzard' then
 		    query_builder.append(component[4] or component[3])
         elseif component[1] == 'operator' then
@@ -426,8 +423,7 @@ end
 
 function prettified_filter_string(filter)
     local prettified = query_builder()
-    for i = 1, getn(filter.components) do
-	    local component = filter.components[i]
+    for i, component in ipairs(filter.components) do
 	    if component[1] == 'blizzard' then
 		    if component[2] == 'name' then
 			    if filter.blizzard.exact then
@@ -480,7 +476,6 @@ function blizzard_query(filter)
     local item_id = filters.name and cache.item_id(filters.name)
     item_info = item_id and info.item(item_id)
     if filters.exact and item_info then
-	    item_info = info.item(item_id)
         class_index = info.item_class_index(item_info.class)
         subclass_index = info.item_subclass_index(class_index or 0, item_info.subclass)
         slot_index = info.item_slot_index(class_index or 0, subclass_index or 0, item_info.slot)
@@ -494,7 +489,7 @@ function blizzard_query(filter)
         query.slot = slot_index
         query.quality = item_info.quality
     else
-	    for key in temp-S('min_level', 'max_level', 'class', 'subclass', 'slot', 'usable', 'quality') do
+	    for key in pairs(temp-S('min_level', 'max_level', 'class', 'subclass', 'slot', 'usable', 'quality')) do
             query[key] = index(filters[key], 2)
 	    end
     end
@@ -503,7 +498,7 @@ end
 
 function validator(filter)
     local validators = T
-    for i, component in filter.post do
+    for i, component in pairs(filter.post) do
 	    local type, name, param = unpack(component)
         if type == 'filter' then
             validators[i] = filters[name].validator(parse_parameter(filters[name].input_type, param))

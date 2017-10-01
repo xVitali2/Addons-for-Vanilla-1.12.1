@@ -175,10 +175,10 @@ function start_real_time_scan(query, search, continuation)
 		end,
 		on_complete = function()
 			local map = temp-T
-			for _, record in search.records do
+			for _, record in pairs(search.records) do
 				map[record.sniping_signature] = record
 			end
-			for _, record in new_records do
+			for _, record in pairs(new_records) do
 				map[record.sniping_signature] = record
 			end
 			release(new_records)
@@ -325,7 +325,7 @@ function M.execute(resume, real_time)
 	if resume then
 		current_search.table:SetSelectedRecord()
 	else
-		if filter_string ~= current_search.filter_string or first_page ~= current_search.first_page or last_page ~= current_search.last_page or real_time ~= current_search.real_time then
+		if filter_string ~= current_search.filter_string then
 			if current_search.filter_string then
 				new_search(filter_string, first_page, last_page, real_time)
 			else
@@ -352,7 +352,7 @@ function M.execute(resume, real_time)
 	if real_time then
 		start_real_time_scan(queries[1], nil, continuation)
 	else
-		for _, query in queries do
+		for _, query in pairs(queries) do
 			query.blizzard_query.first_page = current_search.first_page
 			query.blizzard_query.last_page = current_search.last_page
 		end
