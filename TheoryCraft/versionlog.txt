@@ -1,3 +1,5 @@
+Version 1.06.7
+	- Fixed ruRU localization
 Version 1.06.6
 	- Added ruRU localization
 Version 1.06.5
