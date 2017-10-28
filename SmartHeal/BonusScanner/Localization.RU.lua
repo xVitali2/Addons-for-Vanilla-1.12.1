@@ -81,7 +81,7 @@ BONUSSCANNER_PATTERNS_PASSIVE = {
 	{ pattern = "Повышение не более чем на (%d+) ед%. урона, наносимого нежити заклинаниями и магическими эффектами%.", effect = "DMGUNDEAD" },
 	{ pattern = "Увеличение силы атаки на (%d+) ед%. в бою с нежитью%.", effect = "ATTACKPOWERUNDEAD" },
 	{ pattern = "Восполняет (%d+) ед%. здоровья каждые 5 сек%.", effect = "HEALTHREG" }, 
-	{ pattern = "Восполнение (%d+) ед%. здоровья раз в 5 сек%.", effect = "HEALTHREG" },  -- both versions ('per' and 'every') seem to be used
+	{ pattern = "Восстанавливает (%d+) ед%. здоровья раз в 5 сек%.", effect = "HEALTHREG" },  -- both versions ('per' and 'every') seem to be used
 	{ pattern = "Восполнение (%d+) ед%. маны раз в 5 сек.%.", effect = "MANAREG" },
 	{ pattern = "Восполнение (%d+) ед%. маны раз в 5 сек%.", effect = "MANAREG" },
 	{ pattern = "Повышает меткость на (%d+)%%%.", effect = "TOHIT" },

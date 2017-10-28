@@ -2,7 +2,8 @@
 	local refreshInterval, nextRefresh = 1/60, 0
 	local f = CreateFrame'Frame'
 	-------------------------------------------------------------------------------
-	local isPlate = function(frame)     
+	local isPlate = function(frame)
+		if frame and frame.nameplate then return true end
 		local overlayRegion = frame:GetRegions()
 		if not overlayRegion or overlayRegion:GetObjectType() ~= 'Texture'
 		or overlayRegion:GetTexture() ~= [[Interface\Tooltips\Nameplate-Border]] then
@@ -13,7 +14,7 @@
 	-------------------------------------------------------------------------------
 	local addSmooth = function(plate)
 		if not plate.smooth then
-			local health = plate:GetChildren()
+			local health = plate.healthbar or plate:GetChildren()
 			SmoothBar(health)
 			plate.smooth = true
 		end
@@ -21,6 +22,7 @@
 	-------------------------------------------------------------------------------
 	local addRaidTarget = function(plate, n, raidTargets)
 		local _, _, name = plate:GetRegions()
+		name = plate.name or name
 		if not plate.raidTarget then
 			-- create killtarget icon
 			plate.raidTarget = plate:CreateTexture(nil, 'OVERLAY')
@@ -56,7 +58,7 @@
 	local BACKDROP = {bgFile = [[Interface\Tooltips\UI-Tooltip-Background]],}
 	local addCastbar = function(plate, name)
 		if not plate.castBar then
-			local health = plate:GetChildren()
+			local health = plate.healthbar or plate:GetChildren()
 			
 			plate.castBar = CreateFrame('StatusBar', nil, plate)
 			plate.castBar:SetStatusBarTexture(TEXTURE)
@@ -217,8 +219,9 @@
 		local frames = {WorldFrame:GetChildren()}
 		for _, plate in ipairs(frames) do
 			if isPlate(plate) and plate:IsVisible() then
-				local health = plate:GetChildren()
+				local health = plate.healthbar or plate:GetChildren()
 				local _, _, name = plate:GetRegions()
+				name = plate.name or name
 				local n, h = name:GetText(), health:GetValue()
 				-- fills a list to help display accurate health values of enemies with visible plates
 				-- redudant to include target and mouseover units

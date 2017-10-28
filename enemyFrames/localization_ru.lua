@@ -306,7 +306,7 @@ EF_L_ENTANGLINGROOTS='Гнев деревьев';
 EF_L_BARKSKIN='Дубовая кожа';
 EF_L_ABOLISHPOISON='Устранение яда';
 EF_L_DASH='Порыв';
-EF_L_DEMORALIZINGROAR='Устрашающий рев';
+EF_L_DEMORALIZINGROAR='Деморализующий рев';
 EF_L_ENRAGED='Исступление';
 EF_L_FRENZIEDREGENERATION='Неистовое восстановление';
 EF_L_GROWL='Рык';
@@ -575,7 +575,7 @@ EF_L_PORTALSTORMWIND='Портал в Штормград';
 EF_L_PORTALORGRIMMAR='Портал в Оргриммар';
 EF_L_PORTALIRONFORGE='Портал в Стальгорн';
 EF_L_PORTALTHUNDERBLUFF='Портал в Громовой Утес';
-EF_L_PORTALDARNASSUS='Портал: Дарнас';
+EF_L_PORTALDARNASSUS='Портал в Дарнас';
 EF_L_CONJUREMANARUBY='Сотворение рубина маны';
 EF_L_CONJUREMANAJADE='Сотворение нефрита маны';
 EF_L_CONJUREMANACITRINE='Сотворение цитрина маны';
@@ -677,23 +677,23 @@ end
 function changeEngClassName(c)
 	if not c then return end
 	local class=string.upper(c)
-			if c=='Воин' then
+			if c=='Воин' or c=='ВОИН' then
 				class='WARRIOR';
-			elseif c=='Разбойник' then
+			elseif c=='Разбойник' or c=='РАЗБОЙНИК' then
 				class='ROGUE';
-			elseif c=='Чернокнижник' then
+			elseif c=='Чернокнижник' or c=='ЧЕРНОКНИЖНИК' then
 				class='WARLOCK';
-			elseif c=='Шаман' then
+			elseif c=='Шаман' or c=='ШАМАН' then
 				class='SHAMAN';
-			elseif c=='Жрец' then
+			elseif c=='Жрец' or c=='ЖРЕЦ' then
 				class='PRIEST';
-			elseif c=='Паладин' then
+			elseif c=='Паладин' or c=='ПАЛАДИН' then
 				class='PALADIN';
-			elseif c=='Маг' then
+			elseif c=='Маг' or c=='МАГ' then
 				class='MAGE';
-			elseif c=='Охотник' then
+			elseif c=='Охотник' or c=='ОХОТНИК' then
 				class='HUNTER';
-			elseif c=='Друид' then
+			elseif c=='Друид' or c=='ДРУИД' then
 				class='DRUID';
 			end
 	return class
