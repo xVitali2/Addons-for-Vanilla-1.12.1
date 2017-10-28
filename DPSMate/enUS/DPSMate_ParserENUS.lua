@@ -16,10 +16,10 @@ function DPSMate.Parser:SelfHits(msg)
 	for a,b,c,d in strgfind(msg, "You (%a%a?)\it (.+) for (%d+)%. %((%d+) absorbed%)") do
 		DB:SetUnregisterVariables(tnbr(d), "AutoAttack", self.player)
 	end
-	for a,b,c,g,d in strgfind(msg, "You (%a%a?)\it (.+) for (%d+)(.*)\.%s?(.*)") do
+	for a,b,c,g in strgfind(msg, "You (%a%a?)\it (.+) for (%d+)(.*)") do
 		t = {false, false, false, false, tnbr(c)}
 		if a == "h" then t[1]=1;t[2]=0 end
-		if d == "(glancing)" then t[3]=1;t[1]=0;t[2]=0 elseif d ~= "" then t[4]=1;t[1]=0;t[2]=0 end
+		if g == ". (glancing)" then t[3]=1;t[1]=0;t[2]=0 elseif g ~= "." then t[4]=1;t[1]=0;t[2]=0 end
 		DB:EnemyDamage(true, DPSMateEDT, self.player, "AutoAttack", t[1] or 0, t[2] or 1, 0, 0, 0, 0, t[5], b, t[4] or 0, t[3] or 0)
 		DB:DamageDone(self.player, "AutoAttack", t[1] or 0, t[2] or 1, 0, 0, 0, 0, t[5], t[3] or 0, t[4] or 0)
 		if self.TargetParty[b] then DB:BuildFail(1, b, self.player, "AutoAttack", t[5]);DB:DeathHistory(b, self.player, "AutoAttack", t[5], t[1] or 0, t[2] or 1, 0, 0) end
@@ -215,10 +215,10 @@ function DPSMate.Parser:FriendlyPlayerHits(msg)
 	for a,b,c,d,e in strgfind(msg, "(.-) (%a%a?)\its (.+) for (%d+)%. %((%d+) absorbed%)") do
 		DB:SetUnregisterVariables(tnbr(e), "AutoAttack", a)
 	end
-	for a,b,c,d,g,e in strgfind(msg, "(.-) (%a%a?)\its (.+) for (%d+)(.*)\.%s?(.*)") do
+	for a,b,c,d,g in strgfind(msg, "(.-) (%a%a?)\its (.+) for (%d+)(.*)") do
 		t = {false,false,false,false, tnbr(d)}
 		if b=="h" then t[3]=1;t[4]=0 end
-		if e=="(glancing)" then t[1]=1;t[3]=0;t[4]=0 elseif e~="" then t[2]=1;t[3]=0;t[4]=0 end
+		if g==". (glancing)" then t[1]=1;t[3]=0;t[4]=0 elseif g~="." then t[2]=1;t[3]=0;t[4]=0 end
 		if c=="you" then c=self.player end
 		DB:EnemyDamage(true, DPSMateEDT, a, "AutoAttack", t[3] or 0, t[4] or 1, 0, 0, 0, 0, t[5], c, t[2] or 0, t[1] or 0)
 		DB:DamageDone(a, "AutoAttack", t[3] or 0, t[4] or 1, 0, 0, 0, 0, t[5], t[1] or 0, t[2] or 0)
@@ -812,7 +812,6 @@ end
 function DPSMate.Parser:CombatHostileDeaths(msg)
 	for ta in strgfind(msg, "(.+) dies%.") do 
 		DB:UnregisterDeath(ta)
-		DB:Attempt(false, true, ta)
 	end
 end
 
@@ -827,25 +826,6 @@ end
 function DPSMate.Parser:HostilePlayerSpellDamageInterrupts(msg)
 	for c, ab in strgfind(msg, "(.-) begins to cast (.+)%.") do DB:RegisterPotentialKick(c, ab, GetTime()); return end
 	for c, ab in strgfind(msg, "(.-) begins to perform (.+)%.") do DB:RegisterPotentialKick(c, ab, GetTime()) end
-end
-
-local linkQuality = {
-	["9d9d9d"] = 0,
-	["ffffff"] = 1,
-	["1eff00"] = 2,
-	["0070dd"] = 3,
-	["a335ee"] = 4,
-	["ff8000"] = 5
-}
-function DPSMate.Parser:Loot(msg)
-	for a,b,c,d,e in strgfind(msg, "(.-) receives loot: |cff(.-)|Hitem:(%d+)(.+)%[(.+)%]|h|r") do
-		DB:Loot(a, linkQuality[b], tnbr(c), e)
-		return
-	end
-	for a,b,c,d in strgfind(msg, "You receive loot: |cff(.-)|Hitem:(%d+)(.+)%[(.+)%]|h|r") do
-		DB:Loot(self.player, linkQuality[a], tnbr(b), d)
-		return
-	end
 end
 
 function DPSMate.Parser:PetHits(msg)

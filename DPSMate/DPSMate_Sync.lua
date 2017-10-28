@@ -1,8 +1,5 @@
 -- Notes
 -- Following datas are not being syncronized.
--- Player
--- Loot
--- Attempts
 -- Threat
 -- Fails
 
@@ -393,8 +390,8 @@ function DPSMate.Sync:SyncStatus(arg2, arg4)
 	if arg2 == "0" then
 		usid = DB:BuildUser(arg4)
 		if Arrays[1][usid] then DPSMateDamageDone[1][usid] = Arrays[1][usid] end
-		if Arrays[2][usid] and (DPSMateSettings["legacylogs"] and (DPSMate.ModuleNames["damagetaken"])) then DPSMateDamageTaken[1][usid] = Arrays[2][usid] else Arrays[2][usid] = nil end
-		if DPSMateSettings["legacylogs"] and DPSMate.ModuleNames["enemydamagedone"] then
+		if Arrays[2][usid] and ((DPSMate.ModuleNames["damagetaken"])) then DPSMateDamageTaken[1][usid] = Arrays[2][usid] else Arrays[2][usid] = nil end
+		if  DPSMate.ModuleNames["enemydamagedone"] then
 			for cat, val in pairs(Arrays[3]) do
 				if val[usid] then
 					if not DPSMateEDD[1][cat] then DPSMateEDD[1][cat] = {} end
@@ -410,18 +407,18 @@ function DPSMate.Sync:SyncStatus(arg2, arg4)
 				DPSMateEDT[1][cat][usid] = val[usid]
 			end
 		end
-		if Arrays[5][usid] and (DPSMateSettings["legacylogs"] and (DPSMate.ModuleNames["healing"])) then DPSMateTHealing[1][usid] = Arrays[5][usid] else Arrays[5][usid] = nil end
-		if Arrays[6][usid] and (DPSMateSettings["legacylogs"] and (DPSMate.ModuleNames["effectivehealing"] or DPSMate.ModuleNames["healingandabsorbs"])) then DPSMateEHealing[1][usid] = Arrays[6][usid] else Arrays[6][usid] = nil end
-		if Arrays[7][usid] and (DPSMateSettings["legacylogs"] and (DPSMate.ModuleNames["healingtaken"] or DPSMate.ModuleNames["healing"])) then DPSMateHealingTaken[1][usid] = Arrays[7][usid] else Arrays[7][usid] = nil end
-		if Arrays[8][usid] and (DPSMateSettings["legacylogs"] and (DPSMate.ModuleNames["effectivehealingtaken"] or DPSMate.ModuleNames["effectivehealing"] or DPSMate.ModuleNames["healingandabsorbs"])) then DPSMateEHealingTaken[1][usid] = Arrays[8][usid] else Arrays[8][usid] = nil end
-		if Arrays[9][usid] and (DPSMateSettings["legacylogs"] and (DPSMate.ModuleNames["overhealing"])) then DPSMateOverhealing[1][usid] = Arrays[9][usid] else Arrays[9][usid] = nil end 
-		if Arrays[10][usid] and (DPSMateSettings["legacylogs"] and (DPSMate.ModuleNames["absorbs"] or DPSMate.ModuleNames["absorbstaken"] or DPSMate.ModuleNames["healingandabsorbs"])) then DPSMateAbsorbs[1][usid] = Arrays[10][usid] else Arrays[10][usid] = nil end
-		if Arrays[11][usid] and (DPSMateSettings["legacylogs"] and (DPSMate.ModuleNames["deaths"])) then DPSMateDeaths[1][usid] = Arrays[11][usid] else Arrays[11][usid] = nil end
-		if Arrays[12][usid] and (DPSMateSettings["legacylogs"] and (DPSMate.ModuleNames["interrupts"])) then DPSMateInterrupts[1][usid] = Arrays[12][usid] else Arrays[12][usid] = nil end
-		if Arrays[13][usid] and (DPSMateSettings["legacylogs"] and (DPSMate.ModuleNames["decurses"] or DPSMate.ModuleNames["curepoison"] or DPSMate.ModuleNames["liftmagic"] or DPSMate.ModuleNames["curedisease"] or DPSMate.ModuleNames["dispels"])) then DPSMateDispels[1][usid] = Arrays[13][usid] else Arrays[13][usid] = nil end
-		if Arrays[14][usid] and (DPSMateSettings["legacylogs"] and (DPSMate.ModuleNames["aurasgained"])) then DPSMateAurasGained[1][usid] = Arrays[14][usid] else Arrays[14][usid] = nil end
-		if Arrays[15][usid] and (DPSMateSettings["legacylogs"] and (DPSMate.ModuleNames["overhealing"] or DPSMate.ModuleNames["OHealingTaken"])) then DPSMateOverhealingTaken[1][usid] = Arrays[15][usid] else Arrays[15][usid] = nil end
-		if Arrays[16][usid] and (DPSMateSettings["legacylogs"] and (DPSMate.ModuleNames["threats"])) then DPSMateThreat[1][usid] = Arrays[16][usid] else Arrays[16][usid] = nil end
+		if Arrays[5][usid] and ( (DPSMate.ModuleNames["healing"])) then DPSMateTHealing[1][usid] = Arrays[5][usid] else Arrays[5][usid] = nil end
+		if Arrays[6][usid] and ( (DPSMate.ModuleNames["effectivehealing"] or DPSMate.ModuleNames["healingandabsorbs"])) then DPSMateEHealing[1][usid] = Arrays[6][usid] else Arrays[6][usid] = nil end
+		if Arrays[7][usid] and ( (DPSMate.ModuleNames["healingtaken"] or DPSMate.ModuleNames["healing"])) then DPSMateHealingTaken[1][usid] = Arrays[7][usid] else Arrays[7][usid] = nil end
+		if Arrays[8][usid] and ( (DPSMate.ModuleNames["effectivehealingtaken"] or DPSMate.ModuleNames["effectivehealing"] or DPSMate.ModuleNames["healingandabsorbs"])) then DPSMateEHealingTaken[1][usid] = Arrays[8][usid] else Arrays[8][usid] = nil end
+		if Arrays[9][usid] and ( (DPSMate.ModuleNames["overhealing"])) then DPSMateOverhealing[1][usid] = Arrays[9][usid] else Arrays[9][usid] = nil end 
+		if Arrays[10][usid] and ( (DPSMate.ModuleNames["absorbs"] or DPSMate.ModuleNames["absorbstaken"] or DPSMate.ModuleNames["healingandabsorbs"])) then DPSMateAbsorbs[1][usid] = Arrays[10][usid] else Arrays[10][usid] = nil end
+		if Arrays[11][usid] and ( (DPSMate.ModuleNames["deaths"])) then DPSMateDeaths[1][usid] = Arrays[11][usid] else Arrays[11][usid] = nil end
+		if Arrays[12][usid] and ( (DPSMate.ModuleNames["interrupts"])) then DPSMateInterrupts[1][usid] = Arrays[12][usid] else Arrays[12][usid] = nil end
+		if Arrays[13][usid] and ( (DPSMate.ModuleNames["decurses"] or DPSMate.ModuleNames["curepoison"] or DPSMate.ModuleNames["liftmagic"] or DPSMate.ModuleNames["curedisease"] or DPSMate.ModuleNames["dispels"])) then DPSMateDispels[1][usid] = Arrays[13][usid] else Arrays[13][usid] = nil end
+		if Arrays[14][usid] and ( (DPSMate.ModuleNames["aurasgained"])) then DPSMateAurasGained[1][usid] = Arrays[14][usid] else Arrays[14][usid] = nil end
+		if Arrays[15][usid] and ( (DPSMate.ModuleNames["overhealing"] or DPSMate.ModuleNames["OHealingTaken"])) then DPSMateOverhealingTaken[1][usid] = Arrays[15][usid] else Arrays[15][usid] = nil end
+		if Arrays[16][usid] and ( (DPSMate.ModuleNames["threats"])) then DPSMateThreat[1][usid] = Arrays[16][usid] else Arrays[16][usid] = nil end
 		DB.NeedUpdate = true
 	else
 		local usid = DB:BuildUser(arg4)
@@ -450,6 +447,7 @@ function DPSMate.Sync:DMGDoneStatIn(arg2, arg4)
 	strgsub(arg2, "(.-),", func)
 	abid = DB:BuildAbility(t[3])
 	t[1] = tnbr(t[1])
+	if t[1]>DPSMateCombatTime["total"] and (t[1]>5*DPSMateCombatTime["total"] or t[1]>20000) then return end
 	if not Arrays[1][userid] then return end
 	if not Arrays[1][userid][abid] then return end
 	Arrays[1][userid][abid]["i"][t[1]]=tnbr(t[2])
@@ -512,6 +510,7 @@ function DPSMate.Sync:DMGTakenStatIn(arg2, arg4)
 	if not Arrays[2][userid][userid2][abid] then return end
 	if not Arrays[2][userid][userid2][abid] then return end
 	t[1] = tnbr(t[1])
+	if t[1]>DPSMateCombatTime["total"] and (t[1]>5*DPSMateCombatTime["total"] or t[1]>20000) then return end
 	Arrays[2][userid][userid2][abid]["i"][t[1]]=tnbr(t[2])
 	if t[1]>DPSMateCombatTime["total"] then DPSMateCombatTime["total"]=t[1] end
 end
@@ -576,6 +575,7 @@ function DPSMate.Sync:EDStatIn(arr, arg2, arg4)
 	if not Arrays[arr][userid][userid2] then return end
 	if not Arrays[arr][userid][userid2][abid] then return end
 	t[2] = tnbr(t[2])
+	if t[2]>DPSMateCombatTime["total"] and (t[2]>5*DPSMateCombatTime["total"] or t[2]>20000) then return end
 	Arrays[arr][userid][userid2][abid]["i"][t[2]] = tnbr(t[3])
 	if t[2]>DPSMateCombatTime["total"] then DPSMateCombatTime["total"]=t[2] end
 end
@@ -633,6 +633,7 @@ function DPSMate.Sync:HealingStatIn(arg2, arg4, arr)
 	t[1] = tnbr(t[1])
 	if not Arrays[arr][userid] then return end
 	if not Arrays[arr][userid][abid] then return end
+	if t[1]>DPSMateCombatTime["total"] and (t[1]>5*DPSMateCombatTime["total"] or t[1]>20000) then return end
 	Arrays[arr][userid][abid]["i"][t[1]]=tnbr(t[2])
 	if t[1]>DPSMateCombatTime["total"] then DPSMateCombatTime["total"]=t[1] end
 end
@@ -670,6 +671,7 @@ function DPSMate.Sync:HealingTakenStatIn(arg2, arg4, arr)
 	if not Arrays[arr][userid] then return end
 	if not Arrays[arr][userid][userid2] then return end
 	if not Arrays[arr][userid][userid2][abid] then return end
+	if t[1]>DPSMateCombatTime["total"] and (t[1]>5*DPSMateCombatTime["total"] or t[1]>20000) then return end
 	Arrays[arr][userid][userid2][abid]["i"][t[1]]=tnbr(t[2])
 	if t[1]>DPSMateCombatTime["total"] then DPSMateCombatTime["total"]=t[1] end
 end
@@ -732,6 +734,7 @@ function DPSMate.Sync:AbsorbsStatIn(arg2, arg4)
 	if not DPSMateAbsorbs[1][userid] then return end
 	if not DPSMateAbsorbs[1][userid][userid2] then return end
 	t[2] = tnbr(t[2])
+	if t[2]>DPSMateCombatTime["total"] and (t[2]>5*DPSMateCombatTime["total"] or t[2]>20000) then return end
 	if t[4] then
 		tinsert(Arrays[10][userid][userid2]["i"], {t[2], tnbr(t[3]), tnbr(t[4]), tnbr(t[5])})
 	else
