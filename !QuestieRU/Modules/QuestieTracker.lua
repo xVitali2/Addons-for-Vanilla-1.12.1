@@ -482,6 +482,9 @@ function QuestieTracker:SortTrackingFrame()
         end
     end
     sort(distanceNotes, function (a, b)
+        if (not a["dist"]) or (not b["dist"]) then
+            return false;
+        end
         return a["dist"] < b["dist"];
     end)
     for k,v in pairs(distanceNotes) do

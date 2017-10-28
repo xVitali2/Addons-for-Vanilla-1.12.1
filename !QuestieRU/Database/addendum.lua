@@ -39283,6 +39283,7 @@ QuestieHashMap = {
   ['startedBy']="Туманна",
   ['finishedBy']="Часовой Арания Проблеск Солнца",
   ['level']=9,
+  ['rr']=77,
   ['questLevel']='12'
  },
  [1027819952]={
