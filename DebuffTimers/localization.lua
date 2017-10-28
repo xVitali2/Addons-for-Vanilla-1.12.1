@@ -11,7 +11,7 @@ if GetLocale() == "ruRU" then
 		["Рык"] = "Growl",
 		["Звериная атака - эффект"] = "Feral Charge Effect",
 		["Кровоточащая рана"] = "Pounce Bleed",
-		["Устрашающий рев"] = "Demoralizing Roar",
+		["Деморализующий рев"] = "Demoralizing Roar",
 		["Глубокая рана"] = "Rake",
 		["Разорвать"] = "Rip",
 		["Гнев деревьев"] = "Entangling Roots",
