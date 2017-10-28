@@ -372,6 +372,7 @@ function pfUI.uf:CreateUnitFrame(unit, id, config, tick)
     end)
   f:SetScript("OnEnter", function()
         if not this.label then return end
+        if this.config.showtooltip == "0" then return end
         GameTooltip_SetDefaultAnchor(GameTooltip, this)
         GameTooltip:SetUnit(this.label .. this.id)
         GameTooltip:Show()
@@ -555,6 +556,8 @@ function pfUI.uf:CreateUnitFrame(unit, id, config, tick)
       f.power:ClearAllPoints()
       f.power:SetPoint("TOPRIGHT", f.hp, "BOTTOMRIGHT", 0, -2*default_border - f.config.pspace)
       pfUI.api.CreateBackdrop(f.portrait)
+      f.portrait:SetFrameStrata("BACKGROUND")
+      f.portrait.model:SetFrameLevel(1)
     elseif f.config.portrait == "right" then
       f.portrait:SetPoint("TOPRIGHT", f, "TOPRIGHT", 0, 0)
       f.hp:ClearAllPoints()
@@ -562,6 +565,8 @@ function pfUI.uf:CreateUnitFrame(unit, id, config, tick)
       f.power:ClearAllPoints()
       f.power:SetPoint("TOPLEFT", f.hp, "BOTTOMLEFT", 0, -2*default_border - f.config.pspace)
       pfUI.api.CreateBackdrop(f.portrait)
+      f.portrait:SetFrameStrata("BACKGROUND")
+      f.portrait.model:SetFrameLevel(1)
     end
   end
 
@@ -1241,6 +1246,19 @@ function pfUI.uf:SetupBuffFilter()
     -- Blessing of Might
     table.insert(pfUI.uf.buffs, "interface\\icons\\spell_holy_fistofjustice")
     table.insert(pfUI.uf.buffs, "interface\\icons\\spell_holy_greaterblessingofkings")
+  end
+
+
+  -- [[ WARLOCK ]]
+  if myclass == "WARLOCK" then
+    -- Fire Shield
+    table.insert(pfUI.uf.buffs, "interface\\icons\\spell_fire_firearmor")
+
+    -- Blood Pact
+    table.insert(pfUI.uf.buffs, "interface\\icons\\spell_shadow_bloodboil")
+
+    -- Soulstone
+    table.insert(pfUI.uf.buffs, "interface\\icons\\spell_shadow_soulgem")
   end
 
 

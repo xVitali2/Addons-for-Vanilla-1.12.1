@@ -387,13 +387,17 @@ pfUI:RegisterModule("chat", function ()
           if IsShiftKeyDown() then
             frame:ScrollToTop()
           else
-            frame:ScrollUp()
+            for i=1, C.chat.global.scrollspeed do
+              frame:ScrollUp()
+            end
           end
         elseif (arg1 < 0) then
           if IsShiftKeyDown() then
             frame:ScrollToBottom()
           else
-            frame:ScrollDown()
+            for i=1, C.chat.global.scrollspeed do
+              frame:ScrollDown()
+            end
           end
         end
       end)
@@ -522,9 +526,7 @@ pfUI:RegisterModule("chat", function ()
         local Name, Class, Level
         for i = 1, GetNumFriends() do
           Name, Level, Class = GetFriendInfo(i)
-          if L["class"] and L["class"][Class] then
-            Class = L["class"][Class]
-          end
+          Class = L["class"][Class] or nil
           if Name and Level and Class and pfUI_playerDB then
             pfUI_playerDB[Name] = { class = Class, level = Level }
           end
@@ -533,9 +535,7 @@ pfUI:RegisterModule("chat", function ()
         local Name, Class, Level
         for i = 1, GetNumGuildMembers() do
           Name, _, _, Level, Class = GetGuildRosterInfo(i)
-          if L["class"] and L["class"][Class] then
-            Class = L["class"][Class]
-          end
+          Class = L["class"][Class] or nil
           if Name and Level and Class and pfUI_playerDB then
             pfUI_playerDB[Name] = { class = Class, level = Level }
           end
@@ -545,9 +545,7 @@ pfUI:RegisterModule("chat", function ()
         local Name, Class, SubGroup, Level
         for i = 1, GetNumRaidMembers() do
           Name, _, SubGroup, Level, Class = GetRaidRosterInfo(i)
-          if L["class"] and L["class"].Class then
-            Class = L["class"][Class]
-          end
+          Class = L["class"][Class] or nil
           if Name and Level and Class and pfUI_playerDB then
             pfUI_playerDB[Name] = { class = Class, level = Level }
           end
@@ -581,9 +579,7 @@ pfUI:RegisterModule("chat", function ()
         local Name, Class, Level
         for i = 1, GetNumWhoResults() do
           Name, _, Level, _, Class, _ = GetWhoInfo(i)
-          if L["class"] and L["class"][Class] then
-            Class = L["class"][Class]
-          end
+          Class = L["class"][Class] or nil
           if Name and Level and Class and pfUI_playerDB then
             pfUI_playerDB[Name] = { class = Class, level = Level }
           end
@@ -743,7 +739,7 @@ pfUI:RegisterModule("chat", function ()
           local Name = string.gsub(text, ".*|Hplayer:(.-)|h.*", "%1")
           if pfUI_playerDB[Name] and pfUI_playerDB[Name].class ~= nil then
             local Class = pfUI_playerDB[Name].class
-            if RAID_CLASS_COLORS[Class] ~= nil then
+            if Class ~= UNKNOWN then
               local Color = string.format("%02x%02x%02x",
                 RAID_CLASS_COLORS[Class].r * 255,
                 RAID_CLASS_COLORS[Class].g * 255,

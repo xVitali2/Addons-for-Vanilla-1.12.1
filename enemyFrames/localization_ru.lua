@@ -677,23 +677,23 @@ end
 function changeEngClassName(c)
 	if not c then return end
 	local class=string.upper(c)
-			if c=='Воин' then
+			if c=='Воин' or c=='ВОИН' then
 				class='WARRIOR';
-			elseif c=='Разбойник' then
+			elseif c=='Разбойник' or c=='РАЗБОЙНИК' then
 				class='ROGUE';
-			elseif c=='Чернокнижник' then
+			elseif c=='Чернокнижник' or c=='ЧЕРНОКНИЖНИК' then
 				class='WARLOCK';
-			elseif c=='Шаман' then
+			elseif c=='Шаман' or c=='ШАМАН' then
 				class='SHAMAN';
-			elseif c=='Жрец' then
+			elseif c=='Жрец' or c=='ЖРЕЦ' then
 				class='PRIEST';
-			elseif c=='Паладин' then
+			elseif c=='Паладин' or c=='ПАЛАДИН' then
 				class='PALADIN';
-			elseif c=='Маг' then
+			elseif c=='Маг' or c=='МАГ' then
 				class='MAGE';
-			elseif c=='Охотник' then
+			elseif c=='Охотник' or c=='ОХОТНИК' then
 				class='HUNTER';
-			elseif c=='Друид' then
+			elseif c=='Друид' or c=='ДРУИД' then
 				class='DRUID';
 			end
 	return class
