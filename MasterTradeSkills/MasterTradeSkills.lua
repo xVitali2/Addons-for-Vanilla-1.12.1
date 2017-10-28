@@ -42,9 +42,9 @@ function MasterTradeSkills_OnLoad()
 	this:RegisterEvent("TRADE_SKILL_UPDATE");
 	this:RegisterEvent("VARIABLES_LOADED");
 	this:RegisterEvent("UNIT_NAME_UPDATE");
-	this:RegisterEvent("PLAYER_ENTERING_WORLD");	
-	this:RegisterEvent("CRAFT_SHOW");	
-	this:RegisterEvent("CRAFT_UPDATE");	
+	this:RegisterEvent("PLAYER_ENTERING_WORLD");
+	this:RegisterEvent("CRAFT_SHOW");
+	this:RegisterEvent("CRAFT_UPDATE");
 	
 	-- hook into the text link
 	MTS_Original_SetItemRef = SetItemRef;
@@ -904,28 +904,20 @@ function MTS_Options_ToggleShowTradeSkills(arg1, arg2)
 end
 
 function MTS_SetItemRef(arg1,arg2,arg3)
-	if ( strsub(arg1, 1, 6) == "player" ) then
+	if ( strsub(arg1, 1, 4) == "item" ) then
+		ShowUIPanel(ItemRefTooltip);
+		if ( not ItemRefTooltip:IsVisible() ) then
+			ItemRefTooltip:SetOwner(UIParent, "ANCHOR_PRESERVE");
+		end
+		ItemRefTooltip:SetHyperlink(arg1);
+		if ( HealPoints ) then		
+			HealPoints:DrawTooltip(ItemRefTooltip, arg1);
+		end
+		local name, ilink, quality = GetItemInfo( arg1 );
+		MasterTradeSkills_CheckTooltipInfo(ItemRefTooltip, name);
+	else
 		return MTS_Original_SetItemRef(arg1,arg2,arg3);
 	end
-	if ( IsControlKeyDown() or  IsShiftKeyDown()  ) then
-		return MTS_Original_SetItemRef(arg1,arg2,arg3);
-	end
-	if (IRR_ItemTypes) then
-		return MTS_Original_SetItemRef(arg1,arg2,arg3);
-	end
-
-	ShowUIPanel(ItemRefTooltip);
-	if ( not ItemRefTooltip:IsVisible() ) then
-		ItemRefTooltip:SetOwner(UIParent, "ANCHOR_PRESERVE");
-	end
-	ItemRefTooltip:SetHyperlink( arg1);
-	if ( HealPoints ) then		
-		HealPoints:DrawTooltip(ItemRefTooltip, arg1);
-	end
-	local name, ilink, quality = GetItemInfo( arg1 );
-
-	MasterTradeSkills_CheckTooltipInfo(ItemRefTooltip, name);
-	return ;
 end
 
 function MasterTradeSkills_AddStuff(frame,link)
