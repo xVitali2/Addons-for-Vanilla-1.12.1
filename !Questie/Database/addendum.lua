@@ -17367,7 +17367,8 @@ QuestieHashMap = {
   ['startedBy']="Zaruk",
   ['finishedBy']="Theldurin the Lost",
   ['level']=30,
-  ['questLevel']='40'
+  ['questLevel']='40',
+  ['rr']=178
  },
  [3130142114]={
   ['name']="Prowlers of the Barrens",
@@ -18711,16 +18712,6 @@ QuestieHashMap = {
   ['finishedBy']="Elder Starsong",
   ['level']=1,
   ['questLevel']='60'
- },
- [582117461]={
-  ['name']="Watcher Callahan",
-  ['startedType']="monster",
-  ['finishedType']="monster",
-  ['startedBy']="Watcher Dodds",
-  ['finishedBy']="Watcher Callahan",
-  ['level']=21,
-  ['questLevel']='25',
-  ['rr']=77
  },
  [197258989]={
   ['name']="Badlands Reagent Run",
@@ -37742,6 +37733,7 @@ QuestieHashMap = {
   ['startedBy']="Mist",
   ['finishedBy']="Sentinel Arynia Cloudsbreak",
   ['level']=9,
+  ['rr']=77,
   ['questLevel']='12'
  },
  [2631372589]={
