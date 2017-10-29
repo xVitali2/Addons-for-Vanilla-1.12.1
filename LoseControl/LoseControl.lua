@@ -53,8 +53,8 @@ local spellIds = {
 	[BS["War Stomp"]] = CC, -- War Stomp
 	--CFM
 	[BS["Ice Blast"]] = CC, -- Ice Yeti
-	[BS["Snap Kick"]] = CC, -- Ice Yeti
-	[BS["Web"]] = Root		  -- Carrion Lurker
+	[BS["Snap Kick"]] = CC, -- Ashenvale Outrunner
+	[BS["Web"]] = Root      -- Carrion Lurker
 }
 
 	LCPlayer = CreateFrame("Frame", "LoseControlPlayer", ActionButtonTemplate)
