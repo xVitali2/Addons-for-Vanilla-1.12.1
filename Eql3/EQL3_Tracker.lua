@@ -294,45 +294,43 @@ function QuestWatch_Update()
 				
 				-- Brighten the quest title if all the quest objectives were met
 				watchText = getglobal("EQL3_QuestWatchLine"..watchTextIndex-markerID-1);
-				
-				if (QuestlogOptions[EQL3_Player].CustomHeaderColor == 1) then
-					if (QuestlogOptions[EQL3_Player].FadeHeaderColor == 1) then
-						if ( isComplete or objectivesCompleted == numObjectives ) then
-								tempColor = {	r=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].r,
-															g=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].g,
-															b=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].b };
+				if watchText then
+					if (QuestlogOptions[EQL3_Player].CustomHeaderColor == 1) then
+						if (QuestlogOptions[EQL3_Player].FadeHeaderColor == 1) then
+							if ( isComplete or objectivesCompleted == numObjectives ) then
+									tempColor = {	r=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].r,
+																g=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].g,
+																b=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].b };
+							else
+									tempColor3 = {r=QuestlogOptions[EQL3_Player].Color["HeaderEmpty"].r,
+																g=QuestlogOptions[EQL3_Player].Color["HeaderEmpty"].g,
+																b=QuestlogOptions[EQL3_Player].Color["HeaderEmpty"].b };
+																
+									tempColor2 = {r=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].r,
+																g=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].g,
+																b=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].b };
+									tempColor = EQL3_FadeColors(tempColor3, tempColor2, tempDone, tempObj);
+							end
 						else
-								tempColor3 = {r=QuestlogOptions[EQL3_Player].Color["HeaderEmpty"].r,
-															g=QuestlogOptions[EQL3_Player].Color["HeaderEmpty"].g,
-															b=QuestlogOptions[EQL3_Player].Color["HeaderEmpty"].b };
-															
-								tempColor2 = {r=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].r,
-															g=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].g,
-															b=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].b };
-								tempColor = EQL3_FadeColors(tempColor3, tempColor2, tempDone, tempObj);
+							if ( isComplete or objectivesCompleted == numObjectives ) then
+									tempColor = {	r=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].r,
+																g=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].g,
+																b=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].b };
+							else
+									tempColor = {	r=QuestlogOptions[EQL3_Player].Color["HeaderEmpty"].r,
+																g=QuestlogOptions[EQL3_Player].Color["HeaderEmpty"].g,
+																b=QuestlogOptions[EQL3_Player].Color["HeaderEmpty"].b };
+							end
 						end
+						watchText:SetTextColor(tempColor.r, tempColor.g, tempColor.b);
 					else
-						if ( isComplete or objectivesCompleted == numObjectives ) then
-								tempColor = {	r=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].r,
-															g=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].g,
-															b=QuestlogOptions[EQL3_Player].Color["HeaderComplete"].b };
+						if ( isComplete or  objectivesCompleted == numObjectives ) then
+								watchText:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
 						else
-								tempColor = {	r=QuestlogOptions[EQL3_Player].Color["HeaderEmpty"].r,
-															g=QuestlogOptions[EQL3_Player].Color["HeaderEmpty"].g,
-															b=QuestlogOptions[EQL3_Player].Color["HeaderEmpty"].b };
+								watchText:SetTextColor(0.75, 0.61, 0);
 						end
-					end
-					watchText:SetTextColor(tempColor.r, tempColor.g, tempColor.b);
-				else
-					if ( isComplete or  objectivesCompleted == numObjectives ) then
-							watchText:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
-					else
-							watchText:SetTextColor(0.75, 0.61, 0);
 					end
 				end
-				
-				
-			
 			end
 			
 		end
