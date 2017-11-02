@@ -187,7 +187,7 @@ do
     btn:SetWidth(243)
     btn:SetHeight(22)
     btn:SetText(SEARCH_RESULTS) --byLichery
-    btn:SetScript('OnClick', function() subtab = RESULTS end)
+    btn:SetScript('OnClick', function() set_subtab(RESULTS) end)
     search_results_button = btn
 end
 do
@@ -196,7 +196,7 @@ do
     btn:SetWidth(243)
     btn:SetHeight(22)
     btn:SetText(SAVED_SEARCHES) --byLichery
-    btn:SetScript('OnClick', function() subtab = SAVED end)
+    btn:SetScript('OnClick', function() set_subtab(SAVED) end)
     saved_searches_button = btn
 end
 do
@@ -205,7 +205,7 @@ do
     btn:SetWidth(243)
     btn:SetHeight(22)
     btn:SetText(FILTER_BUILDER) --byLichery
-    btn:SetScript('OnClick', function() subtab = FILTER end)
+    btn:SetScript('OnClick', function() set_subtab(FILTER) end)
     new_filter_button = btn
 end
 do
