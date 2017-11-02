@@ -1056,42 +1056,43 @@ function SetItemRef(link, text, button)
                 ItemRefTooltip:AddLine(questTitle);
                 local questHash = Questie:getQuestHash(questTitle);
                 questOb = nil;
-                if not questHash then return end
-                local QuestName = QuestieHashMap[questHash].name;
-                if QuestName == questTitle then
-                    local index = 0;
-                    for k,v in pairs(QuestieLevLookup[QuestName]) do
-                        index = index + 1;
-                        if (index == 1) and (v[2] == questHash) and (k ~= "") then
-                            questOb = k;
-                        elseif (index > 0) and(v[2] == questHash) and (k ~= "") then
-                            questOb = k;
-                        elseif (index == 1) and (v[2] ~= questHash) and (k ~= "") then
-                            questOb = k;
-                        end
-                    end
-                    ItemRefTooltip:AddLine("Начинается из: |cFFa6a6a6"..QuestieHashMap[questHash].startedBy.."|r",1,1,1);---------by CFM
-                    if questOb ~= nil then
-                        ItemRefTooltip:AddLine("|cffffffff"..questOb.."|r",1,1,1,true);
-                    else
-                        ItemRefTooltip:AddLine("Цель задания не найдена в базе Questie!", 1, .8, .8);---------by CFM
-                        ItemRefTooltip:AddLine("Пожалуйста напишите багрепорт на GitHub портале:", 1, .8, .8);---------by CFM
-                        ItemRefTooltip:AddLine("https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/issues", 1, .8, .8);---------by CFM
-                    end
-                    local _, _, questLevel = string.find(QuestieHashMap[questHash].questLevel, "(%d+)");
-                    if questLevel ~= 0 and questLevel ~= "0" then
-                        local color = GetDifficultyColor(questLevel);
-                        ItemRefTooltip:AddLine("Уровень задания " ..QuestieHashMap[questHash].questLevel, color.r, color.g, color.b);---------by CFM
-                    end
-                    ItemRefTooltip:Show();
-                else
-                    ShowUIPanel(ItemRefTooltip);
-                    ItemRefTooltip:SetOwner(UIParent, "ANCHOR_PRESERVE");
-                    ItemRefTooltip:AddLine(questTitle, 1,1,0);
-                    ItemRefTooltip:AddLine("Задание не найдено в базе Questie!", 1, .8, .8);---------by CFM
-                    ItemRefTooltip:AddLine("Пожалуйста напишите багрепорт на GitHub портале:", 1, .8, .8);---------by CFM
-                    ItemRefTooltip:AddLine("https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/issues", 1, .8, .8);---------by CFM
-                end
+                if questHash and QuestieHashMap[questHash] then
+					local QuestName = QuestieHashMap[questHash].name;
+					if QuestName == questTitle then
+						local index = 0;
+						for k,v in pairs(QuestieLevLookup[QuestName]) do
+							index = index + 1;
+							if (index == 1) and (v[2] == questHash) and (k ~= "") then
+								questOb = k;
+							elseif (index > 0) and(v[2] == questHash) and (k ~= "") then
+								questOb = k;
+							elseif (index == 1) and (v[2] ~= questHash) and (k ~= "") then
+								questOb = k;
+							end
+						end
+						ItemRefTooltip:AddLine("Начинается из: |cFFa6a6a6"..QuestieHashMap[questHash].startedBy.."|r",1,1,1);---------by CFM
+						if questOb ~= nil then
+							ItemRefTooltip:AddLine("|cffffffff"..questOb.."|r",1,1,1,true);
+						else
+							ItemRefTooltip:AddLine("Цель задания не найдена в базе Questie!", 1, .8, .8);---------by CFM
+							ItemRefTooltip:AddLine("Пожалуйста напишите багрепорт на GitHub портале:", 1, .8, .8);---------by CFM
+							ItemRefTooltip:AddLine("https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/issues", 1, .8, .8);---------by CFM
+						end
+						local _, _, questLevel = string.find(QuestieHashMap[questHash].questLevel, "(%d+)");
+						if questLevel ~= 0 and questLevel ~= "0" then
+							local color = GetDifficultyColor(questLevel);
+							ItemRefTooltip:AddLine("Уровень задания " ..QuestieHashMap[questHash].questLevel, color.r, color.g, color.b);---------by CFM
+						end
+						ItemRefTooltip:Show();
+					else
+						ShowUIPanel(ItemRefTooltip);
+						ItemRefTooltip:SetOwner(UIParent, "ANCHOR_PRESERVE");
+						ItemRefTooltip:AddLine(questTitle, 1,1,0);
+						ItemRefTooltip:AddLine("Задание не найдено в базе Questie!", 1, .8, .8);---------by CFM
+						ItemRefTooltip:AddLine("Пожалуйста напишите багрепорт на GitHub портале:", 1, .8, .8);---------by CFM
+						ItemRefTooltip:AddLine("https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/issues", 1, .8, .8);---------by CFM
+					end
+				end
                 ItemRefTooltip:Show();
             end
         else
