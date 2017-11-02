@@ -7,7 +7,7 @@ local info = require 'aux.util.info'
 local money =  require 'aux.util.money'
 local disenchant = require 'aux.core.disenchant'
 local history = require 'aux.core.history'
-local auction_listing = require 'aux.gui.auction_listing'
+local gui = require 'aux.gui'
 
 local UNKNOWN = GRAY_FONT_COLOR_CODE .. '?' .. FONT_COLOR_CODE_CLOSE
 
@@ -91,7 +91,7 @@ function M.extend_tooltip(tooltip, link, quantity)
         end
         if settings.daily  then
             local market_value = history.market_value(item_key)
-            tooltip:AddLine(TODAY .. (market_value and money.to_string2(market_value * quantity) .. ' (' .. auction_listing.percentage_historical(round(market_value / value * 100)) .. ')' or UNKNOWN), color.tooltip.value()) --byLICHERY
+            tooltip:AddLine(TODAY .. (market_value and money.to_string2(market_value * quantity) .. ' (' .. gui.percentage_historical(round(market_value / value * 100)) .. ')' or UNKNOWN), color.tooltip.value()) --byLICHERY
         end
     end
 
