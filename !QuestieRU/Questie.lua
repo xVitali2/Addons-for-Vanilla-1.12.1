@@ -1,8 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 --Name: Questie for Vanilla WoW
---Revision: 3.80
+--Revision: 3.81
 --Authors: KasVital & Aero/Schaka/Logon/Dyaxler/Muehe/Zoey/everyone else
---Website: https://github.com/AeroScripts/QuestieDev
+--Website: https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/
 --Description: Questie started out being a simple backport of QuestHelper but it has grown beyond
 --it's original design into something better. Questie will show you where quests are available and
 --only display the quests you're eligible for based on level, profession, class, race etc. Questie
@@ -12,7 +12,7 @@
 --///////////////////////////////////////////////////////////////////////////////////////////////--
 ---------------------------------------------------------------------------------------------------
 Questie = CreateFrame("Frame", "QuestieLua", UIParent, "ActionButtonTemplate");
-QuestieVersion = 3.80;
+QuestieVersion = 3.81;
 ---------------------------------------------------------------------------------------------------
 --Setup Default Profile
 ---------------------------------------------------------------------------------------------------
@@ -1056,6 +1056,7 @@ function SetItemRef(link, text, button)
                 ItemRefTooltip:AddLine(questTitle);
                 local questHash = Questie:getQuestHash(questTitle);
                 questOb = nil;
+                if not questHash then return end
                 local QuestName = QuestieHashMap[questHash].name;
                 if QuestName == questTitle then
                     local index = 0;
@@ -1073,9 +1074,9 @@ function SetItemRef(link, text, button)
                     if questOb ~= nil then
                         ItemRefTooltip:AddLine("|cffffffff"..questOb.."|r",1,1,1,true);
                     else
-                        ItemRefTooltip:AddLine("Quest *Objective* not found in Questie Database!", 1, .8, .8);
-                        ItemRefTooltip:AddLine("Please file a bug report on our GitHub portal:)", 1, .8, .8);
-                        ItemRefTooltip:AddLine("https://github.com/AeroScripts/QuestieDev/issues", 1, .8, .8);
+                        ItemRefTooltip:AddLine("Цель задания не найдена в базе Questie!", 1, .8, .8);---------by CFM
+                        ItemRefTooltip:AddLine("Пожалуйста напишите багрепорт на GitHub портале:", 1, .8, .8);---------by CFM
+                        ItemRefTooltip:AddLine("https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/issues", 1, .8, .8);---------by CFM
                     end
                     local _, _, questLevel = string.find(QuestieHashMap[questHash].questLevel, "(%d+)");
                     if questLevel ~= 0 and questLevel ~= "0" then
@@ -1087,9 +1088,9 @@ function SetItemRef(link, text, button)
                     ShowUIPanel(ItemRefTooltip);
                     ItemRefTooltip:SetOwner(UIParent, "ANCHOR_PRESERVE");
                     ItemRefTooltip:AddLine(questTitle, 1,1,0);
-                    ItemRefTooltip:AddLine("Quest not found in Questie Database!", 1, .8, .8);
-                    ItemRefTooltip:AddLine("Please file a bug report on our GitHub portal:)", 1, .8, .8);
-                    ItemRefTooltip:AddLine("https://github.com/AeroScripts/QuestieDev/issues", 1, .8, .8);
+                    ItemRefTooltip:AddLine("Задание не найдено в базе Questie!", 1, .8, .8);---------by CFM
+                    ItemRefTooltip:AddLine("Пожалуйста напишите багрепорт на GitHub портале:", 1, .8, .8);---------by CFM
+                    ItemRefTooltip:AddLine("https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/issues", 1, .8, .8);---------by CFM
                 end
                 ItemRefTooltip:Show();
             end
