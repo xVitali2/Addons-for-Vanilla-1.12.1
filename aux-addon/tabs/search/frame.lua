@@ -1,5 +1,6 @@
 module 'aux.tabs.search'
 
+local T = require 'T'
 local completion = require 'aux.util.completion'
 local filter_util = require 'aux.util.filter'
 local scan = require 'aux.core.scan'
@@ -126,7 +127,7 @@ do
     btn:RegisterForClicks('LeftButtonUp', 'RightButtonUp')
     btn:SetScript('OnClick', function()
         if arg1 == 'RightButton' then
-            filter = current_search.filter_string
+            set_filter(get_current_search().filter_string)
         end
         execute()
     end)
@@ -162,7 +163,7 @@ do
 		return queries and join(map(copy(queries), function(query) return query.prettified end), ';') or color.red(str)
 	end
 	editbox.complete = completion.complete_filter
-    editbox.focus_loss = function() this:SetText(current_search.filter_string or '') end
+    editbox.focus_loss = function() this:SetText(get_current_search().filter_string or '') end
 	editbox:SetHeight(25)
 	editbox.char = function()
 		this:complete()
@@ -234,8 +235,8 @@ do
     btn:SetText(CLEAR) --byLichery
 	btn:SetWidth(100) --byLichery
     btn:SetScript('OnClick', function()
-        while tremove(current_search.records) do end
-        current_search.table:SetDatabase()
+        while tremove(get_current_search().records) do end
+        get_current_search().table:SetDatabase()
     end)
 end
 do
@@ -435,14 +436,14 @@ do
 	input:SetPoint('CENTER', filter_dropdown, 'CENTER', 0, 0)
 	input:SetWidth(150)
 	input:SetScript('OnTabPressed', function() filter_parameter_input:SetFocus() end)
-	input.complete = completion.complete(function() return temp-A('and', 'or', 'not', unpack(keys(filter_util.filters))) end)
+	input.complete = completion.complete(function() return T.temp-T.list('and', 'or', 'not', unpack(keys(filter_util.filters))) end)
 	input.char = function() this:complete() end
 	input.change = function()
 		local text = this:GetText()
 		if filter_util.filters[text] and filter_util.filters[text].input_type ~= '' then
 			local _, _, suggestions = filter_util.parse_filter_string(text .. '/')
 			filter_parameter_input:SetNumeric(filter_util.filters[text].input_type == 'number')
-			filter_parameter_input.complete = completion.complete(function() return suggestions or empty end)
+			filter_parameter_input.complete = completion.complete(function() return suggestions or T.empty end)
 			filter_parameter_input:Show()
 		else
 			filter_parameter_input:Hide()
@@ -522,7 +523,7 @@ for _ = 1, 5 do
 
     local table = auction_listing.new(frame.results, 16, auction_listing.search_columns)
     table:SetHandler('OnClick', function(row, button)
-        if IsAltKeyDown() and current_search.table:GetSelection().record == row.record then
+        if IsAltKeyDown() and get_current_search().table:GetSelection().record == row.record then
             if button == 'LeftButton' then
                 buyout_button:Click()
             elseif button == 'RightButton' then
@@ -544,7 +545,7 @@ favorite_searches_listing:SetColInfo{{name=AUTO_BUY, width=.13, align='CENTER'},
 recent_searches_listing = listing.new(frame.saved.recent)
 recent_searches_listing:SetColInfo{{name=RECENT_SEARCHES, width=1}} --byLichery
 
-for listing in pairs(temp-S(favorite_searches_listing, recent_searches_listing)) do
+for listing in pairs(T.temp-T.set(favorite_searches_listing, recent_searches_listing)) do
 	for k, v in pairs(handlers) do
 		listing:SetHandler(k, v)
 	end

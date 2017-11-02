@@ -1,12 +1,15 @@
 module 'aux.core.post'
 
-include 'T'
 include 'aux'
 
 local info = require 'aux.util.info'
 local stack = require 'aux.core.stack'
 
 local state
+
+function handle.CLOSE()
+	stop()
+end
 
 function process()
 	if state.posted < state.count then

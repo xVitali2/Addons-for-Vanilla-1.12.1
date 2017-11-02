@@ -1,9 +1,9 @@
 ## Interface: 11200
-## Author: shirsig
+## Author: shirsig (CFM MoD)
 ## Title: aux
 ## Notes: Auction House replacement
 ## Notes-ruRU: Замена интерфейса аукциона
-## Version: 01.10.2017
+## Version: 01.11.2017
 ## OptionalDeps: Informant
 ## SavedVariables: aux, aux_scale, aux_post_bid, aux_ignore_owner, aux_items, aux_item_ids, aux_auctionable_items, aux_merchant_buy, aux_merchant_sell
 
@@ -16,23 +16,22 @@ control.lua
 color.lua
 gui\core.lua
 frame.lua
-
 util\persistence.lua
 util\sort.lua
 util\money.lua
+core\cache.lua
 util\info.lua
 util\filter.lua
-util\scan.lua
 util\completion.lua
-
-core\cache.lua
 core\history.lua
 core\disenchant.lua
 core\slash.lua
 core\scan.lua
+util\scan.lua
 core\stack.lua
 core\post.lua
 core\tooltip.lua
+core\shortcut.lua
 
 gui\listing.lua
 gui\auction_listing.lua
@@ -52,3 +51,5 @@ tabs\auctions\frame.lua
 
 tabs\bids\core.lua
 tabs\bids\frame.lua
+
+core\crafting.lua

@@ -1,5 +1,7 @@
 if (GetLocale() == "ruRU") then
 -- Russian localization by Lichery
+	TOTALCOST = "(Полная стоимость: "  -- CFM
+	PRICEFROMVENDOR = "Цена у продавца:  "  -- CFM
 	SEARCH = "Поиск"
 	BIDS = "Ставки"
 	POST = "Выставить"
@@ -23,7 +25,7 @@ if (GetLocale() == "ruRU") then
 	INVALID_SCHEMA = "Неверная схема."
 	SCANNING_AUCTIONS = "Сканирование аукционов..."
 	SCANNING = 'Сканирование (Страница %d / %d)'
-	SCANNING2 = 'Сканирование %d / %d (Страница %d / %d)'
+	SCANNING2 = 'Сканирование %d / %d (Страница %d / %d)'  -- CFM
 	SCAN_COMPLETE = "Сканирование завершено"
 	SCAN_ABORTED = "Сканирование прервано"
 	CANCEL = "Отмена"
@@ -128,6 +130,8 @@ if (GetLocale() == "ruRU") then
 	MOVE_DOWN = "Переместить вниз"
 	DELETE = "Удалить"
 else
+	TOTALCOST = "(Total Cost: "  -- CFM
+	PRICEFROMVENDOR = "Vendor price:  "  -- CFM
 	SEARCH = "Search"
 	BIDS = "Bids"
 	POST = "Post"
@@ -151,7 +155,7 @@ else
 	INVALID_SCHEMA = "Invalid schema."
 	SCANNING_AUCTIONS = "Scanning auctions..."
 	SCANNING = "Scanning (Page %d / %d)"
-	SCANNING2 = 'Scanning %d / %d (Page %d / %d)'
+	SCANNING2 = 'Scanning %d / %d (Page %d / %d)'  -- CFM
 	SCAN_COMPLETE = "Scan complete"	
 	SCAN_ABORTED = "Scan aborted"	
 	CANCEL = "Cancel"

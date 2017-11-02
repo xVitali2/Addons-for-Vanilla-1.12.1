@@ -1,22 +1,22 @@
 module 'aux.tabs.bids'
 
-include 'T'
 include 'aux'
 
+local T = require 'T'
 local info = require 'aux.util.info'
 local scan_util = require 'aux.util.scan'
 local scan = require 'aux.core.scan'
 
-TAB(BIDS) --byLICHERY
+local tab = TAB(BIDS) --byLICHERY
 
 auction_records = {}
 
-function OPEN()
+function tab.OPEN()
     frame:Show()
     scan_bids()
 end
 
-function CLOSE()
+function tab.CLOSE()
     frame:Hide()
 end
 
@@ -29,11 +29,11 @@ function M.scan_bids()
     status_bar:update_status(0, 0)
     status_bar:set_text(SCANNING_AUCTIONS) --byLICHERY
 
-    wipe(auction_records)
+    T.wipe(auction_records)
     update_listing()
     scan.start{
         type = 'bidder',
-        queries = A(O('blizzard_query', T)),
+        queries = T.list(T.map('blizzard_query', T.acquire())),
         on_page_loaded = function(page, total_pages)
             status_bar:update_status(page / total_pages, 0)
             status_bar:set_text(format(SCANNING, page, total_pages)) --byLICHERY
@@ -120,7 +120,7 @@ do
         elseif state == FOUND and not scan_util.test(selection.record, found_index) then
             buyout_button:Disable()
             bid_button:Disable()
-            if not bid_in_progress then state = IDLE end
+            if not bid_in_progress() then state = IDLE end
         end
     end
 end

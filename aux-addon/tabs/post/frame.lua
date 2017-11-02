@@ -73,10 +73,10 @@ do
 					if LABELFORITEM==nil then LABELFORITEM=gui.label(f, gui.font_size.small) end --byCFM
 					LABELFORITEM:SetPoint('TOP', f, 'LEFT', 120, 200) --byCFM
 					if str==nil then str="?" end --byCFM
-					LABELFORITEM:SetText("Цена у продавца:  "..str) --byCFM
+					LABELFORITEM:SetText(PRICEFROMVENDOR..str) --byCFM
 				end --byCFM
 	        elseif arg1 == 'RightButton' then
-	            tab = 1
+	            set_tab(1)
 				local itemname=info.item(this.item_record.item_id).name --byCFM
 				if GetLocale()=="ruRU" then --byCFM
 					local s,ss=nil,nil --byCFM
@@ -86,9 +86,9 @@ do
 					else --byCFM
 						s=string.sub(itemname,0,63) --byCFM
 					end --byCFM
-					search_tab.filter = s --byCFM
+					search_tab.set_filter(s) --byCFM
 				else --byCFM
-					search_tab.filter = strlower(itemname) .. '/exact' --byCFM
+					search_tab.set_filter(strlower(itemname) .. '/exact') --byCFM
 				end --byCFM
 	            search_tab.execute(nil, false)
 	        end
@@ -108,13 +108,13 @@ bid_listing:SetColInfo{
     {name=HIST_VALUE, width=.18, align='CENTER'}, --byLICHERY
 }
 bid_listing:SetSelection(function(data)
-	return data.record == bid_selection or data.record.historical_value and bid_selection and bid_selection.historical_value
+	return data.record == get_bid_selection() or data.record.historical_value and get_bid_selection() and get_bid_selection().historical_value
 end)
 bid_listing:SetHandler('OnClick', function(table, row_data, column, button)
-	if row_data.record == bid_selection or row_data.record.historical_value and bid_selection and bid_selection.historical_value then
-		bid_selection = nil
+	if row_data.record == get_bid_selection() or row_data.record.historical_value and get_bid_selection() and get_bid_selection().historical_value then
+		set_bid_selection()
 	else
-		bid_selection = row_data.record
+		set_bid_selection(row_data.record)
 	end
 	refresh = true
 end)
@@ -132,13 +132,13 @@ buyout_listing:SetColInfo{
 	{name=HIST_VALUE, width=.18, align='CENTER'}, --byLICHERY
 }
 buyout_listing:SetSelection(function(data)
-	return data.record == buyout_selection or data.record.historical_value and buyout_selection and buyout_selection.historical_value
+	return data.record == get_buyout_selection() or data.record.historical_value and get_buyout_selection() and get_buyout_selection().historical_value
 end)
 buyout_listing:SetHandler('OnClick', function(table, row_data, column, button)
-	if row_data.record == buyout_selection or row_data.record.historical_value and buyout_selection and buyout_selection.historical_value then
-		buyout_selection = nil
+	if row_data.record == get_buyout_selection() or row_data.record.historical_value and get_buyout_selection() and get_buyout_selection().historical_value then
+		set_buyout_selection()
 	else
-		buyout_selection = row_data.record
+		set_buyout_selection(row_data.record)
 	end
 	refresh = true
 end)
@@ -276,12 +276,12 @@ do
 		    unit_buyout_price_input:SetFocus()
 	    end
     end)
-    editbox.formatter = function() return money.to_string(unit_start_price, true) end
-    editbox.char = function() bid_selection, buyout_selection = nil, nil; unit_start_price = money.from_string(this:GetText()) end
+    editbox.formatter = function() return money.to_string(get_unit_start_price(), true) end
+    editbox.char = function() set_bid_selection(); set_buyout_selection(); set_unit_start_price(money.from_string(this:GetText())) end
     editbox.change = function() refresh = true end
     editbox.enter = function() this:ClearFocus() end
     editbox.focus_loss = function()
-	    this:SetText(money.to_string(unit_start_price, true, nil, nil, true))
+	    this:SetText(money.to_string(get_unit_start_price(), true, nil, nil, true))
     end
     do
         local label = gui.label(editbox, gui.font_size.small)
@@ -311,12 +311,12 @@ do
             stack_size_slider.editbox:SetFocus()
         end
     end)
-    editbox.formatter = function() return money.to_string(unit_buyout_price, true) end
-    editbox.char = function() buyout_selection = nil; unit_buyout_price = money.from_string(this:GetText()) end
+    editbox.formatter = function() return money.to_string(get_unit_buyout_price(), true) end
+    editbox.char = function() set_buyout_selection(); set_unit_buyout_price(money.from_string(this:GetText())) end
     editbox.change = function() refresh = true end
     editbox.enter = function() this:ClearFocus() end
     editbox.focus_loss = function()
-	    this:SetText(money.to_string(unit_buyout_price, true, nil, nil, true))
+	    this:SetText(money.to_string(get_unit_buyout_price(), true, nil, nil, true))
     end
     do
         local label = gui.label(editbox, gui.font_size.small)
