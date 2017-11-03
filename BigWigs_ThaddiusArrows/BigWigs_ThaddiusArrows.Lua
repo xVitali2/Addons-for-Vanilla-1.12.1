@@ -90,7 +90,7 @@ L:RegisterTranslations("ruRU", function() return {
 
 	sound_cmd = "sarrows",
 	sound_name = "Звуковые эффекты",
-	sound_desc = "Play Direction Sound Effects",
+	sound_desc = "Звуковые эффекты направления движения",
 
 	strat_cmd = "strat",
 	strat_name = "Стратегия",
