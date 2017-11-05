@@ -27532,11 +27532,9 @@ QuestieMonsters = {
     ["looted"] = 1
   },
   ["Страж смерти Эрланд Винсент"] = {
-    ["locations"] = {
-      [1] = {35.0, 0.4473, 0.6778, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
+    locations = {
+		{2,18,0.4473,0.6778}
+    }
   },
   ["Волшебник крови Дразиал"] = {
     ["locations"] = {
@@ -32279,25 +32277,9 @@ QuestieMonsters = {
     ["locationCount"] = 1
   },
   ["Кельдран"] = {
-    ["locations"] = {
-      [1] = {1.0, 0.2237, 0.5343, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
-  },
-  ["Dunemaul Enforcer slain"] = {
-    ["locations"] = {
-      [1] = {8.0, 0.3987, 0.5675, 100.0},
-      [3] = {8.0, 0.4693, 0.6502, 4.0},
-      [2] = {8.0, 0.3994, 0.5207, 74.0}
-    },
-    ["locationCount"] = 3
-  },
-  ["Receive the Fourth Prophecy"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.4021, 0.2299, 100.0}
-    },
-    ["locationCount"] = 1
+    locations = {
+      {1,10, 0.2237, 0.5343}
+    }
   },
   ["Хилсбрадский пехотинец"] = {
     ["locations"] = {
@@ -32307,26 +32289,6 @@ QuestieMonsters = {
     ["looted"] = 8608,
     ["locationCount"] = 2,
     ["faction"] = 1
-  },
-  ["Darkwater Crocolisk"] = {
-    ["locations"] = {
-      [1] = {8.0, 0.5721, 0.6295, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["looted"] = 3245
-  },
-  ["Jho'nass"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.2804, 0.5874, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Severed Spirit slain"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.5927, 0.8551, 100.0},
-      [2] = {59.0, 0.5854, 0.8873, 3.0}
-    },
-    ["locationCount"] = 2
   },
   ["Келдрик Буше"] = {
     ["locations"] = {
@@ -32342,12 +32304,6 @@ QuestieMonsters = {
     ["looted"] = 1480,
     ["locationCount"] = 1
   },
-  ["Nether-Stalker Khay'ji"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.3248, 0.6425, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Кнутохвост нагорья"] = {
     ["locations"] = {
       [1] = {51.0, 0.5775, 0.2568, 100.0},
@@ -32358,20 +32314,6 @@ QuestieMonsters = {
     },
     ["looted"] = 611,
     ["locationCount"] = 5
-  },
-  ["Amani'shi Handler"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.8241, 0.6445, 100.0}
-    },
-    ["looted"] = 267,
-    ["locationCount"] = 1
-  },
-  ["Neii"] = {
-    ["locations"] = {
-      [1] = {12.0, 0.6445, 0.685, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
   },
   ["Капрал Калеб"] = {
     ["locations"] = {
