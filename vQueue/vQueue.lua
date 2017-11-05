@@ -663,7 +663,7 @@ function vQueue_OnEvent(event)
 		
 		vQueueFrame.hostlistRoleText = CreateFrame("Button", nil, vQueueFrame.hostlistTopSection)
 		vQueueFrame.hostlistRoleText:ClearAllPoints()
-		vQueueFrame.hostlistRoleText:SetPoint("BOTTOMLEFT", vQueueFrame.hostlistTopSection, "BOTTOMLEFT", 5, 5)
+		vQueueFrame.hostlistRoleText:SetPoint("BOTTOMLEFT", vQueueFrame.hostlistTopSection, "BOTTOMLEFT", 5, 20)
 		vQueueFrame.hostlistRoleText:EnableMouse(false)
 		vQueueFrame.hostlistRoleText:SetFont("Fonts\\FRIZQT__.TTF", 10, "OUTLINE")
 		vQueueFrame.hostlistRoleText:SetText("(Select a role to start finding)")
@@ -2496,9 +2496,10 @@ function vQueue_OnUpdate()
 			if v ~= nil then
 				local leaderArgs = split(v, "\:")
 				local timeDiff = GetTime() - tonumber(leaderArgs[3])
+				--DEFAULT_CHAT_FRAME:AddMessage("k "..k.." v "..v)
 				if leaderArgs[3] ~= nil and type(tonumber(leaderArgs[3])) == "number" then
 					if timeDiff > (300) then -- delete chat entries after 5 minutes of no updates
-						if k and leaderArgs[2] and groups[leaderArgs[2]][k] ~= nil then
+						if k ~= nil and leaderMessages[k] ~= nil and leaderArgs[2] ~= nil and groups[leaderArgs[2]][k] ~= nil then
 							groups[leaderArgs[2]][k]:Hide()
 							groups[leaderArgs[2]][k] = nil
 							leaderMessages[k] = nil
@@ -2507,7 +2508,7 @@ function vQueue_OnUpdate()
 						end
 					end
 					if timeDiff > (40) then -- remove vQueue groups after 40 seconds
-						if leaderArgs[2] and k and groups[leaderArgs[2]][k] ~= nil then
+						if k ~= nil and leaderMessages[k] ~= nil and leaderArgs[2] ~= nil and groups[leaderArgs[2]][k] ~= nil then
 							local thisframe, bg, name, level, size, tank, healer, damage = groups[leaderArgs[2]][k]:GetRegions()
 							if size:GetText() ~= "?" then
 								groups[leaderArgs[2]][k]:Hide()
