@@ -586,6 +586,7 @@ function EngBank_SetClassBars()
 	EngBankConfig["putinslot--MAGE_REAGENT"] = c["MAGE"].."1";
 
 	EngBankConfig["putinslot--SHAMAN_REAGENTS"] = c["SHAMAN"].."1";
+	EngBankConfig["putinslot--DRUID_REAGENTS"] = c["DRUID"].."1";
 end
 
 -- set "re" to 1 to restore all default values

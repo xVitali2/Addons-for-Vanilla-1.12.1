@@ -774,6 +774,7 @@ function EngInventory_SetClassBars()
 	EngInventoryConfig["putinslot--MAGE_REAGENT"] = c["MAGE"].."1";
 
 	EngInventoryConfig["putinslot--SHAMAN_REAGENTS"] = c["SHAMAN"].."1";
+	EngInventoryConfig["putinslot--DRUID_REAGENTS"] = c["DRUID"].."1";
 end
 
 -- set "re" to 1 to restore all default values
