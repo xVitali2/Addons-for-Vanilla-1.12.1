@@ -2,7 +2,7 @@
 	
 	-- Atlas Data Alpha (Russian)
 	-- Compiled by Lichery
-	-- Last Update: 15.01.2017
+	-- Last Update: 06.11.2017 CFM
 	
 --]]
 
@@ -46,7 +46,7 @@ AL:RegisterTranslations("ruRU", function() return {
     ["Enable all Chat Links |cffff0000(use at own risk)|r"] = "Включить все ссылки чата |cffff0000(исп. на свой риск)|r";
     ["Default Tooltips"] = "Стандартные всплывающие подсказки";
     ["Lootlink Tooltips"] = "Всплывающие подсказки ссылок трофеев";
-    ["|cff9d9d9dLootlink Tooltips|r"] = "|cff9d9d9dПодсказки ссылок профеев|r";
+    ["|cff9d9d9dLootlink Tooltips|r"] = "|cff9d9d9dПодсказки ссылок трофеев|r";
     ["ItemSync Tooltips"] = "Всплывающие подсказки синхронизации трофеев";
     ["|cff9d9d9dItemSync Tooltips|r"] = "|cff9d9d9dПодсказки синхронизации трофеев.|r";
     ["Use EquipCompare"] = "Включить сравнение экипировки";
