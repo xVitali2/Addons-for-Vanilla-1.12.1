@@ -150,7 +150,7 @@ function RecipeRadar_Minimap_GetPosition(offs_x, offs_y, scale_x, scale_y)
 	local mapWidth = Minimap:GetWidth()/2;
 	local mapHeight = Minimap:GetHeight()/2;
 	if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")
-		or (pfUI and pfUI_config["disabled"]["minimap"] ~= "1")) then
+		or (pfUI and pfUI.minimap)) then
 		if (math.abs(map_x) > mapWidth) then
 			map_x = (mapWidth)*((map_x<0 and -1) or 1);
       end

@@ -15,20 +15,32 @@ Questie.minimapButton:SetWidth(31)
 Questie.minimapButton:SetHeight(31)
 Questie.minimapButton:SetFrameLevel(9)
 Questie.minimapButton:SetHighlightTexture('Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight')
-Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52-(80*cos(QuestieMinimapPosition)),(80*sin(QuestieMinimapPosition))-52)
-
+if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square") or (pfUI and pfUI.minimap)) then
+	Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52-math.max(-82,math.min((110*cos(QuestieMinimapPosition)),84)),math.max(-86,math.min((110*sin(QuestieMinimapPosition)),82))-52)
+else
+	Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52-(80*cos(QuestieMinimapPosition)),(80*sin(QuestieMinimapPosition))-52)
+end
 Questie.minimapButton:RegisterForDrag("LeftButton")
 Questie.minimapButton.draggingFrame = CreateFrame("Frame", "QuestieMinimapDragging", Questie.minimapButton)
 Questie.minimapButton.draggingFrame:Hide();
 Questie.minimapButton.draggingFrame:SetScript("OnUpdate", function()
     local xpos,ypos = GetCursorPosition()
-    local xmin,ymin = Minimap:GetLeft(), Minimap:GetBottom()
-
-    xpos = xmin-xpos/UIParent:GetScale()+70
-    ypos = ypos/UIParent:GetScale()-ymin-70
-
-    QuestieMinimapPosition = math.deg(math.atan2(ypos,xpos))
-    Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52-(80*cos(QuestieMinimapPosition)),(80*sin(QuestieMinimapPosition))-52)
+    local xmin,ymin = Minimap:GetLeft() or 400, Minimap:GetBottom() or 400
+	xpos = xmin-xpos/UIParent:GetScale()+70
+	ypos = ypos/UIParent:GetScale()-ymin-70
+	QuestieMinimapPosition = math.deg(math.atan2(ypos,xpos))
+	local pos = QuestieMinimapPosition
+	if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")
+		or (pfUI and pfUI.minimap)) then
+		xpos = 110 * cos(pos or 0)
+		ypos = 110 * sin(pos or 0)
+		xpos = math.max(-82,math.min(xpos,84))
+		ypos = math.max(-86,math.min(ypos,82))
+	else
+		xpos = 80*cos(pos or 0)
+		ypos = 80*sin(pos or 0)
+	end
+	Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52-xpos,ypos-52)
 end)
 Questie.minimapButton:SetScript("OnDragStart", function()
     this:LockHighlight();

@@ -120,7 +120,7 @@ function RecipeRadar.MoveMinimapButton()
 	local xpos,ypos
 	local pos = RecipeRadar_Options.MinimapButtonPosition;
 	if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")
-		or (pfUI and pfUI_config["disabled"]["minimap"] ~= "1")) then
+		or (pfUI and pfUI.minimap)) then
 		xpos = 110 * cos(pos or 0)
 		ypos = 110 * sin(pos or 0)
 		xpos = math.max(-82,math.min(xpos,84))
