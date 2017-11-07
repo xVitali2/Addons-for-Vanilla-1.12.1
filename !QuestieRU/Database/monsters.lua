@@ -41233,50 +41233,20 @@ QuestieMonsters = {
     ["looted"] = 1471,
     ["locationCount"] = 5
   },
-  ["Tyrith"] = {
-    ["locations"] = {
-      [1] = {64.0, 0.6131, 0.3097, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Канати Серое Облако"] = {
-    ["locations"] = {
-      [1] = {14.0, 0.2132, 0.3202, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
+    locations = {
+      {1,19, 0.2132, 0.3202}
+    }
   },
-  ["Silithid Hive Drone slain"] = {
-    ["locations"] = {
-      [1] = {14.0, 0.6936, 0.8312, 100.0},
-      [2] = {14.0, 0.7088, 0.8638, 3.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Lagoon Walker"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.5666, 0.6505, 100.0},
-      [2] = {57.0, 0.5936, 0.6142, 9.0}
-    },
-    ["looted"] = 4834,
-    ["locationCount"] = 2
+  ["Вестник племени Галак"] = {
+    locations = {
+      {1,19, 0.4, 0.35},
+      {1,19, 0.37, 0.3}
+    }
   },
   ["Леонид Барталомей Чтимый"] = {
     ["locations"] = {
       [1] = {34.0, 0.8167, 0.5795, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Slain Outrunner"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.4199, 0.3556, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
-  },
-  ["Kobold Workers slain"] = {
-    ["locations"] = {
-      [1] = {37.0, 0.4826, 0.3401, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -41295,29 +41265,12 @@ QuestieMonsters = {
     ["looted"] = 6492,
     ["locationCount"] = 2
   },
-  ["Promenade Sentinel"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.7103, 0.4672, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["looted"] = 29
-  },
   ["Изложение боевой задачи III"] = {
     ["locations"] = {
       [1] = {5.0, 0.5031, 0.3737, 100.0},
       [2] = {5.0, 0.4915, 0.2542, 7.0}
     },
     ["locationCount"] = 2
-  },
-  ["Brewfest Reveler"] = {
-    ["locations"] = {
-      [1] = {28.0, 0.4874, 0.3907, 100.0},
-      [3] = {21.0, 0.6867, 0.3849, 28.0},
-      [4] = {37.0, 0.345, 0.5143, 2.0},
-      [2] = {28.0, 0.5278, 0.3544, 36.0}
-    },
-    ["faction"] = 1,
-    ["locationCount"] = 4
   },
   ["Мрачный убийца"] = {
     ["locations"] = {
@@ -58136,10 +58089,9 @@ QuestieMonsters = {
     ["locationCount"] = 5
   },
   ["Хеминг Эрнестуэй"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.7152, 0.4076, 100.0}
-    },
-    ["locationCount"] = 1
+    locations = {
+      {2,21, 0.36, 0.11}
+    }
   },
   ["Секрет Рин'джи"] = {
     ["locations"] = {
