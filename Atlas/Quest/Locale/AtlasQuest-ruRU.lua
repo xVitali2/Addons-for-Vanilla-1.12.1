@@ -3868,12 +3868,12 @@ if ( GetLocale() == "ruRU" ) then
 	-- No Rewards for this quest
 	
 	--Quest 2 Horde
-	Inst22Quest2_HORDE = "2. Vorrel's Revenge"
+	Inst22Quest2_HORDE = "2. Месть Воррела" -- 1051
 	Inst22Quest2_HORDE_Level = "33"
 	Inst22Quest2_HORDE_Attain = "25"
-	Inst22Quest2_HORDE_Aim = "Return Vorrel Sengutz's wedding ring to Monika Sengutz in Tarren Mill."
-	Inst22Quest2_HORDE_Location = "Vorrel Sengutz (Scarlet Monastery - Graveyard; "..YELLOW.."[1]"..WHITE..")"
-	Inst22Quest2_HORDE_Note = "You can find Vorrel Sengutz at the beginning of the Graveyard section of the Scarlet Monastery. Nancy Vishas, who drops the ring needed for this quest, can be found in a house in the Альтеракские горы ("..YELLOW.."31,32"..WHITE..")."
+	Inst22Quest2_HORDE_Aim = "Верните обручальное кольцо Воррела Сенгутца Монике Сенгутц в Мельнице Таррен."
+	Inst22Quest2_HORDE_Location = "Воррел Сенгутц (Монастырь Алого Ордена - Кладбище; "..YELLOW.."[1]"..WHITE..")"
+	Inst22Quest2_HORDE_Note = "Вы найдете Воррела Сенгутца в начале Кладбища Монастыря Алого Ордена. Нэнси Вишас, с которой выпадает кольцо для задания, находится в доме в Альтеракских горах ("..YELLOW.."32,33"..WHITE..")."
 	Inst22Quest2_HORDE_Prequest = "Нет"
 	Inst22Quest2_HORDE_Folgequest = "Нет"
 	--
