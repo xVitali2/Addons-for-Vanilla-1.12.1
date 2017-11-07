@@ -38085,70 +38085,9 @@ QuestieMonsters = {
     ["looted"] = 2024,
     ["locationCount"] = 5
   },
-  ["Rumbling Earth-Heart"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.6605, 0.1931, 100.0},
-      [2] = {58.0, 0.6512, 0.2572, 5.0}
-    },
-    ["looted"] = 614,
-    ["locationCount"] = 2
-  },
-  ["Gorgrom's Favor"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.5506, 0.2456, 100.0},
-      [2] = {54.0, 0.6201, 0.3859, 4.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Acechador de maná"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.3621, 0.5922, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["looted"] = 6
-  },
-  ["Graveyard Assaulted"] = {
-    ["locations"] = {
-      [1] = {26.0, 0.6683, 0.5166, 100.0},
-      [5] = {26.0, 0.4026, 0.8074, 2.0},
-      [3] = {26.0, 0.6295, 0.5962, 42.0},
-      [4] = {60.0, 0.6648, 0.5597, 36.0},
-      [2] = {26.0, 0.345, 0.7485, 60.0}
-    },
-    ["locationCount"] = 5
-  },
   ["Дайо Дряхлый"] = {
     ["locations"] = {
       [1] = {33.0, 0.3414, 0.5021, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Tabernera Delaniel"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.4811, 0.4767, 100.0}
-    },
-    ["faction"] = 2,
-    ["locationCount"] = 1
-  },
-  ["Mistress of the Mines"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.6369, 0.8842, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Skettis Wing Guard"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.6194, 0.7393, 100.0},
-      [3] = {55.0, 0.7424, 0.8835, 87.0},
-      [4] = {55.0, 0.6976, 0.8082, 2.0},
-      [2] = {55.0, 0.6964, 0.7533, 93.0}
-    },
-    ["looted"] = 7832,
-    ["locationCount"] = 4
-  },
-  ["Medivh"] = {
-    ["locations"] = {
-      [1] = {8.0, 0.5721, 0.6296, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -38169,44 +38108,15 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Amani'shi Trainer"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.8242, 0.6442, 100.0}
-    },
-    ["looted"] = 94,
-    ["locationCount"] = 1
-  },
-  ["Tidal Surger"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.5025, 0.334, 100.0}
-    },
-    ["looted"] = 199,
-    ["locationCount"] = 1
-  },
   ["Принцесса Бурилла"] = {
     ["locations"] = {
       [1] = {19.0, 0.5339, 0.4267, 100.0}
     },
-    ["looted"] = 31,
     ["locationCount"] = 1
-  },
-  ["Embelar"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.4204, 0.4313, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
   },
   ["Разъяренный агам'ар"] = {
     ["locations"] = {
       [1] = {11.0, 0.4226, 0.8987, 100.0}
-    },
-    ["looted"] = 5461,
-    ["locationCount"] = 1
-  },
-  ["Watcher Jhang"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.5227, 0.3599, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -38214,21 +38124,6 @@ QuestieMonsters = {
     ["locations"] = {
       [1] = {17.0, 0.5285, 0.3166, 100.0}
     },
-    ["looted"] = 7511,
-    ["locationCount"] = 1
-  },
-  ["Gor Grimgut"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.3974, 0.8533, 100.0}
-    },
-    ["looted"] = 186,
-    ["locationCount"] = 1
-  },
-  ["Shattered Hand Savage"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.4745, 0.5202, 100.0}
-    },
-    ["looted"] = 938,
     ["locationCount"] = 1
   },
   ["Неисправный боевой голем"] = {
@@ -38239,27 +38134,12 @@ QuestieMonsters = {
       [4] = {32.0, 0.3176, 0.607, 37.0},
       [2] = {32.0, 0.4376, 0.4251, 80.0}
     },
-    ["looted"] = 35,
     ["locationCount"] = 5
-  },
-  ["Ethereum Shocktrooper slain"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.572, 0.3307, 100.0},
-      [2] = {59.0, 0.5668, 0.371, 3.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Examine Halazzi's chamber"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.8243, 0.6443, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Хилбрадский ученик кузнеца"] = {
     ["locations"] = {
       [1] = {48.0, 0.3203, 0.4566, 100.0}
     },
-    ["looted"] = 2651,
     ["locationCount"] = 1,
     ["faction"] = 1
   },
@@ -38268,15 +38148,7 @@ QuestieMonsters = {
       [1] = {38.0, 0.3026, 0.8938, 100.0},
       [2] = {38.0, 0.3309, 0.8835, 6.0}
     },
-    ["looted"] = 3890,
     ["locationCount"] = 2
-  },
-  ["Velendris Whitemorn"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.3632, 0.6678, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
   },
   ["Мишеллена"] = {
     ["locations"] = {
@@ -38291,14 +38163,12 @@ QuestieMonsters = {
       [3] = {8.0, 0.4049, 0.728, 2.0},
       [2] = {8.0, 0.4042, 0.5517, 54.0}
     },
-    ["looted"] = 3878,
     ["locationCount"] = 3
   },
   ["Марсель Дабири"] = {
     ["locations"] = {
       [1] = {39.0, 0.544, 0.3799, 100.0}
     },
-    ["looted"] = 425,
     ["locationCount"] = 1,
     ["faction"] = 1
   },
@@ -38313,7 +38183,6 @@ QuestieMonsters = {
     ["locations"] = {
       [1] = {50.0, 0.6902, 0.7288, 100.0}
     },
-    ["looted"] = 2953,
     ["locationCount"] = 1
   },
   ["Мастер Матиас Шоу"] = {
@@ -38330,46 +38199,13 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 2
   },
-  ["Beega"] = {
-    ["locations"] = {
-      [1] = {9.0, 0.5341, 0.5671, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
-  ["Poli'lukluk the Wiser"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.5444, 0.7234, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
   ["Рик"] = {
     ["locations"] = {
       [1] = {42.0, 0.5769, 0.4278, 100.0},
       [3] = {42.0, 0.4975, 0.4625, 3.0},
       [2] = {42.0, 0.4643, 0.4057, 61.0}
     },
-    ["looted"] = 12,
     ["locationCount"] = 3
-  },
-  ["Flawless Arcane Elemental"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.4419, 0.4105, 100.0}
-    },
-    ["looted"] = 55,
-    ["locationCount"] = 1
-  },
-  ["Broken Skeleton"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.3943, 0.7779, 100.0},
-      [5] = {55.0, 0.4792, 0.6193, 3.0},
-      [3] = {55.0, 0.3171, 0.7434, 38.0},
-      [4] = {55.0, 0.5141, 0.6615, 38.0},
-      [2] = {55.0, 0.5002, 0.7313, 54.0}
-    },
-    ["looted"] = 7716,
-    ["locationCount"] = 5
   },
   ["Столи"] = {
     ["locations"] = {
@@ -38382,90 +38218,19 @@ QuestieMonsters = {
       [1] = {2.0, 0.8908, 0.584, 100.0}
     },
     ["faction"] = 2,
-    ["locationCount"] = 1,
-    ["looted"] = 866
-  },
-  ["Risen Hungerer"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.3948, 0.3457, 100.0},
-      [3] = {44.0, 0.3892, 0.3925, 37.0},
-      [4] = {44.0, 0.3998, 0.3124, 2.0},
-      [2] = {44.0, 0.385, 0.4332, 50.0}
-    },
-    ["looted"] = 9608,
-    ["locationCount"] = 4
-  },
-  ["Agitated Orc Spirit slain"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.2618, 0.6, 100.0}
-    },
     ["locationCount"] = 1
-  },
-  ["Sunfury Arcanist"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.5146, 0.8165, 100.0},
-      [3] = {59.0, 0.4741, 0.8417, 6.0},
-      [2] = {59.0, 0.4669, 0.8116, 83.0}
-    },
-    ["looted"] = 6726,
-    ["locationCount"] = 3
-  },
-  ["Priest Set Vendor"] = {
-    ["locations"] = {
-      [1] = {36.0, 0.3942, 0.2652, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Ezekiel"] = {
-    ["locations"] = {
-      [1] = {60.0, 0.5654, 0.5535, 100.0},
-      [5] = {60.0, 0.614, 0.4483, 8.0},
-      [3] = {60.0, 0.6027, 0.5189, 85.0},
-      [4] = {60.0, 0.6095, 0.4076, 83.0},
-      [2] = {60.0, 0.5921, 0.3686, 93.0}
-    },
-    ["locationCount"] = 5
-  },
-  ["Ashtongue Primalist"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.7101, 0.4663, 100.0}
-    },
-    ["looted"] = 44,
-    ["locationCount"] = 1
-  },
-  ["Tame a Surf Crawler"] = {
-    ["locations"] = {
-      [1] = {7.0, 0.5939, 0.3005, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Skymaster Sunwing"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.4549, 0.3057, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
   },
   ["Обжора"] = {
     ["locations"] = {
       [1] = {11.0, 0.5086, 0.9287, 100.0}
     },
-    ["looted"] = 408,
     ["locationCount"] = 1
   },
   ["Жрица из племени Мертвой Головы"] = {
     ["locations"] = {
       [1] = {11.0, 0.4226, 0.8987, 100.0}
     },
-    ["looted"] = 1260,
     ["locationCount"] = 1
-  },
-  ["Patrullero Arcano"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.4634, 0.4123, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["looted"] = 6
   },
   ["Викки Лонсав"] = {
     ["locations"] = {
@@ -38478,26 +38243,8 @@ QuestieMonsters = {
     ["locations"] = {
       [1] = {48.0, 0.2963, 0.4209, 100.0}
     },
-    ["looted"] = 511,
     ["locationCount"] = 1,
     ["faction"] = 1
-  },
-  ["Bogflare Needler"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.4023, 0.3572, 100.0},
-      [5] = {57.0, 0.4385, 0.3498, 3.0},
-      [3] = {57.0, 0.4659, 0.331, 51.0},
-      [4] = {57.0, 0.6039, 0.4627, 36.0},
-      [2] = {57.0, 0.5213, 0.3354, 64.0}
-    },
-    ["looted"] = 3062,
-    ["locationCount"] = 5
-  },
-  ["Ogri'la Steelshaper"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.2929, 0.575, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Хограл Баккан"] = {
     ["locations"] = {
@@ -38513,30 +38260,15 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Priestess Kyleen Il'dinare"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.4709, 0.7029, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
   ["Защитный скафандр миротворца"] = {
     ["locations"] = {
       [1] = {28.0, 0.1767, 0.3914, 100.0}
     },
-    ["looted"] = 1004,
     ["locationCount"] = 1
   },
   ["Строитель Торговой Компании"] = {
     ["locations"] = {
       [1] = {6.0, 0.6396, 0.3951, 100.0}
-    },
-    ["looted"] = 1368,
-    ["locationCount"] = 1
-  },
-  ["Nanomah"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.625, 0.2832, 100.0}
     },
     ["locationCount"] = 1
   },
@@ -38551,7 +38283,6 @@ QuestieMonsters = {
     ["locations"] = {
       [1] = {34.0, 0.3997, 0.2595, 100.0}
     },
-    ["looted"] = 7,
     ["locationCount"] = 1
   },
   ["Астерион"] = {
@@ -38560,13 +38291,6 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1,
     ["faction"] = 1
-  },
-  ["Fouled Water Spirit"] = {
-    ["locations"] = {
-      [1] = {9.0, 0.3063, 0.3893, 100.0}
-    },
-    ["looted"] = 3091,
-    ["locationCount"] = 1
   },
   ["Мировой судья Соломон"] = {
     ["locations"] = {
@@ -38579,21 +38303,7 @@ QuestieMonsters = {
     ["locations"] = {
       [1] = {42.0, 0.3124, 0.5807, 100.0}
     },
-    ["looted"] = 4007,
     ["locationCount"] = 1
-  },
-  ["Clintar Dreamwalker"] = {
-    ["locations"] = {
-      [1] = {20.0, 0.7534, 0.6707, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Daga Ramba"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.5115, 0.5777, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
   },
   ["Гакин Темнопряд"] = {
     ["locations"] = {
@@ -38602,14 +38312,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Shattered Hand Mage"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.4547, 0.4239, 100.0},
-      [2] = {56.0, 0.4676, 0.453, 7.0}
-    },
-    ["locationCount"] = 2,
-    ["looted"] = 1192
-  },
   ["Идриана"] = {
     ["locations"] = {
       [1] = {21.0, 0.3983, 0.4251, 100.0}
@@ -38617,26 +38319,10 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Engineer \"Spark\" Overgrind"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.4874, 0.7142, 100.0}
-    },
-    ["looted"] = 397,
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
-  ["Tempest-Smith"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.7386, 0.6376, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["looted"] = 65
-  },
   ["Скелет-шахтер"] = {
     ["locations"] = {
       [1] = {49.0, 0.4141, 0.8194, 100.0}
     },
-    ["looted"] = 2355,
     ["locationCount"] = 1
   },
   ["Келейник Алого ордена"] = {
@@ -38644,42 +38330,14 @@ QuestieMonsters = {
       [1] = {43.0, 0.7929, 0.5563, 100.0},
       [2] = {43.0, 0.7939, 0.2705, 4.0}
     },
-    ["looted"] = 2483,
     ["locationCount"] = 2
-  },
-  ["Goc"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.6402, 0.1874, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Старейшина деревни Погребальных Костров"] = {
     ["locations"] = {
       [1] = {35.0, 0.4606, 0.7306, 100.0}
     },
-    ["looted"] = 828,
     ["locationCount"] = 1,
     ["faction"] = 1
-  },
-  ["Babs Fizzletorque"] = {
-    ["locations"] = {
-      [1] = {10.0, 0.721, 0.471, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
-  ["Apprentice Garion"] = {
-    ["locations"] = {
-      [1] = {10.0, 0.4601, 0.5719, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Velendris Albodía"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.3632, 0.6684, 100.0}
-    },
-    ["faction"] = 2,
-    ["locationCount"] = 1
   },
   ["Обсидиановый элементаль"] = {
     ["locations"] = {
@@ -38689,42 +38347,11 @@ QuestieMonsters = {
       [4] = {40.0, 0.7802, 0.3752, 32.0},
       [2] = {40.0, 0.7808, 0.7513, 87.0}
     },
-    ["looted"] = 251,
     ["locationCount"] = 5
-  },
-  ["Porfus the Gem Gorger"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.5459, 0.4011, 100.0},
-      [2] = {59.0, 0.5461, 0.4657, 6.0}
-    },
-    ["looted"] = 131,
-    ["locationCount"] = 2
   },
   ["Знахарь Джин'Зил"] = {
     ["locations"] = {
       [1] = {6.0, 0.7451, 0.9782, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
-  },
-  ["Murgurgula"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.3454, 0.2326, 100.0},
-      [3] = {3.0, 0.3474, 0.1402, 2.0},
-      [2] = {3.0, 0.3424, 0.1816, 36.0}
-    },
-    ["looted"] = 416,
-    ["locationCount"] = 3
-  },
-  ["Zuluhed the Whacked slain"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.7098, 0.6237, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Mehlar Dawnblade"] = {
-    ["locations"] = {
-      [1] = {43.0, 0.8318, 0.713, 100.0}
     },
     ["locationCount"] = 1,
     ["faction"] = 2
@@ -38736,26 +38363,17 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Fenclaw Thrasher"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.5008, 0.4052, 100.0}
-    },
-    ["looted"] = 7907,
-    ["locationCount"] = 1
-  },
   ["Силитид-трутень"] = {
     ["locations"] = {
       [1] = {14.0, 0.6913, 0.8501, 100.0},
       [2] = {14.0, 0.6572, 0.8579, 3.0}
     },
-    ["looted"] = 2851,
     ["locationCount"] = 2
   },
   ["Темный охотник"] = {
     ["locations"] = {
       [1] = {8.0, 0.3873, 0.199, 100.0}
     },
-    ["looted"] = 18517,
     ["locationCount"] = 1
   },
   ["Чернокнижник из клана Гордунни"] = {
@@ -38763,28 +38381,7 @@ QuestieMonsters = {
       [1] = {17.0, 0.5913, 0.6437, 100.0},
       [2] = {17.0, 0.6097, 0.5632, 6.0}
     },
-    ["looted"] = 5606,
     ["locationCount"] = 2
-  },
-  ["Daggerfen Muckdweller slain"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.255, 0.2361, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Withered Green Keeper"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.3404, 0.8356, 100.0},
-      [2] = {41.0, 0.4007, 0.8483, 2.0}
-    },
-    ["looted"] = 6136,
-    ["locationCount"] = 2
-  },
-  ["Slavering Ghoul slain"] = {
-    ["locations"] = {
-      [1] = {50.0, 0.4967, 0.7938, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Бешеный колючешерстный медведь"] = {
     ["locations"] = {
@@ -38794,31 +38391,12 @@ QuestieMonsters = {
       [4] = {16.0, 0.3891, 0.6032, 36.0},
       [2] = {16.0, 0.4901, 0.2815, 57.0}
     },
-    ["locationCount"] = 5,
-    ["looted"] = 14818
+    ["locationCount"] = 5
   },
   ["Кернда"] = {
     ["locations"] = {
       [1] = {13.0, 0.6541, 0.0245, 100.0}
     },
-    ["looted"] = 4,
-    ["locationCount"] = 1
-  },
-  ["Rabid Dire Wolf slain"] = {
-    ["locations"] = {
-      [1] = {31.0, 0.1503, 0.2838, 100.0},
-      [5] = {31.0, 0.6722, 0.2001, 2.0},
-      [3] = {31.0, 0.1059, 0.5009, 28.0},
-      [4] = {31.0, 0.1741, 0.2588, 28.0},
-      [2] = {31.0, 0.1059, 0.3535, 33.0}
-    },
-    ["locationCount"] = 5
-  },
-  ["Vengeful Draenei"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.5049, 0.5476, 100.0}
-    },
-    ["looted"] = 2181,
     ["locationCount"] = 1
   },
   ["Принц Рейз"] = {
@@ -38826,7 +38404,6 @@ QuestieMonsters = {
       [1] = {2.0, 0.7807, 0.4583, 100.0},
       [2] = {2.0, 0.784, 0.4277, 7.0}
     },
-    ["looted"] = 107,
     ["locationCount"] = 2
   },
   ["Мистик из племени Тлеющего Терновника"] = {
@@ -38834,46 +38411,7 @@ QuestieMonsters = {
       [1] = {32.0, 0.4083, 0.9571, 100.0},
       [2] = {40.0, 0.3302, 0.2517, 4.0}
     },
-    ["looted"] = 247,
     ["locationCount"] = 2
-  },
-  ["Blacksilt Scouts Tagged"] = {
-    ["locations"] = {
-      [1] = {9.0, 0.4962, 0.9337, 100.0},
-      [3] = {9.0, 0.4614, 0.9471, 2.0},
-      [2] = {9.0, 0.4259, 0.9514, 39.0}
-    },
-    ["locationCount"] = 3
-  },
-  ["Celana"] = {
-    ["locations"] = {
-      [1] = {52.0, 0.8609, 0.356, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
-  },
-  ["Thander"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.5786, 0.5421, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
-  ["Feralfen Serpent Spirit"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.4448, 0.6607, 100.0}
-    },
-    ["looted"] = 13,
-    ["locationCount"] = 1
-  },
-  ["Siltfin Hunter"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.3425, 0.1879, 100.0},
-      [3] = {3.0, 0.3463, 0.1399, 2.0},
-      [2] = {3.0, 0.3406, 0.2364, 78.0}
-    },
-    ["looted"] = 1473,
-    ["locationCount"] = 3
   },
   ["Подарочный сертификат долины Испытаний"] = {
     ["locations"] = {
@@ -38902,19 +38440,6 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1,
     ["faction"] = 1
-  },
-  ["Kurzen Jungle Fighter slain"] = {
-    ["locations"] = {
-      [1] = {38.0, 0.4467, 0.1046, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Daggerfen Assassin"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.2574, 0.2423, 100.0}
-    },
-    ["looted"] = 5251,
-    ["locationCount"] = 1
   },
   ["Тарбан Домашний Очаг"] = {
     ["locations"] = {
@@ -38990,19 +38515,6 @@ QuestieMonsters = {
     ["looted"] = 1042,
     ["locationCount"] = 4
   },
-  ["Felhound Manastalker"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.4589, 0.5194, 100.0}
-    },
-    ["looted"] = 553,
-    ["locationCount"] = 1
-  },
-  ["Coruu Control Console"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.4901, 0.8164, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Тенегорнский сенатор"] = {
     ["locations"] = {
       [1] = {32.0, 0.2711, 0.7254, 100.0}
@@ -39019,13 +38531,6 @@ QuestieMonsters = {
     },
     ["looted"] = 40,
     ["locationCount"] = 4
-  },
-  ["Sergeant Amelyn"] = {
-    ["locations"] = {
-      [1] = {10.0, 0.6825, 0.518, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
   },
   ["Горлаш"] = {
     ["locations"] = {
@@ -39048,39 +38553,6 @@ QuestieMonsters = {
     ["looted"] = 13344,
     ["locationCount"] = 1
   },
-  ["Sunfury Geologist slain"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.2656, 0.7332, 100.0},
-      [3] = {59.0, 0.2497, 0.6809, 2.0},
-      [2] = {59.0, 0.2793, 0.6996, 49.0}
-    },
-    ["locationCount"] = 3
-  },
-  ["Bladespire Ogres killed"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.4191, 0.513, 100.0},
-      [3] = {54.0, 0.4773, 0.509, 5.0},
-      [2] = {54.0, 0.4133, 0.5512, 93.0}
-    },
-    ["locationCount"] = 3
-  },
-  ["Vashj'ir Honor Guard"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.519, 0.3269, 100.0}
-    },
-    ["looted"] = 162,
-    ["locationCount"] = 1
-  },
-  ["Sunfury Captain"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.2579, 0.6728, 100.0},
-      [3] = {59.0, 0.2739, 0.7138, 38.0},
-      [4] = {59.0, 0.2383, 0.7186, 2.0},
-      [2] = {59.0, 0.2101, 0.7065, 65.0}
-    },
-    ["looted"] = 2286,
-    ["locationCount"] = 4
-  },
   ["Эльталисте"] = {
     ["locations"] = {
       [1] = {45.0, 0.4947, 0.1695, 100.0}
@@ -39094,33 +38566,6 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1,
     ["faction"] = 1
-  },
-  ["Oronok Torn-heart"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.5389, 0.2348, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Razorfen Thornweaver slain"] = {
-    ["locations"] = {
-      [1] = {11.0, 0.4758, 0.9245, 100.0},
-      [2] = {11.0, 0.4764, 0.8934, 6.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Huntress Bintook"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.5503, 0.7057, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
-  ["Gurok the Usurper"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.2895, 0.2487, 100.0}
-    },
-    ["looted"] = 479,
-    ["locationCount"] = 1
   },
   ["Наймит Торговой Компании"] = {
     ["locations"] = {
@@ -39143,13 +38588,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Ergh of the Stillpine"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.4407, 0.2139, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
   ["Раб племени Атал'ай"] = {
     ["locations"] = {
       [1] = {46.0, 0.7733, 0.3594, 100.0}
@@ -39163,21 +38601,6 @@ QuestieMonsters = {
     },
     ["looted"] = 103,
     ["locationCount"] = 1
-  },
-  ["Void Conduit Destroyed"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.6198, 0.4054, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Crystal Flayer"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.6038, 0.7482, 100.0},
-      [3] = {54.0, 0.6232, 0.772, 3.0},
-      [2] = {54.0, 0.6642, 0.7569, 45.0}
-    },
-    ["looted"] = 3278,
-    ["locationCount"] = 3
   },
   ["Оракул из племени Синежабров"] = {
     ["locations"] = {
@@ -39204,19 +38627,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 2
   },
-  ["Durnholde Mage"] = {
-    ["locations"] = {
-      [1] = {8.0, 0.5558, 0.5341, 100.0}
-    },
-    ["looted"] = 648,
-    ["locationCount"] = 1
-  },
-  ["Sunfury Tent Destroyed"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.5616, 0.7853, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Просоленный хрусталиск"] = {
     ["locations"] = {
       [1] = {14.0, 0.7808, 0.8767, 100.0},
@@ -39241,24 +38651,6 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1,
     ["faction"] = 1
-  },
-  ["Quillfang Skitterer"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.2281, 0.6701, 100.0},
-      [2] = {56.0, 0.2249, 0.6325, 4.0}
-    },
-    ["looted"] = 5815,
-    ["locationCount"] = 2
-  },
-  ["Blacksmith Assaulted"] = {
-    ["locations"] = {
-      [1] = {39.0, 0.4626, 0.453, 100.0},
-      [5] = {25.0, 0.7009, 0.8954, 2.0},
-      [3] = {1.0, 0.7965, 0.2991, 37.0},
-      [4] = {36.0, 0.8237, 0.1291, 37.0},
-      [2] = {39.0, 0.7355, 0.2912, 84.0}
-    },
-    ["locationCount"] = 5
   },
   ["Липкий слизнюк"] = {
     ["locations"] = {
@@ -39285,26 +38677,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Shattered Hand Centurion slain"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.4738, 0.5211, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Taela Everstride"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.5808, 0.5345, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
-  ["Grimscale Forager"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.2724, 0.5978, 100.0}
-    },
-    ["looted"] = 1950,
-    ["locationCount"] = 1
-  },
   ["Илифар"] = {
     ["locations"] = {
       [1] = {33.0, 0.4761, 0.299, 100.0}
@@ -39319,20 +38691,6 @@ QuestieMonsters = {
     },
     ["looted"] = 1899,
     ["locationCount"] = 1
-  },
-  ["Dreadfang Widow slain"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.5193, 0.7877, 100.0},
-      [2] = {55.0, 0.5556, 0.6038, 2.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Wilda Bearmane"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.5677, 0.4078, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
   },
   ["Мор Серое Копыто"] = {
     ["locations"] = {
@@ -39359,26 +38717,6 @@ QuestieMonsters = {
     ["locations"] = {
       [1] = {50.0, 0.4911, 0.7859, 100.0}
     },
-    ["locationCount"] = 1
-  },
-  ["Narina"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.7212, 0.3201, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
-  },
-  ["Tobias the Filth Gorger"] = {
-    ["locations"] = {
-      [1] = {60.0, 0.6393, 0.6975, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Zandras"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.5727, 0.4905, 100.0}
-    },
-    ["looted"] = 204,
     ["locationCount"] = 1
   },
   ["Черный дракон"] = {
@@ -39416,19 +38754,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Plaguebone Pillager"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.5038, 0.5488, 100.0}
-    },
-    ["looted"] = 7237,
-    ["locationCount"] = 1
-  },
-  ["Put Cohlien's Spirit to Rest"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.5514, 0.8753, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Инженер Безобразец"] = {
     ["locations"] = {
       [1] = {11.0, 0.5627, 0.0868, 100.0}
@@ -39450,18 +38775,6 @@ QuestieMonsters = {
     ["looted"] = 3782,
     ["locationCount"] = 1
   },
-  ["Aprendiz Ralen castigado"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.4528, 0.5622, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Talonpriest Zellek slain"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.7, 0.744, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Огнегривая заклинательница пламени"] = {
     ["locations"] = {
       [1] = {10.0, 0.4984, 0.757, 100.0},
@@ -39470,25 +38783,12 @@ QuestieMonsters = {
     ["looted"] = 3327,
     ["locationCount"] = 2
   },
-  ["Ravenclaw Guardian slain"] = {
-    ["locations"] = {
-      [1] = {35.0, 0.5914, 0.7117, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Солдат-наемник из клана Раздробленного Хребта"] = {
     ["locations"] = {
       [1] = {26.0, 0.369, 0.5425, 100.0}
     },
     ["looted"] = 8705,
     ["locationCount"] = 1
-  },
-  ["Nightbane Tainted One slain"] = {
-    ["locations"] = {
-      [1] = {31.0, 0.7336, 0.7599, 100.0},
-      [2] = {31.0, 0.6074, 0.8097, 6.0}
-    },
-    ["locationCount"] = 2
   },
   ["Землеройный громорог"] = {
     ["locations"] = {
@@ -39511,32 +38811,12 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Night Elf Corpse"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.6065, 0.3792, 100.0}
-    },
-    ["faction"] = 1,
-    ["locationCount"] = 1,
-    ["looted"] = 1
-  },
   ["Фалстад Громовой Молот"] = {
     ["locations"] = {
       [1] = {42.0, 0.1185, 0.4683, 100.0}
     },
     ["locationCount"] = 1,
     ["faction"] = 1
-  },
-  ["Talonpriest Ishaal slain"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.6903, 0.7878, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Amythiel Mistwalker"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.1601, 0.522, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Старейшина племени Сломанного Клыка"] = {
     ["locations"] = {
@@ -39588,21 +38868,6 @@ QuestieMonsters = {
     ["looted"] = 4612,
     ["locationCount"] = 3
   },
-  ["Silkwing"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.7443, 0.6892, 100.0},
-      [2] = {54.0, 0.7355, 0.6589, 2.0}
-    },
-    ["looted"] = 1541,
-    ["locationCount"] = 2
-  },
-  ["Bloodcursed Voyager"] = {
-    ["locations"] = {
-      [1] = {9.0, 0.8634, 0.1696, 100.0}
-    },
-    ["looted"] = 3056,
-    ["locationCount"] = 1
-  },
   ["Король Мукла"] = {
     ["locations"] = {
       [1] = {38.0, 0.4055, 0.832, 100.0}
@@ -39610,31 +38875,11 @@ QuestieMonsters = {
     ["looted"] = 531,
     ["locationCount"] = 1
   },
-  ["Information Gathered"] = {
-    ["locations"] = {
-      [1] = {10.0, 0.5634, 0.2368, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Ravenous Windroc"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.4983, 0.612, 100.0},
-      [2] = {58.0, 0.4576, 0.5865, 2.0}
-    },
-    ["looted"] = 15042,
-    ["locationCount"] = 2
-  },
   ["Пожиратель душ из племени Песчаной Бури"] = {
     ["locations"] = {
       [1] = {8.0, 0.3873, 0.199, 100.0}
     },
     ["looted"] = 2426,
-    ["locationCount"] = 1
-  },
-  ["Crazed Wildkin slain"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.479, 0.149, 100.0}
-    },
     ["locationCount"] = 1
   },
   ["Пастух из племени Колкар"] = {
@@ -39645,13 +38890,6 @@ QuestieMonsters = {
     },
     ["looted"] = 1704,
     ["locationCount"] = 3
-  },
-  ["Jesthenis Sunstriker"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.394, 0.2057, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
   },
   ["Шаман из клана Гордунни"] = {
     ["locations"] = {
@@ -39671,13 +38909,6 @@ QuestieMonsters = {
     ["locations"] = {
       [1] = {42.0, 0.3433, 0.3785, 100.0}
     },
-    ["locationCount"] = 1
-  },
-  ["Prospector Anvilward"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.4424, 0.5326, 100.0}
-    },
-    ["looted"] = 598,
     ["locationCount"] = 1
   },
   ["Отрекшийся-убийца"] = {
@@ -40086,12 +39317,9 @@ QuestieMonsters = {
     ["locationCount"] = 2
   },
   ["Гренка Кровавый Визг"] = {
-    ["locations"] = {
-      [1] = {14.0, 0.2598, 0.5518, 100.0}
-    },
-    ["looted"] = 293,
-    ["locationCount"] = 1,
-    ["faction"] = 1
+    locations = {
+      {1,19, 0.2598, 0.5518}
+    }
   },
   ["Скуэрто"] = {
     ["locations"] = {
@@ -40111,13 +39339,6 @@ QuestieMonsters = {
     ["looted"] = 1512,
     ["locationCount"] = 5
   },
-  ["Avatar of Sathal"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.4114, 0.2206, 100.0},
-      [2] = {59.0, 0.3878, 0.1855, 2.0}
-    },
-    ["locationCount"] = 2
-  },
   ["Тенебрюхая пантера"] = {
     ["locations"] = {
       [1] = {38.0, 0.3758, 0.3622, 100.0},
@@ -40134,27 +39355,6 @@ QuestieMonsters = {
     ["looted"] = 22,
     ["locationCount"] = 1
   },
-  ["Umbrafen Seer slain"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.8348, 0.8235, 100.0},
-      [2] = {57.0, 0.8407, 0.8653, 4.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Ethereal Thief"] = {
-    ["locations"] = {
-      [1] = {47.0, 0.4667, 0.7212, 100.0}
-    },
-    ["looted"] = 849,
-    ["locationCount"] = 1
-  },
-  ["Daedal"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.4844, 0.5151, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
   ["Посол Ярокров"] = {
     ["locations"] = {
       [1] = {11.0, 0.4781, 0.9071, 100.0},
@@ -40163,18 +39363,6 @@ QuestieMonsters = {
     },
     ["locationCount"] = 3,
     ["looted"] = 26
-  },
-  ["Slain Auchenai Warrior corpse burned"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.3487, 0.7636, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Fantei"] = {
-    ["locations"] = {
-      [1] = {60.0, 0.6468, 0.7027, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Мордо гробовщик"] = {
     ["locations"] = {
@@ -40211,13 +39399,6 @@ QuestieMonsters = {
     ["faction"] = 1,
     ["locationCount"] = 1
   },
-  ["Farm Assaulted"] = {
-    ["locations"] = {
-      [1] = {39.0, 0.4623, 0.4536, 100.0},
-      [2] = {36.0, 0.8251, 0.1282, 3.0}
-    },
-    ["locationCount"] = 2
-  },
   ["Даларанский маг"] = {
     ["locations"] = {
       [1] = {35.0, 0.5948, 0.6452, 100.0}
@@ -40240,31 +39421,6 @@ QuestieMonsters = {
       [1] = {51.0, 0.1403, 0.3849, 100.0}
     },
     ["looted"] = 4126,
-    ["locationCount"] = 1
-  },
-  ["Custodian Dieworth"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.5752, 0.8629, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Barbscale Crocolisk"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.4663, 0.5261, 100.0}
-    },
-    ["looted"] = 5018,
-    ["locationCount"] = 1
-  },
-  ["Misc Vendor"] = {
-    ["locations"] = {
-      [1] = {1.0, 0.5096, 0.7854, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Night Web Spider slain"] = {
-    ["locations"] = {
-      [1] = {43.0, 0.2594, 0.5963, 100.0}
-    },
     ["locationCount"] = 1
   },
   ["Канонир Смайт"] = {
@@ -40295,13 +39451,6 @@ QuestieMonsters = {
     },
     ["looted"] = 147,
     ["locationCount"] = 1
-  },
-  ["Arras"] = {
-    ["locations"] = {
-      [1] = {12.0, 0.6106, 0.8908, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
   },
   ["Тарнариун Исцелитель Деревьев"] = {
     ["locations"] = {
@@ -40344,21 +39493,6 @@ QuestieMonsters = {
     ["locationCount"] = 3,
     ["faction"] = 1
   },
-  ["Mo'grosh Enforcer slain"] = {
-    ["locations"] = {
-      [1] = {29.0, 0.7063, 0.2353, 100.0},
-      [3] = {29.0, 0.7078, 0.205, 3.0},
-      [2] = {29.0, 0.6393, 0.207, 63.0}
-    },
-    ["locationCount"] = 3
-  },
-  ["Bonechewer Ravener"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.4756, 0.5361, 100.0}
-    },
-    ["looted"] = 2986,
-    ["locationCount"] = 1
-  },
   ["Гнилобрюх"] = {
     ["locations"] = {
       [1] = {39.0, 0.2003, 0.6546, 100.0}
@@ -40384,20 +39518,6 @@ QuestieMonsters = {
     },
     ["looted"] = 13,
     ["locationCount"] = 2
-  },
-  ["Gava'xi"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.4258, 0.7328, 100.0}
-    },
-    ["looted"] = 708,
-    ["locationCount"] = 1
-  },
-  ["Botanist Tyniarrel"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.3742, 0.7195, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
   },
   ["Изверг из клана Гордок"] = {
     ["locations"] = {
@@ -40430,23 +39550,6 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1,
     ["faction"] = 2
-  },
-  ["Siltfin Oracle"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.3409, 0.2307, 100.0},
-      [3] = {3.0, 0.3441, 0.1572, 35.0},
-      [4] = {3.0, 0.3545, 0.1215, 2.0},
-      [2] = {3.0, 0.3408, 0.1937, 61.0}
-    },
-    ["looted"] = 850,
-    ["locationCount"] = 4
-  },
-  ["Sunfury Astromancer"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.2477, 0.6672, 100.0}
-    },
-    ["looted"] = 2586,
-    ["locationCount"] = 1
   },
   ["Крепкозуб Темных берегов"] = {
     ["locations"] = {
@@ -40487,24 +39590,6 @@ QuestieMonsters = {
     ["looted"] = 859,
     ["locationCount"] = 1
   },
-  ["Scythetooth Raptor slain"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.4521, 0.121, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Exarch Menelaous Warned"] = {
-    ["locations"] = {
-      [1] = {3.0, 0.4719, 0.5066, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Visit Bleeding Hollow Clan Ruins"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.2019, 0.6195, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Рокочущая ящерица"] = {
     ["locations"] = {
       [1] = {7.0, 0.3956, 0.2864, 100.0}
@@ -40528,15 +39613,6 @@ QuestieMonsters = {
       [1] = {8.0, 0.3767, 0.8141, 100.0}
     },
     ["locationCount"] = 1
-  },
-  ["Nightbane Shadow Weaver slain"] = {
-    ["locations"] = {
-      [1] = {31.0, 0.6258, 0.6959, 100.0},
-      [3] = {31.0, 0.6733, 0.4587, 27.0},
-      [4] = {31.0, 0.5751, 0.3008, 2.0},
-      [2] = {31.0, 0.6433, 0.3905, 64.0}
-    },
-    ["locationCount"] = 4
   },
   ["Маг из шайки Кровавого Паруса"] = {
     ["locations"] = {
@@ -40583,13 +39659,6 @@ QuestieMonsters = {
     ["looted"] = 29,
     ["locationCount"] = 3
   },
-  ["Cleric of Karabor"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.6376, 0.4811, 100.0}
-    },
-    ["looted"] = 1732,
-    ["locationCount"] = 1
-  },
   ["Лардан"] = {
     ["locations"] = {
       [1] = {2.0, 0.3477, 0.4979, 100.0}
@@ -40604,30 +39673,12 @@ QuestieMonsters = {
     ["looted"] = 2451,
     ["locationCount"] = 1
   },
-  ["Arcanist Vandril"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.4634, 0.2839, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
-  },
   ["Бромос Груммнер"] = {
     ["locations"] = {
       [1] = {28.0, 0.2884, 0.6827, 100.0}
     },
     ["locationCount"] = 1,
     ["faction"] = 1
-  },
-  ["Erratic Sentry"] = {
-    ["locations"] = {
-      [1] = {64.0, 0.3958, 0.2866, 100.0},
-      [5] = {64.0, 0.3626, 0.4146, 4.0},
-      [3] = {64.0, 0.4307, 0.2811, 71.0},
-      [4] = {64.0, 0.3602, 0.4605, 60.0},
-      [2] = {64.0, 0.3564, 0.3728, 95.0}
-    },
-    ["looted"] = 27826,
-    ["locationCount"] = 5
   },
   ["Чаротвор Мош'Огг"] = {
     ["locations"] = {
@@ -40651,12 +39702,6 @@ QuestieMonsters = {
     },
     ["looted"] = 343,
     ["locationCount"] = 3
-  },
-  ["Eversong Ranger Blessed"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.5026, 0.5092, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Чумной опустошитель"] = {
     ["locations"] = {
@@ -40689,13 +39734,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Eye of Culuthas slain"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.5114, 0.2135, 100.0},
-      [2] = {59.0, 0.5577, 0.2141, 10.0}
-    },
-    ["locationCount"] = 2
-  },
   ["Член совета Брансвик"] = {
     ["locations"] = {
       [1] = {35.0, 0.465, 0.7402, 100.0}
@@ -40710,19 +39748,6 @@ QuestieMonsters = {
     ["looted"] = 83,
     ["locationCount"] = 1
   },
-  ["Darkcrest Siren"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.6419, 0.6766, 100.0}
-    },
-    ["looted"] = 1886,
-    ["locationCount"] = 1
-  },
-  ["South Warp-Gate Destroyed"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.6495, 0.6827, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Штейгер Ослоу"] = {
     ["locations"] = {
       [1] = {30.0, 0.3218, 0.4862, 100.0}
@@ -40730,45 +39755,12 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 1
   },
-  ["Cabal Orders"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.396, 0.5605, 100.0},
-      [3] = {55.0, 0.374, 0.5157, 3.0},
-      [2] = {55.0, 0.3177, 0.5239, 54.0}
-    },
-    ["locationCount"] = 3
-  },
   ["Нан Вестница Туманов"] = {
     ["locations"] = {
       [1] = {23.0, 0.4717, 0.4221, 100.0}
     },
     ["locationCount"] = 1,
     ["faction"] = 2
-  },
-  ["Felsworn Daggermaw"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.7037, 0.3357, 100.0},
-      [3] = {54.0, 0.7126, 0.3663, 21.0},
-      [4] = {54.0, 0.7033, 0.4425, 2.0},
-      [2] = {54.0, 0.7152, 0.2972, 35.0}
-    },
-    ["looted"] = 3332,
-    ["locationCount"] = 4
-  },
-  ["Mag'har Grunt"] = {
-    ["locations"] = {
-      [1] = {56.0, 0.3544, 0.3155, 100.0}
-    },
-    ["looted"] = 6950,
-    ["locationCount"] = 1,
-    ["faction"] = 2
-  },
-  ["Doomforge Engineer"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.7431, 0.4081, 100.0}
-    },
-    ["looted"] = 3136,
-    ["locationCount"] = 1
   },
   ["Горный пехотинец Калмира"] = {
     ["locations"] = {
@@ -40786,18 +39778,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 2
   },
-  ["Shy-Rotam slain"] = {
-    ["locations"] = {
-      [1] = {19.0, 0.4983, 0.0967, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Large Hut Destroyed"] = {
-    ["locations"] = {
-      [1] = {58.0, 0.724, 0.5033, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Сестра Коготь Кургана"] = {
     ["locations"] = {
       [1] = {11.0, 0.3953, 0.1526, 100.0}
@@ -40811,12 +39791,6 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1,
     ["faction"] = 2
-  },
-  ["Have Grek Test Olemba Oil"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.4989, 0.4526, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Гидротварь"] = {
     ["locations"] = {
@@ -40832,14 +39806,6 @@ QuestieMonsters = {
     ["locationCount"] = 1,
     ["faction"] = 2
   },
-  ["Pterrordax slain"] = {
-    ["locations"] = {
-      [1] = {18.0, 0.5682, 0.1, 100.0},
-      [3] = {18.0, 0.5736, 0.8977, 2.0},
-      [2] = {18.0, 0.4374, 0.8886, 57.0}
-    },
-    ["locationCount"] = 3
-  },
   ["Рубака Павшего Молота"] = {
     ["locations"] = {
       [1] = {39.0, 0.6028, 0.5627, 100.0}
@@ -40847,14 +39813,6 @@ QuestieMonsters = {
     ["faction"] = 2,
     ["locationCount"] = 1,
     ["looted"] = 3833
-  },
-  ["Blackpaw Scavenger"] = {
-    ["locations"] = {
-      [1] = {44.0, 0.2859, 0.4844, 100.0},
-      [2] = {44.0, 0.2879, 0.5201, 6.0}
-    },
-    ["looted"] = 3807,
-    ["locationCount"] = 2
   },
   ["Жрица Анетта"] = {
     ["locations"] = {
@@ -40870,30 +39828,6 @@ QuestieMonsters = {
     },
     ["looted"] = 14,
     ["locationCount"] = 2
-  },
-  ["Shienor Talonite slain"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.4946, 0.1701, 100.0},
-      [2] = {55.0, 0.5885, 0.2554, 8.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Foulweald Totemic slain"] = {
-    ["locations"] = {
-      [1] = {2.0, 0.505, 0.6094, 100.0},
-      [2] = {2.0, 0.5455, 0.6221, 3.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Wyrmcult Hewer"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.595, 0.3637, 100.0},
-      [3] = {54.0, 0.6286, 0.278, 21.0},
-      [4] = {54.0, 0.6281, 0.4436, 2.0},
-      [2] = {54.0, 0.4649, 0.3332, 53.0}
-    },
-    ["looted"] = 6257,
-    ["locationCount"] = 4
   },
   ["Крошшер Торговой Компании"] = {
     ["locations"] = {
@@ -40931,27 +39865,6 @@ QuestieMonsters = {
     ["looted"] = 2508,
     ["locationCount"] = 1
   },
-  ["Ethereal Scavenger"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.3963, 0.5759, 100.0}
-    },
-    ["looted"] = 1341,
-    ["locationCount"] = 1
-  },
-  ["Blacksilt Shorestriker"] = {
-    ["locations"] = {
-      [1] = {9.0, 0.4218, 0.2133, 100.0},
-      [2] = {9.0, 0.3649, 0.2605, 2.0}
-    },
-    ["looted"] = 5467,
-    ["locationCount"] = 2
-  },
-  ["End Dark Conclave Summoning Ritual"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.4098, 0.6059, 100.0}
-    },
-    ["locationCount"] = 1
-  },
   ["Курлл"] = {
     ["locations"] = {
       [1] = {15.0, 0.219, 0.5206, 100.0}
@@ -40965,19 +39878,6 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1,
     ["faction"] = 2
-  },
-  ["Little Azimi"] = {
-    ["locations"] = {
-      [1] = {9.0, 0.631, 0.8738, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 1
-  },
-  ["Featherbeard's Journal"] = {
-    ["locations"] = {
-      [1] = {42.0, 0.1338, 0.552, 100.0}
-    },
-    ["locationCount"] = 1
   },
   ["Антион Хармон"] = {
     ["locations"] = {
@@ -41007,40 +39907,6 @@ QuestieMonsters = {
     ["looted"] = 607,
     ["locationCount"] = 5
   },
-  ["Darlia"] = {
-    ["locations"] = {
-      [1] = {52.0, 0.8021, 0.511, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
-  },
-  ["Ashkaz"] = {
-    ["locations"] = {
-      [1] = {55.0, 0.4933, 0.1693, 100.0}
-    },
-    ["looted"] = 978,
-    ["locationCount"] = 1
-  },
-  ["Watcher Moonshade"] = {
-    ["locations"] = {
-      [1] = {54.0, 0.5019, 0.3604, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Wretched Thug"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.3234, 0.6976, 100.0}
-    },
-    ["looted"] = 6311,
-    ["locationCount"] = 1
-  },
-  ["Murkblood Tribesman"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.5432, 0.3442, 100.0}
-    },
-    ["looted"] = 1902,
-    ["locationCount"] = 1
-  },
   ["Окудник из Багрового Легиона"] = {
     ["locations"] = {
       [1] = {34.0, 0.3104, 0.1586, 100.0},
@@ -41055,16 +39921,6 @@ QuestieMonsters = {
     },
     ["looted"] = 6339,
     ["locationCount"] = 1
-  },
-  ["Elder Crag Boar slain"] = {
-    ["locations"] = {
-      [1] = {28.0, 0.2761, 0.4489, 100.0},
-      [5] = {28.0, 0.5447, 0.5723, 2.0},
-      [3] = {28.0, 0.3601, 0.3641, 54.0},
-      [4] = {28.0, 0.3221, 0.4875, 33.0},
-      [2] = {28.0, 0.2862, 0.5132, 69.0}
-    },
-    ["locationCount"] = 5
   },
   ["Аригос"] = {
     ["locations"] = {
@@ -41148,26 +40004,6 @@ QuestieMonsters = {
     ["looted"] = 117,
     ["locationCount"] = 1
   },
-  ["Hillsbrad Miner slain"] = {
-    ["locations"] = {
-      [1] = {48.0, 0.287, 0.5545, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Southsea Brigand slain"] = {
-    ["locations"] = {
-      [1] = {11.0, 0.6392, 0.4476, 100.0},
-      [2] = {11.0, 0.6361, 0.4858, 4.0}
-    },
-    ["locationCount"] = 2
-  },
-  ["Varedis"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.7182, 0.5322, 100.0}
-    },
-    ["looted"] = 20,
-    ["locationCount"] = 1
-  },
   ["Чернокнижник из клана Песчаного Молота"] = {
     ["locations"] = {
       [1] = {8.0, 0.4682, 0.6513, 100.0},
@@ -41190,22 +40026,6 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1,
     ["faction"] = 1
-  },
-  ["Deathforge Summoner slain"] = {
-    ["locations"] = {
-      [1] = {53.0, 0.3906, 0.3777, 100.0}
-    },
-    ["locationCount"] = 1
-  },
-  ["Sundered Thunderer"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.3396, 0.3138, 100.0},
-      [3] = {59.0, 0.4014, 0.1599, 52.0},
-      [4] = {59.0, 0.3406, 0.2614, 3.0},
-      [2] = {59.0, 0.3547, 0.2202, 90.0}
-    },
-    ["looted"] = 169,
-    ["locationCount"] = 4
   },
   ["Штейгер Риггер"] = {
     ["locations"] = {

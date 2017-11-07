@@ -916,10 +916,9 @@ QuestieObjects = {
     ["locationCount"] = 1
   },
   ["Пыльный коврик"] = {
-    ["locations"] = {
-      [1] = {48.0, 0.6277, 0.1883, 100.0}
-    },
-    ["locationCount"] = 1
+    locations = {
+      {2,16, 0.6277, 0.1883}
+    }
   },
   ["Перечень Заблудших"] = {
     locations = {
