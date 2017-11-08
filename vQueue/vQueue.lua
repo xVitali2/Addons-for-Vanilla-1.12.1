@@ -197,6 +197,12 @@ function filterPunctuation( s )
 			newString = newString .. " "
 		elseif string.find(string.sub(s, i, i), "%d") ~= nil then
 			--nothing needed here
+		elseif string.find(s, "recruit") ~= nil then -- coz dont need LFM for guild
+			--nothing needed here
+		elseif string.find(s, "server time") ~= nil then -- coz dont need LFM for guild
+			--nothing needed here
+		elseif string.find(s, "shivtr") ~= nil then -- coz dont need LFM for guild
+			--nothing needed here
 		else
 			newString = newString .. string.sub(s, i, i)
 		end
