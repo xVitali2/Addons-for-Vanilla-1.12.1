@@ -300,7 +300,7 @@ do
     checkbox:SetPoint('TOPLEFT', name_input, 'TOPRIGHT', 16, 0)
     checkbox:SetScript('OnClick', update_form)
     local label = gui.label(checkbox, gui.font_size.small)
-    label:SetPoint('BOTTOMLEFT', checkbox, 'TOPLEFT', -2, 1)
+    label:SetPoint('BOTTOMLEFT', checkbox, 'TOPLEFT', -50, 1)
     label:SetText(EXACT) --byLichery
     exact_checkbox = checkbox
 end
@@ -361,7 +361,7 @@ do
     checkbox:SetPoint('TOPLEFT', max_level_input, 'TOPRIGHT', 16, 0)
     checkbox:SetScript('OnClick', update_form)
     local label = gui.label(checkbox, gui.font_size.small)
-    label:SetPoint('BOTTOMLEFT', checkbox, 'TOPLEFT', -2, 1)
+    label:SetPoint('BOTTOMLEFT', checkbox, 'TOPLEFT', -50, 1)
     label:SetText(USABLE) --byLichery
     usable_checkbox = checkbox
 end
