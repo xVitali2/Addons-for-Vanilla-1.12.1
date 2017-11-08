@@ -3,6 +3,7 @@ module 'aux.util.persistence'
 include 'aux'
 
 local T = require 'T'
+
 function M.read(schema, str)
     if schema == 'string' then
         return str

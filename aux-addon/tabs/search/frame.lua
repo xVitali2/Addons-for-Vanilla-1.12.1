@@ -1,6 +1,7 @@
 module 'aux.tabs.search'
 
 local T = require 'T'
+
 local completion = require 'aux.util.completion'
 local filter_util = require 'aux.util.filter'
 local scan = require 'aux.core.scan'
@@ -545,8 +546,8 @@ favorite_searches_listing:SetColInfo{{name=AUTO_BUY, width=.13, align='CENTER'},
 recent_searches_listing = listing.new(frame.saved.recent)
 recent_searches_listing:SetColInfo{{name=RECENT_SEARCHES, width=1}} --byLichery
 
-for listing in pairs(T.temp-T.set(favorite_searches_listing, recent_searches_listing)) do
-	for k, v in pairs(handlers) do
+for listing in T.temp-T.set(favorite_searches_listing, recent_searches_listing) do
+	for k, v in handlers do
 		listing:SetHandler(k, v)
 	end
 end

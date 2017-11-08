@@ -97,14 +97,17 @@ function M.auction_sell_item()
 		)
 	end
 end
+
 function M.auction(index, query_type)
     query_type = query_type or 'list'
+
     local link = GetAuctionItemLink(query_type, index)
 	if link then
         local item_id, suffix_id, unique_id, enchant_id = parse_link(link)
         local item_info = T.temp-item(item_id, suffix_id, unique_id, enchant_id)
 
         local name, texture, count, quality, usable, level, start_price, min_increment, buyout_price, high_bid, high_bidder, owner, sale_status = GetAuctionItemInfo(query_type, index)
+
     	local duration = GetAuctionItemTimeLeft(query_type, index)
         local tooltip, tooltip_money = tooltip('auction', query_type, index)
         local max_charges = max_item_charges(item_id)
@@ -112,6 +115,7 @@ function M.auction(index, query_type)
         local aux_quantity = charges or count
         local blizzard_bid = high_bid > 0 and high_bid or start_price
         local bid_price = high_bid > 0 and (high_bid + min_increment) or start_price
+
         return T.map(
             'item_id', item_id,
             'suffix_id', suffix_id,
@@ -215,7 +219,7 @@ end
 
 function M.tooltip_find(pattern, tooltip)
     local count = 0
-    for _, line in pairs(tooltip) do
+    for _, line in tooltip do
         if line.left_text and strfind(line.left_text, pattern) then
             count = count + 1
         end
@@ -292,7 +296,7 @@ function M.tooltip(setter, arg1, arg2)
 end
 
 function item_charges(tooltip)
-	for _, line in pairs(tooltip) do
+	for _, line in tooltip do
         local pattern = '^' .. gsub(gsub(ITEM_SPELL_CHARGES_P1, '%%d', '(%%d+)'), '%%%d+%$d', '(%%d+)') .. '$'
 
         local _, _, left_charges_string = strfind(line.left_text or '', pattern)
@@ -338,7 +342,7 @@ do
 end
 
 function M.durability(tooltip)
-    for _, line in pairs(tooltip) do
+    for _, line in tooltip do
         local pattern = '^' .. gsub(gsub(DURABILITY_TEMPLATE, '%%d', '(%%d+)'), '%%%d+%$d', '(%%d+)') .. '$'
         local _, _, left_durability_string, left_max_durability_string = strfind(line.left_text or '', pattern)
         local _, _, right_durability_string, right_max_durability_string = strfind(line.right_text or '', pattern)
@@ -381,7 +385,7 @@ function M.item(item_id, suffix_id)
 end
 
 function M.item_class_index(item_class)
-    for i, class in pairs(T.temp-T.list(GetAuctionItemClasses())) do
+    for i, class in T.temp-T.list(GetAuctionItemClasses()) do
         if strupper(class) == strupper(item_class) then
             return i, class
         end
@@ -389,7 +393,7 @@ function M.item_class_index(item_class)
 end
 
 function M.item_subclass_index(class_index, item_subclass)
-    for i, subclass in pairs(T.temp-T.list(GetAuctionItemSubClasses(class_index))) do
+    for i, subclass in T.temp-T.list(GetAuctionItemSubClasses(class_index)) do
         if strupper(subclass) == strupper(item_subclass) then
             return i, subclass
         end
@@ -397,7 +401,7 @@ function M.item_subclass_index(class_index, item_subclass)
 end
 
 function M.item_slot_index(class_index, subclass_index, slot_name)
-    for i, slot in pairs(T.temp-T.list(GetAuctionInvTypes(class_index, subclass_index))) do
+    for i, slot in T.temp-T.list(GetAuctionInvTypes(class_index, subclass_index)) do
         if strupper(_G[slot]) == strupper(slot_name) then
             return i, _G[slot]
         end

@@ -3,6 +3,7 @@ module 'aux.tabs.search'
 include 'aux'
 
 local T = require 'T'
+
 local info = require 'aux.util.info'
 
 local tab = TAB(SEARCH) --byLichery
@@ -86,3 +87,4 @@ function blizzard_page_index(str)
         return max(0, tonumber(str) - 1)
     end
 end
+

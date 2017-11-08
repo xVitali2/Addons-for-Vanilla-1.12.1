@@ -3,6 +3,7 @@ module 'aux.core.stack'
 include 'aux'
 
 local T = require 'T'
+
 local info = require 'aux.util.info'
 
 local state

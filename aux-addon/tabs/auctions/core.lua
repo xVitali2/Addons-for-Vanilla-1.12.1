@@ -3,6 +3,7 @@ module 'aux.tabs.auctions'
 include 'aux'
 
 local T = require 'T'
+
 local scan_util = require 'aux.util.scan'
 local scan = require 'aux.core.scan'
 

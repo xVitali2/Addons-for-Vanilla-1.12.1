@@ -1,6 +1,7 @@
 module 'aux.tabs.search'
 
 local T = require 'T'
+
 local filter_util = require 'aux.util.filter'
 local gui = require 'aux.gui'
 
@@ -85,7 +86,7 @@ handlers = {
 
 function get_auto_buy_validator()
 	local validators = T.acquire()
-	for _, search in pairs(favorite_searches) do
+	for _, search in favorite_searches do
 		if search.auto_buy then
 			local queries, error = filter_util.queries(search.filter_string)
 			if queries then

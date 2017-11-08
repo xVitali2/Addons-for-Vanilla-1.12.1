@@ -3,6 +3,7 @@ module 'aux.gui'
 include 'aux'
 
 local T = require 'T'
+
 M.font = [[Fonts\ARIALN.TTF]]
 
 M.font_size = immutable-{
@@ -255,7 +256,7 @@ do
 		do (self._on_select or nop)(id) end
 	end
 	function mt.__index:update()
-		for _, tab in pairs(self._tabs) do
+		for _, tab in self._tabs do
 			if tab.group._selected == tab.id then
 				tab.text:SetTextColor(color.label.enabled())
 				tab:Disable()
@@ -550,6 +551,7 @@ do
 		editbox:ClearFocus()
 	end
 end
+
 function M.percentage_historical(pct, bid)
 	local text = (pct > 10000 and '>10000' or pct) .. '%'
 	if bid then

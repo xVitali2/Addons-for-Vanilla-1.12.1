@@ -3,6 +3,7 @@ module 'aux.util.sort'
 include 'aux'
 
 local T = require 'T'
+
 M.EQ = 0
 M.LT = 1
 M.GT = 2

@@ -1,6 +1,7 @@
 module 'aux'
 
 local T = require 'T'
+
 function C(r, g, b, a)
 	local mt = T.map('__metatable', false, '__newindex', nop, 'color', T.list(r, g, b, a))
 	function mt:__call(text)

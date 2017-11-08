@@ -3,6 +3,7 @@ module 'aux.util.scan'
 include 'aux'
 
 local T = require 'T'
+
 local info = require 'aux.util.info'
 local filter_util = require 'aux.util.filter'
 local scan = require 'aux.core.scan'

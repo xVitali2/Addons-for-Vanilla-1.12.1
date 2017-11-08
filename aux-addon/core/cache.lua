@@ -3,6 +3,7 @@ module 'aux.util.info'
 include 'aux'
 
 local T = require 'T'
+
 local persistence = require 'aux.util.persistence'
 
 local MIN_ITEM_ID = 1
@@ -41,11 +42,11 @@ end
 do
 	local characters = T.empty
 	function M.is_player(name)
-		return characters[name] and true or false
+		return not not characters[name]
 	end
 	function handle.LOAD2()
 		characters = realm_data'characters'
-		for k, v in pairs(characters) do
+		for k, v in characters do
 			if GetTime() > v + 60 * 60 * 24 * 30 then
 				characters[k] = nil
 			end

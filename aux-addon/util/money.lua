@@ -3,6 +3,7 @@ module 'aux.util.money'
 include 'aux'
 
 local T = require 'T'
+
 M.GOLD_TEXT = '|cffffd70ag|r'
 M.SILVER_TEXT = '|cffc7c7cfs|r'
 M.COPPER_TEXT = '|cffeda55fc|r'
