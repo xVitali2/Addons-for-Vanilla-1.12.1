@@ -203,6 +203,8 @@ function filterPunctuation( s )
 			--nothing needed here
 		elseif string.find(s, "shivtr") ~= nil then -- coz dont need LFM for guild
 			--nothing needed here
+		elseif string.find(s, "roster") ~= nil then -- coz dont need LFM for guild
+			--nothing needed here
 		else
 			newString = newString .. string.sub(s, i, i)
 		end
