@@ -25657,11 +25657,9 @@ QuestieMonsters = {
     ["locationCount"] = 1
   },
   ["Тюремный надзиратель Малгрен"] = {
-    ["locations"] = {
-      [1] = {48.0, 0.7865, 0.405, 100.0}
-    },
-    ["looted"] = 503,
-    ["locationCount"] = 1
+    locations = {
+      {2,16, 0.8, 0.4}
+    }
   },
   ["Чароед"] = {
     ["locations"] = {
@@ -50116,11 +50114,9 @@ QuestieMonsters = {
     ["locationCount"] = 1
   },
   ["Тюремный надзиратель Эстон"] = {
-    ["locations"] = {
-      [1] = {48.0, 0.7746, 0.4219, 100.0}
-    },
-    ["looted"] = 630,
-    ["locationCount"] = 1
+    locations = {
+      {2,16, 0.792, 0.421}
+    }
   },
   ["Геомант из племени Камнедробов"] = {
     ["locations"] = {
