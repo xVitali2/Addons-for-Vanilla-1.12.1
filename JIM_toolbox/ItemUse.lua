@@ -31,10 +31,10 @@ end
 ItemUse_UseInventoryItem = UseInventoryItem
 function UseInventoryItem(slot)
 	ItemUse_Identify(
-		GetInventoryItemLink( "player", slot ), slot, nil,
-		ItemUse_UseInventoryItem, slot
-	)
-end		
+	GetInventoryItemLink( "player", slot ), slot, nil,
+	ItemUse_UseInventoryItem, slot
+)
+end
 
 ItemUse_UseContainerItem = UseContainerItem
 function UseContainerItem(bag, slot)
@@ -52,7 +52,6 @@ end
 ItemUse_UseAction = UseAction
 function UseAction(actionSlot, checkCursor, onSelf)
 	assert( "ItemUse_UseAction", actionSlot, checkCursor, onSelf )
-	
 	if ( GetActionCount( actionSlot ) ~= 0 ) then
 		--[[ An item has been confirmed as the source of the action.
 			It is now the AddOn's task to determine what the item's location is.
@@ -90,15 +89,15 @@ function UseAction(actionSlot, checkCursor, onSelf)
 				for bagSlot = 1, GetContainerNumSlots( bag ) do
 					for itemLink in string.gfind( GetContainerItemLink( bag, bagSlot ) or "", USED_ITEM_PATTERN ) do
 						assert( "ItemUse_UseAction", "found in bag." )
-						
 						ItemUse_Identify(
 							itemLink, bagSlot, bag,
 							ItemUse_UseAction, actionSlot, checkCursor, onSelf
 						)
 						return
 					end
+					ItemUse_UseAction( actionSlot, checkCursor, onSelf )
 				end
-			end			
+			end
 		end
 	
 	else	-- macro or spell
