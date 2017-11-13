@@ -703,7 +703,7 @@ if ( GetLocale() == "ruRU" ) then
 	Inst4Quest2_HORDE_Location = Inst4Quest6_Location
 	Inst4Quest2_HORDE_Note = Inst4Quest6_Note
 	Inst4Quest2_HORDE_Prequest = Inst4Quest6_Prequest
-	Inst4Quest2_HORDE_Folgequest = Inst4Quest6_Folgequest
+	Inst4Quest2_HORDE_Folgequest = "В Подгород за книгой Йагина" --728
 	--
 	Inst4Quest2name1_HORDE = Inst4Quest6name1
 	
