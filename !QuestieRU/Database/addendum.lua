@@ -39083,7 +39083,8 @@ QuestieHashMap = {
   ['startedBy']="Зарук",
   ['finishedBy']="Тельдарин Заблудший",
   ['level']=32,
-  ['questLevel']='40'
+  ['questLevel']='40',
+  ['rq']=3617322554
  },
  [2434926066]={
   ['name']="Сбор материалов",
