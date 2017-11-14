@@ -2,7 +2,6 @@
 ## Title: |cff33ffccpf|cffffffffUI
 ## Author: Shagu
 ## Notes: A complete user interface replacement.
-## Notes-ruRU: Полная замена пользовательского интерфейса в игре.
 ## Version: 3.1.2
 ## SavedVariables: pfUI_profiles, pfUI_gold
 ## SavedVariablesPerCharacter: pfUI_config, pfUI_init, pfUI_playerDB
