@@ -2,6 +2,7 @@ module 'aux.tabs.search'
 
 local T = require 'T'
 
+local info = require 'aux.util.info'
 local completion = require 'aux.util.completion'
 local filter_util = require 'aux.util.filter'
 local scan = require 'aux.core.scan'
@@ -524,15 +525,35 @@ for _ = 1, 5 do
 
     local table = auction_listing.new(frame.results, 16, auction_listing.search_columns)
     table:SetHandler('OnClick', function(row, button)
-        if IsAltKeyDown() and get_current_search().table:GetSelection().record == row.record then
-            if button == 'LeftButton' then
-                buyout_button:Click()
+	    if IsAltKeyDown() then
+		    if get_current_search().table:GetSelection().record == row.record then
+			    if button == 'LeftButton' then
+	                buyout_button:Click()
             elseif button == 'RightButton' then
                 bid_button:Click()
-            end
-        end
+			    end
+		    end
+	    elseif button == 'RightButton' then
+	        set_tab(1)
+			local itemname=info.item(this.record.item_id).name --byCFM
+			if GetLocale()=="ruRU" then --byCFM
+				local s,ss=nil,nil --byCFM
+				ss = string.find(itemname,"крошшера") --byCFM
+				if ss then --byCFM
+					s=string.sub(itemname,56,84) --byCFM
+				else --byCFM
+					s=string.sub(itemname,0,63) --byCFM
+				end --byCFM
+				search_tab.set_filter(s) --byCFM
+			else --byCFM
+				search_tab.set_filter(strlower(itemname) .. '/exact') --byCFM
+			end --byCFM
+		    execute(nil, false)
+	    end
     end)
     table:SetHandler('OnSelectionChanged', function(rt, datum)
+	    bid_button:Disable()
+        buyout_button:Disable()
         if not datum then return end
         find_auction(datum.record)
     end)

@@ -1,7 +1,9 @@
 module 'aux.tabs.bids'
 
+local info = require 'aux.util.info'
 local gui = require 'aux.gui'
 local auction_listing = require 'aux.gui.auction_listing'
+local search_tab = require 'aux.tabs.search'
 
 frame = CreateFrame('Frame', nil, AuxFrame)
 frame:SetAllPoints()
@@ -17,13 +19,31 @@ listing = auction_listing.new(frame.listing, 20, auction_listing.bids_columns)
 listing:SetSort(1, 2, 3, 4, 5, 6, 7, 8)
 listing:Reset()
 listing:SetHandler('OnClick', function(row, button)
-    if IsAltKeyDown() and listing:GetSelection().record == row.record then
-        if button == 'LeftButton' then
-            buyout_button:Click()
+	if IsAltKeyDown() then
+		if listing:GetSelection().record == row.record then
+			if button == 'LeftButton' then
+				buyout_button:Click()
         elseif button == 'RightButton' then
             bid_button:Click()
-        end
-    end
+			end
+		end
+	elseif button == 'RightButton' then
+		set_tab(1)
+		local itemname=info.item(this.record.item_id).name --byCFM
+		if GetLocale()=="ruRU" then --byCFM
+			local s,ss=nil,nil --byCFM
+			ss = string.find(itemname,"крошшера") --byCFM
+			if ss then --byCFM
+				s=string.sub(itemname,56,84) --byCFM
+			else --byCFM
+				s=string.sub(itemname,0,63) --byCFM
+			end --byCFM
+			search_tab.set_filter(s) --byCFM
+		else --byCFM
+			search_tab.set_filter(strlower(itemname) .. '/exact') --byCFM
+		end --byCFM
+		search_tab.execute(nil, false)
+	end
 end)
 listing:SetHandler('OnSelectionChanged', function(rt, datum)
     if not datum then return end
