@@ -2164,14 +2164,23 @@ end
 function getClassColor(class)
 	local classColor = {}
 	classColor["Druid"] = {1, 0.49, 0.04}
+	classColor["Друид"] = {1, 0.49, 0.04}
 	classColor["Hunter"] = {0.67, 0.83, 0.45}
+	classColor["Охотник"] = {0.67, 0.83, 0.45}
 	classColor["Mage"] = {0.41, 0.80, 0.94}
+	classColor["Маг"] = {0.41, 0.80, 0.94}
+	classColor["Паладин"] = {0.96, 0.55, 0.73}
 	classColor["Paladin"] = {0.96, 0.55, 0.73}
 	classColor["Priest"] = {1, 1, 1}
+	classColor["Жрец"] = {1, 1, 1}
 	classColor["Rogue"] = {1, 0.96, 0.41}
+	classColor["Разбойник"] = {1, 0.96, 0.41}
 	classColor["Shaman"] = {0, 0.44, 0.87}
+	classColor["Шаман"] = {0, 0.44, 0.87}
 	classColor["Warlock"] = {0.58, 0.51, 0.79}
+	classColor["Чернокнижник"] = {0.58, 0.51, 0.79}
 	classColor["Warrior"] = {0.78, 0.61, 0.43}
+	classColor["Воин"] = {0.78, 0.61, 0.43}
 	for k, v in pairs(classColor) do
 		if k == class then return v end
 	end
