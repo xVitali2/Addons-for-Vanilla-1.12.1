@@ -547,9 +547,9 @@ for _ = 1, 5 do
 				else --byCFM
 					s=string.sub(itemname,0,63) --byCFM
 				end --byCFM
-				search_tab.set_filter(s) --byCFM
+				set_filter(s) --byCFM
 			else --byCFM
-				search_tab.set_filter(strlower(itemname) .. '/exact') --byCFM
+				set_filter(strlower(itemname) .. '/exact') --byCFM
 			end --byCFM
 		    execute(nil, false)
 	    end
