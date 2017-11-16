@@ -54,6 +54,7 @@ local spellIds = {
 	--CFM
 	[BS["Ice Blast"]] = CC, -- Ice Yeti
 	[BS["Snap Kick"]] = CC, -- Ashenvale Outrunner
+	[BS["Lash"]] = CC, -- Lashtail Raptor
 	[BS["Web"]] = Root      -- Carrion Lurker
 }
 
