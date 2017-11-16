@@ -78,8 +78,14 @@ function M.item_query(item_id, first_page, last_page)
     if item_info then
 		local s=nil --byCFM
 		if GetLocale()=="ruRU" then --byCFM
-			local ss = string.find(item_info.name,"крошшера") --byCFM
-			if ss then s=string.sub(item_info.name,56,84) else s=string.sub(item_info.name,0,63) end --byCFM
+			local ss,sss = string.find(item_info.name,"крошшера"),string.find(item_info.name,"Тернистой долины:") --byCFM
+			if ss then--byCFM
+				s=string.sub(item_info.name,56,84)--byCFM
+			elseif sss then--byCFM
+				s=string.sub(item_info.name,27,69) --byCFM
+			else--byCFM
+				s=string.sub(item_info.name,0,63)--byCFM
+			end --byCFM
 		else --byCFM
 			s=item_info.name..'/exact' --byCFM
 		end --byCFM

@@ -79,10 +79,13 @@ do
 	            set_tab(1)
 				local itemname=info.item(this.item_record.item_id).name --byCFM
 				if GetLocale()=="ruRU" then --byCFM
-					local s,ss=nil,nil --byCFM
+					local s,ss,sss=nil,nil,nil --byCFM
 					ss = string.find(itemname,"крошшера") --byCFM
+					sss = string.find(itemname,"Тернистой долины:") --byCFM
 					if ss then --byCFM
 						s=string.sub(itemname,56,84) --byCFM
+					elseif sss then --byCFM
+						s=string.sub(itemname,27,69) --byCFM
 					else --byCFM
 						s=string.sub(itemname,0,63) --byCFM
 					end --byCFM
