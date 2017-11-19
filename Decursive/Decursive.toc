@@ -1,13 +1,10 @@
 ## Interface: 11200
 ## Title: Decursive
-## DefaultState: enabled
 ## Notes: This is a raid cleaning mod. The idea behind this is to iterate though the raid party, and cure who ever needs it. It also work on teams, but was written with raids in mind. Pets were added since some debuffs are PBAoE.
 ## Notes-ruRU: Отображение и лечение недугов с расширенной фильтрацией и системой приоритетов.
-## SavedVariablesPerCharacter: Dcr_Saved, DCR_REMOTE_DEBUG
-## Version 1.9.8.3
 ## Author:Archarodim (Originally coded by Quu)
-## eMail: Archarodim _(AT)_ Teaser _(DOT)_ FR
-## URL: http://www.2072productions.com/?to=decursive.php
+## Version 1.9.9
+## SavedVariablesPerCharacter: Dcr_Saved, DCR_REMOTE_DEBUG
 
 localization.lua
 localization.ru.lua
