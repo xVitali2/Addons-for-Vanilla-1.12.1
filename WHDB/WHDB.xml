@@ -1,0 +1,18 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+<script file="WHDB.lua"/>
+<script file="zoneData.lua"/>
+<script file="itemData.lua"/>
+<script file="npcData.lua"/>
+<script file="qData.lua"/>
+<Frame name="SCTFarmerFrame" parent="UIParent" hidden="false">
+	<Scripts>
+		<OnLoad>
+			WHDB_Init();
+		</OnLoad>
+		<OnEvent>
+			WHDB_Event(event);
+		</OnEvent>
+	</Scripts>
+</Frame>
+</Ui>
