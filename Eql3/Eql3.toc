@@ -1,11 +1,10 @@
 ## Interface: 11200
-## Title: Extended QuestLog (WHDB in) |cff7fff7f -Ace2-|r
+## Title: Extended QuestLog
 ## Author: CFM mod
 ## Notes: Extended QuestLog is an extension of the questlog. Choose from different layouts as well as many nice features.
-## Notes-ruRU: "Extended QuestLog" расширяет журнал заданий. Множество различных функций, а также приятных особенностей. +WOWhead база комментариев.
-## SavedVariables: QuestlogOptions, QuestLevel_Quest2Level, WHDB_Settings
-## Version: 3.6.1.4
-## RequiredDeps:!Libs
+## Notes-ruRU: "Extended QuestLog" расширяет журнал заданий. Множество различных функций, а также приятных особенностей.
+## SavedVariables: QuestlogOptions, QuestLevel_Quest2Level
+## Version: 3.6.2
 
 localization_en.lua
 localization_de.lua
@@ -18,9 +17,3 @@ EQL3_Tracker.xml
 EQL3_Options.xml
 EQL3_OrganizeFrame.xml
 EQL3_Tooltip.xml
-
-Whdb\WHDB.xml
-Whdb\locale\enUS\mainText.enUS.lua
-Whdb\locale\enUS\qDataEn.lua
-Whdb\locale\ruRU\mainText.ruRU.lua
-Whdb\locale\ruRU\qDataRu.lua
