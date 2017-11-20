@@ -44,12 +44,12 @@ L:RegisterTranslations("ruRU", function() return {
 	["Options for the combat log's range."] = "Опции для настройки дистанции комба-лога",
 
  --	["party"] = true,
- 	["Party"] = "Группа",
- 	["Party combat log range."] = "Дистанция комбат-лога для группы",
+ --	["Party"] = "Группа",
+ --	["Party combat log range."] = "Дистанция комбат-лога для группы",
 
- --	["friend"] = true,
- 	["Friendlies"] = "Дружелюбие",
- 	["Friendly players combat log range."] = "Дистанция комбат-лога для дружественных персонажей",
+--	["friend"] = true,
+-- 	["Friendlies"] = "Дружелюбие",
+-- 	["Friendly players combat log range."] = "Дистанция комбат-лога для дружественных персонажей",
 
 	["mob"] = "mob",
 	["Creatures"] = "Существо",
