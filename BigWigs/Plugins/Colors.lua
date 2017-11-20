@@ -53,6 +53,47 @@ L:RegisterTranslations("enUS", function() return {
 	["4th"] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	["Colors"] = "Цвета",
+
+	["Messages"] = "Сообщения",
+	["Bars"] = "Полосы",
+	["Shortbar"] = "Короткие",
+	["Longbar"] = "Длинные",
+	["Color %s"] = "Цвет %s",
+	["Color%s"] = "Цвет%s",
+	["Number of colors"] = "Число цветов",
+	["xColors"] = "хЦвета",
+	["Background"] = "Фон",
+	["Text"] = "Текст",
+	["Reset"] = "Сброс",
+
+	["Colors of messages and bars."] = "Цвета сообщений и полос",
+	["Colors of messages."] = "Цвета сообщений",
+	["Change the color for \"%s\" messages."] = "Изменить цвет \"%s\" сообщений",
+	["Colors of bars."] = "Цвета полос",
+	["Colors for short bars (< 1 minute)."] = "Цвета коротких полос (< 1 минуты)",
+	["Colors for long bars (> 1 minute)."] = "Цвета длинных полос (> 1 минуты)",
+	["Change the %s color."] = "Изменить цвет %s",
+	["Number of colors the bar has."] = "Число цветов успользуемых в полосах",
+	["Change the background color."] = "Изменить цвет фона",
+	["Change the text color."] = "Изменить цвет текста",
+	["Resets all ranges to defaults."] = "Сброс всех цветов на стандартные значения",
+
+	["Important"] = "Важные",
+	["Personal"] = "Личные",
+	["Urgent"] = "Экстренные",
+	["Attention"] = "Внимание",
+	["Positive"] = "Позитивные",
+	["Bosskill"] = "УбийствоБосса",
+	["Core"] = "Ядро",
+
+	["1st"] = "1й",
+	["2nd"] = "2ой",
+	["3rd"] = "3тий",
+	["4th"] = "4тый",
+} end)
+
 L:RegisterTranslations("koKR", function() return {
 	["Colors"] = "색상",
 

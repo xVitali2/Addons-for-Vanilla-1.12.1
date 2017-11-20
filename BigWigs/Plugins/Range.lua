@@ -38,6 +38,32 @@ L:RegisterTranslations("enUS", function() return {
 	["Resets all ranges to defaults."] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	["Range"] = "Дистанция",
+	["range"] = "range",
+	["Options for the combat log's range."] = "Опции для настройки дистанции комба-лога",
+
+ --	["party"] = true,
+ 	["Party"] = "Группа",
+ 	["Party combat log range."] = "Дистанция комбат-лога для группы",
+
+ --	["friend"] = true,
+ 	["Friendlies"] = "Дружелюбие",
+ 	["Friendly players combat log range."] = "Дистанция комбат-лога для дружественных персонажей",
+
+	["mob"] = "mob",
+	["Creatures"] = "Существо",
+	["Creature combat log range."] = "Дистанция комбат-лога существа",
+
+	["death"] = "death",
+	["Deaths"] = "Мертвый",
+	["Death message range."] = "Дистанция сообщений будучи мертвым",
+
+	["reset"] = "reset",
+	["Reset to defaults"] = "Сбросить к стандартным",
+	["Resets all ranges to defaults."] = "Использовать все стандартные настройки дистанции комбат-лога",
+} end)
+
 L:RegisterTranslations("koKR", function() return {
 	["Range"] = "범위",
 	["Options for the combat log's range."] = "전투 로그의 범위에 대한 설정",

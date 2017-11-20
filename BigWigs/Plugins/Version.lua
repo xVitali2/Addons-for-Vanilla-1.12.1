@@ -42,6 +42,34 @@ L:RegisterTranslations("enUS", function() return {
 	["Ancient"] = true,
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	["versionquery"] = "versionquery",
+	["Version Query"] = "Проверка версии",
+	["Commands for querying the raid for Big Wigs versions."] = "Команда для проверки игроков в рейде на версию Big Wigs",
+	["Query already running, please wait 5 seconds before trying again."] = "Выполняется проверка версии, пожалуйста, подождите 5 сек. и попробуйте еще раз.",
+	["Querying versions for "] = "Проверка версии ",
+	["Big Wigs Version Query"] = "Big Wigs версия",
+	["Close window"] = "Закрыть окно", -- I know, it's really a Tablet.
+	["Showing version for "] = "Показать версию ",
+	["Green versions are newer than yours, red are older, and white are the same."] = "\nЗеленый - версия новее вашей.\nКрасный - старее вашей.\nБелый - идентична вашей.",
+	["Player"] = "Игрок",
+	["Version"] = "Версия",
+	["Current zone"] = "Текущая зона",
+	["<zone>"] = "<зона>",
+	["Version query done."] = "Проверка версии завершена.",
+	["Runs a version query on your current zone."] = "Начать проверку версии по вашей текущей зоне.",
+	["Closes the version query window."] = "Закрыть окно проверки версии",
+	["current"] = "current",
+	["Runs a version query on the given zone."] = "Начать проверку версии по указанной зоне.",
+	["Zone"] = "Зона",
+	["zone"] = "zone",
+	["N/A"] = "Н/Д",
+	["BigWigs"] = "BigWigs",
+	["Runs a version query on the BigWigs core."] = "Начать проверку версии по ядру BigWigs",
+	["Nr Replies"] = "Всего",
+	["Ancient"] = "Старая",
+} end )
+
 L:RegisterTranslations("koKR", function() return {
 	["Version Query"] = "버전 요청",
 	["Commands for querying the raid for Big Wigs versions."] = "BigQigs 버전에 대한 공격대 요청 명령.",

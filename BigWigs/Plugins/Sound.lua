@@ -34,6 +34,19 @@ L:RegisterTranslations("enUS", function() return {
 	["Use only the default sound."] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	["Sounds"] = "Звуки",
+	["sounds"] = "sounds",
+	["Options for sounds."] = "Опции звуков",
+
+	["toggle"] = "toggle",
+	["Use sounds"] = "Использовать звуки",
+	["Toggle sounds on or off."] = "Вкл/Выкл все звуки",
+	["default"] = "default",
+	["Default only"] = "Только стандартные",
+	["Use only the default sound."] = "Использовать только стандартные звуки.",
+} end)
+
 L:RegisterTranslations("koKR", function() return {
 	["Sounds"] = "효과음",
 	["Options for sounds."] = "효과음 옵션.",

@@ -37,6 +37,38 @@ L:RegisterTranslations("enUS", function() return {
 	["Shown"] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	["BossBlock"] = "БлокБосс",
+	["Suppress bossmod chat from other players."] = "Подавляет сообщения посланные в чат другими игроками.",
+
+	["Suppress Raid Chat"] = "Чат рейд",
+	["Suppress messages in the raid channel."] = "Подавляет сообщения посланные в рейд чат",
+
+	["Suppress RaidWarn Chat"] = "Чат сообщения рейд объявлений",
+	["Suppress RaidWarn messages in the chat frames."] = "Подавляет сообщения рейд объявлений в окне чата",
+
+	["Suppress RaidWarn"] = "Сообщения рейд объявлений",
+	["Suppress RaidWarn popup messages."] = "Подавляет сообщения рейд объявлений в окне сообщений рейда",
+
+	["Suppress RaidSay"] = "Подавление cказать в рейде",
+	["Suppress CTRA RaidSay popup messages."] = "Подавление CTRA сообщений сказанные в рейде",
+	["Suppress oRA RaidSay popup messages."] = "Подавление oRA сообщений сказанные в рейде",
+	["Suppress oRA2 RaidSay popup messages."] = "Подавление oRA2 сообщений сказанные в рейде",
+
+	["Suppress Tells"] = "Подавление сказанных сообщений",
+	["Suppress Tell messages."] = "Подавление сказанных сообщений",
+
+	["Debugging"] = "Отладка",
+	["Show debug messages."] = "Показывать сообщения отладки",
+
+	["Suppressing Chatframe"] = "Подавление окна чата",
+	["Suppressing RaidWarningFrame"] = "Подавление объевлений рейда",
+	["Suppressing CT_RAMessageFrame"] = "Подавление CT_RA сообщений",
+
+	["Suppressed"] = "Подавлять",
+	["Shown"] = "Показывать",
+} end)
+
 L:RegisterTranslations("koKR", function() return {
 	["BossBlock"] = "보스차단",
 	["Suppress bossmod chat from other players."] = "타인의 보스모드 대화 차단.",

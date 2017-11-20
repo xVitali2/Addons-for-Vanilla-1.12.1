@@ -2,6 +2,10 @@
 
 ## Title: Big Wigs [|cffeda55fMolten Core|r]
 ## Notes: Big Wigs Molten Core Modules
+## Title-ruRU: Big Wigs [|cffeda55fОгненные Недра|r]
+## Notes-ruRU: Модуль Big Wigs - Огненные Недра
+## Title-zhTW: Big Wigs [|cffeda55f????|r]
+## Notes-zhTW: Big Wigs ??????
 ## Author: Ammo, Rabbit
 ## X-Credits: Tekkub Stoutwrithe (founding author), Shyva & Others
 ## Version: 2.0

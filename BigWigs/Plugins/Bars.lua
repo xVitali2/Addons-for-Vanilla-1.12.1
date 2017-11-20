@@ -50,6 +50,38 @@ L:RegisterTranslations("enUS", function() return {
 	["Set the texture for the timerbars."] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	["Bars"] = "Полосы",
+
+	["bars"] = "bars",
+	["anchor"] = "anchor",
+	["scale"] = "scale",
+	["up"] = "up",
+
+	["Options for the timer bars."] = "Опции полос времени",
+	["Show the bar anchor frame."] = "Отображать якорь полос",
+	["Set the bar scale."] = "Настройка масштаба полос",
+	["Group upwards"] = "Рост вверх",
+	["Toggle bars grow upwards/downwards from anchor."] = "Преключение роста полос от якоря вверх или вниз.",
+
+	["Timer bars"] = "Полосы времени",
+	["Show anchor"] = "Якорь",
+	["Grow bars upwards"] = "Рост вверх",
+	["Scale"] = "Масштаб",
+	["Bar scale"] = "Масштаб полос",
+
+	["Bars now grow %2$s"] = "Полосы увеличились на %2$s",
+	["Scale is set to %2$s"] = "Маштаб установлен на %2$s",
+
+	["Up"] = "Вверх",
+	["Down"] = "Вниз",
+	
+	["Test"] = "Тест",
+	["Close"] = "Закрыть",
+
+	["Texture"] = "Текстуры",
+	["Set the texture for the timerbars."] = "Установка текстур для полос времени.",
+} end)
 L:RegisterTranslations("koKR", function() return {
 	["Bars"] = "바",
 

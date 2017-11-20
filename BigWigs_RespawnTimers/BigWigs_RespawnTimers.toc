@@ -16,4 +16,3 @@
 ## X-BigWigs-LoadWithCore: 1
 
 BigWigs_RespawnTimers.lua
-

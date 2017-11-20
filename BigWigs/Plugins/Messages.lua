@@ -59,6 +59,53 @@ L:RegisterTranslations("enUS", function() return {
 	["Close"] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return {
+	["Messages"] = "Сообщения",
+
+	["msg"] = "msg",
+	["anchor"] = "anchor",
+	["rw"] = "rw",
+	["color"] = "color",
+	["scale"] = "scale",
+
+	["Options for the message frame."] = "Опции отображения сообщений",
+	["Anchor"] = "Якорь",
+	["Show the message anchor frame."] = "Отображение якоря сообщений",
+	["Use RaidWarning"] = "Использовать Объявление Рейду",
+	["Toggle sending messages to the RaidWarnings frame."] = "Вкл/Выкл отправку сообщений в Объявление Рейду",
+	["Use colors"] = "Использовать цвета",
+	["Toggles white only messages ignoring coloring."] = "Вкл/Выкл окраску игнорируемых сообщений, отображать белыми.",
+	["Message frame scale"] = "Масштаб фрейма сообщений.",
+
+	["Message frame"] = "Фрейм сообщеий",
+	["Show anchor"] = "Показать якорь",
+	["Send messages to RaidWarning frame"] = "Отправлять сообщения в Объявление Рейду",
+	["Set the message frame scale."] = "Настройка масштаба фрейма сообщений.",
+	["Colorize messages"] = "Оцветить сообщения",
+	["Scale"] = "Масштаб",
+
+	["|cffff0000Co|cffff00fflo|cff00ff00r|r"] = "|cffff0000Co|cffff00fflo|cff00ff00r|r",
+	["White"] = "Белый",
+	["BigWigs frame"] = "BigWigs фрейм",
+	["RaidWarning frame"] = "Фрейм Объявление Рейду",
+	["Scale is set to %s"] = "Маштаб установлен на %s",
+	["Messages are now sent to the %2$s"] = "Теперь сообщения отправляются в %2$s",
+	["Messages are currently sent to the %2$s"] = "Сообщения отправляются в %2$s",
+
+	["display"] = "display",
+	["Display"] = "Отображение",
+	["Set where messages are displayed."] = "Установить откуда будут выводиться сообщения",
+	["Display is now set to %2$s"] = "Теперь отображение установлено на %2$s",
+	["Display is currently set to %2$s"] = "Отображение установлено на %2$s",
+
+	["Mik's Scrolling Battle Text"] = "Mik's Scrolling Battle Text",
+	["Scrolling Combat Text"] = "Scrolling Combat Text",
+	["Floating Combat Text"] = "Floating Combat Text",
+
+	["Test"] = "Тест",
+	["Close"] = "Закрыть",
+} end)
+
 
 L:RegisterTranslations("koKR", function() return {
 	["Messages"] = "메세지",

@@ -9,12 +9,8 @@
 ## X-ReleaseDate: $Date: 2006-11-17 11:15:05 -0500 (Fri, 17 Nov 2006) $
 ## X-Category: Raid
 ## Version: 1
-## Dependencies: BigWigs
-## OptionalDeps: Ace2, GratuityLib, Deformat, Babble-2.2
-## X-Embeds: Deformat, GratuityLib, SpellCacheLib, SpellStatusLib, Babble-2.2
 ## SavedVariables: BigWigsCommonAurasDB
-## RequiredDeps:!Libs
+## RequiredDeps:BigWigs, !Libs
 ## X-BigWigs-LoadWithCore: 1
 
 CommonAuras.lua
-

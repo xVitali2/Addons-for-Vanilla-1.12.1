@@ -37,6 +37,32 @@ L:RegisterTranslations("enUS", function() return {
 	["Options for RaidWarning."] = true,
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	["RaidWarning"] = "ОбъявлениеРейду",
+
+	["raidwarn"] = "raidwarn",
+	["broadcast"] = "broadcast",
+	["whisper"] = "whisper",
+	["showwhispers"] = "showwhispers",
+	["useraidchannel"] = "useraidchannel",
+
+	["Broadcast over RaidWarning"] = "Передача через Объявление Рейду",
+	["Broadcast"] = "Передача",
+	["Toggle broadcasting over Raidwarning."] = "Вкл/Выкл передачу сообщений вашего BigWigsа в канал Объявлений Рейда остальным игрокам рейда.",
+	
+	["Whisper"] = "Шептание",
+	["Whisper warnings"] = "Предупреждать шепотом",
+	["Toggle whispering warnings to players."] = "Вкл/Выкл шептание предупреждений игрокам",
+	
+	["Show whispers"] = "Показывать шепот",
+	["Toggle showing whispers sent by BigWigs locally."] = "Вкл/Выкл отображение шептаний посланных локально BigWigsои, например когда у игроков чума или подобные отрицательные эффекты.",
+
+	["Use Raidchannel"] = "Передача в чат",
+	["Toggle using the raid channel instead of the raid warning channel for boss messages."] = "Вкл/Выкл передачу сообщений в чат группы или рейда вместо Рейд Объявлений о действиях боссов.",
+	
+	["Options for RaidWarning."] = "Опции для Объявление Рейду",
+} end )
+
 L:RegisterTranslations("koKR", function() return {
 	["RaidWarning"] = "공격대 경고",
 
