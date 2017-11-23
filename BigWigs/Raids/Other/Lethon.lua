@@ -53,6 +53,22 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	noxious_name = "Оповещение о Пагубном дыхании",
+	noxious_desc = "Предупреждает о Пагубном дыхании",
+
+	engage_trigger = "I can sense the SHADOW on your hearts. There can be no rest for the wicked!", --Я чувствую ТЕНЬ, нависшую над вашими сердцами. Нечестивцам не будет покоя! --не переведено на Light's hope
+	breath_trigger = "находит(.+) под воздействием эффекта \"Пагубное дыхание\"",
+	shadow_trigger = "Your wicked souls shall feed my power!", --Ваши злобные душонки придадут мне сил! --не переведено на Light's hope
+
+	shadow_warn = "Тени вызваны!",
+	breathSoon_warn = "Скоро Пагубное дыхание!",
+	breath_warn = "Пагубное дыхание!",
+
+	breath_bar = "Пагубное дыхание",
+
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Lethon",
 

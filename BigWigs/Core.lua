@@ -252,7 +252,7 @@ L:RegisterTranslations("deDE", function() return {
 ---------------------------------
 
 BigWigs = AceLibrary("AceAddon-2.0"):new("AceEvent-2.0", "AceDebug-2.0", "AceModuleCore-2.0", "AceConsole-2.0", "AceDB-2.0", "AceHook-2.1")
-BigWigs:SetModuleMixins("AceDebug-2.0", "AceEvent-2.0", "CandyBar-2.1")
+BigWigs:SetModuleMixins("AceDebug-2.0", "AceEvent-2.0", "CandyBar-2.0")
 BigWigs:RegisterDB("BigWigsDB", "BigWigsDBPerChar")
 BigWigs.cmdtable = {type = "group", handler = BigWigs, args = {
 	[L["boss"]] = {

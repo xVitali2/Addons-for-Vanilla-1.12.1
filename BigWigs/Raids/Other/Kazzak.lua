@@ -107,6 +107,66 @@ L:RegisterTranslations("enUS", function() return {
 	puticon_desc = "Put a Raid Icon on the person who got Mark of Kazzak.\n\n(Requires assistant or higher)",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	starttrigger1 = "All mortals will perish!", --Смертным не место в этом мире! --не переведено на Light's hope
+	starttrigger2 = "The Legion will conquer all!", --Легион покорит вселенную! --не переведено на Light's hope
+	markofkazzakyou_trigger = "Вы находитесь под воздействием эффекта \"Метка Каззака\".",
+	markofkazzakother_trigger = "(.*) находится под воздействием эффекта \"Метка Каззака".",
+	markofkazzakyouend_trigger = "Действие эффекта \"Метка Каззака\", наложенного на вас, заканчивается.",
+	markofkazzakotherend_trigger = "Действие эффекта \"Метка Каззака\", наложенного на (.*), заканчивается.",
+	twistedreflectionyou_trigger = "Вы находитесь под воздействием эффекта \"Кривое зеркало\".",
+	twistedreflectionother_trigger = "(.*) находится под воздействием эффекта \"Кривое зеркало\".",
+	twistedreflectionyouend_trigger = "Действие эффекта \"Кривое зеркало\", наложенного на вас, заканчивается.",
+	twistedreflectionotherend_trigger = "Действие эффекта \"Кривое зеркало\", наложенного на (.*), заканчивается.",
+	deathyou_trigger = "Вы умерли\.",
+	deathother_trigger = "(.*) погибает.",
+	voidbolt_trigger = "Владыка Каззак начинает использовать \"Молния Бездны\".",
+	attack_trigger1 = "атаку Владыка Каззак",--в русском нереально правильно ловить атаки таким образом... стр 445 дополнительные проверки
+	attack_trigger2 = "Владыка Каззак не попадает по",
+	attack_trigger3 = "Владыка Каззак наносит",
+	attack_trigger4 = "атаке Владыка Каззак",
+	--enrage_trigger = "Владыка Каззак получает эффект Berserk.",
+	enrage_trigger = "REUSE ME", --на Light's hope он не кастует берсерк, реализовано скриптом
+	enrageyell_trigger = "Каззак в Превосходной форме!",
+	bosskill_trigger = "The Legion... will never... fall.", --Легион... никогда... не падет. --не переведено на Light's hope
+
+	engagewarn = "Владыка Каззак в бою! 3 минуты до Высшей формы!",
+	enrage_warm = "Владыка Каззак в Высшей форме(Берсерк)!",
+	makrofkazzak_warn = "%s с Меткой Каззака! Снимите проклятие!",
+	twistedreflection_warn = "%s с эффектом Кривое зеркало! Развейте!",
+	mark_message_you = "Вы с Меткой Каззака! Не тратьте ману!",
+	reflection_message_you = "Вы с эффектом Кривое зеркало!",
+	corruptsoul_warn = "%s исцелил Владыку Каззака, умерев!",
+	corruptsoul_warn_you = "Вы исцелили Владыку Каззака, умерев!",
+
+	supreme1min = "Превосходная форма через 1 минуту!",
+	supreme30sec = "Превосходная форма через 30 секунд!",
+	supreme10sec = "Превосходная форма через 10 секунд!",
+
+	enrage_bar = "Превосходная форма",
+	voidbolt_bar = "Молния Бездны",
+	mark_bar = "%s: Метка Каззака",
+	twisted_bar = "%s: Кривое зеркало",
+
+	supreme_name = "Оповещение о Превосходной форме",
+	supreme_desc = "Предупреждает о Превосходной форме.",
+
+	voidbolt_name = "Молния Бездны",
+	voidbolt_desc = "Отображает уведомление о Молнии Бездны.",
+
+	corruptsoul_name = "Пленение души",
+	corruptsoul_desc = "Предупреждает когда босс лечится при случайных смертях врагов.",
+
+	markofkazzak_name = "Метка Каззака",
+	markofkazzak_desc = "Предупреждает когда игрок получает отрицательный эффект на высасывание маны.",
+
+	twistedreflection_name = "Кривое зеркало",
+	twistedreflection_desc = "Предупреждает когда игрок получает отрицательный эффект,\n\n который лечит босса на 25000 ХП когда босс атакует его.",
+
+	puticon_name = "Значки рейда на игроках с меткой",
+	puticon_desc = "Устанавливает значок рейда нa игрока с Меткой Каззака.\n\n(Требуется помощник или лидер)",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	cmd = "Kazzak",
 
@@ -382,7 +442,8 @@ function module:BigWigs_RecvSync(sync, rest, nick)
 end
 
 function module:Melee(msg)
-	if string.find(msg, L["attack_trigger1"]) or string.find(msg, L["attack_trigger2"]) or string.find(msg, L["attack_trigger3"]) or string.find(msg, L["attack_trigger4"]) then
+	if string.find(msg, L["attack_trigger1"]) or string.find(msg, L["attack_trigger2"]) or string.find(msg, L["attack_trigger3"]) or string.find(msg, L["attack_trigger4"])
+	or string.find(msg, "Владыка Каззак атакует") or string.find(msg, "Атака Владыка Каззак") or string.find(msg, "атаки Владыка Каззак") then
 		if castingvoidbolt then
 			if (GetTime() - voidbolttime) < 1.5 then
 				self:Sync(syncName.voidboltStop)

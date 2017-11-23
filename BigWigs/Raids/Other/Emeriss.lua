@@ -69,6 +69,33 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	noxious_name = "Оповещение о Пагубном дыхании",
+	noxious_desc = "Предупреждать о Пагубном дыхании",
+
+	volatileyou_name = "Оповещение о Летучей заразе на вас",
+	volatileyou_desc = "Предупреждать когда Летучая зараза на вас",
+
+	volatileother_name = "Оповещение о Летучей заразе на других", 
+	volatileother_desc = "Предупреждать когда Летучая зараза на других",
+
+	volatile_trigger = "^([^%s]+)([^%s]+)находит(.+) под воздействием эффекта \"Летучая зараза\"",
+	breath_trigger = "находит(.+) под воздействием эффекта \"Пагубное дыхание\"",
+	engage_trigger = "Hope is a DISEASE of the soul! This land shall wither and die!", -- не переведено на Light's hope
+	corruption_trigger = "Taste your world's corruption!", -- не переведено на Light's hope
+	volatileYou_warn = "Вы под воздействием эффекта Летучая зараза!",
+	volatileOther_warn = " под воздействием эффекта Летучая зараза!",
+	breathSoon_warn = "Скоро Пагубное дыхание!",
+	breath_warn = "Пагубное дыхание!",
+	corruption_warn = "Порча земли! Лечить сейчас!",
+
+	isyou = "Вы",
+	isare = " ",
+
+	breath_bar = "Пагубное дыхание",
+	corruption_bar = "Порча земли",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Emeriss",
 

@@ -69,6 +69,23 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	ms_name = "Смертельный удар",
+	ms_desc = "Предупреждает когда кто-либо получает Смертельный удар",
+
+	stomp_name = "Громовая поступь",
+	stomp_desc = "Предупреждает когда кто-либо получает Громовую поступь",
+
+	charge_name = "Атака берсерка",
+	charge_desc = "Предупреждает когда кто-либо получает Атаку берсерка",
+
+	warStomp_bar = "Громовая поступь",
+	warStomp2_bar = "2ая Громовая поступь",
+	ms_bar = "Смертельный удар",
+	charge_bar = "Атака берсерка",
+
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--ms_cmd = "ms",
 	ms_name = "Golpe mortal",

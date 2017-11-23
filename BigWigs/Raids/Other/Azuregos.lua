@@ -52,6 +52,26 @@ L:RegisterTranslations("enUS", function() return {
 	shield_bar = "Magic Shield",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM Азурегос
+	teleport_name = "Оповещение о Телепортации",
+	teleport_desc = "Предупреждает о Телепортации",
+
+	shield_name = "Оповещение о щите",
+	shield_desc = "Предупреждает о щите",
+
+	teleport_trigger = "Come, little ones", --Сюда, малыши. --не переведено на Light's hope
+	shieldDown_trigger = "Действие эффекта \"Отражение\", наложенного на Азурегос, заканчивается.",
+	shieldUp_trigger = "Азурегос получает эффект \"Отражение\".",
+
+	teleport_warn = "Телепортация!",
+	shieldDown_warn = "Магический щит спал!",
+	shieldUp_warn = "Магический щит применён!",
+	teleport_bar = "Телепортация",
+	teleportSoon_warn = "Скоро Телепортация",
+
+	shield_bar = "Магический щит",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Azuregos",
 

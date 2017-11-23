@@ -61,6 +61,30 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return {
+	engage_name = "Оповещение о бое", -- <name>_name
+	engage_desc = "Предупреждает о бое с вепрем", -- <name>_desc
+	engage_msg = "Вепрь в бою! Будте осторожны.",
+
+	teleport_msg = "Телепортация",
+
+	charge_cmd = "charge",
+	charge_name = "Оповещение о Рывке",
+	charge_desc = "Предупреждает о Рывке",
+	charge_trigger = "получает эффект \"Атака вепря\".",
+	charge_msg = "Вепрь использует рывок!",
+	charge_bar = "Рывок",
+
+	vulnerability_direct_test = "^[%w]+[%s's]* ([%w%s:]+) ([%w]+) Старый крапчатый вепрь на ([%d]+) ([%w]+) ед. урона%.[%s%(]*([%d]*)", -- не заморачивался с переводом... не подходит к русской локализации
+	umlaut_test = "наносит вам",
+
+
+	proximity_cmd = "proximity",
+	proximity_name = "Ближайшее предупреждение",
+	proximity_desc = "Отображает окно ближайшего предупреждения",
+
+} end )
+
 L:RegisterTranslations("deDE", function() return {
 	engage_name = "Pull Warnung",
 	engage_desc = "Warnung beim Pull",

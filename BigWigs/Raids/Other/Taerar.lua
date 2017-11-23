@@ -67,6 +67,31 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM Таэрар
+	noxious_name = "Оповещение о Пагубном дыхании",
+	noxious_desc = "Предупреждать о Пагубном дыхании",
+
+	fear_name = "Страх",
+	fear_desc = "Предупреждать о Раскатистом реве",
+
+	fear_trigger = "Таэрар начинает использовать \"Раскатистый рев\".",
+	breath_trigger = "находит(.+) под воздействием эффекта \"Пагубное дыхание\"",
+	engage_trigger = "Peace is but a fleeting dream! Let the NIGHTMARE reign!", --Мир – это всего лишь мимолетный сон. Пусть правит КОШМАР! --не переведено на Light's hope
+	shades_trigger = "Children of Madness - I release you upon this world!", --Дети Безумия – я выпускаю вас в этот мир! --не переведено на Light's hope
+	shadedies_trigger = "Тень Таэрара погибает.",
+
+	shades_warn = "Таэрар скрылся! Убивайте Тени!",
+	fearCast_warn = "Страх через 1.5 сек!",
+	breathSoon_warn = "Скоро Пагубное дыхание!",
+	breath_warn = "Пагубное дыхание!",
+	fear_warn = "Скоро АОЕ страх!",
+
+	breath_bar = "Пагубное дыхание",
+	banish_bar = "Скроется",
+	fear_bar = "АОЕ Страх",
+
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Taerar",
 

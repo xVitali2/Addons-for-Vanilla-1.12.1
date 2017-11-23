@@ -53,6 +53,21 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	noxious_name = "Оповещение о Пагубном дыхании",
+	noxious_desc = "Предупреждать о Пагубном дыхании",
+
+	engage_trigger = "The strands of LIFE have been severed! The Dreamers must be avenged!", --Нити ЖИЗНИ разорваны! Отомстим за Дремлющих! --не переведено на Light's hope
+	breath_trigger = "находит(.+) под воздействием эффекта \"Пагубное дыхание\"",
+	druid_trigger = "Your wicked souls shall feed my power!", --Ваши злобные душонки придадут мне сил! --не переведено на Light's hope
+
+	druid_warn = "Друиды вызваны!",
+	breathSoon_warn = "Скоро Пагубное дыхание!",
+	breath_warn = "Пагубное дыхание!",
+
+	breath_bar = "Пагубное дыхание",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	cmd = "Ysondre",
 
