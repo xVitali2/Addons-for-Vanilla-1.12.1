@@ -1,4 +1,4 @@
-﻿assert(BigWigs, "BigWigs not found!")
+assert(BigWigs, "BigWigs not found!")
 
 ------------------------------
 --      Are you local?      --
@@ -21,11 +21,11 @@ L:RegisterTranslations("enUS", function() return {
 	["Place"] = true,
 	["Place Raid Icons"] = true,
 	["Toggle placing of Raid Icons on players."] = true,
-	
+
 	["Icon"] = true,
 	["Set Icon"] = true,
 	["Set which icon to place on players."] = true,
-	
+
 	["Options for Raid Icons."] = true,
 
 	["star"] = true,
@@ -38,31 +38,31 @@ L:RegisterTranslations("enUS", function() return {
 	["skull"] = true,
 } end )
 
-L:RegisterTranslations("ruRU", function() return {
-	["Raid Icons"] = "Иконки рейда",
+L:RegisterTranslations("esES", function() return {
+	["Raid Icons"] = "Iconos de Banda",
 
-	["raidicon"] = "raidicon",
-	["place"] = "place",
-	["icon"] = "icon",
+	--["raidicon"] = "iconobanda",
+	--["place"] = "colocar",
+	--["icon"] = "icono",
 
-	["Place"] = "Ставить",
-	["Place Raid Icons"] = "Ставить иконку рейда",
-	["Toggle placing of Raid Icons on players."] = "Вкл/Выкл размещение рейдовых иконок на игроках",
-	
-	["Icon"] = "Иконка",
-	["Set Icon"] = "Установка иконки",
-	["Set which icon to place on players."] = "Установите какая иконка будет ставиться на игроках",
-	
-	["Options for Raid Icons."] = "Опции иконок рейда",
+	["Place"] = "Marcar",
+	["Place Raid Icons"] = "Marcar con los iconos de banda",
+	["Toggle placing of Raid Icons on players."] = "Alterna marcar los Iconos de Banda a los jugadores",
 
-	["star"] = "Звезда",
-	["circle"] = "Круг",
-	["diamond"] = "Ромб",
-	["triangle"] = "Треугольник",
-	["moon"] = "Луна",
-	["square"] = "Квадрат",
-	["cross"] = "Крест",
-	["skull"] = "Череп",
+	["Icon"] = "Icono",
+	["Set Icon"] = "Definir Icono",
+	["Set which icon to place on players."] = "Define cual icono que marcar al jugador",
+
+	["Options for Raid Icons."] = "Opciones para Iconos de Banda",
+
+	["star"] = "estrella",
+	["circle"] = "círculo",
+	["diamond"] = "diamante",
+	["triangle"] = "triángulo",
+	["moon"] = "luna",
+	["square"] = "cuadrado",
+	["cross"] = "cruz",
+	["skull"] = "calavera",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -71,11 +71,11 @@ L:RegisterTranslations("koKR", function() return {
 	["Place"] = "지정",
 	["Place Raid Icons"] = "공격대 아이콘 지정",
 	["Toggle placing of Raid Icons on players."] = "플레이어에 공격대 아이콘 지정 토글",
-	
+
 	["Icon"] = "아이콘",
 	["Set Icon"] = "아이콘 설정",
 	["Set which icon to place on players."] = "플레이어에 아이콘 지정을 위한 설정",
-	
+
 	["Options for Raid Icons."] = "공격대 아이콘에 대한 설정",
 
 	["star"] = "별",
@@ -95,13 +95,13 @@ L:RegisterTranslations("zhCN", function() return {
 	["Place"] = "标记",
 	["Place Raid Icons"] = "标记团队图标",
 	["Toggle placing of Raid Icons on players."] = "切换是否在玩家身上标记团队图标",
-	
+
 	["Icon"] = "图标",
 	["Set Icon"] = "设置图标",
 	["Set which icon to place on players."] = "设置玩家身上标记的图标。",
-	
+
 	["Options for Raid Icons."] = "团队图标设置",
-	
+
 	["star"] = "星星",
 	["circle"] = "圆圈",
 	["diamond"] = "钻石",
@@ -118,13 +118,13 @@ L:RegisterTranslations("zhTW", function() return {
 	["Place"] = "標記",
 	["Place Raid Icons"] = "標記團隊圖示",
 	["Toggle placing of Raid Icons on players."] = "切換是否在玩家身上標記團隊圖示",
-	
+
 	["Icon"] = "圖標",
 	["Set Icon"] = "設置圖示",
 	["Set which icon to place on players."] = "設置玩家身上標記的圖示。",
-	
+
 	["Options for Raid Icons."] = "團隊圖示設置",
-	
+
 	["star"] = "星星",
 	["circle"] = "圓圈",
 	["diamond"] = "方塊",
@@ -145,11 +145,11 @@ L:RegisterTranslations("deDE", function() return {
 	["Place"] = "Platzierung",
 	["Place Raid Icons"] = "Schlachtzug-Symbole platzieren",
 	["Toggle placing of Raid Icons on players."] = "Schlachtzug-Symbole auf Spieler setzen.",
-	
+
 	["Icon"] = "Symbol",
 	["Set Icon"] = "Symbol platzieren",
 	["Set which icon to place on players."] = "W\195\164hle, welches Symbol auf Spieler gesetzt wird.",
-	
+
 	["Options for Raid Icons."] = "Optionen f\195\188r Schlachtzug-Symbole.",
 
 	["star"] = "Stern",
@@ -168,11 +168,11 @@ L:RegisterTranslations("frFR", function() return {
 	["Place"] = "Placement",
 	["Place Raid Icons"] = "Placer les icônes de raid",
 	["Toggle placing of Raid Icons on players."] = "Place ou non les icônes de raid sur les joueurs.",
-	
+
 	["Icon"] = "Icône",
 	["Set Icon"] = "Déterminer l'icône",
 	["Set which icon to place on players."] = "Détermine quelle icône sera placée sur les joueurs.",
-	
+
 	["Options for Raid Icons."] = "Options concernant les icônes de raid.",
 
 	["star"] = "étoile",
@@ -215,7 +215,7 @@ BigWigsRaidIcon.consoleOptions = {
 			name = L["Place Raid Icons"],
 			desc = L["Toggle placing of Raid Icons on players."],
 			get = function() return BigWigsRaidIcon.db.profile.place end,
-			set = function(v) BigWigsRaidIcon.db.profile.place = v end,		
+			set = function(v) BigWigsRaidIcon.db.profile.place = v end,
 		},
 		[L["icon"]] = {
 			type = "text",
@@ -244,19 +244,19 @@ function BigWigsRaidIcon:BigWigs_SetRaidIcon(player, iconnumber)
 		icon = L["skull"]
 	end
 	icon = self.icontonumber[icon]
+
 	for i=1,GetNumRaidMembers() do
 		if UnitName("raid"..i) == player then
-			if not GetRaidTargetIndex("raid"..i) then
-				if not iconnumber then
-					SetRaidTargetIcon("raid"..i, icon)
-					lastplayer = player
-				else
-					SetRaidTargetIcon("raid"..i, iconnumber)
-					lastplayer = player
-				end
+			if not iconnumber then
+				SetRaidTargetIcon("raid"..i, icon)
+				lastplayer = player
+			else
+				SetRaidTargetIcon("raid"..i, iconnumber)
+				lastplayer = player
 			end
 		end
 	end
+
 end
 
 function BigWigsRaidIcon:BigWigs_RemoveRaidIcon()

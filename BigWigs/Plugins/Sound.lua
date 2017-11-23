@@ -10,10 +10,28 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigsSound")
 
 local sounds = {
 	Long = "Interface\\AddOns\\BigWigs\\Sounds\\Long.mp3",
-	Info = "Interface\\AddOns\\BigWigs\\Sounds\\Info.mp3",
+	Info = "Interface\\AddOns\\BigWigs\\Sounds\\Info.ogg",
 	Alert = "Interface\\AddOns\\BigWigs\\Sounds\\Alert.mp3",
 	Alarm = "Interface\\AddOns\\BigWigs\\Sounds\\Alarm.mp3",
 	Victory = "Interface\\AddOns\\BigWigs\\Sounds\\Victory.mp3",
+
+	Beware = "Interface\\AddOns\\BigWigs\\Sounds\\Beware.wav",
+	RunAway = "Interface\\AddOns\\BigWigs\\Sounds\\RunAway.wav",
+
+	One = "Interface\\AddOns\\BigWigs\\Sounds\\1.ogg",
+	Two = "Interface\\AddOns\\BigWigs\\Sounds\\2.ogg",
+	Three = "Interface\\AddOns\\BigWigs\\Sounds\\3.ogg",
+	Four = "Interface\\AddOns\\BigWigs\\Sounds\\4.ogg",
+	Five = "Interface\\AddOns\\BigWigs\\Sounds\\5.ogg",
+	Six = "Interface\\AddOns\\BigWigs\\Sounds\\6.ogg",
+	Seven = "Interface\\AddOns\\BigWigs\\Sounds\\7.ogg",
+	Eight = "Interface\\AddOns\\BigWigs\\Sounds\\8.ogg",
+	Nine = "Interface\\AddOns\\BigWigs\\Sounds\\9.ogg",
+	Ten = "Interface\\AddOns\\BigWigs\\Sounds\\10.ogg",
+
+	Murloc = "Sound\\Creature\\Murloc\\mMurlocAggroOld.wav",
+	Pain = "Sound\\Creature\\Thaddius\\THAD_NAXX_ELECT.wav",
+	Shakira = "Interface\\AddOns\\BigWigs\\Sounds\\Shakira.mp3",
 }
 
 
@@ -34,17 +52,17 @@ L:RegisterTranslations("enUS", function() return {
 	["Use only the default sound."] = true,
 } end)
 
-L:RegisterTranslations("ruRU", function() return {
-	["Sounds"] = "Звуки",
-	["sounds"] = "sounds",
-	["Options for sounds."] = "Опции звуков",
+L:RegisterTranslations("esES", function() return {
+	["Sounds"] = "Sonidos",
+	--["sounds"] = true,
+	["Options for sounds."] = "Opciones para sonidos",
 
-	["toggle"] = "toggle",
-	["Use sounds"] = "Использовать звуки",
-	["Toggle sounds on or off."] = "Вкл/Выкл все звуки",
-	["default"] = "default",
-	["Default only"] = "Только стандартные",
-	["Use only the default sound."] = "Использовать только стандартные звуки.",
+	--["toggle"] = "Alternar",
+	["Use sounds"] = "Usar sonidos",
+	["Toggle sounds on or off."] = "Alterna los sonidos activos o desactivos",
+	--["default"] = "defecto",
+	["Default only"] = "Solamente defecto",
+	["Use only the default sound."] = "Solamente usa el sonido por defecto",
 } end)
 
 L:RegisterTranslations("koKR", function() return {
@@ -57,53 +75,13 @@ L:RegisterTranslations("koKR", function() return {
 	["Use only the default sound."] = "기본음만 사용.",
 } end)
 
-L:RegisterTranslations("zhCN", function() return {
-	["Sounds"] = "声音",
-	["sounds"] = "声音",
-	["Options for sounds."] = "声音的选项",
-
-	["toggle"] = "选择",
-	["Use sounds"] = "使用声音",
-	["Toggle sounds on or off."] = "切换是否使用声音。",
-	["default"] = "默认",
-	["Default only"] = "只用默认",
-	["Use only the default sound."] = "只用默认声音",
-} end)
-
-L:RegisterTranslations("zhTW", function() return {
-	["Sounds"] = "聲音",
-	["sounds"] = "聲音",
-	["Options for sounds."] = "聲音的選項",
-
-	["toggle"] = "選擇",
-	["Use sounds"] = "使用聲音",
-	["Toggle sounds on or off."] = "切換是否使用聲音。",
-	["default"] = "預設",
-	["Default only"] = "只用預設",
-	["Use only the default sound."] = "只用預設聲音",
-} end)
-
 L:RegisterTranslations("deDE", function() return {
 	["Sounds"] = "Sound",
-	--["sounds"] = "sound",
 	["Options for sounds."] = "Optionen f\195\188r Sound.",
-
-	--["toggle"] = true,
 	["Use sounds"] = "Sound nutzen",
 	["Toggle sounds on or off."] = "Sound aktivieren/deaktivieren.",
-	--["default"] = "true",
 	["Default only"] = "Nur Standard",
 	["Use only the default sound."] = "Nur Standard Sound.",
-} end)
-
-L:RegisterTranslations("frFR", function() return {
-	["Sounds"] = "Sons",
-	["Options for sounds."] = "Options concernant les sons.",
-
-	["Use sounds"] = "Utiliser les sons",
-	["Toggle sounds on or off."] = "Joue ou non les sons.",
-	["Default only"] = "Son par défaut uniquement",
-	["Use only the default sound."] = "Utilise uniquement le son par défaut.",	
 } end)
 
 ----------------------------------
@@ -149,15 +127,25 @@ function BigWigsSound:OnEnable()
 	self:RegisterEvent("BigWigs_Message")
 	self:RegisterEvent("BigWigs_Sound")
 end
+function BigWigsSound:OnDisable()
+	BigWigs:DebugMessage("OnDisable")
+end
 
 function BigWigsSound:BigWigs_Message(text, color, noraidsay, sound, broadcastonly)
-	if not text or sound == false or broadcastonly then return end
+	if self.db.profile.sound then
+		if not text or sound == false or broadcastonly then return end
 
-	if sounds[sound] and not self.db.profile.defaultonly then PlaySoundFile(sounds[sound])
-	else PlaySound("RaidWarning") end
+		if sounds[sound] and not self.db.profile.defaultonly then PlaySoundFile(sounds[sound])
+		else PlaySound("RaidWarning") end
+	end
 end
 
 function BigWigsSound:BigWigs_Sound( sound )
-	if sounds[sound] and not self.db.profile.defaultonly then PlaySoundFile(sounds[sound])
-	else PlaySound("RaidWarning") end
+	if self.db.profile.sound then
+		if sounds[sound] and not self.db.profile.defaultonly then
+			PlaySoundFile(sounds[sound])
+		else
+			PlaySound("RaidWarning")
+		end
+	end
 end

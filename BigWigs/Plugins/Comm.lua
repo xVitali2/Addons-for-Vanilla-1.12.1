@@ -60,7 +60,7 @@ function BigWigsComm:BigWigs_SendSync(msg)
 	if not sync then return end
 
 	if throt[sync] == nil then throt[sync] = 1 end
-	if throt[sync] == 0 or not times[sync] or (times[sync] + throt[sync]) <= GetTime() then	
+	if throt[sync] == 0 or not times[sync] or (times[sync] + throt[sync]) <= GetTime() then
 		SendAddonMessage("BigWigs", msg, "RAID")
 		self:CHAT_MSG_ADDON("BigWigs", msg, "RAID", playerName)
 	end

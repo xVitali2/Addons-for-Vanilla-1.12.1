@@ -118,9 +118,9 @@ function BigWigsLoD:InitializeLoD()
 					if zone then
 						if not inzone[zone] then inzone[zone] = {} end
 						table.insert( inzone[zone], i)
-						if not ignorezone then 
+						if not ignorezone then
 							zonelist[zone] = true
-						else 
+						else
 							if not zonelist[LC["Other"]] then zonelist[LC["Other"]] = {} end
 							zonelist[LC["Other"]][zone] = true
 						end

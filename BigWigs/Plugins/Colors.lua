@@ -53,45 +53,46 @@ L:RegisterTranslations("enUS", function() return {
 	["4th"] = true,
 } end)
 
-L:RegisterTranslations("ruRU", function() return {
-	["Colors"] = "Цвета",
+L:RegisterTranslations("esES", function() return {
+	["Colors"] = "Colores",
 
-	["Messages"] = "Сообщения",
-	["Bars"] = "Полосы",
-	["Shortbar"] = "Короткие",
-	["Longbar"] = "Длинные",
-	["Color %s"] = "Цвет %s",
-	["Color%s"] = "Цвет%s",
-	["Number of colors"] = "Число цветов",
-	["xColors"] = "хЦвета",
-	["Background"] = "Фон",
-	["Text"] = "Текст",
-	["Reset"] = "Сброс",
+	["Messages"] = "Mensajes",
+	["Bars"] = "Barras",
+	["Shortbar"] = "BarraCorta",
+	["Longbar"] = "BarraLarga",
+	["Color %s"] = "Color %s",
+	["Color%s"] = "Color%s",
+	["Number of colors"] = "Número de colores",
+	["xColors"] = "xColores",
+	["Background"] = "Fondo",
+	["Text"] = "Texto",
+	["Reset"] = "Restablecer",
 
-	["Colors of messages and bars."] = "Цвета сообщений и полос",
-	["Colors of messages."] = "Цвета сообщений",
-	["Change the color for \"%s\" messages."] = "Изменить цвет \"%s\" сообщений",
-	["Colors of bars."] = "Цвета полос",
-	["Colors for short bars (< 1 minute)."] = "Цвета коротких полос (< 1 минуты)",
-	["Colors for long bars (> 1 minute)."] = "Цвета длинных полос (> 1 минуты)",
-	["Change the %s color."] = "Изменить цвет %s",
-	["Number of colors the bar has."] = "Число цветов успользуемых в полосах",
-	["Change the background color."] = "Изменить цвет фона",
-	["Change the text color."] = "Изменить цвет текста",
-	["Resets all ranges to defaults."] = "Сброс всех цветов на стандартные значения",
+	["Colors of messages and bars."] = "Color de los mensajes y barras.",
+	["Colors of messages."] = "Color de los mensajes.",
+	["Change the color for \"%s\" messages."] = "Cambia el color para mensajes \"%s\".",
+	["Colors of bars."] = "Color de las barras.",
+	["Colors for short bars (< 1 minute)."] = "Color para barras cortas (< 1 minuto).",
+	["Colors for long bars (> 1 minute)."] = "Color para barras largas (> 1 minuto).",
+	["Change the %s color."] = "Cambia el color %s",
+	["Number of colors the bar has."] = "Número de colores de la barra.",
+	["Change the background color."] = "Cambia el color del fondo.",
+	["Change the text color."] = "Cambia el color del texto.",
+	["Resets all ranges to defaults."] = "Restablece los rangos por defecto.",
 
-	["Important"] = "Важные",
-	["Personal"] = "Личные",
-	["Urgent"] = "Экстренные",
-	["Attention"] = "Внимание",
-	["Positive"] = "Позитивные",
-	["Bosskill"] = "УбийствоБосса",
-	["Core"] = "Ядро",
+	["Important"] = "Importante",
+	["Personal"] = "Personal",
+	["Twilight"] = "Crepúsculo",
+	["Urgent"] = "Urgente",
+	["Attention"] = "Atención",
+	["Positive"] = "Positivo",
+	["Bosskill"] = "MataJefe",
+	["Core"] = "Núcleo",
 
-	["1st"] = "1й",
-	["2nd"] = "2ой",
-	["3rd"] = "3тий",
-	["4th"] = "4тый",
+	["1st"] = "1º",
+	["2nd"] = "2º",
+	["3rd"] = "3º",
+	["4th"] = "4º",
 } end)
 
 L:RegisterTranslations("koKR", function() return {
@@ -246,7 +247,7 @@ L:RegisterTranslations("deDE", function() return {
 
 	["Important"] = "Wichtig",
 	["Personal"] = "Pers\195\182hnlich",
-	["Purple"] = "Lila",
+	--["Purple"] = "Lila",
 	["Urgent"] = "Dringend",
 	["Attention"] = "Achtung",
 	["Positive"] = "Positiv",
@@ -314,7 +315,7 @@ BigWigsColors.defaultDB = {
 	positive = "00ff00", -- Green
 	bosskill = "00ff00", -- Green
 	core = "00ffff", -- Cyan
-	
+
 	shortbar = {"ffff00", "ff7f00", "ff0000"},
 	shortnr = 3,
 	longbar = {"00ff00", "ffff00", "ff7f00", "ff0000"},

@@ -6,15 +6,15 @@
 local BZ = AceLibrary("Babble-Zone-2.2")
 local BB = AceLibrary("Babble-Boss-2.2")
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs")
-local waterfall = AceLibrary("Waterfall-1.0")
 
 local surface = AceLibrary("Surface-1.0")
 
+surface:Register("Armory", "Interface\\AddOns\\BigWigs\\Textures\\Armory")
 surface:Register("Otravi", "Interface\\AddOns\\BigWigs\\Textures\\otravi")
 surface:Register("Smooth", "Interface\\AddOns\\BigWigs\\Textures\\smooth")
 surface:Register("Glaze", "Interface\\AddOns\\BigWigs\\Textures\\glaze")
-surface:Register("Charcoal", "Interface\\AddOns\\BigWigs\\textures\\Charcoal")
-surface:Register("BantoBar", "Interface\\AddOns\\BigWigs\\textures\\default")
+surface:Register("Charcoal", "Interface\\AddOns\\BigWigs\\Textures\\Charcoal")
+surface:Register("BantoBar", "Interface\\AddOns\\BigWigs\\Textures\\default")
 
 ----------------------------
 --      Localization      --
@@ -24,6 +24,7 @@ L:RegisterTranslations("enUS", function() return {
 	["%s mod enabled"] = true,
 	["Target monitoring enabled"] = true,
 	["Target monitoring disabled"] = true,
+	["%s engaged!"] = true,
 	["%s has been defeated"] = true,     -- "<boss> has been defeated"
 	["%s have been defeated"] = true,    -- "<bosses> have been defeated"
 
@@ -60,7 +61,7 @@ L:RegisterTranslations("enUS", function() return {
 	["Load"] = true,
 	["Load All"] = true,
 	["Load all %s modules."] = true,
-	
+
 	-- AceConsole zone commands
 	["Zul'Gurub"] = "ZG",
 	["Molten Core"] = "MC",
@@ -72,54 +73,49 @@ L:RegisterTranslations("enUS", function() return {
 	["Silithus"] = true,
 	["Outdoor Raid Bosses"] = "Outdoor",
 	["Outdoor Raid Bosses Zone"] = "Outdoor Raid Bosses", -- DO NOT EVER TRANSLATE untill I find a more elegant option
-	
+
 	--Name for exception bosses (neutrals that enable modules)
 	["Vaelastrasz the Corrupt"] = true,
 	["Lord Victor Nefarius"] = true,
-	
+
+	["You have slain %s!"] = true,
 } end)
 
 L:RegisterTranslations("ruRU", function() return {
 	["%s mod enabled"] = "%s мод включен",
 	["Target monitoring enabled"] = "Мониторинг цели включен",
 	["Target monitoring disabled"] = "Мониторинг цели выключен",
+	["%s engaged!"] = "%s занят!",
 	["%s has been defeated"] = "%s побеждён",     -- "<boss> has been defeated"
 	["%s have been defeated"] = "%s побеждены",    -- "<bosses> have been defeated"
 
 	-- AceConsole strings
-	["boss"] = "boss",
 	["Bosses"] = "Боссы",
 	["Options for boss modules."] = "Опции для босс модулей.",
-	["Options for bosses in %s."] = "Опции для боссов в %s.", -- "Options for bosses in <zone>"
-	["Options for %s (r%s)."] = "Опции для %s (r%d).",     -- "Options for <boss> (<revision>)"
-	["plugin"] = "plugin",
+	["Options for bosses in %s."] = "Опции для боссов в %s.",
+	["Options for %s (r%s)."] = "Опции для %s (r%d).",
 	["Plugins"] = "Плагины",
 	["Options for plugins."] = "Опции для плагинов.",
-	["extra"] = "extra",
 	["Extras"] = "Дополнения",
 	["Options for extras."] = "Опции для дополнения.",
-	["toggle"] = "toggle",
 	["Active"] = "Активен",
 	["Activate or deactivate this module."] = "Активация или деактивация модуля",
-	["reboot"] = "reboot",
-	["rebootall"] = "rebootall",
 	["Reboot"] = "Перезагрузка",
 	["Reboot All"] = "Перезагрузить всё",
 	["Reboot this module."] = "Перезагрузка данного модуля",
-	["debug"] = "debug",
 	["Debugging"] = "Отладка",
 	["Show debug messages."] = "Показать отладочные сообщения.",
 	["Forces the module to reset for everyone in the raid.\n\n(Requires assistant or higher)"] = "Заставить модуль перезагрузить для всех в рейде.\n\n(Требуется ассист или выше)",
-	["%s has requested forced reboot for the %s module."] = "%s запрос на перезагрузку %s модуля.",
-	bosskill_cmd = "убит",
+	["%s has requested forced reboot for the %s module."] = "%s запрос на перезагрузку %s модуля.""%s запрос на перезагрузку %s модуля.",
+	--bosskill_cmd = "убит",
 	bosskill_name = "Смерть босса",
 	bosskill_desc = "Объявлять о смерти босса.",
 
-	["Other"] = "Other",
+	["Other"] = "Другое",
 	["Load"] = "Загрузить",
-	["Load All"] = "Загрузить все",
+	["Load All"] = "Загрузить всё",
 	["Load all %s modules."] = "Загрузить все модули %s.",
-	
+
 	-- AceConsole zone commands
 	["Zul'Gurub"] = "ЗГ",
 	["Molten Core"] = "МК",
@@ -129,85 +125,96 @@ L:RegisterTranslations("ruRU", function() return {
 	["Onyxia's Lair"] = "Ониксия",
 	["Naxxramas"] = "Наксрамас",
 	["Silithus"] = "Силитус",
-	["Outdoor Raid Bosses"] = "Outdoor",
-	["Outdoor Raid Bosses Zone"] = "Outdoor Raid Bosses", -- DO NOT EVER TRANSLATE untill I find a more elegant option
-	
+	["Outdoor Raid Bosses"] = "Внешние",
+
 	--Name for exception bosses (neutrals that enable modules)
-	["Vaelastrasz the Corrupt"] = "Vaelastrasz the Corrupt",
-	["Lord Victor Nefarius"] = "Lord Victor Nefarius",
+	["Vaelastrasz the Corrupt"] = "Валестраз Порочный",
+	["Lord Victor Nefarius"] = "Лорд Виктор Нефариус",
+
+	["You have slain %s!"] = "Вы убили %s!",
 } end)
 
-L:RegisterTranslations("frFR", function() return {
-	["%s mod enabled"] = "Module %s activ\195\169",
-	["Target monitoring enabled"] = "Suivi des cibles activ\195\169",
-	["Target monitoring disabled"] = "Suivi des cibles d\195\169sactiv\195\169",
-	["%s has been defeated"] = "%s a \195\169t\195\169 vaincu",     -- "<boss> has been defeated"
-	["%s have been defeated"] = "%s ont \195\169t\195\169 vaincu",    -- "<bosses> have been defeated"
+L:RegisterTranslations("esES", function() return {
+	["%s mod enabled"] = "Módulo de %s activado",
+	["Target monitoring enabled"] = "Monitorización del objetivo activado",
+	["Target monitoring disabled"] = "Monitorización del objetivo desactivado",
+	["%s engaged!"] = "¡Entrando en combate con %s!",
+	["%s has been defeated"] = "%s fue derrotado",     -- "<boss> has been defeated"
+	["%s have been defeated"] = "%s fueron derrotados",    -- "<bosses> have been defeated"
 
 	-- AceConsole strings
-	-- ["boss"] = true,
-	["Bosses"] = "Boss",
-	["Options for boss modules."] = "Options des modules des boss.",
-	["Options for bosses in %s."] = "Options des boss dans %s.", -- "Options for bosses in <zone>"
-	["Options for %s (r%s)."] = "Options pour %s (r%s).",     -- "Options for <boss> (<revision>)"
-	-- ["plugin"] = true,
-	-- ["Plugins"] = true,
-	["Options for plugins."] = "Options pour les plugins.",
-	-- ["extra"] = true,
-	-- ["Extras"] = true,
-	["Options for extras."] ="Options pour les extras.",
-	-- ["toggle"] = true,
-	["Active"] = "Actif",
-	["Activate or deactivate this module."] = "Activer ou d\195\169sactiver ce module.",
-	-- ["reboot"] = true,
-	["Reboot"] = "Red\195\169marrer",
-	["Reboot All"] = "Red\195\169marrer tout",
-	["Reboot this module."] = "Red\195\169marrer ce module.",
-	-- ["debug"] = true,
-	["Debugging"] = "D\195\169boguage",
-	["Show debug messages."] = "Afficher les messages de d\195\169boguage.",
-	["Forces the module to reset for everyone in the raid.\n\n(Requires assistant or higher)"] = "Force le module pour r\195\169initialiser pour tout le monde dans le raid.\n\n(N\195\169cessite assistant ou sup\195\169rieur).",
-	["%s has requested forced reboot for the %s module."] = true,
-	bosskill_name = "Mort des Boss",
-	bosskill_desc = "Annoncer la mort des boss.",
+	--["boss"] = "jefe",
+	["Bosses"] = "Jefes",
+	["Options for boss modules."] = "Opciones para módulos del jefe",
+	["Options for bosses in %s."] = "Opciones para jefes en %s", -- "Options for bosses in <zone>"
+	["Options for %s (r%s)."] = "Opciones para %s (r%s).",     -- "Options for <boss> (<revision>)"
+	--["plugin"] = "plugin",
+	["Plugins"] = "Plugins",
+	["Options for plugins."] = "Opciones para plugins",
+	--["extra"] = "extra",
+	["Extras"] = "Extras",
+	["Options for extras."] = "Opciones para extras",
+	--["toggle"] = "alternar",
+	["Active"] = "Activo",
+	["Activate or deactivate this module."] = "Activa o desactiva este módulo",
+	--["reboot"] = "reiniciar",
+	--["rebootall"] = "reiniciartodos",
+	["Reboot"] = "Reiniciar",
+	["Reboot All"] = "Reiniciar Todos",
+	["Reboot this module."] = "Reinicia este módulo",
+	--["debug"] = "depurar",
+	["Debugging"] = "Depurando",
+	["Show debug messages."] = "Muestra mensajes de depura",
+	["Forces the module to reset for everyone in the raid.\n\n(Requires assistant or higher)"] = "Obliga al módulo que se reinicia para todos en la banda.\n\n(Requiere que seas asistente o líder)",
+	["%s has requested forced reboot for the %s module."] = "%s solicita un reinicio para el módulo %s",
+	--bosskill_cmd = "kill",
+	bosskill_name = "Muerte del Jefe",
+	bosskill_desc = "Anuncia cuando sea derrotado el jefe",
 
-	["Other"] = "Autre",
-	["Load"] = "Charger",
-	["Load All"] = "Tout charger",
-	["Load all %s modules."] = "Charge tous les modules \"%s\".",
+	["Other"] = "Otro",
+	["Load"] = "Cargar",
+	["Load All"] = "Cargar todos",
+	["Load all %s modules."] = "Carga todos los módulos %s",
 
 	-- AceConsole zone commands
 	["Zul'Gurub"] = "ZG",
-	["Molten Core"] = "MC",
-	["Blackwing Lair"] = "BWL",
+	["Molten Core"] = "NM",
+	["Blackwing Lair"] = "GAN",
 	["Ahn'Qiraj"] = "AQ40",
 	["Ruins of Ahn'Qiraj"] = "AQ20",
 	["Onyxia's Lair"] = "Onyxia",
 	["Naxxramas"] = "Naxxramas",
-	-- ["Silithus"] = true,
-	["Outdoor Raid Bosses"] = "Ext\195\169rieur",
-	["Outdoor Raid Bosses Zone"] = "Outdoor Raid Bosses", -- DO NOT EVER TRANSLATE untill I find a more elegant option
+	["Silithus"] = "Silithus",
+	["Outdoor Raid Bosses"] = "Afuera",
+	-- ["Outdoor Raid Bosses Zone"] = "Outdoor Raid Bosses", -- DO NOT EVER TRANSLATE untill I find a more elegant option
+
+	--Name for exception bosses (neutrals that enable modules)
+	["Vaelastrasz the Corrupt"] = "Vaelastrasz el Corrupto",
+	["Lord Victor Nefarius"] = "Lord Victor Nefarius",
+
+	["You have slain %s!"] = "¡Has matado %s!",
 } end)
-  
+
 L:RegisterTranslations("deDE", function() return {
 	["%s mod enabled"] = "%s Modul aktiviert",
-	["Target monitoring enabled"] = "Ziel\195\188berwachung aktiviert",
-	["Target monitoring disabled"] = "Ziel\195\188berwachung deaktiviert",
+	["Target monitoring enabled"] = "Zielüberwachung aktiviert",
+	["Target monitoring disabled"] = "Zielüberwachung deaktiviert",
+	["%s engaged!"] = "%s angegriffen!",
 	["%s has been defeated"] = "%s wurde besiegt",     -- "<boss> has been defeated"
 	["%s have been defeated"] = "%s wurden besiegt",    -- "<bosses> have been defeated"
 
 	-- AceConsole strings
 	-- ["boss"] = true,
 	["Bosses"] = "Bosse",
-	["Options for boss modules."] = "Optionen f\195\188r Boss Module.",
-	["Options for bosses in %s."] = "Optionen f\195\188r Bosse in %s.", -- "Options for bosses in <zone>"
-	["Options for %s (r%s)."] = "Optionen f\195\188r %s (r%s).",     -- "Options for <boss> (<revision>)"
+	["Options for boss modules."] = "Optionen für Boss Module.",
+	["Options for bosses in %s."] = "Optionen für Bosse in %s.", -- "Options for bosses in <zone>"
+	["Options for %s (r%s)."] = "Optionen für %s (r%s).",     -- "Options for <boss> (<revision>)"
 	-- ["plugin"] = true,
 	["Plugins"] = "Plugins",
-	["Options for plugins."] = "Optionen f\195\188r Plugins.",
+	["Options for plugins."] = "Optionen für Plugins.",
 	-- ["extra"] = true,
 	["Extras"] = "Extras",
-	["Options for extras."] = "Optionen f\195\188r Extras.",
+	["Options for extras."] = "Optionen für Extras.",
 	-- ["toggle"] = true,
 	["Active"] = "Aktivieren",
 	["Activate or deactivate this module."] = "Aktiviert oder deaktiviert dieses Modul.",
@@ -218,8 +225,8 @@ L:RegisterTranslations("deDE", function() return {
 	-- ["debug"] = true,
 	["Debugging"] = "Debugging",
 	["Show debug messages."] = "Zeige Debug Nachrichten.",
-	["Forces the module to reset for everyone in the raid.\n\n(Requires assistant or higher)"] = "Erzwingt das Modul f\195\188r jeden im Raid zur\195\188ckgesetzt.\n\n(Ben\195\182tigt Schlachtzugleiter oder Assistent)",
-	["%s has requested forced reboot for the %s module."] = "%s hat beantragt Zwangs Neustart f\195\188r die %s-Modul.",
+	["Forces the module to reset for everyone in the raid.\n\n(Requires assistant or higher)"] = "Erzwingt dass das Modul für jeden im Raid zurückgesetzt wird.\n\n(Benötigt Schlachtzugleiter oder Assistent)",
+	["%s has requested forced reboot for the %s module."] = "%s hat einen Zwangsneustart für das %s-Modul beantragt.",
 	-- bosskill_cmd = "kill",
 	bosskill_name = "Boss besiegt",
 	bosskill_desc = "Melde, wenn ein Boss besiegt wurde.",
@@ -235,159 +242,17 @@ L:RegisterTranslations("deDE", function() return {
 	-- ["Silithus"] = true,
 	["Outdoor Raid Bosses"] = "Outdoor",
 	-- ["Outdoor Raid Bosses Zone"] = "Outdoor Raid Bosses", -- DO NOT EVER TRANSLATE untill I find a more elegant option
+
+	["You have slain %s!"] = "Ihr habt %s getötet!",
 } end)
 
-L:RegisterTranslations("koKR", function() return {
-	["%s mod enabled"] = "%s 모듈 시작",
-	["Target monitoring enabled"] = "타겟 확인 시작",
-	["Target monitoring disabled"] = "타겟 확인 꺼짐",
-	["%s has been defeated"] = "<%s> 물리쳤습니다.",     -- "<boss> has been defeated"
-	["%s have been defeated"] = "<%s> 물리쳤습니다.",    -- "<bosses> have been defeated"
-
-	-- AceConsole strings
-	["Bosses"] = "보스들",
-	["Options for boss modules."] = "보스 모듈 설정",
-	["Options for bosses in %s."] = "%s 에 보스들을 위한 설정", -- "Options for bosses in <zone>"
-	["Options for %s (r%s)."] = "%s에 대한 설정(r%s).",     -- "Options for <boss> (<revision>)"
-	["Plugins"] = "플러그인들",
-	["Options for plugins."] = "플러그인 설정",
-	["Extras"] = "기타",
-	["Options for extras."] = "기타 설정.",
-	["Active"] = "활성화",
-	["Activate or deactivate this module."] = "활성화 혹은 모둘 발견",
-	["Reboot"] = "재시작",
-	["Reboot All"] = true,
-	["Reboot this module."] = "모듈 재시작",
-	["Debugging"] = "디버깅",
-	["Show debug messages."] = "디버그 메세지 표시",
-	["Forces the module to reset for everyone in the raid.\n\n(Requires assistant or higher)"] = true,
-	["%s has requested forced reboot for the %s module."] = true,
-	bosskill_name = "보스 사망",
-	bosskill_desc = "보스를 물리쳤을 때 알림",
-
-	["Other"] = "외부",
-	["Load"] = "불러오기",
-	["Load All"] = "모두 불러오기",
-	["Load all %s modules."] = "모든 %s 모듈들을 불러옵니다.",
-	
-	-- AceConsole zone commands
-	["Zul'Gurub"] = "ZG",
-	["Molten Core"] = "MC",
-	["Blackwing Lair"] = "BWL",
-	["Ahn'Qiraj"] = "AQ40",
-	["Ruins of Ahn'Qiraj"] = "AQ20",
-	["Onyxia's Lair"] = "오닉시아",
-	["Naxxramas"] = "낙스라마스",
-	["Silithus"] = "실리더스",
-	["Outdoor Raid Bosses"] = "야외",
-	["Outdoor Raid Bosses Zone"] = "Outdoor Raid Bosses", -- DO NOT EVER TRANSLATE untill I find a more elegant option
-} end)
-
-L:RegisterTranslations("zhCN", function() return {
-	["%s mod enabled"] = "%s模块已开启",
-	["Target monitoring enabled"] = "目标监视已开启",
-	["Target monitoring disabled"] = "目标监视已关闭",
-	["%s has been defeated"] = "%s被击败了！",     -- "<boss> has been defeated"
-	["%s have been defeated"] = "%s被击败了！",    -- "<bosses> have been defeated"
-
-	-- AceConsole strings
-	["Bosses"] = "首领",
-	["boss"] = "首领",
-	["Options for boss modules."] = "首领模块设置。",
-	["Options for bosses in %s."] = "%s首领模块设置。", -- "Options for bosses in <zone>"
-	["Options for %s (r%s)."] = "%s模块设置 版本(r%s).",     -- "Options for <boss> (<revision>)"
-	["plugin"] = "插件",
-	["Plugins"] = "插件",
-	["Options for plugins."] = "插件设置。",
-	["extra"] = "额外",
-	["Extras"] = "额外",
-	["Options for extras."] = "额外的设置",
-	["toggle"] = "切换",
-	["Active"] = "激活",
-	["Activate or deactivate this module."] = "激活或关闭此模块。",
-	["reboot"] = "重启",
-	["Reboot"] = "重启",
-	["Reboot All"] = true,
-	["Reboot this module."] = "重启此模块",
-	["debug"] = "除错",
-	["Debugging"] = "除错",
-	["Show debug messages."] = "显示除错信息。",
-	["Forces the module to reset for everyone in the raid.\n\n(Requires assistant or higher)"] = true,
-	["%s has requested forced reboot for the %s module."] = true,
-	bosskill_name = "首领死亡",
-	bosskill_desc = "首领死亡时提示",
-
-	["Other"] = "其他",
-	["Load"] = "载入",
-	["Load All"] = "载入所有",
-	["Load all %s modules."] = "载入所有%s的模块",
-
-	bosskill_name = "首领死亡",
-	bosskill_desc = "首领被击败时发出提示",
-
-	-- AceConsole zone commands
-	["Zul'Gurub"] = "祖尔格拉布",
-	["Molten Core"] = "熔火之心",
-	["Blackwing Lair"] = "黑翼之巢",
-	["Ahn'Qiraj"] = "安其拉",
-	["Ruins of Ahn'Qiraj"] = "安其拉废墟",
-	["Onyxia's Lair"] = "奥妮克希亚的巢穴",
-	["Naxxramas"] = "纳克萨玛斯",
-	["Silithus"] = "希利苏斯",
-	["Outdoor Raid Bosses"] = "野外首领",
-	["Outdoor Raid Bosses Zone"] = "Outdoor Raid Bosses", -- DO NOT EVER TRANSLATE untill I find a more elegant option
-} end)
-
-L:RegisterTranslations("zhTW", function() return {
-	["%s mod enabled"] = "%s模組已開啟",
-	["Target monitoring enabled"] = "目標監視已開啟",
-	["Target monitoring disabled"] = "目標監視已關閉",
-	["%s has been defeated"] = "%s被擊敗了！",     -- "<boss> has been defeated"
-	["%s have been defeated"] = "%s被擊敗了！",    -- "<bosses> have been defeated"
-
-	-- AceConsole strings
-	["Bosses"] = "首領",
-	["boss"] = "boss",
-	["Options for boss modules."] = "首領模組選項。",
-	["Options for bosses in %s."] = "%s首領模組選項。", -- "Options for bosses in <zone>"
-	["Options for %s (r%s)."] = "%s模組選項 版本(r%s).",     -- "Options for <boss> (<revision>)"
-	["Extras"] = "其他",
-	["Options for extras."] = "其他模組選項",
-	["Plugins"] = "插件",
-	["Options for plugins."] = "插件選項。",
-	["toggle"] = "切換",
-	["Active"] = "啟動",
-	["Activate or deactivate this module."] = "開啟或關閉此模組。",
-	["Reboot"] = "重啟",
-	["Reboot All"] = true,
-	["Reboot this module."] = "重啟此模組",
-	["Debugging"] = "除錯",
-	["Show debug messages."] = "顯示除錯訊息。",
-	["Forces the module to reset for everyone in the raid.\n\n(Requires assistant or higher)"] = true,
-	["%s has requested forced reboot for the %s module."] = true,
-
-	bosskill_name = "首領死亡",
-	bosskill_desc = "首領被擊敗時發出提示。",
-
-	-- AceConsole zone commands
-	["Zul'Gurub"] = "ZG",
-	["Molten Core"] = "MC",
-	["Blackwing Lair"] = "BWL",
-	["Ahn'Qiraj"] = "TAQ",
-	["Ruins of Ahn'Qiraj"] = "RAQ",
-	["Onyxia's Lair"] = "OL",
-	["Naxxramas"] = "NAX",
-	["Silithus"] = "silithus",
-	["Outdoor Raid Bosses"] = "outdoor",
-	["Outdoor Raid Bosses Zone"] = "Outdoor Raid Bosses", -- DO NOT EVER TRANSLATE untill I find a more elegant option
-} end)
 
 ---------------------------------
 --      Addon Declaration      --
 ---------------------------------
 
 BigWigs = AceLibrary("AceAddon-2.0"):new("AceEvent-2.0", "AceDebug-2.0", "AceModuleCore-2.0", "AceConsole-2.0", "AceDB-2.0", "AceHook-2.1")
-BigWigs:SetModuleMixins("AceDebug-2.0", "AceEvent-2.0", "CandyBar-2.0")
+BigWigs:SetModuleMixins("AceDebug-2.0", "AceEvent-2.0", "CandyBar-2.1")
 BigWigs:RegisterDB("BigWigsDB", "BigWigsDBPerChar")
 BigWigs.cmdtable = {type = "group", handler = BigWigs, args = {
 	[L["boss"]] = {
@@ -413,18 +278,108 @@ BigWigs.cmdtable = {type = "group", handler = BigWigs, args = {
 	},
 }}
 BigWigs:RegisterChatCommand({"/bw", "/BigWigs"}, BigWigs.cmdtable)
-BigWigs.debugFrame = ChatFrame5
-BigWigs.revision = tonumber(string.sub("$Revision: 18326 $", 12, -3))
+BigWigs.debugFrame = ChatFrame1
+BigWigs.revision = 20022
+
+
+function BigWigs:DebugMessage(msg, module)
+	if not msg then msg = "" end
+	local prefix = "|cfB34DFFf[BigWigs Debug]|r - ";
+	local core = BigWigs
+	local debugFrame = DEFAULT_CHAT_FRAME
+	if module then
+		if module.core then
+			core = module.core
+		end
+		if module.debugFrame then
+			debugFrame = self.debugFrame
+		end
+	end
+
+	if core:IsDebugging() then
+		(debugFrame or DEFAULT_CHAT_FRAME):AddMessage(prefix .. msg)
+	end
+end
+
+------------------------------
+--      KLHThreatMeter      --
+------------------------------
+
+function BigWigs:KTM_Reset()
+	if IsAddOnLoaded("KLHThreatMeter") then
+		if IsRaidLeader() or IsRaidOfficer() then
+			klhtm.net.clearraidthreat()
+		end
+	end
+end
+
+BigWigs.masterTarget = nil;
+BigWigs.forceReset = nil;
+
+function BigWigs:KTM_ClearTarget(forceReset)
+	if IsAddOnLoaded("KLHThreatMeter") and (IsRaidLeader() or IsRaidOfficer()) then
+		klhtm.net.clearmastertarget()
+		if forceReset then
+			self:KTM_Reset()
+		end
+	end
+end
+
+function BigWigs:PLAYER_TARGET_CHANGED()
+	if IsAddOnLoaded("KLHThreatMeter") and BigWigs.masterTarget and (IsRaidLeader() or IsRaidOfficer()) then
+		if klhtm.target.targetismaster(BigWigs.masterTarget) then
+			-- the masterTarget was already setup correctly
+			BigWigs:UnregisterEvent("PLAYER_TARGET_CHANGED")
+			BigWigs.masterTarget   	= nil
+			BigWigs.forceReset		= nil
+			return
+		end
+
+		if UnitName("target") == BigWigs.masterTarget then
+			-- our new target is the wanted target, setup masterTarget now
+			klhtm.net.sendmessage("target " .. BigWigs.masterTarget)
+			if BigWigs.forceReset then
+				BigWigs:KTM_Reset()
+				BigWigs.forceReset = nil
+			end
+			BigWigs.masterTarget   = nil
+			BigWigs:UnregisterEvent("PLAYER_TARGET_CHANGED")
+		end
+	else
+		BigWigs:UnregisterEvent("PLAYER_TARGET_CHANGED")
+	end
+end
+
 
 --------------------------------
 --      Module Prototype      --
 --------------------------------
 
+-- do not override
 BigWigs.modulePrototype.core = BigWigs
-BigWigs.modulePrototype.debugFrame = ChatFrame5
+BigWigs.modulePrototype.debugFrame = ChatFrame1
+BigWigs.modulePrototype.engaged = false
+BigWigs.modulePrototype.bossSync = nil -- "Ouro"
+
+-- override
 BigWigs.modulePrototype.revision = 1 -- To be overridden by the module!
+BigWigs.modulePrototype.started = false
+BigWigs.modulePrototype.zonename = nil -- AceLibrary("Babble-Zone-2.2")["Ahn'Qiraj"]
+BigWigs.modulePrototype.enabletrigger = nil -- boss
+BigWigs.modulePrototype.wipemobs = nil -- adds that will be considered in CheckForEngage
+BigWigs.modulePrototype.toggleoptions = nil -- {"sweep", "sandblast", "scarab", -1, "emerge", "submerge", -1, "berserk", "bosskill"}
+BigWigs.modulePrototype.proximityCheck = nil -- function(unit) return CheckInteractDistance(unit, 2) end
+BigWigs.modulePrototype.proximitySilent = nil -- false
 
-
+-- do not override
+function BigWigs.modulePrototype:IsBossModule()
+	return self.zonename and self.enabletrigger and true
+end
+-- do not override
+function BigWigs.modulePrototype:DebugMessage(msg)
+	self.core:DebugMessage(msg, self)
+end
+-- do not override
 function BigWigs.modulePrototype:OnInitialize()
 	-- Unconditionally register, this shouldn't happen from any other place
 	-- anyway.
@@ -432,130 +387,399 @@ function BigWigs.modulePrototype:OnInitialize()
 
 	-- Notify observers that we have loaded.
 	self:TriggerEvent("BigWigs_ModuleLoaded", self.name, self)
+
+	-- workaround to trigger OnSetup if enabled manually
+	self:RegisterEvent("Ace2_AddonEnabled")
+end
+function BigWigs.modulePrototype:Ace2_AddonEnabled(module)
+	if module and type(module) == "table" and module:ToString() == self:ToString() and self:IsBossModule() then
+		BigWigs:SetupModule(module:ToString())
+	end
 end
 
 
-function BigWigs.modulePrototype:IsBossModule()
-	return self.zonename and self.enabletrigger and true
+-- override
+function BigWigs.modulePrototype:OnSetup()
+end
+function BigWigs.modulePrototype:OnEngage()
+end
+function BigWigs.modulePrototype:OnDisengage()
 end
 
+-- do not override
+function BigWigs.modulePrototype:Engage()
+	self:DebugMessage("Engage() " .. self:ToString())
 
-function BigWigs.modulePrototype:GenericBossDeath(msg)
-	if msg == string.format(UNITDIESOTHER, self:ToString()) then
-		if self.db.profile.bosskill then self:TriggerEvent("BigWigs_Message", string.format(L["%s has been defeated"], self:ToString()), "Bosskill", nil, "Victory") end
-		self:TriggerEvent("BigWigs_RemoveRaidIcon")
-		if self.core:IsDebugging() then
-			self.core:LevelDebug(1, "Boss dead, disabling module ["..self:ToString().."].")
+	if not BigWigs:IsModuleActive(self) then
+		BigWigs:EnableModule(self:ToString())
+	end
+
+	if self.bossSync and not self.engaged then
+		self.engaged = true
+		self:Message(string.format(L["%s engaged!"], self.translatedName), "Positive")
+		BigWigsBossRecords:StartBossfight(self)
+		self:KTM_SetTarget(self:ToString())
+
+		self:OnEngage()
+	end
+end
+function BigWigs.modulePrototype:Disengage()
+	if BigWigs:IsModuleActive(self) then
+		self.engaged = false
+		self.started = false
+
+		self:CancelAllScheduledEvents()
+
+		self:KTM_ClearTarget()
+
+		BigWigsAutoReply:EndBossfight()
+
+		self:RemoveIcon()
+		self:RemoveWarningSign("", true)
+		BigWigsBars:Disable(self)
+		BigWigsBars:BigWigs_HideCounterBars()
+
+		self:RemoveProximity()
+
+		self:OnDisengage()
+	end
+end
+function BigWigs.modulePrototype:Victory()
+	if self.engaged then
+		if self.db.profile.bosskill then
+			self:Message(string.format(L["%s has been defeated"], self.translatedName), "Bosskill", nil, "Victory")
 		end
-		self.core:ToggleModuleActive(self, false)
+
+		BigWigsBossRecords:EndBossfight(self)
+
+		self:DebugMessage("Boss dead, disabling module ["..self:ToString().."].")
+		self.core:DisableModule(self:ToString())
 	end
 end
-
-
-function BigWigs.modulePrototype:Scan()
-	local t = self.enabletrigger
-	local a = self.wipemobs
-	if not t then return false end
-	if type(t) == "string" then t = {t} end
-	if a then
-		if type(a) == "string" then a = {a} end
-		for k,v in pairs(a) do table.insert(t, v) end
-	end
-
-	if UnitExists("target") and UnitAffectingCombat("target") then
-		local target = UnitName("target")
-		for _, mob in pairs(t) do
-			if target == mob then
-				return true
-			end
-		end
-	end
-
-	local num = GetNumRaidMembers()
-	for i = 1, num do
-		local raidUnit = string.format("raid%starget", i)
-		if UnitExists(raidUnit) and UnitAffectingCombat(raidUnit) then
-			local target = UnitName(raidUnit)
-			for _, mob in pairs(t) do
-				if target == mob then
-					return true
-				end
-			end
-		end
-	end
-	return false
+function BigWigs.modulePrototype:Disable()
+	self:Disengage()
+	self.core:ToggleModuleActive(self, false)
 end
 
-
+-- synchronize functions
 function BigWigs.modulePrototype:GetEngageSync()
 	return "BossEngaged"
 end
+function BigWigs.modulePrototype:SendEngageSync()
+	if self.bossSync then
+		--self:TriggerEvent("BigWigs_SendSync", "BossEngaged "..self:ToString())
+		self:Sync(self:GetEngageSync() .. " " .. self.bossSync)
+	end
+end
 
+function BigWigs.modulePrototype:GetWipeSync()
+	return "BossWipe"
+end
+--[[function BigWigs.modulePrototype:SendWipeSync()
+if self.bossSync then
+--self:TriggerEvent("BigWigs_SendSync", "BossEngaged "..self:ToString())
+self:Sync(self:GetWipeSync() .. " " .. self.bossSync)
+end
+end]]
 
+function BigWigs.modulePrototype:GetBossDeathSync()
+	return "BossDeath"
+end
+function BigWigs.modulePrototype:SendBossDeathSync()
+	if self.bossSync then
+		--self:TriggerEvent("BigWigs_SendSync", "Bosskill "..self.bossSync)
+		self:Sync(self:GetBossDeathSync() .. " " .. self.bossSync)
+	end
+end
+
+-- event handler
+local yellTriggers = {} -- [i] = {yell, bossmod}
+function BigWigs.modulePrototype:RegisterYellEngage(yell)
+	-- Bosses with Yells as Engagetrigger should go through even when the bossmod isn't active yet.
+	tinsert(yellTriggers, {yell, self})
+end
+function BigWigs:CHAT_MSG_MONSTER_YELL(msg)
+	for i=1, table.getn(yellTriggers) do
+		local yell  = yellTriggers[i][1]
+		local mod   = yellTriggers[i][2]
+		if string.find(msg, yell) then
+			-- enable and engage
+			self:EnableModule(mod:ToString())
+			--self:TriggerEvent("BigWigs_SendSync", "BossEngaged "..self:ToString())
+			mod:DebugMessage(mod:ToString() .. " CHAT_MSG_MONSTER_YELL Engage")
+			mod:SendEngageSync()
+		end
+	end
+end
+BigWigs:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+
+function BigWigs:CheckForEngage(module)
+	if module and module:IsBossModule() and not module.engaged then
+		local function IsBossInCombat()
+			local t = module.enabletrigger
+			local a = module.wipemobs
+			if not t then return false end
+			if type(t) == "string" then t = {t} end
+			if a then
+				if type(a) == "string" then a = {a} end
+				for k,v in pairs(a) do table.insert(t, v) end
+			end
+
+			if UnitExists("target") and UnitAffectingCombat("target") then
+				local target = UnitName("target")
+				for _, mob in pairs(t) do
+					if target == mob then
+						return true
+					end
+				end
+			end
+
+			local num = GetNumRaidMembers()
+			for i = 1, num do
+				local raidUnit = string.format("raid%starget", i)
+				if UnitExists(raidUnit) and UnitAffectingCombat(raidUnit) then
+					local target = UnitName(raidUnit)
+					for _, mob in pairs(t) do
+						if target == mob then
+							return true
+						end
+					end
+				end
+			end
+			return false
+		end
+
+		local inCombat = IsBossInCombat()
+		local running = module:IsEventScheduled(module:ToString().."_CheckStart")
+		if inCombat then
+			module:DebugMessage("Scan returned true, engaging ["..module:ToString().."].")
+			module:CancelScheduledEvent(module:ToString().."_CheckStart")
+			module:Engage()
+			module:SendEngageSync()
+		elseif not running then
+			module:ScheduleRepeatingEvent(module:ToString().."_CheckStart", module.CheckForEngage, .5, module)
+		end
+	end
+end
 function BigWigs.modulePrototype:CheckForEngage()
-	local go = self:Scan()
-	local running = self:IsEventScheduled(self:ToString().."_CheckStart")
-	if go then
-		if self.core:IsDebugging() then
-			self.core:LevelDebug(1, "Scan returned true, engaging ["..self:ToString().."].")
-		end
-		self:CancelScheduledEvent(self:ToString().."_CheckStart")
-		self:TriggerEvent("BigWigs_SendSync", "BossEngaged "..self:ToString())
-	elseif not running then
-		self:ScheduleRepeatingEvent(self:ToString().."_CheckStart", self.CheckForEngage, .5, self)
-	end
+	BigWigs:CheckForEngage(self)
 end
 
-
-function BigWigs.modulePrototype:CheckForWipe()
-	local running = self:IsEventScheduled(self:ToString().."_CheckWipe")
-	local _, class = UnitClass("player")
-	if class == "HUNTER" then
-		for i = 1, 32 do
-			local buff = UnitBuff("player", i)
-			if buff and buff == "Interface\\Icons\\Ability_Rogue_FeignDeath" then
-				if not running then
-					self:ScheduleRepeatingEvent(self:ToString().."_CheckWipe", self.CheckForWipe, 1, self)
+function BigWigs:CheckForWipe(module)
+	if module and module:IsBossModule() then
+		-- prevent reset from someone outside the instance
+		local isInZone = false
+		if type(module.zonename) == "string" and module.zonename == GetRealZoneText() then
+			isInZone = true
+		elseif type(module.zonename) == "table" then
+			for _, v in pairs(module.zonename) do
+				if v == GetRealZoneText() then
+					isInZone = true
+					break
 				end
-				return
 			end
 		end
-	elseif class == "ROGUE" then
-		for i = 1, 32 do
-			local buff = UnitBuff("player", i)
-			if buff and buff == "Interface\\Icons\\Ability_Vanish" then
-				if not running then
-					self:ScheduleRepeatingEvent(self:ToString().."_CheckWipe", self.CheckForWipe, 1, self)
-				end
-				return
-			end
-		end
-	end
-	for y = 1, 16 do
-		local debuff = UnitDebuff("player", y)
-		if debuff then
-			if buff == "Interface\\Icons\\Spell_Shadow_ShadowWordDominate" then
-				if not running then
-					self:ScheduleRepeatingEvent(self:ToString().."_CheckWipe", self.CheckForWipe, 1, self)
-				end
+		if not isInZone then
 			return
+		end
+
+		--module:DebugMessage("BigWigs." .. module:ToString() .. ":CheckForWipe()")
+
+		-- start wipe check in regular intervals
+		local running = module:IsEventScheduled(module:ToString().."_CheckWipe")
+		if not running then
+			module:DebugMessage("CheckForWipe not running")
+			module:ScheduleRepeatingEvent(module:ToString().."_CheckWipe", module.CheckForWipe, 5, module)
+			return
+		end
+
+		local function RaidMemberInCombat()
+			if UnitAffectingCombat("player") then
+				return true
+			end
+
+			local num = GetNumRaidMembers()
+			for i = 1, num do
+				local raidUnit = string.format("raid%s", i)
+				if UnitExists(raidUnit) and UnitAffectingCombat(raidUnit) then
+					return true
+				end
+			end
+
+			return false
+		end
+
+		local inCombat = RaidMemberInCombat()
+		if not inCombat then
+			module:DebugMessage("Wipe detected for module ["..module:ToString().."].")
+			module:CancelScheduledEvent(module:ToString().."_CheckWipe")
+			self:TriggerEvent("BigWigs_RebootModule", module:ToString())
+			--module:SendWipeSync()
+		end
+	end
+end
+function BigWigs.modulePrototype:CheckForWipe()
+	BigWigs:CheckForWipe(self)
+end
+
+function BigWigs:CheckForBossDeath(msg, module)
+	if module and module:IsBossModule() then
+		if msg == string.format(UNITDIESOTHER, module:ToString()) or msg == string.format(L["You have slain %s!"], module.translatedName) then
+			module:SendBossDeathSync()
+		end
+	end
+end
+function BigWigs.modulePrototype:CheckForBossDeath(msg)
+	BigWigs:CheckForBossDeath(msg, self)
+end
+
+-- override
+function BigWigs.modulePrototype:BigWigs_RecvSync(sync, rest, nick)
+end
+
+-- test function
+function BigWigs.modulePrototype:Test()
+	BigWigs:Print("No tests defined for module " .. self:ToString())
+end
+
+------------------------------
+--      Provided API      --
+------------------------------
+
+local delayPrefix = "ScheduledEventPrefix"
+
+function BigWigs.modulePrototype:Sync(sync)
+	self:TriggerEvent("BigWigs_SendSync", sync)
+end
+function BigWigs.modulePrototype:DelayedSync(delay, sync)
+	self:ScheduleEvent(delayPrefix .. "Sync" .. self:ToString() .. sync, "BigWigs_SendSync", delay, sync)
+end
+function BigWigs.modulePrototype:CancelDelayedSync(sync)
+	self:CancelScheduledEvent(delayPrefix .. "Sync" .. self:ToString() .. sync)
+end
+function BigWigs.modulePrototype:ThrottleSync(throttle, sync)
+	self:TriggerEvent("BigWigs_ThrottleSync", sync, throttle)
+end
+
+function BigWigs.modulePrototype:Message(text, priority, noRaidSay, sound, broadcastOnly)
+	self:TriggerEvent("BigWigs_Message", text, priority, noRaidSay, sound, broadcastOnly)
+end
+function BigWigs.modulePrototype:DelayedMessage(delay, text, priority, noRaidSay, sound, broadcastOnly)
+	return self:ScheduleEvent(delayPrefix .. "Message" .. self:ToString() .. text, "BigWigs_Message", delay, text, priority, noRaidSay, sound, broadcastOnly)
+end
+function BigWigs.modulePrototype:CancelDelayedMessage(text)
+	self:CancelScheduledEvent(delayPrefix .. "Message" .. self:ToString() .. text)
+end
+
+function BigWigs.modulePrototype:Bar(text, time, icon, otherColor, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
+	self:TriggerEvent("BigWigs_StartBar", self, text, time, "Interface\\Icons\\" .. icon, otherColor, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
+end
+function BigWigs.modulePrototype:RemoveBar(text)
+	self:TriggerEvent("BigWigs_StopBar", self, text)
+end
+
+function BigWigs.modulePrototype:IntervalBar(text, intervalMin, intervalMax, icon, otherColor, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
+	self:TriggerEvent("BigWigs_StartIntervalBar", self, text, intervalMin, intervalMax, "Interface\\Icons\\" .. icon, otherColor, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
+end
+function BigWigs.modulePrototype:DelayedIntervalBar(delay, text, intervalMin, intervalMax, icon, otherColor, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
+	return self:ScheduleEvent(delayPrefix .. "Bar" .. self:ToString() .. text, "BigWigs_StartIntervalBar", delay, self, text, intervalMin, intervalMax, "Interface\\Icons\\" .. icon, otherColor, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
+end
+
+function BigWigs.modulePrototype:DelayedBar(delay, text, time, icon, otherColor, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
+	return self:ScheduleEvent(delayPrefix .. "Bar" .. self:ToString() .. text, "BigWigs_StartBar", delay, self, text, time, "Interface\\Icons\\" .. icon, otherColor, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10)
+end
+function BigWigs.modulePrototype:CancelDelayedBar(text)
+	self:CancelScheduledEvent(delayPrefix .. "Bar" .. self:ToString() .. text)
+end
+function BigWigs.modulePrototype:BarStatus(text)
+	local registered, time, elapsed, running = BigWigsBars:GetBarStatus(self, text)
+	return registered, time, elapsed, running
+end
+
+function BigWigs.modulePrototype:Sound(sound)
+	self:TriggerEvent("BigWigs_Sound", sound)
+end
+function BigWigs.modulePrototype:DelayedSound(delay, sound, id)
+	if not id then id = "_" end
+	return self:ScheduleEvent(delayPrefix .. "Sound" .. self:ToString() .. sound .. id, "BigWigs_Sound", delay, sound)
+end
+function BigWigs.modulePrototype:CancelDelayedSound(sound, id)
+	if not id then id = "_" end
+	self:CancelScheduledEvent(delayPrefix .. "Sound" .. self:ToString() .. sound .. id)
+end
+
+function BigWigs.modulePrototype:Icon(name, iconnumber)
+	self:TriggerEvent("BigWigs_SetRaidIcon", name, iconnumber)
+end
+function BigWigs.modulePrototype:RemoveIcon()
+	self:TriggerEvent("BigWigs_RemoveRaidIcon")
+end
+
+function BigWigs.modulePrototype:WarningSign(icon, duration, force)
+	self:TriggerEvent("BigWigs_ShowWarningSign", "Interface\\Icons\\" .. icon, duration, force)
+end
+function BigWigs.modulePrototype:RemoveWarningSign(icon, forceHide)
+	self:TriggerEvent("BigWigs_HideWarningSign", "Interface\\Icons\\" .. icon, forceHide)
+end
+function BigWigs.modulePrototype:DelayedWarningSign(delay, icon, duration, id)
+	if not id then id = "_" end
+	self:ScheduleEvent(delayPrefix .. "WarningSign" .. self:ToString() .. icon .. id, "BigWigs_ShowWarningSign", delay, "Interface\\Icons\\" .. icon, duration)
+end
+function BigWigs.modulePrototype:CancelDelayedWarningSign(icon, id)
+	if not id then id = "_" end
+	self:CancelScheduledEvent(delayPrefix .. "WarningSign" .. self:ToString() .. icon .. id)
+end
+
+
+function BigWigs.modulePrototype:Say(msg)
+	SendChatMessage(msg, "SAY")
+end
+
+-- proximity
+function BigWigs:Proximity(moduleName)
+	self:TriggerEvent("BigWigs_ShowProximity", moduleName)
+end
+function BigWigs.modulePrototype:Proximity()
+	BigWigs:Proximity(self:ToString())
+end
+
+function BigWigs:RemoveProximity()
+	self:TriggerEvent("BigWigs_HideProximity")
+end
+function BigWigs.modulePrototype:RemoveProximity()
+	BigWigs:RemoveProximity()
+end
+
+-- doused runes
+
+-- KLHThreatMeter
+function BigWigs.modulePrototype:KTM_Reset()
+	BigWigs:KTM_Reset()
+end
+function BigWigs.modulePrototype:KTM_ClearTarget(forceReset)
+	BigWigs:KTM_ClearTarget(forceReset)
+end
+function BigWigs.modulePrototype:KTM_SetTarget(targetName, forceReset)
+	if IsAddOnLoaded("KLHThreatMeter") then
+		if targetName and type(targetName) == "string" and (IsRaidLeader() or IsRaidOfficer()) then
+			if UnitName("target") == targetName then
+				if not klhtm.target.targetismaster(targetName) then
+					klhtm.net.sendmessage("target " .. targetName)
+				end
+				if forceReset then
+					self:KTM_Reset()
+				end
+			else
+				-- we need to delay the setting mastertarget, as KTM only allows it to work if the person
+				-- calling the mastertarget sync has the unit as target
+				BigWigs:RegisterEvent("PLAYER_TARGET_CHANGED")
+				BigWigs.masterTarget    = targetName
+				BigWigs.forceReset      = forceReset
 			end
 		end
 	end
-	local go = self:Scan()
-	if not go then
-		if self.core:IsDebugging() then
-			self.core:LevelDebug(1, "Rebooting module ["..self:ToString().."].")
-		end
-		self:TriggerEvent("BigWigs_RebootModule", self)
-	elseif not running then
-		self:ScheduleRepeatingEvent(self:ToString().."_CheckWipe", self.CheckForWipe, 2.5, self)
-	end
 end
 
-function BigWigs.modulePrototype:IsRegistered()
-	return self.registered
-end
 
 ------------------------------
 --      Initialization      --
@@ -565,9 +789,12 @@ function BigWigs:OnInitialize()
 	if not self.version then self.version = GetAddOnMetadata("BigWigs", "Version") end
 	local rev = self.revision
 	for name, module in self:IterateModules() do
+		--self:RegisterModule(name,module)
 		rev = math.max(rev, module.revision)
 	end
 	self.version = (self.version or "2.0").. " |cffff8888r"..rev.."|r"
+	--self:RegisterEvent("ADDON_LOADED")
+
 	self.loading = true
 	-- Activate ourselves, or at least try to. If we were disabled during a reloadUI, OnEnable isn't called,
 	-- and self.loading will never be set to something else, resulting in a BigWigs that doesn't enable.
@@ -591,18 +818,20 @@ function BigWigs:AceEvent_FullyInitialized()
 				self:ToggleModuleActive(module, true)
 			end
 		end
-		
+
 		if BigWigsLoD then
 			self:CreateLoDMenu()
 		end
-	
+
 		self:TriggerEvent("BigWigs_CoreEnabled")
-	
+
 		self:RegisterEvent("BigWigs_TargetSeen")
 		self:RegisterEvent("BigWigs_RebootModule")
-	
+
 		self:RegisterEvent("BigWigs_RecvSync")
-		self:TriggerEvent("BigWigs_ThrottleSync", "BossEngaged", 5 )
+
+		--self:RegisterEvent("AceEvent_FullyInitialized", function() self:TriggerEvent("BigWigs_ThrottleSync", "BossEngaged", 5) end )
+
 	else
 		self:ToggleActive(false)
 	end
@@ -624,11 +853,57 @@ end
 --      Module Handling      --
 -------------------------------
 
-function BigWigs:RegisterModule(name, module)
-	if module:IsRegistered() then
-		error(string.format("%q is already registered.", name))
-		return
+function BigWigs:ADDON_LOADED(addon)
+	local gname = GetAddOnMetadata(addon, "X-BigWigsModule")
+	if not gname then return end
+
+	local g = getglobal(gname)
+	if not g or not g.name then return end
+
+	g.external = true
+
+	self:RegisterModule(g.name, g)
+end
+
+function BigWigs:ModuleDeclaration(bossName, zoneName)
+	translatedName = AceLibrary("Babble-Boss-2.2")[bossName]
+	local module = BigWigs:NewModule(translatedName)
+	local L = AceLibrary("AceLocale-2.2"):new("BigWigs" .. translatedName)
+	module.translatedName = translatedName
+
+	local name = string.gsub(bossName, "%s", "") -- untranslated, unique string
+	module.bossSync = bossName
+
+	--local name = string.gsub(bossName, "%s", "") -- untranslated, unique string
+	--local module = BigWigs:NewModule(name)
+	--local L = AceLibrary("AceLocale-2.2"):new("BigWigs" .. name)
+	--module.translatedName = AceLibrary("Babble-Boss-2.2")[bossName]
+
+	-- zone
+	local raidZones = {"Blackwing Lair", "Ruins of Ahn'Qiraj", "Ahn'Qiraj", "Molten Core", "Naxxramas", "Zul'Gurub"}
+	local isOutdoorraid = true
+	for i, value in ipairs(raidZones) do
+		if value == zoneName then
+			module.zonename = AceLibrary("Babble-Zone-2.2")[zoneName]
+			isOutdoorraid = false
+			break
+		end
 	end
+	if isOutdoorraid then
+		module.zonename = {
+			AceLibrary("AceLocale-2.2"):new("BigWigs")["Outdoor Raid Bosses Zone"],
+			AceLibrary("Babble-Zone-2.2")[zoneName]
+		}
+	end
+
+	return module, L
+end
+
+function BigWigs:RegisterModule(name, module)
+	--[[if module:IsRegistered() then
+	error(string.format("%q is already registered.", name))
+	return
+	end]]
 
 	if module:IsBossModule() then self:ToggleModuleActive(module, false) end
 
@@ -651,6 +926,7 @@ function BigWigs:RegisterModule(name, module)
 	if module:IsBossModule() then
 		local cons
 		local revision = type(module.revision) == "number" and module.revision or -1
+		--self:Print(name .. " " .. module.bossSync .. " " .. module:ToString())
 		local L2 = AceLibrary("AceLocale-2.2"):new("BigWigs"..name)
 		if module.toggleoptions then
 			local m = module
@@ -672,7 +948,7 @@ function BigWigs:RegisterModule(name, module)
 						name = L["Reboot"],
 						order = 2,
 						desc = L["Reboot this module."],
-						func = function() m.core:TriggerEvent("BigWigs_RebootModule", m) end,
+						func = function() m.core:TriggerEvent("BigWigs_RebootModule", m:ToString()) end,
 						hidden = function() return not m.core:IsModuleActive(m) end,
 					},
 					[L["rebootall"]] = {
@@ -771,52 +1047,176 @@ function BigWigs:RegisterModule(name, module)
 	end
 
 	-- Set up target monitoring, in case the monitor module has already initialized
-	if module.zonename and module.enabletrigger then
-		self:TriggerEvent("BigWigs_RegisterForTargetting", module.zonename, module.enabletrigger)
-	end
+	--if module.zonename and module.enabletrigger then
+	self:TriggerEvent("BigWigs_RegisterForTargetting", module.zonename, module.enabletrigger)
+	--end
 end
 
-
-function BigWigs:EnableModule(module, nosync)
-	local m = self:GetModule(module)
-	if m and m:IsBossModule() and not self:IsModuleActive(module) then
-		self:ToggleModuleActive(module, true)
-		self:TriggerEvent("BigWigs_Message", string.format(L["%s mod enabled"], m:ToString() or "??"), "Core", true)
-		if not nosync then self:TriggerEvent("BigWigs_SendSync", (m.external and "EnableExternal " or "EnableModule ") .. (m.synctoken or BB:GetReverseTranslation(module))) end
-	end
-end
-
-
-function BigWigs:BigWigs_RebootModule(module)
-	self:ToggleModuleActive(module, false)
-	self:ToggleModuleActive(module, true)
-end
-
-
-function BigWigs:BigWigs_RecvSync(sync, module, nick)
-	if sync == "EnableModule" and module then
-		local name = BB:HasTranslation(module) and BB[module] or module
-		if self:HasModule(name) and self:GetModule(name).zonename == GetRealZoneText() then self:EnableModule(name, true) end
-	elseif sync == "EnableExternal" and module then
-		local name = BB:HasTranslation(module) and BB[module] or module
-		if self:HasModule(name) and self:GetModule(name).zonename == GetRealZoneText() then self:EnableModule(name, true) end
-	elseif sync == "RebootModule" and module then
-		if nick ~= UnitName("player") then
-			self:Print(string.format(L["%s has requested forced reboot for the %s module."], nick, module))
+function BigWigs:EnableModule(moduleName, nosync)
+	--local name = BB:HasTranslation(moduleName) and BB[moduleName] or moduleName
+	local m = self:GetModule(moduleName)
+	if m and not self:IsModuleActive(moduleName) then
+		self:ToggleModuleActive(moduleName, true)
+		if m:IsBossModule() then
+			--m.bossSync = m:ToString()
+			if not m.translatedName then
+				m.translatedName = m:ToString()
+				self:DebugMessage("translatedName for module " .. m:ToString() .. " missing")
+			end
+			self:TriggerEvent("BigWigs_Message", string.format(L["%s mod enabled"], m.translatedName or "??"), "Core", true)
 		end
-		self:TriggerEvent("BigWigs_RebootModule", module)
+
+		--if not nosync then self:TriggerEvent("BigWigs_SendSync", (m.external and "EnableExternal " or "EnableModule ") .. m.bossSync or (BB:GetReverseTranslation(moduleName))) end
+		if not nosync then self:TriggerEvent("BigWigs_SendSync", (m.external and "EnableExternal " or "EnableModule ") .. (m.synctoken or BB:GetReverseTranslation(moduleName))) end
+
+		self:SetupModule(moduleName)
 	end
 end
 
+-- registers generic events
+function BigWigs:SetupModule(moduleName)
+	--local name = BB:HasTranslation(moduleName) and BB[moduleName] or moduleName
+	local m = self:GetModule(moduleName)
+	if m and m:IsBossModule() then
+		--m.bossSync = m:ToString()
+		--m.bossSync = BB:GetReverseTranslation(moduleName) -- untranslated string
+		--self:Print("bossSync: " .. string.gsub(BB:GetReverseTranslation(moduleName), "%s", ""))
+		--m.bossSync = string.gsub(BB:GetReverseTranslation(moduleName), "%s", "") -- untranslated, unique string without spaces
+
+		m:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage") -- addition
+		m:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+		m:RegisterEvent("CHAT_MSG_COMBAT_FRIENDLY_DEATH", "CheckForWipe")
+		m:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH", "CheckForBossDeath") -- addition
+
+		m:RegisterEvent("BigWigs_RecvSync")
+
+		m.engaged = false
+
+		m:OnSetup()
+	end
+end
+
+function BigWigs:DisableModule(moduleName)
+	--local name = BB:HasTranslation(moduleName) and BB[moduleName] or moduleName
+	local m = self:GetModule(moduleName)
+	if m then
+		if m:IsBossModule() then
+			m:Disengage()
+		end
+		self:ToggleModuleActive(m, false)
+	end
+end
+
+-- event handler
+function BigWigs:BigWigs_RebootModule(moduleName)
+	local moduleName = BB:HasTranslation(moduleName) and BB[moduleName] or moduleName
+	local m = self:GetModule(moduleName)
+	if m and m:IsBossModule() then
+		self:DebugMessage("BigWigs:BigWigs_RebootModule(): " .. m:ToString())
+		m:Disengage()
+		self:SetupModule(moduleName)
+	end
+end
+
+
+-------------------------------
+--      Event Handler        --
+-------------------------------
+
+function BigWigs:BigWigs_RecvSync(sync, moduleName, nick)
+	local s, m, n, playername = "-", "-", "-", UnitName("player")
+	if sync then
+		if type(sync) == "string" then
+			s = sync
+		else
+			s = type(sync)
+		end
+	end
+	if moduleName then
+		if type(moduleName) == "string" then
+			m = moduleName
+		else
+			m = type(moduleName)
+		end
+	end
+	if nick then
+		if type(nick) == "string" then
+			if nick == playername then
+				n = "you"
+			else
+				n = nick
+			end
+		else
+			n = type(nick)
+		end
+	end
+	self:DebugMessage("sync: " .. s .. " rest: " .. m .. " nick: " .. n)
+
+
+	local moduleName = BB:HasTranslation(moduleName) and BB[moduleName] or moduleName
+	local module = nil
+	if self:HasModule(moduleName) then
+		module = self:GetModule(moduleName)
+	end
+
+	if module and sync == "EnableModule" then
+		moduleName = BB:HasTranslation(moduleName) and BB[moduleName] or moduleName
+
+		local isInZone = false
+		if type(module.zonename) == "string" and module.zonename == GetRealZoneText() then
+			isInZone = true
+		elseif type(module.zonename) == "table" then
+			for _, v in pairs(module.zonename) do
+				if v == GetRealZoneText() then
+					isInZone = true
+					break
+				end
+			end
+		end
+
+		if isInZone then self:EnableModule(moduleName, true) end
+	elseif module and sync == "EnableExternal" then
+		if module.zonename == GetRealZoneText() then
+			self:EnableModule(moduleName, true)
+		end
+	elseif sync == "RebootModule" and moduleName then
+		if nick ~= UnitName("player") then
+			self:Print(string.format(L["%s has requested forced reboot for the %s module."], nick, moduleName))
+		end
+		self:TriggerEvent("BigWigs_RebootModule", moduleName)
+	elseif module and sync == module:GetEngageSync() then
+		if module:IsBossModule() then
+			module:Engage()
+		end
+		--[[elseif module and sync == module:GetWipeSync() then
+		if module:IsBossModule() and BigWigs:IsModuleActive(module) then
+		self:TriggerEvent("BigWigs_RebootModule", moduleName)
+		end]]
+	elseif module and sync == module:GetBossDeathSync() then
+		if module:IsBossModule() and BigWigs:IsModuleActive(module) then
+			module:Victory()
+		end
+	end
+end
 
 function BigWigs:BigWigs_TargetSeen(mobname, unit)
 	for name,module in self:IterateModules() do
-		if module:IsBossModule() and self:ZoneIsTrigger(module, GetRealZoneText()) and self:MobIsTrigger(module, mobname) and (not module.VerifyEnable or module:VerifyEnable(unit)) then
+		if module:IsBossModule() and self:ZoneIsTrigger(module, GetRealZoneText()) and self:MobIsTrigger(module, mobname)
+			and (not module.VerifyEnable or module:VerifyEnable(unit)) then
 			self:EnableModule(name)
+
+			--[[if UnitExists(unit.."target") then
+			-- if this is true the boss is apparantely already in combat!
+			-- this situation can happen on bosses which spawn the same time they enter combat (Arlokk/Mandokir) or when a player without BigWigs engages the boss
+			module:SendEngageSync()
+			end]]
 		end
 	end
 end
 
+-------------------------------
+--      	Utility		     --
+-------------------------------
 
 function BigWigs:ZoneIsTrigger(module, zone)
 	local t = module.zonename
@@ -861,6 +1261,14 @@ function BigWigs:AddLoDMenu( zonename )
 		zone = L["Other"]
 	end
 	if zone then
+		if BZ:HasReverseTranslation(zonename) and L:HasTranslation(BZ:GetReverseTranslation(zonename)) then
+			zone = L[BZ:GetReverseTranslation(zonename)]
+		elseif L:HasTranslation(zonename) then
+			zone = L[zonename]
+		end
+
+
+
 		if not self.cmdtable.args[L["boss"]].args[zone] then
 			self.cmdtable.args[L["boss"]].args[zone] = {
 				type = "group",
@@ -870,34 +1278,34 @@ function BigWigs:AddLoDMenu( zonename )
 			}
 		end
 		-- if zone == L["Other"] then
-			-- local zones = BigWigsLoD:GetZones()
-			-- zones = zones[L["Other"]]
-			-- self.cmdtable.args[L["boss"]].args[zone].args[L["Load"]] = {
-				-- type = "execute",
-				-- name = L["Load All"],
-				-- desc = string.format( L["Load all %s modules."], zonename ),
-				-- order = 1,
-				-- func = function()
-						-- for z, v in pairs( zones ) do
-							-- BigWigsLoD:LoadZone( z )
-							-- if self.cmdtable.args[L["boss"]].args[z] and self.cmdtable.args[L["boss"]].args[z].args[L["Load"]] then
-								-- self.cmdtable.args[L["boss"]].args[z].args[L["Load"]] = nil
-							-- end
-						-- end
-						-- self.cmdtable.args[L["boss"]].args[zone] = nil
-					-- end
-			-- }
+		-- local zones = BigWigsLoD:GetZones()
+		-- zones = zones[L["Other"]]
+		-- self.cmdtable.args[L["boss"]].args[zone].args[L["Load"]] = {
+		-- type = "execute",
+		-- name = L["Load All"],
+		-- desc = string.format( L["Load all %s modules."], zonename ),
+		-- order = 1,
+		-- func = function()
+		-- for z, v in pairs( zones ) do
+		-- BigWigsLoD:LoadZone( z )
+		-- if self.cmdtable.args[L["boss"]].args[z] and self.cmdtable.args[L["boss"]].args[z].args[L["Load"]] then
+		-- self.cmdtable.args[L["boss"]].args[z].args[L["Load"]] = nil
+		-- end
+		-- end
+		-- self.cmdtable.args[L["boss"]].args[zone] = nil
+		-- end
+		-- }
 		-- else
-			-- self.cmdtable.args[L["boss"]].args[zone].args[L["Load"]] = {
-				-- type = "execute",
-				-- name = L["Load All"],
-				-- desc = string.format( L["Load all %s modules."], zonename ),
-				-- order = 1,
-				-- func = function()
-						-- BigWigsLoD:LoadZone( zonename )
-						-- self.cmdtable.args[L["boss"]].args[zone].args[L["Load"]] = nil
-					-- end
-			-- }
+		-- self.cmdtable.args[L["boss"]].args[zone].args[L["Load"]] = {
+		-- type = "execute",
+		-- name = L["Load All"],
+		-- desc = string.format( L["Load all %s modules."], zonename ),
+		-- order = 1,
+		-- func = function()
+		-- BigWigsLoD:LoadZone( zonename )
+		-- self.cmdtable.args[L["boss"]].args[zone].args[L["Load"]] = nil
+		-- end
+		-- }
 		-- end
 	end
 end

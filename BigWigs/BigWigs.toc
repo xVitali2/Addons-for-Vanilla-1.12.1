@@ -1,26 +1,24 @@
 ## Interface: 11200
-
-## Title: Big Wigs |cff7fff7f -Ace2-|r
-## Title-zhCN: |cff7fff7f-Ace2-|r Big Wigs 
+## Title: Big Wigs |cff7fff7fElysium|r
+## Title-zhCN: |cff7fff7fElysium|r Big Wigs 
 ## Notes: Boss Mods with Timer bars.
-## Notes-ruRU: Модульный, облегчённый, босс мод. Оповещает и выводит таймеры способностей/действий боссов.
+## Notes-ruRU: Босс мод. Оповещает и выводит таймеры способностей/действий боссов.
+## Notes-esES: Módulos para Jefes con barras temporizadoras.
 ## Notes-zhCN: 团队首领战信息提示插件，带有计时条。
 ## Notes-zhTW: 團隊首領戰訊息提示插件，帶有計時條。
-## Author: Tekkub Stoutwrithe, Ammo, Shyva, Rabbit & Others
-## Version: 2.0
-## X-Website: http://www.wowace.com/index.php/BigWigs
-## X-Email: tekkub@gmail.com
+## Author: Tekkub Stoutwrithe, Ammo, Shyva, Rabbit, LYQ, Dorann, Hosq, ruRUbyCFM & Others
+## Version: 2.0.0
+## X-Website: https://github.com/Hosq/BigWigs
 ## X-Category: Raid
 ## X-RelSite-WoWI: 5086
 ## X-RelSite-Curse: 4356
 ## X-AceForum: 1222
 ## X-FlySpray: 1
-## OptionalDeps: FuBar,MikScrollingBattleText, sct
-## SavedVariables: BigWigsDB, BigWigsFubarDB
-## SavedVariablesPerCharacter: BigWigsDBPerChar
-## RequiredDeps:!Libs
 
-#Main
+## RequiredDeps:!Libs
+## SavedVariables: BigWigsDB, BigWigsFubarDB, BigWigsCommonAurasDB, BigWigsZombieFoodDB, BigWigsRespawnTimersDB, BigWigsContributeFlag
+## SavedVariablesPerCharacter: BigWigsDBPerChar
+
 LoadOnDemand.lua
 Core.lua
 Options.lua
@@ -35,87 +33,103 @@ Plugins\RaidWarn.lua
 Plugins\BossBlock.lua
 Plugins\RaidIcon.lua
 Plugins\Range.lua
+Plugins\CommonAuras.lua
 Plugins\Version.lua
 Plugins\Test.lua
+Plugins\CustomBar.lua
+Plugins\Tranq.lua
+Plugins\ZombieFood.lua
+Plugins\RespawnTimers.lua
+Plugins\WarningSign.lua
+Plugins\BossRecords.lua
+Plugins\RaidOfficer.lua
+Plugins\AutoReply.lua
+Plugins\Proximity.lua
+Plugins\Ignite.lua
+Plugins\WorldBuffTimers.lua
+Plugins\ScorchTimer.lua
+Plugins\FRBuffMacro.lua
+Plugins\Farclip.lua
+Plugins\FrostBlast.lua
 
-Extras\CustomBar.lua
-Extras\Discovery.lua
-Extras\Tranq.lua
+Raids\ZG\Arlokk.lua
+Raids\ZG\Jeklik.lua
+Raids\ZG\Marli.lua
+Raids\ZG\Venoxis.lua
+Raids\ZG\Hakkar.lua
+Raids\ZG\Mandokir.lua
+Raids\ZG\Jindo.lua
+Raids\ZG\Thekal.lua
+Raids\ZG\Grilek.lua
+Raids\ZG\Renataki.lua
+Raids\ZG\Hazzarah.lua
+Raids\ZG\Wushoolay.lua
+Raids\ZG\Gahzranka.lua
+Raids\ZG\GurubashiBerserker.lua
 
-ZG\Arlokk.lua
-ZG\Jeklik.lua
-ZG\Marli.lua
-ZG\Venoxis.lua
-ZG\Hakkar.lua
-ZG\Mandokir.lua
-ZG\Jindo.lua
-ZG\Thekal.lua
-ZG\Grilek.lua
-ZG\Renataki.lua
-ZG\Hazzarah.lua
-ZG\Wushoolay.lua
-ZG\Gahzranka.lua
+Raids\AQ20\Ayamiss.lua
+Raids\AQ20\Buru.lua
+Raids\AQ20\GeneralRajaxx.lua
+Raids\AQ20\Guardians.lua
+Raids\AQ20\Ossirian.lua
+Raids\AQ20\Moam.lua
+Raids\AQ20\Kurinaxx.lua
 
-AQ20\Ayamiss.lua
-AQ20\Buru.lua
-AQ20\GeneralRajaxx.lua
-AQ20\Guardians.lua
-AQ20\Ossirian.lua
-AQ20\Moam.lua
-AQ20\Kurinaxx.lua
+Raids\AQ40\Skeram.lua
+Raids\AQ40\BugFamily.lua
+Raids\AQ40\Sartura.lua
+Raids\AQ40\Fankriss.lua
+Raids\AQ40\Huhuran.lua
+Raids\AQ40\Ouro.lua
+Raids\AQ40\Defenders.lua
+Raids\AQ40\Twins.lua
+Raids\AQ40\Cthun.lua
+Raids\AQ40\Viscidus.lua
+Raids\AQ40\Warder.lua
 
-AQ40\Skeram.lua
-AQ40\BugFamily.lua
-AQ40\Sartura.lua
-AQ40\Fankriss.lua
-AQ40\Huhuran.lua
-AQ40\Ouro.lua
-AQ40\Defenders.lua
-AQ40\Twins.lua
-AQ40\Cthun.lua
-AQ40\Viscidus.lua
+Raids\BWL\Chromaggus.lua
+Raids\BWL\Ebonroc.lua
+Raids\BWL\Firemaw.lua
+Raids\BWL\Flamegor.lua
+Raids\BWL\Nefarian.lua
+Raids\BWL\Vaelastrasz.lua
+Raids\BWL\Broodlord.lua
+Raids\BWL\Razorgore.lua
 
-BWL\Chromaggus.lua
-BWL\Ebonroc.lua
-BWL\Firemaw.lua
-BWL\Flamegor.lua
-BWL\Nefarian.lua
-BWL\Vaelastrasz.lua
-BWL\Broodlord.lua
-BWL\Razorgore.lua
+Raids\MC\Lucifron.lua
+Raids\MC\BaronGeddon.lua
+Raids\MC\Gehennas.lua
+Raids\MC\Magmadar.lua
+Raids\MC\Majordomo.lua
+Raids\MC\Ragnaros.lua
+Raids\MC\Shazzrah.lua
+Raids\MC\Garr.lua
+Raids\MC\Sulfuron.lua
+Raids\MC\Golemagg.lua
+Raids\MC\CoreHound.lua
 
-MC\Lucifron.lua
-MC\BaronGeddon.lua
-MC\Gehennas.lua
-MC\Magmadar.lua
-MC\Majordomo.lua
-MC\Ragnaros.lua
-MC\Shazzrah.lua
-MC\Garr.lua
-MC\Sulfuron.lua
-MC\Golemagg.lua
+Raids\Other\Azuregos.lua
+Raids\Other\Kazzak.lua
+Raids\Other\Emeriss.lua
+Raids\Other\Lethon.lua
+Raids\Other\Taerar.lua
+Raids\Other\Ysondre.lua
+Raids\Other\Gordok.lua
 
-Other\Azuregos.lua
-Other\Kazzak.lua
-Other\Emeriss.lua
-Other\Lethon.lua
-Other\Taerar.lua
-Other\Ysondre.lua
+Raids\Onyxia\Onyxia.lua
 
-Onyxia\Onyxia.lua
-
-Naxxramas\Anubrekhan.lua
-Naxxramas\Gluth.lua
-Naxxramas\Razuvious.lua
-Naxxramas\Noth.lua
-Naxxramas\Faerlina.lua
-Naxxramas\Maexxna.lua
-Naxxramas\Patchwerk.lua
-Naxxramas\Grobbulus.lua
-Naxxramas\Thaddius.lua
-Naxxramas\Heigan.lua
-Naxxramas\Gothik.lua
-Naxxramas\Loatheb.lua
-Naxxramas\Horsemen.lua
-Naxxramas\Sapphiron.lua
-Naxxramas\Kelthuzad.lua
+Raids\Naxxramas\Anubrekhan.lua
+Raids\Naxxramas\Gluth.lua
+Raids\Naxxramas\Razuvious.lua
+Raids\Naxxramas\Noth.lua
+Raids\Naxxramas\Faerlina.lua
+Raids\Naxxramas\Maexxna.lua
+Raids\Naxxramas\Patchwerk.lua
+Raids\Naxxramas\Grobbulus.lua
+Raids\Naxxramas\Thaddius.lua
+Raids\Naxxramas\Heigan.lua
+Raids\Naxxramas\Gothik.lua
+Raids\Naxxramas\Loatheb.lua
+Raids\Naxxramas\Horsemen.lua
+Raids\Naxxramas\Sapphiron.lua
+Raids\Naxxramas\Kelthuzad.lua

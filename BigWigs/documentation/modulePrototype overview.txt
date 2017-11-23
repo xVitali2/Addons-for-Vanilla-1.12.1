@@ -1,0 +1,174 @@
+---------------------------------------
+---------------------------------------
+--      Functions and Variables      --
+---------------------------------------
+---------------------------------------
+
+-- do not override
+BigWigs.modulePrototype.core = BigWigs
+BigWigs.modulePrototype.debugFrame = ChatFrame1
+BigWigs.modulePrototype.engaged = false
+BigWigs.modulePrototype.bossSync = nil -- untranslated string
+BigWigs.modulePrototype.zonename = nil -- AceLibrary("Babble-Zone-2.2")["Ahn'Qiraj"]
+
+-- override
+BigWigs.modulePrototype.revision = 1 -- To be overridden by the module!
+BigWigs.modulePrototype.started = false -- not used anymore
+BigWigs.modulePrototype.enabletrigger = nil -- boss
+BigWigs.modulePrototype.wipemobs = nil -- adds that will be considered in CheckForEngage
+BigWigs.modulePrototype.toggleoptions = nil -- {"sweep", "sandblast", "scarab", -1, "emerge", "submerge", -1, "berserk", "bosskill"}
+BigWigs.modulePrototype.timers = {} -- table for all timers
+BigWigs.modulePrototype.icons = {} -- table for all icons
+BigWigs.modulePrototype.proximityCheck = nil -- function(unit) return CheckInteractDistance(unit, 2) end
+BigWigs.modulePrototype.proximitySilent = nil -- false
+
+
+-- do not override
+boolean BigWigs.modulePrototype:IsBossModule()
+void BigWigs.modulePrototype:DebugMessage(msg)
+void BigWigs.modulePrototype:OnInitialize()
+
+-- override (if necessary)
+void BigWigs.modulePrototype.OnEnable()
+void BigWigs.modulePrototype:OnEngage()
+void BigWigs.modulePrototype:OnSetup()
+void BigWigs.modulePrototype:OnDisengage()
+
+-- do not override
+void BigWigs.modulePrototype:Engage()
+void BigWigs.modulePrototype:Disengage()
+void BigWigs.modulePrototype:Victory()
+void BigWigs.modulePrototype:Disable()
+
+-- synchronize functions, do not override
+string BigWigs.modulePrototype:GetEngageSync()
+void BigWigs.modulePrototype:SendEngageSync()
+
+string BigWigs.modulePrototype:GetWipeSync()
+void BigWigs.modulePrototype:SendWipeSync()
+
+string BigWigs.modulePrototype:GetBossDeathSync()
+void BigWigs.modulePrototype:SendBossDeathSync()
+
+-- event handler, override only if necessary (e.g. c'thun phase transition requires overriding CheckForWipe())
+void BigWigs.modulePrototype:RegisterYellEngage(yell)
+
+void BigWigs.modulePrototype:CheckForEngage() -- registers the PLAYER_REGEN_DISABLED event. If you have to use this event, register it in the OnSetup function 
+-- and call the BigWigs:CheckForEngage(self) function within your event handler.
+void BigWigs.modulePrototype:CheckForWipe() --registers the PLAYER_REGEN_ENABLED and CHAT_MSG_COMBAT_FRIENDLY_DEATH events. If you have to use either of these events, 
+-- register it in the OnSetup function and call the BigWigs:CheckForWipe(self) function within your event handler.
+void BigWigs.modulePrototype:CheckForBossDeath(msg) -- registers the CHAT_MSG_COMBAT_HOSTILE_DEATH event. If you have to use this event, register it in the OnSetup function 
+-- and call the BigWigs:CheckForBossDeath(self) function within your event handler.
+
+-- override
+void BigWigs.modulePrototype:BigWigs_RecvSync(sync, rest, nick)
+
+-- test function
+void BigWigs.modulePrototype:Test()
+
+------------------------------
+--      Provided API        --
+------------------------------
+
+void BigWigs.modulePrototype:Sync(sync)
+void BigWigs.modulePrototype:DelayedSync(delay, sync)
+void BigWigs.modulePrototype:CancelDelayedSync(sync)
+void BigWigs.modulePrototype:ThrottleSync(throttle, sync)
+
+void BigWigs.modulePrototype:Message(text[, priority[, noRaidSay[, sound[, broadcastOnly]]]])
+table BigWigs.modulePrototype:DelayedMessage(delay, text[, priority[, noRaidSay[, sound[, broadcastOnly]]]])
+void BigWigs.modulePrototype:CancelDelayedMessage(text)
+
+void BigWigs.modulePrototype:Bar(text, time, icon[, otherColor, c1[, c2[, c3[, c4[, c5[, c6[, c7[, c8[, c9[, c10]]]]]]]]]])
+void BigWigs.modulePrototype:RemoveBar(text)
+table BigWigs.modulePrototype:DelayedBar(delay, text, time, icon[, otherColor, c1[, c2[, c3[, c4[, c5[, c6[, c7[, c8[, c9[, c10]]]]]]]]]])
+void BigWigs.modulePrototype:CancelDelayedBar(text)
+
+void BigWigs.modulePrototype:Sound(sound)
+table BigWigs.modulePrototype:DelayedSound(delay, sound[, id])
+void BigWigs.modulePrototype:CancelDelayedSound(sound[, id])
+
+void BigWigs.modulePrototype:Icon(name[, iconnumber])
+void BigWigs.modulePrototype:RemoveIcon()
+
+void BigWigs.modulePrototype:WarningSign(texturePath, duration[, force])
+void BigWigs.modulePrototype:RemoveWarningSign(texturePath[, forceHide])
+void BigWigs.modulePrototype:DelayedWarningSign(delay, icon, duration[, id])
+void BigWigs.modulePrototype:CancelDelayedWarningSign(icon[, id])
+
+void BigWigs.modulePrototype:Say(msg)
+
+-- KLHThreatMeter
+void BigWigs.modulePrototype:KTM_Reset()
+void BigWigs.modulePrototype:KTM_ClearTarget([forceReset])
+void BigWigs.modulePrototype:KTM_SetTarget(targetName[, forceReset])
+
+
+-------------------------------------
+--      Core: Module Handling      --
+-------------------------------------
+
+void BigWigs:ModuleDeclaration(bossName, zoneName)
+void BigWigs:RegisterModule(name, module)
+void BigWigs:EnableModule(moduleName, nosync)
+void BigWigs:SetupModule(moduleName)
+void BigWigs:DisableModule(moduleName)
+
+-- event handler
+void BigWigs:BigWigs_RebootModule(moduleName)
+
+
+------------------------------
+------------------------------
+--      Call Hierarchy      --
+------------------------------
+------------------------------
+
+BigWigs.modulePrototype:OnInitialize() -- do not override, entry point
+	BigWigs:RegisterModule(name, module)
+		BigWigs.modulePrototype:OnRegister() -- only used for plugins (and kel'thuzad)
+		
+(BigWigs:BigWigs_TargetSeen(mobname, unit), BigWigs:CHAT_MSG_MONSTER_YELL(msg), BigWigs:BigWigs_RebootModule(module), BigWigs:BigWigs_RecvSync(sync, module, nick), BigWigs.modulePrototype:Engage())
+	BigWigs:EnableModule(moduleName, nosync) -- synchronize, enable message
+		BigWigs.modulePrototype:OnEnable()
+		BigWigs:SetupModule(moduleName) -- register generic events
+			BigWigs.modulePrototype:OnSetup() -- register specific events and set variables			
+			
+			BigWigs.modulePrototype:CheckForEngage() -- PLAYER_REGEN_DISABLED event handler, registered by BigWigs:EnableModule(moduleName, nosync)
+				boolean BigWigs.modulePrototype:Scan() -- do not override - boss/adds in combat?
+				BigWigs.modulePrototype:SendEngageSync() -- do not override, synchronize
+					string BigWigs.modulePrototype:GetEngageSync() -- do not override
+					BigWigs.modulePrototype:Engage() -- engage message, call to plugins
+						BigWigs:EnableModule(self:ToString())
+							... details see above
+						BigWigs.modulePrototype:OnEngage()
+			BigWigs.modulePrototype:CheckForWipe() -- PLAYER_REGEN_ENABLED and CHAT_MSG_COMBAT_FRIENDLY_DEATH event handler, registered by BigWigs:EnableModule(module, nosync)
+				BigWigs:SendWipeSync() -- synchronize
+					BigWigs:BigWigs_RebootModule(moduleName)
+						BigWigs.modulePrototype:Disengage() -- reset plugins
+							BigWigs.modulePrototype:OnDisengage()
+						BigWigs:SetupModule(moduleName)
+							... details see above
+			BigWigs.modulePrototype:CheckForBossDeath(msg) -- CHAT_MSG_COMBAT_HOSTILE_DEATH event handler, registered by BigWigs:EnableModule(module, nosync)
+				BigWigs.modulePrototype:SendBossDeathSync() -- do not override, synchronize
+					BigWigs.modulePrototype:Victory() -- do not override, called by sync
+						BigWigs:DisableModule(module)
+							BigWigs.modulePrototype:Disengage() -- do not override - reset plugins
+								BigWigs.modulePrototype:OnDisengage()
+			
+BigWigs:BigWigs_RebootModule(module)
+	BigWigs.modulePrototype:Disengage() -- do not override - reset plugins
+		BigWigs.modulePrototype:OnDisengage()
+	BigWigs:SetupModule(module)
+		... details see above
+		
+BigWigs.modulePrototype:RegisterYellEngage(yell) -- do not override
+BigWigs:CHAT_MSG_MONSTER_YELL(msg)
+	BigWigs:EnableModule(mod:ToString())
+		... details see above
+    BigWigs.modulePrototype:SendEngageSync()
+		string BigWigs.modulePrototype:GetEngageSync() -- do not override
+		BigWigs.modulePrototype:Engage() -- engage message, call to plugins
+			BigWigs:EnableModule(self:ToString())
+				... details see above
+			BigWigs.modulePrototype:OnEngage()

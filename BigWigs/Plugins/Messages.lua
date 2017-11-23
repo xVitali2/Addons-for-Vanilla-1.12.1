@@ -1,4 +1,4 @@
-﻿
+
 assert(BigWigs, "BigWigs not found!")
 
 ------------------------------
@@ -59,192 +59,51 @@ L:RegisterTranslations("enUS", function() return {
 	["Close"] = true,
 } end)
 
-L:RegisterTranslations("ruRU", function() return {
-	["Messages"] = "Сообщения",
+L:RegisterTranslations("esES", function() return {
+	["Messages"] = "Mensajes",
 
 	["msg"] = "msg",
-	["anchor"] = "anchor",
+	["anchor"] = "ancla",
 	["rw"] = "rw",
 	["color"] = "color",
-	["scale"] = "scale",
+	["scale"] = "escala",
 
-	["Options for the message frame."] = "Опции отображения сообщений",
-	["Anchor"] = "Якорь",
-	["Show the message anchor frame."] = "Отображение якоря сообщений",
-	["Use RaidWarning"] = "Использовать Объявление Рейду",
-	["Toggle sending messages to the RaidWarnings frame."] = "Вкл/Выкл отправку сообщений в Объявление Рейду",
-	["Use colors"] = "Использовать цвета",
-	["Toggles white only messages ignoring coloring."] = "Вкл/Выкл окраску игнорируемых сообщений, отображать белыми.",
-	["Message frame scale"] = "Масштаб фрейма сообщений.",
+	["Options for the message frame."] = "Opciones para el marco del mensajes",
+	["Anchor"] = "Ancla",
+	["Show the message anchor frame."] = "Muestra la ancla del marco del mensaje",
+	["Use RaidWarning"] = "Usar Advertencia de la Banda",
+	["Toggle sending messages to the RaidWarnings frame."] = "Alterna de enviar mensajes al marco Advertencia de la Banda",
+	["Use colors"] = "Usar colores",
+	["Toggles white only messages ignoring coloring."] = "Alterna solamente los mensajes blancos y ignora los coloreados.",
+	["Message frame scale"] = "Escala del marco del mensaje",
 
-	["Message frame"] = "Фрейм сообщеий",
-	["Show anchor"] = "Показать якорь",
-	["Send messages to RaidWarning frame"] = "Отправлять сообщения в Объявление Рейду",
-	["Set the message frame scale."] = "Настройка масштаба фрейма сообщений.",
-	["Colorize messages"] = "Оцветить сообщения",
-	["Scale"] = "Масштаб",
+	["Message frame"] = "Marco del mensaje",
+	["Show anchor"] = "Mostrar Ancla",
+	["Send messages to RaidWarning frame"] = "Envia mensajes al marco de Advertencia de la Banda",
+	["Set the message frame scale."] = "Define la escala del marco del mensaje",
+	["Colorize messages"] = "Colorea los mensajes",
+	["Scale"] = "Escala",
 
 	["|cffff0000Co|cffff00fflo|cff00ff00r|r"] = "|cffff0000Co|cffff00fflo|cff00ff00r|r",
-	["White"] = "Белый",
-	["BigWigs frame"] = "BigWigs фрейм",
-	["RaidWarning frame"] = "Фрейм Объявление Рейду",
-	["Scale is set to %s"] = "Маштаб установлен на %s",
-	["Messages are now sent to the %2$s"] = "Теперь сообщения отправляются в %2$s",
-	["Messages are currently sent to the %2$s"] = "Сообщения отправляются в %2$s",
+	["White"] = "Blanco",
+	["BigWigs frame"] = "Marco de BigWigs",
+	["RaidWarning frame"] = "Marco de Advertencia de la Banda",
+	["Scale is set to %s"] = "Escala se define a %s",
+	["Messages are now sent to the %2$s"] = "Mensajes están enviados al %2$s",
+	["Messages are currently sent to the %2$s"] = "Mensajes actuales están enviados al %2$s",
 
 	["display"] = "display",
-	["Display"] = "Отображение",
-	["Set where messages are displayed."] = "Установить откуда будут выводиться сообщения",
-	["Display is now set to %2$s"] = "Теперь отображение установлено на %2$s",
-	["Display is currently set to %2$s"] = "Отображение установлено на %2$s",
+	["Display"] = "Muestra",
+	["Set where messages are displayed."] = "Define donde los mensajes están mostrados",
+	["Display is now set to %2$s"] = "Muestra",
+	["Display is currently set to %2$s"] = "Muestra actual define a %2$s",
 
-	["Mik's Scrolling Battle Text"] = "Mik's Scrolling Battle Text",
-	["Scrolling Combat Text"] = "Scrolling Combat Text",
-	["Floating Combat Text"] = "Floating Combat Text",
+	["Mik's Scrolling Battle Text"] = "Flotación de texto de combate de Mik",
+	["Scrolling Combat Text"] = "Flotación de texto de combate",
+	["Floating Combat Text"] = "Flotación de texto de combate",
 
-	["Test"] = "Тест",
-	["Close"] = "Закрыть",
-} end)
-
-
-L:RegisterTranslations("koKR", function() return {
-	["Messages"] = "메세지",
-  
---	["msg"] = "메시지",
---	["anchor"] = "위치",
---	["rw"] = "공대경고",
---	["color"] = "색상",
---	["scale"] = "크기",
-
-	["Options for the message frame."] = "메시지 창 옵션.",
-	["Anchor"] = "위치",
-	["Show the message anchor frame."] = "메시지 위치 조정 프레임 보이기.",
-	["Use RaidWarning"] = "공격대 경고 사용",
-	["Toggle sending messages to the RaidWarnings frame."] = "공대경고 창으로 메시지 보내기.",
-	["Use colors"] = "색상 사용",
-	["Toggles white only messages ignoring coloring."] = "메시지를 하얀 색으로 변경.",
-	["Message frame scale"] = "메세지 창 크기",
-
-	["Message frame"] = "메시지 창",
-	["Show anchor"] = "앵커 보이기",
-	["Send messages to RaidWarning frame"] = "공대경고 창으로 메시지 보내기",
-	["Set the message frame scale."] = "메세지 창 크기 설정",
-	["Colorize messages"] = "컬러 메시지",
-	["Scale"] = "크기",
-
-	["|cffff0000Co|cffff00fflo|cff00ff00r|r"] = "|cffff0000색|cffff00ff상|r",
-	["White"] = "화이트",
-	["BigWigs frame"] = "BigWigs 창",
-	["RaidWarning frame"] = "공격대경고 창",
---	["Scale is set to %s"] = true,
---	["Messages are now sent to the %2$s"] = true,
---	["Messages are currently sent to the %2$s"] = true,
-
-	["display"] = "디스플레이",
-	["Display"] = "디스플레이",
-	["Set where messages are displayed."] = "메세지 디스플레이 설정",
-	["Display is now set to %2$s"] = "디스플레이를 %2$s 로 설정 하였습니다.",
-	["Display is currently set to %2$s"] = "디스플레이 현재 설정 : %2$s",
-
-	["Mik's Scrolling Battle Text"] = "MSBT",
-	["Scrolling Combat Text"] = "SCT",
-	["Floating Combat Text"] = "FCT",
-} end)
-
-L:RegisterTranslations("zhCN", function() return {
-	["Messages"] = "信息",
-
-	["msg"] = "信息",
-	["anchor"] = "锚点",
-	["rw"] = "团队警报",
-	["color"] = "颜色",
-	["scale"] = "大小",
-
-	["Options for the message frame."] = "信息框体设置。",
-	["Anchor"] = "锚点",
-	["Show the message anchor frame."] = "显示信息框体锚点。",
-	["Use RaidWarning"] = "使用团队警告",
-	["Toggle sending messages to the RaidWarnings frame."] = "切换是否通过团队警告框体发送信息。",
-	["Use colors"] = "发送彩色信息",
-	["Toggles white only messages ignoring coloring."] = "切换是否只发送单色信息。",
-	["Message frame scale"] = "信息框体缩放",
-
-	["Message frame"] = "信息框体",
-	["Show anchor"] = "显示锚点",
-	["Send messages to RaidWarning frame"] = "通过团队警告框体发送信息",
-	["Set the message frame scale."] = "设置信息框体缩放比例",
-	["Colorize messages"] = "彩色信息",
-	["Scale"] = "缩放",
-
-	["|cffff0000Co|cffff00fflo|cff00ff00r|r"] = "|cffff0000颜|cffff00ff色|r",
-	["White"] = "白色",
-	["BigWigs frame"] = "BigWigs框体",
-	["RaidWarning frame"] = "团队警告框体",
-	["Scale is set to %s"] = "缩放比例设置为%s",
-	["Messages are now sent to the %2$s"] = "信息设置为发送到%2$s",
-	["Messages are currently sent to the %2$s"] = "信息当前设置为发送到%2$s",
-
-	["display"] = "显示",
-	["Display"] = "显示",
-	["Set where messages are displayed."] = "选择信息显示的位置",
-	["Display is now set to %2$s"] = "显示设置到%2$s",
-	["Display is currently set to %2$s"] = "显示目前设置到%2$s",
-
-	["Mik's Scrolling Battle Text"] = "Mik's滚动战斗信息",
-	["Scrolling Combat Text"] = "滚动战斗信息",
-	["Floating Combat Text"] = "浮动战斗信息",
-
-	["Test"] = "测试",
-	["Close"] = "关闭",
-
-} end)
-
-L:RegisterTranslations("zhTW", function() return {
-	["Messages"] = "訊息",
-
-	["msg"] = "訊息",
-	["anchor"] = "錨點",
-	["rw"] = "團隊警報",
-	["color"] = "顏色",
-	["scale"] = "大小",
-
-	["Options for the message frame."] = "訊息框架設置。",
-	["Anchor"] = "錨點",
-	["Show the message anchor frame."] = "顯示訊息訊息框架錨點。",
-	["Use RaidWarning"] = "使用團隊警告",
-	["Toggle sending messages to the RaidWarnings frame."] = "切換是否通過團隊警告框架發送訊息。",
-	["Use colors"] = "發送彩色訊息",
-	["Toggles white only messages ignoring coloring."] = "切換是否只發送單色訊息。",
-	["Message frame scale"] = "訊息框架縮放",
-
-	["Message frame"] = "訊息框架",
-	["Show anchor"] = "顯示錨點",
-	["Send messages to RaidWarning frame"] = "通過團隊警告框架發送訊息",
-	["Set the message frame scale."] = "設置訊息框架縮放比例",
-	["Colorize messages"] = "彩色訊息",
-	["Scale"] = "縮放",
-
-	["|cffff0000Co|cffff00fflo|cff00ff00r|r"] = "|cffff0000顏|cffff00ff色|r",
-	["White"] = "白色",
-	["BigWigs frame"] = "BigWigs框架",
-	["RaidWarning frame"] = "團隊警告框架",
-	["Scale is set to %s"] = "縮放比例設置為%s",
-	["Messages are now sent to the %2$s"] = "目前訊息設定為發送到%2$s",
-	["Messages are currently sent to the %2$s"] = "目前訊息設定為發送到%2$s",
-
-	["display"] = "顯示",
-	["Display"] = "顯示",
-	["Set where messages are displayed."] = "選擇訊息顯示的位置",
-	["Display is now set to %2$s"] = "顯示設置到%2$s",
-	["Display is currently set to %2$s"] = "顯示目前設置到%2$s",
-
-	["Mik's Scrolling Battle Text"] = "Mik's滾動戰鬥訊息",
-	["Scrolling Combat Text"] = "滾動戰鬥訊息",
-	["Floating Combat Text"] = "浮動戰鬥訊息",
-
-	["Test"] = "測試",
-	["Close"] = "關閉",
-
+	["Test"] = "Probar",
+	["Close"] = "Cerrar",
 } end)
 
 L:RegisterTranslations("deDE", function() return {
@@ -294,53 +153,13 @@ L:RegisterTranslations("deDE", function() return {
 	["Close"] = "Schlie\195\159en",
 } end)
 
-L:RegisterTranslations("frFR", function() return {
-	["Messages"] = "Messages",
-
-	["Options for the message frame."] = "Options concernant le cadre des messages.",
-	["Anchor"] = "Ancre",
-	["Show the message anchor frame."] = "Affiche l'ancre du cadre des messages.",
-	["Use RaidWarning"] = "Utiliser le cadre de l'Avertissement Raid",
-	["Toggle sending messages to the RaidWarnings frame."] = "Affiche ou non les messages dans le cadre des Avertissements Raid.",
-	["Use colors"] = "Utiliser des couleurs",
-	["Toggles white only messages ignoring coloring."] = "Utilise ou non des couleurs dans les messages à la place du blanc unique.",
-	["Message frame scale"] = "Taille du cadre des messages",
-
-	["Message frame"] = "Cadre des messages",
-	["Show anchor"] = "Afficher l'ancre",
-	["Send messages to RaidWarning frame"] = "Envoyer les messages dans le cadre des Avertissements Raid",
-	["Set the message frame scale."] = "Détermine la taille du cadre des messages.",
-	["Colorize messages"] = "Colorer les messages",
-	["Scale"] = "Taille",
-
-	["|cffff0000Co|cffff00fflo|cff00ff00r|r"] = "|cffff0000Co|cffff00ffule|cff00ff00ur|r",
-	["White"] = "Blanc",
-	["BigWigs frame"] = "Cadre de BigWigs",
-	["RaidWarning frame"] = "Cadre des Avertissements Raid",
-	["Scale is set to %s"] = "La taille est désormais définie à %s",
-	["Messages are now sent to the %2$s"] = "Les messages sont désormais affichés dans le %2$s",
-	["Messages are currently sent to the %2$s"] = "Les messages sont actuellement affichés dans le %2$s",
-
-	["Display"] = "Affichage",
-	["Set where messages are displayed."] = "Détermine où les messages sont affichés.",
-	["Display is now set to %2$s"] = "L'affichage est désormais défini au %2$s",
-	["Display is currently set to %2$s"] = "L'affichage est actuellement défini au %2$s",	
-
-	["Mik's Scrolling Battle Text"] = "Scrolling Battle Text de Mik",
-	--["Scrolling Combat Text"] = "Scrolling Combat Text",
-	["Floating Combat Text"] = "Message de combat flottant",
-
-	--["Test"] = "Test",
-	["Close"] = "Fermer",
-} end)
-
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
 BigWigsMessages = BigWigs:NewModule(L["Messages"])
 BigWigsMessages.defaultDB = {
-	display = L["RaidWarning frame"],
+	display = L["BigWigs frame"],
 	usecolors = true,
 	scale = 1.0,
 }
@@ -459,6 +278,7 @@ end
 function BigWigsMessages:BigWigs_Message(text, color, noraidsay, sound, broadcastonly)
 	if not text then return end
 	if broadcastonly then return end
+
 	local r, g, b
 	if color ~= nil and type(color) == "table" and type(color.r) == "number" and type(color.g) == "number" and type(color.b) == "number" then
 		r, g, b = color.r, color.g, color.b
@@ -506,7 +326,7 @@ function BigWigsMessages:SetupFrames()
 		bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background", tile = true, tileSize = 16,
 		edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", edgeSize = 16,
 		insets = {left = 4, right = 4, top = 4, bottom = 4},
-		})
+	})
 	self.frames.anchor:SetBackdropBorderColor(.5, .5, .5)
 	self.frames.anchor:SetBackdropColor(0,0,0)
 	self.frames.anchor:ClearAllPoints()
@@ -535,13 +355,13 @@ function BigWigsMessages:SetupFrames()
 	self.frames.cheader:ClearAllPoints()
 	self.frames.cheader:SetPoint("TOP", self.frames.anchor, "TOP", 0, -10)
 
+
 	self.frames.leftbutton = CreateFrame("Button", nil, self.frames.anchor)
 	self.frames.leftbutton.owner = self
 	self.frames.leftbutton:SetWidth(40)
 	self.frames.leftbutton:SetHeight(25)
 	self.frames.leftbutton:SetPoint("RIGHT", self.frames.anchor, "CENTER", -10, -15)
 	self.frames.leftbutton:SetScript( "OnClick", function()  self:TriggerEvent("BigWigs_Test") end )
-
 
 	t = self.frames.leftbutton:CreateTexture()
 	t:SetWidth(50)
@@ -568,13 +388,13 @@ function BigWigsMessages:SetupFrames()
 	self.frames.leftbuttontext:SetText(L["Test"])
 	self.frames.leftbuttontext:SetAllPoints(self.frames.leftbutton)
 
+
 	self.frames.rightbutton = CreateFrame("Button", nil, self.frames.anchor)
 	self.frames.rightbutton.owner = self
 	self.frames.rightbutton:SetWidth(40)
 	self.frames.rightbutton:SetHeight(25)
 	self.frames.rightbutton:SetPoint("LEFT", self.frames.anchor, "CENTER", 10, -15)
 	self.frames.rightbutton:SetScript( "OnClick", function() self:BigWigs_HideAnchors() end )
-
 
 	t = self.frames.rightbutton:CreateTexture()
 	t:SetWidth(50)
@@ -589,7 +409,7 @@ function BigWigsMessages:SetupFrames()
 	t:SetTexCoord(0, 0.625, 0, 0.6875)
 	t:SetAllPoints(self.frames.rightbutton)
 	self.frames.rightbutton:SetPushedTexture(t)
-	
+
 	t = self.frames.rightbutton:CreateTexture()
 	t:SetTexture("Interface\\Buttons\\UI-Panel-Button-Highlight")
 	t:SetTexCoord(0, 0.625, 0, 0.6875)

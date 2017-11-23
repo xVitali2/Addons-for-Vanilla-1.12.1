@@ -1,4 +1,4 @@
-﻿
+
 ----------------------------
 --      Localization      --
 ----------------------------
@@ -37,66 +37,66 @@ L:RegisterTranslations("enUS", function() return {
 	["Shown"] = true,
 } end)
 
-L:RegisterTranslations("ruRU", function() return {
-	["BossBlock"] = "БлокБосс",
-	["Suppress bossmod chat from other players."] = "Подавляет сообщения посланные в чат другими игроками.",
+L:RegisterTranslations("esES", function() return {
+	["BossBlock"] = "Bloque de Jefe",
+	["Suppress bossmod chat from other players."] = "Bloquea el chat de los módulos de jefes de otro jugadores",
 
-	["Suppress Raid Chat"] = "Чат рейд",
-	["Suppress messages in the raid channel."] = "Подавляет сообщения посланные в рейд чат",
+	["Suppress Raid Chat"] = "Bloquear Chat de la Banda",
+	["Suppress messages in the raid channel."] = "Bloquea los mensajes en el chat de la banda",
 
-	["Suppress RaidWarn Chat"] = "Чат сообщения рейд объявлений",
-	["Suppress RaidWarn messages in the chat frames."] = "Подавляет сообщения рейд объявлений в окне чата",
+	["Suppress RaidWarn Chat"] = "Bloquear Chat de Advertencia de la Banda",
+	["Suppress RaidWarn messages in the chat frames."] = "Bloquea mensajes de Advertencia de la Banda en el chat",
 
-	["Suppress RaidWarn"] = "Сообщения рейд объявлений",
-	["Suppress RaidWarn popup messages."] = "Подавляет сообщения рейд объявлений в окне сообщений рейда",
+	["Suppress RaidWarn"] = "Bloquear Advertencia de la Banda",
+	["Suppress RaidWarn popup messages."] = "Bloquea mensajes de Adventencia de la Banda",
 
-	["Suppress RaidSay"] = "Подавление cказать в рейде",
-	["Suppress CTRA RaidSay popup messages."] = "Подавление CTRA сообщений сказанные в рейде",
-	["Suppress oRA RaidSay popup messages."] = "Подавление oRA сообщений сказанные в рейде",
-	["Suppress oRA2 RaidSay popup messages."] = "Подавление oRA2 сообщений сказанные в рейде",
+	["Suppress RaidSay"] = "Bloquear RaidSay",
+	["Suppress CTRA RaidSay popup messages."] = "Bloquea mensajes de CTRA RaidSay",
+	["Suppress oRA RaidSay popup messages."] = "Bloquea mensajes de oRA RaidSay",
+	["Suppress oRA2 RaidSay popup messages."] = "Bloquea mensajes de oTRA2",
 
-	["Suppress Tells"] = "Подавление сказанных сообщений",
-	["Suppress Tell messages."] = "Подавление сказанных сообщений",
+	["Suppress Tells"] = "Bloquear mensajes personales",
+	["Suppress Tell messages."] = "Bloquea mensajes personales",
 
-	["Debugging"] = "Отладка",
-	["Show debug messages."] = "Показывать сообщения отладки",
+	["Debugging"] = "Depurar",
+	["Show debug messages."] = "Mostrar mensajes de depura",
 
-	["Suppressing Chatframe"] = "Подавление окна чата",
-	["Suppressing RaidWarningFrame"] = "Подавление объевлений рейда",
-	["Suppressing CT_RAMessageFrame"] = "Подавление CT_RA сообщений",
+	["Suppressing Chatframe"] = "Bloquea el marco de chat",
+	["Suppressing RaidWarningFrame"] = "Bloquea el marco de Advertencia de la Banda",
+	["Suppressing CT_RAMessageFrame"] = "Bloquea CT_RAMessageFrame",
 
-	["Suppressed"] = "Подавлять",
-	["Shown"] = "Показывать",
+	["Suppressed"] = "Bloqueado",
+	["Shown"] = "Mostrado",
 } end)
 
 L:RegisterTranslations("koKR", function() return {
 	["BossBlock"] = "보스차단",
 	["Suppress bossmod chat from other players."] = "타인의 보스모드 대화 차단.",
-	
+
 	["Suppress Raid Chat"] = "공격대 대화 차단",
 	["Suppress messages in the raid channel."] = "공격대 채널에 메세지 차단.",
-	
+
 	["Suppress RaidWarn Chat"] = "공격대경고 대화 차단",
 	["Suppress RaidWarn messages in the chat frames."] = "대화창에 공격대경고 메세지 차단",
-	
+
 	["Suppress RaidWarn"] = "공격대경고 차단",
 	["Suppress RaidWarn popup messages."] = "공격대경고 알림 메세지 차단",
-	
+
 	["Suppress RaidSay"] = "RaidSay 차단",
 	["Suppress CTRA RaidSay popup messages."] = "CTRA RaidSay 알림 메세지 차단",
 	["Suppress oRA RaidSay popup messages."] = "oRA RaidSay 알림 메세지 차단",
 	["Suppress oRA2 RaidSay popup messages."] = "oRA2 RaidSay 알림 메세지 차단",
-	
+
 	["Suppress Tells"] = "일반대화 차단",
 	["Suppress Tell messages."] = "일반대화 메세지 차단",
-	
+
 	["Debugging"] = "디버깅",
 	["Show debug messages."] = "디버그 메세지 표시",
-	
+
 	["Suppressing Chatframe"] = "대화창 차단됨",
 	["Suppressing RaidWarningFrame"] = "공격대경고창 차단됨",
 	["Suppressing CT_RAMessageFrame"] = "CR_RA메세지창 차단됨",
-	
+
 	["Suppressed"] = "차단됨",
 	["Shown"] = "표시함",
 
@@ -165,33 +165,33 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("deDE", function() return {
 	["BossBlock"] = "BossBlock",
-	["Suppress bossmod chat from other players."] = "Bossmod Chat von anderen Spielern unterdr\195\188cken.",
- 	 
-	["Suppress Raid Chat"] = "Raid Chat unterdr\195\188cken",
-	["Suppress messages in the raid channel."] = "Nachrichten im Raid Channel unterdr\195\188cken",
- 
-	["Suppress RaidWarn Chat"] = "RaidWarn Chat unterdr\195\188cken",
-	["Suppress RaidWarn messages in the chat frames."] = "RaidWarn Nachrichten im Chat Fenster unterdr\195\188cken.",
- 
-	["Suppress RaidWarn"] = "RaidWarn unterdr\195\188cken",
-	["Suppress RaidWarn popup messages."] = "RaidWarn Popup-Nachrichten unterdr\195\188cken.",
- 
-	["Suppress RaidSay"] = "RaidSay unterdr\195\188cken",
-	["Suppress CTRA RaidSay popup messages."] = "CTRA RaidSay Popup Nachrichten unterdr\195\188cken.",
-	["Suppress oRA RaidSay popup messages."] = "oRA RaidSay Popup Nachrichten unterdr\195\188cken.",
-	["Suppress oRA2 RaidSay popup messages."] = "oRA2 RaidSay Popup Nachrichten unterdr\195\188cken.",
- 
-	["Suppress Tells"] = "Fl\195\188stern unterdr\195\188cken",
-	["Suppress Tell messages."] = "Fl\195\188stern Nachrichten unterdr\195\188cken.",
+	["Suppress bossmod chat from other players."] = "Bossmod Meldungen von anderen Spielern unterdrücken.",
+
+	["Suppress Raid Chat"] = "Raid Chat unterdrücken",
+	["Suppress messages in the raid channel."] = "Nachrichten im Raid Channel unterdrücken",
+
+	["Suppress RaidWarn Chat"] = "RaidWarn Chat unterdrücken",
+	["Suppress RaidWarn messages in the chat frames."] = "RaidWarn Nachrichten im Chat Fenster unterdrücken.",
+
+	["Suppress RaidWarn"] = "RaidWarn unterdrücken",
+	["Suppress RaidWarn popup messages."] = "RaidWarn Popup-Nachrichten unterdrücken.",
+
+	["Suppress RaidSay"] = "RaidSay unterdrücken",
+	["Suppress CTRA RaidSay popup messages."] = "CTRA RaidSay Popup Nachrichten unterdrücken.",
+	["Suppress oRA RaidSay popup messages."] = "oRA RaidSay Popup Nachrichten unterdrücken.",
+	["Suppress oRA2 RaidSay popup messages."] = "oRA2 RaidSay Popup Nachrichten unterdrücken.",
+
+	["Suppress Tells"] = "Flüstern unterdrücken",
+	["Suppress Tell messages."] = "Flüstern Nachrichten unterdrücken.",
 
 	["Debugging"] = "Debugging",
 	["Show debug messages."] = "Debug Nachrichten anzeigen.",
- 
-	["Suppressing Chatframe"] = "Chatframe unterdr\195\188ckt",
-	["Suppressing RaidWarningFrame"] = "RaidWarningFrame unterdr\195\188cket",
-	["Suppressing CT_RAMessageFrame"] = "CT_RAMessageFrame unterdr\195\188ckt",
- 
-	["Suppressed"] = "Unterdr\195\188ckt",
+
+	["Suppressing Chatframe"] = "Chatframe unterdrückt",
+	["Suppressing RaidWarningFrame"] = "RaidWarningFrame unterdrücket",
+	["Suppressing CT_RAMessageFrame"] = "CT_RAMessageFrame unterdrückt",
+
+	["Suppressed"] = "Unterdrückt",
 	["Shown"] = "Angezeigt",
 } end)
 
@@ -211,7 +211,7 @@ L:RegisterTranslations("frFR", function() return {
 	["Suppress RaidSay"] = "Supprimer les RaidSay",
 	["Suppress CTRA RaidSay popup messages."] = "Supprime les messages à l'écran du RaidSay de CTRA.",
 	["Suppress oRA RaidSay popup messages."] = "Supprime les messages à l'écran du RaidSay de oRA.",
-	["Suppress oRA2 RaidSay popup messages."] = "Supprime les messages à l'écran du RaidSay de oRA2.",	
+	["Suppress oRA2 RaidSay popup messages."] = "Supprime les messages à l'écran du RaidSay de oRA2.",
 
 	["Suppress Tells"] = "Supprimer les chuchotements",
 	["Suppress Tell messages."] = "Supprime les messages chuchotés.",
@@ -400,10 +400,11 @@ end
 
 function BigWigsBossBlock:ChatFrame_OnEvent(event)
 	if self:IsChannelSuppressed(event) and self:IsSpam(arg1) then
-		self:Debug(L["Suppressing Chatframe"], event, arg1)
+		--self:Debug(L["Suppressing Chatframe"], event, arg1)
 		return
 	end
-	if type(self.hooks["ChatFrame_OnEvent"]) == "function" then
+	if type(self.hooks["ChatFrame_OnEvent"]) == "function" and event then
+		--BigWigs:DebugMessage("ChatFrame_OnEvent " .. event)
 		self.hooks["ChatFrame_OnEvent"](event)
 	else
 		return self.hooks["ChatFrame_MessageEventHandler"](event)
