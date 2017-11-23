@@ -48,6 +48,27 @@ if GetLocale() == "deDE" then
 	CHARACTER = "Charakter: "
 	REALM = "Realm: "
 	CLASS = "Klasse: "
+elseif GetLocale() == "esES" then
+	ACTIVE = "Activo"
+	ENABLED = "Activado"
+	STATE = "Estado"
+	TOGGLE_ACTIVE = "Suspende/reanuda este addon."
+	MAP_ACTIVESUSPENDED = { [true] = "|cff00ff00Activo|r", [false] = "|cffff0000Suspendido|r" }
+	SET_PROFILE = "Asigna perfil para este addon."
+	SET_PROFILE_USAGE = "{personaje || clase || reino || <nombre de perfil>}"
+	PROFILE = "Perfil"
+	PLAYER_OF_REALM = "%s de %s"
+	CHOOSE_PROFILE_DESC = "Elige un perfil."
+	CHOOSE_PROFILE_GUI = "Elige"
+	COPY_PROFILE_DESC = "Copia configuración de otro perfil."
+	COPY_PROFILE_GUI = "Copia"
+	OTHER_PROFILE_DESC = "Elige otro perfil."
+	OTHER_PROFILE_GUI = "Otro"
+	OTHER_PROFILE_USAGE = "<nombre de perfil>"
+
+	CHARACTER = "Personaje: "
+	REALM = "Reino: "
+	CLASS = "Clase: "
 elseif GetLocale() == "frFR" then
 	ACTIVE = "Actif"
 	ENABLED = "Activ\195\169"

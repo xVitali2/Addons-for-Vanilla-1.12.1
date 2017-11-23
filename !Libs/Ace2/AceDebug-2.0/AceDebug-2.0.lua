@@ -24,6 +24,9 @@ local DEBUGGING, TOGGLE_DEBUGGING
 if GetLocale() == "frFR" then
 	DEBUGGING = "D\195\169boguage"
 	TOGGLE_DEBUGGING = "Activer/d\195\169sactiver le d\195\169boguage"
+elseif GetLocale() == "esES" then
+	DEBUGGING = "Depurar"
+	TOGGLE_DEBUGGING = "Activar/desactivar depurar"
 elseif GetLocale() == "deDE" then
 	DEBUGGING = "Debuggen"
 	TOGGLE_DEBUGGING = "Aktiviert/Deaktiviert Debugging"

@@ -33,6 +33,17 @@ if GetLocale() == "deDE" then
 	OPTION_HANDLER_NOT_FOUND = "Optionen handler |cffffff7f%q|r nicht gefunden."
 	OPTION_HANDLER_NOT_VALID = "Optionen handler nicht g\195\188ltig."
 	OPTION_IS_DISABLED = "Option |cffffff7f%s|r deaktiviert."
+elseif  GetLocale() == "esES" then
+	MAP_ONOFF = { [false] = "|cffff0000Inactivo|r", [true] = "|cff00ff00Activo|r" }
+	USAGE = "Uso"
+	IS_CURRENTLY_SET_TO = "|cffffff7f%s|r es asignado a |cffffff7f[|r%s|cffffff7f]|r"
+	IS_NOW_SET_TO = "|cffffff7f%s|r es asignado a |cffffff7f[|r%s|cffffff7f]|r"
+	IS_NOT_A_VALID_OPTION_FOR = "[|cffffff7f%s|r] no es opción válida para |cffffff7f%s|r"
+	IS_NOT_A_VALID_VALUE_FOR = "[|cffffff7f%s|r] no es valor válido para |cffffff7f%s|r"
+	NO_OPTIONS_AVAILABLE = "No hay opciones"
+	OPTION_HANDLER_NOT_FOUND = "Operario de opción |cffffff7f%q|r no se encuentra."
+	OPTION_HANDLER_NOT_VALID = "Operario de opción no es válido."
+	OPTION_IS_DISABLED = "La opción |cffffff7f%s|r es desactivado."
 elseif GetLocale() == "frFR" then
 	MAP_ONOFF = { [false] = "|cffff0000Inactif|r", [true] = "|cff00ff00Actif|r" }
 	USAGE = "Utilisation"
