@@ -57,6 +57,31 @@ L:RegisterTranslations("enUS", function() return {
 	adds_desc = "Announces dead Firesworns",
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM Гарр
+	firesworn_name = "Огнекамень",
+	triggeradddead8 = "Гарр получает эффект \"Бешенство\"(.+)8",
+	triggeradddead7 = "Гарр получает эффект \"Бешенство\"(.+)7",
+	triggeradddead6 = "Гарр получает эффект \"Бешенство\"(.+)6",
+	triggeradddead5 = "Гарр получает эффект \"Бешенство\"(.+)5",
+	triggeradddead4 = "Гарр получает эффект \"Бешенство\"(.+)4",
+	triggeradddead3 = "Гарр получает эффект \"Бешенство\"(.+)3",
+	triggeradddead2 = "Гарр получает эффект \"Бешенство\"(.+)2",
+	triggeradddead1 = "Гарр получает эффект \"Бешенство\".",
+
+	counterbarMsg = "Огнекамень мертв",
+	addmsg1 = "1/8 Огнекамень мертв!",
+	addmsg2 = "2/8 Огнекамень мертв!",
+	addmsg3 = "3/8 Огнекамень мертв!",
+	addmsg4 = "4/8 Огнекамень мертв!",
+	addmsg5 = "5/8 Огнекамень мертв!",
+	addmsg6 = "6/8 Огнекамень мертв!",
+	addmsg7 = "7/8 Огнекамень мертв!",
+	addmsg8 = "8/8 Огнекамень мертв!",
+
+	adds_name = "Счетчик мертвых существ",
+	adds_desc = "Оповещает о смерти Огнекамней",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	firesworn_name = "Jurafuegos",
 	triggeradddead8 = "Garr hace ganar Enfurecer(.+)8",

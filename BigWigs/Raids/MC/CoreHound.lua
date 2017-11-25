@@ -47,6 +47,18 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	Debuff = "Отрицательный эффект",
+
+	trigger1 = "находит(.+) под воздействием эффекта \"%s\"",
+	trigger2 = "обладает(.+) невосприимчивостью к заклинанию \"%s\"",
+	trigger3 = "сопротивляет(.+) заклинанию \"%s\"",
+
+	bars_name = "Переключение полос",
+	bars_desc = "Переключает отображаемые полосы для таймеров.",
+
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	Debuff = "Debuff",
 

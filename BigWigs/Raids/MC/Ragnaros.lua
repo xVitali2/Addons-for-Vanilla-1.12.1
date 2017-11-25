@@ -106,6 +106,51 @@ L:RegisterTranslations("enUS", function() return {
 	["Combat"] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	knockback_trigger = "^TASTE",--Отведайте пламя Сульфурона!--не переведено на Light's hope
+	submerge_trigger = "^COME FORTH,",--ПРИДИТЕ, МОИ СЛУГИ! ЗАЩИТИТЕ СВОЕГО ХОЗЯИНА!--не переведено на Light's hope
+	submerge_trigger2 = "^YOU CANNOT DEFEAT THE LIVING FLAME,",--ТЫ НЕ МОЖЕШЬ ПОБЕДИТЬ ЖИВОЙ ЖАР!--не переведено на Light's hope
+	engage_trigger = "^NOW FOR YOU",--ЧТО ЖЕ ДО ВАС, СМЕРТНЫЕ... ВЫ НАШЛИ ТО, ЧТО ИСКАЛИ. УЗРИТЕ СИЛУ РАГНАРОСА!--не переведено на Light's hope
+	engage_soon_trigger1 = "Imprudent whelps!",--не переведено на Light's hope
+	engage_soon_trigger2 = "TOO SOON! YOU HAVE AWAKENED ME TOO SOON",--не переведено на Light's hope
+	engage_soon_trigger3 = "YOU ALLOWED THESE INSECTS",--не переведено на Light's hope
+	hammer_trigger = "^BY FIRE BE PURGED!", --Очиститесь огнем! --не переведено на Light's hope
+
+	knockback_message = "Отпор!",
+	knockback_soon_message = "Скоро Отпор!",
+	submerge_message = "Рагнарос погрузился. Скоро Сыны Пламени!",
+	emerge_soon_message = "15 сек до появления Рагнароса!",
+	emerge_message = "Рагнарос появился, до Погружения 3 минуты!",
+	submerge_60sec_message = "60 сек до Погружения!",
+	submerge_30sec_message = "30 сек до Погружения!",
+	submerge_10sec_message = "10 сек до Погружения!",
+	submerge_5sec_message = "5 сек до Погружения!",
+
+	knockback_bar = "АОЕ Отпор",
+	emerge_bar = "Рагнарос Появится",
+	submerge_bar = "Рагнарос Погрузится",
+
+	sonofflame = "Сын Пламени",
+	sonsdeadwarn = "%d/8 Сын Пламени мертв!",
+
+	start_name = "Начало",
+	start_desc = "Запускает полосу для оценки начала боя.",
+
+	emerge_name = "Оповещение о появлении Рагнароса",
+	emerge_desc = "Предупреждает когда появится Рагнарос",
+
+	adds_name = "Сын Пламени умер",
+	adds_desc = "Предупреждает когда сын умер",
+
+	submerge_name = "Оповещение о Погружении",
+	submerge_desc = "Предупреждает о Погружении Рагнароса",
+
+	aoeknock_name = "Оповещение об Отпоре",
+	aoeknock_desc = "Предупреждает об отталкивании от Гнева Рагнароса",
+
+	["Combat"] = "Бой",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	knockback_trigger = "^PROBAR LAS LLAMAS DE SULFURON", -- /script PlaySoundFile("Sound\\Creature\\Ragnaros\\RagnarosSpecialAttack02.wav")
 	submerge_trigger = "^VENID INSECTOS,", -- /script PlaySoundFile("Sound\\Creature\\Ragnaros\\RagnarosSpecialAttack03.wav")

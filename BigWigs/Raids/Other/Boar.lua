@@ -64,7 +64,7 @@ L:RegisterTranslations("enUS", function() return {
 L:RegisterTranslations("ruRU", function() return {
 	engage_name = "Оповещение о бое", -- <name>_name
 	engage_desc = "Предупреждает о бое с вепрем", -- <name>_desc
-	engage_msg = "Вепрь в бою! Будте осторожны.",
+	engage_msg = "Вепрь в бою! Будьте осторожны.",
 
 	teleport_msg = "Телепортация",
 

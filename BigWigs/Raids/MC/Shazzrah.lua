@@ -91,6 +91,40 @@ L:RegisterTranslations("enUS", function() return {
 	blink_desc = "Warn when Shazzrah Blinks",
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	blink_trigger = "применяет заклинание \"Врата Шаззраха\"",
+	deaden_trigger = "Шаззрах получает эффект \"Магическое заземление\"",
+	curse_trigger = "находит(.*) под воздействием эффекта \"Проклятье Шаззраха\"",
+	cs_trigger2 = "Шаззрах применяет заклинание \"Антимагия\".",
+	cs_trigger = "сопротивляется заклинанию \"Антимагия\" Шаззрах.",
+	curse_trigger2 = "сопротивляет(.*) заклинанию \"Проклятье Шаззраха\" Шаззрах.",
+	deaden_over_trigger = "Действие эффекта \"Магическое заземление\", наложенного на Шаззрах, заканчивается.",
+
+	blink_warn = "Скачок - 45 секунд до следующего!",
+	blink_soon_warn = "3 секунды до Скачка!",
+	deaden_warn = "Магическое заземление! Развей его!",
+	curse_warn = "Проклятье Шаззраха! Очистите сейчас!",
+	cs_now_warn = "Антимагия! ~18 секунд до следующего!",
+	cs_soon_warn = "3 секунды до Антимагии!",
+
+	blink_bar = "Возможный Скачок",
+	deaden_bar = "Магическое заземление",
+	curse_bar = "Проклятье Шаззраха",
+	cs_bar = "Возможная Антимагия",
+
+	counterspell_name = "Оповещение о Антимагии",
+	counterspell_desc = "Предупреждает о Антимагии Шаззраха",
+
+	curse_name = "Оповещение о Проклятии Шаззраха",
+	curse_desc = "Предупреждает о Проклятии Шаззраха",
+
+	deaden_name = "Оповещение о Магическом заземлении",
+	deaden_desc = "Предупреждает когда Шаззрах с Магическим заземлением",
+
+	blink_name = "Оповещение о Скачке",
+	blink_desc = "Предупреждает когда Шаззрах использует Врата Шаззраха",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	blink_trigger = "lanza Portal de Shazzrah",
 	deaden_trigger = "Shazzrah gana Aligerar magia",

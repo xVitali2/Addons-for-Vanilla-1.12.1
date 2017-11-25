@@ -108,6 +108,58 @@ L:RegisterTranslations("enUS", function() return {
 	announce_desc = "Sends a whisper to players targetted by Living Bomb. (Requires assistant or higher)",
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM Барон Геддон
+	inferno_trigger = "Барон Геддон получает эффект \"Преисподняя\"\.",
+	service_trigger = "performs one last service for Ragnaros", --отдает последние почести Рагнаросу... --не переведено
+	ignitemana_trigger = "находит(.+) под воздействием эффекта \"Воспламенение маны\".",
+	bombyou_trigger = "Вы находитесь под воздействием эффекта \"Живая бомба\".",
+	bombother_trigger = "(.*) находится под воздействием эффекта \"Живая бомба\".",
+	bombyouend_trigger = "Действие эффекта \"Живая бомба\", наложенного на вас, заканчивается.",
+	bombotherend_trigger = "Действие эффекта \"Живая бомба\", наложенного на (.*), заканчивается.",
+	ignitemana_trigger1 = "находит(.+) под воздействием эффекта \"Воспламенение маны\".",
+	ignitemana_trigger2 = "сопротивляет(.+) заклинанию \"Воспламенение маны\"",
+	deathyou_trigger = "Вы умерли.",
+	deathother_trigger = "(.*) погибает",
+
+	bomb_message_you = "Вы БОМБА!",
+	bomb_message_youscreen = "Вы БОМБА!",
+	bomb_message_other = "%s БОМБА!",
+
+	bomb_bar = "Живая бомба: %s",
+	bomb_bar1 = "Живая бомба: %s",
+	inferno_bar = "Следующая Преисподняя",
+	inferno_channel = "Преисподняя",
+	nextinferno_message = "3 секунды до Преисподней!",
+	service_bar = "Последние почести",
+	nextbomb_bar = "Следующая Живая бомба",
+	ignite_bar = "Возможное Воспламенение маны",
+
+	service_message = "Последние почести! Барон Геддон взорвётся через 8 секунд!",
+	inferno_message = "Преисподняя через 8 секунд!",
+	ignite_message = "Развей СЕЙЧАС!",
+
+	service_name = "Предупреждение о Последних почестях",
+	service_desc = "Полоса таймера для Последних почестях Геддона.",
+
+	inferno_name = "Оповещение о Преисподней",
+	inferno_desc = "Полоса таймера для Преисподней Геддона.",
+
+	bombtimer_name = "Таймеры для Живой бомбы",
+	bombtimer_desc = "Отображает 8 секундную полосу когда бомба на цели.",
+
+	bomb_name = "Оповещение о Живой бомбе",
+	bomb_desc = "Предупреждает когда игроки с бомбой",
+
+	mana_name = "Оповещение о Воспламенении маны",
+	mana_desc = "Отображает таймеры Воспламенения маны и оповещает о развеянии их",
+
+	icon_name = "Значки рейда на бомбе",
+	icon_desc = "Устанавливает значок рейда на персонаже с бомбой. (Требуется помощник или лидер)",
+
+	announce_name = "Шёпот цели бомбы",
+	announce_desc = "Шёпот игрокам на которых нацелена Живая бомба. (Требуется помощник или лидер)",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	inferno_trigger = "Barón Geddon gana Inferno\.",
 	service_trigger = "lleva a cabo un último servicio para Ragnaros",

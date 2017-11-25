@@ -41,7 +41,7 @@ local syncName = {
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	disabletrigger = "My flame! Please don",
+	disabletrigger = "Impossible! Stay your attack, mortals", --fix for LH by CFM
 	engage_trigger = "Reckless mortals, none may challenge the sons of the living flame!",
 
 	magic_trigger = "gains Magic Reflection",
@@ -78,6 +78,41 @@ L:RegisterTranslations("enUS", function() return {
 	dmg_cmd = "dmg",
 	dmg_name = "Damage Shield",
 	dmg_desc = "Warn for Damage Shield",
+} end)
+
+L:RegisterTranslations("ruRU", function() return { --by CFM 
+	disabletrigger = "Impossible! Stay your attack, mortals",--"My flame! Please don", --на LH кричит не так --Это невозможно! Остановитесь, смертные. Я вынужден сдаться. Вы бесцеремонно вторглись сюда, чтобы похитить тайны Живого Пламени. Но вы пожалеете о своем безрассудстве. Я призову своего господина, и вы едва ли переживете встречу с ним. Однако вы можете заглянуть в его обитель... если посмеете!-- не переведено на Light's hope
+	engage_trigger = "Reckless mortals, none may challenge the sons of the living flame!", --Дерзкие смертные. Никто не сможет устоять против Сынов Живого Пламени! -- не переведено на Light's hope
+
+	magic_trigger = "получает эффект \"Отражение магии\"",
+	dmg_trigger = "получает эффект \"Ранящий щит\"",
+	magic_over_trigger = "Действие эффекта \"Отражение магии\", наложенного на (.*), заканчивается.",
+	damage_over_trigger = "Действие эффекта \"Ранящий щит\", наложенного на (.*), заканчивается.",
+	healdead = "Поджигатель-целитель погибает",
+	elitedead = "Поджигатель-гвардеец погибает",
+	elitename = "Поджигатель-гвардеец",
+	healername = "Поджигатель-целитель",
+
+	magic_warn = "Отражение магии через 10 секунд!",
+	dmg_warn = "Ранящий щит через 10 секунд!",
+	shield_warn_soon = "3 секунды до следующих аур!",
+	magic_over_warn = "Отражение магии спало!",
+	dmg_over_warn = "Ранящий щит спал!",
+	hdeadmsg = "%d/4 Поджигатель-целитель убит!",
+	edeadmsg = "%d/4 Поджигатель-гвардеец убит!",
+
+	magic_bar = "Отражение магии",
+	dmg_bar = "Ранящий щит",
+	shield_bar = "Новые щиты",
+
+	adds_name = "Счетчик мертвых существ",
+	adds_desc = "Оповещать о мертвых целителях и гвардейцах",
+
+	magic_name = "Отражение магии",
+	magic_desc = "Предупреждать о Отражении магии",
+
+	dmg_name = "Ранящий щит",
+	dmg_desc = "Предупреждать о Ранящем щите",
 } end)
 
 L:RegisterTranslations("esES", function() return {

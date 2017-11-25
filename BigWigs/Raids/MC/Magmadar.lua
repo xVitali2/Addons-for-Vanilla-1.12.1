@@ -67,6 +67,27 @@ L:RegisterTranslations("enUS", function() return {
 	frenzy_desc = "Warn when Magmadar goes into a frenzy",
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM Магмадар
+	frenzy_trigger = "goes into a killing frenzy!", --%s впадает в боевое безумие! -- не переведено на Light's hope
+	panic_trigger = "находит(.+) под воздействием эффекта \"Паника\".",
+	panic_trigger2 = "обладает(.+) невосприимчивостью к заклинанию \"Паника\"",
+	panic_trigger3 = "сопротивляет(.+) заклинанию \"Паника\" Магмадар.",
+	frenzy_bar = "Исступление",
+	frenzyfade_trigger = "Действие эффекта \"Исступление\", наложенного на Магмадар, заканчивается.",
+
+	-- Warnings and bar texts
+	frenzyann = "Исступление! Усмиряющий выстрел сейчас!",
+	fearsoon = "Скоро Паника!",
+	feartime = "Страх! 30 секунд до следующего!",
+	fearbar = "Паника",
+
+	panic_name = "Оповещение о Панике",
+	panic_desc = "Предупреждает когда босс использует Паника",
+
+	frenzy_name = "Оповещение о Исступлении",
+	frenzy_desc = "Предупреждает когда босс в Исступлении",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	-- Chat message triggers
 	frenzy_trigger = "Gana Frenesí",

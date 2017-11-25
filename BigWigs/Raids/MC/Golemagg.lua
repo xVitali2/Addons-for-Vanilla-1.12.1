@@ -43,6 +43,19 @@ L:RegisterTranslations("enUS", function() return {
 	earthquake_desc = "Announces when it's time for melees to back off",
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM Големагг Испепелитель
+	corerager_name = "Яростень Недр",
+	earthquakesoonwarn = "Скоро Землетрясение",
+	golemaggenrage = "Големагг Испепелитель получает эффект \"Бешенство\".",
+	enragewarn = "Босс в бешенстве!",
+
+	enraged_name = "Объявление о Бешенстве босса",
+	enraged_desc = "Даёт вам знать когда босс атакует сильнее",
+
+	earthquake_name = "Оповещение о Землетрясении",
+	earthquake_desc = "Объявляет когда время игрокам ближнего боя уйти от босса",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	corerager_name = "Furibundo del Núcleo",
 	earthquakesoonwarn = "Terremoto pronto",

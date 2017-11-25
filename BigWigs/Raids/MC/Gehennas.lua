@@ -77,6 +77,35 @@ L:RegisterTranslations("enUS", function() return {
 	["Rain of Fire"] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM Гееннас
+	curse_trigger = "находит(.+) под воздействием эффекта \"Проклятие Гееннаса\".",
+	rain_trigger = "Вы находитесь под воздействием эффекта \"Огненный ливень\".",
+	rain_run_trigger = "Вы получаете (%d+) ед. урона ((.+)) от заклинания \"Огненный ливень\" .. module.translatedName",
+	curse_trigger2 = "сопротивляет(.+) заклинанию \"Проклятие Гееннаса\"",
+	dead1 = "Поджигатель погибает",
+	addmsg = "%d/2 Поджигатель мертв!",
+	flamewaker_name = "Поджигатель",
+
+	barNextRain = "Следующие ливень",
+
+	curse_warn_soon = "5 секунд до Проклятия Гееннаса!",
+	curse_warn_now = "Проклятие Гееннаса - Снимите сейчас!",
+
+	curse_bar = "Проклятие Гееннаса",
+	firewarn = "Выйдите из огня!",
+
+	adds_name = "Счетчик мертвых существ",
+	adds_desc = "Объявление о мертвых Поджигателях",
+
+	curse_name = "Оповещение о Проклятии Гееннаса",
+	curse_desc = "Предупреждать о Проклятии Гееннаса",
+
+	rain_name = "Оповещение об Огненном ливне",
+	rain_desc = "Предупреждать об Огненном ливне",
+
+	["Rain of Fire"] = "Огненный ливень",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	curse_trigger = "sufre de Gehennas",
 	--bolt_trigger = "Gehennas comienza a lanzar Descarga de las Sombras",

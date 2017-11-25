@@ -93,6 +93,49 @@ L:RegisterTranslations("enUS", function() return {
 	fireball_cast = "Fireball on %s",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	engage_trigger = "must leave my lair to feed", --чтобы найти обед, мне приходится покидать логово --не переведено на Light's hope
+
+	deepbreath_name = "Глубокое дыхание",
+	deepbreath_desc = "Предупреждение когда Ониксия начинает использовать Глубокое дыхание.",
+
+	flamebreath_name = "Пламенное дыхание",
+	flamebreath_desc = "Предупреждение когда Ониксия начинает использовать Пламенное дыхание.",
+
+	wingbuffet_name = "Рассечение крылом",
+	wingbuffet_desc = "Предупреждение о Рассечении крылом.",
+
+	fireball_name = "Огненный шар",
+	fireball_desc = "Предупреждение о Огненном шаре.",
+
+	phase_name = "Фаза",
+	phase_desc = "Предупреждение о смене фазы.",
+
+	onyfear_name = "Страх",
+	onyfear_desc = "Предупреждение о Раскатистом реве в 3 фазе.",
+
+	deepbreath_trigger = "takes in a deep breath", --делает глубокий вдох --не переведено на Light's hope
+	flamebreath_trigger = "Ониксия начинает использовать \"Пламенное дыхание\"\.",
+	wingbuffet_trigger = "Ониксия начинает использовать \"Рассечение крылом\"\.",
+	fireball_trigger = "Ониксия начинает использовать \"Огненный шар\"\.",
+	phase2_trigger = "from above", --Эта бессмысленная возня вгоняет меня в тоску. Я сожгу вас всех! --не переведено на Light's hope
+	phase3_trigger = "It seems you'll need another lesson", --Похоже, вам требуется преподать еще один урок, смертные! --не переведено на Light's hope
+	fear_trigger = "Ониксия начинает использовать \"Раскатистый рев\"\.",
+	fear_over_trigger = "Раскатистый рев",
+
+	warn1 = "Скоро Глубокое дыхание!",
+	phase1text = "Фаза 1",
+	phase2text = "Фаза 2",
+	phase3text = "Фаза 3",
+	feartext = "Скоро Страх!",
+	fear_cast = "Страх",
+	fear_next = "Следующий Страх",
+	deepbreath_cast = "Пламенное дыхание",
+	flamebreath_cast = "Пламенное дыхание",
+	wingbuffet_cast = "Рассечение крылом",
+	fireball_cast = "Огненный шар в %s",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Onyxia",
 	engage_trigger = "must leave my lair to feed",

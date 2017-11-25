@@ -76,6 +76,36 @@ L:RegisterTranslations("enUS", function() return {
 	adds_desc = "Announces dead Flamewaker Priests",
 } end)
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM
+	triggeradddead = "Поджигатель-жрец погибает",
+	triggercast = "начинает использовать \"Исцеление тьмой\".",
+	spear_cast = "начинает использовать \"Пламенное копье\".",
+	healbar = "Исцеление тьмой",
+	knockbacktimer = "~АОЕ отталкивание",
+	knockbackannounce = "3 секунды до отталкивание!",
+	healwarn = "Лечение!",
+	knockback1 = "\"Рука Рагнароса\" Предвестник Сульфурон наносит",
+	knockback11 = "\"Рука Рагнароса\" Предвестник Сульфурон наносит",
+	knockback2 = "сопротивляет(.+) заклинанию \"Рука Рагнароса\"",
+	knockback3 = "Вы поглощаете заклинание \"Рука Рагнароса\"",
+	knockback33 = "поглощает заклинание \"Рука Рагнароса\"",
+	knockback4 = "обладает(.+) невосприимчивостью к заклинанию \"Рука Рагнароса\"",
+	flamewakerpriest_name = "Поджигатель-жрец",
+
+	addmsg = "%d/4 Поджигатель-жрец убит!",
+
+	flame_spear_bar = "Пламенное копье",
+
+	knockback_name = "Уведомление о Руке Рагнароса",
+	knockback_desc = "Отображает таймер отталкивания",
+
+	heal_name = "Исцеление тьмой",
+	heal_desc = "Уведомление о лечении Поджигателя-жреца",
+
+	adds_name = "Счетчик убитых существ",
+	adds_desc = "Уведомление о мертвых Поджигателях-жрецах",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	triggeradddead = "Sacerdote despiertallamas muere",
 	triggercast = "comienza a lanzar Alivio oscuro",

@@ -96,6 +96,51 @@ L:RegisterTranslations("enUS", function() return {
 	shock_desc  = "Warn for Shadow Shock",
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM Люцифрон
+	curse_trigger = "находит(.*) под воздействием эффекта \"Проклятие Люцифрона\".",
+	doom_trigger = "находит(.*) под воздействием эффекта \"Надвигающийся рок\".",
+	shock_trigger = "\"%Удар Тени\" Люцифрон наносит",
+	shock_trigger2 = "сопротивляет(.*) заклинанию \"Удар Тени\"",
+	curse_trigger2 = "сопротивляет(.*) заклинанию \"Проклятие Люцифрона\"",
+	doom_trigger2 = "сопротивляет(.*) заклинанию \"Надвигающийся рок\"",
+	curse_warn_soon = "5 секунд до Проклятия Люцифрона!",
+	curse_warn_now = "Проклятия Люцифрона - 20 секунд до следующего!",
+	doom_warn_soon = "5 секунд до Надвигающегося рока!",
+	doom_warn_now = "Надвигающийся рок - 15 секунд до следующего!",
+	mindcontrolyou_trigger = "Вы находитесь под воздействием эффекта \"Господство над разумом\".",
+	mindcontrolother_trigger = "(.*) находится под воздействием эффекта \"Господство над разумом\".",
+	mindcontrolyouend_trigger = "Действие эффекта \"Господство над разумом\", наложенного на вас, заканчивается.",
+	mindcontrolotherend_trigger = "Действие эффекта \"Господство над разумом\", наложенного на (.*), заканчивается.",
+	deathyou_trigger = "Вы умерли.",
+	deathother_trigger = "(.*) погибает.",
+	deadaddtrigger = "Заступник-поджигатель погибает",
+	add_name = "Заступник-поджигатель",
+
+	mindcontrol_message = "%s под контролем!",
+	mindcontrol_message_you = "Вы под контролем!",
+	mindcontrol_bar = "Контроль: %s",
+	addmsg = "%d/2 Заступник-поджигатель убит!",
+
+	curse_bar = "Проклятие Люцифрона",
+	doom_bar = "Надвигающийся рок",
+	shock_bar = "Удар Тени",
+
+	adds_name = "Счетчик убитых существ",
+	adds_desc = "Объявляет о смерти Заступников-поджигателей",
+
+	mc_name = "Господство над разумом",
+	mc_desc = "Предупреждает когда кто-то под контролем.",
+
+	curse_name = "Оповещение о Проклятии Люцифрона",
+	curse_desc = "Предупреждает о Проклятии Люцифрона",
+
+	doom_name = "Оповещение о Надвигающимся роке",
+	doom_desc = "Предупреждает о Надвигающимся роке",
+
+	shock_name = "Оповещение о Ударе Тени",
+	shock_desc  = "Предупреждает о Ударе Тени",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	curse_trigger = "sufre de Lucifron",
 	doom_trigger = "sufre de Condena inminente",
