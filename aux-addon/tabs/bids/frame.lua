@@ -1,19 +1,20 @@
 module 'aux.tabs.bids'
 
+local aux = require 'aux'
 local info = require 'aux.util.info'
 local gui = require 'aux.gui'
 local auction_listing = require 'aux.gui.auction_listing'
 local search_tab = require 'aux.tabs.search'
 
-frame = CreateFrame('Frame', nil, AuxFrame)
+frame = CreateFrame('Frame', nil, aux.frame)
 frame:SetAllPoints()
 frame:SetScript('OnUpdate', on_update)
 frame:Hide()
 
 frame.listing = gui.panel(frame)
 frame.listing:SetPoint('TOP', frame, 'TOP', 0, -8)
-frame.listing:SetPoint('BOTTOMLEFT', AuxFrame.content, 'BOTTOMLEFT', 0, 0)
-frame.listing:SetPoint('BOTTOMRIGHT', AuxFrame.content, 'BOTTOMRIGHT', 0, 0)
+frame.listing:SetPoint('BOTTOMLEFT', aux.frame.content, 'BOTTOMLEFT', 0, 0)
+frame.listing:SetPoint('BOTTOMRIGHT', aux.frame.content, 'BOTTOMRIGHT', 0, 0)
 
 listing = auction_listing.new(frame.listing, 20, auction_listing.bids_columns)
 listing:SetSort(1, 2, 3, 4, 5, 6, 7, 8)
@@ -28,7 +29,7 @@ listing:SetHandler('OnClick', function(row, button)
 			end
 		end
 	elseif button == 'RightButton' then
-		set_tab(1)
+		aux.set_tab(1)
 		local itemname=info.item(this.record.item_id).name --byCFM
 		if GetLocale()=="ruRU" then --byCFM
 			local s,ss,sss=nil,nil,nil --byCFM

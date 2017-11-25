@@ -3,11 +3,11 @@
 ## Title: aux
 ## Notes: Auction House replacement
 ## Notes-ruRU: Замена интерфейса аукциона
-## Version: 15.11.2017
+## Version: 25.11.2017
 ## OptionalDeps: Informant
 ## SavedVariables: aux, aux_scale, aux_post_bid, aux_ignore_owner, aux_items, aux_item_ids, aux_auctionable_items, aux_merchant_buy, aux_merchant_sell
 
-libs\module.lua
+libs\package.lua
 libs\T.lua
 localization.lua
 aux-addon.lua

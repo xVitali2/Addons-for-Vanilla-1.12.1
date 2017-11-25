@@ -1,12 +1,9 @@
 module 'aux.tabs.search'
 
-include 'aux'
-
-local T = require 'T'
-
+local aux = require 'aux'
 local info = require 'aux.util.info'
 
-local tab = TAB(SEARCH) --byLichery
+local tab = aux.tab(SEARCH) --byLichery
 
 StaticPopupDialogs.AUX_SEARCH_TABLE_FULL = {
     text = TABLE_FULL, --byLichery
@@ -16,11 +13,9 @@ StaticPopupDialogs.AUX_SEARCH_TABLE_FULL = {
     hideOnEscape = 1,
 }
 
-RESULTS = 1
-SAVED = 2
-FILTER = 3
+RESULTS, SAVED, FILTER = aux.enum(3)
 
-function handle.LOAD()
+function aux.handle.LOAD()
 	set_subtab(SAVED)
 end
 
@@ -31,7 +26,7 @@ function tab.OPEN()
 end
 
 function tab.CLOSE()
-    get_current_search().table:SetSelectedRecord()
+    current_search().table:SetSelectedRecord()
     frame:Hide()
 end
 
@@ -73,7 +68,7 @@ end
 
 function add_filter(filter_string)
     local old_filter_string = search_box:GetText()
-    old_filter_string = trim(old_filter_string)
+    old_filter_string = aux.trim(old_filter_string)
 
     if old_filter_string ~= '' then
         old_filter_string = old_filter_string .. ';'

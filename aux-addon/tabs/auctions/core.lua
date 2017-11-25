@@ -1,13 +1,11 @@
 module 'aux.tabs.auctions'
 
-include 'aux'
-
 local T = require 'T'
-
+local aux = require 'aux'
 local scan_util = require 'aux.util.scan'
 local scan = require 'aux.core.scan'
 
-local tab = TAB(AUCTIONS) --byLICHERY
+local tab = aux.tab(AUCTIONS) --byLICHERY
 
 auction_records = T.acquire()
 
@@ -55,7 +53,7 @@ end
 
 do
     local scan_id = 0
-    local IDLE, SEARCHING, FOUND = T.acquire(), T.acquire(), T.acquire()
+    local IDLE, SEARCHING, FOUND = aux.enum(3)
     local state = IDLE
     local found_index
 
@@ -75,7 +73,7 @@ do
 
                 cancel_button:SetScript('OnClick', function()
                     if scan_util.test(record, index) and listing:ContainsRecord(record) then
-                        cancel_auction(index, function() listing:RemoveAuctionRecord(record) end)
+                        aux.cancel_auction(index, function() listing:RemoveAuctionRecord(record) end)
                     end
                 end)
                 cancel_button:Enable()
@@ -97,7 +95,7 @@ do
             find_auction(selection.record)
         elseif state == FOUND and not scan_util.test(selection.record, found_index) then
             cancel_button:Disable()
-            if not cancel_in_progress() then state = IDLE end
+            if not aux.cancel_in_progress() then state = IDLE end
         end
     end
 end

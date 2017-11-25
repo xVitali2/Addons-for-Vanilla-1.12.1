@@ -1,5 +1,6 @@
 module 'aux.tabs.post'
 
+local aux = require 'aux'
 local info = require 'aux.util.info'
 local money = require 'aux.util.money'
 local gui = require 'aux.gui'
@@ -7,15 +8,15 @@ local listing = require 'aux.gui.listing'
 local item_listing = require 'aux.gui.item_listing'
 local search_tab = require 'aux.tabs.search'
 
-frame = CreateFrame('Frame', nil, AuxFrame)
+frame = CreateFrame('Frame', nil, aux.frame)
 frame:SetAllPoints()
 frame:SetScript('OnUpdate', on_update)
 frame:Hide()
 
 frame.content = CreateFrame('Frame', nil, frame)
 frame.content:SetPoint('TOP', frame, 'TOP', 0, -8)
-frame.content:SetPoint('BOTTOMLEFT', AuxFrame.content, 'BOTTOMLEFT', 0, 0)
-frame.content:SetPoint('BOTTOMRIGHT', AuxFrame.content, 'BOTTOMRIGHT', 0, 0)
+frame.content:SetPoint('BOTTOMLEFT', aux.frame.content, 'BOTTOMLEFT', 0, 0)
+frame.content:SetPoint('BOTTOMRIGHT', aux.frame.content, 'BOTTOMRIGHT', 0, 0)
 
 frame.inventory = gui.panel(frame.content)
 frame.inventory:SetWidth(212)
@@ -76,7 +77,7 @@ do
 					LABELFORITEM:SetText(PRICEFROMVENDOR..str) --byCFM
 				end --byCFM
 	        elseif arg1 == 'RightButton' then
-	            set_tab(1)
+	            aux.set_tab(1)
 				local itemname=info.item(this.item_record.item_id).name --byCFM
 				if GetLocale()=="ruRU" then --byCFM
 					local s,ss,sss=nil,nil,nil --byCFM
@@ -341,7 +342,7 @@ do
 	deposit = label
 end
 
-function handle.LOAD()
+function aux.handle.LOAD()
 	if not aux_post_bid then
 		frame.bid_listing:Hide()
 		frame.buyout_listing:SetPoint('BOTTOMLEFT', frame.inventory, 'BOTTOMRIGHT', 2.5, 0)

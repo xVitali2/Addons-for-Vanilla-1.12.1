@@ -1,9 +1,7 @@
 module 'aux.core.tooltip'
 
-include 'aux'
-
 local T = require 'T'
-
+local aux = require 'aux'
 local info = require 'aux.util.info'
 local money =  require 'aux.util.money'
 local disenchant = require 'aux.core.disenchant'
@@ -14,16 +12,16 @@ local UNKNOWN = GRAY_FONT_COLOR_CODE .. '?' .. FONT_COLOR_CODE_CLOSE
 
 local game_tooltip_hooks, game_tooltip_money = {}, 0
 
-function handle.LOAD()
-	settings = character_data('tooltip', {value=true})
+function aux.handle.LOAD()
+	settings = aux.character_data('tooltip', {value=true})
 	do
 		local inside_hook = false
 	    for name, f in game_tooltip_hooks do
 	        local name, f = name, f
-	        hook(name, GameTooltip, T.vararg-function(arg)
+	        aux.hook(name, GameTooltip, T.vararg-function(arg)
                 game_tooltip_money = 0
 	            inside_hook = true
-	            local tmp = T.list(orig[GameTooltip][name](unpack(arg)))
+	            local tmp = T.list(aux.orig[GameTooltip][name](unpack(arg)))
 	            inside_hook = false
 	            f(unpack(arg))
 	            return T.unpack(tmp)
@@ -43,7 +41,7 @@ function handle.LOAD()
         local name, _, quality = GetItemInfo(arg[1])
         local tmp = T.list(orig(unpack(arg)))
         if not IsShiftKeyDown() and not IsControlKeyDown() and name then
-            local color_code = select(4, GetItemQualityColor(quality))
+            local color_code = aux.select(4, GetItemQualityColor(quality))
             local link = color_code ..  '|H' .. arg[1] .. '|h[' .. name .. ']|h' .. FONT_COLOR_CODE_CLOSE
             extend_tooltip(ItemRefTooltip, link, 1)
         end
@@ -59,28 +57,28 @@ function M.extend_tooltip(tooltip, link, quantity)
         local distribution = disenchant.distribution(item_info.slot, item_info.quality, item_info.level)
         if getn(distribution) > 0 then
             if settings.disenchant_distribution then
-                tooltip:AddLine(DISENCHANT_INFO, color.tooltip.disenchant.distribution()) --byLICHERY
+                tooltip:AddLine(DISENCHANT_INFO, aux.color.tooltip.disenchant.distribution()) --byLICHERY
                 sort(distribution, function(a,b) return a.probability > b.probability end)
                 for _, event in ipairs(distribution) do
-                    tooltip:AddLine(format('  %s%% %s (%s-%s)', event.probability * 100, info.display_name(event.item_id, true) or 'item:' .. event.item_id, event.min_quantity, event.max_quantity), color.tooltip.disenchant.distribution())
+                    tooltip:AddLine(format('  %s%% %s (%s-%s)', event.probability * 100, info.display_name(event.item_id, true) or 'item:' .. event.item_id, event.min_quantity, event.max_quantity), aux.color.tooltip.disenchant.distribution())
                 end
             end
             if settings.disenchant_value then
                 local disenchant_value = disenchant.value(item_info.slot, item_info.quality, item_info.level)
-                tooltip:AddLine(DISENCHANT .. (disenchant_value and money.to_string2(disenchant_value) or UNKNOWN), color.tooltip.disenchant.value()) --byLICHERY
+                tooltip:AddLine(DISENCHANT .. (disenchant_value and money.to_string2(disenchant_value) or UNKNOWN), aux.color.tooltip.disenchant.value()) --byLICHERY
             end
         end
     end
     if settings.merchant_buy then
         local _, price, limited = info.merchant_info(item_id)
         if price then
-            tooltip:AddLine(VENDOR_BUY .. (limited and LIMITED or ': ') .. money.to_string2(price * quantity), color.tooltip.merchant()) --byLICHERY
+            tooltip:AddLine(VENDOR_BUY .. (limited and LIMITED or ': ') .. money.to_string2(price * quantity), aux.color.tooltip.merchant()) --byLICHERY
         end
     end
     if settings.merchant_sell then
         local price = info.merchant_info(item_id)
         if price ~= 0 then
-            tooltip:AddLine(VENDOR .. (price and money.to_string2(price * quantity) or UNKNOWN), color.tooltip.merchant()) --byLICHERY
+            tooltip:AddLine(VENDOR .. (price and money.to_string2(price * quantity) or UNKNOWN), aux.color.tooltip.merchant()) --byLICHERY
         end
     end
     local auctionable = not item_info or info.auctionable(T.temp-info.tooltip('link', item_info.itemstring), item_info.quality)
@@ -88,11 +86,11 @@ function M.extend_tooltip(tooltip, link, quantity)
     local value = history.value(item_key)
     if auctionable then
         if settings.value then
-            tooltip:AddLine(VALUE .. (value and money.to_string2(value * quantity) or UNKNOWN), color.tooltip.value()) --byLICHERY
+            tooltip:AddLine(VALUE .. (value and money.to_string2(value * quantity) or UNKNOWN), aux.color.tooltip.value()) --byLICHERY
         end
         if settings.daily  then
             local market_value = history.market_value(item_key)
-            tooltip:AddLine(TODAY .. (market_value and money.to_string2(market_value * quantity) .. ' (' .. gui.percentage_historical(round(market_value / value * 100)) .. ')' or UNKNOWN), color.tooltip.value()) --byLICHERY
+            tooltip:AddLine(TODAY .. (market_value and money.to_string2(market_value * quantity) .. ' (' .. gui.percentage_historical(round(market_value / value * 100)) .. ')' or UNKNOWN), aux.color.tooltip.value()) --byLICHERY
         end
     end
 
@@ -105,7 +103,7 @@ end
 function game_tooltip_hooks:SetHyperlink(itemstring)
     local name, _, quality = GetItemInfo(itemstring)
     if name then
-        local hex = select(4, GetItemQualityColor(quality))
+        local hex = aux.select(4, GetItemQualityColor(quality))
         local link = hex ..  '|H' .. itemstring .. '|h[' .. name .. ']|h' .. FONT_COLOR_CODE_CLOSE
 		if EnhTooltip then --byCFM
 			EnhTooltip.TooltipCall(GameTooltip,name,link,quality,1)--byCFM
@@ -117,35 +115,35 @@ end
 function game_tooltip_hooks:SetAuctionItem(type, index)
 	local link = GetAuctionItemLink(type, index)
     if link then
-        extend_tooltip(GameTooltip, link, select(3, GetAuctionItemInfo(type, index)))
+        extend_tooltip(GameTooltip, link, aux.select(3, GetAuctionItemInfo(type, index)))
     end
 end
 
 function game_tooltip_hooks:SetLootItem(slot)
 	local link = GetLootSlotLink(slot)
     if link then
-        extend_tooltip(GameTooltip, link, select(3, GetLootSlotInfo(slot)))
+        extend_tooltip(GameTooltip, link, aux.select(3, GetLootSlotInfo(slot)))
     end
 end
 
 function game_tooltip_hooks:SetQuestItem(qtype, slot)
 	local link = GetQuestItemLink(qtype, slot)
     if link then
-        extend_tooltip(GameTooltip, link, select(3, GetQuestItemInfo(qtype, slot)))
+        extend_tooltip(GameTooltip, link, aux.select(3, GetQuestItemInfo(qtype, slot)))
     end
 end
 
 function game_tooltip_hooks:SetQuestLogItem(qtype, slot)
 	local link = GetQuestLogItemLink(qtype, slot)
     if link then
-        extend_tooltip(GameTooltip, link, select(3, GetQuestLogRewardInfo(slot)))
+        extend_tooltip(GameTooltip, link, aux.select(3, GetQuestLogRewardInfo(slot)))
     end
 end
 
 function game_tooltip_hooks:SetBagItem(bag, slot)
 	local link = GetContainerItemLink(bag, slot)
     if link then
-        extend_tooltip(GameTooltip, link, select(2, GetContainerItemInfo(bag, slot)))
+        extend_tooltip(GameTooltip, link, aux.select(2, GetContainerItemInfo(bag, slot)))
     end
 end
 
@@ -154,7 +152,7 @@ function game_tooltip_hooks:SetInboxItem(index)
     local id = name and info.item_id(name)
     if id then
         local _, itemstring, quality = GetItemInfo(id)
-        local hex = select(4, GetItemQualityColor(tonumber(quality)))
+        local hex = aux.select(4, GetItemQualityColor(tonumber(quality)))
         local link = hex ..  '|H' .. itemstring .. '|h[' .. name .. ']|h' .. FONT_COLOR_CODE_CLOSE
         extend_tooltip(GameTooltip, link, quantity)
     end
@@ -170,7 +168,7 @@ end
 function game_tooltip_hooks:SetMerchantItem(slot)
 	local link = GetMerchantItemLink(slot)
     if link then
-        local quantity = select(4, GetMerchantItemInfo(slot))
+        local quantity = aux.select(4, GetMerchantItemInfo(slot))
         extend_tooltip(GameTooltip, link, quantity)
     end
 end
@@ -178,7 +176,7 @@ end
 function game_tooltip_hooks:SetCraftItem(skill, slot)
     local link, quantity
     if slot then
-        link, quantity = GetCraftReagentItemLink(skill, slot), select(3, GetCraftReagentInfo(skill, slot))
+        link, quantity = GetCraftReagentItemLink(skill, slot), aux.select(3, GetCraftReagentInfo(skill, slot))
     else
         link, quantity = GetCraftItemLink(skill), 1
     end
@@ -197,7 +195,7 @@ end
 function game_tooltip_hooks:SetTradeSkillItem(skill, slot)
     local link, quantity
     if slot then
-        link, quantity = GetTradeSkillReagentItemLink(skill, slot), select(3, GetTradeSkillReagentInfo(skill, slot))
+        link, quantity = GetTradeSkillReagentItemLink(skill, slot), aux.select(3, GetTradeSkillReagentInfo(skill, slot))
     else
         link, quantity = GetTradeSkillItemLink(skill), 1
     end
@@ -212,7 +210,7 @@ function game_tooltip_hooks:SetAuctionSellItem()
         for slot in info.inventory() do
 	        T.temp(slot)
             local link = GetContainerItemLink(unpack(slot))
-            if link and select(5, info.parse_link(link)) == name then
+            if link and aux.select(5, info.parse_link(link)) == name then
                 extend_tooltip(GameTooltip, link, quantity)
                 return
             end

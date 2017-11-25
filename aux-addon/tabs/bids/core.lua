@@ -1,14 +1,12 @@
 module 'aux.tabs.bids'
 
-include 'aux'
-
 local T = require 'T'
-
+local aux = require 'aux'
 local info = require 'aux.util.info'
 local scan_util = require 'aux.util.scan'
 local scan = require 'aux.core.scan'
 
-local tab = TAB(BIDS) --byLICHERY
+local tab = aux.tab(BIDS) --byLICHERY
 
 auction_records = {}
 
@@ -56,7 +54,7 @@ end
 
 do
     local scan_id = 0
-    local IDLE, SEARCHING, FOUND = 1, 2, 3
+    local IDLE, SEARCHING, FOUND = aux.enum(3)
     local state = IDLE
     local found_index
 
@@ -80,7 +78,7 @@ do
                 if not record.high_bidder then
                     bid_button:SetScript('OnClick', function()
                         if scan_util.test(record, index) and listing:ContainsRecord(record) then
-                            place_bid('bidder', index, record.bid_price, record.bid_price < record.buyout_price and function()
+                            aux.place_bid('bidder', index, record.bid_price, record.bid_price < record.buyout_price and function()
                                 info.bid_update(record)
                                 listing:SetDatabase()
                             end or function() listing:RemoveAuctionRecord(record) end)
@@ -94,7 +92,7 @@ do
                 if record.buyout_price > 0 then
                     buyout_button:SetScript('OnClick', function()
                         if scan_util.test(record, index) and listing:ContainsRecord(record) then
-                            place_bid('bidder', index, record.buyout_price, function() listing:RemoveAuctionRecord(record) end)
+                            aux.place_bid('bidder', index, record.buyout_price, function() listing:RemoveAuctionRecord(record) end)
                         end
                     end)
                     buyout_button:Enable()
@@ -121,7 +119,7 @@ do
         elseif state == FOUND and not scan_util.test(selection.record, found_index) then
             buyout_button:Disable()
             bid_button:Disable()
-            if not bid_in_progress() then state = IDLE end
+            if not aux.bid_in_progress() then state = IDLE end
         end
     end
 end

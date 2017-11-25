@@ -1,6 +1,6 @@
 module 'aux.util.completion'
 
-include 'aux'
+local aux = require 'aux'
 
 local filter_util = require 'aux.util.filter'
 
@@ -11,7 +11,7 @@ function M:complete_filter()
 
 	local filter_string = this:GetText()
 
-	local completed_filter_string = select(3, strfind(filter_string, '([^;]*)/[^/;]*$'))
+	local completed_filter_string = aux.select(3, strfind(filter_string, '([^;]*)/[^/;]*$'))
 	local _, suggestions = filter_util.query(completed_filter_string)
 
 	local start_index, _, current_modifier = strfind(filter_string, '([^/;]*)$')
