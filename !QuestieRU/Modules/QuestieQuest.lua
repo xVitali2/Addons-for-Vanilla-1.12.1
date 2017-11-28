@@ -1126,7 +1126,7 @@ function Questie:getQuestHash(name, level, objectiveText)
                 if count == 1 then
                     hasOthers = true;
                 end
-                if adjustedDescription == objectiveText and tonumber(QuestieHashMap[v[2]]['questLevel']) == hashLevel then
+                if adjustedDescription == objectiveText and v[2] and QuestieHashMap[v[2]]['questLevel'] and tonumber(QuestieHashMap[v[2]]['questLevel']) == hashLevel then---------by CFM
                     QuestieQuestHashCache[name..hashLevel..hashText] = v[2];
                     return v[2],hasOthers; --exact match
                 end
