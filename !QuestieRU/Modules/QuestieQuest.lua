@@ -1254,8 +1254,6 @@ function Questie:GetAvailableQuestHashes(mapFileName, levelFrom, levelTo)
     end
     local _, class = UnitClass("Player"); ---------by CFM
     local _, race = UnitRace("Player");---------by CFM
-	race=strlower(race);---------by CFM
-	class=strlower(class);---------by CFM
     local hashes = {};
     for l = 0,100 do
         if QuestieZoneLevelMap[c] and QuestieZoneLevelMap[c][z] then

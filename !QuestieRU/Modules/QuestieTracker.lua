@@ -47,30 +47,29 @@ end
 -- OnUpdate
 ---------------------------------------------------------------------------------------------------
 function QuestieTracker_OnUpdate()
-    if GetTime() - QuestieTracker.trackerUpdate >= 0.01 then
     if (IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest")) then
         if (QuestieConfig.trackerEnabled == true) then
             QuestWatchFrame:Hide();
             EQL3_QuestWatchFrame:Hide();
         else
-                QuestieTracker.frame:Hide();
-                QuestieTrackerHeader:Hide();
-            end
-        else
-            if (QuestieConfig.trackerEnabled == true) then
-                QuestWatchFrame:Hide();
-            else
-                QuestieTracker.frame:Hide();
-                QuestieTrackerHeader:Hide();
-            end
+            QuestieTracker.frame:Hide();
+            QuestieTrackerHeader:Hide();
         end
-    elseif GetTime() - QuestieTracker.trackerUpdate >= 2 then
+    else
+        if (QuestieConfig.trackerEnabled == true) then
+            QuestWatchFrame:Hide();
+        else
+            QuestieTracker.frame:Hide();
+            QuestieTrackerHeader:Hide();
+        end
+    end
+    if GetTime() - QuestieTracker.trackerUpdate >= 2 then
         if (QuestieConfig.showMapNotes == true) or (QuestieConfig.alwaysShowObjectives == true) then
             QuestieTracker:SortTrackingFrame();
         end
     end
         QuestieTracker.trackerUpdate = GetTime();
-    end
+end
 ---------------------------------------------------------------------------------------------------
 -- Register events
 ---------------------------------------------------------------------------------------------------
@@ -224,39 +223,39 @@ function QuestieTracker:createOrGetTrackingButton(index)
             local questHash = btn.hash;
             local quest = QuestieCachedQuests[questHash];
 			if quest["questName"] then---------by CFM
-			local questTitle = quest["questName"];
-            Tooltip = GameTooltip;
-            local questOb = nil;
-            if questTitle then
-                local x = tonumber(QuestieTrackerVariables["position"]["xOfs"]);
-                if (x > 0 and x < 700) or (x > 1280 and x < 1700) then
-                    Tooltip:SetOwner(this, "ANCHOR_RIGHT");
-                else
-                    Tooltip:SetOwner(this, "ANCHOR_LEFT");
-                end
-                local index = 0;
-                for k,v in pairs(QuestieLevLookup[questTitle]) do
-                    index = index + 1;
-                    if (index == 1) and (v[2] == questHash) and (k ~= "") then
-                        questOb = k;
-                    elseif (index > 0) and(v[2] == questHash) and (k ~= "") then
-                        questOb = k;
-                    elseif (index == 1) and (v[2] ~= questHash) and (k ~= "") then
-                        questOb = k;
-                    end
-                end
-                if (QuestieConfig.showToolTips == true) then
-                if questOb ~= nil and (quest["isComplete"] or quest["leaderboards"] == 0) then
-                    Tooltip:AddLine("|cFFa6a6a6Для завершения этого задания:|r",1,1,1,true);---------by CFM
-                    Tooltip:AddLine("|cffffffff"..questOb.."|r",1,1,1,true);
-                elseif questOb == nil then
-                    Tooltip:AddLine("Цели задания не найдены в базе QuestieRU!", 1, .8, .8);---------by CFM
-                    Tooltip:AddLine("Пожалуйста, напишите багрепорт на портале GitHub:)", 1, .8, .8);---------by CFM
-                    Tooltip:AddLine("https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/issues", 1, .8, .8);---------by CFM
-                end
-                Tooltip:Show();
-            end
-            end
+				local questTitle = quest["questName"];
+				Tooltip = GameTooltip;
+				local questOb = nil;
+				if questTitle then
+					local x = tonumber(QuestieTrackerVariables["position"]["xOfs"]);
+					if (x > 0 and x < 700) or (x > 1280 and x < 1700) then
+						Tooltip:SetOwner(this, "ANCHOR_RIGHT");
+					else
+						Tooltip:SetOwner(this, "ANCHOR_LEFT");
+					end
+					local index = 0;
+					for k,v in pairs(QuestieLevLookup[questTitle]) do
+						index = index + 1;
+						if (index == 1) and (v[2] == questHash) and (k ~= "") then
+							questOb = k;
+						elseif (index > 0) and(v[2] == questHash) and (k ~= "") then
+							questOb = k;
+						elseif (index == 1) and (v[2] ~= questHash) and (k ~= "") then
+							questOb = k;
+						end
+					end
+					if (QuestieConfig.showToolTips == true) then
+					if questOb ~= nil and (quest["isComplete"] or quest["leaderboards"] == 0) then
+						Tooltip:AddLine("|cFFa6a6a6Для завершения этого задания:|r",1,1,1,true);---------by CFM
+						Tooltip:AddLine("|cffffffff"..questOb.."|r",1,1,1,true);
+					elseif questOb == nil then
+						Tooltip:AddLine("Цели задания не найдены в базе QuestieRU!", 1, .8, .8);---------by CFM
+						Tooltip:AddLine("Пожалуйста, напишите багрепорт на портале GitHub:)", 1, .8, .8);---------by CFM
+						Tooltip:AddLine("https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/issues", 1, .8, .8);---------by CFM
+					end
+					Tooltip:Show();
+				end
+				end
 			end
         end)
         btn:SetScript("OnLeave", function()
