@@ -79,5 +79,30 @@ pfUI:RegisterModule("map", function ()
          end
        end
     end)
+
+    -- coordinates
+    WorldMapButton.coords = CreateFrame("Frame", "pfWorldMapButtonCoords", WorldMapButton)
+    WorldMapButton.coords.text = WorldMapButton.coords:CreateFontString(nil, "OVERLAY")
+    WorldMapButton.coords.text:SetPoint("BOTTOMRIGHT", WorldMapButton, "BOTTOMRIGHT", -10, 10)
+    WorldMapButton.coords.text:SetFont(pfUI.font_default, C.global.font_size, "OUTLINE")
+    WorldMapButton.coords.text:SetTextColor(1, 1, 1)
+    WorldMapButton.coords.text:SetJustifyH("RIGHT")
+
+    WorldMapButton.coords:SetScript("OnUpdate", function()
+      local width  = WorldMapButton:GetWidth()
+      local height = WorldMapButton:GetHeight()
+      local mx, my = WorldMapButton:GetCenter()
+      local scale  = WorldMapButton:GetEffectiveScale()
+      local x, y   = GetCursorPosition()
+
+      mx = (( x / scale ) - ( mx - width / 2)) / width * 100
+      my = (( my + height / 2 ) - ( y / scale )) / height * 100
+
+      if MouseIsOver(WorldMapButton) then
+        WorldMapButton.coords.text:SetText(string.format('%.1f / %.1f', mx, my))
+      else
+        WorldMapButton.coords.text:SetText("")
+      end
+    end)
   end)
 end)
