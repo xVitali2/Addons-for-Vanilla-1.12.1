@@ -33,6 +33,12 @@ L:RegisterTranslations("enUS", function() return {
 	BOSS_DOWN_L		= "%s down after %s! Your last kill took %s and your fastest kill took %s. You have %d total victories.",
 	BOSS_DOWN_NR	= "%s down after %s! This is a new record! (Old record was %s). You have %d total victories.",
 } end)
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	BOSS_ENGAGED	= "%s в бою. Удачи и получайте удовольствие! :)",
+	BOSS_DOWN		= "%s мёртв спустя %s!",
+	BOSS_DOWN_L		= "%s мёртв спустя %s! Ваше последнее убийство длилось %s и ваше самое быстрое убийство длилось %s. У вас %d побед(ы).",
+	BOSS_DOWN_NR	= "%s мёртв спустя %s! Это новый рекорд! (Старый рекорд был %s).  У вас %d побед(ы).",
+} end)
 
 L:RegisterTranslations("esES", function() return {
 	BOSS_ENGAGED    = "Entrando en combate con %s. ¡Buena suerte!",

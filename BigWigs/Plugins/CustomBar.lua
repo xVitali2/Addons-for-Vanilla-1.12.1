@@ -22,6 +22,17 @@ L:RegisterTranslations("enUS", function() return {
 	["%s: Timer [%s] finished."] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["Custom Bars"] = "Пользовательские полосы",
+	["Start a custom bar, either local or global."] = "Запуск пользовательской полосы, локальной или глобальной.",
+	["Local"] = "Локальная",
+	["Global"] = "Глобальная",
+	["<seconds> <bar text>"] = "<время> <текст полосы>",
+	["Starts a custom bar with the given parameters."] = "Запуск пользовательской полосы с заданными параметрами.",
+	["%s: %s"] = "%s: %s",
+	["%s: Timer [%s] finished."] = "%s: Таймер [%s] завершился.",
+} end)
+
 L:RegisterTranslations("koKR", function() return {
 	["Custom Bars"] = "사용자 바",
 	["Start a custom bar, either local or global."] = "사용자 바 시작, 전체 혹은 지역",

@@ -38,6 +38,19 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+
+		statusRequest_name = "Запрос статуса",
+		statusRequest_desc = "Разрешает запрос статуса босса",
+
+		healthStatus_name = "Состояние здоровья",
+		healthStatus_desc = "Сообщает игрокам текущее здоровье босса",
+
+		playersAlive_name = "Живые игроки",
+		playersAlive_desc = "Сообщает игрокам сколько членов рейда живы",
+
+} end )
+
 L:RegisterTranslations("esES", function() return {
 
 		--statusRequest_cmd = "statusRequest",

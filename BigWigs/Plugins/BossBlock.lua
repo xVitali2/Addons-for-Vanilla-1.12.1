@@ -37,6 +37,38 @@ L:RegisterTranslations("enUS", function() return {
 	["Shown"] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["BossBlock"] = "Занят",
+	["Suppress bossmod chat from other players."] = "Блокирует сообщения от других игроков при битве с боссом.",
+
+	["Suppress Raid Chat"] = "Чат рейда",
+	["Suppress messages in the raid channel."] = "Блокирует сообщения посланные в чат рейда.",
+
+	["Suppress RaidWarn Chat"] = "Чат объявлений рейда",
+	["Suppress RaidWarn messages in the chat frames."] = "Блокирует объявления рейда в окне чата.",
+
+	["Suppress RaidWarn"] = "Сообщения объявлений рейда",
+	["Suppress RaidWarn popup messages."] = "Блокирует объявления рейда в всплывающих над головой сообщениях.",
+
+	["Suppress RaidSay"] = "Сказать в чате рейда",
+	["Suppress CTRA RaidSay popup messages."] = "Блокирует CTRA сообщения сказанные в рейде.",
+	["Suppress oRA RaidSay popup messages."] = "Блокирует oRA сообщения сказанные в рейде.",
+	["Suppress oRA2 RaidSay popup messages."] = "Блокирует oRA2 сообщения сказанные в рейде.",
+
+	["Suppress Tells"] = "Сказанные сообщения",
+	["Suppress Tell messages."] = "Блокирует сказанные сообщения.",
+
+	["Debugging"] = "Отладка",
+	["Show debug messages."] = "Отображает сообщения отладки.",
+
+	["Suppressing Chatframe"] = "Окна чата",
+	["Suppressing RaidWarningFrame"] = "Блокирует окно объевления рейда",
+	["Suppressing CT_RAMessageFrame"] = "Блокирует окно CT_RA сообщений",
+
+	["Suppressed"] = "Блокировать",
+	["Shown"] = "Отображенный",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	["BossBlock"] = "Bloque de Jefe",
 	["Suppress bossmod chat from other players."] = "Bloquea el chat de los módulos de jefes de otro jugadores",

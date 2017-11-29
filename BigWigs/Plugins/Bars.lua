@@ -91,6 +91,51 @@ L:RegisterTranslations("enUS", function() return {
 	["Keep timers visible untill the timed event happens"] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["Bars"] = "Полосы",
+
+	["Options for the timer bars."] = "Опции полос времени",
+	["Show the bar anchor frame."] = "Отображать якорь полос",
+	["Set the bar scale."] = "Настройка масштаба полос",
+	["Group upwards"] = "Рост вверх",
+	["Toggle bars grow upwards/downwards from anchor."] = "Преключение расположения полос от якоря вверх или вниз.",
+
+	["Timer bars"] = "Полосы времени",
+	["Show anchor"] = "Отображать якорь",
+	["Grow bars upwards"] = "Рост вверх",
+	["Scale"] = "Масштаб",
+	["Bar scale"] = "Масштаб полосы",
+
+	["Bars now grow %2$s"] = "Полосы увеличились на %2$s",
+	["Scale is set to %2$s"] = "Маштаб установлен на %2$s",
+
+	["Up"] = "Вверх",
+	["Down"] = "Вниз",
+
+	["Test"] = "Тест",
+	["Close"] = "Закрыть",
+
+	["Texture"] = "Текстуры",
+	["Set the texture for the timerbars."] = "Установка текстур для полос времени.",
+
+	["Reset position"] = "Сбросить расположение",
+	["Reset the anchor position, moving it to the center of your screen."] = "Сбросить расположение якоря, передвигает в центр экрана.",
+	["Reverse"] = "Перевернуть",
+	["Toggles if bars are reversed (fill up instead of emptying)."] = "Переключает, если полосы перевернуты (заполняются вместо опустошения)",
+	["Emphasize"] = "Выделять",
+	["Emphasize bars that are close to completion (<10sec). Also note that bars started at less than 15 seconds initially will be emphasized right away."] = "Выделяет полосы, которые близки к завершению (<10 секунд). Также обратите внимание, что полосы, начатые менее чем за 15 секунд, будут сразу же выделены.",
+	["Enable"] = "Включить",
+	["Enables emphasizing bars."] = "Включает выделенные полосы",
+	["Flash"] = "Мигать",
+	["Flashes the background red for bars that are emphasized."] = "Мигает красным фоном для выделенных полос.",
+	["Move"] = "Переместить",
+	["Move bars that are emphasized to a second anchor."] = "Перемещение полос, которые выделены на второй якорь",
+	["Set the scale for emphasized bars."] = "Установить масштаб выделенных полос",
+	["Emphasize Bars"] = "Выделенные полосы",
+	["Enable IntervalBars"] = "Включить прерывистые полосы",
+	["Keep timers visible untill the timed event happens"] = "Оставлять таймер до тех пор, пока не пройдет время события",
+} end)
+
 L:RegisterTranslations("deDE", function() return {
 	["Bars"] = "Anzeigebalken",
 

@@ -48,6 +48,25 @@ L:RegisterTranslations("enUS", function() return {
 	["commonauras"] = true,
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	fw_cast = "%s защитил от страха %s.",
+	fw_bar = "Защита от страха через: %s",
+
+	used_cast = "%s использовал %s.",
+	used_bar = "%s: %s",
+
+	portal_cast = "%s открыл портал в %s!",
+	portal_regexp = ".* в (.*)",
+
+	["Toggle %s display."] = "Переключить отображение %s.",
+	["Portal"] = "Портал",
+	["Broadcast"] = "Оповещение",
+	["Toggle broadcasting the messages to the raidwarning channel."] = "Переключает сообщения оповещения в канал объявления рейда.",
+
+	["Gives timer bars and raid messages about common buffs and debuffs."] = "Показывает таймеры и рейдовые сообщения об основных положительных и отрицательных эффектах.",
+	["Common Auras"] = "Основные Ауры"
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	fw_cast = "%s usa Custodia de miedo a %s.",
 	fw_bar = "%s: Regeneración de Custodia de miedo",
