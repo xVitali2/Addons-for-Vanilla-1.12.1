@@ -81,7 +81,7 @@ L:RegisterTranslations("enUS", function() return {
 	["You have slain %s!"] = true,
 } end)
 
-L:RegisterTranslations("ruRU", function() return {
+L:RegisterTranslations("ruRU", function() return { --by CFM
 	["%s mod enabled"] = "%s мод включен",
 	["Target monitoring enabled"] = "Мониторинг цели включен",
 	["Target monitoring disabled"] = "Мониторинг цели выключен",
@@ -106,7 +106,7 @@ L:RegisterTranslations("ruRU", function() return {
 	["Debugging"] = "Отладка",
 	["Show debug messages."] = "Показать отладочные сообщения.",
 	["Forces the module to reset for everyone in the raid.\n\n(Requires assistant or higher)"] = "Заставить модуль перезагрузить для всех в рейде.\n\n(Требуется ассист или выше)",
-	["%s has requested forced reboot for the %s module."] = "%s запрос на перезагрузку %s модуля.""%s запрос на перезагрузку %s модуля.",
+	["%s has requested forced reboot for the %s module."] = "%s запрос на перезагрузку %s модуля.",
 	--bosskill_cmd = "убит",
 	bosskill_name = "Смерть босса",
 	bosskill_desc = "Объявлять о смерти босса.",

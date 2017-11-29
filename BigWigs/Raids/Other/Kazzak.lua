@@ -111,7 +111,7 @@ L:RegisterTranslations("ruRU", function() return { --by CFM
 	starttrigger1 = "All mortals will perish!", --Смертным не место в этом мире! --не переведено на Light's hope
 	starttrigger2 = "The Legion will conquer all!", --Легион покорит вселенную! --не переведено на Light's hope
 	markofkazzakyou_trigger = "Вы находитесь под воздействием эффекта \"Метка Каззака\".",
-	markofkazzakother_trigger = "(.*) находится под воздействием эффекта \"Метка Каззака".",
+	markofkazzakother_trigger = "(.*) находится под воздействием эффекта \"Метка Каззака\".",
 	markofkazzakyouend_trigger = "Действие эффекта \"Метка Каззака\", наложенного на вас, заканчивается.",
 	markofkazzakotherend_trigger = "Действие эффекта \"Метка Каззака\", наложенного на (.*), заканчивается.",
 	twistedreflectionyou_trigger = "Вы находитесь под воздействием эффекта \"Кривое зеркало\".",
