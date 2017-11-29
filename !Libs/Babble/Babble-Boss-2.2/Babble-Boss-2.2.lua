@@ -593,6 +593,7 @@ end)
 
 BabbleBoss:RegisterTranslations("ruRU", function()
 	return {
+		["Anubisath Warder"] = "Анубисат-хранитель", --by CFM
 		["Avalanchion"] = "Лавинион",
 		["The Windreaver"] = "Ветробой",
 		["Baron Charr"] = "Барон Огнерр",

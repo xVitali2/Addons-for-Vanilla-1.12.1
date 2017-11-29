@@ -27,8 +27,6 @@ local isHorde = (race == "Orc" or race == "Troll" or race == "Tauren" or race ==
 local isWestern = GetLocale() == "enUS" or GetLocale() == "ruRU" or GetLocale() == "deDE" or GetLocale() == "frFR" or GetLocale() == "esES"
 local math_mod = math.fmod or math.mod
 
-local expansion = (MAX_PLAYER_LEVEL == 70)
-
 local Kalimdor, Eastern_Kingdoms, Outland = GetMapContinents()
 if not Outland then
 	Outland = "Outland"
@@ -619,31 +617,11 @@ local function activate(self, oldLib, oldDeactivate)
 	local MENETHIL_THERAMORE_BOAT = string.format(X_Y_BOAT, Z["Menethil Harbor"], Z["Theramore Isle"])
 	local MENETHIL_AUBERDINE_BOAT = string.format(X_Y_BOAT, Z["Menethil Harbor"], Z["Auberdine"])
 	local AUBERDINE_DARNASSUS_BOAT = string.format(X_Y_BOAT, Z["Auberdine"], Z["Darnassus"])
-	local AUBERDINE_AZUREMYST_BOAT = string.format(X_Y_BOAT, Z["Auberdine"], Z["Azuremyst Isle"])
 	local ORGRIMMAR_UNDERCITY_ZEPPELIN = string.format(X_Y_ZEPPELIN, Z["Orgrimmar"], Z["Undercity"])
 	local ORGRIMMAR_GROMGOL_ZEPPELIN = string.format(X_Y_ZEPPELIN, Z["Orgrimmar"], Z["Grom'gol Base Camp"])
 	local UNDERCITY_GROMGOL_ZEPPELIN = string.format(X_Y_ZEPPELIN, Z["Undercity"], Z["Grom'gol Base Camp"])
-	local SHATTRATH_IRONFORGE_PORTAL = string.format(X_Y_PORTAL, Z["Shattrath City"], Z["Ironforge"])
-	local SHATTRATH_STORMWIND_PORTAL = string.format(X_Y_PORTAL, Z["Shattrath City"], Z["Stormwind City"])
-	local SHATTRATH_DARNASSUS_PORTAL = string.format(X_Y_PORTAL, Z["Shattrath City"], Z["Darnassus"])
-	local SHATTRATH_ORGRIMMAR_PORTAL = string.format(X_Y_PORTAL, Z["Shattrath City"], Z["Orgrimmar"])
-	local SHATTRATH_THUNDERBLUFF_PORTAL = string.format(X_Y_PORTAL, Z["Shattrath City"], Z["Thunder Bluff"])
-	local SHATTRATH_UNDERCITY_PORTAL = string.format(X_Y_PORTAL, Z["Shattrath City"], Z["Undercity"])
-	local SHATTRATH_EXODAR_PORTAL = string.format(X_Y_PORTAL, Z["Shattrath City"], Z["The Exodar"])
-	local SHATTRATH_SILVERMOON_PORTAL = string.format(X_Y_PORTAL, Z["Shattrath City"], Z["Silvermoon City"])
 	
 	local zones = {}
-	
-	if expansion then
-		zones[AUBERDINE_AZUREMYST_BOAT] = {
-			paths = {
-				[Z["Darkshore"]] = true,
-				[Z["Azuremyst Isle"]] = true,
-			},
-			faction = "Alliance",
-			type = "Transport",
-		}
-	end
 	
 	zones[AUBERDINE_DARNASSUS_BOAT] = {
 		paths = {
@@ -698,56 +676,6 @@ local function activate(self, oldLib, oldDeactivate)
 		type = "Transport",
 	}
 	
-	if expansion then
-		zones[SHATTRATH_DARNASSUS_PORTAL] = {
-			paths = Z["Darnassus"],
-			type = "Transport",
-		}
-		
-		zones[SHATTRATH_EXODAR_PORTAL] = {
-			paths = Z["The Exodar"],
-			type = "Transport",
-		}
-		
-		zones[SHATTRATH_IRONFORGE_PORTAL] = {
-			paths = Z["Ironforge"],
-			type = "Transport",
-		}
-		
-		zones[SHATTRATH_ORGRIMMAR_PORTAL] = {
-			paths = Z["Orgrimmar"],
-			type = "Transport",
-		}
-		
-		zones[SHATTRATH_SILVERMOON_PORTAL] = {
-			paths = Z["Silvermoon City"],
-			type = "Transport",
-		}
-		
-		zones[SHATTRATH_STORMWIND_PORTAL] = {
-			paths = Z["Stormwind City"],
-			type = "Transport",
-		}
-		
-		zones[SHATTRATH_THUNDERBLUFF_PORTAL] = {
-			paths = Z["Thunder Bluff"],
-			type = "Transport",
-		}
-		
-		zones[SHATTRATH_UNDERCITY_PORTAL] = {
-			paths = Z["Undercity"],
-			type = "Transport",
-		}
-		
-		zones[Z["The Dark Portal"]] = {
-			paths = {
-				[Z["Blasted Lands"]] = true,
-				[Z["Hellfire Peninsula"]] = true,
-			},
-			type = "Transport",
-		}
-	end
-	
 	zones[UNDERCITY_GROMGOL_ZEPPELIN] = {
 		paths = {
 			[Z["Stranglethorn Vale"]] = true,
@@ -798,18 +726,6 @@ local function activate(self, oldLib, oldDeactivate)
 		type = "City",
 	}
 	
-	if expansion then
-		zones[Z["Silvermoon City"]] = {
-			continent = Eastern_Kingdoms,
-			paths = {
-				[Z["Eversong Woods"]] = true,
-				[Z["Undercity"]] = true,
-			},
-			faction = "Horde",
-			type = "City",
-		}
-	end
-	
 	zones[Z["Stormwind City"]] = {
 		continent = Eastern_Kingdoms,
 		instances = Z["The Stockade"],
@@ -826,7 +742,6 @@ local function activate(self, oldLib, oldDeactivate)
 		continent = Eastern_Kingdoms,
 		instances = Z["Scarlet Monastery"],
 		paths = {
-			[Z["Silvermoon City"]] = expansion and true or nil,
 			[Z["Tirisfal Glades"]] = true,
 		},
 		faction = "Horde",
@@ -860,20 +775,7 @@ local function activate(self, oldLib, oldDeactivate)
 		},
 		faction = "Alliance",
 	}
-	
-	if expansion then
-		zones[Z["Eversong Woods"]] = {
-			low = 1,
-			high = 10,
-			continent = Eastern_Kingdoms,
-			paths = {
-				[Z["Silvermoon City"]] = true,
-				[Z["Ghostlands"]] = true,
-			},
-			faction = "Horde",
-		}
-	end
-	
+
 	zones[Z["Tirisfal Glades"]] = {
 		low = 1,
 		high = 10,
@@ -889,22 +791,7 @@ local function activate(self, oldLib, oldDeactivate)
 		},
 		faction = "Horde",
 	}
-	
-	if expansion then
-		zones[Z["Ghostlands"]] = {
-			low = 10,
-			high = 20,
-			continent = Eastern_Kingdoms,
-			instances = Z["Zul'Aman"],
-			paths = {
-				[Z["Eastern Plaguelands"]] = true,
-				[Z["Zul'Aman"]] = true,
-				[Z["Eversong Woods"]] = true,
-			},
-			faction = "Horde",
-		}
-	end
-	
+
 	zones[Z["Loch Modan"]] = {
 		low = 10,
 		high = 20,
@@ -1106,11 +993,9 @@ local function activate(self, oldLib, oldDeactivate)
 		low = 55,
 		high = 60,
 		continent = Eastern_Kingdoms,
-		instances = expansion and Z["Karazhan"] or nil,
 		paths = {
 			[Z["Duskwood"]] = true,
-			[Z["Swamp of Sorrows"]] = true,
-			[Z["Karazhan"]] = expansion and true or nil,
+			[Z["Swamp of Sorrows"]] = true
 		},
 	}
 	
@@ -1119,7 +1004,6 @@ local function activate(self, oldLib, oldDeactivate)
 		high = 55,
 		continent = Eastern_Kingdoms,
 		paths = {
-			[Z["The Dark Portal"]] = expansion and true or nil,
 			[Z["Swamp of Sorrows"]] = true,
 		},
 	}
@@ -1166,7 +1050,6 @@ local function activate(self, oldLib, oldDeactivate)
 			[Z["Western Plaguelands"]] = true,
 			[Z["Naxxramas"]] = true,
 			[Z["Stratholme"]] = true,
-			[Z["Ghostlands"]] = expansion and true or nil,
 		},
 	}
 	
@@ -1315,28 +1198,6 @@ local function activate(self, oldLib, oldDeactivate)
 		type = "Instance",
 	}
 	
-	if expansion then
-		zones[Z["Karazhan"]] = {
-			low = 70,
-			high = 70,
-			continent = Eastern_Kingdoms,
-			paths = Z["Deadwind Pass"],
-			groupSize = 10,
-			type = "Instance",
-		}
-	end
-	
-	if expansion then
-		zones[Z["Zul'Aman"]] = {
-			low = 70,
-			high = 70,
-			continent = Eastern_Kingdoms,
-			paths = Z["Ghostlands"],
-			groupSize = 0,
-			type = "Instance",
-		}
-	end
-	
 	zones[Z["Darnassus"]] = {
 		continent = Kalimdor,
 		paths = {
@@ -1370,35 +1231,12 @@ local function activate(self, oldLib, oldDeactivate)
 		type = "City",
 	}
 	
-	if expansion then
-		zones[Z["The Exodar"]] = {
-			continent = Kalimdor,
-			paths = Z["Azuremyst Isle"],
-			faction = "Alliance",
-			type = "City",
-		}
-	end
-	
 	zones[Z["Thunder Bluff"]] = {
 		continent = Kalimdor,
 		paths = Z["Mulgore"],
 		faction = "Horde",
 		type = "City",
 	}
-	
-	if expansion then
-		zones[Z["Azuremyst Isle"]] = {
-			low = 1,
-			high = 10,
-			continent = Kalimdor,
-			paths = {
-				[Z["The Exodar"]] = true,
-				[Z["Bloodmyst Isle"]] = true,
-				[AUBERDINE_AZUREMYST_BOAT] = true,
-			},
-			faction = "Alliance",
-		}
-	end
 	
 	zones[Z["Durotar"]] = {
 		low = 1,
@@ -1433,18 +1271,6 @@ local function activate(self, oldLib, oldDeactivate)
 		faction = "Alliance",
 	}
 	
-	if expansion then
-		zones[Z["Bloodmyst Isle"]] = {
-			low = 10,
-			high = 20,
-			continent = Kalimdor,
-			paths = {
-				[Z["Azuremyst Isle"]] = true,
-			},
-			faction = "Alliance",
-		}
-	end
-	
 	zones[Z["Darkshore"]] = {
 		low = 10,
 		high = 20,
@@ -1452,7 +1278,6 @@ local function activate(self, oldLib, oldDeactivate)
 		paths = {
 			[MENETHIL_AUBERDINE_BOAT] = true,
 			[AUBERDINE_DARNASSUS_BOAT] = true,
-			[AUBERDINE_AZUREMYST_BOAT] = expansion and true or nil,
 			[Z["Ashenvale"]] = true,
 		},
 		faction = "Alliance",
@@ -1567,11 +1392,9 @@ local function activate(self, oldLib, oldDeactivate)
 		continent = Kalimdor,
 		instances = {
 			[Z["Zul'Farrak"]] = true,
-			[Z["Caverns of Time"]] = expansion and true or nil,
 		},
 		paths = {
 			[Z["Thousand Needles"]] = true,
-			[Z["Caverns of Time"]] = expansion and true or nil,
 			[Z["Un'Goro Crater"]] = true,
 			[Z["Zul'Farrak"]] = true,
 		},
@@ -1730,382 +1553,6 @@ local function activate(self, oldLib, oldDeactivate)
 		groupSize = 20,
 		type = "Instance",
 	}
-	
-	if expansion then
-		zones[Z["Caverns of Time"]] = {
-			-- XXX Need to add the different instances;
-			-- * Thrall escaping from Durnholde Keep (5)
-			-- * Medivh opening the Dark Portal (5)
-			-- * Battle on mount Hyjal (25)
-			low = 64,
-			high = 70,
-			continent = Kalimdor,
-			paths = Z["Tanaris"],
-			groupSize = 5,
-			type = "Instance",
-		}
-	end
-	
-	if expansion then
-		zones[Z["Shattrath City"]] = {
-			continent = Outland,
-			paths = {
-				[SHATTRATH_THUNDERBLUFF_PORTAL] = true,
-				[SHATTRATH_STORMWIND_PORTAL] = true,
-				[SHATTRATH_UNDERCITY_PORTAL] = true,
-				[Z["Terokkar Forest"]] = true,
-				[SHATTRATH_SILVERMOON_PORTAL] = true,
-				[SHATTRATH_EXODAR_PORTAL] = true,
-				[SHATTRATH_DARNASSUS_PORTAL] = true,
-				[SHATTRATH_ORGRIMMAR_PORTAL] = true,
-				[SHATTRATH_IRONFORGE_PORTAL] = true,
-				[Z["Nagrand"]] = true,
-			},
-			type = "City",
-		}
-		
-		zones[Z["Hellfire Citadel"]] = {
-			continent = Outland,
-			instances = {
-				[Z["The Blood Furnace"]] = true,
-				[Z["Hellfire Ramparts"]] = true,
-				[Z["Magtheridon's Lair"]] = true,
-				[Z["The Shattered Halls"]] = true,
-			},
-			paths = {
-				[Z["Hellfire Peninsula"]] = true,
-				[Z["The Blood Furnace"]] = true,
-				[Z["Hellfire Ramparts"]] = true,
-				[Z["Magtheridon's Lair"]] = true,
-				[Z["The Shattered Halls"]] = true,
-			}
-		}
-		
-		zones[Z["Hellfire Peninsula"]] = {
-			low = 58,
-			high = 63,
-			continent = Outland,
-			instances = {
-				[Z["The Blood Furnace"]] = true,
-				[Z["Hellfire Ramparts"]] = true,
-				[Z["Magtheridon's Lair"]] = true,
-				[Z["The Shattered Halls"]] = true,
-			},
-			paths = {
-				[Z["Zangarmarsh"]] = true,
-				[Z["The Dark Portal"]] = true,
-				[Z["Terokkar Forest"]] = true,
-				[Z["Hellfire Citadel"]] = true,
-			},
-		}
-		
-		zones[Z["Coilfang Reservoir"]] = {
-			continent = Outland,
-			instances = {
-				[Z["The Underbog"]] = true,
-				[Z["Serpentshrine Cavern"]] = true,
-				[Z["The Steamvault"]] = true,
-				[Z["The Slave Pens"]] = true,
-			},
-			paths = {
-				[Z["Zangarmarsh"]] = true,
-				[Z["The Underbog"]] = true,
-				[Z["Serpentshrine Cavern"]] = true,
-				[Z["The Steamvault"]] = true,
-				[Z["The Slave Pens"]] = true,
-			},
-		}
-		
-		zones[Z["Zangarmarsh"]] = {
-			low = 60,
-			high = 64,
-			continent = Outland,
-			instances = {
-				[Z["The Underbog"]] = true,
-				[Z["Serpentshrine Cavern"]] = true,
-				[Z["The Steamvault"]] = true,
-				[Z["The Slave Pens"]] = true,
-			},
-			paths = {
-				[Z["Coilfang Reservoir"]] = true,
-				[Z["Blade's Edge Mountains"]] = true,
-				[Z["Terokkar Forest"]] = true,
-				[Z["Nagrand"]] = true,
-				[Z["Hellfire Peninsula"]] = true,
-			},
-		}
-		
-		zones[Z["The Bone Wastes"]] = {
-			continent = Outland,
-			instances = {
-				[Z["Mana-Tombs"]] = true,
-				[Z["Sethekk Halls"]] = true,
-				[Z["Shadow Labyrinth"]] = true,
-				[Z["Auchenai Crypts"]] = true,
-			},
-			paths = {
-				[Z["Terokkar Forest"]] = true,
-				[Z["Mana-Tombs"]] = true,
-				[Z["Sethekk Halls"]] = true,
-				[Z["Shadow Labyrinth"]] = true,
-				[Z["Auchenai Crypts"]] = true,
-			},
-		}
-		
-		zones[Z["Terokkar Forest"]] = {
-			low = 62,
-			high = 65,
-			continent = Outland,
-			instances = {
-				[Z["Mana-Tombs"]] = true,
-				[Z["Sethekk Halls"]] = true,
-				[Z["Shadow Labyrinth"]] = true,
-				[Z["Auchenai Crypts"]] = true,
-			},
-			paths = {
-				[Z["The Bone Wastes"]] = true,
-				[Z["Shadowmoon Valley"]] = true,
-				[Z["Zangarmarsh"]] = true,
-				[Z["Shattrath City"]] = true,
-				[Z["Hellfire Peninsula"]] = true,
-				[Z["Nagrand"]] = true,
-			},
-		}
-		
-		zones[Z["Nagrand"]] = {
-			low = 64,
-			high = 67,
-			continent = Outland,
-			paths = {
-				[Z["Zangarmarsh"]] = true,
-				[Z["Shattrath City"]] = true,
-				[Z["Terokkar Forest"]] = true,
-			},
-		}
-		
-		zones[Z["Blade's Edge Mountains"]] = {
-			low = 65,
-			high = 68,
-			continent = Outland,
-			instances = Z["Gruul's Lair"],
-			paths = {
-				[Z["Netherstorm"]] = true,
-				[Z["Zangarmarsh"]] = true,
-			},
-		}
-		
-		zones[Z["Tempest Keep"]] = {
-			continent = Outland,
-			instances = {
-				[Z["The Mechanar"]] = true,
-				[Z["Eye of the Storm"]] = true,
-				[Z["The Botanica"]] = true,
-				[Z["The Arcatraz"]] = true,
-			},
-			paths = {
-				[Z["Netherstorm"]] = true,
-				[Z["The Mechanar"]] = true,
-				[Z["Eye of the Storm"]] = true,
-				[Z["The Botanica"]] = true,
-				[Z["The Arcatraz"]] = true,
-			},
-		}
-		
-		zones[Z["Netherstorm"]] = {
-			low = 67,
-			high = 70,
-			continent = Outland,
-			instances = {
-				[Z["The Mechanar"]] = true,
-				[Z["Eye of the Storm"]] = true,
-				[Z["The Botanica"]] = true,
-				[Z["The Arcatraz"]] = true,
-			},
-			paths = {
-				[Z["Tempest Keep"]] = true,
-				[Z["Blade's Edge Mountains"]] = true,
-			},
-		}
-		
-		zones[Z["Shadowmoon Valley"]] = {
-			low = 67,
-			high = 70,
-			continent = Outland,
-			instances = Z["Black Temple"],
-			paths = Z["Terokkar Forest"],
-		}
-		
-		zones[Z["Black Temple"]] = {
-			low = 70,
-			high = 70,
-			continent = Outland,
-			paths = Z["Shadowmoon Valley"],
-			groupSize = 25,
-			type = "Instance",
-		}
-		
-		zones[Z["Auchenai Crypts"]] = {
-			low = 64,
-			high = 66,
-			continent = Outland,
-			paths = Z["The Bone Wastes"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["Auchenai Crypts"]] = {
-			low = 64,
-			high = 66,
-			continent = Outland,
-			paths = Z["The Bone Wastes"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["Shadow Labyrinth"]] = {
-			low = 65,
-			high = 67,
-			continent = Outland,
-			paths = Z["The Bone Wastes"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["Sethekk Halls"]] = {
-			low = 67,
-			high = 69,
-			continent = Outland,
-			paths = Z["The Bone Wastes"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["Mana-Tombs"]] = {
-			low = 70,
-			high = 72,
-			continent = Outland,
-			paths = Z["The Bone Wastes"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["Hellfire Ramparts"]] = {
-			low = 60,
-			high = 62,
-			continent = Outland,
-			paths = Z["Hellfire Citadel"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["The Blood Furnace"]] = {
-			low = 61,
-			high = 63,
-			continent = Outland,
-			paths = Z["Hellfire Citadel"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["The Shattered Halls"]] = {
-			low = 70,
-			high = 72,
-			continent = Outland,
-			paths = Z["Hellfire Citadel"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["Magtheridon's Lair"]] = {
-			low = 70,
-			high = 70,
-			continent = Outland,
-			paths = Z["Hellfire Citadel"],
-			groupSize = 25,
-			type = "Instance",
-		}
-		
-		zones[Z["The Slave Pens"]] = {
-			low = 62,
-			high = 64,
-			continent = Outland,
-			paths = Z["Coilfang Reservoir"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["The Underbog"]] = {
-			low = 63,
-			high = 65,
-			continent = Outland,
-			paths = Z["Coilfang Reservoir"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["The Steamvault"]] = {
-			low = 70,
-			high = 72,
-			continent = Outland,
-			paths = Z["Coilfang Reservoir"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["Serpentshrine Cavern"]] = {
-			low = 70,
-			high = 70,
-			continent = Outland,
-			paths = Z["Coilfang Reservoir"],
-			groupSize = 25,
-			type = "Instance",
-		}
-		
-		zones[Z["Gruul's Lair"]] = {
-			low = 70,
-			high = 70,
-			continent = Outland,
-			paths = Z["Blade's Edge Mountains"],
-			groupSize = 25,
-			type = "Instance",
-		}
-		
-		zones[Z["The Mechanar"]] = {
-			low = 69,
-			high = 72,
-			continent = Outland,
-			paths = Z["Tempest Keep"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["The Botanica"]] = {
-			low = 70,
-			high = 72,
-			continent = Outland,
-			paths = Z["Tempest Keep"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["The Arcatraz"]] = {
-			low = 70,
-			high = 72,
-			continent = Outland,
-			paths = Z["Tempest Keep"],
-			groupSize = 5,
-			type = "Instance",
-		}
-		
-		zones[Z["Eye of the Storm"]] = {
-			low = 70,
-			high = 70,
-			continent = Outland,
-			paths = Z["Tempest Keep"],
-			groupSize = 25,
-			type = "Instance",
-		}
-	end
 	
 	for k,v in pairs(zones) do
 		lows[k] = v.low or 0
