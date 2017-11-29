@@ -354,7 +354,9 @@ function Questie:Tooltip(this, forceShow, bag, slot)
         local prevQuestLogSelection = QGet_QuestLogSelection()
         for questHash, quest in pairs(QuestieHandledQuests) do
             local QuestLogID = Questie:GetQuestIdFromHash(questHash)
-            QSelect_QuestLogEntry(QuestLogID)
+            if QuestLogID then -----------by CFM
+                QSelect_QuestLogEntry(QuestLogID)
+            end -----------by CFM
             local drawnQuestTitle = false
             for objectiveid, objectiveInfo in pairs(quest.objectives) do
                     local highlightInfo = {
