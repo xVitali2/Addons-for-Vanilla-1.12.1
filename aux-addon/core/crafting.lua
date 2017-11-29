@@ -52,7 +52,7 @@ do
     end
     function craft_ui_loaded()
         aux.hook('CraftFrame_SetSelection', T.vararg-function(arg)
-            local ret = T.temp-T.list(orig.CraftFrame_SetSelection(unpack(arg)))
+            local ret = T.temp-T.list(aux.orig.CraftFrame_SetSelection(unpack(arg)))
             local id = GetCraftSelectionIndex()
             local total_cost = 0
             for i = 1, GetCraftNumReagents(id) do

@@ -90,7 +90,7 @@ function M.extend_tooltip(tooltip, link, quantity)
         end
         if settings.daily  then
             local market_value = history.market_value(item_key)
-            tooltip:AddLine(TODAY .. (market_value and money.to_string2(market_value * quantity) .. ' (' .. gui.percentage_historical(round(market_value / value * 100)) .. ')' or UNKNOWN), aux.color.tooltip.value()) --byLICHERY
+            tooltip:AddLine(TODAY .. (market_value and money.to_string2(market_value * quantity) .. ' (' .. gui.percentage_historical(aux.round(market_value / value * 100)) .. ')' or UNKNOWN), aux.color.tooltip.value()) --byLICHERY
         end
     end
 

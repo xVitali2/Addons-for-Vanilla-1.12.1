@@ -91,7 +91,7 @@ do
 end
 
 tab_info = {}
-function M.TAB(name)
+function M.tab(name)
 	local tab = T.map('name', name)
 	local tab_event = {
 		OPEN = function(f) tab.OPEN = f end,
@@ -191,15 +191,15 @@ do
 	function set_handler.CLOSE(f)
 		tinsert(handlers, f)
 	end
-function AUCTION_HOUSE_CLOSED()
-	bids_loaded = false
-	current_owner_page = nil
+	function AUCTION_HOUSE_CLOSED()
+		bids_loaded = false
+		current_owner_page = nil
 		for _, handler in handlers do
 			handler()
 		end
 		set_tab()
 		frame:Hide()
-end
+	end
 end
 
 function AUCTION_BIDDER_LIST_UPDATE()

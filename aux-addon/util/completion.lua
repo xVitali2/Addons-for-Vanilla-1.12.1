@@ -1,7 +1,6 @@
 module 'aux.util.completion'
 
 local aux = require 'aux'
-
 local filter_util = require 'aux.util.filter'
 
 function M:complete_filter()

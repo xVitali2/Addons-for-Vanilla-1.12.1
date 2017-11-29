@@ -303,14 +303,14 @@ function M.execute(resume, real_time)
 
 	local queries, error = filter_util.queries(filter_string)
 	if not queries then
-		print(INVALID_FILTER, error) --byLichery
+		aux.print(INVALID_FILTER, error) --byLichery
 		return
 	elseif real_time then
 		if getn(queries) > 1 then
-			print(ERROR_1) --byLichery
+			aux.print(ERROR_1) --byLichery
 			return
 		elseif queries[1].blizzard_query.first_page or queries[1].blizzard_query.last_page then
-			print(ERROR_2) --byLichery
+			aux.print(ERROR_2) --byLichery
 			return
 		end
 	end
