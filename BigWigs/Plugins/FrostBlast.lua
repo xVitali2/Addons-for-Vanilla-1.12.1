@@ -62,6 +62,31 @@ L:RegisterTranslations("enUS", function() return {
 	["Dead"] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["FrostBlast"] = "ЛедянойВзрыв",
+	["Frost Blast"] = "Ледяной взрыв",
+	["Options for the Frost Blast frame."] = "Настройки для окна Ледяной взрыв",
+	["Lock frame"] = "Заблокировать окно",
+	["Lock the frost blast frame."] = "Заблокировать окно Ледяного взрыва",
+
+	["Disabled"] = "Выключен",
+	["Disable the frost blast display."] = "Отключает отображение Ледяного взрыва",
+
+	["Color Names"] = "Цвет имен",
+	["Class colored names."] = "Классовые цвета имен",
+	["Color Bars"] = "Цвет полос",
+	["Class colored bars."] = "Классовые цвета полос",
+
+	["Test"] = "Проверка",
+	["Perform a Frost Blast test."] = "Запускает проверку Ледяного взрыва",
+
+	["Reset position"] = "Сброс позиции",
+	["Reset the anchor position, moving it to the center of your screen."] = "Сброс расположения в центр экрана.",
+
+	["Offline"] = "Вышел",
+	["Dead"] = "Мертв",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	["FrostBlast"] = "FrostBlast",
 	["Frost Blast"] = "Explosión de Escarcha",

@@ -25,6 +25,15 @@ L:RegisterTranslations("enUS", function() return {
 	["Set the default farclip value."] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["Farclip"] = "Дальность отрисовки",
+	["Reduces the terrain distance to the minimum in Naxxramas to avoid screen freezes."] = "Уменьшает дальность отрисовки на минимум в Наксрамасе, чтобы избежать подвисания экрана.",
+	["Active"] = "Включен",
+	["Activate the plugin."] = "Активировать плагин",
+	["Default Value"] = "Стандартное значение",
+	["Set the default farclip value."] = "Установливает стандартное значение дальности отрисовки",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	["Farclip"] = "Farclip",
 	["farclip"] = "farclip",

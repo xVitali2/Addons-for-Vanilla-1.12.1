@@ -58,8 +58,8 @@ L:RegisterTranslations("ruRU", function() return { --by CFM
 
 	["Messages"] = "Сообщения",
 	["Bars"] = "Полосы",
-	["Shortbar"] = "Быстрая полоса",
-	["Longbar"] = "Долгая полоса",
+	["Shortbar"] = "БыстраяПолоса",
+	["Longbar"] = "ДолгаяПолоса",
 	["Color %s"] = "Цвет %s",
 	["Color%s"] = "Цвет%s",
 	["Number of colors"] = "Число цветов",
@@ -86,7 +86,7 @@ L:RegisterTranslations("ruRU", function() return { --by CFM
 	["Urgent"] = "Экстренные",
 	["Attention"] = "Внимание",
 	["Positive"] = "Позитивные",
-	["Bosskill"] = "Убийство босса",
+	["Bosskill"] = "УбийствоБосса",
 	["Core"] = "Основные",
 
 	["1st"] = "1-ый",
