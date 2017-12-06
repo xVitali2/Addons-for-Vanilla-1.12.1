@@ -10,7 +10,7 @@ local enablezones, enablemobs = {}, {}
 --      Addon Declaration      --
 ---------------------------------
 
-BigWigsTargetMonitor = BigWigs:NewModule("Target Monitor")
+BigWigsTargetMonitor = BigWigs:NewModule("Монитор цели")
 
 
 ------------------------------

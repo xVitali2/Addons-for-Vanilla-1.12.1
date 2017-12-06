@@ -55,7 +55,43 @@ L:RegisterTranslations("enUS", function() return {
 
 	["Show popup"] = true,
 	["Show popup warning on out of date version"] = true,
+} end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["Version Query"] = "Запрос версии",
+	["Commands for querying the raid for Big Wigs versions."] = "Команды для запроса версий Big Wigs рейда.",
+	["Query already running, please wait 5 seconds before trying again."] = "Запрос уже запущен, ждите 5 секунд для следующего запроса.",
+	["Querying versions for "] = "Запрос версий для ",
+	["Big Wigs Version Query"] = "Запрос версии Big Wigs",
+	["Close window"] = "Закрыть окно", -- I know, it's really a Tablet.
+	["Showing version for "] = "Отображение версии для ",
+	["Green versions are newer than yours, red are older, and white are the same."] = "Зеленая версия новее чем ваша, красная - старше, и белая - та же.",
+	["Player"] = "Игрок",
+	["Version"] = "Версия",
+	["Current zone"] = "Текущая зона",
+	["Version query done."] = "Запрос версии завершен.",
+	["Runs a version query on your current zone."] = "Запускает запрос версии в текущей зоне.",
+	["Closes the version query window."] = "Закрыть окно запроса версии.",
+	["Runs a version query on the given zone."] = "Запускает запрос версии в данной зоне.",
+	["Zone"] = "Зона",
+	["N/A"] = "Н/И",
+	["BigWigs"] = "BigWigs",
+	["Runs a version query on the BigWigs core."] = "Запускает запрос версии в ядре BigWigs.",
+	["Nr Replies"] = "Без Ответа",
+	["Ancient"] = "Старая",
+
+	["Your version of Big Wigs Elysium is out of date!\nPlease visit https://github.com/Hosq/BigWigs to get the latest version."] = "Ваша версия Big Wigs LH устарела!\nСкачайте новую на https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases",
+	["Close"] = "Закрыть",
+	["Cancel"] = "Отмена",
+
+	["People with outdated BigWigs:"] = "Игроки с устаревшим BigWigs:",
+	["Notify old versions"] = "Уведомлять старые версии",
+	["Notify old versions"] = "Уведомление старых версий",
+	["List people with old versions to raid chat."] = "Список игроков с устаревшей версией в канал рейда.",
+	["Download newest version from https://github.com/Hosq/BigWigs"] = "Скачайте новую версию с https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases",
+
+	["Show popup"] = "Отображать всплывающее окно",
+	["Show popup warning on out of date version"] = "Отображать всплывающее окно при старых версиях",
 } end )
 
 L:RegisterTranslations("esES", function() return {

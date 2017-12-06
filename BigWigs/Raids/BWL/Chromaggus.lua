@@ -89,6 +89,79 @@ L:RegisterTranslations("enUS", function() return {
 	thunderfury = "Thunderfury",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+
+	enrage_name = "Бешенство",
+	enrage_desc = "Предупреждать до фазы Бешенства на 20%.",
+
+	frenzy_name = "Исступление",
+	frenzy_desc = "Предупреждать об Исступлении.",
+
+	breath_name = "Дыхания",
+	breath_desc = "Предупреждать о дыханиях.",
+
+	breathcd_name = "Голосовой обратный отсчет дыхания",
+	breathcd_desc = "Голосовое предупреждение о дыханиях.",
+
+	vulnerability_name = "Уязвимость",
+	vulnerability_desc = "Предупреждать об изменениях Уязвимости.",
+
+	breath_trigger = "Хромаггус начинает использовать (.+)\.",
+	vulnerability_direct_test = "^\"([%w%s:]+)\" [%w]+[%s]* ([%w]+) Хромаггус ([%d]+) ед. урона (([%w]+))%.[%s%(]*([%d]*)", -- [Fashu's] [Firebolt] [hits] Battleguard Sartura for [44] [Fire] damage. ([14] resisted)
+	vulnerability_dots_test = "^Хромаггус получает ([%d]+) ед. урона ([%w]+) от заклинания \"([%w%s:]+)\" [%w]+[%s]*%.[%s%(]*([%d]*).",
+
+	frenzy_trigger = "goes into a killing frenzy", --%s впадает в убийственную ярость! -- не переведено на Light's hope
+	frenzyfade_trigger = "Действие эффекта \"Бешенство\", наложенного на Хромаггус, заканчивается\.",
+	vulnerability_trigger = "flinches as its skin shimmers.", --%s изменяется, мерцая. -- не переведено на Light's hope
+
+	hit = "наносит",
+	crit = "наносит",
+
+	firstbreaths_warning = "Дыхание через 5 секунд!",
+	breath_warning = "%s через 5 секунд!",
+	breath_message = "%s применяется!",
+	vulnerability_message = "Уязвимость: %s!",
+	vulnerability_warning = "Способность Уязвимость изменилась!",
+	frenzy_message = "Исступление! Усмиряющий выстрел!",
+	enrage_warning = "Скоро Бешенство!",
+
+	breath1 = "Искажение времени",
+	breath2 = "Разъедающая кислота",
+	breath3 = "Сожжение плоти",
+	breath4 = "Испепеление",
+	breath5 = "Ледяной ожог",
+
+	breathcolor1 = "black",
+	breathcolor2 = "green",
+	breathcolor3 = "orange",
+	breathcolor4 = "red",
+	breathcolor5 = "blue",
+
+	icon1 = "Spell_Arcane_PortalOrgrimmar",
+	icon2 = "Spell_Nature_Acid_01",
+	icon3 = "Spell_Fire_Fire",
+	icon4 = "Spell_Shadow_ChillTouch",
+	icon5 = "Spell_Frost_ChillingBlast",
+
+	castingbar = "Использует %s",
+	frenzy_bar = "Исступление",
+	frenzy_Nextbar = "Следующее Исступление",
+	first_bar = "Первое Дыхание",
+	second_bar = "Второе Дыхание",
+	vuln_bar = "%s Уязвимость",
+
+	fire = "Огонь",
+	frost = "Лед",
+	shadow = "Тьма",
+	nature = "Природа",
+	arcane = "Тайная магия",
+
+	curseofdoom = "Проклятие рока",
+	ignite = "Воспламенение",
+	starfire = "Звездный огонь",
+	thunderfury = "Неистовство бури",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Chromaggus",
 

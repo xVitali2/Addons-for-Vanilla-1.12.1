@@ -30,6 +30,18 @@ L:RegisterTranslations("enUS", function() return {
 	["Dazed"] = true,
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["Zombie Food"] = "Еда зомби",
+	["Optionally broadcast the raid when someone gets Dazed."] = "Опционально оповещать в рейд, когда кто-то ошеломлен.",
+	["Broadcast"] = "Оповещение",
+	["Toggle broadcasting."] = "Включить оповещение.",
+	["On"] = "Вкл",
+	["Toggles the plugin on and off."] = "Включить модуль.",
+
+	["%s has been Dazed!"] = "%s - Ошеломлен!",
+	["Dazed"] = "Ошеломлен",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	["Zombie Food"] = "Atontado",
 	--["zombiefood"] = true,

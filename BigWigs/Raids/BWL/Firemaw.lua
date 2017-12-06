@@ -44,6 +44,36 @@ L:RegisterTranslations("enUS", function() return {
 	shadowflame_desc = "Warn when Flamegor casts Shadow Flame.",
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM --Огнечрев
+	wingbuffet_trigger = "Огнечрев начинает использовать \"Взмах крылом\".",
+	shadowflame_trigger = "Огнечрев начинает использовать \"Теневое пламя\".",
+	flamebuffetafflicted_trigger = "находит(.+) под воздействием эффекта \"Удар пламенем\"",
+	flamebuffetresisted_trigger = "сопротивляет(.+) заклинанию \"Удар пламенем\" Огнечрев.",
+	flamebuffetimmune_trigger = "обладает(.+) невосприимчивостью к заклинанию \"Удар пламенем\" Огнечрев\.",
+	flamebuffetabsorb1_trigger = "Вы поглощаете заклинание \"Удар пламенем\" Огнечрев",
+	flamebuffetabsorb2_trigger = "поглощает заклинание \"Удар пламенем\" Огнечрев",
+
+	wingbuffet_message = "Взмах крылом! Следующий через 30 секунд!",
+	wingbuffet_warning = "ПРОВОКАЦИЮ сейчас! Скоро Взмах крылом!",
+	shadowflame_warning = "Скоро Теневое пламя!",
+
+	wingbuffetcast_bar = "Взмах крылом",
+	wingbuffet_bar = "Следующий Взмах крылом",
+	wingbuffet1_bar = "Первый Взмах крылом",
+	shadowflame_bar = "Теневое пламя",
+	shadowflame_Nextbar = "Следующий Теневое пламя",
+	flamebuffet_bar = "Удар пламенем",
+
+	flamebuffet_name = "Оповещение об Ударе пламенем",
+	flamebuffet_desc = "Предупреждать когда Огнечрев применяет Удар пламенем.",
+
+	wingbuffet_name = "Оповещение о Взмахе крылом",
+	wingbuffet_desc = "Предупреждать когда Огнечрев применяет Взмах крылом.",
+
+	shadowflame_name = "Оповещение о Теневом пламени",
+	shadowflame_desc = "Предупреждать когда Огнечрев применяет Теневое пламя.",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	wingbuffet_trigger = "Faucefogo comienza a lanzar Festín de alas.",
 	shadowflame_trigger = "Faucefogo comienza a lanzar Llama de las Sombras.",

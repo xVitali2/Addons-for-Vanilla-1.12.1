@@ -43,6 +43,35 @@ L:RegisterTranslations("enUS", function() return {
 	curse_desc = "Shows a timer bar and announces who gets Shadow of Ebonroc.",
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM --Черноскал
+	wingbuffet_trigger = "Черноскал начинает использовать \"Взмах крылом\".",
+	shadowflame_trigger = "Черноскал начинает использовать \"Теневое пламя\".",
+	shadowcurseyou_trigger = "Вы находитесь под воздействием эффекта \"Тень Черноскала\"\.",
+	shadowcurseother_trigger = "(.+) находится под воздействием эффекта \"Тень Черноскала\"\.",
+	wingbuffet_message = "Взмах крылом! Следующий через 30 секунд!",
+	wingbuffet_warning = "ПРОВОКАЦИЮ сейчас! Скоро Взмах крылом!",
+	shadowflame_warning = "Скоро Теневое пламя!",
+	shadowfcurse_message_you = "На тебе Тень Черноскала!",
+	shadowfcurse_message_taunt = "%s с Тенью Черноскала! ПРОВОКАЦИЮ!",
+
+	wingbuffetcast_bar = "Взмах крылом",
+	wingbuffet_bar = "Следующий Взмах крылом",
+	wingbuffet1_bar = "Первый Взмах крылом",
+	shadowflame_bar = "Теневое пламя",
+	shadowflame_Nextbar = "Следующий Теневое пламя",
+	shadowcurse_bar = "%s - Тень Черноскала",
+	shadowcurse_Firstbar = "Первая Тень Черноскала",
+
+	wingbuffet_name = "Оповещение о Взмахе крылом",
+	wingbuffet_desc = "Предупреждает когда Черноскал применяет Взмах крылом.",
+
+	shadowflame_name = "Оповещение о Теневом пламени",
+	shadowflame_desc = "Предупреждает когда Черноскал применяет Теневое пламя.",
+
+	curse_name = "Предупреждение о Тени Черноскала",
+	curse_desc = "Отображает полосу таймера и объявляет кто получает Тень Черноскала.",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	wingbuffet_trigger = "Ebanorroca comienza a lanzar Festín de alas.",
 	shadowflame_trigger = "Ebanorroca comienza a lanzar Llama de las Sombras.",

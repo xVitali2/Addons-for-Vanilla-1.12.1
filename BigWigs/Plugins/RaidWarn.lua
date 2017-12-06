@@ -37,6 +37,26 @@ L:RegisterTranslations("enUS", function() return {
 	["Options for RaidWarning."] = true,
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["RaidWarning"] = "Объявление рейда",
+
+	["Broadcast over RaidWarning"] = "Оповещать через Объявление рейда",
+	["Broadcast"] = "Оповещение",
+	["Toggle broadcasting over Raidwarning."] = "Включить оповещение через Объявление рейда.",
+
+	["Whisper"] = "Шёпот",
+	["Whisper warnings"] = "Предупреждения шёпотом",
+	["Toggle whispering warnings to players."] = "Включить предупреждения шёпотом.",
+
+	["Show whispers"] = "Отображать шёпоты",
+	["Toggle showing whispers sent by BigWigs locally."] = "Включить отображение шёпотов от BigWigs локально.",
+
+	["Use Raidchannel"] = "Использовать канал рейда",
+	["Toggle using the raid channel instead of the raid warning channel for boss messages."] = "Включить использование канала рейда вместо канала Объявлений рейда для сообщений босса.",
+
+	["Options for RaidWarning."] = "Настройки для Объявления рейда",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	["RaidWarning"] = "Advertencia de la Banda",
 

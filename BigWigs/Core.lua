@@ -126,6 +126,7 @@ L:RegisterTranslations("ruRU", function() return { --by CFM
 	["Naxxramas"] = "Наксрамас",
 	["Silithus"] = "Силитус",
 	["Outdoor Raid Bosses"] = "Внешние",
+	["Outdoor Raid Bosses Zone"] = "ВнешниеБоссы", -- DO NOT EVER TRANSLATE untill I find a more elegant option
 
 	--Name for exception bosses (neutrals that enable modules)
 	["Vaelastrasz the Corrupt"] = "Валестраз Порочный",

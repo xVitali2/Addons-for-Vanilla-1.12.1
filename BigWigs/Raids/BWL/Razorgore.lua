@@ -11,7 +11,8 @@ local module, L = BigWigs:ModuleDeclaration("Razorgore the Untamed", "Blackwing 
 
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Razorgore",
-
+	
+	casts_DestroyEgg = "casts Destroy Egg", --by CFM
 	start_trigger = "Intruders have breached",
 	start_message = "Phase 1",
 	mobs_soon = "First Wave in 5sec!",
@@ -87,6 +88,76 @@ L:RegisterTranslations("enUS", function() return {
 	icon_cmd = "icon",
 	icon_name = "Raid Icon on Mind Control",
 	icon_desc = "Place a raid icon on the mind controlled player for the duration of the debuff.\n\n(Requires assistant or higher)",
+} end)
+
+L:RegisterTranslations("ruRU", function() return { --by CFM --Бритвосмерт Неукротимый
+	casts_DestroyEgg = "применяет заклинание \"Уничтожение яйца\".", --by CFM
+	start_trigger = "Intruders have breached", --Враги в инкубаторе! Бейте тревогу! Защищайте яйца любой ценой! --в скрипте босса нет такого крика...
+	start_message = "Фаза 1",
+	mobs_soon = "Первая Волна через 5 секунд!",
+	mobs_bar = "Первая Волна",
+	orbcontrolother_trigger = "(.+) находится под воздействием эффекта \"Изнурение разума\"\.",
+	orbcontrolyou_trigger = "Вы находитесь под воздействием эффекта \"Изнурение разума\"\.",
+	mindcontrolother_trigger = "(.+) находится под воздействием эффекта \"Господство над разумом\"\.",
+	mindcontrolyou_trigger = "Вы находитесь под воздействием эффекта \"Господство над разумом\"\.",
+	mindcontrol_message = "%s подчинен!",
+	mindcontrol_message_you = "Вы подчинены!",
+	mindcontrol_bar = "Подчинение: %s",
+	mindcontrolyouend_trigger = "Действие эффекта \"Господство над разумом\", наложенного на вас, заканчивается\.",
+	mindcontrolotherend_trigger = "Действие эффекта \"Господство над разумом\", наложенного на (.+), заканчивается\.",
+	polymorphother_trigger = "(.+) находится под воздействием эффекта \"Могущественное превращение\"\.",
+	polymorphyou_trigger = "Вы находитесь под воздействием эффекта \"Могущественное превращение\"\.",
+	polymorph_message = "%s превращен! Развей!",
+	polymorph_message_you = "Вы превращены!",
+	polymorph_bar = "Превращение: %s",
+	polymorphyouend_trigger = "Действие эффекта \"Могущественное превращение\", наложенного на вас, заканчивается\.",
+	polymorphotherend_trigger = "Действие эффекта \"Могущественное превращение\", наложенного на (.+), заканчивается\.",
+	deathyou_trigger = "Вы умерли\.",
+	deathother_trigger = "(.+) погибает\.",
+	egg_trigger = "Бритвосмерт Неукротимый начинает использовать \"Уничтожение яйца\"\.",
+	egg_message = "%d/30 яиц разрушены!",
+	egg_bar = "Уничтожение яйца",
+	-- there is no clear phase2 trigger
+	phase2_trigger = "I'm free! That device shall never torment me again!", --Я свободен! Эта адская машина больше не будет меня мучить! --не переведено на Light's hope
+	phase2_message = "Фаза 2",
+	volley_trigger = "Бритвосмерт Неукротимый начинает использовать \"Град огненных шаров\.",
+	volley_bar = "Град огненных шаров",
+	volley_message = "Прячьтесь!",
+	conflagration_trigger = "под воздействием эффекта \"Воспламенение\"",
+	conflagration_bar = "Воспламенение",
+	warstomp_bar = "Громовая поступь",
+	orb_bar = "Управление шаром: %s",
+	destroyegg_yell1 = "You'll pay for forcing me to do this!", --Ты заплатишь за то, что принуждал меня к этому! --не переведено на Light's hope
+	destroyegg_yell2 = "Fools! These eggs are more precious than you know!", --Недоумки! Эти яйца ценнее, чем вы думаете! --не переведено на Light's hope
+	destroyegg_yell3 = "I'll have your heads for this atrocity!", --Да сколько же можно?! Вы заплатите за это головой! --не переведено на Light's hope
+	["Eggs destroyed"] = "Яйца разрушены",
+
+	mc_name = "Подчинение",
+	mc_desc = "Объявляет кто подчинен и запускает полосу с возможностью нажатия для выбора.",
+
+	eggs_name = "Яйца",
+	eggs_desc = "Использует счетчик для разрушенных Яиц Черного Дракона.",
+
+	phase_name = "Фаза",
+	phase_desc = "Предупреждает о смене фазы.",
+
+	mobs_name = "Первая волна",
+	mobs_desc = "Отображает когда первая волна вызванных существ.",
+
+	orb_name = "Управление шаром",
+	orb_desc = "Отображает кто управляет боссом и запускает полосу с возможностью нажатия для выбора.",
+
+	fireballvolley_name = "Град огненных шаров",
+	fireballvolley_desc = "Оповещает когда босс применяет Град огненных шаров.",
+
+	conflagration_name = "Воспламенение",
+	conflagration_desc = "Запускает полосу с длительностью Воспламенения.",
+
+	polymorph_name = "Могущественное превращение",
+	polymorph_desc = "Сообщает вам кто превращен Гретоком Регулятором и запускает полосу с возможностью нажатия для выбора.",
+
+	icon_name = "Значок рейда на подчиненных",
+	icon_desc = "Устанавливает значок рейда на подчиненного игрока по длительности эффекта.\n\n(Требуется помощник или лидер)",
 } end)
 
 L:RegisterTranslations("esES", function() return {
@@ -367,7 +438,7 @@ function module:CHAT_MSG_SPELL_FRIENDLYPLAYER_BUFF(msg)
 end
 
 function module:CHAT_MSG_MONSTER_EMOTE(msg)
-	if string.find(msg, "casts Destroy Egg") then
+	if string.find(msg, L["casts_DestroyEgg"]) then
 		-- as of now, this does also fire on finished 'Destroy Egg' cast.
 		-- but only after a successful one and the range is shitty of this emote.
 		self:Sync(syncName.egg .. " " .. tostring(self.eggs + 1))

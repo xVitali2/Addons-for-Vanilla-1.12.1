@@ -38,6 +38,29 @@ L:RegisterTranslations("enUS", function() return {
 	["skull"] = true,
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["Raid Icons"] = "Значки рейда",
+
+	["Place"] = "Место",
+	["Place Raid Icons"] = "Позиция значков рейда",
+	["Toggle placing of Raid Icons on players."] = "Включить размещение значков рейда на игроках.",
+
+	["Icon"] = "Значок",
+	["Set Icon"] = "Установить значок",
+	["Set which icon to place on players."] = "Установить значок для размещения на игроках.",
+
+	["Options for Raid Icons."] = "Настройки для значков рейда.",
+	
+	["star"] = "звезда",
+	["circle"] = "круг",
+	["diamond"] = "ромб",
+	["triangle"] = "треугольник",
+	["moon"] = "месяц",
+	["square"] = "квадрат",
+	["cross"] = "крест",
+	["skull"] = "череп",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	["Raid Icons"] = "Iconos de Banda",
 

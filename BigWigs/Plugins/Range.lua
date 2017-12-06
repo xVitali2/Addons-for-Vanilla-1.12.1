@@ -42,6 +42,29 @@ L:RegisterTranslations("enUS", function() return {
 	["Resets all ranges to defaults."] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["Range"] = "Дальность",
+	["Options for the combat log's range."] = "Настройки для дальности журнала боя.",
+
+	["Party"] = "Группа",
+	["Party combat log range."] = "Дальность журнала боя группы.",
+
+	["Friendlies"] = "Друзья",
+	["Friendly players combat log range."] = "Дальность журнала боя друзей.",
+
+	["Hostiles"] = "Враги",
+	["Hostile players combat log range."] = "Дальность журнала боя вражеских игроков.",
+
+	["Creatures"] = "Существа",
+	["Creature combat log range."] = "Дальность журнала боя существ.",
+
+	["Deaths"] = "Смерти",
+	["Death message range."] = "Дальность сообщений о смерти.",
+
+	["Reset to defaults"] = "Сброс до стандартных",
+	["Resets all ranges to defaults."] = "Сброс все дальности на стандартные.",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	["Range"] = "Rango",
 	--["range"] = true,

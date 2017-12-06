@@ -60,9 +60,50 @@ L:RegisterTranslations("enUS", function() return {
 	["Fireball"] = true,
 	["Scorch"] = true,
 	["Fire Blast"] = true,
-	["Blastwave"] = true,
+	["Blast Wave"] = true,
 	["Flamestrike"] = true,
 	["Pyroblast"] = true,
+} end)
+
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["Show Warnings"] = "Отображать внимание",
+	["Show Warnings from other players even if the frame is hidden."] = "Отображать внимание от других игроков даже если окно скрыто.",
+	["Ignite"] = "Воспламенение",
+	["Disabled"] = "Выключен",
+	["Options for the ignite Display."] = "Настройка для отображения Воспламенения.",
+	["Show frame"] = "Отобразить окно",
+	["Show the ignite frame."] = "Отображать окно Воспламенения.",
+	["Lock frame"] = "Заблокировать окно",
+	["Lock the ignite frame."] = "Заблокировать окно Воспламенения.",
+	["Reset position"] = "Сброс позиции",
+	["Reset the frame position."] = "Сброс расположения окна.",
+	["Send Stop"] = "Отослать стоп",
+	["Send Stop messages to all raid members"] = "Посылает сообщение СТОП всеми членам рейда",
+	["font"] = "Fonts\\FRIZQT__.TTF",
+	["Always show in raid"] = "Всегда отображать в рейде",
+	["Always show in raid after ignite tick"] = "Всегда отображать в рейде после Урона от Воспламенения",
+
+	["Stacks"] = "Стаки",
+	["Damage"] = "Урон",
+	["Owner"] = "Владелец",
+	["Threat"] = "Угроза",
+	["n/a"] = "н/и", -- no threat data available
+	["Stop"] = "Стоп",
+	["your"] = "вашего заклинания",
+	["Your"] = "Ваш",
+
+	fire_test = "^(.+) ([%w]+)([%s]*) наносит (.+) ([%d]+) ед. урона (([%w]+)): критический эффект.",
+	ignite_stack_test = "^(.+) находится под воздействием эффекта \"Воспламенение\".[%s%(]*([%d]*)",
+	ignite_damage_test = "^(.+) получает ([%d]+) ед. урона (Огонь) от заклинания \"Воспламенение\" ([%w]+)([%s]*).", 
+	ignite_resist = "поглощено: ([%d]+)", 
+	ignite_fade_test = "^Действие эффекта \"Воспламенение\", наложенного на (.+)", 
+
+	["Fireball"] = "Огненный шар",
+	["Scorch"] = "Ожог",
+	["Fire Blast"] = "Огненный взрыв",
+	["Blast Wave"] = "Взрывная волна",
+	["Flamestrike"] = "Огненный столб",
+	["Pyroblast"] = "Огненная глыба",
 } end)
 
 L:RegisterTranslations("esES", function() return {
@@ -101,7 +142,7 @@ L:RegisterTranslations("esES", function() return {
 	["Fireball"] = "Bola de Fuego",
 	["Scorch"] = "Chamuscar",
 	["Fire Blast"] = "Explosión de Fuego",
-	["Blastwave"] = "Ola explosiva",
+	["Blast Wave"] = "Ola explosiva",
 	["Flamestrike"] = "Fogonazo",	
 	["Pyroblast"] = "Piroexplosión",
 } end)
@@ -138,7 +179,7 @@ L:RegisterTranslations("deDE", function() return {
 	["Fireball"] = "Feuerball",
 	["Scorch"] = "Versengen",
 	["Fire Blast"] = "Feuerschlag",
-	["Blastwave"] = "Druckwelle",
+	["Blast Wave"] = "Druckwelle",
 	["Flamestrike"] = "Flammenstoss",
 	["Pyroblast"] = "Pyroschlag",
 } end)

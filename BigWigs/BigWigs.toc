@@ -8,7 +8,7 @@
 ## Notes-zhTW: 團隊首領戰訊息提示插件，帶有計時條。
 ## Author: Tekkub Stoutwrithe, Ammo, Shyva, Rabbit, LYQ, Dorann, Hosq, ruRUbyCFM & Others
 ## Version: 2.0.1
-## X-Website: https://github.com/Hosq/BigWigs
+## X-Website: https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases
 ## X-Category: Raid
 ## X-RelSite-WoWI: 5086
 ## X-RelSite-Curse: 4356

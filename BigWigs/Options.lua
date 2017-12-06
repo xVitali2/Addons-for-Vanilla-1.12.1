@@ -39,6 +39,8 @@ L:RegisterTranslations("ruRU", function() return {
 	["|cffeda55fClick|r to enable."] = "|cffeda55fШёлкните|r, чтобы включить.",
 	["Big Wigs is currently disabled."] = "Big Wigs в данный момент отключен",
 	["Active boss modules"] = "Активные модули боссов:",
+	["hidden"] = "скрыт",
+	["shown"] = "отображен",
 	["Minimap"] = "Мини-карта",
 	["Toggle the minimap button."] = "Вкл/Выкл кнопку у мини-карты",
 	["All running modules have been reset."] = "Все запущенные модули сброшены",
@@ -46,7 +48,7 @@ L:RegisterTranslations("ruRU", function() return {
 	["All running modules have been disabled."] = "Все запущенные модули отключены",
 	["%s reset."] = "%s сброшен.",
 	["%s disabled."] = "%s отключен.",
-	["%s icon is now %s."] = "%s метка теперь на %s.",
+	["%s icon is now %s."] = "Значок на %s %s.",
 	["Show it again with /bw plugin minimap."] = "Чтобы вновь отобразить кнопку, введите команду /bw plugin minimap",
 	["You need to be an assistant or raid leader to use this function."] = "Вам нужно быть помощником или рейд лидером для использования этой возможности.",
 } end)

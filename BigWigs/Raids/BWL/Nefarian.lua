@@ -102,6 +102,90 @@ L:RegisterTranslations("enUS", function() return {
 	["Drakonids dead"] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM --Нефариан
+	engage_trigger = "Let the games begin!", --Ну что ж, поиграем! -- не переведено на Light's hope
+	landing_trigger = "Enough! Now you", -- не переведено на Light's hope
+	landingNOW_trigger = "courage begins to wane", --Смертные утрачивают мужество! -- не переведено на Light's hope
+	zerg_trigger = "Impossible! Rise my", --Не может быть! Восстаньте, мои прислужники! Послужите господину еще раз! -- не переведено на Light's hope
+	fear_trigger = "Нефариан начинает использовать \"Раскатистый рев\"",
+	fear_over_trigger = "Раскатистый рев",
+	shadowflame_trigger = "Нефариан начинает использовать \"Теневое пламя\".",
+	shadowcurseyou_trigger = "Вы находитесь под воздействием эффекта \"Пелена Тени\"\.",
+	shadowcurseother_trigger = "(.+) находится под воздействием эффекта \"Пелена Тени\"\.",
+
+	triggerfear = "от Паники.",
+	land = "Предполагаемая посадка",
+	Mob_Spawn = "Вызов существ",
+	fear_warn = "Страх сейчас!",
+
+	triggershamans	= "Shamans, show me", --Шаманы, покажите, на что способны ваши тотемы! --не переведено на Light's hope
+	triggerdruid	= "Druids and your silly", --Друиды и их дурацкие превращения... Ну что ж, поглядим! --не переведено на Light's hope
+	triggerwarlock	= "Warlocks, you shouldn't be playing", --Чернокнижники, ну не беритесь вы за волшебство, которого сами не понимаете! Видите, что получилось? --не переведено на Light's hope
+	triggerpriest	= "Priests! If you're going to keep", --Жрецы! Если вы собираетесь продолжать так лечить, то давайте хоть немного разнообразим процесс!
+	triggerhunter	= "Hunters and your annoying", --Охотники со своими жалкими пугачами! --не переведено на Light's hope
+	triggerwarrior	= "Warriors, I know you can hit harder", --Я знаю, воины, вы можете бить сильнее! Ну-ка, покажите! --не переведено на Light's hope
+	triggerrogue	= "Rogues%? Stop hiding", --Разбойники%? Хватит прятаться, покажитесь! --не переведено на Light's hope
+	triggerpaladin	= "Paladins", --Паладины... Я слышал, у вас несколько жизней. Докажите. --не переведено на Light's hope
+	triggermage		= "Mages too%?", --И маги тоже%? Осторожнее надо быть, когда играешь с магией... --не переведено на Light's hope
+
+	landing_warning = "Нефариан приземлился!",
+	zerg_warning = "Скоро используй всю силу!",
+	fear_warning = "Страх через 2 секунды!",
+	fear_soon_warning = "Возможный Страх через ~5 секунд",
+	shadowflame_warning = "Скоро Теневое пламя!",
+	shadowflame_bar = "Теневое пламя",
+	classcall_warning = "Скоро Вызов класса!",
+
+	warnshaman	= "Шаманы - Вызваны тотемы!",
+	warndruid	= "Друиды - Застряли в форме кошки!",
+	warnwarlock	= "Чернокнижники - Инферналы прибывают!",
+	warnpriest	= "Жрецы - Исцеления вредят!",
+	warnhunter	= "Охотники - Луки/Оружия сломаны!",
+	warnwarrior	= "Воины - Застряли в стойке берсерка!",
+	warnrogue	= "Разбойники - Телепортированы и скованы!",
+	warnpaladin	= "Паладины - Благословение защиты!",
+	warnmage	= "Маги - Используют превращения!",
+
+	classcall_bar = "Вызов класса",
+	fear_bar = "Возможный Страх",
+
+	curse_bar = "Пелена Тени",
+
+	shadowflame_name = "Оповещение о Теневом пламени",
+	shadowflame_desc = "Предупреждает о Теневом пламени.",
+
+	fear_name = "Предупреждение о Страхе",
+	fear_desc = "Предупреждает когда Нефариан использует Массовый Страх.",
+
+	classcall_name = "Оповещение о Вызове класса",
+	classcall_desc = "Предупреждает о Вызове класса.",
+
+	otherwarn_name = "Другие оповещения",
+	otherwarn_desc = "Предупреждает о Приземлении и Использовании всей своей силы.",
+
+	curse_name = "Пелена Тени",
+	curse_desc = "Отображает полосу таймера для Пелены Тени.",
+
+	mc_name = "Оповещение о Подчинении",
+	mc_desc = "Предупреждение о Подчинении",
+	mcwarn = "Применение Подчинения!",
+	mcplayer = "^([^%s]+) ([^%s]+) под воздействием эффекта \"Теневой приказ\".$",
+	mcplayerwarn = " под контролем!",
+	mcyou = "Вы",
+	mcare = "находитесь",
+
+	-- nef counter
+	["NefCounter_Trigger"] = "^([%w ]+) погибает.",
+
+	["NefCounter_RED"] = "Красный драконид",
+	["NefCounter_GREEN"] = "Зеленый драконид",
+	["NefCounter_BLUE"] = "Синий драконид",
+	["NefCounter_BRONZE"] = "Бронзовый драконид",
+	["NefCounter_BLACK"] = "Черный драконид",
+	["NefCounter_CHROMATIC"] = "Хроматический драконид",
+	["Drakonids dead"] = "Дракониды мертвы",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	engage_trigger = "Let the games begin!",
 	landing_trigger = "Enough! Now you",

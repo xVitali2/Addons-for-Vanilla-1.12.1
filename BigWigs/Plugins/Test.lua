@@ -30,6 +30,24 @@ L:RegisterTranslations("enUS", function() return {
 	["Testing Sync"] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["Test"] = "Проверка",
+	["Test Bar"] = "Проверка полосы",
+	["Test Bar 2"] = "Проверка полосы 2",
+	["Test Bar 3"] = "Проверка полосы 3",
+	["Test Bar 4"] = "Проверка полосы 4",
+	["Testing"] = "Идёт проверка",
+	["OMG Bear!"] = "Ох, Медведь",
+	["*RAWR*"] = "*РРР*",
+	["Victory!"] = "Победа!",
+	["Options for testing."] = "Настройки для проверки.",
+	["Local test"] = "Локальная проверка",
+	["Perform a local test of BigWigs."] = "Выполняет локальную проверку BigWigs.",
+	["Sync test"] = "Синхронизированная проверка",
+	["Perform a sync test of BigWigs."] = "Выполняет синхронизированную проверку BigWigs.",
+	["Testing Sync"] = "Идёт синхронизированная проверка",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	--["test"] = true,
 	["Test"] = "Probar",

@@ -72,6 +72,51 @@ L:RegisterTranslations("enUS", function() return {
 	resist_test = "^Your Fire Vulnerability was resisted by (.+).",
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["Bars"] = "Полосы",
+
+	["Gives timer for Scorch Fire Vulnerability."] = "Запускает таймер для Уязвимость к огню от Ожога.",
+	["Enable"] = "Включить",
+	["Enable timers."] = "Включить таймеры.",
+	["Target only"] = "Только цель",
+	["Only show timer for the current target."] = "Отображать таймер для текущей цели только.",
+	["Show the bar anchor frame."] = "Отображать якорь окна полос.",
+	["Set the bar scale."] = "Установить масштаб полосы.",
+	["Group upwards"] = "Распологать вверх/вниз",
+	["Toggle bars grow upwards/downwards from anchor."] = "Переключать расположение полос вверх или вниз от якоря.",
+
+	["Timer bars"] = "Полосы таймера",
+	["Show anchor"] = "Отображать якорь",
+	["Grow bars upwards"] = "Полосы распологаются вверх",
+	["Scale"] = "Масштаб",
+	["Bar scale"] = "Масштаб полосы",
+
+	["Bars now grow %2$s"] = "Полосы сейчас распологаются %2$s",
+	["Scale is set to %2$s"] = "Масштаб установлен на %2$s",
+
+	["Up"] = "Вверх",
+	["Down"] = "Вниз",
+
+	["Test"] = "Проверка",
+	["Close"] = "Закрыть",
+
+	["Texture"] = "Текстура",
+	["Set the texture for the timerbars."] = "Установить текстуру для полос таймеров.",
+
+	["Reset position"] = "Сброс расположения",
+	["Reset the anchor position, moving it to the center of your screen."] = "Сброс расположения якоря, перемещает в центр экрана.",
+	["Reverse"] = "Заполнение",
+	["Toggles if bars are reversed (fill up instead of emptying)."] = "Включить заполнение полос вместо опустошения.",
+
+	["ScorchTimer"] = "ТаймерОжога",
+
+	["Scorch Timer"] = "Таймер ожога",
+
+	firevuln_test = "(.+) находится под воздействием эффекта \"Уязвимость к огню\".",
+	scorch_test	= "^Ваше заклинание \"Ожог\" наносит (.+)",
+	resist_test = "^(.+) сопротивляется вашему заклинанию \"Уязвимость к огню\".",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	["Bars"] = "Barras",
 

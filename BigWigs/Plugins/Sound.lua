@@ -52,6 +52,16 @@ L:RegisterTranslations("enUS", function() return {
 	["Use only the default sound."] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["Sounds"] = "Звуки",
+	["Options for sounds."] = "Настройки для звуков.",
+
+	["Use sounds"] = "Использовать звуки",
+	["Toggle sounds on or off."] = "Включить звуки.",
+	["Default only"] = "Только стандартные",
+	["Use only the default sound."] = "Использовать только стандартные звуки.",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	["Sounds"] = "Sonidos",
 	--["sounds"] = true,

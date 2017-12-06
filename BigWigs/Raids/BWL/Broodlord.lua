@@ -43,6 +43,35 @@ L:RegisterTranslations("enUS", function() return {
 	bw_desc = "Shows a bar with the possible Blast Wave cooldown.\n\n(Disclaimer: this varies anywhere from 8 to 15 seconds. Chosen shortest interval for safety.)",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+
+	engage_trigger = "None of your kind should be here", -- Таких, как вы, здесь быть не должно! Смерть грозит лишь вам! -- не переведено на Light's hope
+	ms_trigger = "^(.+) находит(.+) под воздействием эффекта \"Смертельный удар\"",
+	bw_trigger = "^(.+) находит(.+) под воздействием эффекта \"Взрывная волна\"",
+	deathyou_trigger = "Вы умерли\.",
+	deathother_trigger = "(.+) погибает\.",
+	ms_warn_you = "Смертельный удар на тебе!",
+	ms_warn_other = "Смертельный удар на %s!",
+	bw_warn = "Скоро Взрывная волна!",
+	ms_bar = "Смертельный удар: %s",
+	bw_bar = "Взрывная волна",
+	knock_bar = "Отталкивание",
+
+	["First Mortal Strike"] = "Первый Смертельный удар",
+
+	you = "Вы",
+	are = "находитесь",
+
+	ms_name = "Смертельный удар",
+	ms_desc = "Предупреждает когда кто-либо получает Смертельный удар и запускает нажимаемую полосу для простого выбора.",
+
+	knock_name = "Отталкивание",
+	knock_desc = "Отображает полосу с возможной перезарядкой Отталкивания.",
+
+	bw_name = "Взрывная волна",
+	bw_desc = "Отображает полосу с возможной перезарядкой Взрывной волны.\n\n(Варьируется от 8 до 15 секунд. Выбран самый короткий интервал для безопасности.)",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Broodlord",
 

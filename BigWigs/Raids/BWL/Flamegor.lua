@@ -45,6 +45,36 @@ L:RegisterTranslations("enUS", function() return {
 	frenzy_desc = "Warn when Flamegor is frenzied.",
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM --Пламегор
+	wingbuffet_trigger = "Пламегор начинает использовать \"Взмах крылом\".",
+	shadowflame_trigger = "Пламегор начинает использовать \"Теневое пламя\".",
+	frenzygain_trigger = "Пламегор получает эффект \"Исступление\".",
+	frenzygain_trigger2 = "Пламегор goes into a frenzy!", --Пламегор впадает в бешенство! -- не переведено на Light's hope
+	frenzyend_trigger = "Действие эффекта \"Исступление\", наложенного на Пламегор, заканчивается.",
+
+	wingbuffet_message = "Взмах крылом! Следующий через 30 секунд!",
+	wingbuffet_warning = "ПРОВОКАЦИЮ сейчас! Скоро Взмах крылом!",
+	shadowflame_warning = "Скоро Теневое пламя!",
+	frenzy_message = "Исступление! Усмиряющий выстрел!",
+	frenzy_bar = "Исступление",
+	frenzy_Nextbar = "Следующее Исступление",
+
+	wingbuffetcast_bar = "Взмах крылом",
+	wingbuffet_bar = "Следующий Взмах крылом",
+	wingbuffet1_bar = "Первый Взмах крылом",
+	shadowflame_bar = "Теневое пламя",
+	shadowflame_Nextbar = "Следующее Теневое пламя",
+
+	wingbuffet_name = "Оповещение о Взмахе крылом",
+	wingbuffet_desc = "Предупреждать когда Пламегор применяет Взмах крылом.",
+
+	shadowflame_name = "Оповещение о Теневом пламени",
+	shadowflame_desc = "Предупреждать когда Пламегор применяет Теневое пламя.",
+
+	frenzy_name = "Оповещение об Исступлении",
+	frenzy_desc = "Предупреждать когда Пламегор в Исступлении.",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	wingbuffet_trigger = "Flamagor comienza a lanzar Festín de alas.",
 	shadowflame_trigger = "Flamagor comienza a lanzar Llama de las Sombras.",

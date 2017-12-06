@@ -19,6 +19,18 @@ L:RegisterTranslations("enUS", function() return {
 	["Bars"] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	CHAT_MSG_SPELL_SELF_BUFF = "Вам не удалось развеять заклинание (.+) \"Исступление\".",
+	CHAT_MSG_SPELL_SELF_DAMAGE = "Вы применяете заклинание \"Усмиряющий выстрел\" на (.+).",
+
+	["Tranq - %s"] = "Усмиряющий выстрел - %s",
+	["%s's Tranq failed!"] = "Неудача Усмиряющего выстрела %s!",
+	["Tranq"] = "Усмиряющий_выстрел",
+	["Options for the tranq module."] = "Настройки для модуля Усмиряющий выстрел.",
+	["Toggle tranq bars on or off."] = "Включить полосы Усмиряющего выстрела.",
+	["Bars"] = "Полосы",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	CHAT_MSG_SPELL_SELF_BUFF = "Fallas de disipar el Frenesí de (.+) ",
 	CHAT_MSG_SPELL_SELF_DAMAGE = "Lanzas Disparo tranquilizante al (.+).",

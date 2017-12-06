@@ -58,6 +58,46 @@ L:RegisterTranslations("enUS", function() return {
 	icon_desc = "Marks the player with Burning Adrenaline for easier localization.\n\n(Requires assistant or higher)",
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM --Валестраз Порочный
+
+	adrenaline_trigger = "^(.+) (.+) под воздействием эффекта \"Горящий адреналин\"\.",
+	start_trigger = "находит(.+) под воздействием эффекта \"Сущность красных драконов\".",
+	flamebreath_trigger = "Валестраз Порочный начинает использовать \"Пламенное дыхание\"\.",
+	yell1 = "^Too late, friends", --Умоляю, смертные! Бегите! Бегите, пока я еще могу себя удержать! Черный огонь бушует в моем сердце! Я должен... дать ему волю! --не переведено на Light's hope
+	yell2 = "^I beg you, mortals", --Пламя! Смерть! Разрушение! Смертные, склонитесь перед гневом господина... Нет! Я должен... устоять! Алекстраза! Помоги мне... Я не должен сдаваться! --не переведено на Light's hope
+	yell3 = "^FLAME! DEATH! DESTRUCTION!", --ОГОНЬ! СМЕРТЬ! РАЗРУШЕНИЕ! Трепещите, смертные, перед гневом Владыки... Нет, я должен сражаться! Алекстраза, помоги, я ДОЛЖЕН сражаться! --не переведено на Light's hope
+	start_bar = "Начало",
+	tankburn_bar = "Танк горит",
+	adrenaline_bar = "Горящий адреналин: %s",
+	breath_bar = "Пламенное дыхание",
+	breath_message = "Применение Пламенного дыхания!",
+	tankburnsoon = "Горящий адреналин на танке через 5 секунд!",
+	adrenaline_message = "%s с Горящим адреналином!",
+	adrenaline_message_you = "Ты с Горящим адреналином! Уходи прочь!",
+	deathyou_trigger = "Вы умерли\.",
+	deathother_trigger = "(.+) погибает\.",
+
+	are = "находитесь",
+
+	start_name = "Начало",
+	start_desc = "Запускает полосу для оценки начала боя.",
+
+	flamebreath_name = "Пламенное дыхание",
+	flamebreath_desc = "Предупреждает когда босс использует Пламенное дыхание.",
+
+	adrenaline_name = "Горящий адреналин",
+	adrenaline_desc = "Объявляет кто получил Горящий адреналин и запускает полосу, с возможность нажатия для выбора.",
+
+	whisper_name = "Шёпот",
+	whisper_desc = "Шепот игрокам с Горящим адреналином, сказав им уходи прочь.",
+
+	tankburn_name = "Танк горит",
+	tankburn_desc = "Отображает полосу для Горящего адреналина, который будет применен на цель босса.",
+
+	icon_name = "Значок рейда",
+	icon_desc = "Отмечает игрока с Горящим адреналином.\n\n(Требуется помощник или лидер)",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Vaelastrasz",
 

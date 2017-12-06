@@ -39,6 +39,27 @@ L:RegisterTranslations("enUS", function() return {
 	["Enable timers"] = true,
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	onyHeadHorde_trigger = "Народы Орды, жители Оргриммара! Приходите, собирайтесь и поздравляйте героя Орды! В этот день",
+	nefHeadHorde_trigger = "НЕФАРИАН УБИТ! Жители Оргриммара, вот",
+
+	onyHeadAlliance_trigger = "Граждане и союзники Штормграда, в этот день вершилась история.",
+	nefHeadAlliance_trigger = "Граждане Альянса! Владыка Черной горы повержен!",
+
+	zgHeart_trigger = "Now, only one step remains to rid us of the Soulflayer's threat...",--Теперь остался лишь один шаг до избавления от Свежевателя Душ... --не переведено на LH
+	rendHead_trigger = "Чествуйте своих героев! Сегодня они нанесли сокрушающий удар нашим самым ненавистным врагам! Самозванец Ренд Чернорук мертв!",
+
+	dragonslayer = "Ободряющий клич Драконоборца",
+	zandalar = "Дух Зандалара",
+	blessing = "Благословление вождя",
+
+	["World Buff Timers"] = "Мировые положительные эффекты",
+	["Gives timer bars to see when world buffs are going out."] = "Отображает полосы таймеров когда мировые положительные эффекты истекают.",
+
+	["Enable"] = "Включить",
+	["Enable timers"] = "Включить таймеры",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	onyHeadHorde_trigger = "People of the Horde, citizens of Orgrimmar, come, gather round and celebrate a hero of the Horde. On this day",
 	nefHeadHorde_trigger = "NEFARIAN IS SLAIN! People of Orgrimmar, bow down before the might of",

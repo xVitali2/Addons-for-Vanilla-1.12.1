@@ -65,6 +65,50 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["Respawn Timers"] = "Таймеры появления",
+	["Respawn timer bars and warnings for trash mobs."] = "Таймер появления и предупреждения для вызванных существ.",
+
+	["Bars"] = "Полосы",
+	["Toggles showing bars for respawn times."] = "Включить отображение полос для таймеров повления.",
+
+	["Messages"] = "Сообщения",
+	["Toggles showing messages for respawn times."] = "Включить отображение сообщений для таймеров появления.",
+
+	["%s %d respawns in %d sec"] = "%s %d появление через %d сек.",
+	["%s %d respawned!"] = "%s %d появился!",
+	["Respawn: %s %d"] = "Появление: %s %d",
+
+	-- Molten Core Triggers
+	["Ancient Core Hound"] = "Древняя гончая Недр",
+	["Lava Annihilator"] = "Лавовый уничтожитель",
+	["Lava Surger"] = "Лавовый волноплеск",
+	["Firelord"] = "Повелитель огня",
+	["Firewalker"] = "Огнеход", -- Lava Pack
+	["%s collapses and begins to smolder."] = "%s collapses and begins to smolder.", --%s падает и начинает тлеть. -- не переведено на LH -- Hound Pack, emote.
+	-- Molten Core Messages
+	["Corehound"] = "Гончая",
+	["Annihilator"] = "Уничтожитель",
+	["Surger"] = "Волноплеск",
+	-- Firelord == Firelord.
+	["Lavapack"] = "ЛавовыеСущества",
+	["Houndpack"] = "Гончие",
+
+	-- AQ Triggers
+	["Obsidian Eradicator"] = "Обсидиановый искоренитель",
+	["Anubisath Sentinel"] = "Анубисат-часовой",
+	-- AQ Messages
+	["Eradicator"] = "Искоренитель",
+	["Sentinel"] = "Часовой",
+
+	-- BWL Triggers
+	["Death Talon Hatcher"] = "Гнездовая Когтя Смерти",
+	["Blackwing Taskmaster"] = "Надсмотрщик из логова Крыла Тьмы",
+	-- BWL Messages
+	["Death Talon"] = "Гнездовая",
+	["Taskmaster"] = "Надсмотрщик",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--["respawntimers"] = "respawntimers",
 	["Respawn Timers"] = "Temporizador de Respawn",

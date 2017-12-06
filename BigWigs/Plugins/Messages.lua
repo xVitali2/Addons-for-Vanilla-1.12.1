@@ -59,6 +59,46 @@ L:RegisterTranslations("enUS", function() return {
 	["Close"] = true,
 } end)
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	["Messages"] = "Сообщения",
+
+	["Options for the message frame."] = "Настройки отображения сообщений.",
+	["Anchor"] = "Якорь",
+	["Show the message anchor frame."] = "Отображение якоря окна сообщений.",
+	["Use RaidWarning"] = "Использовать Объявление Рейду",
+	["Toggle sending messages to the RaidWarnings frame."] = "Использовать отправку сообщений в Объявление Рейду.",
+	["Use colors"] = "Использовать цвета",
+	["Toggles white only messages ignoring coloring."] = "Переключает только белые сообщения, игнорируя окраску.",
+	["Message frame scale"] = "Масштаб окна сообщений",
+
+	["Message frame"] = "Окно сообщений",
+	["Show anchor"] = "Отображать якорь",
+	["Send messages to RaidWarning frame"] = "Отправлять сообщения в Объявление Рейду",
+	["Set the message frame scale."] = "Установить масштаб окна сообщений.",
+	["Colorize messages"] = "Цветные сообщения",
+	["Scale"] = "Масштаб",
+
+	["|cffff0000Co|cffff00fflo|cff00ff00r|r"] = "|cffff0000Ц|cffff00ffве|cff00ff00т|r",
+	["White"] = "Белый",
+	["BigWigs frame"] = "Окно BigWigs",
+	["RaidWarning frame"] = "Окно Объявления Рейду",
+	["Scale is set to %s"] = "Масштаб установлен на %s",
+	["Messages are now sent to the %2$s"] = "Теперь сообщения отправляются %2$s",
+	["Messages are currently sent to the %2$s"] = "Сообщения отправляются в %2$s",
+
+	["Display"] = "Отображение",
+	["Set where messages are displayed."] = "Установить место отображения сообщений.",
+	["Display is now set to %2$s"] = "Теперь отображение установлено на %2$s",
+	["Display is currently set to %2$s"] = "Отображение установлено на %2$s",
+
+	["Mik's Scrolling Battle Text"] = "Mik's Scrolling Battle Text",
+	["Scrolling Combat Text"] = "Scrolling Combat Text",
+	["Floating Combat Text"] = "Floating Combat Text",
+
+	["Test"] = "Проверка",
+	["Close"] = "Закрыть",
+} end)
+
 L:RegisterTranslations("esES", function() return {
 	["Messages"] = "Mensajes",
 
