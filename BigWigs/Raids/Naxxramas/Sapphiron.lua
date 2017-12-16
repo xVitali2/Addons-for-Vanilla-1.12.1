@@ -58,6 +58,47 @@ L:RegisterTranslations("enUS", function() return {
 	proximity_desc = "Show Proximity Warning Frame",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital --Сапфирон
+	deepbreath_name = "Оповещение о Дыхании льда",
+	deepbreath_desc = "Предупреждает когда босс использует Дыхание льда.",
+
+	lifedrain_name = "Похищение жизни",
+	lifedrain_desc = "Предупреждает о Похищение жизни.",
+
+	berserk_name = "Берсерк",
+	berserk_desc = "Предупреждает о Берсерке.",
+
+	icebolt_name = "Объявление о Ледяной глыбе",
+	icebolt_desc = "Предупреждает когда вы становитесь Ледяной глыбой.",
+
+	berserk_bar = "Берсерк",
+	berserk_warn_10min = "10 мин до Берсерка!",
+	berserk_warn_5min = "5 мин до Берсерка!",
+	berserk_warn_rest = "%s сек до Берсерка!",
+
+	engage_message = "Сапфирон в бою! Берсерк через 15 мин!",
+
+	lifedrain_message = "Похищение жизни! Следующий возможно через ~24 сек!",
+	lifedrain_warn1 = "Похищение жизни через 5 сек!",
+	lifedrain_bar = "Похищение жизни",
+
+	lifedrain_trigger = "под воздействием эффекта \"Похищение жизни\".",
+	lifedrain_trigger2 = "сопротивляется заклинанию \"Похищение жизни\" Сапфирон",
+	icebolt_trigger = "Вы находитесь под воздействием эффекта \"Морозная стрела\".",
+	icebolt_trigger2 = "Морозная стрела",
+
+	deepbreath_incoming_message = "Применение Ледяной глыбы ~23 сек!",
+	deepbreath_incoming_soon_message = "Применение Ледяной глыбы через ~5 сек!",
+	deepbreath_incoming_bar = "Применение Ледяной глыбы",
+	deepbreath_trigger = "начинает использовать \"Дыхание льда\".",
+	deepbreath_warning = "Скоро Ледяная глыба!",
+	deepbreath_bar = "Ледяная глыба!",
+	icebolt_yell = "Я Ледяная глыба!",
+
+	proximity_name = "Ближайшее предупреждение",
+	proximity_desc = "Отображает окно ближайшего предупреждения.",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Sapphiron",
 

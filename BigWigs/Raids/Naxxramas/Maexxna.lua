@@ -56,6 +56,46 @@ L:RegisterTranslations("enUS", function() return {
 	are = "are",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
+	spray_name = "Оповещение о Летящей паутине",
+	spray_desc = "Предупреждает о Летящей паутине и паученышах.",
+
+	enrage_name = "Оповещение о Бешенстве",
+	enrage_desc = "Предупреждает о Бешенстве.",
+
+	cocoon_name = "Оповещение об Опутывании паутиной",
+	cocoon_desc = "Предупреждает об Опутывании паутиной игрока.",
+
+	poison_name = "Оповещение о Некротическом яде",
+	poison_desc = "Предупреждает о Некротическом яде.",
+
+	cocoontrigger = "(.*) (.*) под воздействием эффекта \"Опутывание паутиной\".",
+	webspraytrigger = "под воздействием эффекта \"Летящая паутина\"",
+	poisontrigger = "под воздействием эффекта \"Некротический яд\".",
+	etrigger1 = "получает эффект \"Бешенство\"",
+
+	cocoonwarn = "%s в коконе!",
+	poisonwarn = "Некротический яд!",
+	enragetrigger = "%s becomes enraged!", --впадает в исступление! -- не переведено на Light's hope
+
+	webspraywarn30sec = "Коконы через 10 секунд",
+	webspraywarn20sec = "Коконы! 15 сек до вызвания паученышей!",
+	webspraywarn10sec = "10 сек до Летящей паутины!",
+	webspraywarn5sec = "Вызов паученышей-используй заклинания по области! Летящая паутина 5 сек!",
+	webspraywarn = "Летящая паутина! 40 сек до следующей!",
+
+	enragewarn = "Бешенство!",
+	enragesoonwarn = "Скоро Бешенство!",
+
+	webspraybar = "Летящая паутина",
+	cocoonbar = "Опутывание паутиной",
+	spiderbar = "Паученыши Мексны",
+	poisonbar = "Некротический яд",
+
+	you = "Вы",
+	are = "находитесь",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Maexxna",
 

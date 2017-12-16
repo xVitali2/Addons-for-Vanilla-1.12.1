@@ -8,7 +8,6 @@ local module, L = BigWigs:ModuleDeclaration("Kurinnaxx", "Ruins of Ahn'Qiraj")
 ----------------------------
 --      Localization      --
 ----------------------------
-
 L:RegisterTranslations("enUS", function() return {
 	cmd = "Kurinnaxx",
 } end )

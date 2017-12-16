@@ -58,6 +58,48 @@ L:RegisterTranslations("enUS", function() return {
 	whirlwind_desc = "Timers and bars for Whirlwinds.",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital --Боевой страж Сартура
+	add_name = "Королевский страж Сартуры",
+	starttrigger = "defiling these sacred grounds", --осквернение этих священных мест -- не переведено на Light's hope
+	endtrigger = "I serve to the last!", --Я служу до последнего -- не переведено на Light's hope
+	startwarn = "Сартура в бою - 10 минут до Берсерка!",
+	enragetrigger = "becomes enraged", --впадает в исступление! -- не переведено на Light's hope
+	enragetrigger2 = "Боевой страж Сартура получает эффект \"Бешенство\".",
+	berserktrigger = "Боевой страж Сартура получает эффект \"Берсерк\".",
+	enragewarn = "Бешенство! Постоянно исцеляй!",
+	berserkwarn = "Берсерк!",
+	berserktext = "Берсерк",
+	warn1 = "Берсерк через 5 минут!",
+	warn2 = "Берсерк через 3 минуты!",
+	warn3 = "Берсерк через 90 секунд!",
+	warn4 = "Берсерк через 60 секунд!",
+	warn5 = "Берсерк через 30 секунд!",
+	warn6 = "Берсерк через 10 секунд!",
+	whirlwindon = "Боевой страж Сартура получает эффект \"Вихрь\".",
+	whirlwindoff = "Действие эффекта \"Вихрь\", наложенного на Боевой страж Сартура, заканчивается.",
+	whirlwindonwarn = "Вихрь!",
+	whirlwindoffwarn = "Вихрь закончился!",
+	whirlwindbartext = "Вихрь",
+	whirlwindnextbartext = "Возможный Вихрь",
+	whirlwindfirstbartext = "Первый Вихрь",
+	whirlwindinctext = "Скоро Вихрь!",
+	deadaddtrigger = "Королевский страж Сартуры погибает.",
+	deadbosstrigger = "Боевой страж Сартура погибает.",
+	addmsg = "%d/3 Королевский страж Сартуры мёртв!",
+
+	adds_name = "Счетчик мёртвых существ",
+	adds_desc = "Объявляет о мёртвых Королевских стражах Сартуры.",
+
+	enrage_name = "Бешенство",
+	enrage_desc = "Объявляет о Бешенстве, когда босс с 20% здоровья.",
+
+	berserk_name = "Берсерк",
+	berserk_desc = "Предупреждает о Берсерке босса - после 10 минут боя.",
+
+	whirlwind_name = "Вихрь",
+	whirlwind_desc = "Таймеры и полосы для Вихрей.",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Sartura",
 

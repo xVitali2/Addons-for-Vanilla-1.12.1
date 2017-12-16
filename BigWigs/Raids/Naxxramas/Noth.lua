@@ -67,6 +67,58 @@ L:RegisterTranslations("enUS", function() return {
 	wave2s_message = "Wave 2 Spawning!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
+
+	blink_name = "Оповещение о Скачке",
+	blink_desc = "Предупреждает о Скачке.",
+
+	teleport_name = "Оповещение о Телепорте",
+	teleport_desc = "Предупреждает о Телепорте.",
+
+	curse_name = "Оповещение о Проклятии",
+	curse_desc = "Предупреждает о Проклятии.",
+
+	wave_name = "Оповещение о волнах",
+	wave_desc = "Предупреждает о волнах.",
+
+	starttrigger1 = "Die, trespasser!", --Смерть чужакам! -- не переведено на Light's hope
+	starttrigger2 = "Glory to the master!", --Слава господину! -- не переведено на Light's hope
+	starttrigger3 = "Your life is forfeit!", --Прощайся с жизнью! -- не переведено на Light's hope
+	startwarn = "Нот Чумной в бою! 90 секунд до Телепорта",
+
+	addtrigger = "Rise, my soldiers! Rise and fight once more!", --Встаньте, мои воины! Встаньте и сражайтесь вновь! -- не переведено на Light's hope
+
+	blinktrigger = "Нот Чумной получает эффект \"Скачок\".",
+	blinkwarn = "Скачок!",
+	blinkwarn5 = "Скачок через ~5 секунд!",
+	blinkwarn10 = "Скачок через ~10 секунд!",
+	blinkbar = "Возможный Скачок",
+
+	teleportToBalconyTrigger = "Нот Чумной teleports to the balcony above!", --не используется на vanilla
+	teleportToRoomTrigger = "Нот Чумной teleports back into the battle!", --не используется на vanilla
+	teleportwarn = "Телепорт! Он на балконе!",
+	teleportwarn10 = "Телепорт через 10 секунд!",
+	teleportwarn30 = "Телепорт через 30 секунд!",
+
+	teleportbar = "Телепорт!",
+	backbar = "Возвращение в комнату!",
+
+	backwarn = "Вернулся в комнату на %d секунд!",
+	backwarn10 = "10 секунд до возвращения в комнату!",
+	backwarn30 = "30 секунд до возвращения в комнату!",
+
+	cursetrigger = "под воздействием эффекта \"Проклятие Чумного\"",
+	cursewarn = "Проклятие! следующее через ~28 секунд.",
+	curse10secwarn = "Проклятие через ~10 секунд",
+
+	cursebar = "Следующее проклятие",
+
+	wave1bar = "Волна 1",
+	wave2bar = "Волна 2",
+	wave2_message = "Волна 2 через 10сек",
+	wave2s_message = "Волна 2 Призвана!",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Noth",
 

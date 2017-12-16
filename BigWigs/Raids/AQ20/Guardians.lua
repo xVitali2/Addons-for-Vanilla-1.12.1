@@ -52,6 +52,40 @@ L:RegisterTranslations("enUS", function() return {
 	plagueare = "are",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM Анубисат-страж вызовает Анубисат-воин и Анубисат-страж роя
+	summon_name = "Оповещение о призыве",
+	summon_desc = "Предупреждает о призыве существ.",
+
+	plagueyou_name = "Оповещать о Чуме на вас", --Чума
+	plagueyou_desc = "Предупреждает о Чуме на вас.",
+
+	plagueother_name = "Оповещать о Чуме на других",
+	plagueother_desc = "Предупреждает о Чуме на других.",
+
+	icon_name = "Значок рейда",
+	icon_desc = "Установить значок рейда на последнего зараженного (Требуется помощник или лидер)",
+
+	explode_name = "Оповещение о Взрывании",
+	explode_desc = "Предупреждает о скором Взрывании",
+
+	enrage_name = "Оповещение о Бешенстве",
+	enrage_desc = "Предупреждает о  Бешенстве",
+
+	explodetrigger = "Анубисат-страж получает эффект \"Взрывание\".",
+	explodewarn = "Взрывание!",
+	enragetrigger = "Анубисат-страж получает эффект \"Бешенство\".",
+	enragewarn = "Бешенство!",
+	--summonguardtrigger = "Анубисат-страж применяет заклинание \"Вызов исчадия маны\".", --на LH сделано через жопу, использует спел Вызов исчадия маны
+	--summonguardwarn = "Страж-роя призван",
+	summonwarriortrigger = "Анубисат-страж применяет заклинание \"Вызов исчадия маны\".",--на LH сделано через жопу, использует спел Вызов исчадия маны
+	summonwarriorwarn = "Воин призван",
+	plaguetrigger = "^([^%s]+) ([^%s]+) под воздействием эффекта \"Чума\".$",
+	plaguewarn = " заражен Чумой!",
+	plaguewarnyou = "Вы заражены Чумой!",
+	plagueyou = "Вы",
+	plagueare = "находитесь",
+} end )
+
 L:RegisterTranslations("deDE", function() return {
 	summon_name = "Beschw\195\182rung",
 	summon_desc = "Warnung, wenn Besch\195\188tzer des Anubisath Schwarmwachen oder Krieger beschw\195\182rt.",

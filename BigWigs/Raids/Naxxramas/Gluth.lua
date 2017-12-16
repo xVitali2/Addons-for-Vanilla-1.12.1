@@ -65,6 +65,54 @@ L:RegisterTranslations("enUS", function() return {
 	frenzy_Nextbar = "Next Frenzy",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital --Глут
+	fear_name = "Оповещение о Страхе",
+	fear_desc = "Предупреждает о Страхе.",
+
+	frenzy_name = "Оповещение об Исступлении",
+	frenzy_desc = "Предупреждает об Исступлении.",
+
+	enrage_name = "Таймер Берсерка",
+	enrage_desc = "Предупреждает о Берсерке.",
+
+	decimate_name = "Оповещение об Истреблении",
+	decimate_desc = "Предупреждает об Истреблении.",
+
+	frenzy_trigger = "%s goes into a frenzy!", --впадает в ярость! -- не переведено на Light's hope
+	berserk_trigger = "получает эффект \"Берсерк\"",
+	fear_trigger = "под воздействием эффекта \"Ужасающий рев\".",
+	starttrigger = "devours all nearby zombies!", --уничтожает всех зомби вокруг! --не используется на LH?!?!?!?! -- не переведено на Light's hope
+
+	frenzy_warn = "Оповещение о Исступлении!",
+	fear_warn_5 = "5 сек до Страхе по области!",
+	fear_warn = "Оповещение о Страхе по области - 20 сек до следующего!",
+
+	enragewarn = "ИССТУПЛЕНИЕ!",
+	enragebartext = "Исступление",
+	enrage_warn_90 = "Исступление через 90 seconds",
+	enrage_warn_30 = "Исступление через 30 seconds",
+	enrage_warn_10 = "Исступление через 10 seconds",
+
+	startwarn = "Глут в бою! ~1:45 до Истребление!",
+	decimatesoonwarn = "Скоро Истребление!",
+	decimatebar = "Истребление зомби",
+
+	zombies_name = "Вызов Зомби",
+	zombies_desc = "Отображать таймеп для Зомби.",
+	zombiebar = "Следующий Зомби - %d",
+
+	bar1text = "Страх по области",
+
+	testtrigger = "тесттриггер";
+
+	frenzygain_trigger = "Глут получает эффект \"Исступление\".",
+	frenzygain_trigger2 = "Глут goes into a frenzy!", --впадает в ярость! -- не переведено на Light's hope
+	frenzyend_trigger = "Действие эффекта \"Исступление\", наложенного на Глут, заканчивается.",
+	frenzy_message = "Исступление! Усмиряющий выстрел сейчас!",
+	frenzy_bar = "Исступление",
+	frenzy_Nextbar = "Следующее Исступление",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Gluth",
 

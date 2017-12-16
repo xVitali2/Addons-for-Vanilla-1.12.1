@@ -34,6 +34,26 @@ L:RegisterTranslations("enUS", function() return {
 	returnwarn = "Moam unparalyzed! 90 seconds until Mana Fiends!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM Моам -- Исчадие маны
+	adds_name = "Оповещение об Исчадии маны",
+	adds_desc = "Предупреждает об Исчадии маны.",
+
+	paralyze_name = "Оповещение о Парализовании",
+	paralyze_desc = "Предупреждает о Парализовании.",
+
+	starttrigger = "%s senses your fear.", --%s чувствует ваш страх. -- не переведено на Light's hope
+	startwarn = "Бой с Моам! 90 секунд до призыва существ!",
+	addsbar = "Существа",
+	addsincoming = "Исчадия маны через %s секунд!",
+	addstrigger = "drains your mana and turns to stone.", --похищает вашу ману и превращается в камень. -- не переведено на Light's hope
+	addswarn = "Исчадия маны призваны! Моам Парализован на 90 секунд!",
+	paralyzebar = "Парализование",
+	returnincoming = "Моам станет двигаться через %s секунд!",
+	returntrigger = "Действие эффекта \"Наполнение энергией\", наложенного на Моам, заканчивается.",
+	returntrigger2 = "bristles with energy", --рассвирепел -- не переведено на Light's hope
+	returnwarn = "Моам стал двигаться! 90 секунд до Исчадий маны!",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Moam",
 

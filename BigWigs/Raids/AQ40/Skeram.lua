@@ -36,6 +36,28 @@ L:RegisterTranslations("enUS", function() return {
 	["You have slain %s!"] = true,
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
+	mcplayer = "Вы находитесь под воздействием эффекта \"Истинное счастье\".",
+	mcplayerother = "(.*) находится под воздействием эффекта \"Истинное счастье\".",
+	mcplayeryouend = "Действие эффекта \"Истинное счастье\", наложенного на вас, заканчивается.",
+	mcplayerotherend = "Действие эффекта \"Истинное счастье\", наложенного на (.*), заканчивается.",
+	mcplayer_message = "Вы подчинены!",
+	mcplayerother_message = "%s подчинён!",
+	mindcontrol_bar = "Подчинение: %s",
+	deathyou_trigger = "Вы умерли.",
+	deathother_trigger = "(.*) погиб.",
+	splitsoon_message = "Скоро Разделение! Готовся!",
+	split_message = "Разделился!",
+	kill_trigger = "You only delay", --Вы лишь откладываете неизбежное! -- не переведено на Light's hope
+
+	mc_name = "Оповещение о Подчинении",
+	mc_desc = "Предупреждает о Подчинении.",
+
+	split_name = "Оповещение о Разделении",
+	split_desc = "Предупреждает до Разделения.",
+	["You have slain %s!"] = "Вы убили %s!",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	mcplayer = "Sufres de Consecución veraz.",
 	mcplayerother = "(.*) sufre de Consecución veraz.",

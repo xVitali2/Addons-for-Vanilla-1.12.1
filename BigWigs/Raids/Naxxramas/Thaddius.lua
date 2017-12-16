@@ -96,6 +96,81 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital --Таддиус
+	enrage_name = "Оповещение о Берсерке",
+	enrage_desc = "Предупреждает о Берсерке.",
+
+	phase_name = "Оповещение о фазах",
+	phase_desc = "Предупреждает о смене фаз.",
+
+	polarity_name = "Оповещение о Сдвиге полярности",
+	polarity_desc = "Предупреждать о сдвигах полярности.",
+
+	power_name = "Оповещение о Волне силы",
+	power_desc = "Предупреждает о Волне силы Сталлага.",
+
+	adddeath_name = "Оповещение о смерти помощников",
+	adddeath_desc = "Оповещает о смерти существ.",
+
+	charge_name = "Предупреждение о заряде",
+	charge_desc = "Предупреждает о Положительном/Отрицательном заряде на себе.",
+
+	throw_name = "Оповещать о смене платформы",
+	throw_desc = "Предупредить о смене платформ для танка.",
+
+	enragetrigger = "%s goes into a berserker rage!", --%s впадает в безумную ярость! -- не переведено на Light's hope
+	starttrigger = "Stalagg crush you!", --Сталагг сокрушить вас! -- не переведено на Light's hope
+	starttrigger1 = "Feed you to master!", --Я скормлю вас господину! -- не переведено на Light's hope
+	trigger_phase2_1 = "EAT YOUR BONES", -- не переведено на Light's hope
+	trigger_phase2_2 = "BREAK YOU!", -- не переведено на Light's hope
+	trigger_phase2_3 = "KILL!", -- не переведено на Light's hope
+
+	adddeath = "No... more... Feugen...", --Фойгена... больше... нет. -- не переведено на Light's hope
+	adddeath2 = "Master save me...", 
+
+	teslaoverload = "перегрузки!",
+
+	pstrigger = "Now YOU feel pain!", --ну держись! -- не переведено на Light's hope
+	trigger_polarity_cast = "Таддиус начинает использовать \"Сдвиг полярности\".",
+	chargetrigger = "Вы находитесь под воздействием эффекта \"(%w+) заряд\".",
+	positivetype = "Spell_ChargePositive",
+	negativetype = "Spell_ChargeNegative",
+	stalaggtrigger = "Сталагг получает эффект \"Волна силы\".",
+
+	you = "Вы",
+	are = "находитесь",
+
+	enragewarn = "Берсерк!",
+	startwarn = "Таддиус Фаза 1",
+	startwarn2 = "Таддиус Фаза 2, Берсерк через 5 минут!",
+	addsdownwarn = "Таддиус будет через 14 сек!",
+	pswarn1 = "Таддиус начинает использовать \"Сдвиг полярности\".! - Проверка отр. эффекта!",
+	pswarn2 = "30 секунд до Сдвига полярности!",
+	pswarn3 = "3 секунды до Сдвига полярности!",
+	poswarn = "Вы сменили на Положительный заряд!",
+	negwarn = "Вы сменили на Отрицательный заряд!",
+	nochange = "Ваш заряд не изменился!",
+	polaritytickbar = "Удар Полярности",
+	enragebartext = "Берсерк",
+	warn_enrage_3m = "Берсерк через 3 минуты",
+	warn_enrage_90 = "Берсерк через 90 секунд",
+	warn_enrage_60 = "Берсерк через 60 секунд",
+	warn_enrage_30 = "Берсерк через 30 секунд",
+	warn_enrage_10 = "Берсерк через 10 секунд",
+	stalaggwarn = "Волна силы на Сталагге!",
+	powersurgebar = "Волна силы",
+
+	bar1text = "Сдвиг полярности",
+
+	throwbar = "Смена платформы",
+	throwwarn = "Смена платформы через ~5 секунд!",
+
+	phasebar = "Фаза 2",
+
+	add1 = "Фойген",
+	add2 = "Сталагг",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Thaddius",
 

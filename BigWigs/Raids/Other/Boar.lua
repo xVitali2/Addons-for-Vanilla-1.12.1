@@ -68,7 +68,6 @@ L:RegisterTranslations("ruRU", function() return {
 
 	teleport_msg = "Телепортация",
 
-	charge_cmd = "charge",
 	charge_name = "Оповещение о Рывке",
 	charge_desc = "Предупреждает о Рывке",
 	charge_trigger = "получает эффект \"Атака вепря\".",
@@ -78,10 +77,8 @@ L:RegisterTranslations("ruRU", function() return {
 	vulnerability_direct_test = "^[%w]+[%s's]* ([%w%s:]+) ([%w]+) Старый крапчатый вепрь на ([%d]+) ([%w]+) ед. урона%.[%s%(]*([%d]*)", -- не заморачивался с переводом... не подходит к русской локализации
 	umlaut_test = "наносит вам",
 
-
-	proximity_cmd = "proximity",
 	proximity_name = "Ближайшее предупреждение",
-	proximity_desc = "Отображает окно ближайшего предупреждения",
+	proximity_desc = "Отображает окно ближайшего предупреждения.",
 
 } end )
 

@@ -95,6 +95,71 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	startwarn	= "К'Тун в бою! - 45 сек до свирепого взгляда и щупалец",
+	barStartRandomBeams = "Начало случайных лучей!",
+
+	eye_beam_trigger = "Огромное глазастое щупальце начинает использовать \"Луч ока\".",
+	eye_beam_trigger_cthun = "Око К'Туна начинает использовать \"Луч ока\".",
+	eyebeam		= "Око К'Туна на %s",
+	Unknown = "Неизвестно", -- Eye Beam on Unknown
+
+	tentacle_name = "Оповещение о Щупальце",
+	tentacle_desc = "Предупреждает о Щупальцах.",
+	rape_name = "Смешные шутки про износилование",
+	rape_desc = "Некоторые люди любят шутки хентай.",
+	tentacle	= "Убийство Щупалец через - 5 сек",
+	norape		= "Щупальцы через 5 сек!",
+	barTentacle	= "Убийство Щупалец!",
+	barNoRape	= "Щупальцы!",
+
+	glare_name = "Оповещение о Свирепом взгляде",
+	glare_desc = "Предупреждает о Свирепом взгляде",
+	glare		= "Свирепый взгляд!",
+	msgGlareEnds	= "Свирепый взгляд закончится через 5 сек",
+	barGlare	= "Следующий Свирепый взгляд!",
+	barGlareEnds = "Свирепый взгляд закончился",
+	barGlareCasting = "Применение Свирепого взгляда",
+
+	group_name = "Предупреждение группы о Свирепом взгляде",
+	group_desc = "Предупреждает что Свирепый взгляд на Группе X",
+
+	phase2starting	= "Глаз мёртв! Скоро тело!",
+
+	playersInStomach = "Игроки в желудке",
+
+	giant_name = "Оповещение об Огромном щупальце",
+	giant_desc = "Предупреждает об Огромном щупальце",
+	barGiant	= "Огромное щупальце!",
+	barGiantC	= "Гигантский когтещуп!",
+	GiantEye = "Огромное глазастое щупальце через 5 сек!",
+	gedownwarn	= "Огромное щупальце убито!",
+
+	weakened_name = "Оповещение о слабости",
+	weakened_desc = "Предупреждает о временной слабости.",
+	weakenedtrigger = "is weakened!", --ослаблен -- не переведено на Light's hope
+	weakened	= "К'Тун ослаблен на 45 сек",
+	invulnerable2	= "Веселье закончится  через 5 сек",
+	invulnerable1	= "Веселье закончилось - К'Тун неуязвимый",
+	barWeakened	= "К'Тун ослаблен!",
+
+	acid_name = "Оповещение о Желудочном соке",
+	acid_desc = "Предупреждает когда вы имеете 5 собранных эффектов Желудочного сока.",
+	digestiveAcidTrigger = "Вы находитесь под воздействием эффекта \"Желудочный сок\" [%s%(]*([%d]*).",
+	msgDigestiveAcid = "5 эффектов сока",
+
+	["Second TentacleHP"] = "Второе Щупальце %d%%",
+	["First Tentacle dead"] = "Первое Щупальце мертво",
+	["First Tentacle"] = "Первое Щупальце",
+	["Second Tentacle"] = "Второе Щупальце",
+
+	proximity_name = "Ближайшее предупреждение",
+	proximity_desc = "Отображает окно ближайшего предупреждения.",
+
+	stomach_name = "Игроки в желудке",
+	stomach_desc = "Отображать игроков в желудке, вместо слишком близких игроков.",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Cthun",
 

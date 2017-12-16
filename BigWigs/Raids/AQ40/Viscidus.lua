@@ -52,6 +52,43 @@ L:RegisterTranslations("enUS", function() return {
 	volley_bar	= "Poison Bolt Volley",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
+	volley_name = "Оповещение об Ядовитом граде",
+	volley_desc = "Предупреждает об Ядовитом граде.",
+
+	toxinyou_name = "Оповещение об Отраве на вас",
+	toxinyou_desc = "Предупреждает, если вы стоите в Отраве.",
+
+	toxinother_name = "Оповещение об Отраве на других",
+	toxinother_desc = "Предупреждает, если другие игроки стоят в Отраве.",
+
+	freeze_name = "Оповещение о состоянии заморозки",
+	freeze_desc = "Предупреждает о различных состояниях заморозки босса.",
+
+	slow_trigger 	= "begins to slow", --замедляется -- не переведено на Light's hope
+	freeze_trigger 	= "is freezing up", --замораживается -- не переведено на Light's hope
+	frozen_trigger 	= "is frozen solid", --застывает -- не переведено на Light's hope
+	crack_trigger 	= "begins to crack", --начинает раскалываться -- не переведено на Light's hope
+	shatter_trigger 	= "looks ready to shatter", --едва держится -- не переведено на Light's hope
+	volley_trigger	= "под воздействием эффекта \"Ядовитый град\".",
+	toxin_trigger 	= "^([^%s]+) ([^%s]+) под воздействием эффекта \"Отрава\"",
+
+	you 		= "Вы",
+	are 		= "находитесь",
+
+	freeze1_warn 		= "Первая фаза заморозки!",
+	freeze2_warn 		= "Вторая фаза заморозки!",
+	frozen_warn 		= "Нечистотон заморожен!",
+	crack1_warn 		= "Растрескивание - теперь немного больше!",
+	crack2_warn 		= "Растрескивание - почти!",
+	volley_warn			= "Ядовитый град!",
+	volley_soon_warn	= "Ядовитый град через ~3 секунды!",
+	toxin_warn			= " в Отраве!",
+	toxin_self_warn		= "Вы в Отраве!",
+
+	volley_bar	= "Ядовитый град",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Viscidus",
 	--volley_cmd = "volley",

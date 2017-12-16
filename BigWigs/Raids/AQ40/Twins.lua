@@ -49,7 +49,7 @@ L:RegisterTranslations("enUS", function() return {
 	bartext = "Teleport",
 	explodebugtrigger = "gains Explode Bug",
 	explodebugwarn = "Bug exploding nearby!",
-	enragetrigger = "becomes enraged.",
+	enragetrigger = "gains Berserk.", --by CFM
 	--trigger = "Blizzard",
 	enragewarn = "Twins are enraged",
 	healtrigger1 = "'s Heal Brother heals",
@@ -82,6 +82,62 @@ L:RegisterTranslations("enUS", function() return {
 	pull_trigger10 = "Your brash arrogance",
 
 	kill_trigger = "My brother...NO!",
+} end )
+
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
+	bug_name = "Оповещение о Взрыве жука",
+	bug_desc = "Предупреждает о Взрывах жуков.",
+
+	teleport_name = "Оповещение о Телепорте",
+	teleport_desc = "Предупреждает о Телепорте.",
+
+	enrage_name = "Оповещение о Берсерке",
+	enrage_desc = "Предупреждает о Берсерке.",
+
+	heal_name = "Оповещение о исцелении",
+	heal_desc = "Предупреждает о применении исцеления на брата.",
+
+	blizzard_name = "Оповещение о Снежной буре",
+	blizzard_desc = "Отображает значок если вы стоите в Снежной буре.",
+
+	porttrigger = "получает эффект \"Двойной телепорт\".",
+	portwarn = "Телепорт!",
+	portdelaywarn = "Телепорт через 5 секунд!",
+	portdelaywarn10 = "Телепорт через 10 секунд!",
+	bartext = "Телепорт",
+	explodebugtrigger = "получает эффект \"Взрыв жука\".",
+	explodebugwarn = "Жук взорвался рядом!",
+	enragetrigger = "получает эффект \"Берсерк\".",--by CFM
+	enragewarn = "Близнецы в Берсерке",
+	healtrigger1 = "применяет заклинание \"Исцеление брата\" и исцеляет (.*) на", 
+	healtrigger2 = " применяет заклинание \"Исцеление брата\" и исцеляет",
+	healwarn = "Использует лечение!",
+	startwarn = "Императоры-близнецы в бою! Берсерк через 15 минут!",
+	enragebartext = "Берсерк",
+	warn1 = "Берсерк через 10 минут",
+	warn2 = "Берсерк через 5 минут",
+	warn3 = "Берсерк через 3 минуты",
+	warn4 = "Берсерк через 90 секунд",
+	warn5 = "Берсерк через 60 секунд",
+	warn6 = "Берсерк через 30 секунд",
+	warn7 = "Берсерк через 10 секунд",
+
+	blizzard_trigger = "Вы находитесь под воздействием эффекта \"Снежная буря\".",
+	blizzard_gone_trigger = "Действие эффекта \"Снежная буря\", наложенного на вас, заканчивается.",
+	blizzard_warn = "Выйдите из Снежной бури!",
+
+	pull_trigger1 = "Ah, lambs to the slaughter!", -- by CFM --Аа, новые овечки на заклание? -- не переведено на Light's hope
+	pull_trigger2 = "Prepare to embrace oblivion!", -- by CFM--Готовьтесь к забвению! -- не переведено на Light's hope
+	pull_trigger3 = "Join me brother, there is blood to be shed!", -- by CFM -- не переведено на Light's hope
+	pull_trigger4 = "To decorate our halls!", -- не переведено на Light's hope
+	pull_trigger5 = "Let none survive!", --Никто не должен выжить! -- не переведено на Light's hope
+	pull_trigger6 = "It's too late to turn away.", -- не переведено на Light's hope
+	pull_trigger7 = "Look brother, fresh blood!", -- не переведено на Light's hope
+	pull_trigger8 = "Like a fly to the web.", -- by CFM -- не переведено на Light's hope
+	pull_trigger9 = "Shall be your undoing!", -- не переведено на Light's hope
+	pull_trigger10 = "Your brash arrogance!", -- не переведено на Light's hope
+
+	kill_trigger = "My brother...NO!", --Брат мой, нет! -- не переведено на Light's hope
 } end )
 
 L:RegisterTranslations("esES", function() return {
@@ -332,6 +388,9 @@ function module:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 end
 
 function module:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF(msg)
+	if (string.find(msg, L["enragetrigger"]) and self.db.profile.enrage) then
+		self:Message(L["enragewarn"], "Important")
+	end
 	if (not self.prior and (string.find(msg, L["healtrigger1"]) or string.find(msg, L["healtrigger2"])) and self.db.profile.heal) then
 		self:Message(L["healwarn"], "Important")
 		self.prior = true
@@ -340,9 +399,9 @@ function module:CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF(msg)
 end
 
 function module:CHAT_MSG_MONSTER_EMOTE(msg)
-	if (string.find(msg, L["enragetrigger"]) and self.db.profile.enrage) then
-		self:Message(L["enragewarn"], "Important")
-	end
+	-- if (string.find(msg, L["enragetrigger"]) and self.db.profile.enrage) then
+		-- self:Message(L["enragewarn"], "Important")
+	-- end
 end
 
 

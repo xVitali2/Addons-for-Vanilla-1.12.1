@@ -62,6 +62,48 @@ L:RegisterTranslations("enUS", function() return {
 	["Rotting Maggot"] = true,
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital --Хейган Нечестивый
+	teleport_name = "Оповещение о Телепорте",
+	teleport_desc = "Предупреждает о Телепорте.",
+
+	engage_name = "Оповещение о бое",
+	engage_desc = "Предупреждает когда Хейган в бою.",
+
+	disease_name = "Оповещение о Лихорадке дряхлости",
+	disease_desc = "Предупреждает о Лихорадке дряхлости.",
+
+	erruption_name = "Оповещение об Извержении",
+	erruption_desc = "Предупреждает об Извержении.",
+
+	starttrigger = "You are mine now!", -- не переведено на Light's hope
+	starttrigger2 = "You...are next!", -- не переведено на Light's hope
+	starttrigger3 = "I see you!", --Вот ты где! -- не переведено на Light's hope
+	toPlatform_trigger1 = "teleports and begins to channel a spell!", --телепортируется и начинает творить заклинание! -- не переведено на Light's hope
+	toPlatform_trigger2 = "The end is upon you.", --Вам конец. -- не переведено на Light's hope
+	toFloor_trigger = "rushes to attack once more!", --снова бросается в бой! -- не переведено на Light's hope
+	die_trigger = "Noo... o...", --by CFM -- не переведено на Light's hope "takes his last breath.",--не нашёл использование на LH
+	dtrigger = "под воздействием эффекта \"Лихорадка дряхлости\".",
+
+	engage_message = "Хейган Нечестивый в бою!",
+
+	dwarn = "Лихорадка дряхлости",
+
+	on_platform_message = "Телепорт! Танцы в течение %d сек!",
+
+	to_floor_30sec_message = "Назад через 30 сек",
+	to_floor_10sec_message = "Назад через 10 сек!",
+	on_floor_message = "Назад на пол! 90 сек до следующего телепорта!",
+
+	toPlatform_bar = "Телепорт!",
+	toFloor_bar = "Назад на пол!",
+	dbar = "Лихорадка дряхлости",
+	erruptionbar = "Извержение",
+	dancingshoes = "Наденьте свои танцевальные туфли! :)",
+
+	["Eye Stalk"] = "Глазной стебелек",
+	["Rotting Maggot"] = "Гнилой червь",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Heigan",
 

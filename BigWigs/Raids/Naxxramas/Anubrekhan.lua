@@ -44,7 +44,37 @@ L:RegisterTranslations("enUS", function() return {
 	impaletrigger = "Anub'Rekhan begins to cast Impale", -- todo
 	impalebar = "Next Impale",
 	impalesay = "Impale on me",
+} end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital --Ануб'Рекан
+	locust_name = "Оповещение о Жуках-трупоедах",
+	locust_desc = "Предупреждает о Жуках-трупоедах.",
+
+	enrage_name = "Оповещение о Бешенстве стражника",
+	enrage_desc = "Предупреждает о Бешенстве.",
+
+	starttrigger1 = "Just a little taste...", --Посмотрим, какие вы на вкус! -- не переведено на Light's hope
+	starttrigger2 = "Yes, run! It makes the blood pump faster!", --Бегите, бегите! Я люблю горячую кровь! -- не переведено на Light's hope
+	starttrigger3 = "There is no way out.", --Вам отсюда не выбраться. -- не переведено на Light's hope
+
+	etrigger = "%s becomes enraged!",--"получает эффект \"Бешенство\".",  -- не переведено на Light's hope --by  CFM
+	enragewarn = "Бешенство Некрорахнида-стражника - Оглушения + Ловушки!",
+
+	gaintrigger = "Ануб'Рекан получает эффект \"Жуки-трупоеды\".",
+	gainendwarn = "Жуки-трупоеды закончились!",
+	gainnextwarn = "Следующие Жуки-трупоеды через ~90 сек",
+	gainwarn10sec = "~10 сек до Жуков-трупоедов",
+	gainincbar = "Возможные Жуки-трупоеды",
+	gainbar = "Жуки-трупоеды",
+
+	casttrigger = "Ануб'Рекан начинает использовать \"Жуки-трупоеды\".",
+	castwarn = "Скоро Жуки-трупоеды!",
+
+	impale_name = "Оповещение о Прокалывании",
+	impale_desc = "Предупреждает о Прокалывании.",
+	impaletrigger = "Ануб'Рекан начинает использовать \"Прокалывание\".",
+	impalebar = "Следующее Прокалывание",
+	impalesay = "Прокалывание на мне",
 } end )
 
 L:RegisterTranslations("esES", function() return {
@@ -125,6 +155,7 @@ function module:OnEnable()
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF", "CheckForLocustCast")
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE", "CheckForLocustCast")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
+	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE", "CheckForEnrage")
 
 	self:ThrottleSync(10, syncName.locustCast)
 	self:ThrottleSync(10, syncName.locustGain)
@@ -145,6 +176,11 @@ end
 function module:OnDisengage()
 end
 
+function module:CheckForEnrage(msg)
+	if msg == L["etrigger"] then
+		self:Message(L["enragewarn"], "Important", nil, "Alarm")
+	end
+end
 
 ------------------------------
 --      Event Handlers	    --
@@ -153,8 +189,6 @@ end
 function module:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 	if msg == L["gaintrigger"] then
 		self:Sync(syncName.locustGain)
-	elseif msg == L["etrigger"] then
-		self:Message(L["enragewarn"], "Important", nil, "Alarm")
 	end
 end
 

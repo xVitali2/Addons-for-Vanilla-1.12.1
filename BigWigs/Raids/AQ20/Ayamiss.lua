@@ -22,6 +22,17 @@ L:RegisterTranslations("enUS", function() return {
 	are = "are",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM
+
+	sacrifice_name = "Оповещение о Парализации",
+	sacrifice_desc = "Предупреждать о Парализации",
+
+	sacrificetrigger = "^([^%s]+) ([^%s]+) под воздействием эффекта \"Парализация\"",
+	sacrificewarn = " парализован!",
+	you = "Вы",
+	are = "находитесь",
+} end )
+
 L:RegisterTranslations("deDE", function() return {
 	sacrifice_name = "Opferung",
 	sacrifice_desc = "Warnung, wenn ein Spieler geopfert wird.",

@@ -58,6 +58,46 @@ L:RegisterTranslations("enUS", function() return {
 	thunderclapwarn = "Thunderclap!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM=KasVital --Анубисат-защитник
+
+	plagueyou_name = "Оповещение о заражении Чумой",
+	plagueyou_desc = "Предупреждает что вы заражены Чумой.",
+
+	plagueother_name = "Оповещение о заражении Чумой других",
+	plagueother_desc = "Предупреждает что другой заражен Чумой.",
+
+	thunderclap_name = "Оповещение о Ударе грома",
+	thunderclap_desc = "Предупреждает о Ударе грома.",
+
+	explode_name = "Оповещение о Взрывании",
+	explode_desc = "Предупреждает о скором Взрывании",
+
+	enrage_name = "Оповещение о Бешенстве",
+	enrage_desc = "Предупреждает о  Бешенстве",
+
+	summon_name = "Оповещение о призыве",
+	summon_desc = "Предупреждает о призыве существ.",
+	
+	icon_name = "Значок рейда",
+	icon_desc = "Установить значок рейда на последнего зараженного (Требуется помощник или лидер)",
+
+	explodetrigger = "Анубисат-защитник получает эффект \"Взрывание\".",
+	explodewarn = "Взрывание!",
+	enragetrigger = "Анубисат-защитник получает эффект \"Бешенство\".",
+	enragewarn = "Бешенство!",
+	summonguardtrigger = "Анубисат-защитник применяет заклинание \"Вызов анубисата-стража роя\".",
+	summonguardwarn = "Страж-роя призван",
+	summonwarriortrigger = "Анубисат-защитник применяет заклинание \"Вызов анубисата-воина\".",
+	summonwarriorwarn = "Воин призван",
+	plaguetrigger = "^([^%s]+) ([^%s]+) под воздействием эффекта \"Чума\"$",
+	plaguewarn = " заражен Чумой!",
+	plagueyouwarn = "Вы заражены Чумой!",
+	plagueyou = "Вы",
+	plagueare = "находитесь",
+	thunderclaptrigger = "^\"Удар грома\" Анубисат-защитник наносит ([^%s]+) %d+% ед. урона.",
+	thunderclapwarn = "Удар грома!",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Defender",
 

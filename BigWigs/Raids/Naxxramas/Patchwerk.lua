@@ -32,6 +32,25 @@ L:RegisterTranslations("enUS", function() return {
 	warn10 = "Enrage in 10 seconds",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
+	enrage_name = "Оповещение о Берсерке",
+	enrage_desc = "Предупреждает о Берсерке.",
+
+	enragetrigger = "%s goes into a berserker rage!", --%s впадает в неистовый гнев! 
+
+	enragewarn = "Берсерк!",
+	starttrigger1 = "Patchwerk want to play!", --Лоскутик хочет поиграть! 
+	starttrigger2 = "Kel'Thuzad make Patchwerk his Avatar of War!", --Кел'Тузад объявил Лоскутика воплощением войны!
+	startwarn = "Лоскутик в бою! Берсерк через 7 минут!",
+	enragebartext = "Берсерк",
+	warn5m = "Берсерк через 5 минут",
+	warn3m = "Берсерк через 3 минуты",
+	warn90 = "Берсерк через 90 секунд",
+	warn60 = "Берсерк через 60 секунд",
+	warn30 = "Берсерк через 30 секунд",
+	warn10 = "Берсерк через 10 секунд",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Patchwerk",
 

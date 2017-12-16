@@ -65,6 +65,50 @@ L:RegisterTranslations("enUS", function() return {
 	shieldwall_warn_over = "%s - Shield Wall GONE!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
+	mark_name = "Оповещение о Метке",
+	mark_desc = "Предупреждает о Метках.",
+
+	shieldwall_name = "Оповещение о Глухой обороне",
+	shieldwall_desc = "Предупреждает о Глухой обороне.",
+
+	void_name = "Оповещение о Портале Бездны",
+	void_desc = "Предупреждает о применении Леди Бломе Портала Бездны.",
+
+	meteor_name = "Оповещение о Метеоре",
+	meteor_desc = "Предупреждает о применении Тан Кортазз Метеора.",
+
+	wrath_name = "Оповещение о Гневе небес",
+	wrath_desc = "Предупреждает о применении Сэр Зелиек Гнев небес.",
+
+	markbar = "Метка %d",
+	mark_warn = "Метка %d!",
+	mark_warn_5 = "Метка %d через 5 сек",
+	marktrigger1 = "находится под воздействием эффекта \"Знак Зелиека\".",
+	marktrigger2 = "находится под воздействием эффекта \"Знак Кортазза\".",
+	marktrigger3 = "находится под воздействием эффекта \"Знак Бломе\".",
+	marktrigger4 = "находится под воздействием эффекта \"Знак Могрейна\".",
+
+	voidtrigger = "Your life is mine!", --Твоя жизнь принадлежит мне! -- не переведено на Light's hope
+	voidwarn = "Скоро Портал Бездны",
+	voidbar = "Портал Бездны",
+
+	meteortrigger = "\"Метеор\" Тан Кортазз наносит ",
+	meteorwarn = "Метеор!",
+	meteorbar = "Метеор",
+
+	wrathtrigger = "\"Гнев небес\" Сэр Зелиек наносит ",
+	wrathwarn = "Гнев небес!",
+	wrathbar = "Гнев небес",
+
+	startwarn = "Четыре всадника в бою! Метка через 20 сек",
+
+	shieldwallbar = "%s - Глухая оборона",
+	shieldwalltrigger = "(.*) получает эффект \"Глухая оборона\".",
+	shieldwall_warn = "%s - Глухая оборона на 20 сек",
+	shieldwall_warn_over = "%s - Глухая оборона закончилась!",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Horsemen",
 

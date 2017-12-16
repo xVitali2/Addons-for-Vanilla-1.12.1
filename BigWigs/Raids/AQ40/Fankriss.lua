@@ -28,6 +28,21 @@ L:RegisterTranslations("enUS", function() return {
 	entanglewarn = "Entangle!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital --Фанкрисс Непреклонный
+	worm_name = "Оповещение о призыве червя",
+	worm_desc = "Предупреждает о призыве червей.",
+
+	wormtrigger = "Фанкрисс Непреклонный применяет заклинание \"Вызов червя\".", -- на LH не использует заклинание для вызова червей.
+	wormwarn = "Скоро Червь! (%d)",
+	wormbar = "Берсерк Червя (%d)",
+
+	entangle_name = "Оповещение о Запутывании", --Запутывание
+	entangle_desc = "Предупреждает о Запутывании и Червях.",
+	entangleplayer = "Вы находитесь под воздействием эффекта \"Запутывание\".",
+	entangleplayerother = "(.*) находится под воздействием эффекта \"Запутывание\".",
+	entanglewarn = "Запутывание!",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Fankriss",
 	--worm_cmd = "worm",

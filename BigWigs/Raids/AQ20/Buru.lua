@@ -31,6 +31,22 @@ L:RegisterTranslations("enUS", function() return {
 	you = "You",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM
+	you_name = "За вами наблюдают",
+	you_desc = "Предупреждает когда за вами наблюдают.",
+
+	other_name = "Другие под наблюдением",
+	other_desc = "Предупреждает когда другие под наблюдением.",
+
+	icon_name = "Значки рейда",
+	icon_desc = "Установить значок рейда на игрока, за которым следят (Требуется помощник или лидер).",
+
+	watchtrigger = "sets eyes on (.+)!", --смотрит на -- не переведено на Light's hope
+	watchwarn = " за ним следят!",
+	watchwarnyou = "За вами следят!",
+	you = "Вас", --Вы
+} end )
+
 L:RegisterTranslations("deDE", function() return {
 	you_name = "Du wirst beobachtet",
 	you_desc = "Warnung, wenn Du beobachtet wirst.",

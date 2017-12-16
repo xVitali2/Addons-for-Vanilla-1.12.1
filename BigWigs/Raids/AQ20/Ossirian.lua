@@ -49,6 +49,42 @@ L:RegisterTranslations("enUS", function() return {
 	["ArcaneIcon"] = "Spell_Arcane_PortalOrgrimmar",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM --Оссириан Неуязвимый
+
+	supreme_name = "Оповещение о Силе",
+	supreme_desc = "Предупреждает о Силе Оссириана",
+
+	debuff_name = "Оповещение об отрицательных эфф.",
+	debuff_desc = "Предупреждает об отрицательных эффектах.",
+
+	supremetrigger = "Оссириан Неуязвимый получает эффект \"Сила Оссириана\".",
+	supremewarn = "Режим Сила Оссириана!",
+	supremedelaywarn = "Сила Оссириана через %d секунд!",
+	debufftrigger = "Оссириан Неуязвимый находится под воздействием эффекта \"(.+) слабость\"\.",
+	crystaltrigger = "Инициатор Кристалла Оссириана погибает.",
+	debuffwarn = "Оссириан сейчас слаб к %s!",
+	supreme_bar = "Сила Оссириана",
+	expose = "Выявление",
+
+	["cyclone_trigger"] = "Вихрь",
+	["stomp_trigger"] = "Громовая поступь",
+
+	["WarStomp"] = "Громовая поступь",
+	["Cyclone"] = "Вихрь",
+
+	["Shadow"] = "Теневая",
+	["Fire"] = "Огненная",
+	["Frost"] = "Морозная",
+	["Nature"] = "Природная",
+	["Arcane"] = "Чародейская",
+
+	["ShadowIcon"] = "Spell_Shadow_ChillTouch",
+	["FireIcon"] = "Spell_Fire_Fire",
+	["FrostIcon"] = "Spell_Frost_ChillingBlast",
+	["NatureIcon"] = "Spell_Nature_Acid_01",
+	["ArcaneIcon"] = "Spell_Arcane_PortalOrgrimmar",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Ossirian",
 

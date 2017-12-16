@@ -49,6 +49,40 @@ L:RegisterTranslations("enUS", function() return {
 	rain_warn = "Move from FIRE!",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital --Великая вдова Фарлина
+	silence_name = "Оповещение о Безмолвии",
+	silence_desc = "Предупреждает о Безмолвии.",
+
+	enrage_name = "Оповещение о Бешенстве",
+	enrage_desc = "Предупреждает о Бешенстве.",
+
+	starttrigger1 = "Kneel before me, worm!", --Склонитесь передо мной, черви! -- не переведено на Light's hope
+	starttrigger2 = "Slay them in the master's name!", --Убейте их во имя господина! -- не переведено на Light's hope
+	starttrigger3 = "You cannot hide from me!", --Вам не скрыться от меня! -- не переведено на Light's hope
+	starttrigger4 = "Run while you still can!", --Бегите, пока еще можете!! -- не переведено на Light's hope
+
+	silencetrigger = "Великая вдова Фарлина находится под воздействием эффекта \"Объятие Вдовы\".",
+	enragetrigger = "Великая вдова Фарлина получает эффект \"Бешенство\".",
+	enragefade = "Действие эффекта \"Бешенство\", наложенного на Великая вдова Фарлина, заканчивается.",
+
+	startwarn = "Великая вдова Фарлина в бою, 60 секунд до Бешенства!",
+	enragewarn15sec = "15 секунд до Бешенства!",
+	enragewarn = "Бешенство!",
+	enrageremovewarn = "Бешенство снято! %d секунд до следующего!",
+	silencewarn = "Безмолвие! Отсрочка Бешенства!",
+	silencewarnnodelay = "Безмолвие!",
+	silencewarn5sec = "Безмолвие закончится через 5 сек",
+
+	enragebar = "Бешенство",
+	silencebar = "Безмолвие",
+
+	rain_name = "Оповещение об Огненном ливне",
+	rain_desc = "Предупреждает когда вы стоите в Огненном ливне.",
+	rain_trigger = "Вы находитесь под воздействием эффекта \"Огненный ливень\"",
+	rain_run_trigger = "Вы получаете (%d+) ед. урона ((.+)) от заклинания \"Огненный ливень\" Великая вдова Фарлина.",
+	rain_warn = "Выйди из ОГНЯ!",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Faerlina",
 

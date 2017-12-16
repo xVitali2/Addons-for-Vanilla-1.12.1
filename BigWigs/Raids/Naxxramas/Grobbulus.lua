@@ -63,6 +63,50 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital --Гроббулус
+	enrage_name = "Оповещение о Берсерке",
+	enrage_desc = "Предупреждает о Берсерке.",
+
+	youinjected_name = "Оповещение об Уколе вас",
+	youinjected_desc = "Предупреждает когда вы Уколоты.",
+
+	otherinjected_name = "Оповещение об Уколе других",
+	otherinjected_desc = "Предупреждает когда другие Уколоты.",
+
+	icon_name = "Установить значок",
+	icon_desc = "Установить значок черепа на уколотого игрока. (Требуется помощник или лидер.)",
+
+	cloud_name = "Ядовитое облако",
+	cloud_desc = "Предупреждает об Ядовитом облаке.",
+
+	inject_trigger = "^([^%s]+) ([^%s]+) под воздействием эффекта \"Мутагенный укол\".",
+	inject_fade = "Действие эффекта \"Мутагенный укол\", наложенного на вас, заканчивается.",
+
+	you = "Вы",
+	are = "находитесь",
+
+	startwarn = "Гроббулус в бою, 12 минут до Берсерка!",
+	enragebar = "Берсерк",
+	enrage10min = "Берсерк через 10 минут",
+	enrage5min = "Берсерк через 5 минут",
+	enrage1min = "Берсерк через 1 минуту",
+	enrage30sec = "Берсерк через 30 секунд",
+	enrage10sec = "Берсерк через 10 секунд",
+	bomb_message_you = "Вы уколоты!",
+	bomb_message_other = "%s уколот!",
+	bomb_bar = "%s уколот",
+
+	cloud_trigger = "Гроббулус применяет заклинание \"Ядовитое облако\".",
+	cloud_warn = "Ядовитое облако следующее через ~15 секунд!",
+	cloud_bar = "Ядовитое облако",
+
+	slimespray_name = "Брызги слизи",
+	slimespray_desc = "Отображает таймер для Брызг слизи.",
+
+	slimeSpray_bar = "Возможные Брызги слизи",
+	slimeSpray_trigger = "Брызги слизи",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Grobbulus",
 

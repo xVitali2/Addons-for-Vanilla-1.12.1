@@ -85,6 +85,70 @@ L:RegisterTranslations("enUS", function() return {
 	enrage_desc = "Enrage timers.",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { --by CFM
+	healtrigger = "Принцесса Яудж начинает использовать \"Великое исцеление\"\.",
+	healbar = "Великое исцеление",
+	healwarn = "Применение лечения!",
+	attack_trigger1 = "атаку Принцесса Яудж",--в русском нереально правильно ловить атаки таким образом... стр 437 дополнительные проверки
+	attack_trigger2 = "Принцесса Яудж не попадает по",
+	attack_trigger3 = "Принцесса Яудж наносит",
+	attack_trigger4 = "Принцесса Яудж наносит",
+	panic_bar = "Паника",
+	first_panic_bar = "Возможная Паника",
+	panic_message = "Страх через 3 секунды!",
+	toxicvolleyhit_trigger = "\"Отравляющий град\" Лорд Кри наносит",
+	toxicvolleyafflicted_trigger = "под воздействием эффекта \"Отравляющий град\"\\.",
+	toxicvolleyresist_trigger = "сопротивляет(.+) заклинанию \"Отравляющий град\"",
+	toxicvolleyimmune_trigger = "обладает(.+) невосприимчивостью к заклинанию \"Отравляющий град\"",
+	toxicvolley_bar = "Отравляющий град",
+	toxicvolley_message = "Отравляющий град через 3 секунды!",
+
+	panic_trigger = "под воздействием эффекта \"Паника\"\.",
+	panicresist_trigger = "сопротивляет(.+) заклинанию \"Паника\"",
+	panicimmune_trigger = "обладает(.+) невосприимчивостью к заклинанию \"Паника\"",
+
+	toxicvaporsyou_trigger = "Вы находитесь под воздействием эффекта \"Отравляющие пары\"\.",
+	toxicvaporsother_trigger = "(.+) находится под воздействием эффекта \"Отравляющие пары\"\.",
+
+	toxicvaporsyou_trigger2 = "Вы получаете (%d+) ед. урона ((.+)) от заклинания \"Отравляющие пары\" Лорд Кри.", 
+	toxicvaporsother_trigger2 = "(.+) получает (%d+) ед. урона ((.+)) от заклинания \"Отравляющие пары\" Лорд Кри.",
+
+	toxicvapors_message = "Выйди из Отравляющих паров!",
+	enrage_bar = "Исступление",
+	warn5minutes = "Исступление через 5 минут!",
+	warn3minutes = "Исступление через 3 минуты!",
+	warn90seconds = "Исступление через 90 секунд!",
+	warn60seconds = "Исступление через 60 секунд!",
+	warn30seconds = "Исступление через 30 секунд!",
+	warn10seconds = "Исступление через 10 секунд!",
+	kridead_message = "Лорд Кри мёртв! Выделены Отравляющие пары!",
+	yaujdead_message = "Принцесса Яудж мертва! Убейте вызванных существ!",
+	vemdead_message = "Вем мёртв!",
+	vemdeadcontkri_message = "Вем мёртв! Лорд Кри в исступлении!",
+	vemdeadcontyauj_message = "Вем мёртв! Принцесса Яудж в исступлении!",
+	vemdeadcontboth_message = "Вем мёртв! Лорд Кри и Принцесса Яудж в исступлении!",
+	enrage_trigger = "%s впадает в ярость берсерка!",
+	enrage_warning = "В Исступлении!",
+
+	panic_name = "Страх",
+	panic_desc = "Предупреждает о Панике от Принцессы Яудж.",
+
+	toxicvolley_name = "Отравляющий град",
+	toxicvolley_desc = "Предупреждает об Отравляющем граде Лорда Кри.",
+
+	heal_name = "Великое исцеление",
+	heal_desc = "Объявляет об исцелениях от Принцессы Яудж.",
+
+	announce_name = "Отравляющие пары",
+	announce_desc = "Шёпот игрокам, которые стоят в Отравляющих парах.\n\n(Требуется помощник или лидер)",
+
+	deathspecials_name = "Особенности смерти",
+	deathspecials_desc = "Позволяет людям узнать, какой босс убит, и какие особые способности они делают.",
+
+	enrage_name = "Исступление",
+	enrage_desc = "Таймер Исступления.",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "BugFamily",
 
@@ -370,7 +434,8 @@ function module:CHAT_MSG_COMBAT_HOSTILE_DEATH(msg)
 end
 
 function module:Melee(msg)
-	if string.find(msg, L["attack_trigger1"]) or string.find(msg, L["attack_trigger2"]) or string.find(msg, L["attack_trigger3"]) or string.find(msg, L["attack_trigger4"]) then
+	if string.find(msg, L["attack_trigger1"]) or string.find(msg, L["attack_trigger2"]) or string.find(msg, L["attack_trigger3"]) or string.find(msg, L["attack_trigger4"])
+	or string.find(msg, "Принцесса Яудж атакует") or string.find(msg, "Атака Принцесса Яудж") or string.find(msg, "атаки Принцесса Яудж") then
 		if castingheal then
 			if (GetTime() - healtime) < timer.heal then
 				self:Sync(syncName.healStop)

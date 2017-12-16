@@ -63,6 +63,52 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
+
+	fear_name = "Таймер Страха",
+	fear_desc = "Отображает перезарядку Страха.",
+
+	silence_name = "Таймер Немоты",
+	silence_desc = "Отображает перезарядку Немоты.",
+
+	roots_name = "Таймер Сковывания",
+	roots_desc = "Отображает перезарядку Сковывания.",
+
+	dust_name = "Таймер Пыльного облака",
+	dust_desc = "Отображает перезарядку Пыльного облака.",
+
+	warnings_name = "Предупреждения",
+	warnings_desc = "Предупреждающие сообщения, показывающие, какие 2 способности, действующие.",
+
+	fearTrigger = "Анубисат-хранитель начинает использовать \"Страх\".",
+	fearBar = "Страх!",
+	fearBar_next = "Возможный Страх",
+
+	silenceTrigger = "Анубисат-хранитель начинает использовать \"Безмолвие\".",
+	silenceBar = "Безмолвие!",
+	silenceBar_next = "Возможное Безмолвие",
+
+	rootsTrigger = "Анубисат-хранитель начинает использовать \"Гнев деревьев\".",
+	rootsBar = "Сковывание!",
+	rootsBar_next = "Возможное Сковывание",
+
+	dustTrigger = "Анубисат-хранитель начинает использовать \"Пыльное облако\".",
+	dustBar = "Пыльное облако!",
+	dustBar_next = "Возможное Пыльное облако",
+
+	dustWarn = "Пыльное облако",
+	dustWarn2 = "(Сковывание или Страх)",
+
+	fearWarn = "Страх",
+	fearWarn2 = "(Немота или Пыльное облако)",
+
+	rootsWarn = "Сковывание",
+	rootsWarn2 = "(Немота или Пыльное облако)",
+
+	silenceWarn = "Немота",
+	silenceWarn2 = "(Немота или Страх)",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Warder",
 

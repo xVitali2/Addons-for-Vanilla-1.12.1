@@ -86,7 +86,70 @@ L:RegisterTranslations("enUS", function() return {
 	soundwrtorhs = "Interface\\Addons\\BigWigs\\Sounds\\healthstone.wav",
 	soundshadowpotandbandage = "Interface\\Addons\\BigWigs\\Sounds\\potionandbandage.wav",
 	soundgoforbuff = "Interface\\Addons\\BigWigs\\Sounds\\goforbuff.wav",
+} end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
+	doom_name = "Оповещение о Неотвратимом роке",
+	doom_desc = "Предупреждает о Неотвратимом роке.",
+
+	curse_name = "Оповещение о Снятии проклятий",
+	curse_desc = "Предупреждает о Снятии проклятий на Лотхибе.",
+
+	spore_name = "Оповещение о Спорах",
+	spore_desc = "Предупреждает о Спорах.",
+
+	debuff_name = "Отрицательный эффект Спор",
+	debuff_desc = "Отображает значок, когда ваш отрицательный эффект на Споре заканчивается.",
+
+	groups_name = "Группа Спор",
+	groups_desc = "Отключить отображение номеров групп на таймере Спор (тактика 7 Групп).",
+
+	doombar = "Неотвратимый рок %d",
+	doomwarn = "Неотвратимый рок %d! %d сек до следующего!",
+	doomwarn5sec = "Неотвратимый рок %d через 5 сек!",
+	doomtrigger = "под воздействием эффекта \"Неотвратимый рок\".",
+
+	cursewarn = "Проклятия сняты! Повесте новые",
+	cursebar = "Снятие проклятия",
+	cursetrigger  = "Лотхиб теряет \"Проклятие (.+)\".",
+
+
+	doomtimerbar = "Неотвратимый рок каждые 15 сек",
+	doomtimerwarn = "Смена периодичности Неотвратимого рока через %s сек!",
+	doomtimerwarnnow = "Неотвратимый рок сейчас каждые 15 сек!",
+
+	cursetimerbar = "Таймер Снятие проклятия",
+	cursetimerwarn = "Проклятия сняты, следующее через %s сек!",
+
+	startwarn = "Лотхиб в бою, 2 минуты до Неотвратимого рока!",
+
+	sporebar = "Следующая Спора %d",
+	sporebar_group = "Следующая Спора - Группа %d",
+
+	you = "Вы",
+	are = "находитесь",
+	fungalBloom = "Поганочный цвет",
+
+	graphic_name = "Графические значки",
+	graphic_desc = "При проверке отображаются графические значки.",
+
+	sound_name = "Звуковые эффекты",
+	sound_desc = "При проверке играют звуковые эффекты.",
+
+	consumable_name = "Не оповещает рейд об использовании расходников",
+	consumable_desc = "Не предупреждает чтобы использовать расходники в канале Объявления рейду. (Требуется помощник или лидер)",
+
+	shadowpot = "-- Выпей Зелье защиты от темной магии! --",
+	bandage = "-- Используй свои бинты ! --",
+	wrtorhs = "-- Камень жизни или Драчливый корнеплод ! --",
+	shadowpotandbandage = "-- Выпей Зелье защиты от темной магии и Бинт ! --",
+	noconsumable = "-- Без Расходников сейчас ! --",
+
+	soundshadowpot = "Interface\\Addons\\BigWigs\\Sounds\\potion.wav",
+	soundbandage = "Interface\\Addons\\BigWigs\\Sounds\\bandage.wav",
+	soundwrtorhs = "Interface\\Addons\\BigWigs\\Sounds\\healthstone.wav",
+	soundshadowpotandbandage = "Interface\\Addons\\BigWigs\\Sounds\\potionandbandage.wav",
+	soundgoforbuff = "Interface\\Addons\\BigWigs\\Sounds\\goforbuff.wav",
 } end )
 
 L:RegisterTranslations("esES", function() return {

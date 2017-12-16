@@ -133,6 +133,123 @@ L:RegisterTranslations("enUS", function() return {
 	proximity_cmd = "proximity",
 	proximity_name = "Proximity Warning",
 	proximity_desc = "Show Proximity Warning Frame",
+	["Soul Weaver"] = true,
+	["Unstoppable Abomination"] = true,
+	["Kel'Thuzad"] = true,
+} end )
+
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
+	KELTHUZADCHAMBERLOCALIZEDLOLHAX = "Зал Кел'тузада",
+
+	phase_name = "Оповещает о фазах",
+	phase_desc = "Предупреждает о фазах.",
+
+	mc_name = "Контроль разума",
+	mc_desc = "Оповещает когда игрок подчинён.",
+
+	fissure_name = "Теневая расщелина",
+	fissure_desc = "Оповещает о Теневой расщелине.",
+
+	frostblast_name = "Ледяной взрыв",
+	frostblast_desc = "Оповещает когда игрок получает Ледяной взрыв.",
+
+	frostbolt_name = "Оповещение о Ледяной стреле",
+	frostbolt_desc = "Предупреждает о Ледяной стреле.",
+
+	frostboltbar_name = "Полоса с Ледяной стрелой",
+	frostboltbar_desc = "Отображает полосу с применением Ледяной стрелы.",
+
+	detonate_name = "Оповещение о Взрыве маны",
+	detonate_desc = "Предупреждает о скором Взрыве маны.",
+
+	detonateicon_name = "Значок рейда на Взрыве",
+	detonateicon_desc = "Установить значок рейда на игроке с Взрывом маны.",
+
+	guardians_name = "Вызов Стражей",
+	guardians_desc = "Предупреждает о скорых Стражах Ледяной Короны на 3ей фазе.",
+
+	fbvolley_name = "Возможные Ледяные стрелы",
+	fbvolley_desc = "Таймер для возможных Ледяных стрел.",
+
+	addcount_name = "Фаза 1 счетчик существ",
+	addcount_desc = "Счетчик убитых существ в фазе 1.",
+
+	mc_trigger1 = "Your soul, is bound to me now!", --Теперь твоя душа связана с моей! -- не переведено на Light's hope
+	mc_trigger2 = "There will be no escape!", --Тебе не уйти! -- не переведено на Light's hope
+	mc_warning = "Цепи Кел'тузада (Подчинение)!",
+	mc_bar = "Возможное Подчинение!",
+
+	start_trigger = "Minions, servants, soldiers of the cold dark, obey the call of Kel'Thuzad!", --Соратники, слуги, солдаты холодной тьмы! Повинуйтесь зову Кел'Тузада! -- не переведено на Light's hope
+	start_trigger1 = "Minions, servants, soldiers of the cold dark! Obey the call of Kel'Thuzad!", --Соратники, слуги, солдаты холодной тьмы! Повинуйтесь зову Кел'Тузада! -- не переведено на Light's hope
+	start_warning = "Схватка с Кел'тузадом началась! ~5 минут до выхода босса!",
+	start_bar = "Таймер фазы 1",
+	attack_trigger1 = "атаку Кел'Тузад",--в русском нереально правильно ловить атаки таким образом... стр 632 дополнительные проверки
+	attack_trigger2 = "Кел'Тузад не попадает по",
+	attack_trigger3 = "Кел'Тузад наносит",
+	attack_trigger4 = "атаке Кел'Тузад",
+	kick_trigger1 = "\"Пинок\" (.+) наносит Кел'Тузад",
+	kick_trigger2 = "\"Пинок\" (.+) наносит Кел'Тузад (.+) ед. урона: критический эффект",
+	kick_trigger3 = "Кел'Тузад блокирует заклинание \"Пинок\"",
+	pummel_trigger1 = "\"Зуботычина\" (.+) наносит Кел'Тузад",
+	pummel_trigger2 = "\"Зуботычина\" (.+) наносит Кел'Тузад (.+) ед. урона: критический эффект",
+	pummel_trigger3 = "Кел'Тузад блокирует заклинание \"Зуботычина\"",
+	shieldbash_trigger1 = "\"Удар щитом\" (.+) наносит Кел'Тузад",
+	shieldbash_trigger2 = "\"Удар щитом\" (.+) наносит Кел'Тузад (.+) ед. урона: критический эффект",
+	shieldbash_trigger3 = "Кел'Тузад блокирует заклинание \"Удар щитом\"",
+	earthshock_trigger1 = "\"Земной шок\" (.+) наносит Кел'Тузад",
+	earthshock_trigger2 = "\"Земной шок\" (.+) наносит Кел'Тузад (.+) ед. урона ((.+)): критический эффект",
+
+	phase1_warn = "Фаза 1 закончится через 20 секунд!",
+
+	phase2_trigger1 = "Pray for mercy!", --Молите о пощаде! -- не переведено на Light's hope
+	phase2_trigger2 = "Scream your dying breath!", --Кричите! Кричите изо всех сил! -- не переведено на Light's hope
+	phase2_trigger3 = "The end is upon you!", --Вы уже мертвы! -- не переведено на Light's hope
+	phase2_warning = "Фаза 2, скоро Кел'Тузад!",
+	phase2_bar = "Кел'Тузад в бою!",
+
+	phase3_soon_warning = "Скоро фаза 3!",
+	phase3_trigger = "Master! I require aid!",--Господин, мне нужна помощь! -- не переведено на Light's hope
+	phase3_warning = "Фаза 3, Скоро стражи!",
+
+	guardians_bar = "Страж %d",
+
+	fissure_trigger = "применяет заклинание \"Теневая расщелина\".",
+	fissure_warning = "Теневая расщелина!",
+
+	frostbolt_trigger = "Кел'Тузад начинает использовать \"Ледяная стрела\".",
+	frostbolt_warning = "Ледяная стрела! Прерви!",
+	frostbolt_bar = "Ледяная стрела",
+
+	frostbolt_volley = "Возможная Ледяная стрела",
+	frostbolt_volley_trigger = "под воздействием эффекта \"Ледяная стрела\"",
+
+	add_dead_trigger = "(.*) погибает.",
+	add_bar = "%d/14 %s",
+
+	frostblast_bar = "Возможный Ледяной взрыв",
+	frostblast_trigger1 = "I will freeze the blood in your veins!", --Я заморожу кровь в ваших жилах! -- не переведено на Light's hope
+	frostblast_trigger2 = "^([^%s]+) ([^%s]+) под воздействием эффекта \"Ледяной взрыв\".",
+	frostblast_warning = "Ледяной взрыв!",
+	frostblast_soon_message = "Возможный Ледяной взрыв через ~5 сек!",
+
+	phase2_frostblast_warning = "Возможный Ледяной взрыв через ~5 сек!",
+	phase2_mc_warning = "Возможное Подчинение через ~5 сек!",
+	phase2_detonate_warning = "Взрыв маны через ~5 сек!",
+
+	detonate_trigger = "^([^%s]+) ([^%s]+) под воздействием эффекта \"Взорвать ману\".",
+	detonate_bar = "Взрыв маны - %s",
+	detonate_possible_bar = "Взрыв маны",
+	detonate_warning = "%s Взрыв маны!",
+
+	you = "Вы",
+	are = "находитесь",
+
+	proximity_name = "Ближайшее предупреждение",
+	proximity_desc = "Отображает окно ближайшего предупреждения.",
+	
+	["Soul Weaver"] = "Прядильщица душ",
+	["Unstoppable Abomination"] = "Неудержимое поганище",
+	["Kel'Thuzad"] = "Кел'Тузад",
 } end )
 
 L:RegisterTranslations("esES", function() return {
@@ -258,6 +375,10 @@ L:RegisterTranslations("esES", function() return {
 	--proximity_cmd = "proximity",
 	proximity_name = "Alerta de Proximidad",
 	proximity_desc = "Muestra marco de alerta de proximidad",
+	
+	["Soul Weaver"] = "Прядильщица душ", --??
+	["Unstoppable Abomination"] = "Неудержимое поганище", --??
+	["Kel'Thuzad"] = "Кел'Тузад", --??
 } end )
 ---------------------------------
 --      	Variables 		   --
@@ -378,18 +499,6 @@ end
 -- called after boss is engaged
 function module:OnEngage()
 	self.lastFrostBlast=0
-	self:Message(L["start_warning"], "Attention")
-	self:Bar(L["start_bar"], timer.phase1, icon.phase1)
-	self:DelayedMessage(timer.phase1 - 20, L["phase1_warn"], "Important")
-
-	if self.db.profile.addcount then
-		timePhase1Start = GetTime() 	-- start of p1, used for tracking add counts
-		numAbominations = 0
-		numWeavers = 0
-		self:Bar(string.format(L["add_bar"], numAbominations, "Unstoppable Abomination"), timer.phase1, icon.abomination)
-		self:Bar(string.format(L["add_bar"], numWeavers, "Soul Weaver"), timer.phase1, icon.soulWeaver)
-	end
-	self:KTM_SetTarget("Unstoppable Abomination")
 end
 
 -- called after boss is disengaged (wipe(retreat) or victory)
@@ -428,7 +537,20 @@ function module:UNIT_HEALTH(msg)
 end
 
 function module:CHAT_MSG_MONSTER_YELL(msg)
-	if ((msg == L["phase2_trigger1"]) or (msg == L["phase2_trigger2"]) or (msg == L["phase2_trigger3"])) then
+	if ((msg == L["start_trigger"]) or (msg == L["start_trigger1"])) then
+		self.core:EnableModule(module.translatedName)
+		self:Message(L["start_warning"], "Attention")
+		self:Bar(L["start_bar"], timer.phase1, icon.phase1)
+		self:DelayedMessage(timer.phase1 - 20, L["phase1_warn"], "Important")
+		if self.db.profile.addcount then
+			timePhase1Start = GetTime() 	-- start of p1, used for tracking add counts
+			numAbominations = 0
+			numWeavers = 0
+			self:Bar(string.format(L["add_bar"], numAbominations, L["Unstoppable Abomination"]), timer.phase1, icon.abomination)
+			self:Bar(string.format(L["add_bar"], numWeavers, L["Soul Weaver"]), timer.phase1, icon.soulWeaver)
+		end
+		self:KTM_SetTarget(L["Unstoppable Abomination"])
+	elseif ((msg == L["phase2_trigger1"]) or (msg == L["phase2_trigger2"]) or (msg == L["phase2_trigger3"])) then
 		self:Sync(syncName.phase2)
 	elseif string.find(msg, L["phase3_trigger"]) then
 		self:Sync(syncName.phase3)
@@ -449,11 +571,11 @@ function module:CHAT_MSG_COMBAT_HOSTILE_DEATH(msg)
 	BigWigs:CheckForBossDeath(msg, self)
 
 	local _,_, mob = string.find(msg, L["add_dead_trigger"])
-	if self.db.profile.addcount and (mob == "Unstoppable Abomination") then
+	if self.db.profile.addcount and (mob == L["Unstoppable Abomination"]) then
 		self:Sync(syncName.abomination .. " " .. mob)
-	elseif self.db.profile.addcount and (mob == "Soul Weaver") then
+	elseif self.db.profile.addcount and (mob == L["Soul Weaver"]) then
 		self:Sync(syncName.soulWeaver .. " " .. mob)
-	elseif self.db.profile.bosskill and (mob == "Kel'Thuzad") then
+	elseif self.db.profile.bosskill and (mob == L["Kel'Thuzad"]) then
 		self:SendBossDeathSync()
 	end
 end
@@ -517,7 +639,8 @@ function module:Event(msg)
 
 	-- frost bolt
 	if GetTime() < frostbolttime + timer.frostbolt then
-		if string.find(msg, L["attack_trigger1"]) or string.find(msg, L["attack_trigger2"]) or string.find(msg, L["attack_trigger3"]) or string.find(msg, L["attack_trigger4"]) then
+		if string.find(msg, L["attack_trigger1"]) or string.find(msg, L["attack_trigger2"]) or string.find(msg, L["attack_trigger3"]) or string.find(msg, L["attack_trigger4"])
+		or string.find(msg, "Кел'Тузад атакует") or string.find(msg, "Атака Кел'Тузад") or string.find(msg, "атаки Кел'Тузад") then
 			self:RemoveBar(L["frostbolt_bar"])
 			frostbolttime = 0
 			self:Sync(syncName.frostboltOver)
@@ -601,8 +724,8 @@ function module:Phase2()
 
 	local function removeP1Bars()
 		self:RemoveBar(L["start_bar"])
-		self:RemoveBar(string.format(L["add_bar"], numWeavers, "Soul Weaver"))
-		self:RemoveBar(string.format(L["add_bar"], numAbominations, "Unstoppable Abomination"))
+		self:RemoveBar(string.format(L["add_bar"], numWeavers, L["Soul Weaver"]))
+		self:RemoveBar(string.format(L["add_bar"], numAbominations, L["Unstoppable Abomination"]))
 	end
 	self:ScheduleEvent("bwKTremoveP1Bars", removeP1Bars, 1, self)
 

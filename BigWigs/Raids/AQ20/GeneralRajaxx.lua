@@ -44,11 +44,39 @@ L:RegisterTranslations("enUS", function() return {
 	warn6 = "Wave 6/8",
 	warn7 = "Wave 7/8",
 	warn8 = "Incoming General Rajaxx",
-
-
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM
+	wave_name = "Оповещение о волне",
+	wave_desc = "Предупреждает о предстоящих волнах.",
 
+	trigger0 = "Remember, Rajaxx, when I said I'd kill you last?", --Помнишь, Раджакс, я говорил, что убью тебя последним? -- не переведено на Light's hope
+	trigger1 = "Kill first, then ask for questions... they\'re coming !", -- by CFM --Сначала убей, а потом спрашивай... Вперед!, -- не переведено на Light's hope
+	trigger2 = "?????",  -- There is no callout for wave 2 ><
+	trigger3 = "The time of our retribution is at hand! Let darkness reign in the hearts of our enemies!", --Час возмездия близок! Да охватит мрак сердца наших врагов! -- не переведено на Light's hope
+	trigger4 = "No longer will we wait behind barred doors and walls of stone! No longer will our vengeance be denied! The dragons themselves will tremble before our wrath!", --Мы не будем больше ждать за запертыми дверьми и каменными стенами! Мы не будем больше отказываться от возмездия! Даже драконы содрогнутся перед нашим гневом! -- не переведено на Light's hope
+	trigger5 = "Fear is for the enemy! Fear and death!", --Пусть наши враги трепещут! Смерть им! -- не переведено на Light's hope
+	trigger6 = "Staghelm will whimper and beg for his life, just as his whelp of a son did! One thousand years of injustice will end this day!", --Олений Шлем будет скулить и молить о пощаде, в точности как его сопливый сынок! Тысячелетняя несправедливость сегодня закончится! -- не переведено на Light's hope
+	trigger7 = "Fandral! Your time has come! Go and hide in the Emerald Dream and pray we never find you!", --Фэндрал! Твой час пробил! Иди же, прячься в Изумрудном Сне и молись, чтобы мы до тебя не добрались! -- не переведено на Light's hope
+	trigger8 = "Impudent fool! I will kill you myself!", --Настырная тварь! Я сам тебя убью! -- не переведено на Light's hope
+	trigger10 = "I lied...", --Я лгал... -- не переведено на Light's hope
+
+	shield_trigger ="получает эффект \"Щит Раджакса\".",
+	shield = "Щит Раджакса",
+	shield_cd = "Щит Раджакса - перезарядка",
+
+	trigger2_2 = "Убей ",
+
+	warn0 = "Волна 1/8", -- trigger for starting the event by pulling the first wave instead of talking to andorov
+	warn1 = "Волна 1/8",
+	warn2 = "Волна 2/8",
+	warn3 = "Волна 3/8",
+	warn4 = "Волна 4/8",
+	warn5 = "Волна 5/8",
+	warn6 = "Волна 6/8",
+	warn7 = "Волна 7/8",
+	warn8 = "Прибытие Генерала Раджакса",
+} end )
 L:RegisterTranslations("deDE", function() return {
 	wave_name = "Wellen",
 	wave_desc = "Warnung vor den ankommenden Gegner Wellen.",

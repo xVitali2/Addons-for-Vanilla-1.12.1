@@ -63,6 +63,54 @@ L:RegisterTranslations("enUS", function() return {
 	inroombartext = "In Room",
 } end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital --Готик Жнец
+	room_name = "Прибытие в комнату",
+	room_desc = "Предупреждает когда Готик прибывает в комнату.",
+
+	add_name = "Оповещение о существах",
+	add_desc = "Предупреждает о существах.",
+
+	adddeath_name = "Оповещение о смертях существ",
+	adddeath_desc = "Предупреждает когда существо погибает.",
+
+	disabletrigger = "I... am... undone!", --fix by CFM Меня... больше... нет! -- не переведено на Light's hope
+
+	starttrigger1 = "Brazenly you have disregarded powers beyond your understanding.", --Вам никогда не понять, сколь велика сила, потревоженная вами.
+	starttrigger2 = "Teamanare shi rikk mannor rikk lok karkun", --WTF???
+	startwarn = "Готик Жнец в бою! 4:35 до прибытия в комнату.",
+
+	rider_name = "Неодолимый всадник",
+	spectral_rider_name = "Призрачный всадник",
+	deathknight_name = "Безжалостный рыцарь смерти",
+	spectral_deathknight_name = "Призрачный рыцарь смерти",
+	trainee_name = "Жестокий новобранец",
+	spectral_trainee_name = "Призрачный ученик",
+
+	riderdiewarn = "Всадник погибает!",
+	dkdiewarn = "Рыцарь смерти погибает!",
+
+	warn_inroom_3m = "В комнате через 3 минут",
+	warn_inroom_90 = "В комнате через 90 секунд",
+	warn_inroom_60 = "В комнате через 60 секунд",
+	warn_inroom_30 = "В комнате через 30 секунд",
+	warn_inroom_10 = "Скоро Готик, осталось 10 секунд",
+
+	wave = "%d/22: ", -- its only 22 waves not 24
+
+	trawarn = "Новобранец через 3 секунды",
+	dkwarn = "Рыцарь смерти через 3 секунды",
+	riderwarn = "Всадник через 3 секунды",
+
+	trabar = "Новобранец - %d",
+	dkbar = "Рыцарь смерти - %d",
+	riderbar = "Всадник - %d",
+
+	inroomtrigger = "I have waited long enough! Now, you face the harvester of souls!", --Я ждал слишком долго. Сейчас вы предстанете пред ликом Жнеца душ! -- не переведено на Light's hope
+	inroomwarn = "Босс в комнате!",
+
+	inroombartext = "В комнате",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Gothik",
 

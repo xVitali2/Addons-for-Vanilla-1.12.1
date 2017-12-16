@@ -48,6 +48,38 @@ L:RegisterTranslations("enUS", function() return {
 
 } end )
 
+L:RegisterTranslations("ruRU", function() return {-- by CFM=KasVital
+	wyvern_name = "Оповещение об Укусе виверны",
+	wyvern_desc = "Предупреждает об Укусе виверны.",
+
+	frenzy_name = "Оповещение об Исступлении",
+	frenzy_desc = "Предупреждает об Исступлении.",
+
+	berserk_name = "Оповещение о Берсерке",
+	berserk_desc = "Предупреждает о Берсерке.",
+
+	frenzygain_trigger = "Принцесса Хухуран получает эффект \"Исступление\".",
+	frenzyend_trigger = "Действие эффекта \"Исступление\", наложенного на Принцесса Хухуран, заканчивается.",
+	frenzy_bar = "Исступление",
+	frenzy_Nextbar = "Возможное Исступление",
+	frenzy_message = "Исступление! Усмиряющий выстрел сейчас!",
+
+	berserktrigger = "goes into a berserker rage!", --%s впадает в безумную ярость! -- не переведено на Light's hope
+	frenzytrigger = "goes into a killing frenzy!", --%s впадает в убийственную ярость! -- не переведено на Light's hope
+	berserkwarn = "Берсерк! Берсерк! Берсерк!",
+	berserksoonwarn = "Скоро Берсерк!",
+	stingtrigger = "под воздействием эффекта \"Укус виверны\".",
+	stingwarn = "Укус виверны!",
+	stingdelaywarn = "Возможный Укус виверны через ~3 секунды!",
+	bartext = "Укус виверны",
+
+	startwarn = "Хухуран в бою, 5 минут до Берсерка!",
+	berserkbar = "Берсерк",
+	berserkwarn1 = "Берсерк через 1 минуту!",
+	berserkwarn2 = "Берсерк через 30 секунд!",
+	berserkwarn3 = "Берсерк через 5 секунд!",
+} end )
+
 L:RegisterTranslations("esES", function() return {
 	--cmd = "Huhuran",
 

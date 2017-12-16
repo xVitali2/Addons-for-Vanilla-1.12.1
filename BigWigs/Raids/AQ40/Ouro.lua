@@ -54,7 +54,7 @@ L:RegisterTranslations("enUS", function() return {
 	emergewarn = "15 sec to possible submerge!",
 	emergebartext = "Ouro submerge",
 
-	--submergetrigger = "Ouro casts Summon Ouro Mounds.",
+	--submergetrigger = "Ouro casts Summon Ouro Mounds.",Вызов курганов Оуро
 	submergetrigger = "submerge",
 	submergeannounce = "Ouro has submerged!",
 	submergewarn = "5 seconds until Ouro Emerges!",
@@ -63,8 +63,51 @@ L:RegisterTranslations("enUS", function() return {
 	berserktrigger = "Ouro gains Berserk.",
 	berserkannounce = "Berserk - Berserk!",
 	berserksoonwarn = "Berserk Soon - Get Ready!",
+} end )
 
+L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital --Оуро
+	sweep_name = "Оповещение о Сбивании",
+	sweep_desc = "Предупреждает о Сбивании.",
 
+	sandblast_name = "Оповещение о Песчаном вихре",
+	sandblast_desc = "Предупреждает о Песчаном вихре.",
+
+	emerge_name = "Оповещение о Выползании",
+	emerge_desc = "Предупреждает о Выползании босса.",
+
+	submerge_name = "Оповещение о Погружении",
+	submerge_desc = "Предупреждает о Погружении босса.",
+
+	berserk_name = "Берсерк",
+	berserk_desc = "Предупреждает когда Оуро в Берсерке.",
+
+	sweeptrigger = "Оуро начинает использовать \"Сбивание\".",
+	sweepannounce = "Сбивание!",
+	sweepwarn = "5 секунд до Сбивания!",
+	sweepbartext = "Сбивание",
+
+	sandblasttrigger = "Оуро начинает выполнять действие \"Песчаный вихрь\".",
+	sandblastannounce = "Скоро Песчаный вихрь!",
+	sandblastwarn = "5 секунд до Песчаного вихря!",
+	sandblastbartext = "Возможный Песчаный вихрь",
+
+	engage_message = "Оуро в бою! Возможное погружение через 90 секунд!",
+	possible_submerge_bar = "Возможное погружение",
+
+	emergetrigger = "Земной разлом",
+
+	emergeannounce = "Оуро выполз!",
+	emergewarn = "15 сек до возможного погружения!",
+	emergebartext = "Оуро погрузился",
+
+	submergetrigger = "исчезновения",
+	submergeannounce = "Оуро погрузился!",
+	submergewarn = "5 секунд до выползания Оуро!",
+	submergebartext = "Оуро выполз",
+
+	berserktrigger = "Оуро получает эффект \"Берсерк\".",
+	berserkannounce = "Оуро - Берсерк!",
+	berserksoonwarn = "Скоро Берсерк - Готовся!",
 } end )
 
 L:RegisterTranslations("esES", function() return {

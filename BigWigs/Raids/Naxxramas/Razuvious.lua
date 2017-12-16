@@ -45,9 +45,42 @@ L:RegisterTranslations("enUS", function() return {
 	unbalancesoonwarn = "Unbalancing Strike coming soon!",
 	unbalancewarn = "Unbalancing Strike! Next in ~30sec",
 	unbalancebar = "Unbalancing Strike",
-
-	shieldwalltrigger   = "Death Knight Understudy gains Shield Wall.",
+	
+	shieldwalltrigger   = "Deathknight Understudy gains Shield Wall.",
 	shieldwallbar       = "Shield Wall",
+} end )
+
+L:RegisterTranslations("ruRU", function() return { --Инструктор Разувий
+	shout_name = "Оповещение о Крике",
+	shout_desc = "Предупреждает о Разрушительном крике.",
+
+	unbalance_name = "Оповещение о Дисбалансирующем ударе",
+	unbalance_desc = "Предупреждает о Дисбалансирующем ударе.",
+
+	shieldwall_name = "Таймер Глухой обороны",
+	shieldwall_desc = "Отображает таймеры для Глухой обороны.",
+
+	startwarn = "Инструктор Разувий в бою! 15 сек до Крика, 30 сек до Дисбалансирующего удара!",
+
+	starttrigger1 = "Stand and fight!", --Сражайтесь! -- не переведено на Light's hope
+	starttrigger2 = "Show me what you've got!", --Покажите мне, на что способны! -- не переведено на Light's hope
+	starttrigger3 = "Hah hah, I'm just getting warmed up!", --Ха-ха-ха, это только разминка! -- не переведено на Light's hope
+
+	--shouttrigger = "Разрушительный крик",
+	shouttrigger = "lets loose a triumphant shout.", --издает победный клич. -- не переведено на Light's hope
+	shout7secwarn = "7 сек до Разрушительного крика",
+	shout3secwarn = "3 сек до Разрушительного крика!",
+	shoutwarn = "Разрушительный крик! Следующий через 25 секунд",
+	noshoutwarn = "Без Крика! Следующий через 20 секунд",
+	shoutbar = "Разрушительный крик",
+
+	unbalance_trigger = "под воздействием эффекта \"Дисбалансирующий удар\"",
+	unbalancesoonwarn = "Скоро Дисбалансирующий удар!",
+	unbalancewarn = "Дисбалансирующий удар! Следующий  через ~30 сек",
+	unbalancebar = "Дисбалансирующий удар",
+
+	shieldwalltrigger = "Ученик рыцаря смерти получает эффект \"Глухая оборона\".",
+	shieldwallbar = "Глухая оборона",
 } end )
 
 L:RegisterTranslations("esES", function() return {

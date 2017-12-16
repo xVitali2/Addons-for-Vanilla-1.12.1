@@ -70,6 +70,7 @@ L:RegisterTranslations("enUS", function() return {
 	enrage_cmd          = "enrage",
 	enrage_name         = "Enrage Alert",
 	enrage_desc         = "Warn for Enrage",
+	["Next Holy Fire"]  = true,
 } end )
 
 L:RegisterTranslations("ruRU", function() return { --by CFM
@@ -124,6 +125,7 @@ L:RegisterTranslations("ruRU", function() return { --by CFM
 
 	enrage_name         = "Объявление о Бешенстве",
 	enrage_desc         = "Предупреждает о Бешенстве босса",
+	["Next Holy Fire"]  = "Следующий Священный огонь",
 } end )
 
 L:RegisterTranslations("esES", function() return {
@@ -186,6 +188,7 @@ L:RegisterTranslations("esES", function() return {
 	--enrage_cmd          = "enrage",
 	enrage_name         = "Alerta de Enfurecer",
 	enrage_desc         = "Avisa para Enfurecer",
+	["Next Holy Fire"]  = "Próximo Fuego Sagrado",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -248,6 +251,7 @@ L:RegisterTranslations("deDE", function() return {
 	enrage_cmd = "enrage",
 	enrage_name = "Verk\195\188ndet Boss' Raserei",
 	enrage_desc = "L\195\164sst dich wissen, wenn Boss h\195\164rter zuschl\195\164gt",
+	["Next Holy Fire"]  = true,
 } end )
 
 
@@ -447,7 +451,7 @@ function module:BigWigs_RecvSync(sync, rest, nick)
 		castingholyfire = 1
 		if self.db.profile.holyfire then
 			self:Bar(L["holyfirebar"], timer.holyfireCast, icon.holyfire, true, "red")
-			self:Bar("Next Holy Fire", timer.holyfire, icon.holyfire)
+			self:Bar(L["Next Holy Fire"], timer.holyfire, icon.holyfire)
 		end
 	elseif sync == "VenoxisHolyFireStop" then
 		castingholyfire = 0
