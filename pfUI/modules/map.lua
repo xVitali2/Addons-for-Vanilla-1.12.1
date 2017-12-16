@@ -63,10 +63,10 @@ pfUI:RegisterModule("map", function ()
 
       WorldMapFrameCloseButton:SetPoint("TOPRIGHT", WorldMapFrame, "TOPRIGHT", 0, 0)
       CreateBackdrop(WorldMapFrame)
-      
+
       WorldMapFrame:SetAlpha(c_position.alpha)
       WorldMapFrame:SetScale(c_position.scale)
-      
+
       BlackoutWorld:Hide()
 
       for i,v in ipairs({WorldMapFrame:GetRegions()}) do
