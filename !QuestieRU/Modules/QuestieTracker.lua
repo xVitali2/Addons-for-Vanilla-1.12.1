@@ -256,13 +256,13 @@ function QuestieTracker:createOrGetTrackingButton(index)
 					Tooltip:Show();
 				end
 				end
-			end
+			end---------by CFM
         end)
         btn:SetScript("OnLeave", function()
-			if Tooltip then
+			if Tooltip then---------by CFM
 				Tooltip:SetFrameStrata("TOOLTIP");
 				Tooltip:Hide();
-			end
+			end---------by CFM
         end)
         btn.dragstartx = 0;
         btn.dragstarty = 0;
@@ -605,7 +605,7 @@ function QuestieTracker:FillTrackingFrame()
             if (QuestieConfig.trackerList == false) then
 				if QuestieTracker.frame:GetTop() and QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetBottom() then---------by CFM
 					trackerHeight = QuestieTracker.frame:GetTop() - QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetBottom();
-				end
+				end---------by CFM
             else---------by CFM
 				if QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetTop() and QuestieTracker.frame:GetBottom() then---------by CFM
 					trackerHeight = QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetTop() - QuestieTracker.frame:GetBottom();
@@ -922,9 +922,6 @@ local function trim(s)
 end
 ---------------------------------------------------------------------------------------------------
 function QuestieTracker:addQuestToTrackerCache(hash, logId, level)
-    if (QuestieSeenQuests[hash] == 1) then
-        return;
-    end
     if not QuestieCachedQuests[hash] then
         QuestieCachedQuests[hash] = {};
     end
@@ -1002,9 +999,6 @@ end
 function QuestieTracker:updateTrackerCache(hash, logId, level)
     if (not QUEST_WATCH_LIST[logId]) and (not QuestieCachedQuests[hash]) then
         QuestieTracker:addQuestToTrackerCache(hash, logId, level);
-    end
-    if (QuestieSeenQuests[hash] == 1) then
-        return;
     end
     if not QuestieCachedQuests[hash] then
         QuestieCachedQuests[hash] = {};

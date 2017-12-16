@@ -15,32 +15,32 @@ Questie.minimapButton:SetWidth(31)
 Questie.minimapButton:SetHeight(31)
 Questie.minimapButton:SetFrameLevel(9)
 Questie.minimapButton:SetHighlightTexture('Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight')
-if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square") or (pfUI and pfUI.minimap)) then
+if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square") or (pfUI and pfUI.minimap)) then---------by CFM
 	Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52-math.max(-82,math.min((110*cos(QuestieMinimapPosition)),84)),math.max(-86,math.min((110*sin(QuestieMinimapPosition)),82))-52)
-else
+else---------by CFM
 	Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52-(80*cos(QuestieMinimapPosition)),(80*sin(QuestieMinimapPosition))-52)
-end
+end---------by CFM
 Questie.minimapButton:RegisterForDrag("LeftButton")
 Questie.minimapButton.draggingFrame = CreateFrame("Frame", "QuestieMinimapDragging", Questie.minimapButton)
 Questie.minimapButton.draggingFrame:Hide();
 Questie.minimapButton.draggingFrame:SetScript("OnUpdate", function()
     local xpos,ypos = GetCursorPosition()
-    local xmin,ymin = Minimap:GetLeft() or 400, Minimap:GetBottom() or 400
+    local xmin,ymin = Minimap:GetLeft() or 400, Minimap:GetBottom() or 400---------by CFM
 	xpos = xmin-xpos/UIParent:GetScale()+70
 	ypos = ypos/UIParent:GetScale()-ymin-70
 	QuestieMinimapPosition = math.deg(math.atan2(ypos,xpos))
-	local pos = QuestieMinimapPosition
-	if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")
+	local pos = QuestieMinimapPosition---------by CFM
+	if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")---------by CFM
 		or (pfUI and pfUI.minimap)) then
 		xpos = 110 * cos(pos or 0)
 		ypos = 110 * sin(pos or 0)
 		xpos = math.max(-82,math.min(xpos,84))
 		ypos = math.max(-86,math.min(ypos,82))
-	else
+	else---------by CFM
 		xpos = 80*cos(pos or 0)
 		ypos = 80*sin(pos or 0)
-	end
-	Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52-xpos,ypos-52)
+	end---------by CFM
+	Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52-xpos,ypos-52)---------by CFM
 end)
 Questie.minimapButton:SetScript("OnDragStart", function()
     this:LockHighlight();
@@ -67,7 +67,9 @@ end)
 Questie.minimapButton:SetScript("OnEnter", function()
         GameTooltip:SetOwner(Questie.minimapButton, "ANCHOR_BOTTOMLEFT")
         GameTooltip:ClearLines()
-        GameTooltip:SetText("QuestieRU\n<ЛКМ>: Открыть настройки\n<ПКМ>: Переключить значки")--by CFM
+        GameTooltip:SetText("QuestieRU\n\n")---------by CFM
+        GameTooltip:AddDoubleLine("<ЛКМ>", "Открыть настройки", 1,1,1, 1,1,0)---------by CFM
+        GameTooltip:AddDoubleLine("<ПКМ>", "Переключить значки заметок", 1,1,1, 1,1,0)---------by CFM
         GameTooltip:Show()
 end)
 Questie.minimapButton:SetScript("OnLeave", function()

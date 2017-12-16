@@ -17388,13 +17388,6 @@ QuestieMonsters = {
     ["locationCount"] = 4,
     ["faction"] = 2
   },
-  ["Ironspine Forgelord"] = {
-    ["locations"] = {
-      [1] = {59.0, 0.4077, 0.2011, 100.0}
-    },
-    ["looted"] = 684,
-    ["locationCount"] = 1
-  },
   ["Дедушка Зима"] = {
     ["locations"] = {
       [1] = {1.0, 0.5253, 0.6897, 100.0}
@@ -17415,22 +17408,6 @@ QuestieMonsters = {
     },
     ["locationCount"] = 1,
     ["faction"] = 1
-  },
-  ["Withered Giant slain"] = {
-    ["locations"] = {
-      [1] = {57.0, 0.8042, 0.4406, 100.0},
-      [3] = {57.0, 0.8059, 0.3384, 33.0},
-      [4] = {57.0, 0.846, 0.3643, 2.0},
-      [2] = {57.0, 0.7939, 0.373, 52.0}
-    },
-    ["locationCount"] = 4
-  },
-  ["Aeldon Sunbrand"] = {
-    ["locations"] = {
-      [1] = {41.0, 0.4813, 0.4604, 100.0}
-    },
-    ["locationCount"] = 1,
-    ["faction"] = 2
   },
   ["Макрура-трещот"] = {
     ["locations"] = {
