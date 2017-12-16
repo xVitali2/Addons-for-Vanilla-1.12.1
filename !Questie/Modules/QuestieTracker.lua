@@ -233,7 +233,7 @@ function QuestieTracker:createOrGetTrackingButton(index)
                     Tooltip:SetOwner(this, "ANCHOR_LEFT");
                 end
                 local index = 0;
-                for k,v in pairs(QuestieLevLookup[questTitle]) do
+                for k,v in pairs(Questie:SanitsedQuestLookup(questTitle)) do
                     index = index + 1;
                     if (index == 1) and (v[2] == questHash) and (k ~= "") then
                         questOb = k;
@@ -914,9 +914,6 @@ local function trim(s)
 end
 ---------------------------------------------------------------------------------------------------
 function QuestieTracker:addQuestToTrackerCache(hash, logId, level)
-    if (QuestieSeenQuests[hash] == 1) then
-        return;
-    end
     if not QuestieCachedQuests[hash] then
         QuestieCachedQuests[hash] = {};
     end
@@ -994,9 +991,6 @@ end
 function QuestieTracker:updateTrackerCache(hash, logId, level)
     if (not QUEST_WATCH_LIST[logId]) and (not QuestieCachedQuests[hash]) then
         QuestieTracker:addQuestToTrackerCache(hash, logId, level);
-    end
-    if (QuestieSeenQuests[hash] == 1) then
-        return;
     end
     if not QuestieCachedQuests[hash] then
         QuestieCachedQuests[hash] = {};

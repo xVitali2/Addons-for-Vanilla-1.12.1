@@ -1217,11 +1217,7 @@ QuestieLevLookup = {
   ["Bring Ilkrud Magthrull's Tome to Delgren the Purifier at Maestra's Post."]={0,3181993408},
   ["Talk to Delgren the Purifier at Maestra's Post."]={0,3103336192},
   ["Free the trapped Highborne souls in Night Run and Satyrnaar, then return to Delgren the Purifier at Maestra's Post."]={0,2661493280},
- },
- ["The Tower of Althalaxx part 7"]={
   ["Speak with Balthule Shadowstrike near the Tower of Althalaxx."]={0,351455456},
- },
- ["The Tower of Althalaxx part 8"]={
   ["Kill Athrikus Narassin and bring his head to Balthule Shadowstrike near the Tower of Althalaxx."]={0,432732864},
  },
  ["To Ironforge for Yagyin's Digest"]={
@@ -20864,7 +20860,7 @@ QuestieHashMap = {
   ['rq']=2153855240
  },
  [432732864]={
-  ['name']="The Tower of Althalaxx part 8",
+  ['name']="The Tower of Althalaxx",
   ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Balthule Shadowstrike",
@@ -46172,7 +46168,7 @@ QuestieHashMap = {
   ['rq']=3632844778
  },
  [351455456]={
-  ['name']="The Tower of Althalaxx part 7",
+  ['name']="The Tower of Althalaxx",
   ['startedType']="monster",
   ['finishedType']="monster",
   ['startedBy']="Delgren the Purifier",
@@ -55601,28 +55597,32 @@ function GetEntityLocations(entity)
         end
         if sourceType == "locations" then
             local added = false
+            local _, class = UnitClass("Player")
+            local _, race = UnitRace("Player")
             for i, location in pairs(sources) do
-                local reformattedLocation
-                if location[2] >= 1 then
-                    -- new location format
-                    reformattedLocation = location
-                elseif QuestieZoneIDLookup[location[1]] then
-                    -- old location format
-                    local MapInfo = QuestieZoneIDLookup[location[1]]
-                    reformattedLocation = {MapInfo[4], MapInfo[5], location[2], location[3]}
-                end
-
-                if reformattedLocation then
-                    if locations[sourceType] == nil then locations[sourceType] = {} end
-                    table.insert(locations[sourceType], reformattedLocation)
-                    if added == false then
-                        local c, z = reformattedLocation[1], reformattedLocation[2]
-                        if mapIds[c] == nil then mapIds[c] = {} end
-                        mapIds[c][z] = true
-                        added = true
+                if (not entity['locations_rr']) or (not entity['locations_rr'][i]) or checkRequirements(class, race, nil, entity['locations_rr'][i]) then
+                    local reformattedLocation
+                    if location[2] >= 1 then
+                        -- new location format
+                        reformattedLocation = location
+                    elseif QuestieZoneIDLookup[location[1]] then
+                        -- old location format
+                        local MapInfo = QuestieZoneIDLookup[location[1]]
+                        reformattedLocation = {MapInfo[4], MapInfo[5], location[2], location[3]}
                     end
-                else
-                    --sources[i] = nil
+
+                    if reformattedLocation then
+                        if locations[sourceType] == nil then locations[sourceType] = {} end
+                        table.insert(locations[sourceType], reformattedLocation)
+                        if added == false then
+                            local c, z = reformattedLocation[1], reformattedLocation[2]
+                            if mapIds[c] == nil then mapIds[c] = {} end
+                            mapIds[c][z] = true
+                            added = true
+                        end
+                    else
+                        --sources[i] = nil
+                    end
                 end
             end
         end
