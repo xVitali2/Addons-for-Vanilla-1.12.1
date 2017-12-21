@@ -399,7 +399,9 @@ function module:Sandblast()
 end
 
 function module:DoSubmergeCheck()
-	self:ScheduleRepeatingEvent("bwourosubmergecheck", self.SubmergeCheck, 0.5, self)
+	if self:IsOuroVisible() then
+		self:ScheduleRepeatingEvent("bwourosubmergecheck", self.SubmergeCheck, 0.5, self)
+	end
 end
 function module:Emerge()
 	if self.phase ~= "berserk" then
