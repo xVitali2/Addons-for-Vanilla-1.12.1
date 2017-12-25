@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 --Name: Questie for Vanilla WoW
---Revision: 3.81
+--Revision: 3.83
 --Authors: KasVital & Aero/Schaka/Logon/Dyaxler/Muehe/Zoey/everyone else
 --Website: https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/
 --Description: Questie started out being a simple backport of QuestHelper but it has grown beyond
@@ -12,7 +12,8 @@
 --///////////////////////////////////////////////////////////////////////////////////////////////--
 ---------------------------------------------------------------------------------------------------
 Questie = CreateFrame("Frame", "QuestieLua", UIParent, "ActionButtonTemplate");
-QuestieVersion = 3.82;
+QuestieVersion = 3.83;
+QuestieLanguage = "ruRU";
 ---------------------------------------------------------------------------------------------------
 --Setup Default Profile
 ---------------------------------------------------------------------------------------------------
@@ -22,6 +23,7 @@ function Questie:SetupDefaults()
     if not QuestieConfig then QuestieConfig = {
         ["alwaysShowObjectives"] = true,
         ["arrowEnabled"] = true,
+        ["arrowTime"] = true,
         ["boldColors"] = false,
         ["clusterQuests"] = true,
         ["corpseArrow"] = true,
@@ -69,6 +71,9 @@ function Questie:CheckDefaults()
     end
     if QuestieConfig.arrowEnabled == nil then
         QuestieConfig.arrowEnabled = true;
+    end
+    if QuestieConfig.arrowTime == nil then
+        QuestieConfig.arrowTime = false;
     end
     if QuestieConfig.boldColors == nil then
         QuestieConfig.boldColors = false;
@@ -200,7 +205,6 @@ function Questie:OnLoad()
     this:RegisterEvent("PLAYER_LEVEL_UP");
     this:RegisterEvent("PLAYER_LOGIN");
     this:RegisterEvent("PLAYER_UNGHOST");
-    this:RegisterEvent("QUEST_COMPLETE");
     this:RegisterEvent("QUEST_PROGRESS");
     this:RegisterEvent("VARIABLES_LOADED");
     this:RegisterEvent("ZONE_CHANGED_NEW_AREA");
@@ -465,6 +469,10 @@ function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 
         end
         WorldMapUpdateSpamOff = nil;
     -------------------------------------------------
+    elseif (event == "QUEST_PROGRESS") then
+        Questie:debug_Print("OnEvent: QUEST_PROGRESS.\n    GetNumQuestItems: "..GetNumQuestItems())
+        Questie:OnQuestProgress()
+    -------------------------------------------------
     elseif (event == "QUEST_LOG_UPDATE") then
         --Questie:debug_Print("OnEvent: QUEST_LOG_UPDATE");
         Questie:CheckQuestLogStatus();
@@ -472,14 +480,6 @@ function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 
     elseif (event == "QUEST_ITEM_UPDATE") then
         Questie:debug_Print("OnEvent: QUEST_ITEM_UPDATE");
         Questie:CheckQuestLogStatus();
-    -------------------------------------------------
-    elseif(event == "QUEST_PROGRESS") then
-        Questie:debug_Print("OnEvent: QUEST_PROGRESS");
-        Questie:CompleteQuest();
-    -------------------------------------------------
-    elseif(event == "QUEST_COMPLETE") then
-        Questie:debug_Print("OnEvent: QUEST_COMPLETE");
-        Questie:GetQuestReward();
     -------------------------------------------------
     elseif (event == "VARIABLES_LOADED") then
         Questie:SetupDefaults();
@@ -517,9 +517,9 @@ function Questie:Toggle()
 ---------------------------------------------------------------------------------------------------
 function Questie:ClearConfig(arg)
     if arg == "slash" then
-        msg = "|cFFFFFF00You are about to clear your characters settings. This will NOT delete your quest database but it will clean it up a little. This will reset abandoned quests, and remove any finished or stale quest entries in the QuestTracker database. Your UI will be reloaded automatically to finalize the new settings.|n|nAre you sure you want to continue?|r";
+        msg = "|cFFFFFF00Вы собираетесь очистить настройки своих персонажей. Это НЕ удалит базу данных квеста, но она немного очистит ее. Это приведет к сбросу оставленных квестов и удалению любых завершенных или устаревших записей квеста в базе данных QuestTracker. Ваш пользовательский интерфейс будет перезагружен автоматически для завершения новых настроек.|n|nВы уверены, что хотите продолжить?|r";
     elseif arg == "version" then
-        msg = "|cFFFFFF00VERSION CHECK!|n|nIt appears you have installed Questie for the very first time or you have recently upgraded to a new version. Your UI will automatically be reloaded and your QuestieConfig will be updated and cleaned of any stale entries. This will NOT clear your quest history.|n|nPlease click Yes to begin the update.|r";
+        msg = "|cFFFFFF00ПРОВЕРКА ВЕРСИИ!|n|nПохоже, вы установили QuestieRU в первый раз или недавно обновились до новой версии. Ваш пользовательский интерфейс будет автоматически перезагружен, и ваш QuestieConfig будет обновлен и очищен от любых устаревших записей. Это НЕ очистит историю квеста.|n|nПожалуйста, нажмите «Да», чтобы начать обновление.|r";
     end
     StaticPopupDialogs["CLEAR_CONFIG"] = {
         text = TEXT(msg),
@@ -596,6 +596,17 @@ QuestieFastSlash = {
         else
             DEFAULT_CHAT_FRAME:AddMessage("QuestieQuest:|c0000ffc0 (Arrow Off) |r");
             TomTomCrazyArrow:Hide();
+        end
+    end,
+    ["arrowtime"] = function()
+    --Default: False
+        QuestieConfig.arrowTime = not QuestieConfig.arrowTime;
+        if QuestieConfig.arrowTime then
+            DEFAULT_CHAT_FRAME:AddMessage("QuestieQuest:|c0000ffc0 (Arrow Time to Arrive On) |r");
+            TomTomCrazyArrow.tta:Show();
+        else
+            DEFAULT_CHAT_FRAME:AddMessage("QuestieQuest:|c0000ffc0 (Arrow Time to Arrive Off) |r");
+            TomTomCrazyArrow.tta:Hide();
         end
     end,
     ["background"] = function()
@@ -956,6 +967,7 @@ QuestieFastSlash = {
     ["help"] = function()
         DEFAULT_CHAT_FRAME:AddMessage("Questie SlashCommand Help Menu:", 1, 0.75, 0);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie arrow |r|c0000ffc0(toggle)|r QuestArrow: Toggle", 0.75, 0.75, 0.75);
+        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie arrowtime |r|c0000ffc0(toggle)|r QuestArrow: Toggle Time to Arrive", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie background |r|c0000ffc0(toggle)|r QuestTracker: Background", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie backgroundalpha |r|c0000ffc0(10-100%)|r QuestTracker: Background Alpha Level (default=60%)", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie clearconfig |r|c0000ffc0(Pop-up)|r UserSettings: Reset settings. Will NOT delete quest data.", 0.75, 0.75, 0.75);
@@ -1024,28 +1036,29 @@ function Questie:CurrentUserToggles()
     local Vars = {
         [1] = { "alwaysShowObjectives" },
         [2] = { "arrowEnabled" },
-        [3] = { "boldColors" },
-        [4] = { "clusterQuests" },
-        [5] = { "corpseArrow" },
-        [6] = { "getVersion" },
-        [7] = { "hideMinimapIcons" },
-        [8] = { "maxLevelFilter" },
-        [9] = { "maxShowLevel" },
-        [10] = { "minimapButton" },
-        [11] = { "minimapZoom" },
-        [12] = { "minLevelFilter" },
-        [13] = { "minShowLevel" },
-        [14] = { "resizeWorldmap" },
-        [15] = { "showMapNotes" },
-        [16] = { "showProfessionQuests" },
-        [17] = { "showTrackerHeader" },
-        [18] = { "showToolTips" },
-        [19] = { "trackerAlpha" },
-        [20] = { "trackerBackground" },
-        [21] = { "trackerEnabled" },
-        [22] = { "trackerList" },
-        [23] = { "trackerMinimize" },
-        [24] = { "trackerScale" },
+        [3] = { "arrowTime" },
+        [4] = { "boldColors" },
+        [5] = { "clusterQuests" },
+        [6] = { "corpseArrow" },
+        [7] = { "getVersion" },
+        [8] = { "hideMinimapIcons" },
+        [9] = { "maxLevelFilter" },
+        [10] = { "maxShowLevel" },
+        [11] = { "minimapButton" },
+        [12] = { "minimapZoom" },
+        [13] = { "minLevelFilter" },
+        [14] = { "minShowLevel" },
+        [15] = { "resizeWorldmap" },
+        [16] = { "showMapNotes" },
+        [17] = { "showProfessionQuests" },
+        [18] = { "showTrackerHeader" },
+        [19] = { "showToolTips" },
+        [20] = { "trackerAlpha" },
+        [21] = { "trackerBackground" },
+        [22] = { "trackerEnabled" },
+        [23] = { "trackerList" },
+        [24] = { "trackerMinimize" },
+        [25] = { "trackerScale" },
     };
     if QuestieConfig then
         i = 1;
@@ -1079,7 +1092,7 @@ function SetItemRef(link, text, button)
 					local QuestName = QuestieHashMap[questHash].name;
 					if QuestName == questTitle then
 						local index = 0;
-						for k,v in pairs(QuestieLevLookup[QuestName]) do
+						for k,v in pairs(Questie:SanitisedQuestLookup(QuestName)) do
 							index = index + 1;
 							if (index == 1) and (v[2] == questHash) and (k ~= "") then
 								questOb = k;

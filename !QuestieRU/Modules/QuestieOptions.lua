@@ -1,6 +1,6 @@
-BINDING_HEADER_QUESTIE = "Questie"
-BINDING_NAME_QUESTIEOPTIONS = "Open Questie Options"
-BINDING_NAME_QUESTIETOGGLE = "Toggle Questie On or Off"
+BINDING_HEADER_QUESTIERU = "QuestieRU"
+BINDING_NAME_QUESTIEOPTIONS = "Открыть настройки QuestieRU"
+BINDING_NAME_QUESTIETOGGLE = "Переключить состояние QuestieRU"
 
 Questie_Options = AceLibrary("AceAddon-2.0"):new("AceHook-2.1")
 
@@ -239,77 +239,20 @@ end
 function Questie:OptionsForm_SettingOnEnter(SettingsName)
     QuestieOptionsToolTip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2), 10)
 
-    if(SettingsName == "ArrowEnabled") then
-        QuestieOptionsToolTip:AddLine("Стрелка заданий (по умолчанию=выбрано)", 1, 1, 0)
+    local language = QuestieLanguage or "enUS"
 
-    elseif(SettingsName == "AlwaysShowObjectives") then
-        QuestieOptionsToolTip:AddLine("Всегда отображать задания и цели (по умолчанию=выбрано)", 1, 1, 0)
+    QuestieOptionsToolTip:AddLine(
+        QuestieInterfaceTexts["Settings"][SettingsName][language]["name"]..
+        " (По умолчанию: "..
+        QuestieInterfaceTexts["Settings"][SettingsName][language]["default"]..
+        ")",
+        1, 1, 0)
 
-    elseif(SettingsName == "BoldColors") then
-        QuestieOptionsToolTip:AddLine("Другие цвета для отслеживания заданий (по умолчанию=не выбрано)", 1, 1, 0)
-
-    elseif(SettingsName == "ClusterQuests") then
-        QuestieOptionsToolTip:AddLine("Объединять задания находящиеся рядом (по умолчанию=выбрано)", 1, 1, 0)
-
-    elseif(SettingsName == "CorpseArrow") then
-        QuestieOptionsToolTip:AddLine("Отображать стрелку до своего тела (по умолчанию=выбрано)", 1, 1, 0)
-
-    elseif(SettingsName == "HideMinimapIcons") then
-        QuestieOptionsToolTip:AddLine("Скрывать значки на миникарте (по умолчанию=не выбрано)", 1, 1, 0)
-
-    elseif(SettingsName == "MaxLevelFilter") then
-        QuestieOptionsToolTip:AddLine("Фильтр максимального уровня (по умолчанию=не выбрано)", 1, 1, 0)
-
-    elseif(SettingsName == "MaxShowLevel") then
-        QuestieOptionsToolTip:AddLine("Скрывать задания выше уровня игрока на Х (по умолчанию=7)", 1, 1, 0)
-
-    elseif(SettingsName == "MinimapButton") then
-        QuestieOptionsToolTip:AddLine("Показывать кнопку Questie на миникарте (по умолчанию=выбрано)", 1, 1, 0)
-
-    elseif(SettingsName == "MinLevelFilter") then
-        QuestieOptionsToolTip:AddLine("Фильтр минимального уровня (по умолчанию=не выбрано)", 1, 1, 0)
-
-    elseif(SettingsName == "MinShowLevel") then
-        QuestieOptionsToolTip:AddLine("Скрывать задания ниже уровня игрока на Х (по умолчанию=4)", 1, 1, 0)
-
-    elseif(SettingsName == "ResizeWorldmap") then
-        QuestieOptionsToolTip:AddLine("Изменять размер карты мира (по умолчанию=не выбрано)", 1, 1, 0)
-        QuestieOptionsToolTip:AddLine("Требуется перезагрузка интерфейса", 1, 0, 0)
-
-    elseif(SettingsName == "ShowMapNotes") then
-        QuestieOptionsToolTip:AddLine("Значки на карте мира/миникарте (по умолчанию=выбрано)", 1, 1, 0)
-
-    elseif(SettingsName == "ShowProfessionQuests") then
-        QuestieOptionsToolTip:AddLine("Задания профессий (по умолчанию=не выбрано)", 1, 1, 0)
-
-    elseif(SettingsName == "ShowToolTips") then
-        QuestieOptionsToolTip:AddLine("Всегда отображать подсказки задания и целей (по умолчанию=выбрано)", 1, 1, 0)
-        QuestieOptionsToolTip:AddLine("Требуется перезагрузка интерфейса", 1, 0, 0)
-
-    elseif(SettingsName == "ShowTrackerHeader") then
-        QuestieOptionsToolTip:AddLine("Отображать заголовок над отслеживанием заданий (по умолчанию=не выбрано)", 1, 1, 0)
-        QuestieOptionsToolTip:AddLine("Требуется перезагрузка интерфейса", 1, 0, 0)
-
-    elseif(SettingsName == "TrackerBackground") then
-        QuestieOptionsToolTip:AddLine("Рамка и задний фон отслеживания заданий, будет всегда отображаться (по умолчанию=не выбрано)", 1, 1, 0)
-        QuestieOptionsToolTip:AddLine("Требуется перезагрузка интерфейса", 1, 0, 0)
-
-    elseif(SettingsName == "TrackerEnabled") then
-        QuestieOptionsToolTip:AddLine("Отслеживание заданий (по умолчанию=выбрано)", 1, 1, 0)
-        QuestieOptionsToolTip:AddLine("Требуется перезагрузка интерфейса", 1, 0, 0)
-
-    elseif(SettingsName == "TrackerList") then
-        QuestieOptionsToolTip:AddLine("Список заданий [Выбрано] = Снизу вверх, [Не выбрано] = Сверху вниз (по умолчанию=не выбрано)", 1, 1, 0)
-        QuestieOptionsToolTip:AddLine("Требуется перезагрузка интерфейса", 1, 0, 0)
-
-    elseif(SettingsName == "TrackerScale") then
-        QuestieOptionsToolTip:AddLine("Размер отслеживания заданий (по умолчанию=100%)", 1, 1, 0)
-        QuestieOptionsToolTip:AddLine("Требуется перезагрузка интерфейса", 1, 0, 0)
-
-    elseif(SettingsName == "TrackerTransparency") then
-        QuestieOptionsToolTip:AddLine("Уровень прозрачности заднего фона отслеживания заданий(по умолчанию=40%)", 1, 1, 0)
+    if QuestieInterfaceTexts["Settings"][SettingsName]["requiresReload"] then
         QuestieOptionsToolTip:AddLine("Требуется перезагрузка интерфейса", 1, 0, 0)
     end
+
+    QuestieOptionsToolTip:AddLine(QuestieInterfaceTexts["Settings"][SettingsName][language]["description"], 1, 1, 1, true)
 
     QuestieOptionsToolTip:Show()
 end

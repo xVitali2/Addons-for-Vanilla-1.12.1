@@ -67,65 +67,89 @@ StaticPopupDialogs["ABANDON_QUEST_WITH_ITEMS"].OnAccept = function()
                 QuestAbandonWithItemsOnAccept();
 end
 ---------------------------------------------------------------------------------------------------
---Blizzard Hook: Quest Reward Complete Button
+--This function saves the number of slots that get freed when turning in a quest
+--to the QuestieCachedQuests table, so it can be read in the next function.
+--It is called upon the QUEST_PROGRESS event.
 ---------------------------------------------------------------------------------------------------
-QuestRewardCompleteButton = QuestRewardCompleteButton_OnClick;
-QuestRewardCompleteButton_OnClick = function()
-    if IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest") then
-        local numAvailSlots = Questie:CheckPlayerInventory();
-        if numAvailSlots < 1 then
-            DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Questie: Проверьте сумки. Инвентарь полон!");---------by CFM
-            PlaySound("igQuestLogAbandonQuest");
-            DeclineQuest();
-            HideUIPanel(QuestFrame);
-            return
-        end
-    end
+function Questie:OnQuestProgress()
     local questTitle = QGet_TitleText();
     local _, _, qlevel, qName = string.find(questTitle, "%[(.+)%] (.+)");
     if qName == nil then
         qName = QGet_TitleText();
-    else
-        qName = qName;
     end
     for hash,v in pairs(QuestieCachedQuests) do
         if v["questName"] == qName then
+            v["numQuestItems"] = GetNumQuestItems();
+        end
+    end
+end
+---------------------------------------------------------------------------------------------------
+--This function is used by the next two hooks.
+--It checks if the conditions for completing a quest are met:
+--    1. If there is a choice available, the player must have chosen.
+--    2. There must be (numRewards-numItems) free slots in the invetory.
+--If both conditions are met, the quest is marked as finished, otherwise
+--false is returned (return value is currently unused).
+---------------------------------------------------------------------------------------------------
+function Questie:MarkQuestAsFinished()
+    local rewards = GetNumQuestRewards();
+    local choices = GetNumQuestChoices();
+    -- Filter condition: choices available but no choice made.
+    if ( QuestFrameRewardPanel.itemChoice == 0 and choices > 0 ) then
+        return false;
+    end
+    -- If there are rewards and choices, we need 1 more space.
+    if choices > 0 then
+        rewards = rewards + 1;
+    end
+    -- Get quest name and compare it against values in cache
+    local questTitle = QGet_TitleText();
+    local _, _, qlevel, qName = string.find(questTitle, "%[(.+)%] (.+)");
+    if qName == nil then
+        qName = QGet_TitleText();
+    end
+    for hash,v in pairs(QuestieCachedQuests) do
+        if v["questName"] == qName then
+            if (not v["numQuestItems"]) then
+                Questie:debug_Print("ERROR: QuestRewardCompleteButton: [questTitle: "..qName.."] | [Hash: "..hash.."]:\n    Failed to read numQuestItems from SavedVariables")
+            end
+            -- Filter condition: not enough space in inventory.
+            if (rewards > 0) and (Questie:CheckPlayerInventory() < (rewards - (v["numQuestItems"] or 0))) then
+                return false;
+            end
+            -- All checks passed, mark quest as finished and remove it from cache
             QuestieSeenQuests[hash] = 1;
             QuestieCompletedQuestMessages[qName] = 1;
             QuestieCachedQuests[hash] = nil;
             QuestieHandledQuests[hash] = nil;
             Questie:debug_Print("Quest:QuestRewardCompleteButton: [questTitle: "..qName.."] | [Hash: "..hash.."]");
             RemoveCrazyArrow(hash);
+            return true;
         end
     end
+end
+---------------------------------------------------------------------------------------------------
+--Blizzard Hook: GetQuestReward function
+--This hook marks a quest as finished in Questies DB if it can be finished.
+--The call to the hooked function then finishes the quest.
+--It is needed in addition to the next hook, because it is used by EQL3
+--when its "Auto Complete Quests"-option is enabled.
+---------------------------------------------------------------------------------------------------
+QGetQuestReward = GetQuestReward;
+GetQuestReward = function(choice)
+    Questie:MarkQuestAsFinished();
+    QGetQuestReward(choice);
+end
+---------------------------------------------------------------------------------------------------
+--Blizzard Hook: Quest Reward Complete Button
+--This hook marks a quest as finished in Questies DB if it can be finished.
+--The call to the hooked function then finishes the quest.
+---------------------------------------------------------------------------------------------------
+QuestRewardCompleteButton = QuestRewardCompleteButton_OnClick;
+QuestRewardCompleteButton_OnClick = function()
+    Questie:MarkQuestAsFinished();
                 QuestRewardCompleteButton();
             end
----------------------------------------------------------------------------------------------------
---Blizzard Hook: Quest Progress Complete Button
----------------------------------------------------------------------------------------------------
-QuestProgressCompleteButton = QuestProgressCompleteButton_OnClick;
-QuestProgressCompleteButton_OnClick = function()
-    if IsQuestCompletable() then
-        local questTitle = QGet_TitleText();
-        local _, _, qlevel, qName = string.find(questTitle, "%[(.+)%] (.+)");
-        if qName == nil then
-            qName = QGet_TitleText();
-        else
-            qName = qName;
-        end
-        for hash,v in pairs(QuestieCachedQuests) do
-            if v["questName"] == qName then
-                QuestieSeenQuests[hash] = 1;
-                QuestieCompletedQuestMessages[qName] = 1;
-                QuestieCachedQuests[hash] = nil;
-                QuestieHandledQuests[hash] = nil;
-                Questie:debug_Print("Quest:QuestProgressCompleteButton: [questTitle: "..qName.."] | [Hash: "..hash.."]");
-                RemoveCrazyArrow(hash);
-            end
-        end
-    end
-                    QuestProgressCompleteButton();
-                end
 ---------------------------------------------------------------------------------------------------
 --Blizzard Hook: Quest Progress Accept Button
 ---------------------------------------------------------------------------------------------------
@@ -133,83 +157,6 @@ QuestDetailAcceptButton = QuestDetailAcceptButton_OnClick;
 function QuestDetailAcceptButton_OnClick()
     Questie:CheckQuestLogStatus();
     QuestDetailAcceptButton();
-end
----------------------------------------------------------------------------------------------------
---EQL3 is auto finishing Quests too quickly for normal events to detect. Questie calls this
---function at the sametime to make sure our quest is flagged and updated accordingly.
----------------------------------------------------------------------------------------------------
-function Questie:CompleteQuest()
-    if IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest") then
-        if (QuestlogOptions[EQL3_Player].AutoCompleteQuests == 1) then
-            if (IsQuestCompletable()) then
-                local questTitle = QGet_TitleText();
-                local _, _, qlevel, qName = string.find(questTitle, "%[(.+)%] (.+)");
-                if qName == nil then
-                    qName = QGet_TitleText();
-                else
-                    qName = qName;
-                end
-                for hash,v in pairs(QuestieCachedQuests) do
-                    if v["questName"] == qName then
-                            if (not QuestieSeenQuests[hash]) or (QuestieSeenQuests[hash] == 0) or (QuestieSeenQuests[hash] == -1) then
-                                QuestieSeenQuests[hash] = 1;
-                                QuestieCompletedQuestMessages[qName] = 1;
-                                QuestieCachedQuests[hash] = nil;
-                                QuestieHandledQuests[hash] = nil;
-                            Questie:debug_Print("Quest:CompleteQuest: [questTitle: "..qName.."] | [Hash: "..hash.."]");
-                                Questie:finishAndRecurse(hash);
-                                RemoveCrazyArrow(hash);
-                            end
-                        end
-                    end
-            end
-        end
-    end
-end
----------------------------------------------------------------------------------------------------
---EQL3 is auto finishing Quests too quickly for normal events to detect. Questie calls this
---function at the sametime to make sure our quest is flagged and updated accordingly.
----------------------------------------------------------------------------------------------------
-function Questie:GetQuestReward()
-    if IsAddOnLoaded("EQL3") or IsAddOnLoaded("ShaguQuest") then
-     if (QuestlogOptions[EQL3_Player].AutoCompleteQuests) and (GetNumQuestChoices() == 0) then
-            local numAvailSlots = Questie:CheckPlayerInventory();
-            if numAvailSlots < 1 then
-                local Questie_EQL3ToggleSave = nil;
-                Questie_EQL3ToggleSave = QuestlogOptions[EQL3_Player].AutoCompleteQuests
-                if QuestlogOptions[EQL3_Player].AutoCompleteQuests == 1 then
-                    QuestlogOptions[EQL3_Player].AutoCompleteQuests = 0;
-                end
-                DEFAULT_CHAT_FRAME:AddMessage("|cFFFF2222 Questie: Проверьте сумки. Инвентарь полон!");---------by CFM
-                PlaySound("igQuestLogAbandonQuest");
-                DeclineQuest();
-                HideUIPanel(QuestFrame);
-                return
-            elseif Questie_EQL3ToggleSave ~= nil then
-                QuestlogOptions[EQL3_Player].AutoCompleteQuests = Questie_EQL3ToggleSave;
-            end
-            local questTitle = QGet_TitleText();
-            local _, _, qlevel, qName = string.find(questTitle, "%[(.+)%] (.+)");
-            if qName == nil then
-                qName = QGet_TitleText();
-            else
-                qName = qName;
-            end
-            for hash,v in pairs(QuestieCachedQuests) do
-                if v["questName"] == qName then
-                        if (not QuestieSeenQuests[hash]) or (QuestieSeenQuests[hash] == 0) or (QuestieSeenQuests[hash] == -1) then
-                            QuestieSeenQuests[hash] = 1;
-                            QuestieCompletedQuestMessages[qName] = 1;
-                            QuestieCachedQuests[hash] = nil;
-                            QuestieHandledQuests[hash] = nil;
-                        Questie:debug_Print("Quest:GetQuestReward: [questTitle: "..qName.."] | [Hash: "..hash.."]");
-                            Questie:finishAndRecurse(hash);
-                            RemoveCrazyArrow(hash);
-                        end
-                    end
-                end
-        end
-    end
 end
 ---------------------------------------------------------------------------------------------------
 --Matches a looted item to quest items that are contained in the QuestieCachedQuests table
@@ -1082,22 +1029,23 @@ function Questie:UpdateQuestIds()
     --Questie:debug_Print("Quest:UpdateQuestID: --> Updating QuestIds took: ["..tostring((GetTime()- uqidtime)*1000).."ms]")
 end
 ---------------------------------------------------------------------------------------------------
---Get quest hash from quest name
+--Some outdated server databases still use names like "Tower of Althalaxx part x".
+--which were used to turn quest names into a unique key. This function removes
+--those suffixes, so that they don't harm the quest lookup.
 ---------------------------------------------------------------------------------------------------
-function Questie:GetHashFromName(name)
-    if QuestieHashCache[name] then
-        local hashtable = QuestieHashCache[name];
-        local bestValue = 0;
-        local bestHash = -1;
-        for k,v in pairs(hashtable) do
-            if v > bestValue then
-                bestValue = v;
-                bestHash = k;
-            end
-        end
-        if not (bestHash == -1) then return bestHash; end
+function Questie:SanitisedQuestLookup(name)
+    local realName, matched = string.gsub(name, " [(]?[Pp]art %d+[)]?", "");
+    return QuestieLevLookup[realName] or {};
+end
+---------------------------------------------------------------------------------------------------
+--Remove unique suffix from text.
+---------------------------------------------------------------------------------------------------
+function Questie:RemoveUniqueSuffix(text)
+    if string.sub(text, -1) == "]" then
+        local strlen = string.len(text)
+        text = string.sub(text, 1, strlen-4)
     end
-    return Questie:getQuestHash(name, nil, nil);
+    return text
 end
 ---------------------------------------------------------------------------------------------------
 --Lookup quest hash from name, level or objective text
@@ -1108,7 +1056,7 @@ function Questie:getQuestHash(name, level, objectiveText)
     if name and QuestieQuestHashCache[name..hashLevel..hashText] then---------by CFM
         return QuestieQuestHashCache[name..hashLevel..hashText];
     end
-    local questLookup = QuestieLevLookup[name];
+    local questLookup = Questie:SanitisedQuestLookup(name);
     local hasOthers = false;
     if questLookup then
         local count = 0;
@@ -1117,16 +1065,12 @@ function Questie:getQuestHash(name, level, objectiveText)
         local _, race = UnitRace("Player");---------by CFM
         for k,v in pairs(questLookup) do
             local rr = v[1];
-            local adjustedDescription = k;
-            local strlen = string.len(k);
-            if string.sub(k, -1) == "]" then
-                adjustedDescription = string.sub(k, 1, strlen-4);
-            end
-            if checkRequirements(null, race, null, rr) or true then
+            local adjustedDescription = Questie:RemoveUniqueSuffix(k)
                 if count == 1 then
                     hasOthers = true;
                 end
-                if adjustedDescription == objectiveText and v[2] and QuestieHashMap[v[2]]['questLevel'] and tonumber(QuestieHashMap[v[2]]['questLevel']) == hashLevel then---------by CFM
+            local requiredQuest = QuestieHashMap[v[2]]['rq']
+            if adjustedDescription == objectiveText and tonumber(QuestieHashMap[v[2]]['questLevel']) == hashLevel and checkRequirements(null, race, null, rr) and (not requiredQuest or QuestieSeenQuests[requiredQuest]) and not QuestieSeenQuests[v[2]] then
                     QuestieQuestHashCache[name..hashLevel..hashText] = v[2];
                     return v[2],hasOthers; --exact match
                 end
@@ -1138,8 +1082,6 @@ function Questie:getQuestHash(name, level, objectiveText)
                     bestDistance = dist;
                     retval = v[2];
                 end
-            else
-            end
             count = count + 1;
         end
         if not (retval == 0) then
@@ -1168,7 +1110,7 @@ end
 function Questie:IsQuestFinished(questHash)
     local id = Questie:GetQuestIdFromHash(questHash);
     if (not id) then
-        return nil;---------by CFM
+        return false;
     end
     local prevQuestLogSelection = QGet_QuestLogSelection()
     local FinishedQuests = {};

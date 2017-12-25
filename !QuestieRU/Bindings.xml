@@ -1,5 +1,5 @@
 <Bindings>
-	<Binding name="QUESTIEOPTIONS" header="QUESTIE">
+	<Binding name="QUESTIEOPTIONS" header="QUESTIERU">
 		Questie:OptionsForm_Display();
 	</Binding>
 	<Binding name="QUESTIETOGGLE">

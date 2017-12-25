@@ -2,8 +2,8 @@
 ## Title: QuestieRU
 ## Author: KasVital & Aero/Schaka/Logonz/Dyaxler/Muehe/Zoey + all of our contributors
 ## Notes: A standalone Vanilla QuestHelper
-## Notes-ruRU: Квестхелпер для классики v3.82
-## Version: 3.82
+## Notes-ruRU: Квестхелпер для классики v3.83
+## Version: 3.83
 ## OptionalDeps: !Libs, Cartographer, MetaMap, EQL3, ShaguQuest
 ## SavedVariablesPerCharacter: QuestieSeenQuests, QuestieCachedQuests, QuestieConfig, QuestieTrackerVariables, QuestieMinimapPosition
 
@@ -51,3 +51,4 @@ Modules\QuestieQuest.lua
 Modules\QuestieTracker.lua
 Questie.xml
 Modules\QuestieOptions.xml
+Modules\QuestieInterfaceTexts.lua

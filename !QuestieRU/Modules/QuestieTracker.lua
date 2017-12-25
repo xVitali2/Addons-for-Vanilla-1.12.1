@@ -234,7 +234,7 @@ function QuestieTracker:createOrGetTrackingButton(index)
 						Tooltip:SetOwner(this, "ANCHOR_LEFT");
 					end
 					local index = 0;
-					for k,v in pairs(QuestieLevLookup[questTitle]) do
+                for k,v in pairs(Questie:SanitisedQuestLookup(QuestieHashMap[questHash].name)) do
 						index = index + 1;
 						if (index == 1) and (v[2] == questHash) and (k ~= "") then
 							questOb = k;
@@ -247,7 +247,7 @@ function QuestieTracker:createOrGetTrackingButton(index)
 					if (QuestieConfig.showToolTips == true) then
 					if questOb ~= nil and (quest["isComplete"] or quest["leaderboards"] == 0) then
 						Tooltip:AddLine("|cFFa6a6a6Для завершения этого задания:|r",1,1,1,true);---------by CFM
-						Tooltip:AddLine("|cffffffff"..questOb.."|r",1,1,1,true);
+						Tooltip:AddLine("|cffffffff"..Questie:RemoveUniqueSuffix(questOb).."|r",1,1,1,true);
 					elseif questOb == nil then
 						Tooltip:AddLine("Цели задания не найдены в базе QuestieRU!", 1, .8, .8);---------by CFM
 						Tooltip:AddLine("Пожалуйста, напишите багрепорт на портале GitHub:)", 1, .8, .8);---------by CFM
@@ -460,7 +460,7 @@ function QuestieTracker:SortTrackingFrame()
                     -- Show quest finished in tracker
                     local quest = QuestieHashMap[hash];
                     if quest ~= nil then
-                    local locations = QuestieTracker:GetFinisherLocations(quest.finishedType, quest.finishedBy);
+                        local locations = QuestieTracker:GetFinisherLocations(quest.finishedType, quest.finishedBy) or {};
                     for i, location in pairs(locations) do
                         local dist, xDelta, yDelta = Astrolabe:ComputeDistance( C, Z, X, Y, location[1], location[2], location[3], location[4]);
                         if dist and xDelta and yDelta then
@@ -602,15 +602,11 @@ function QuestieTracker:FillTrackingFrame()
     if (QuestieConfig.trackerEnabled == true) and (QuestieConfig.trackerMinimize == false) then
         if (QuestieTracker.highestIndex >= 1) and (QuestieConfig.trackerBackground == false) then
             trackerWidth = QuestieTracker.questButtons.maxWidth;
-            if (QuestieConfig.trackerList == false) then
-				if QuestieTracker.frame:GetTop() and QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetBottom() then---------by CFM
+            if QuestieConfig.trackerList == false and QuestieTracker.frame:GetTop() and QuestieTracker.highestIndex and QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetBottom() then
 					trackerHeight = QuestieTracker.frame:GetTop() - QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetBottom();
-				end---------by CFM
-            else---------by CFM
-				if QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetTop() and QuestieTracker.frame:GetBottom() then---------by CFM
+            elseif QuestieTracker.highestIndex and QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetTop() and QuestieTracker.frame:GetBottom() then
 					trackerHeight = QuestieTracker.questButtons[QuestieTracker.highestIndex]:GetTop() - QuestieTracker.frame:GetBottom();
-				end
-            end---------by CFM
+			end
             QuestieTracker.frame:SetWidth(trackerWidth);
             QuestieTracker.frame:SetHeight(trackerHeight);
         end
@@ -873,11 +869,11 @@ function QuestLogTitleButton_OnClick(button)
         local qName, level, questTag, isHeader, isCollapsed, isComplete = QGet_QuestLogTitle(questIndex);
         QSelect_QuestLogEntry(questIndex);
         local questText, objectiveText = QGet_QuestLogQuestText();
-        local hash = Questie:getQuestHash(qName, level, objectiveText);
         if (IsShiftKeyDown()) then
             if (this.isHeader) then
                 return;
             end
+            local hash = Questie:getQuestHash(qName, level, objectiveText, headerName);
             if ChatFrameEditBox:IsVisible() then
                 ChatFrameEditBox:Insert("|cffffff00|Hquest:0:0:0:0|h["..gsub(this:GetText(), "  (.)", "%1").."]|h|r");
             elseif (WIM_EditBoxInFocus) then
@@ -1112,21 +1108,23 @@ function QuestieTracker:BlizzardHooks()
         --Hooks Blizzards IsQuestWatched so we can return our own values
         QIsQuestWatched = IsQuestWatched;
         function IsQuestWatched(id)
-            local prevQuestLogSelection = QGet_QuestLogSelection();
-            local questName, level, questTag, isHeader, isCollapsed, isComplete = QGet_QuestLogTitle(id);
-            QSelect_QuestLogEntry(id);
-            local questText, objectiveText = QGet_QuestLogQuestText();
-            local hash = Questie:getQuestHash(questName, level, objectiveText);
-            local isWatched = false;
+            local isWatched = false
+            local questName, level, questTag, isHeader, isCollapsed, isComplete = QGet_QuestLogTitle(id)
+            if not isHeader then
+                local prevQuestLogSelection = QGet_QuestLogSelection()
+                QSelect_QuestLogEntry(id)
+                local questText, objectiveText = QGet_QuestLogQuestText()
+                local hash = Questie:getQuestHash(questName, level, objectiveText)
             if (QuestieCachedQuests[hash]) then
                 if QUEST_WATCH_LIST[hash] then
-                    --Questie:debug_Print("IsQuestWatched: [Hash: "..hash.."] | [Id: "..id.."] | YES");
-                    isWatched = true;
+                        --Questie:debug_Print("IsQuestWatched: [Hash: "..hash.."] | [Id: "..id.."] | YES")
+                        isWatched = true
                 end
             end
-            QSelect_QuestLogEntry(prevQuestLogSelection);
-            QIsQuestWatched(id);
-            return isWatched;
+                QSelect_QuestLogEntry(prevQuestLogSelection)
+            end
+            QIsQuestWatched(id)
+            return isWatched
         end
     end
 end

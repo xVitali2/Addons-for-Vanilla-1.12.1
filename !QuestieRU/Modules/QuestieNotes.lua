@@ -112,11 +112,11 @@ function Questie:AddQuestToMap(questHash, redraw)
         if questInfo ~= nil then
         local typeFunctions = {
             ['monster'] = GetMonsterLocations,
-            ['object'] = GetObjectLocations
+                ['object'] = GetObjectLocations,
+                ['unknown'] = function() return nil; end
         };
         local typeFunction = typeFunctions[questInfo.finishedType];
         local finishPath = typeFunction(questInfo.finishedBy);
-        --print_r(finishPath);
         if finishPath == nil or (not next(finishPath)) then
             finishPath = typeFunction(QuestieFinishers[Quest.name]);
         end
@@ -582,7 +582,7 @@ function Questie_Tooltip_OnEnter()
                 local QuestName = tostring(QuestieHashMap[data.questHash].name);
                 if QuestName then
                     local index = 0;
-                    for k,v in pairs(QuestieLevLookup[QuestName]) do
+                    for k,v in pairs(Questie:SanitisedQuestLookup(QuestName)) do
                         index = index + 1;
                         if (index == 1) and (v[2] == data.questHash) and (k ~= "") then
                             questOb = k;
