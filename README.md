@@ -1,5 +1,5 @@
 # Addons-for-Vanilla-1.12.1-CFM
-
+ДОНАТ/DONATE: 1JpCwJdZkEJz29qrADhw7Q5mAfpGEu1Sw3 биткоин кошелёк, спасибо за поддержку!!!/bitcoin wallet thanks for the support!!!
 #<a href="https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases/latest">Скачать</a>
 
 **AddOnOrganizer**
