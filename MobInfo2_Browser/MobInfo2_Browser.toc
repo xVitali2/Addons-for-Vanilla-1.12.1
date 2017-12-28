@@ -1,0 +1,11 @@
+## Interface: 11200
+## Title: MobInfo-2 Browser
+## Version: 1.21
+## Notes: Lets you browse and search a ton of data in your MobInfo database.
+## Notes-ruRU: Позволяет вам просматривать множество данных с вашей базы данных MobInfo.
+## Author: Chester & Skeeve
+## SavedVariables: MI2BSave
+## Dependencies: MobInfo2
+## OptionalDeps: MetaMap
+
+MobInfo2_Browser.xml

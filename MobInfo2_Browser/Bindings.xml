@@ -1,0 +1,9 @@
+<Bindings>
+	<Binding name="MI2BROWSER" header="MI2BROWSER">
+ 		if (MI2B_BrowseFrame:IsVisible()) then
+			MI2B_BrowseFrame:Hide();
+		else
+			MI2B_RefreshBrowseList();
+		end
+	</Binding>
+</Bindings>
