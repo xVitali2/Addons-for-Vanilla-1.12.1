@@ -65,6 +65,7 @@ function WIM_Options_OnShow()
 		WIM_OptionsTabbedFrameGeneralShowAFK:SetChecked(WIM_Data.showAFK);
 		WIM_OptionsTabbedFrameGeneralUseEscape:SetChecked(WIM_Data.useEscape);
 		WIM_OptionsTabbedFrameGeneralInterceptSlashWisp:SetChecked(WIM_Data.hookWispParse);
+		WIM_OptionsTabbedFrameGeneralBlockLowLevel:SetChecked(WIM_Data.blockLowLevel);
 		
 	--[ Window Settings
 		WIM_OptionsTabbedFrameWindowWindowWidthTitle:SetText(WIM_L_WINDOWWIDTH);
@@ -336,6 +337,14 @@ function WIM_Options_InterceptSlashWispClicked()
 		WIM_Data.hookWispParse = true;
 	else
 		WIM_Data.hookWispParse = false;
+	end
+end
+
+function WIM_Options_BlockLowLevelClicked()
+	if(WIM_OptionsTabbedFrameGeneralBlockLowLevel:GetChecked()) then
+		WIM_Data.blockLowLevel = true;
+	else
+		WIM_Data.blockLowLevel = false;
 	end
 end
 

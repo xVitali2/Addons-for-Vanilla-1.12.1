@@ -2084,6 +2084,62 @@
 											<OnEnter>
 												GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
 												GameTooltip:SetText(WIM_L_INTERCEPTWHISPCOMTOOLTIP, nil, nil, nil, nil, 1);
+</OnEnter>
+											<OnLeave>
+												GameTooltip:Hide();
+											</OnLeave>
+										</Scripts>
+									</CheckButton>
+									<CheckButton name="$parentBlockLowLevel">
+										<Size>
+											<AbsDimension x="25" y="25" />
+										</Size>
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="$parentInterceptSlashWisp" relativePoint="BOTTOMLEFT">
+												<Offset>
+													<AbsDimension x="0" y="-2" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+										<PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+										<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+										<Layers>
+											<Layer level="OVERLAY">
+												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_L_BLOCKLEVEL">
+													<Anchors>
+														<Anchor point="LEFT">
+															<Offset>
+																<AbsDimension x="30" y="1" />
+															</Offset>
+														</Anchor>
+													</Anchors>
+													<FontHeight>
+														<AbsValue val="12" />
+													</FontHeight>
+													<Color r="1" g="0.8196079" b="0" />
+													<Shadow>
+														<Color r="0" g="0" b="0" />
+														<Offset>
+															<AbsDimension x="1" y="-1" />
+														</Offset>
+													</Shadow>
+												</FontString>
+											</Layer>
+										</Layers>
+										<Scripts>
+											<OnClick>
+												if ( this:GetChecked() ) then
+													PlaySound("igMainMenuOptionCheckBoxOff");
+												else
+													PlaySound("igMainMenuOptionCheckBoxOn");
+												end
+												WIM_Options_BlockLowLevelClicked();
+											</OnClick>
+											<OnEnter>
+												GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
+												GameTooltip:SetText(WIM_L_BLOCKLVL, nil, nil, nil, nil, 1);
 											</OnEnter>
 											<OnLeave>
 												GameTooltip:Hide();

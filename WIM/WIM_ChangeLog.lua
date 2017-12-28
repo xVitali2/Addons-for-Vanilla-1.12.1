@@ -1,4 +1,7 @@
 WIM_CHANGE_LOG = [[
+Version 1.3.3 (12-27-2017)|cffffffff
+[+] - refactoring by shirsig
+
 Version 1.3.2 (01-05-2017)|cffffffff
 [+] - translated into ruRU
 

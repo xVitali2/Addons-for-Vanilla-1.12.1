@@ -10,23 +10,44 @@ function WIM_FriendsFrame_SendMessage()
 	WIM_PostMessage(name, "", 5, "", "");
 end
 
-function WIM_ChatEdit_ExtractTellTarget(editBox, msg)
-	-- Grab the first "word" in the string
-	local target = gsub(msg, "(%s*)([^%s]+)(.*)", "%2", 1);
-	if ( (strlen(target) <= 0) or (strsub(target, 1, 1) == "|") ) then
-		return;
+function WIM_ChatEdit_ParseText(editBox, send)
+
+	local target
+
+	local _, _, command, parameter = strfind(editBox:GetText(), '^(/%S+)%s*(%S*)')
+	if command then
+		command = strupper(command)
+		local i = 1
+		while true do
+			if getglobal('SLASH_WHISPER'..i) and command == strupper(TEXT(getglobal('SLASH_WHISPER'..i))) and parameter ~= '' then
+				target = gsub(strlower(parameter), '^%l', strupper)
+				break
+			elseif getglobal('SLASH_REPLY'..i) and command == strupper(TEXT(getglobal('SLASH_REPLY'..i))) and ChatEdit_GetLastTellTarget(editBox) ~= '' then
+				target = ChatEdit_GetLastTellTarget(editBox)
+				break
+			elseif not getglobal('SLASH_WHISPER'..i) and not getglobal('SLASH_REPLY'..i) then
+				break
+			end
+			i = i + 1
+		end
 	end
-	
-	if(WIM_Data.hookWispParse) then
-		target = string.gsub(target, "^%l", string.upper)
-		WIM_PostMessage(target, "", 5, "", "");
-		editBox:SetText("");
-		editBox:Hide();
+
+	if target then
+		WIM_PostMessage(target, '', 5, '', '')
+		editBox:SetText('')
+		editBox:Hide()	
 	else
-		WIM_ChatEdit_ExtractTellTarget_orig(editBox, msg);
+		return WIM_ChatEdit_ParseText_orig(editBox, send)
 	end
 end
 
+function WIM_ChatFrame_ReplyTell(chatFrame)
+	chatFrame = chatFrame or DEFAULT_CHAT_FRAME
+	local target = ChatEdit_GetLastTellTarget(chatFrame.editBox)
+	if target ~= '' then
+		WIM_PostMessage(target, '', 5, '', '', true)
+	end
+end
 
 function WIM_HookInspect()
 	if(WIM_InspectIsHooked) then
@@ -226,33 +247,37 @@ end
 
 
 function WIM_FriendsFrame_OnEvent()
-    if event == 'WHO_LIST_UPDATE' and WIM_WhoScanInProgress then
-    	if GetNumWhoResults() > 0 then
-			local name, guild, level, race, class, zone = GetWhoInfo(1)
+    if event == 'WHO_LIST_UPDATE' then
+    	WIM_LastWhoListUpdate = GetTime()
 
-			if WIM_PlayerCacheQueue[name] then
-				local callbacks = WIM_PlayerCacheQueue[name].callbacks
-				WIM_PlayerCacheQueue[name] = nil
+    	if WIM_WhoScanInProgress then
+	    	for i=1,GetNumWhoResults() do
+				local name, guild, level, race, class, zone = GetWhoInfo(i)
 
-				WIM_PlayerCache[name] = {
-					class = class,
-					level = level,
-					race = race,
-					guild = guild,
-				}
+				if WIM_PlayerCacheQueue[name] then
+					local callbacks = WIM_PlayerCacheQueue[name].callbacks
+					WIM_PlayerCacheQueue[name] = nil
 
-				for _, callback in callbacks do
-					callback(WIM_PlayerCache[name])
+					WIM_PlayerCache[name] = {
+						class = class,
+						level = level,
+						race = race,
+						guild = guild,
+					}
+
+					for _, callback in callbacks do
+						callback(WIM_PlayerCache[name])
+					end
 				end
 			end
-		end
 
-		if WIM_PlayerCacheQueueEmpty() then
-			WIM_WhoScanInProgress = false
-			SetWhoToUI(0)
-		end
+			if WIM_PlayerCacheQueueEmpty() then
+				WIM_WhoScanInProgress = false
+				SetWhoToUI(0)
+			end
 
-		return
+			return
+		end
 	end
 
 	return WIM_FriendsFrame_OnEvent_orig(event)
@@ -287,16 +312,72 @@ function WIM_WhoList_Update()
 end
 
 function WIM_SetUpHooks()
-	if(WIM_ButtonsHooked) then
-		return;
+	if WIM_ButtonsHooked then
+		return
+	end
+
+	do
+		local supress
+		local orig = ChatFrameEditBox:GetScript('OnTextSet')
+		ChatFrameEditBox:SetScript('OnTextSet', function()
+			if not supress then
+				orig()
+			else
+				supress = false
+			end
+		end)
+		ChatFrameEditBox:SetScript('OnChar', function()
+			if IsControlKeyDown() then -- TODO problem is ctrl-v, maybe find a better solution
+				return
+			end
+
+			local text = this:GetText()
+			local _, _, command, name = strfind(text, '^(/%S+)%s*(%a*)')
+			if command then
+				local i = 1
+				while true do
+					if getglobal('SLASH_WHISPER'..i) then
+
+						if strupper(command) == strupper(TEXT(getglobal('SLASH_WHISPER'..i))) and name ~= '' then
+
+							local function tryCompleting(candidate)
+								if strsub(strupper(candidate), 1, strlen(name)) == strupper(name) then
+									supress = true
+									this:SetText(text..strsub(candidate, strlen(name) + 1))
+									this:HighlightText(strlen(text), -1)
+									return
+								end
+							end
+
+							for i=1,GetNumFriends() do
+								tryCompleting(GetFriendInfo(i) or '')
+							end
+
+							for i=1,GetNumGuildMembers(true) do
+								tryCompleting(GetGuildRosterInfo(i) or '')
+							end
+
+							break
+						end
+					else
+						break
+					end
+					i = i + 1
+				end
+			end
+		end)
 	end
 
 	--Hook Friends Frame Send Message Button
 	FriendsFrame_SendMessage = WIM_FriendsFrame_SendMessage;
 	
 	--Hook Chat Frame Whisper Parse
-	WIM_ChatEdit_ExtractTellTarget_orig = ChatEdit_ExtractTellTarget;
-	ChatEdit_ExtractTellTarget = WIM_ChatEdit_ExtractTellTarget;
+	WIM_ChatEdit_ParseText_orig = ChatEdit_ParseText
+	ChatEdit_ParseText = WIM_ChatEdit_ParseText
+
+	--Hook Chat Frame Reply
+	WIM_ChatFrame_ReplyTell_orig = ChatFrame_ReplyTell
+	ChatFrame_ReplyTell = WIM_ChatFrame_ReplyTell
 
 	--Hook WhoList_Update
 	WIM_WhoList_Update_orig = WhoList_Update
@@ -325,7 +406,19 @@ function WIM_SetUpHooks()
 	
 	--Hook ContainerFrameItemButton_OnClick
 	WIM_ContainerFrameItemButton_OnClick_orig = ContainerFrameItemButton_OnClick;
-	ContainerFrameItemButton_OnClick = function(button, ignoreModifiers) WIM_ContainerFrameItemButton_OnClick_orig(button, ignoreModifiers); WIM_ItemButton_OnClick(button, ignoreModifiers); end;
+	ContainerFrameItemButton_OnClick = function(button, ignoreModifiers)
+
+			if ( button == "LeftButton" ) and (not ignoreModifiers) and ( IsShiftKeyDown() ) and ( not ChatFrameEditBox:IsVisible() ) and (GameTooltipTextLeft1:GetText()) then
+				if(WIM_EditBoxInFocus) then
+					WIM_EditBoxInFocus:Insert(GetContainerItemLink(this:GetParent():GetID(), this:GetID()));
+					return
+				end
+			end
+
+		WIM_ContainerFrameItemButton_OnClick_orig(button, ignoreModifiers); 
+		-- WIM_ItemButton_OnClick(button, ignoreModifiers);
+
+	end;
 	
 	if (AllInOneInventoryFrameItemButton_OnClick) then
 		--Hook ContainerFrameItemButton_OnClick

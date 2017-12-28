@@ -112,6 +112,8 @@ WIM_L_DESCRIPTION=" Description ";
 WIM_L_VERSIONHISTORY=" Version History ";
 WIM_L_DIDYOUKNOW=" Did you know? ";
 WIM_L_CREDITS=" Credits ";
+WIM_L_BLOCKLEVEL="Block whispers from players below level 10.";
+WIM_L_BLOCKLVL="WIM will not show any whispers from players below level 10 except when they are from friends, guild members or people the player himself has whispered to in the same session.";
 --options.lua
 WIM_L_ICONPOSIT="Icon Position";
 WIM_L_FONTSIZE="Font Size";
