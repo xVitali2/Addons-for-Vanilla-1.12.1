@@ -26,14 +26,14 @@ EngInventory_WindowBottomPadding = ENGINVENTORY_WINDOWBOTTOMPADDING_NORMALMODE;
 --//CFM
  function EI_CreateBagsBar()
   if pfUI then
-	local button_size, b=EngInventoryConfig["frameButtonSize"],.1
+    local button_size, b=EngInventoryConfig["frameButtonSize"],.1
      if not EI_bagslots then
         EI_bagslots = CreateFrame("Frame", "EIBagSlots", EngInventory_frame)
-		EI_bagslots.slots = {}
+        EI_bagslots.slots = {}
         EI_bagslots:Hide()
      end
     local min, max = 0, 3
-	EI_bagslots:SetPoint("BOTTOMRIGHT", EngInventory_frame, "BOTTOMRIGHT", 128, 10)
+    EI_bagslots:SetPoint("TOPLEFT", EngInventory_MoneyFrame, 100, -8)
     local width = (button_size/5*4 + b*2) * (max-min+1)
     local height = b + (button_size/5*4 + b)
     EI_bagslots:SetWidth(width)
@@ -48,35 +48,28 @@ EngInventory_WindowBottomPadding = ENGINVENTORY_WINDOWBOTTOMPADDING_NORMALMODE;
         icon:ClearAllPoints()
         icon:SetPoint("TOPLEFT", 1, -1)
         icon:SetPoint("BOTTOMRIGHT", -1, 1)
-		border:SetTexture("")
+        border:SetTexture("")
         EI_bagslots.slots[slot].frame.slot = slot
         EI_bagslots.slots[slot].slot = slot
-		local SlotEnter = EI_bagslots.slots[slot].frame:GetScript("OnEnter")
+        local SlotEnter = EI_bagslots.slots[slot].frame:GetScript("OnEnter")
         EI_bagslots.slots[slot].frame:SetScript("OnEnter", function()
-          -- for slot, f in ipairs(pfUI.bags[this.slot + 1].slots) do
-            -- pfUI.api.CreateBackdrop(f.frame, default_border)
-            -- f.frame.backdrop:SetBackdropBorderColor(.2,1,.8,1)
-          -- end
           SlotEnter()
         end)
         local SlotLeave = EI_bagslots.slots[slot].frame:GetScript("OnLeave")
         EI_bagslots.slots[slot].frame:SetScript("OnLeave", function()
-          --pfUI.bag:UpdateBag(this.slot + 1)
           SlotLeave()
         end)
       end
-	 local left = (slot-min)*(button_size/5*4+3*2) + b
+     local left = (slot-min)*(button_size/5*4+3*2) + b
      local top = -b
       EI_bagslots.slots[slot].frame:ClearAllPoints()
-	  EI_bagslots.slots[slot].frame:SetPoint("TOPLEFT", EI_bagslots, "TOPLEFT", top, left)
+      EI_bagslots.slots[slot].frame:SetPoint("TOPLEFT", EI_bagslots, "TOPLEFT", top, left)
       EI_bagslots.slots[slot].frame:SetHeight(button_size/5*4)
       EI_bagslots.slots[slot].frame:SetWidth(button_size/5*4)
-	  local id, texture = GetInventorySlotInfo("Bag" .. slot .. "Slot")
-	 -- pfUI.api.CreateBackdrop(EI_bagslots.slots[slot].frame, 3)
-	  --EI_bagslots.slots[slot].frame:SetBackdrop(DropDownList1Backdrop:GetBackdrop())
+      local id, texture = GetInventorySlotInfo("Bag" .. slot .. "Slot")
       EI_bagslots.slots[slot].frame:Show()
     end
-	EI_bagslots:Show();
+    EI_bagslots:Show();
    end
   end
 --CFM//
@@ -1089,14 +1082,14 @@ function EngInventory_init()
 
         -- setup hooks
         EngInventory_RegisterHooks(ENGINVENTORY_HOOKS_REGISTER);
-
-        EngInventory_Button_HighlightToggle:SetText(EILocal["EngInventory_Button_HighlightToggle_off"]);
-        EngInventory_Button_ChangeEditMode:SetText(EILocal["EngInventory_Button_ChangeEditMode_off"]);
+        EngInventory_Button_HighlightToggle:SetText(EILocal["EngInventory_Button_HighlightToggle_off"])
+        EngInventory_Button_BankToggle:SetText(EILocal["EngInventory_Button_BankToggle"])
+        EngInventory_Button_ChangeEditMode:SetText(EILocal["EngInventory_Button_ChangeEditMode_off"])
 
         if (EngInventoryConfig["moveLock"] == 0) then
-                EngInventory_Button_MoveLockToggle:SetText(EILocal["EngInventory_Button_MoveLock_locked"]);
+                EngInventory_Button_MoveLockToggle:SetText(EILocal["EngInventory_Button_MoveLock_locked"])
         else
-                EngInventory_Button_MoveLockToggle:SetText(EILocal["EngInventory_Button_MoveLock_unlocked"]);
+                EngInventory_Button_MoveLockToggle:SetText(EILocal["EngInventory_Button_MoveLock_unlocked"])
         end
 
 	EngInventory_OnEvent("UPDATE_INVENTORY_ALERTS");	-- reload the items currently equipped
@@ -2143,6 +2136,18 @@ function EngInventory_RightClick_PickupItem()
 	end
 end
 
+function EngInventory_Button_BankToggle_OnClick()
+	EngBank_SlotCostFrame:Hide()
+	EngBank_PurchaseButton:Hide()
+	B4nkFrameBag1:Hide()
+	B4nkFrameBag2:Hide()
+	B4nkFrameBag3:Hide()
+	B4nkFrameBag4:Hide()
+	B4nkFrameBag5:Hide()
+	B4nkFrameBag6:Hide()
+	EngBags_UserDropdown:Show()
+	EngBank_frame:Show()
+end
 function EngInventory_Button_HighlightToggle_OnClick()
 	PlaySound("igMainMenuOptionCheckBoxOn");
 	if (EngInventory_hilight_new == 0) then
@@ -2159,18 +2164,15 @@ end
 function EngInventory_Button_ChangeEditMode_OnClick()
 	PlaySound("igMainMenuOptionCheckBoxOn");
 	if (EngInventory_edit_mode == 0) then
-		EngInventory_edit_mode = 1;
-		EngInventory_Button_ChangeEditMode:SetText(EILocal["EngInventory_Button_ChangeEditMode_MoveClass"]);
-	--elseif (EngInventory_edit_mode == 1) then
-	--	EngInventory_edit_mode = 2;
-	--	this:SetText(EILocal["EngInventory_Button_ChangeEditMode_MoveItem"]);
+		EngInventory_edit_mode = 1
+		EngInventory_Button_ChangeEditMode:SetText(EILocal["EngInventory_Button_ChangeEditMode_MoveClass"])
 	else
-		EngInventory_edit_mode = 0;
-		EngInventory_Button_ChangeEditMode:SetText(EILocal["EngInventory_Button_ChangeEditMode_off"]);
+		EngInventory_edit_mode = 0
+		EngInventory_Button_ChangeEditMode:SetText(EILocal["EngInventory_Button_ChangeEditMode_off"])
 	end
-	EngInventory_resort_required = ENGINVENTORY_MANDATORY;
+	EngInventory_resort_required = ENGINVENTORY_MANDATORY
 	-- resort will force a window redraw
-	EngInventory_UpdateWindow();
+	EngInventory_UpdateWindow()
 end
 
 function EngInventory_Button_MoveLockToggle_OnClick()
@@ -3345,21 +3347,25 @@ function EngInventory_UpdateWindow()
 				EngInventory_Button_MoveLockToggle:SetScale(0.9);
 				EngInventory_Button_ChangeEditMode:SetScale(0.9);
 				EngInventory_Button_HighlightToggle:SetScale(0.9);
+				EngInventory_Button_BankToggle:SetScale(.9);
 			elseif (EngInventoryConfig["frameButtonSize"]==30) then
 				EngInventory_Button_Close:SetScale(0.8);
 				EngInventory_Button_MoveLockToggle:SetScale(0.8);
 				EngInventory_Button_ChangeEditMode:SetScale(0.8);
 				EngInventory_Button_HighlightToggle:SetScale(0.8);
+				EngInventory_Button_BankToggle:SetScale(.8);
 			elseif (EngInventoryConfig["frameButtonSize"]==20) then
 				EngInventory_Button_Close:SetScale(0.7);
 				EngInventory_Button_MoveLockToggle:SetScale(0.7);
 				EngInventory_Button_ChangeEditMode:SetScale(0.7);
 				EngInventory_Button_HighlightToggle:SetScale(0.7);
+				EngInventory_Button_BankToggle:SetScale(.7);
 			else
 				EngInventory_Button_Close:SetScale(1);
 				EngInventory_Button_MoveLockToggle:SetScale(1);
 				EngInventory_Button_ChangeEditMode:SetScale(1);
 				EngInventory_Button_HighlightToggle:SetScale(1);
+				EngInventory_Button_BankToggle:SetScale(1);
 			end
 		else
 			new_height = cur_y + 25;
@@ -3367,9 +3373,8 @@ function EngInventory_UpdateWindow()
 			EngInventory_Button_MoveLockToggle:SetScale(1);
 			EngInventory_Button_ChangeEditMode:SetScale(1);
 			EngInventory_Button_HighlightToggle:SetScale(1);
+			EngInventory_Button_BankToggle:SetScale(1);
 		end
-
---		frame:SetScale(EngBagsConfig["frameWindowScale"]);
 		frame:SetWidth( new_width );
 		frame:SetHeight( new_height );
 
@@ -3403,48 +3408,36 @@ function EngInventory_UpdateWindow()
 		end
 
 		if (EngInventoryConfig["show_top_graphics"] == 1) then
-			EngInventory_Button_Close:Show();
-			EngInventory_Button_MoveLockToggle:Show();
-			EngInventory_Button_ChangeEditMode:Show();
-			EngInventory_Button_HighlightToggle:Show();
-
-			--EngInventory_framePortrait:Show();
-			--EngInventory_frameTextureTopLeft:Show();
-			--EngInventory_frameTextureTopCenter:Show();
-			--EngInventory_frameTextureTopRight:Show();
-			--EngInventory_frameTextureLeft:Show();
---			--EngInventory_frameTextureCenter:Show();
-			--EngInventory_frameTextureRight:Show();
-			--EngInventory_frameTextureBottomLeft:Show();
-			--EngInventory_frameTextureBottomCenter:Show();
-			--EngInventory_frameTextureBottomRight:Show();
-			EngInventory_framePortrait:Hide();
-			EngInventory_frameTextureTopLeft:Hide();
-			EngInventory_frameTextureTopCenter:Hide();
-			EngInventory_frameTextureTopRight:Hide();
-			EngInventory_frameTextureLeft:Hide();
---			EngInventory_frameTextureCenter:Hide();
-			EngInventory_frameTextureRight:Hide();
-			EngInventory_frameTextureBottomLeft:Hide();
-			EngInventory_frameTextureBottomCenter:Hide();
-			EngInventory_frameTextureBottomRight:Hide();
+			EngInventory_Button_Close:Show()
+			EngInventory_Button_MoveLockToggle:Show()
+			EngInventory_Button_ChangeEditMode:Show()
+			EngInventory_Button_HighlightToggle:Show()
+			EngInventory_Button_BankToggle:Show()
+			EngInventory_framePortrait:Hide()
+			EngInventory_frameTextureTopLeft:Hide()
+			EngInventory_frameTextureTopCenter:Hide()
+			EngInventory_frameTextureTopRight:Hide()
+			EngInventory_frameTextureLeft:Hide()
+			EngInventory_frameTextureRight:Hide()
+			EngInventory_frameTextureBottomLeft:Hide()
+			EngInventory_frameTextureBottomCenter:Hide()
+			EngInventory_frameTextureBottomRight:Hide()
 		else
 			-- hide all the top graphics
-			EngInventory_Button_Close:Hide();
-			EngInventory_Button_MoveLockToggle:Hide();
-			EngInventory_Button_ChangeEditMode:Hide();
-			EngInventory_Button_HighlightToggle:Hide();
-
-			EngInventory_framePortrait:Hide();
-			EngInventory_frameTextureTopLeft:Hide();
-			EngInventory_frameTextureTopCenter:Hide();
-			EngInventory_frameTextureTopRight:Hide();
-			EngInventory_frameTextureLeft:Hide();
---			EngInventory_frameTextureCenter:Hide();
-			EngInventory_frameTextureRight:Hide();
-			EngInventory_frameTextureBottomLeft:Hide();
-			EngInventory_frameTextureBottomCenter:Hide();
-			EngInventory_frameTextureBottomRight:Hide();
+			EngInventory_Button_Close:Hide()
+			EngInventory_Button_MoveLockToggle:Hide()
+			EngInventory_Button_ChangeEditMode:Hide()
+			EngInventory_Button_HighlightToggle:Hide()
+			EngInventory_Button_BankToggle:Hide()
+			EngInventory_framePortrait:Hide()
+			EngInventory_frameTextureTopLeft:Hide()
+			EngInventory_frameTextureTopCenter:Hide()
+			EngInventory_frameTextureTopRight:Hide()
+			EngInventory_frameTextureLeft:Hide()
+			EngInventory_frameTextureRight:Hide()
+			EngInventory_frameTextureBottomLeft:Hide()
+			EngInventory_frameTextureBottomCenter:Hide()
+			EngInventory_frameTextureBottomRight:Hide()
 		end
 	end
 

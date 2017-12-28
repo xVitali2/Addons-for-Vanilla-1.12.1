@@ -877,8 +877,6 @@ function EngBank_init()
 
         -- setup hooks
         EngBank_RegisterHooks(EngBank_HOOKS_REGISTER);
-
-	--	DEFAULT_CHAT_FRAME:AddMessage(EBLocal["EngBank_Button_HighlightToggle_off"].."EBLocal DCF");
         EngBank_Button_HighlightToggle:SetText(EBLocal["EngBank_Button_HighlightToggle_off"]);
         EngBank_Button_ChangeEditMode:SetText(EBLocal["EngBank_Button_ChangeEditMode_off"]);
 

@@ -404,7 +404,6 @@
 		</Layers>
 
 		<Frames>
-
 			<Button name="EngInventory_Button_ChangeEditMode" inherits="GameMenuButtonTemplate" text="Edit">
 				<Size><AbsDimension x="85" y="25"/></Size>
 				<Anchors>
@@ -525,7 +524,22 @@
 					</OnLeave>
 				</Scripts>
 			</Button>
-
+			<Button name="EngInventory_Button_BankToggle" inherits="GameMenuButtonTemplate" text="Bank">
+				<Size><AbsDimension x="75" y="25"/></Size>
+				<Anchors>
+				<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="6" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EngInventory_Button_BankToggle_OnClick();
+					</OnClick>
+				</Scripts>
+			</Button>
+			
 			<Button name="EngInventory_Button_HighlightToggle" inherits="GameMenuButtonTemplate" text="Hilight New: OFF">
 				<Size><AbsDimension x="150" y="25"/></Size>
 				<Anchors>
