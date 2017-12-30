@@ -1,6 +1,6 @@
 local vQueueDB = {}
 
-local chatRate = 2 -- limit to 2 msg/sec
+local chatRate = 3 -- limit to 2 msg/sec
 local channelName = "vQueue"
 
 local hostedCategory = ""
@@ -1838,7 +1838,7 @@ function vQueue_createCategories(textKey)
 	for k, v in pairs(categories[textKey]) do
 		local args = {}
 		if type(v) == "string" then
-			args = split(v, "\:")	
+			args = split(v, "\:")
 		end
 		if type(args[1]) == "string" then
 			local dropedItemFrame = CreateFrame("Button", "vQueueButton", vQueueFrame.catList)
@@ -1922,6 +1922,8 @@ end
 function vQueue_addToWaitList(playerinfo)
 	local args = split(playerinfo, "\:")
 	if groups["waitlist"][args[1]] == nil then
+		local classColor
+		local diffColor
 		newWaitEntry = CreateFrame("Button", "vQueueButton", vQueueFrame.hostlist)
 		newWaitEntry:SetFont("Interface\\AddOns\\vQueue\\media\\anonpro.TTF", 10)
 		newWaitEntry:SetText(args[1])
@@ -1948,8 +1950,6 @@ function vQueue_addToWaitList(playerinfo)
 		newWaitEntryBg:SetPoint("LEFT", newWaitEntry, "LEFT", 1, 0)
 		newWaitEntryBg:SetWidth(vQueueFrame.hostlist:GetWidth()-3)
 		newWaitEntryBg:SetHeight(15)
-		
-		local diffColor
 		if args[2] ~= "..." then
 			diffColor = getDifficultyColor(tonumber(args[2]), UnitLevel("player"))
 		else
@@ -1962,8 +1962,6 @@ function vQueue_addToWaitList(playerinfo)
 		newWaitEntryLvl:SetWidth(newWaitEntryLvl:GetStringWidth())
 		newWaitEntryLvl:SetTextColor(diffColor[1], diffColor[2], diffColor[3])
 		newWaitEntryLvl:SetHeight(10)
-		
-		local classColor
 		if args[3] ~= "..." then
 			classColor = getClassColor(args[3])
 		else
@@ -2070,7 +2068,7 @@ function vQueue_WhoSorting()
 			vQueue_ShowGroups(selectedCat, selectedCat)
 		end
 	end
-]]
+	]]
 end
 
 -- return the first integer index holding the value
@@ -2259,7 +2257,7 @@ function vQueue_addToGroup(category, groupinfo)
 		newHostEntryName:SetText(args[2])
 		newHostEntryName:SetPoint("LEFT", newHostEntry, "LEFT", 211, 0)
 		newHostEntryName:SetWidth(newHostEntryName:GetStringWidth())
-		newHostEntryName:SetTextColor(vQueueColors["WHITE"][1], vQueueColors["WHITE"][2], vQueueColors["WHITE"][3])
+		newHostEntryName:SetTextColor(vQueueColors["WHITE"][1], vQueueColors["YELLOW"][2], vQueueColors["WHITE"][3])
 		newHostEntryName:SetHeight(10)
 		
 		local diffColor = getDifficultyColor(tonumber(args[3]), UnitLevel("player"))
@@ -2525,7 +2523,7 @@ function vQueue_OnUpdate()
 						end
 					end
 					if timeDiff > (40) then -- remove vQueue groups after 40 seconds
-						if k ~= nil and leaderMessages[k] ~= nil and leaderArgs[2] ~= nil and groups[leaderArgs[2]][k] ~= nil then
+						if k and leaderMessages and leaderMessages[k] and leaderArgs[2] and groups[leaderArgs[2]][k] then
 							local thisframe, bg, name, level, size, tank, healer, damage = groups[leaderArgs[2]][k]:GetRegions()
 							if size:GetText() ~= "?" then
 								groups[leaderArgs[2]][k]:Hide()
