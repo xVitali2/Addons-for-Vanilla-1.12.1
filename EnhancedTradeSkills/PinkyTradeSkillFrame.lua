@@ -125,7 +125,7 @@ function TradeSkillFrame_Update()
   Pinky_DebugMessage("TradeSkillFrame_Update called");
   p_player = Pinky_GetPlayerName();
   Pinky_Update_Inventory_Information(p_player);
-	if ( Pinky_Display[p_player][PINKY_TOGGLE] == 1 ) then 
+	if Pinky_Display and p_player and PINKY_TOGGLE and Pinky_Display[p_player][PINKY_TOGGLE] == 1 then 
 		ETS_FILTERSONOFF:SetText(TOGGLE_FILTER_ON);
 		ETS_CFILTERSONOFF:SetText(TOGGLE_FILTER_ON);
 	else
