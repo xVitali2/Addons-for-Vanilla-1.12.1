@@ -219,11 +219,10 @@ CATARGS["ulda"] = {
 	"ulduman"
 }
 CATARGS["zf"] = {
-	"zul farrak",
+	"zul farak",
 	"farrak",
 	"zulfarak",
 	"mallet",
-	"zul farak",
 	"zulfarrak",
 	"zf"
 }
@@ -337,6 +336,62 @@ CATARGS["av"] = {
 	"valley",
 	"aterac"
 }
+
+local function MergeTables(a, b)
+	if type(a) == 'table' and type(b) == 'table' then
+			table.foreach(b, function(k,v) 
+				for	kk,vv in a do
+				 if v == vv then return; end
+				end
+				table.insert(a,v)
+			end)
+	end
+    return a
+end
+
+if GetLocale() == "deDE" then
+	MergeTables(LFMARGS,{
+		"tank für",   
+		"heiler für",   
+		"heal für",   
+		"3dds für",   
+		"3dd für",   
+		"2dds für",   
+		"2dd für",   
+		"1dd für",   
+		"dds für",   
+		"dd für",   
+		"nur noch",   
+	})
+	table.insert(ROLEARGS["Healer"], "heiler")
+	table.insert(CATARGS["rfc"], "rf")
+	table.insert(CATARGS["rfc"], "rfa")
+	table.insert(CATARGS["wc"],"hdw")
+	table.insert(CATARGS["sfk"],"bsf")
+	table.insert(CATARGS["bfd"],"bft")
+	table.insert(CATARGS["gnomer"],"gnom")
+	table.insert(CATARGS["rfk"],"kral")
+	table.insert(CATARGS["graveyard"],"friedhof")
+	table.insert(CATARGS["graveyard"],"fh")
+	MergeTables(CATARGS["library"],{
+		"bibi",  
+		"biblio", 
+		"bib",
+		"bibliothek"
+	})
+	MergeTables(CATARGS["armory"],{
+		"wk",   
+		"waka",   
+		"waffenkammer"   
+	})
+	MergeTables(CATARGS["cathedral"],{
+		"kath",   
+		"kathe",   
+		"kathedrale"   
+	})
+	table.insert(CATARGS["rfd"],"hügel")
+	table.insert(CATARGS["st"], "tempel")
+end
 
 MINLVLS = {
 	

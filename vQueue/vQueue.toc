@@ -1,12 +1,14 @@
 ## Interface: 11200
 ## Title: vQueue |cff7fff7f -Ace2-|r
-## Author: Devlix
 ## Notes: Utility for group finding.
-## RequiredDeps: !Libs
-## OptionalDeps: pfUI
+## Notes-ruRU: Аддон для поиска группы.
+## Author: Devlix
+## Version: 1.2.7b
 ## SavedVariables: MinimapPos, vQueueOptions, notCaught
 ## SavedVariablesPerCharacter: selectedRole, isFinding
-## Version: 1.2.4
+## RequiredDeps: !Libs
+
+Localization.lua
 
 vQueue.lua
 vQueue.xml
