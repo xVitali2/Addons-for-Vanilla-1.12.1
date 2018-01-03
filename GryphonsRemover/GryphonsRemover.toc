@@ -1,7 +1,0 @@
-## Interface: 11200
-## Title: GryphonsRemover
-## Notes: Removes the gryphons from the bottom bar.
-## SavedVariablesPerCharacter: toggle
-
-GryphonsRemover.xml
-GryphonsRemover.lua
