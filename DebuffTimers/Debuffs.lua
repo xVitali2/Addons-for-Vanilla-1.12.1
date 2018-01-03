@@ -1,5 +1,4 @@
 DET_Debuff = {
-
 	["DRUID"] = {
 		EFFECT = {
 			["Faerie Fire"] = {

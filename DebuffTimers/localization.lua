@@ -38,7 +38,7 @@ if GetLocale() == "ruRU" then
 		["Отпугивание зверя"] = "Scare Beast",
 		["Дезориентирующий выстрел"] = "Scatter Shot",
 		["Контратака"] = "Counterattack",
-		["Безжалостно подрезать крылья"] = "Improved Wing Clip",	
+		["Безжалостно подрезать крылья"] = "Improved Wing Clip",
 		["Удержание"] = "Entrapment",
 		["Метка охотника"] = "Hunter's Mark",
 		["Взрывная ловушка"] = "Explosive Trap",
@@ -47,8 +47,8 @@ if GetLocale() == "ruRU" then
 		["Ледяная ловушка"] = "Frost Trap",
 		
 		--Mage
-		["Распознавание магии"] = "Detect Magic",	
-		["Ледяная стрела"] = "Frostbolt",	
+		["Распознавание магии"] = "Detect Magic",
+		["Ледяная стрела"] = "Frostbolt",
 		["Конус холода"] = "Cone of Cold",
 		["Антимагия - немота"] = "Counterspell - Silenced",
 		["Огненный шар"] = "Fireball",
@@ -94,7 +94,7 @@ if GetLocale() == "ruRU" then
 		["Смертельный яд"] = "Deadly Poison",
 		["Пинок - немота"] = "Kick - Silenced",
 		["Парализующий удар"] = "Gouge",
-		["Ослепление"] = "Blind",	
+		["Ослепление"] = "Blind",
 		["Ошеломление"] = "Sap",
 		["Удар по почкам"] = "Kidney Shot",
 		["Подлый трюк"] = "Cheap Shot",
@@ -162,14 +162,14 @@ if GetLocale() == "ruRU" then
 		
 		--Parser
 		["You fail to %a+ (.*):.*"] = "Вам не удалось %a+ \"(.*)\":.*",
-		["is immune to your (.*)%."] = "обладает невосприимчивостью к вашему заклинанию \"(.*)\".%.",
+		["is immune to your (.*)%."] = "обладает невосприимчивостью к вашему заклинанию \"(.*)\"%.", --CFM
 		["Your (.*) missed"] = "Ваше заклинание \"(.*)\" не попадает по",
-		["Your (.*) was resisted"] = "сопротивляется вашему заклинанию \"(.*)\".%.",
+		["Your (.*) was resisted"] = "сопротивляется вашему заклинанию \"(.*)\"%.", --CFM
 		["Your (.*) was evaded"] = "Ваше заклинание (.*) не достигает",
-		["Your (.*) was dodged"] = "уклоняется от вашего заклинания \"(.*)\".%.",
-		["Your (.*) was deflected"] = "отклоняет ваше заклинание \"(.*)\".%.",
-		["Your (.*) is reflected"] = "отражает ваше заклинание \"(.*)\".%.",
-		["Your (.*) is parried"] = "парирует вашу способность \"(.*)\".%.",
+		["Your (.*) was dodged"] = "уклоняется от вашего заклинания \"(.*)\"%.", --CFM
+		["Your (.*) was deflected"] = "отклоняет ваше заклинание \"(.*)\"%.", --CFM
+		["Your (.*) is reflected"] = "отражает ваше заклинание \"(.*)\"%.", --CFM
+		["Your (.*) is parried"] = "парирует вашу способность \"(.*)\"%.", --CFM
 		["(.+) fades from (.+)%."] = "Действие эффекта \"(.+)\" наложенного на (.+) заканчивается%.",
 		["(.+) suffers (.-)% (.-)% damage from your (.+)."]="(.+) получает (.+) ед. урона (.+) от вашего заклинания \"(.+)\".", --CFM
 		["(.+)'s (.+) is removed%."] = "(.+) теряет \"(.+)\"%.",
@@ -218,7 +218,7 @@ else
 		["Scare Beast"] = "Scare Beast",
 		["Scatter Shot"] = "Scatter Shot",
 		["Counterattack"] = "Counterattack",
-		["Improved Wing Clip"] = "Improved Wing Clip",	
+		["Improved Wing Clip"] = "Improved Wing Clip",
 		["Entrapment"] = "Entrapment",
 		["Hunter's Mark"] = "Hunter's Mark",
 		["Explosive Trap"] = "Explosive Trap",
@@ -227,8 +227,8 @@ else
 		["Frost Trap"] = "Frost Trap",
 		
 		--Mage
-		["Detect Magic"] = "Detect Magic",	
-		["Frostbolt"] = "Frostbolt",	
+		["Detect Magic"] = "Detect Magic",
+		["Frostbolt"] = "Frostbolt",
 		["Cone of Cold"] = "Cone of Cold",
 		["Counterspell - Silenced"] = "Counterspell - Silenced",
 		["Fireball"] = "Fireball",

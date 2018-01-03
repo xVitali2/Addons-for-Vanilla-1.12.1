@@ -4,7 +4,7 @@
 local _G, _M = getfenv(0), {}
 setfenv(1, setmetatable(_M, {__index=_G}))
 local L = DebuffTimersLocal
-
+local origname = {}
 do
 	local f = CreateFrame'Frame'
 	f:SetScript('OnEvent', function()
@@ -119,7 +119,6 @@ do
 	local casting = {}
 	local last_cast
 	local pending = {}
-
 	do
 		local orig = UseAction
 		function _G.UseAction(slot, clicked, onself)
@@ -129,6 +128,7 @@ do
 				DET_Tooltip:SetAction(slot)
 				local name = DET_TooltipTextLeft1:GetText()
 				if L[name] then
+					origname[L[name]] = name
 					name = L[name]
 					casting[name] = TARGET
 					SetActionRank(name, DET_TooltipTextRight1:GetText())
@@ -143,7 +143,9 @@ do
 		local orig = CastSpell
 		function _G.CastSpell(index, booktype)
 			local name, rank = GetSpellName(index, booktype)
+			local orname = name
 			if L[name] then
+				origname[L[name]] = name
 				name = L[name]
 				casting[name] = TARGET
 				SetActionRank(name, rank)
@@ -164,6 +166,7 @@ do
 					rank = b
 				end
 				if L[name] then
+					origname[L[name]] = name
 					name = L[name]
 					casting[name] = TARGET
 					SetActionRank(name, rank)
@@ -200,11 +203,12 @@ do
 
 	CreateFrame'Frame':SetScript('OnUpdate', function()
 		for effect, info in pending do
-			if GetTime() >= info.time  then
+			if GetTime() >= info.time and last_cast == effect then
 				StartTimer(effect, info.target, info.time)
-				pending[effect] = nil
+				--pending[effect] = nil
 			end
 		end
+	--end
 	end)
 
 	function AbortCast(effect, unit)
@@ -332,14 +336,21 @@ end
 
 function StartTimer(effect, unit, start)
 	local key = effect .. '@' .. unit
+	local unitname,unitlevel
+	if UnitExists("target") then
+		unitname = UnitName'target' or ''
+		unitlevel = UnitLevel'target' or 0
+	end
 	local timer = DET.timers[key] or {}
 	DET.timers[key] = timer
 	timer.EFFECT = effect
 	timer.UNIT = unit
 	timer.START = start
 	timer.END = timer.START
-	--ace:print(effect.."_EFF")
-	--ace:print(DETdebuff.EFFECT[effect].DURATION.."_DUR")
+	if pfdebuffsScanner and unitname and unitlevel and origname[effect] and pfUI.debuffs.objects[unitname]
+		and pfUI.debuffs.objects[unitname][unitlevel] and pfUI.debuffs.objects[unitname][unitlevel][origname[effect]] then
+			pfUI.debuffs.objects[unitname][unitlevel][origname[effect]].start=start
+	end
 	local duration = 0
 	if DETdebuff.EFFECT[effect] and DETdebuff.EFFECT[effect].DURATION then duration = DETdebuff.EFFECT[effect].DURATION end
 	local comboTime = 0
@@ -357,7 +368,10 @@ function StartTimer(effect, unit, start)
 	else
 		timer.END = timer.END + duration
 	end
-	
+	if pfdebuffsScanner and unitname and unitlevel and origname[effect] and pfUI.debuffs.objects[unitname]
+		and pfUI.debuffs.objects[unitname][unitlevel] and pfUI.debuffs.objects[unitname][unitlevel][origname[effect]] then
+			pfUI.debuffs.objects[unitname][unitlevel][origname[effect]].duration=timer.END-start
+	end
 	timer.stopped = nil
 	DET:UpdateDebuffs()
 end
@@ -537,6 +551,7 @@ end
 
 _G.SLASH_DEBUFFTIMERS1 = '/DebuffTimers'
 _G.SLASH_DEBUFFTIMERS2 = '/debufftimers'
+_G.SLASH_DEBUFFTIMERS3 = '/dt'
 SlashCmdList.DEBUFFTIMERS = DETPromt
 
 DET = CreateFrame("Frame","DET",UIParent)
@@ -628,7 +643,9 @@ function DET:UpdateFont(button,start,duration,style)
 					DET.Debuff[button].Font:SetText(DET:round(DET.Debuff[button].Duation,milliseconds))
 					if DET.Debuff[button].Duation > 3 then
 						DET.Debuff[button].Font:SetTextColor(1,1,1)
-					else DET.Debuff[button].Font:SetTextColor(1,0.4,0.4) end
+					else
+						DET.Debuff[button].Font:SetTextColor(1,0.4,0.4)
+					end
 				else
 					DET.Debuff[button].parent:SetScript("OnUpdate",nil)
 				end
@@ -637,17 +654,16 @@ function DET:UpdateFont(button,start,duration,style)
 			DET.Buff[button].Duation = duration
 			DET.Buff[button].parent:SetScript("OnUpdate",function()
 				DET.Buff[button].Duation = DET.Buff[button].Duation - arg1
-
 				if DET.Buff[button].Duation > 0 then
 					DET.Buff[button].Font:SetText(DET:round(DET.Buff[button].Duation,milliseconds))	
 					if DET.Buff[button].Duation > 3 then
 						DET.Buff[button].Font:SetTextColor(1,1,1)
-					else DET.Buff[button].Font:SetTextColor(1,0.4,0.4) end
-						
+					else
+						DET.Buff[button].Font:SetTextColor(1,0.4,0.4)
+					end
 				else
 					DET.Buff[button].parent:SetScript("OnUpdate",nil)
 				end
-
 			end)
 		else
 			DET.Debuff[button].Duation = duration
@@ -687,8 +703,11 @@ function DET:OnEvent()
 		DET.Debuff:Build()
 		DET.Buff:Build()
 		
-		if DET_settings.UF then DET:SetUnitFramesAnchor(DET_settings.UF)
-		else DET:SetUnitFramesAnchor("Default") end
+		if DET_settings.UF then
+			DET:SetUnitFramesAnchor(DET_settings.UF)
+		else
+			DET:SetUnitFramesAnchor("Default")
+		end
 	end
 end
 DET:SetScript("OnEvent", DET.OnEvent)
@@ -737,19 +756,21 @@ function DET:UpdateDebuffs()
 							DET.Debuff[i].parent:SetWidth(getglobal(DET.DebuffAnchor..i):GetWidth())
 							DET.Debuff[i].parent:SetHeight(getglobal(DET.DebuffAnchor..i):GetHeight())
 							DET.Debuff[i]:SetScale(getglobal(DET.DebuffAnchor..i):GetHeight()/36)
-						end						
+						end
 						DET.Debuff[i].parent:SetPoint("CENTER",getglobal(DET.DebuffAnchor..i),"CENTER",0,0)
 						getglobal(DET.DebuffAnchor..i):SetID(i)
 						getglobal(DET.DebuffAnchor..i):SetScript("OnClick", function() CastSpellByName(UnitDebuffText("target",this:GetID())) end)
 						DET.Debuff[i].parent:Show()
 						if DET_settings.reverse then DET.Debuff[i].reverse = 1 else DET.Debuff[i].reverse = nil	end
 						CooldownFrame_SetTimer(DET.Debuff[i],timer.START, timer.END-timer.START,1)
-						if not getglobal("pfUITargetDebuff1") then DET:UpdateFont(i,timer.START,timer.END-GetTime(),"Debuff")
-						else DET:UpdateFont(i,timer.START,timer.END-GetTime(),"") end						
-					end					
+						if not getglobal("pfUITargetDebuff1") then
+							DET:UpdateFont(i,timer.START,timer.END-GetTime(),"Debuff")
+						else
+							--DET:UpdateFont(i,timer.START,timer.END-GetTime(),"")
+						end
+					end
 					local icon="Interface\\Icons\\"..DETdebuff.EFFECT[timer.EFFECT].ICON
 					if DET.UnitBuff("target",i) == icon and getglobal(DET.BuffAnchor..i) then
-						
 						if  getglobal("XPerl_Target_BuffFrame") then
 							DET.Buff[i].parent:SetWidth(getglobal(DET.BuffAnchor..i):GetWidth()*0.7)
 							DET.Buff[i].parent:SetHeight(getglobal(DET.BuffAnchor..i):GetHeight()*0.7)
@@ -763,8 +784,11 @@ function DET:UpdateDebuffs()
 						DET.Buff[i].parent:Show()
 						if DET_settings.reverse then DET.Buff[i].reverse = 1 else DET.Buff[i].reverse = nil	end
 						CooldownFrame_SetTimer(DET.Buff[i],timer.START, timer.END-timer.START,1)
-						if not getglobal("pfUITargetBuff1") then DET:UpdateFont(i,timer.START,timer.END-GetTime(),"Buff")
-						else DET:UpdateFont(i,timer.START,timer.END-GetTime(),"") end
+						if not getglobal("pfUITargetBuff1") then
+							DET:UpdateFont(i,timer.START,timer.END-GetTime(),"Buff")
+						else
+							--DET:UpdateFont(i,timer.START,timer.END-GetTime(),"")
+						end
 					end
 				end
 			end
@@ -804,7 +828,6 @@ function DET:UpdateSavedVariables()
 	
 	if not DET_settings.UF then
 		DET_settings.UF = "Default"
-		
 		if IsAddOnLoaded("modui") then DET_settings.UF = "modui"
 		elseif IsAddOnLoaded("pfUI") then DET_settings.UF = "pfUI"
 		elseif IsAddOnLoaded("LunaUnitFrames") then DET_settings.UF = "LunaUnitFrames"
