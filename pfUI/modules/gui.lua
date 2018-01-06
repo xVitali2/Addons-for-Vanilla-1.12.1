@@ -406,6 +406,22 @@ pfUI:RegisterModule("gui", function ()
     "13:" .. T["Very Slow"],
   }
 
+  pfUI.gui.dropdowns.uf_bartexture = {
+    "Interface\\AddOns\\pfUI\\img\\bar:pfUI",
+    "Interface\\AddOns\\pfUI\\img\\bar_tukui:TukUI",
+    "Interface\\AddOns\\pfUI\\img\\bar_elvui:ElvUI",
+    "Interface\\TargetingFrame\\UI-StatusBar:Wow Status",
+    "Interface\\PaperDollInfoFrame\\UI-Character-Skills-Bar:Wow Skill"
+  }
+
+  pfUI.gui.dropdowns.uf_rangecheckinterval = {
+    "1:" .. T["Very Fast"],
+    "2:" .. T["Fast"],
+    "4:" .. T["Medium"],
+    "8:" .. T["Slow"],
+    "16:" .. T["Very Slow"],
+  }
+
   pfUI.gui.dropdowns.uf_powerbar_position = {
     "TOPLEFT:" .. T["Left"],
     "TOP:" .. T["Center"],
@@ -704,8 +720,8 @@ pfUI:RegisterModule("gui", function ()
       CreateConfig(this, T["Always Use 2D Portraits"], C.unitframes, "always2dportrait", "checkbox")
       CreateConfig(this, T["Enable 2D Portraits As Fallback"], C.unitframes, "portraittexture", "checkbox")
       CreateConfig(this, T["Unit Frame Layout"], C.unitframes, "layout", "dropdown", pfUI.gui.dropdowns.uf_layout)
-      CreateConfig(this, T["Aggressive 40y-Range Check (Will break stuff)"], C.unitframes, "rangecheck", "checkbox")
-      CreateConfig(this, T["40y-Range Check Interval"], C.unitframes, "rangechecki")
+      CreateConfig(this, T["Enable 40y-Range Check"], C.unitframes, "rangecheck", "checkbox")
+      CreateConfig(this, T["Range Check Interval"], C.unitframes, "rangechecki", "dropdown", pfUI.gui.dropdowns.uf_rangecheckinterval)
       CreateConfig(this, T["Combopoint Size"], C.unitframes, "combosize")
       CreateConfig(this, T["Abbreviate Numbers (4200 -> 4.2k)"], C.unitframes, "abbrevnum", "checkbox")
       CreateConfig(this, T["Show PvP Icon"], C.unitframes.player, "showPVP", "checkbox")
@@ -720,6 +736,7 @@ pfUI:RegisterModule("gui", function ()
     if not this.setup then
       CreateConfig(this, T["Display Player Frame"], C.unitframes.player, "visible", "checkbox")
       CreateConfig(this, T["Portrait Position"], C.unitframes.player, "portrait", "dropdown", pfUI.gui.dropdowns.uf_portrait_position)
+      CreateConfig(this, T["Status Bar Texture"], C.unitframes.player, "bartexture", "dropdown", pfUI.gui.dropdowns.uf_bartexture)
       CreateConfig(this, T["Health Bar Width"], C.unitframes.player, "width")
       CreateConfig(this, T["Health Bar Height"], C.unitframes.player, "height")
       CreateConfig(this, T["Power Bar Height"], C.unitframes.player, "pheight")
@@ -764,6 +781,7 @@ pfUI:RegisterModule("gui", function ()
       CreateConfig(this, T["Display Target Frame"], C.unitframes.target, "visible", "checkbox")
       CreateConfig(this, T["Enable Target Switch Animation"], C.unitframes.target, "animation", "checkbox")
       CreateConfig(this, T["Portrait Position"], C.unitframes.target, "portrait", "dropdown", pfUI.gui.dropdowns.uf_portrait_position)
+      CreateConfig(this, T["Status Bar Texture"], C.unitframes.target, "bartexture", "dropdown", pfUI.gui.dropdowns.uf_bartexture)
       CreateConfig(this, T["Health Bar Width"], C.unitframes.target, "width")
       CreateConfig(this, T["Health Bar Height"], C.unitframes.target, "height")
       CreateConfig(this, T["Power Bar Height"], C.unitframes.target, "pheight")
@@ -807,6 +825,7 @@ pfUI:RegisterModule("gui", function ()
     if not this.setup then
       CreateConfig(this, T["Display Target of Target Frame"], C.unitframes.ttarget, "visible", "checkbox")
       CreateConfig(this, T["Portrait Position"], C.unitframes.ttarget, "portrait", "dropdown", pfUI.gui.dropdowns.uf_portrait_position)
+      CreateConfig(this, T["Status Bar Texture"], C.unitframes.ttarget, "bartexture", "dropdown", pfUI.gui.dropdowns.uf_bartexture)
       CreateConfig(this, T["Health Bar Width"], C.unitframes.ttarget, "width")
       CreateConfig(this, T["Health Bar Height"], C.unitframes.ttarget, "height")
       CreateConfig(this, T["Power Bar Height"], C.unitframes.ttarget, "pheight")
@@ -850,6 +869,7 @@ pfUI:RegisterModule("gui", function ()
     if not this.setup then
       CreateConfig(this, T["Display Pet Frame"], C.unitframes.pet, "visible", "checkbox")
       CreateConfig(this, T["Portrait Position"], C.unitframes.pet, "portrait", "dropdown", pfUI.gui.dropdowns.uf_portrait_position)
+      CreateConfig(this, T["Status Bar Texture"], C.unitframes.pet, "bartexture", "dropdown", pfUI.gui.dropdowns.uf_bartexture)
       CreateConfig(this, T["Health Bar Width"], C.unitframes.pet, "width")
       CreateConfig(this, T["Health Bar Height"], C.unitframes.pet, "height")
       CreateConfig(this, T["Power Bar Height"], C.unitframes.pet, "pheight")
@@ -893,6 +913,7 @@ pfUI:RegisterModule("gui", function ()
     if not this.setup then
       CreateConfig(this, T["Display Focus Frame"], C.unitframes.focus, "visible", "checkbox")
       CreateConfig(this, T["Portrait Position"], C.unitframes.focus, "portrait", "dropdown", pfUI.gui.dropdowns.uf_portrait_position)
+      CreateConfig(this, T["Status Bar Texture"], C.unitframes.focus, "bartexture", "dropdown", pfUI.gui.dropdowns.uf_bartexture)
       CreateConfig(this, T["Health Bar Width"], C.unitframes.focus, "width")
       CreateConfig(this, T["Health Bar Height"], C.unitframes.focus, "height")
       CreateConfig(this, T["Power Bar Height"], C.unitframes.focus, "pheight")
@@ -962,6 +983,7 @@ pfUI:RegisterModule("gui", function ()
     if not this.setup then
       CreateConfig(this, T["Display Raid Frames"], C.unitframes.raid, "visible", "checkbox")
       CreateConfig(this, T["Portrait Position"], C.unitframes.raid, "portrait", "dropdown", pfUI.gui.dropdowns.uf_portrait_position)
+      CreateConfig(this, T["Status Bar Texture"], C.unitframes.raid, "bartexture", "dropdown", pfUI.gui.dropdowns.uf_bartexture)
       CreateConfig(this, T["Health Bar Width"], C.unitframes.raid, "width")
       CreateConfig(this, T["Health Bar Height"], C.unitframes.raid, "height")
       CreateConfig(this, T["Power Bar Height"], C.unitframes.raid, "pheight")
@@ -1005,6 +1027,7 @@ pfUI:RegisterModule("gui", function ()
     if not this.setup then
       CreateConfig(this, T["Display Group Frames"], C.unitframes.group, "visible", "checkbox")
       CreateConfig(this, T["Portrait Position"], C.unitframes.group, "portrait", "dropdown", pfUI.gui.dropdowns.uf_portrait_position)
+      CreateConfig(this, T["Status Bar Texture"], C.unitframes.group, "bartexture", "dropdown", pfUI.gui.dropdowns.uf_bartexture)
       CreateConfig(this, T["Health Bar Width"], C.unitframes.group, "width")
       CreateConfig(this, T["Health Bar Height"], C.unitframes.group, "height")
       CreateConfig(this, T["Power Bar Height"], C.unitframes.group, "pheight")
@@ -1048,6 +1071,7 @@ pfUI:RegisterModule("gui", function ()
     if not this.setup then
       CreateConfig(this, T["Display Group Target Frames"], C.unitframes.grouptarget, "visible", "checkbox")
       CreateConfig(this, T["Portrait Position"], C.unitframes.grouptarget, "portrait", "dropdown", pfUI.gui.dropdowns.uf_portrait_position)
+      CreateConfig(this, T["Status Bar Texture"], C.unitframes.grouptarget, "bartexture", "dropdown", pfUI.gui.dropdowns.uf_bartexture)
       CreateConfig(this, T["Health Bar Width"], C.unitframes.grouptarget, "width")
       CreateConfig(this, T["Health Bar Height"], C.unitframes.grouptarget, "height")
       CreateConfig(this, T["Power Bar Height"], C.unitframes.grouptarget, "pheight")
@@ -1091,6 +1115,7 @@ pfUI:RegisterModule("gui", function ()
     if not this.setup then
       CreateConfig(this, T["Display Group Pet Frames"], C.unitframes.grouppet, "visible", "checkbox")
       CreateConfig(this, T["Portrait Position"], C.unitframes.grouppet, "portrait", "dropdown", pfUI.gui.dropdowns.uf_portrait_position)
+      CreateConfig(this, T["Status Bar Texture"], C.unitframes.grouppet, "bartexture", "dropdown", pfUI.gui.dropdowns.uf_bartexture)
       CreateConfig(this, T["Health Bar Width"], C.unitframes.grouppet, "width")
       CreateConfig(this, T["Health Bar Height"], C.unitframes.grouppet, "height")
       CreateConfig(this, T["Power Bar Height"], C.unitframes.grouppet, "pheight")
@@ -1365,6 +1390,9 @@ pfUI:RegisterModule("gui", function ()
       CreateConfig(this, T["Enable Chat Fade"], C.chat.global, "fadeout", "checkbox")
       CreateConfig(this, T["Seconds Before Chat Fade"], C.chat.global, "fadetime")
       CreateConfig(this, T["Mousewheel Scroll Speed"], C.chat.global, "scrollspeed")
+      CreateConfig(this, T["Enable Chat Bubbles"], C.chat.bubbles, "chat", "checkbox")
+      CreateConfig(this, T["Enable Party Chat Bubbles"], C.chat.bubbles, "party", "checkbox")
+      CreateConfig(this, T["Chat Bubble Transparency"], C.chat.bubbles, "alpha")
       this.setup = true
     end
   end)
@@ -1411,6 +1439,7 @@ pfUI:RegisterModule("gui", function ()
   pfUI.gui.tabs.thirdparty.tabs.general = pfUI.gui.tabs.thirdparty.tabs:CreateTabChild(T["Thirdparty"], true)
   pfUI.gui.tabs.thirdparty.tabs.general:SetScript("OnShow", function()
     if not this.setup then
+      CreateConfig(this, T["Use Chat Colors for Meters"], C.thirdparty, "chatbg", "checkbox")
       CreateConfig(this, T["DPSMate (Skin)"], C.thirdparty.dpsmate, "skin", "checkbox")
       CreateConfig(this, T["DPSMate (Dock)"], C.thirdparty.dpsmate, "dock", "checkbox")
       CreateConfig(this, T["SWStats (Skin)"], C.thirdparty.swstats, "skin", "checkbox")
