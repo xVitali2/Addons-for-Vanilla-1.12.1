@@ -207,6 +207,7 @@ do
 			elseif Inbox_Skip or COD > 0 then
 				Inbox_Skip = false
 				i = i + 1
+				update = true
 			else
 				Inbox_Open(i)
 			end
@@ -229,37 +230,6 @@ do
 		Inbox_opening = false
 		Inbox_UpdateLock()
 		f:Hide()
-	end
-end
-
-do
-	local i
-	local function update()
-		local _, _, _, _, _, COD = GetInboxHeaderInfo(i)
-		if i > GetInboxNumItems() then
-			Inbox_Abort()
-		elseif Inbox_Skip or COD > 0 then
-			Inbox_Skip = false
-			i = i + 1
-		else
-			Inbox_Open(i)
-		end
-	end
-	function MAIL_INBOX_UPDATE()
-		if Inbox_opening then
-			update()
-		end
-	end
-	function Inbox_OpenAll()
-		Inbox_opening = true
-		Inbox_UpdateLock()
-		i = 1
-		Inbox_skip = false
-		update()
-	end
-	function Inbox_Abort()
-		Inbox_opening = false
-		Inbox_UpdateLock()
 	end
 end
 
