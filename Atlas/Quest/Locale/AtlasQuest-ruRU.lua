@@ -5354,7 +5354,7 @@ if ( GetLocale() == "ruRU" ) then
 	Inst30Quest4_Attain = "40"
 	Inst30Quest4_Aim = "Принесите Тиару Глубин Табете в Пылевых топях."
 	Inst30Quest4_Location = " Табета (Пылевые топи; "..YELLOW.."46,57"..WHITE..")"
-	Inst30Quest4_Note = "Возьмите предшествующее задание у Бинк (Стальгорн; "..YELLOW.."25,8"..WHITE..").\nТиара глубин добывается с гидроманта Велраты около "..YELLOW.."[6]"..WHITE.."."
+	Inst30Quest4_Note = "Возьмите предшествующее задание у Бинк (Стальгорн; "..YELLOW.."25,8"..WHITE..") или у Джинния Пушка (Штормград; "..YELLOW.."38.5,79.3"..WHITE.."). Чтобы получить задание Тиара Глубин, предшествуещее задание выполнять необязательно.\nТиара глубин добывается с гидроманта Велраты около "..YELLOW.."[6]"..WHITE.."."
 	Inst30Quest4_Prequest = "Миссия Табеты" -- 2861
 	Inst30Quest4_Folgequest = "Нет"
 	--
@@ -5431,13 +5431,13 @@ if ( GetLocale() == "ruRU" ) then
 	Inst30Quest3_HORDE_Folgequest = Inst30Quest3_Folgequest
 	-- No Rewards for this quest
 	
-	--Quest 4 Horde (same as Quest 4 Alliance)
+	--Quest 4 Horde (~same as Quest 4 Alliance)
 	Inst30Quest4_HORDE = Inst30Quest4
 	Inst30Quest4_HORDE_Level = Inst30Quest4_Level
 	Inst30Quest4_HORDE_Attain = Inst30Quest4_Attain
 	Inst30Quest4_HORDE_Aim = Inst30Quest4_Aim
 	Inst30Quest4_HORDE_Location = Inst30Quest4_Location
-	Inst30Quest4_HORDE_Note = Inst30Quest4_Note
+	Inst30Quest4_HORDE_Note = "Возьмите предшествующее задание у Урсин Гуль (Громовой Утес; "..YELLOW.."26,16"..WHITE..") или у Анастасии Хартвелл (Подгород; "..YELLOW.."85,10"..WHITE..") или у Дейно (Оргриммар; "..YELLOW.."38.5,86.1"..WHITE.."). Чтобы получить задание Тиара Глубин, предшествуещее задание выполнять необязательно.\nТиара глубин добывается с гидроманта Велраты около "..YELLOW.."[6]"..WHITE.."."
 	Inst30Quest4_HORDE_Prequest = Inst30Quest4_Prequest
 	Inst30Quest4_HORDE_Folgequest = Inst30Quest4_Folgequest
 	--
@@ -5468,14 +5468,14 @@ if ( GetLocale() == "ruRU" ) then
 	Inst30Quest6name1_HORDE = Inst30Quest6name1
 	Inst30Quest6name2_HORDE = Inst30Quest6name2
 	
-	--Quest 7 Horde (same as Quest 7 Alliance)
+	--Quest 7 Horde (~same as Quest 7 Alliance)
 	Inst30Quest7_HORDE = Inst30Quest7
 	Inst30Quest7_HORDE_Level = Inst30Quest7_Level
 	Inst30Quest7_HORDE_Attain = Inst30Quest7_Attain
 	Inst30Quest7_HORDE_Aim = Inst30Quest7_Aim
 	Inst30Quest7_HORDE_Location = Inst30Quest7_Location
-	Inst30Quest7_HORDE_Note = Inst30Quest7_Note
-	Inst30Quest7_HORDE_Prequest = Inst30Quest7_Prequest
+	Inst30Quest7_HORDE_Note = "Вы вызовете Газ'риллу около "..YELLOW.."[6]"..WHITE.." с помощью Молота Зул'Фаррака.\nСвященный молот добывается с Квиаги Хранительницы (Внутренние земли - Алтарь Зула; "..YELLOW.."49,70"..WHITE..") и должен быть завершен на алтаре в Джинта'Алоре около "..YELLOW.."59,77"..WHITE.." перед тем как его можно будет использовать в Зул'Фарраке."
+	Inst30Quest7_HORDE_Prequest = "Нет"
 	Inst30Quest7_HORDE_Folgequest = Inst30Quest7_Folgequest
 	--
 	Inst30Quest7name1_HORDE = Inst30Quest7name1
