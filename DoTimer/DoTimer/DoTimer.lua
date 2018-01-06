@@ -732,7 +732,7 @@ function DoTimer_ReturnDuration(spell,rank) --returns the duration of a spell
 				local basenumber = DoTimer_SpellData[class][DoTimer_ReturnTexture(spell)].duration
 				local multiplier = DoTimer_SpellData[class][DoTimer_ReturnTexture(spell)].multiplier
 				if allnumbers[1] == false then allnumbers[1] = basenumber end
-				local truenumber
+				local truenumber=0
 				for index2,value2 in ipairs(allnumbers) do
 					if ((not truenumber) or (math.abs(value2 - basenumber) < math.abs(truenumber - basenumber))) then truenumber = value2 end
 				end
