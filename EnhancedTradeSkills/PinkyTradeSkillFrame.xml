@@ -1,0 +1,54 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="PinkyTradeSkillFrame.lua"/>
+	<Script file="PinkyCraftFrame.lua"/>
+	<Script file="buyables.lua"/>
+	<Frame name="RomuTradeSkillFrame">
+	  <Scripts>
+	    <OnLoad>
+		  RomuTradeSkillFrame_OnLoad();
+	    </OnLoad>
+	    <OnEvent>
+		  RomuTradeSkillFrame_OnEvent();
+	    </OnEvent>
+	  </Scripts>
+	</Frame>
+		<!-- Trade SKill Scan button -->
+  <Button name="ETS_FILTERSONOFF" toplevel="true" inherits="UIPanelButtonTemplate" parent="TradeSkillFrame" text="off">
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TradeSkillFrame" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="25" y="-52"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	<Size> <AbsDimension x="130" y="19"/> </Size>
+	<Scripts>
+		<OnEnter>
+			GameTooltip:SetOwner(this, "ANCHOR_BOTTOMRIGHT") 
+			GameTooltip:SetText(TOGGLE_FILTER_TIP)
+		</OnEnter>
+		<OnLeave> GameTooltip:Hide() </OnLeave>
+		<OnClick> Pinky_ToggleFilter() </OnClick>
+	</Scripts>
+    </Button> 
+     <Button name="ETS_CFILTERSONOFF" toplevel="true" inherits="UIPanelButtonTemplate" parent="CraftFrame" text="off">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="CraftFrame" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="12" y="82"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	<Size> <AbsDimension x="175" y="19"/> </Size>
+	<Scripts>
+		<OnEnter>
+			GameTooltip:SetOwner(this, "ANCHOR_BOTTOMRIGHT") 
+			GameTooltip:SetText(TOGGLE_FILTER_TIP)
+		</OnEnter>
+		<OnLeave> GameTooltip:Hide() </OnLeave>
+		<OnClick> Pinky_ToggleFilter() </OnClick>
+	</Scripts>
+    </Button>
+</Ui>

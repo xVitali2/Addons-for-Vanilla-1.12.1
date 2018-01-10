@@ -1,7 +1,0 @@
-## Interface: 11200 
-## Title: |cff33ffccShagu|cffffffffCopy
-## Author: Eric (Shagu) Mauser, 2016
-## Notes: Allows you to copy chat messages
-## Notes-ruRU: Позволяет копировать сообщения чата.
-## Version: 0.1 DEVEL
-ShaguCopy.lua
