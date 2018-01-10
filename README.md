@@ -149,10 +149,12 @@
 **Luna Unit Frames** (c pfUI не нужен)
 Изменяет фреймы в игре на удобные.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586574/a8b20832-d0e3-11e6-9294-70704232de4a.jpg" alt="luna unit frames"/>
+https://github.com/Aviana/LunaUnitFrames
 
 **Mail**
 Отправка через почту больше одного предмета , сбор всей почты
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586622/1f6a7c16-d0e4-11e6-8577-cbc570364d8b.jpg" alt="postal"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586621/1f6a6410-d0e4-11e6-8076-ab31f5f570e7.jpg" alt="postal2"/>
+https://github.com/shirsig/Mail
 
 **MasterTradeSkills**
 Отображает в подсказках для каких профессий этот реагент.
@@ -201,10 +203,12 @@
 **pfUI**
 Модифицирует весь интерфейс (elvUI для 1.12)
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586612/069641de-d0e4-11e6-8c26-331d840e69d9.jpg" alt="pfui"/>
+https://github.com/shagu/pfUI
 
 **pfUI-eliteoverlay**
 Дополнение к pfUI, добавляет знак дракона для элитного существа
 <img src="https://user-images.githubusercontent.com/15636669/34522290-f2015544-f0a2-11e7-8584-d51689d2900f.png" alt="pfui-elite"/>
+https://github.com/shagu/pfUI-eliteoverlay
 
 **Prat**
 Изменение окна чата.
@@ -214,6 +218,7 @@
 **Questie** (отдельно лежит русский вариант)
 Лучший аддон для заданий, показывает место выполнения заданий, а также места еще не взятых квестов. Ctrl+Shift+LClick для перемещения трекера заданий.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586632/34857402-d0e4-11e6-8526-e9a14772fdd6.jpg" alt="questie"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586634/3485c4d4-d0e4-11e6-8e0a-82bd25c95a56.jpg" alt="questie_2"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586633/3485a9f4-d0e4-11e6-9d8e-95046c805f28.jpg" alt="questie_3"/>
+https://github.com/AeroScripts/QuestieDev
 
 **RecipeRadar**
 Указывает о местоположении недостающих рецептов профессий.
@@ -234,6 +239,7 @@
 **ShaguCopy**
 Дает возможность копировать текст с чатов.
 <img src="https://user-images.githubusercontent.com/15636669/34522333-2dfd044e-f0a3-11e7-9ce4-185b5bd1cf17.jpg" alt="shagucopy"/>
+https://github.com/shagu/ShaguCopy
 
 **SpecialTalent**
 Расширенное окно талантов.
@@ -255,6 +261,7 @@
 **unitscan**
 Поиск существ, игроков и нпс по имени. Например /unitscan ИМЯ МОБА
 <img src="https://user-images.githubusercontent.com/15636669/34522405-7d7ea5c2-f0a3-11e7-8cbe-d012fe59e501.jpg" alt="unitscan"/>
+https://github.com/shirsig/unitscan
 
 **VanillaGuide** (нет русского языка)
 Путеводитель для прокачки персонажа и профессий.
