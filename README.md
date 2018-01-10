@@ -154,6 +154,7 @@ https://github.com/Aviana/LunaUnitFrames
 **Mail**
 Отправка через почту больше одного предмета , сбор всей почты
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586622/1f6a7c16-d0e4-11e6-8577-cbc570364d8b.jpg" alt="postal"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586621/1f6a6410-d0e4-11e6-8076-ab31f5f570e7.jpg" alt="postal2"/>
+
 https://github.com/shirsig/Mail
 
 **MasterTradeSkills**
@@ -185,6 +186,8 @@ https://github.com/shirsig/Mail
 **Modui** (не для русского клиента)
 Изменение всего интерфейса. (аналог pfUI)
 <img src="https://cloud.githubusercontent.com/assets/15636669/22146414/a03e48ce-df15-11e6-9b72-079c6b60f293.png" alt="modui"/>
+https://github.com/obble/modui
+https://github.com/obble/md
 
 **OmniCC**
 Время перезарядки для всего(заклинаний, баффов...).
@@ -239,6 +242,7 @@ https://github.com/AeroScripts/QuestieDev
 **ShaguCopy**
 Дает возможность копировать текст с чатов.
 <img src="https://user-images.githubusercontent.com/15636669/34522333-2dfd044e-f0a3-11e7-9ce4-185b5bd1cf17.jpg" alt="shagucopy"/>
+
 https://github.com/shagu/ShaguCopy
 
 **SpecialTalent**
