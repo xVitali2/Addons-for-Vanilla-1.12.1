@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
 --Name: Questie for Vanilla WoW
---Revision: 3.83
 --Authors: KasVital & Aero/Schaka/Logon/Dyaxler/Muehe/Zoey/everyone else
 --Website: https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/
 --Description: Questie started out being a simple backport of QuestHelper but it has grown beyond
@@ -12,7 +11,7 @@
 --///////////////////////////////////////////////////////////////////////////////////////////////--
 ---------------------------------------------------------------------------------------------------
 Questie = CreateFrame("Frame", "QuestieLua", UIParent, "ActionButtonTemplate");
-QuestieVersion = 3.83;
+QuestieVersion = 3.84;
 QuestieLanguage = "ruRU";
 ---------------------------------------------------------------------------------------------------
 --Setup Default Profile
@@ -86,6 +85,9 @@ function Questie:CheckDefaults()
     end
     if QuestieConfig.hideMinimapIcons == nil then
         QuestieConfig.hideMinimapIcons = false;
+    end
+    if QuestieConfig.hideObjectives == nil then
+        QuestieConfig.hideObjectives = false;
     end
     if QuestieConfig.maxLevelFilter == nil then
         QuestieConfig.maxLevelFilter = true;
@@ -449,6 +451,7 @@ function Questie:OnEvent(this, event, arg1, arg2, arg3, arg4, arg5, arg6, arg7, 
         Questie:BlockTranslations();
         Astrolabe:isMinimapInCity();
         Questie:LoadEQL3Fix();
+        Questie:Toggle_Position();
         Questie:AddEvent("UPDATECACHE", 1.8);
         Questie:AddEvent("CHECKLOG", 2.0);
         Questie:AddEvent("UPDATE", 2.2);
@@ -504,6 +507,19 @@ function Questie:Toggle()
         Questie:UpdateGameClientCache(true)
         end
     end
+---------------------------------------------------------------------------------------------------
+--Reposition Questie Worldmap Toggle Button - MetaMap & Cartographer support
+---------------------------------------------------------------------------------------------------
+function Questie:Toggle_Position()
+    if IsAddOnLoaded("MetaMap") then
+        Questie_Toggle:ClearAllPoints();
+        Questie_Toggle:SetPoint("CENTER", WorldMapFrame, "CENTER", -430, 335);
+    end
+    if IsAddOnLoaded("Cartographer") then 
+        Questie_Toggle:ClearAllPoints();
+        Questie_Toggle:SetPoint("CENTER", WorldMapFrame, "CENTER", 0, 338);
+    end
+end
 ---------------------------------------------------------------------------------------------------
 -- QuestieSeenQuests flags to denote quest status in all cache and saved variable checks.
 --    1 : Quest Complete
@@ -730,6 +746,16 @@ QuestieFastSlash = {
             DEFAULT_CHAT_FRAME:AddMessage("QuestieStarters:|c0000ffc0 (Are now being hidden) |r");
         else
             DEFAULT_CHAT_FRAME:AddMessage("QuestieStarters:|c0000ffc0 (Are now being shown) |r");
+        end
+        Questie:AddEvent("DRAWNOTES", 0.1);
+    end,
+    ["hideobjectives"] = function()
+    --Default: False
+        QuestieConfig.hideObjectives = not QuestieConfig.hideObjectives;
+        if QuestieConfig.hideObjectives then
+            DEFAULT_CHAT_FRAME:AddMessage("QuestieObjectives:|c0000ffc0 (Set to always hide) |r");
+        else
+            DEFAULT_CHAT_FRAME:AddMessage("QuestieObjectives:|c0000ffc0 (Set to always show) |r");
         end
         Questie:AddEvent("DRAWNOTES", 0.1);
     end,
@@ -977,6 +1003,7 @@ QuestieFastSlash = {
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie corpsearrow |r|c0000ffc0(toggle)|r CorpseArrow: Toggle", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie header |r|c0000ffc0(toggle)|r QuestTracker: Header & Quest Counter", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie hideminimap |r|c0000ffc0(toggle)|r QuestMap: Removes quest starter icons from Minimap", 0.75, 0.75, 0.75);
+        DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie hideobjectives |r|c0000ffc0(toggle)|r QuestMap: Hide all objectives for obtained quests", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie listdirection |r|r|c0000ffc0(list)|r QuestTracker: Change list order: Top-->Down or Bottom-->Up", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie mapnotes |r|c0000ffc0(toggle)|r Questie: Commandline version of ToggleQuestie button", 0.75, 0.75, 0.75);
         DEFAULT_CHAT_FRAME:AddMessage("|c0000c0ff  /questie maxlevel |r|c0000ffc0(toggle)|r QuestMap: Filter - see setmaxlevel", 0.75, 0.75, 0.75);
@@ -1042,23 +1069,24 @@ function Questie:CurrentUserToggles()
         [6] = { "corpseArrow" },
         [7] = { "getVersion" },
         [8] = { "hideMinimapIcons" },
-        [9] = { "maxLevelFilter" },
-        [10] = { "maxShowLevel" },
-        [11] = { "minimapButton" },
-        [12] = { "minimapZoom" },
-        [13] = { "minLevelFilter" },
-        [14] = { "minShowLevel" },
-        [15] = { "resizeWorldmap" },
-        [16] = { "showMapNotes" },
-        [17] = { "showProfessionQuests" },
-        [18] = { "showTrackerHeader" },
-        [19] = { "showToolTips" },
-        [20] = { "trackerAlpha" },
-        [21] = { "trackerBackground" },
-        [22] = { "trackerEnabled" },
-        [23] = { "trackerList" },
-        [24] = { "trackerMinimize" },
-        [25] = { "trackerScale" },
+        [9] = { "hideObjectives" },
+        [10] = { "maxLevelFilter" },
+        [11] = { "maxShowLevel" },
+        [12] = { "minimapButton" },
+        [13] = { "minimapZoom" },
+        [14] = { "minLevelFilter" },
+        [15] = { "minShowLevel" },
+        [16] = { "resizeWorldmap" },
+        [17] = { "showMapNotes" },
+        [18] = { "showProfessionQuests" },
+        [19] = { "showTrackerHeader" },
+        [20] = { "showToolTips" },
+        [21] = { "trackerAlpha" },
+        [22] = { "trackerBackground" },
+        [23] = { "trackerEnabled" },
+        [24] = { "trackerList" },
+        [25] = { "trackerMinimize" },
+        [26] = { "trackerScale" },
     };
     if QuestieConfig then
         i = 1;

@@ -601,10 +601,10 @@ function Questie_Tooltip_OnEnter()
                 end
                 Tooltip:AddLine(questLine);
                 Tooltip:AddLine("Мин. уровень: |cFFa6a6a6"..QuestieHashMap[data.questHash].level.."|r",1,1,1);  ---------by CFM
-                Tooltip:AddLine("Начинает: |cFFa6a6a6"..QuestieHashMap[data.questHash].startedBy.."|r",1,1,1);  ---------by CFM
+                Tooltip:AddLine("Начинает: |cFFa6a6a6"..Questie:RemoveUniqueSuffix(QuestieHashMap[data.questHash].startedBy).."|r",1,1,1);  ---------by CFM
                 Questie:AddPathToTooltip(Tooltip, questMeta['path'], 1);
                 if questOb ~= nil then
-                    Tooltip:AddLine("Описание: |cFFa6a6a6"..questOb.."|r",1,1,1,true);  ---------by CFM
+                    Tooltip:AddLine("Описание: |cFFa6a6a6"..Questie:RemoveUniqueSuffix(questOb).."|r",1,1,1,true);  ---------by CFM
                 end
                 canManualComplete = 1;
             end
@@ -1325,40 +1325,46 @@ function Questie:DRAW_NOTES()
         -- Draw minimap objective markers
         if (QuestieMapNotes[c] and QuestieMapNotes[c][z]) then
             for k, v in pairs(QuestieMapNotes[c][z]) do
-                --If an available quest isn't in the zone or we aren't tracking a quest on the QuestTracker then hide the objectives from the minimap
+                --If an available quest isn't in the zone or we aren't tracking a quest on the QuestTracker or the user wants to hide all objectives then hide the objectives from the minimap
                 local show = QuestieConfig.alwaysShowObjectives or ((MMLastX ~= 0) and (MMLastY ~= 0)) and (QuestieCachedQuests[v.questHash] ~= nil) and (QuestieCachedQuests[v.questHash]["tracked"] ~= false);
                 if show then
                     if (v.icontype == "complete") then
                         Questie:AddClusterFromNote("MiniMapNote", "Quests", v);
                     else
+                        if QuestieConfig.hideObjectives == false then
                         Questie:AddClusterFromNote("MiniMapNote", "Objectives", v);
                     end
                 end
             end
         end
     end
+    end
     -- Draw world map objective markers
     for k, Continent in pairs(QuestieMapNotes) do
         for zone, noteHeap in pairs(Continent) do
             for k, v in pairs(noteHeap) do
                 if true then
-                    --If we aren't tracking a quest on the QuestTracker then hide the objectives from the worldmap
+                    --If we aren't tracking a quest on the QuestTracker or the user wants to hide all objectives then hide the objectives from the worldmap
                     if (((QuestieCachedQuests[v.questHash] ~= nil) and (QuestieCachedQuests[v.questHash]["tracked"] ~= false)) or (v.icontype == "complete")) and (QuestieConfig.alwaysShowObjectives == false) then
                         if (v.icontype == "complete") then
                             Questie:AddClusterFromNote("WorldMapNote", "Quests", v);
                         else
+                            if QuestieConfig.hideObjectives == false then
                             Questie:AddClusterFromNote("WorldMapNote", "Objectives", v);
+                        end
                         end
                     elseif (QuestieConfig.alwaysShowObjectives == true) then
                         if (v.icontype == "complete") then
                             Questie:AddClusterFromNote("WorldMapNote", "Quests", v);
                         else
+                            if QuestieConfig.hideObjectives == false then
                             Questie:AddClusterFromNote("WorldMapNote", "Objectives", v);
                         end
                     end
                 end
             end
         end
+    end
     end
     -- Draw available quest markers.
     if (QuestieAvailableMapNotes[c] and QuestieAvailableMapNotes[c][z]) then
