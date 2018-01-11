@@ -38,7 +38,7 @@ local GHOST_ALPHA = .5 --amt. ghost timers are dimmed
 ------------------------------------------------------------------------------------------------------------
 
 function DoTimer_ReturnEnglish(spellname) --returns the english name of the spell
---	DoTimer_Debug("DoTimer_ReturnEnglish")
+	--DoTimer_Debug("DoTimer_ReturnEnglish spellname = "..spellname)
 	local tables = {BOOKTYPE_SPELL,BOOKTYPE_PET}
 	local english,texture
 	for index,value in ipairs(tables) do
@@ -46,7 +46,7 @@ function DoTimer_ReturnEnglish(spellname) --returns the english name of the spel
 		local i = 1
 		while GetSpellName(i,value) do
 			local spell = GetSpellName(i,value)
-	--		DoTimer_Debug("DoTimer_ReturnEnglish"..spell)
+			--DoTimer_Debug("DoTimer_ReturnEnglish"..spell)
 			if spell == spellname then 
 				texture = GetSpellTexture(i,value)
 				--DoTimer_Debug("DoTimer_ReturnEnglishSPELL "..spell)
@@ -57,8 +57,8 @@ function DoTimer_ReturnEnglish(spellname) --returns the english name of the spel
 		end
 	end
 	if texture and DoTimer_SpellData[class] and DoTimer_SpellData[class][texture] then
-	--	DoTimer_Debug("DoTimer_ReturnEnglish 3")
-		return DoTimer_SpellData[class][texture].name 
+		--DoTimer_Debug("DoTimer_ReturnEnglish 3".. DoTimer_SpellData[class][texture].name)
+		return DoTimer_SpellData[class][texture].name
 	end
 	--DoTimer_Debug("DoTimer_ReturnEnglish- unknown")
 	return "unknown"
@@ -190,7 +190,7 @@ function DoTimer_OnUpdate() --updating the timers onscreen, as well as checking 
 end
 
 function DoTimer_ScanDebuffs() --deletes the timers of spells which are no longer on the target
-	DoTimer_Debug("DoTimer_ScanDebuffs")
+	--DoTimer_Debug("DoTimer_ScanDebuffs")
 	local unitids = {"target","pettarget"} --making use of both your target and your pet's target
 	for index,value in ipairs(unitids) do
 		local target,sex,level
@@ -220,10 +220,10 @@ function DoTimer_ScanDebuffs() --deletes the timers of spells which are no longe
 						end
 						if not wrongreason then
 							local time = GetTime()
-							DoTimer_Debug(casted[found][i].spell.." not found on "..UnitName(value).."; depreciating if mob, deleting if not")
+							--DoTimer_Debug(casted[found][i].spell.." not found on "..UnitName(value).."; depreciating if mob, deleting if not")
 							if casted[found].type == "mob" then DoTimer_DepreciateTimer(found,i) else DoTimer_RemoveTimer(found,i,1) end --player timers are removed because they cannot be depreciated
 						else
-							DoTimer_Debug(casted[found][i].spell.." not found on "..UnitName(value)..", but we expected that")
+							--DoTimer_Debug(casted[found][i].spell.." not found on "..UnitName(value)..", but we expected that")
 							DoTimer_RemoveTimer(found,i)
 						end
 					end
@@ -234,7 +234,7 @@ function DoTimer_ScanDebuffs() --deletes the timers of spells which are no longe
 end
 
 function DoTimer_ScanBuffs() --checking buffs to see if any friendly spells need to be removed
-	DoTimer_Debug("DoTimer_ScanBuffs")
+	--DoTimer_Debug("DoTimer_ScanBuffs")
 	local unitids = {
 		"target",
 		"mouseover",
@@ -266,7 +266,7 @@ function DoTimer_ScanBuffs() --checking buffs to see if any friendly spells need
 					end
 					if not (casted[found][i].type == "heal") then ontarget = 1 end --we only want to deal with heal timers
 					if not ontarget then
-						DoTimer_Debug(casted[found][i].spell.." not found on target, removing it")
+						--DoTimer_Debug(casted[found][i].spell.." not found on target, removing it")
 						DoTimer_RemoveTimer(found,i,1)
 					end
 				end
@@ -276,7 +276,7 @@ function DoTimer_ScanBuffs() --checking buffs to see if any friendly spells need
 end
 
 function DoTimer_DepreciateTimer(found,i) --depreciated the timer if the target is eligible
-	DoTimer_Debug("DoTimer_DepreciateTimer")
+	--DoTimer_Debug("DoTimer_DepreciateTimer")
 	--if casted[found].eligible then DoTimer_AddText("The timers for "..casted[found].target.." are eligible for depreciation.") else DoTimer_AddText("The timers for "..casted[found].target.." are not eligible for depreciation.") end
 	if DoTimer_Settings.dep and (casted[found].eligible) and ((casted[found][i].displayed or 2) > 1) then
 		casted[found][i].dep = 1
@@ -296,7 +296,7 @@ function DoTimer_CheckConflag()
 			local removed
 			for i = table.getn(casted[found]),1,-1 do --checking that target for immolate
 				if DoTimer_ReturnEnglish(casted[found][i].spell) == "Immolate" and DoTimer_TimerIsAppreciated(found,i) then
-					DoTimer_Debug(casted[found].target.." had an appreciated immol, removed it")
+					--DoTimer_Debug(casted[found].target.." had an appreciated immol, removed it")
 					DoTimer_RemoveTimer(found,i,1)
 					removed = 1
 					break
@@ -313,7 +313,7 @@ function DoTimer_CheckConflag()
 					end
 				end
 				if id then 
-					DoTimer_Debug(casted[found].target.." had a depreciated immol, removed it")
+					--DoTimer_Debug(casted[found].target.." had a depreciated immol, removed it")
 					DoTimer_RemoveTimer(found,id,1) 
 				end
 			end
@@ -322,7 +322,7 @@ function DoTimer_CheckConflag()
 end
 
 function DoTimer_ChangedTargets()
-	DoTimer_Debug("DoTimer_CheckConflag")
+	--DoTimer_Debug("DoTimer_CheckConflag")
 	local newtarget
 	if UnitName("target") then newtarget = {UnitName("target"),UnitSex("target"),UnitLevel("target")} end
 	--DoTimer_AddText("flag1") --flag
@@ -331,11 +331,11 @@ function DoTimer_ChangedTargets()
 	for i = 1,table.getn(casted) do casted[i].eligible = 1 end --all tables are now eligible for depreciated timers
 	local found = DoTimer_ReturnTargetTable(lasttarget[1],lasttarget[2],lasttarget[3])
 	if newtarget and newtarget[1] == lasttarget[1] and newtarget[2] == lasttarget[2] and newtarget[3] == lasttarget[3] then
-		DoTimer_Debug("new target identical to old target")
+		--DoTimer_Debug("new target identical to old target")
 		--DoTimer_AddText("flag2") --flag
 		if found then
 			--DoTimer_AddText("flag3") --flag
-			DoTimer_Debug("depreciating all appreciated timers for "..casted[found].target)
+			--DoTimer_Debug("depreciating all appreciated timers for "..casted[found].target)
 			for i = table.getn(casted[found]),1,-1 do
 				if DoTimer_TimerIsAppreciated(found,i) then DoTimer_DepreciateTimer(found,i) end --if we are switching targets to one that is "identical" to the previous, automatically depreciate since we know they are inaccurate
 			end
@@ -343,7 +343,7 @@ function DoTimer_ChangedTargets()
 	end
 	if UnitName("target") then lasttarget = {UnitName("target"),UnitSex("target"),UnitLevel("target")} else lasttarget = {} end
 	if DoTimer_Settings.onlytarget then 
-		DoTimer_Debug("redoing interface to reflect target change")
+		--DoTimer_Debug("redoing interface to reflect target change")
 		DoTimer_CreateInterface() 
 	end
 end
@@ -356,10 +356,10 @@ function DoTimer_HostileDeath()
 		died = SpellSystem_ParseString(arg1,slainmsg)
 	end
 	if died == UnitName("target") and UnitIsDead("target") then --your target died, we will delete its entries
-		DoTimer_Debug("current target died")
+		--DoTimer_Debug("current target died")
 		local found = DoTimer_ReturnTargetTable(died,UnitSex("target"),UnitLevel("target"))
 		if found then --sure enough, it did!
-			DoTimer_Debug("and it had timers; removing appreciated")
+			--DoTimer_Debug("and it had timers; removing appreciated")
 			for i = table.getn(casted[found]),1,-1 do 
 				if DoTimer_TimerIsAppreciated(found,i) then DoTimer_RemoveTimer(found,i) end 
 			end
@@ -372,11 +372,11 @@ function DoTimer_HostileDeath()
 			end
 		end
 	else --will ignore if mob, will delete if player
-		DoTimer_Debug("mob died, not current target")
+		--DoTimer_Debug("mob died, not current target")
 		local targettable = DoTimer_ReturnTargetTable(UnitName("target"),UnitSex("target"),UnitLevel("target"))
 		for i = table.getn(casted),1,-1 do
 			if not (i == targettable) and (casted[i].target == died) and (not (casted[i].type == "mob")) then
-				DoTimer_Debug("removing its timers anyway though")
+				--DoTimer_Debug("removing its timers anyway though")
 				DoTimer_RemoveTarget(i) --dont bother with appreciated stuff; it has a unique name so it should be removed outright
 				break
 				--DoTimer_AddText(died.." died and its entries were removed.")
@@ -397,7 +397,7 @@ function DoTimer_PlayerDeath()
 	DoTimerDeathFrame:SetScript("OnUpdate",function() --we delay the combat check .5 seconds, just to make sure we are really out of combat
 		if GetTime() >= this.time + 3 then
 			if UnitIsDeadOrGhost("player") then
-				DoTimer_Debug("still dead 3 seconds later; removing all timers")
+				--DoTimer_Debug("still dead 3 seconds later; removing all timers")
 				DoTimer_RemoveAllTimers()
 			end
 			this:SetScript("OnUpdate",nil)
@@ -415,7 +415,7 @@ function DoTimer_LeftCombat()
 	DoTimerCombatFrame:SetScript("OnUpdate",function() --we delay the combat check .5 seconds, just to make sure we are really out of combat
 		if GetTime() >= this.time + .5 then
 			if not UnitAffectingCombat("player") then
-				DoTimer_Debug("still out of combat .5 seconds later; removing all non-enslave, non-player timers")
+				--DoTimer_Debug("still out of combat .5 seconds later; removing all non-enslave, non-player timers")
 				for i = table.getn(casted),1,-1 do
 					if not (casted[i].type == "player") then DoTimer_RemoveTarget(i) end
 				end
@@ -601,7 +601,7 @@ function DoTimer_ReturnTexture(spell) --returns the texture path for the icon of
 end
 
 function DoTimer_CreateSpellTimer(spelltable) --creates a timer onscreen from nothingness
-	DoTimer_Debug("DoTimer_CreateSpellTimer")
+	--DoTimer_Debug("DoTimer_CreateSpellTimer")
 	DoTimer_Debug("processing timer for "..spelltable.spell.." on "..spelltable.target)
 	--DoTimer_AddText(spell.." has been successfully cast on "..target..".")
 	local list = {spell = spelltable.spell, rank = spelltable.rank, texture = spelltable.texture, duration = spelltable.duration, time = GetTime(), type = spelltable.timertype, english = spelltable.english} --the table that governs debuff data
@@ -660,6 +660,7 @@ function DoTimer_CreateSpellTimer(spelltable) --creates a timer onscreen from no
 end
 
 function DoTimer_PotentialSpellTimer()
+	DoTimer_Debug("DoTimer_PotentialSpellTimer")
 	if arg3.type == "spell" then
 		if DoTimer_intable(arg1,spells) then
 			DoTimer_Debug("spell success: "..arg1)
@@ -713,7 +714,6 @@ end
 
 function DoTimer_ReturnDuration(spell,rank) --returns the duration of a spell
 	local tables = {BOOKTYPE_SPELL,BOOKTYPE_PET}
---	DoTimer_AddText("DoTimer_ReturnDuration")
 	for index,value in ipairs(tables) do
 		local i = 1
 		while GetSpellName(i,value) do
@@ -728,16 +728,21 @@ function DoTimer_ReturnDuration(spell,rank) --returns the duration of a spell
 				local num = DoTimerScanningFrame:NumLines()
 				local text = getglobal("DoTimerScanningFrameTextLeft"..num):GetText()
 				local allnumbers = {SpellSystem_ParseString(text,"(%d[%d%.]*)")}
-				if allnumbers[1] == false then allnumbers[1] = basenumber end
 				local basenumber = DoTimer_SpellData[class][DoTimer_ReturnTexture(spell)].duration
 				local multiplier = DoTimer_SpellData[class][DoTimer_ReturnTexture(spell)].multiplier
 				if allnumbers[1] == false then allnumbers[1] = basenumber end
 				local truenumber=0
+				if allnumbers[0] then DoTimer_Debug("allnumbers0 "..allnumbers[0]) end
+				if allnumbers[1] then DoTimer_Debug("allnumbers1 "..allnumbers[1]) end
+				if allnumbers[2] then DoTimer_Debug("allnumbers2 "..allnumbers[2]) end
+				if allnumbers[3] then DoTimer_Debug("allnumbers3 "..allnumbers[3]) end
+				if allnumbers[4] then DoTimer_Debug("allnumbers4 "..allnumbers[4]) end
 				for index2,value2 in ipairs(allnumbers) do
-					if ((not truenumber) or (math.abs(value2 - basenumber) < math.abs(truenumber - basenumber))) then truenumber = value2 end
+					if ((not truenumber) or (math.abs(value2 - basenumber) <= math.abs(truenumber - basenumber))) then
+						truenumber = value2
+					end
 				end
-	--			DoTimer_AddText(truenumber)
-	--			DoTimer_AddText(multiplier)
+				DoTimer_Debug("truenumber!!!!!!!!!!!!!!!!!!!!! "..truenumber)
 				return truenumber * multiplier
 			end
 			i = i + 1

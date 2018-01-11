@@ -158,7 +158,7 @@ function SpellSystem_ParseString(text,...)
 				table.insert(entries,true)
 			end
 		else
-			while string.find(text,search) do				
+			while string.find(text,search) do
 				numfound = numfound + 1
 				local found = {string.find(text,string.format("%s(%s)%s",starter,newsearch,ender))}
 				local oldtext = text

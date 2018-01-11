@@ -279,7 +279,7 @@ DoTimer_SpellData = { --a list of textures (same in all locales!) and the englis
 			["multiplier"] = 1,
 		},
 		["Interface\\Icons\\Spell_Nature_StrangleVines"] = {
-			["name"] = "Entangling Roots",  
+			["name"] = "Entangling Roots",
 			["duration"] = 12,
 			["multiplier"] = 1,
 		},
