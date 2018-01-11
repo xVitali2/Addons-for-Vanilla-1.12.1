@@ -55,7 +55,10 @@ local spellIds = {
 	[BS["Ice Blast"]] = CC, -- Ice Yeti
 	[BS["Snap Kick"]] = CC, -- Ashenvale Outrunner
 	[BS["Lash"]] = CC, -- Lashtail Raptor
-	[BS["Web"]] = Root      -- Carrion Lurker
+	[BS["Crystal Gaze"]] = CC, -- Crystal Spine Basilisk
+	[BS["Web"]] = Root,      -- Carrion Lurker
+	[BS["Terrify"]] = CC, -- Fr Pterrordax
+	[BS["Terrifying Screech"]] = CC, -- Pterrordax
 }
 
 	LCPlayer = CreateFrame("Frame", "LoseControlPlayer", ActionButtonTemplate)
