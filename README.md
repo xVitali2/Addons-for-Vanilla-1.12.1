@@ -1,17 +1,8 @@
 # Addons-for-Vanilla-1.12.1-CFM
-ДОНАТ/DONATE: 1JpCwJdZkEJz29qrADhw7Q5mAfpGEu1Sw3 биткоин кошелёк, спасибо за поддержку!!!/bitcoin wallet thanks for the support!!!
+ДОНАТ/DONATE: 14vBXfA2Xfsy2Xgkh9Gx7hVAkXFynogscW биткоин кошелёк, спасибо за поддержку!!!/bitcoin wallet thanks for the support!!!
 #<a href="https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases/latest">Скачать</a>
 
-**AddOnOrganizer**(с pfUI не нужен)
-Вкл/выкл аддонов прямо в игре.
-
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586245/c30db9b4-d0df-11e6-8b93-8c372c37574d.jpg" alt="addonorganizer_1"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586242/b7526c6e-d0df-11e6-85ce-0f29c2e57294.jpg" alt="addonorganizer_2"/>
-
-**AdvancedTradeSkillWindow**
-Улучшенное окно профессий.
-<img src="https://user-images.githubusercontent.com/15636669/34521629-c7c21352-f09f-11e7-8aa3-9cc22477bcd7.jpg" alt="atsw"/>
-
-**Atlas AI**
+**Atlas**
 Все для подземелий: показывает карту подземелий, задания для них, дроп с боссов и профит с профессий.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586274/2d7f9d58-d0e0-11e6-8730-b65671e5abb3.jpg" alt="atlas ai"/>
 
@@ -28,8 +19,8 @@
 
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586280/47bc0bfc-d0e0-11e6-8f71-d0f7ad64badf.jpg" alt="better_raidmarker"/>
 
-**BigWigs**
-Боссмод с таймерами(аналог DBM).
+**BigWigs LH**
+Боссмод с таймерами(аналог DBM). Переведен на русский.
 
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586282/520f6112-d0e0-11e6-9356-5f2dcdbf75db.jpg" alt="bigwigs"/>
 
@@ -42,9 +33,6 @@
 Быстрое переключение между чатами.
 
 <img src="https://cloud.githubusercontent.com/assets/15636669/22146074/87be48ae-df14-11e6-9a81-b92705282cfd.png" alt="chatbar"/>
-
-**ClassicSnowFall** (с pfUI не нужен)
-Применение способностей при нажатии на кнопку клавиатуры, а не при отпускании.
 
 **DamageMeters**
 Подсчет ДПС, диспелов и тд (Рекаунт для 1.12).
@@ -63,11 +51,6 @@
 **DoTimer**
 Отслеживание дебаффов на цели и баффов на персонаже.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586313/851bd842-d0e0-11e6-870a-f746ae61ec87.jpg" alt="dotimer"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586312/81e04a78-d0e0-11e6-8c92-164d160aac09.jpg" alt="dotimer_2"/>
-
-**DPSMate**
-Подсчет ДПС, диспелов и тд (Рекаунт для 1.12).
-
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586319/919ad712-d0e0-11e6-8dcc-7003a92abcee.jpg" alt="dpsmate"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586320/919e908c-d0e0-11e6-9f9f-2c427e71a281.jpg" alt="dpsmate_2"/>
 
 **EasyWho**
 Улучшенный список /who
@@ -99,13 +82,6 @@
 Календарь в стиле WOW Cataclysm
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586382/ac1c15a0-d0e1-11e6-8aca-cca56834e6df.jpg" alt="evtcalendar"/>
 
-**FocusFrame** (с pfUI не нужен)
-Добавляет возможность использовать фокус в классике.
-<img src="https://cloud.githubusercontent.com/assets/15636669/24471775/d92c4b4a-14cb-11e7-809d-a261bc2e473c.png" alt="focusframe"/>
-
-**Fonts-ruRU** (с русским клиентом не нужны)
-Извлечь в папку с игрой. Ру шрифты для WiM, мб других.
-
 **FuBar 2.0**
 Панель для модулей с полезной информацией.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586394/cfdb6cf2-d0e1-11e6-8f7f-51314d94eaaa.jpg" alt="fubar"/>
@@ -113,20 +89,6 @@
 **Gatherer**
 Запоминает расположение месторождений руды, травы, сундуков на карте.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586400/dc061a68-d0e1-11e6-9f16-0fd8da155904.jpg" alt="gatherer"/>
-
-**GryphonsRemover** (с pfUI не нужен)
-Удаляет грифонов с панели команд.
-
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586426/03299138-d0e2-11e6-92e4-42f534c866b0.jpg" alt="gryphonsremover"/>
-
-**HealComm** (с pfUI не нужен)
-Визуальное отображение входящего исцеления.
-
-<img src="https://cloud.githubusercontent.com/assets/15636669/21587110/8b6f4a40-d0e9-11e6-9bcb-ca8f00dd51ca.jpg" alt="healComm"/>
-
-**ImprovedErrorFrame**
-Скрывает ошибки аддонов, выводит их в отдельное удобное окно.
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586441/173a886c-d0e2-11e6-8362-6547241af8d0.jpg" alt="improvederrorframe"/>
 
 **Informant**
 Цена предметов (своя база - не нужно подходить к продавцу), к какому классу относится предмет и т.д. в окне подсказки.
@@ -145,11 +107,6 @@
 **LoseControl**
 Отображает заклинание от которого персонаж теряет контроль.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586573/9fd1574a-d0e3-11e6-95ba-1eb764bc8e77.jpg" alt="losecontrol"/>
-
-**Luna Unit Frames** (c pfUI не нужен)
-Изменяет фреймы в игре на удобные.
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586574/a8b20832-d0e3-11e6-9294-70704232de4a.jpg" alt="luna unit frames"/>
-https://github.com/Aviana/LunaUnitFrames
 
 **Mail**
 Отправка через почту больше одного предмета , сбор всей почты
@@ -170,29 +127,10 @@ https://github.com/shirsig/Mail
 Изменение визуализации текста боя.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586591/c938390a-d0e3-11e6-899c-79f410f37bde.jpg" alt="mikscrollingbattletext"/>
 
-**MobHealth3**
-Расчитывает и отображает количество здоровья цели после нанесения урона.
-<img src="https://cloud.githubusercontent.com/assets/15636669/24476303/76e32cbe-14db-11e7-8286-6244287b650d.png" alt="mobhealth3"/>
-
 **MobInfo2**
 Расчитывает и отображает количество здоровья цели после нанесения урона, запоминает с каких существ выпали те или иные предметы и тд.
 
 <img src="https://user-images.githubusercontent.com/15636669/34522183-84e8cd3e-f0a2-11e7-8eeb-9173546bd2a0.jpg" alt="mobinfo2"/>
-
-**ModifiedPowerAuras**
-Слежение за баффами/дебаффами игрока и цели.
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586594/d793337e-d0e3-11e6-916e-a7055b5d2958.jpg" alt="modifiedpowerauras_1"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586595/d794ca4a-d0e3-11e6-8d60-92d214bc9c91.jpg" alt="modifiedpowerauras_2"/>
-
-**Modui** (не для русского клиента)
-Изменение всего интерфейса. (аналог pfUI)
-<img src="https://cloud.githubusercontent.com/assets/15636669/22146414/a03e48ce-df15-11e6-9b72-079c6b60f293.png" alt="modui"/>
-https://github.com/obble/modui
-https://github.com/obble/md
-
-**OmniCC**
-Время перезарядки для всего(заклинаний, баффов...).
-
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586603/f03aec0a-d0e3-11e6-905b-b6ce54087124.jpg" alt="omnicc"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586604/f03e55a2-d0e3-11e6-8fb9-5e69437c844b.jpg" alt="omnicc_2"/>
 
 **NotGrid**
 Фреймы группы и рейда в минималистичном стиле.
@@ -218,10 +156,9 @@ https://github.com/shagu/pfUI-eliteoverlay
 
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586628/2b2dbdba-d0e4-11e6-9ec0-5f5982cba853.jpg" alt="prat"/>
 
-**Questie** (отдельно лежит русский вариант)
+**QuestieRU**
 Лучший аддон для заданий, показывает место выполнения заданий, а также места еще не взятых квестов. Ctrl+Shift+LClick для перемещения трекера заданий.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586632/34857402-d0e4-11e6-8526-e9a14772fdd6.jpg" alt="questie"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586634/3485c4d4-d0e4-11e6-8e0a-82bd25c95a56.jpg" alt="questie_2"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586633/3485a9f4-d0e4-11e6-9d8e-95046c805f28.jpg" alt="questie_3"/>
-https://github.com/AeroScripts/QuestieDev
 
 **RecipeRadar**
 Указывает о местоположении недостающих рецептов профессий.
@@ -229,10 +166,6 @@ https://github.com/AeroScripts/QuestieDev
 
 **SaySapped**
 Сообщает в чат что вас сапнули.
-
-**SmartBuff**
-Применение наиболее важных для вас/группы/питомцев баффов
-<img src="https://cloud.githubusercontent.com/assets/15636669/21587150/02d02398-d0ea-11e6-99f7-e7cdb914ece5.jpg" alt="smartbuff"/>
 
 **SmartHeal**
 Выбирает максимально возможный уровень вашего хил заклинания в зависимости от количества вашей маны и здоровья цели.
@@ -250,7 +183,7 @@ https://github.com/shagu/ShaguCopy
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586651/52f92ca8-d0e4-11e6-995a-3bcbe3757447.jpg" alt="specialtalent"/>
 
 **SP_SwingTimer**
-Полоска следующей вашей автоатаки.
+Полоса следующей вашей автоатаки.
 
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586659/5e5b0102-d0e4-11e6-9ae6-e76814d0873b.jpg" alt="sp_swingtimer_1"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586660/5e5b6656-d0e4-11e6-8489-f37daf2a113d.jpg" alt="sp_swingtimer_2"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586658/5e5ada60-d0e4-11e6-8b0d-2d5606c1efac.jpg" alt="sp_swingtimer_3"/>
 
@@ -279,8 +212,3 @@ https://github.com/shirsig/unitscan
 Удобное окно для личных сообщений, спам фильтр в личке.
 
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586683/89ee1af2-d0e4-11e6-8a1f-1dae40ec5116.jpg" alt="wim"/>
-
-**XLoot** (с pfUI не нужен)
-Минималистичное окно лута.
-
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586684/8f91ba54-d0e4-11e6-9062-bea52cf9633f.jpg" alt="xloot"/>
