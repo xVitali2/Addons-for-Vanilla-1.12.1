@@ -40236,7 +40236,8 @@ QuestieHashMap = {
   ['startedBy']="Лейтенант Мурп",
   ['finishedBy']="Лейтенант Мурп",
   ['level']=51,
-  ['questLevel']='60'
+  ['questLevel']='60',
+  ['rc']=77
  },
  [3257030586]={
   ['name']="Дух Ветра",
@@ -40897,7 +40898,8 @@ QuestieHashMap = {
   ['startedBy']="Геолог Камнетерка",
   ['finishedBy']="Геолог Камнетерка",
   ['level']=51,
-  ['questLevel']='60PVP'
+  ['questLevel']='60PVP',
+  ['rc']=77
  },
  [1962459893]={
   ['name']="Рога Нез'ры",
