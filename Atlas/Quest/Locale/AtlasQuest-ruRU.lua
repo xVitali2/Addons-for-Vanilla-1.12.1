@@ -4858,9 +4858,9 @@ if ( GetLocale() == "ruRU" ) then
 	Inst28Quest3_Level = "51"
 	Inst28Quest3_Attain = "46"
 	Inst28Quest3_Aim = "Отправляйтесь в затонувший храм и узнайте, что скрывается в круге статуй."
-	Inst28Quest3_Location = "Марвон Клепальщик (Танарис; "..YELLOW.."52,45"..WHITE..")"
+	Inst28Quest3_Location = "Алтарь Хаккара "..YELLOW.."[1]"..WHITE
 	Inst28Quest3_Note = "Вы найдете статуи около "..YELLOW.."[1]"..WHITE..". Смотрите по карте порядок их активации."
-	Inst28Quest3_Prequest = "Круглый камень" -- 3444
+	Inst28Quest3_Prequest = "Во глубине болот" -- 3444
 	Inst28Quest3_Folgequest = "Нет"
 	--
 	Inst28Quest3name1 = "Hakkari Urn"
