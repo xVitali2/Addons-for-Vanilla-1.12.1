@@ -16799,7 +16799,8 @@ QuestieHashMap = {
   ['startedBy']="Хелендис Речной Мыс",
   ['finishedBy']="Хелендис Речной Мыс",
   ['level']=55,
-  ['questLevel']='59D'
+  ['questLevel']='59D',
+  ['rr']=77
  },
  [1698259285]={
   ['name']="Ивус Лесной Властелин",
