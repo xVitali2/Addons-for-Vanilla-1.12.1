@@ -1109,7 +1109,7 @@ if ( GetLocale() == "ruRU" ) then
 	-- No Rewards for this quest
 	
 	--Quest 8 Horde
-	Inst5Quest8_HORDE = "8. Операция: Смерть Кузне Гнева" -- 4132
+	Inst5Quest8_HORDE = "8. Операция: смерть Кузне Гнева" -- 4132
 	Inst5Quest8_HORDE_Level = "58"
 	Inst5Quest8_HORDE_Attain = "52"
 	Inst5Quest8_HORDE_Aim = "Отправляйтесь в Глубины Черной горы и убейте генерала Кузню Гнева. Вернитесь к полководцу Клинозубу по выполнении задания."
