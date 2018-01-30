@@ -269,22 +269,22 @@ DoTimer_SpellData = { --a list of textures (same in all locales!) and the englis
 			["multiplier"] = 1,
 		},
 		["Interface\\Icons\\Spell_Nature_FaerieFire"] = {
-			["name"] = "Faerie Fire",  
+			["name"] = "Faerie Fire",
 			["duration"] = 40,
 			["multiplier"] = 1,
 		},
 		["Interface\\Icons\\Spell_Nature_Rejuvenation"] = {
-			["name"] = "Rejuvenation",  
+			["name"] = "Rejuvenation",
 			["duration"] = 12,
 			["multiplier"] = 1,
 		},
 		["Interface\\Icons\\Spell_Nature_StrangleVines"] = {
 			["name"] = "Entangling Roots",
-			["duration"] = 12,
+			["duration"] = 27,
 			["multiplier"] = 1,
 		},
 		["Interface\\Icons\\Spell_Nature_NullifyPoison_02"] = {
-			["name"] = "Abolish Poison",  
+			["name"] = "Abolish Poison",
 			["duration"] = 8,
 			["multiplier"] = 1,
 		},
@@ -294,22 +294,22 @@ DoTimer_SpellData = { --a list of textures (same in all locales!) and the englis
 			["multiplier"] = 1,
 		},
 		["Interface\\Icons\\Spell_Nature_Sleep"] = {
-			["name"] = "Hibernate",  
+			["name"] = "Hibernate",
 			["duration"] = 20,
 			["multiplier"] = 1,
 		},
 		["Interface\\Icons\\Spell_Nature_ResistNature"] = {
-			["name"] = "Regrowth",  
+			["name"] = "Regrowth",
 			["duration"] = 21,
 			["multiplier"] = 1,
 		},
 		["Interface\\Icons\\Ability_Hunter_BeastSoothe"] = {
-			["name"] = "Soothe Animal",  
+			["name"] = "Soothe Animal",
 			["duration"] = 15,
 			["multiplier"] = 1,
 		},
 		["Interface\\Icons\\Spell_Nature_InsectSwarm"] = {
-			["name"] = "Insect Swarm", 
+			["name"] = "Insect Swarm",
 			["duration"] = 12,
 			["multiplier"] = 1,
 		},
@@ -487,7 +487,7 @@ function DoTimer_DefineSpells(class) --creates the lists of spells to watch for 
 			["Turn Undead"] = 1,
 			["Hammer of Justice"] = 1,
 			["Judgement of the Crusader"] = 1,
-			["Repentance"] = 1,			
+			["Repentance"] = 1,
 		}
 	elseif class == "WARLOCK" then
 		spells = {
