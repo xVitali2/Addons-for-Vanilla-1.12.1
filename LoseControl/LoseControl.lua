@@ -59,6 +59,7 @@ local spellIds = {
 	[BS["Web"]] = Root,      -- Carrion Lurker
 	[BS["Terrify"]] = CC, -- Fr Pterrordax
 	[BS["Terrifying Screech"]] = CC, -- Pterrordax
+	[BS["Flash Freeze"]] = CC, -- Freezing Ghoul
 }
 
 	LCPlayer = CreateFrame("Frame", "LoseControlPlayer", ActionButtonTemplate)

@@ -41330,7 +41330,8 @@ QuestieHashMap = {
   ['startedBy']="Огнебор",
   ['finishedBy']="Огнебор",
   ['level']=59,
-  ['questLevel']='60R'
+  ['questLevel']='60R',
+  ['rq']=3136069152
  },
  [499051477]={
   ['name']="Матиль",
