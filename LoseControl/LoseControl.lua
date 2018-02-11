@@ -60,6 +60,7 @@ local spellIds = {
 	[BS["Terrify"]] = CC, -- Fr Pterrordax
 	[BS["Terrifying Screech"]] = CC, -- Pterrordax
 	[BS["Flash Freeze"]] = CC, -- Freezing Ghoul
+	[BS["Knockdown"]] = CC, -- Zaeldarr the Outcast etc
 }
 
 	LCPlayer = CreateFrame("Frame", "LoseControlPlayer", ActionButtonTemplate)
