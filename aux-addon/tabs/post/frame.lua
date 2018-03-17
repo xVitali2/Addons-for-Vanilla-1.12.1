@@ -254,7 +254,7 @@ do
 end
 do
     local checkbox = gui.checkbox(frame.parameters)
-    checkbox:SetPoint('TOPRIGHT', -83, -6)
+    checkbox:SetPoint('TOPRIGHT', -100, -6)
     checkbox:SetScript('OnClick', function()
         local settings = read_settings()
         settings.hidden = this:GetChecked()
@@ -262,7 +262,7 @@ do
         refresh = true
     end)
     local label = gui.label(checkbox, gui.font_size.small)
-    label:SetPoint('LEFT', checkbox, 'RIGHT', 4, 1)
+    label:SetPoint('LEFT', checkbox, 'RIGHT', 2, 1)
     label:SetText(HIDE_THIS_ITEM) --byLICHERY
     hide_checkbox = checkbox
 end
