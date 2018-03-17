@@ -558,6 +558,7 @@ BabbleSpell:RegisterTranslations("enUS", function()
 		["Flash Bomb"] = true,
 		["Flash Heal"] = true,
 		["Flash of Light"] = true,
+		["Flash Freeze"] = true,
 		["Flee"] = true,
 		["Flight Form"] = true,
 		["Flurry"] = true,
@@ -2036,6 +2037,7 @@ BabbleSpell:RegisterTranslations("ruRU", function()
 		["Flare"] = "Осветительная ракета",
 		["Flash Bomb"] = "Световая бомба",
 		["Flash Heal"] = "Быстрое исцеление",
+		["Flash Freeze"] = "Мгновенная заморозка",
 		["Flash of Light"] = "Вспышка Света",
 		["Flee"] = "Бегство",
 		["Flight Form"] = "Flight Form", -- old
@@ -9640,6 +9642,7 @@ local spellIcons = {
 	["Flare"] = "Spell_Fire_Flare",
 	["Flash Bomb"] = "Spell_Shadow_DarkSummoning",
 	["Flash Heal"] = "Spell_Holy_FlashHeal",
+	["Flash Freeze"] = "Spell_Frost_FrostNova",
 	["Flash of Light"] = "Spell_Holy_FlashHeal",
 	["Flee"] = "Spell_Magic_PolymorphChicken",
 	["Flurry"] = "Ability_GhoulFrenzy",
