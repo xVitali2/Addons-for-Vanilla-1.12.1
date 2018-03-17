@@ -173,7 +173,7 @@ EngBank_LOCALIZATION = {
 			{ "ROGUE_POWDER", "Flash Powder" },
 			{ "QUESTITEMS", "Use: Bind pages [0-9]" },	-- shredder operating manual & green hills of stranglethorn
 			{ "KEYS", " Key" },
-			{ "KEYS2", "Key" }
+			{ "KEYS", "Key" }
 		},
 		{ -- german
 			{ "FOOD", "Stellt im Verlauf von ([0-9.]+) Sek. ([0-9.]+) Punkt(e) Gesundheit wieder her." },
@@ -210,7 +210,9 @@ EngBank_LOCALIZATION = {
 			{ "ROGUE_POWDER", "Воспламеняющийся порошок" },
 			{ "QUESTITEMS", "Использование: Переплести страницы [0-9]" },	-- Руководства пользователя крошера & green hills of stranglethorn
 			{ "KEYS", "Ключ" },
-			{ "KEYS2", "ключ" }
+			{ "KEYS", "Отмычка" },
+			{ "KEYS", "отмычка" },
+			{ "KEYS", "ключ" }
 		}
 		},	-- end of string searches
 
@@ -563,7 +565,7 @@ ENGINVENTORY_LOCALIZATION = {
 			{ "ROGUE_POWDER", "Flash Powder" },
 			{ "QUESTITEMS", "Use: Bind pages [0-9]" },	-- shredder operating manual & green hills of stranglethorn
 			{ "KEYS", " Key" },
-			{ "KEYS2", "Key" }
+			{ "KEYS", "Key" }
 		},
 		{ -- german
 			{ "FOOD", "Stellt im Verlauf von ([0-9.]+) Sek. ([0-9.]+) Punkt(e) Gesundheit wieder her." },
@@ -600,7 +602,9 @@ ENGINVENTORY_LOCALIZATION = {
 			{ "ROGUE_POWDER", "Воспламеняющийся порошок" },
 			{ "QUESTITEMS", "Использование: Переплести страницы [0-9]" },	-- shredder operating manual & green hills of stranglethorn
 			{ "KEYS", "Ключ" },
-			{ "KEYS2", "ключ" }
+			{ "KEYS", "Отмычка" },
+			{ "KEYS", "отмычка" },
+			{ "KEYS", "ключ" }
 		},
 		},	-- end of string searches
 	-- values from GetItemInfo()  (itemType)

@@ -706,7 +706,6 @@ function EngBank_SetDefaultValues(re)
 		EBank_SetDefault("putinslot--MINIPET", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--HEARTH", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 		EBank_SetDefault("putinslot--KEYS", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-		EBank_SetDefault("putinslot--KEYS2", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 		EBank_SetDefault("putinslot--CLASS_ITEMS2", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 
 	-- NEW EQUIP SORTING

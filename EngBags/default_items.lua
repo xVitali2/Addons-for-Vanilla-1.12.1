@@ -9,7 +9,6 @@
 --]]
 
 EngBags_DefaultItemOverrides = {
-
 	["6948:0:0:0-SB"] = "HEARTH",		-- hearthstone
 	["6265:0:0:0-SB"] = "SOULSHARDS",	-- soulshards
 	["7005:0:0:0"] = "TRADETOOLS",		-- skinning knife
