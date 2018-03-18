@@ -1,5 +1,5 @@
 AtlasLoot_Data["AtlasLootRepItems"] = {
-	EmptyInstance = {};
+	EmptyInstance = {},
 	Argent1 = {
 		{ 0, "", "", "" },
 		{ 22689, "INV_Helmet_13", "=q3=Sanctified Leather Helm", "=ds=#s1#, #a2#" },
@@ -24,8 +24,8 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 22678, "INV_Misc_Gem_Pearl_04", "=q4=Talisman of Ascendance", "=ds=#s14#" },
 		{ 22656, "INV_Weapon_Rifle_06", "=q4=The Purifier", "=ds=#w5#" },
 		{ 0, "", "", "" },
-		{ 22524, "INV_Misc_Token_ScarletCrusade", "=q2=Insignia of the Crusade", "=ds=#e22#" },
-	};
+		{ 22524, "INV_Misc_Token_ScarletCrusade", "=q2=Insignia of the Crusade", "=ds=#e22#" }
+	},
 	Argent2 = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Jewelry_Talisman_08", "=q6=#r2#", "" },
@@ -49,8 +49,8 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 19328, "INV_Scroll_03", "=q1=Pattern: Dawn Treaders", "=ds=#p7# (290)" },
 		{ 19203, "INV_Scroll_03", "=q1=Plans: Girdle of the Dawn", "=ds=#p2# (290)" },
 		{ 19442, "INV_Scroll_03", "=q1=Formula: Powerful Anti-Venom", "=ds=#p6# (300)" },
-		{ 19446, "INV_Misc_Note_01", "=q1=Formula: Enchant Bracer - Mana Regeneration", "=ds=#p4# (290)" },
-	};
+		{ 19446, "INV_Misc_Note_01", "=q1=Formula: Enchant Bracer - Mana Regeneration", "=ds=#p4# (290)" }
+	},
 	Argent3 = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Jewelry_Talisman_08", "=q6=#r4#", "" },
@@ -69,8 +69,8 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 0, "", "", "" },
 		{ 0, "", "", "" },
 		{ 0, "INV_Jewelry_Talisman_08", "=q6=#r5#", "" },
-		{ 18182, "INV_Misc_Gem_Variety_02", "=q2=Chromatic Mantle of the Dawn", "=ds=#s3# #e11#" },
-	};
+		{ 18182, "INV_Misc_Gem_Variety_02", "=q2=Chromatic Mantle of the Dawn", "=ds=#s3# #e11#" }
+	},
 	AQBroodRings = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Jewelry_Ring_40", "=q6=#pob1#", "" },
@@ -93,8 +93,8 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 21197, "INV_Jewelry_Ring_40", "=q4=Signet Ring of the Bronze Dragonflight", "=ds=#s13#, #r2#" },
 		{ 21198, "INV_Jewelry_Ring_40", "=q4=Signet Ring of the Bronze Dragonflight", "=ds=#s13#, #r3#" },
 		{ 21199, "INV_Jewelry_Ring_40", "=q4=Signet Ring of the Bronze Dragonflight", "=ds=#s13#, #r4#" },
-		{ 21200, "INV_Jewelry_Ring_40", "=q4=Signet Ring of the Bronze Dragonflight", "=ds=#s13#, #r5#" },
-	};
+		{ 21200, "INV_Jewelry_Ring_40", "=q4=Signet Ring of the Bronze Dragonflight", "=ds=#s13#, #r5#" }
+	},
 	Timbermaw = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Misc_Horn_01", "=q6=#r2#", "" },
@@ -119,8 +119,8 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 0, "", "", "" },
 		{ 0, "", "", "" },
 		{ 0, "INV_Misc_Horn_01", "=q6=#r5#", "" },		
-		{ 21326, "INV_Misc_Horn_01", "=q4=Defender of the Timbermaw", "=ds=#s14#"},
-	};
+		{ 21326, "INV_Misc_Horn_01", "=q4=Defender of the Timbermaw", "=ds=#s14#"}
+	},
 	Thorium1 = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Ingot_Mithril", "=q6=#r2#", "" },
@@ -148,7 +148,7 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 17025, "INV_Scroll_03", "=q1=Pattern: Black Dragonscale Boots", "=ds=#p7# (300)" },
 		{ 19206, "INV_Scroll_03", "=q1=Plans: Dark Iron Helm", "=ds=#p2# (300)" },
 		{ 19448, "INV_Misc_Note_01", "=q1=Formula: Enchant Weapon - Mighty Spirit", "=ds=#p4# (300)" },  
-	};
+	},
 	Thorium2 = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Ingot_Mithril", "=q6=#r4#", "" },
@@ -170,8 +170,8 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 20040, "INV_Scroll_03", "=q1=Plans: Dark Iron Boots", "=ds=#p2# (300)" },	
 		{ 19210, "INV_Scroll_03", "=q1=Plans: Ebon Hand", "=ds=#p2# (300)" },  
 		{ 19211, "INV_Scroll_03", "=q1=Plans: Blackguard", "=ds=#p2# (300)" }, 
-		{ 19212, "INV_Scroll_03", "=q1=Plans: Nightfall", "=ds=#p2# (300)" },
-	};
+		{ 19212, "INV_Scroll_03", "=q1=Plans: Nightfall", "=ds=#p2# (300)" }
+	},
 	Cenarion1 = {
 		{ 0, "", "", "" },
 		{ 22772, "INV_Scroll_03", "=q1=Pattern: Sylvan Shoulders", "=ds=#p8# (300)" },
@@ -191,8 +191,8 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 0, "", "", "" },
 		{ 21187, "INV_Misc_Cape_07", "=q3=Earthweave Cloak", "=ds=#s4#", "", "", "", "5", "#ccombat#", "3", "#clogistics#", "7", "#ctactical#" },
 		{ 21178, "INV_Gauntlets_18", "=q3=Gloves of Earthen Power", "=ds=#s9#, #a2#", "", "", "", "5", "#ccombat#", "3", "#clogistics#", "7", "#ctactical#" },
-		{ 21179, "INV_Jewelry_Ring_18", "=q3=Band of Earthen Wrath", "=ds=#s13#", "", "", "", "5", "#ccombat#", "3", "#clogistics#", "7", "#ctactical#" },
-	};
+		{ 21179, "INV_Jewelry_Ring_18", "=q3=Band of Earthen Wrath", "=ds=#s13#", "", "", "", "5", "#ccombat#", "3", "#clogistics#", "7", "#ctactical#" }
+	},
 	Cenarion2 = {
 		{ 0, "", "", "" },
 		{ 22773, "INV_Scroll_03", "=q1=Pattern: Sylvan Crown", "=ds=#p8# (300)" },
@@ -212,8 +212,8 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 0, "", "", "" },
 		{ 21183, "INV_Chest_Cloth_06", "=q3=Earthpower Vest", "=ds=#s5#, #a1#", "", "", "", "7", "#ccombat#", "4", "#clogistics#", "4", "#ctactical#" },
 		{ 21182, "INV_Jewelry_Ring_19", "=q3=Band of Earthen Might", "=ds=#s13#", "", "", "", "7", "#ccombat#", "4", "#clogistics#", "4", "#ctactical#" },
-		{ 21181, "INV_Misc_Herb_02", "=q3=Grace of Earth", "=ds=#s14#", "", "", "", "7", "#ccombat#", "4", "#clogistics#", "4", "#ctactical#" },
-	};
+		{ 21181, "INV_Misc_Herb_02", "=q3=Grace of Earth", "=ds=#s14#", "", "", "", "7", "#ccombat#", "4", "#clogistics#", "4", "#ctactical#" }
+	},
 	Cenarion3 = {
 		{ 0, "", "", "" },
 		{ 22683, "INV_Scroll_03", "=q1=Pattern: Gaea's Embrace", "=ds=#p8# (300)" },
@@ -234,8 +234,8 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 21186, "INV_Bracer_12", "=q4=Rockfury Bracers", "=ds=#s8#, #a1#", "", "", "", "15", "#ccombat#", "20", "#clogistics#", "17", "#ctactical#", "1", "#cremulos#" },
 		{ 21184, "INV_Bracer_07", "=q4=Deeprock Bracers", "=ds=#s8#, #a4#", "", "", "", "15", "#ccombat#", "20", "#clogistics#", "17", "#ctactical#", "1", "#cremulos#" },
 		{ 21189, "INV_Jewelry_Ring_41", "=q4=Might of Cenarius", "=ds=#s13#", "", "", "", "15", "#ccombat#", "20", "#clogistics#", "17", "#ctactical#", "1", "#cremulos#" },
-		{ 21185, "INV_Misc_Gem_Pearl_06", "=q4=Earthcalm Orb", "=ds=#s15#", "", "", "", "15", "#ccombat#", "20", "#clogistics#", "17", "#ctactical#", "1", "#cremulos#" },
-	};
+		{ 21185, "INV_Misc_Gem_Pearl_06", "=q4=Earthcalm Orb", "=ds=#s15#", "", "", "", "15", "#ccombat#", "20", "#clogistics#", "17", "#ctactical#", "1", "#cremulos#" }
+	},
 	Cenarion4 = {
 		{ 0, "", "", "" },
 		{ 20382, "INV_Scroll_03", "=q1=Pattern: Dreamscale Breastplate", "=ds=#p7# (300)" },
@@ -256,7 +256,7 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 21190, "INV_Jewelry_Ring_40", "=q4=Wrath of Cenarius", "=ds=#s13#", "", "", "", "15", "#ccombat#", "20", "#clogistics#", "20", "#ctactical#", "1", "#ccenarius#" },
 		{ 21180, "Spell_Nature_AbolishMagic", "=q4=Earthstrike", "=ds=#s14#", "", "", "", "15", "#ccombat#", "20", "#clogistics#", "20", "#ctactical#", "1", "#ccenarius#" },
 		{ 21188, "INV_Hammer_23", "=q4=Fist of Cenarius", "=ds=#h2#, #w6#", "", "", "", "15", "#ccombat#", "20", "#clogistics#", "20", "#ctactical#", "1", "#ccenarius#" },		
-	};
+	},
 	Darkmoon = {
 		{ 0, "", "", "" },
 		{ 19288, "INV_Misc_Ticket_Tarot_BlueDragon_01", "=q4=Darkmoon Card: Blue Dragon", "=ds=#s14#"},
@@ -272,7 +272,13 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 19293, "INV_Misc_Food_18", "=q1=Last Year's Mutton", "", "", "50", "#darkmoon#" },
 		{ 19292, "INV_Misc_Food_18", "=q1=Last Month's Mutton", "", "", "10", "#darkmoon#" },
 		{ 19295, "INV_Misc_Herb_19", "=q1=Darkmoon Flower", "", "", "5", "#darkmoon#" },
-	};
+		{ 0, "", "", "" },
+		{ 0, "", "", "" },
+		{ 19228, "INV_Misc_Ticket_Tarot_Stack_01", "=q4=Beasts Deck", "=ds=#m2#" },
+		{ 19267, "INV_Misc_Ticket_Tarot_Stack_01", "=q4=Elementals Deck", "=ds=#m2#" },
+		{ 19257, "INV_Misc_Ticket_Tarot_Stack_01", "=q4=Warlords Deck", "=ds=#m2#" },
+		{ 19277, "INV_Misc_Ticket_Tarot_Stack_01", "=q4=Portals Deck", "=ds=#m2#" },
+	},
 	Zandalar1 = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Misc_Coin_08", "=q6=#r2#", "" },
@@ -299,8 +305,8 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 19780, "INV_Scroll_03", "=q1=Plans: Darksoul Leggings", "=ds=#p2# (300)" },
 		{ 20014, "INV_Scroll_03", "=q1=Recipe: Major Troll's Blood Potion", "=ds=#p1# (290)" },
 		{ 20756, "INV_Misc_Note_01", "=q1=Formula: Brilliant Wizard Oil", "=ds=#p4# (300)" },
-		{ 20031, "INV_Misc_Food_42", "=q1=Essence Mango", "=ds=#e2#", "", "1", "#zandalar#" },
-	};
+		{ 20031, "INV_Misc_Food_42", "=q1=Essence Mango", "=ds=#e2#", "", "1", "#zandalar#" }
+	},
 	Zandalar2 = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Misc_Coin_08", "=q6=#r4#", "" },
@@ -322,13 +328,13 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 20077, "INV_Misc_ArmorKit_08", "=q3=Zandalar Signet of Might", "=ds=#s3# #e11#", "", "", "", "", "", "15", "#zandalar#" },
 		{ 20076, "INV_Jewelry_Ring_46", "=q3=Zandalar Signet of Mojo", "=ds=#s3# #e11#", "", "", "", "", "", "15", "#zandalar#" },
 		{ 20078, "Spell_Holy_PowerWordShield", "=q3=Zandalar Signet of Serenity", "=ds=#s3# #e11#", "", "", "", "", "", "15", "#zandalar#" },
-		{ 20013, "INV_Scroll_03", "=q1=Recipe: Living Action Potion", "=ds=#p1# (285)" },
-	};
+		{ 20013, "INV_Scroll_03", "=q1=Recipe: Living Action Potion", "=ds=#p1# (285)" }
+	},
 	Wintersaber1 = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Box_01", "=q6=#r5#", "" },
-		{ 13086, "Ability_Mount_PinkTiger", "=q4=Reins of the Winterspring Frostsaber", "=ds=#e7#" },
-	};
+		{ 13086, "Ability_Mount_PinkTiger", "=q4=Reins of the Winterspring Frostsaber", "=ds=#e7#" }
+	},
 	Stormpike1 = {
 		{ 0, "", "", "" },
 		{ 17904, "INV_Jewelry_StormPikeTrinket_05", "=q4=Stormpike Insignia Rank 6", "=ds=#s14#, #r5#" },
@@ -336,8 +342,8 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 17902, "INV_Jewelry_StormPikeTrinket_03", "=q3=Stormpike Insignia Rank 4", "=ds=#s14#, #r4#" },
 		{ 17901, "INV_Jewelry_StormPikeTrinket_02", "=q2=Stormpike Insignia Rank 3", "=ds=#s14#, #r3#" },
 		{ 17900, "INV_Jewelry_StormPikeTrinket_01", "=q2=Stormpike Insignia Rank 2", "=ds=#s14#, #r2#" },
-		{ 17691, "INV_Jewelry_StormPikeTrinket_01", "=q2=Stormpike Insignia Rank 1", "=ds=#s14#, #r1#" },
-	};
+		{ 17691, "INV_Jewelry_StormPikeTrinket_01", "=q2=Stormpike Insignia Rank 1", "=ds=#s14#, #r1#" }
+	},
 	Frostwolf1 = {
 		{ 0, "", "", "" },
 		{ 17909, "INV_Jewelry_FrostwolfTrinket_05", "=q4=Frostwolf Insignia Rank 6", "=ds=#s14#, #r5#" },
@@ -345,8 +351,8 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 17907, "INV_Jewelry_FrostwolfTrinket_03", "=q3=Frostwolf Insignia Rank 4", "=ds=#s14#, #r4#" },
 		{ 17906, "INV_Jewelry_FrostwolfTrinket_02", "=q2=Frostwolf Insignia Rank 3", "=ds=#s14#, #r3#" },
 		{ 17905, "INV_Jewelry_FrostwolfTrinket_01", "=q2=Frostwolf Insignia Rank 2", "=ds=#s14#, #r2#" },
-		{ 17690, "INV_Jewelry_FrostwolfTrinket_01", "=q2=Frostwolf Insignia Rank 1", "=ds=#s14#, #r1#" },
-	};
+		{ 17690, "INV_Jewelry_FrostwolfTrinket_01", "=q2=Frostwolf Insignia Rank 1", "=ds=#s14#, #r1#" }
+	},
 	WaterLords1 = {
 		{ 0, "", "", "" },
 		{ 0, "Spell_Ice_Lament", "=q6=#r3#", "" },
@@ -355,8 +361,8 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 17333, "INV_Potion_76", "=q1=Aqual Quintessence", "=ds=#m20#" },
 		{ 0, "", "", "" },
 		{ 0, "Spell_Frost_FrostArmor", "=q6=#r4#", "" },
-		{ 22754, "INV_Potion_83", "=q1=Eternal Quintessence", "=ds=#m20#" },
-	};
+		{ 22754, "INV_Potion_83", "=q1=Eternal Quintessence", "=ds=#m20#" }
+	},
 	Bloodsail1 = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Helmet_66", "=q6=#r1#", "" },
@@ -366,28 +372,28 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 22744, "INV_Boots_05", "=q1=Bloodsail Boots", "=ds=#s12#" },
 		{ 0, "", "", "" },
 		{ 0, "INV_Helmet_66", "=q6=#r2#", "" },
-		{ 12185, "INV_Helmet_66", "=q2=Bloodsail Admiral's Hat", "=ds=#s1#, #a1#" },
-	};
+		{ 12185, "INV_Helmet_66", "=q2=Bloodsail Admiral's Hat", "=ds=#s1#, #a1#" }
+	},
 	Defilers = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Jewelry_Amulet_07", "=q6=#r5#", "" },
-		{ 20131, "INV_Shirt_GuildTabard_01", "=q1=Battle Tabard of the Defilers", "=q1=#m4#: =ds=#s7#" },
-	};
+		{ 20131, "INV_Shirt_GuildTabard_01", "=q1=Battle Tabard of the Defilers", "=q1=#m4#: =ds=#s7#" }
+	},
 	GelkisClan1 = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Misc_Head_Centaur_01", "=q6=#r2#", "" },
 		{ 6773, "INV_Chest_Chain_07", "=q2=Gelkis Marauder Chain", "=q1=#m4#: =ds=#s5#, #a3#" },
-		{ 6774, "INV_Wand_03", "=q2=Uthek's Finger", "=q1=#m4#: =ds=#s15#" },
-	};
+		{ 6774, "INV_Wand_03", "=q2=Uthek's Finger", "=q1=#m4#: =ds=#s15#" }
+	},
 	LeagueofArathor = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Jewelry_Amulet_07", "=q6=#r5#", "" },
-		{ 20132, "INV_Shirt_GuildTabard_01", "=q1=Arathor Battle Tabard", "=q1=#m4#: =ds=#s7#" },
-	};
+		{ 20132, "INV_Shirt_GuildTabard_01", "=q1=Arathor Battle Tabard", "=q1=#m4#: =ds=#s7#" }
+	},
 	MagramClan1 = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Misc_Head_Centaur_01", "=q6=#r2#", "" },
 		{ 6789, "INV_Misc_Cape_12", "=q2=Ceremonial Centaur Blanket", "=q1=#m4#: =ds=#s4#" },
-		{ 6788, "INV_Belt_11", "=q2=Magram Hunter's Belt", "=q1=#m4#: =ds=#s10#, #a2#" },
-	};
-};
+		{ 6788, "INV_Belt_11", "=q2=Magram Hunter's Belt", "=q1=#m4#: =ds=#s10#, #a2#" }
+	}
+}

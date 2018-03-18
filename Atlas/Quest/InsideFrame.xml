@@ -23,7 +23,7 @@
 
 
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
-	------------------ FRAME INSIDE ATLAS
+	------------------ FRAME INSIDE ATLAS ------------------
 	
 	<!--  Fonts -->
 	<!-- Cause Problems with the CN font i will use blizzard default font to prevent problems! -->
@@ -73,7 +73,7 @@
 			</Anchor>
 		</Anchors>
 		<Frames>
-			-----------------------------------------FRAME 1  --------------------------------------------------------------
+			----------------------------------------- FRAME 1  -----------------------------------------
 			<Button name="AtlasQuestItemframe1" virtual="true" hidden="false">
 				<Size>
 					<AbsDimension x="236" y="30"/>
@@ -120,24 +120,24 @@
 				</Layers>
 				<Scripts>
 					<OnEnter>
-						AQTHISISSHOWN = 1;
-						AtlasQuestItem_OnEnter();
+						AQTHISISSHOWN = 1
+						AtlasQuestItem_OnEnter()
 					</OnEnter>
 					<OnLeave>
-						AtlasQuestItem_OnLeave();
+						AtlasQuestItem_OnLeave()
 					</OnLeave>
 					<OnClick>
-						AtlasQuestItem_OnClick(arg1);
+						AtlasQuestItem_OnClick(arg1)
 					</OnClick>
 					<OnLoad>
-						this:RegisterForClicks("LeftButtonDown", "RightButtonDown");
+						this:RegisterForClicks("LeftButtonDown", "RightButtonDown")
 					</OnLoad>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
-			----------------------------------------- FRAME 2  --------------------------------------------------------------
+			----------------------------------------- FRAME 2  -----------------------------------------
 			<Button name="AtlasQuestItemframe2" virtual="true" hidden="false">
 				<Size>
 					<AbsDimension x="236" y="30"/>
@@ -184,24 +184,24 @@
 				</Layers>
 				<Scripts>
 					<OnEnter>
-						AQTHISISSHOWN = 2;
-						AtlasQuestItem_OnEnter();
+						AQTHISISSHOWN = 2
+						AtlasQuestItem_OnEnter()
 					</OnEnter>
 					<OnLeave>
-						AtlasQuestItem_OnLeave();
+						AtlasQuestItem_OnLeave()
 					</OnLeave>
 					<OnClick>
-						AtlasQuestItem_OnClick(arg1);
+						AtlasQuestItem_OnClick(arg1)
 					</OnClick>
 					<OnLoad>
-						this:RegisterForClicks("LeftButtonDown", "RightButtonDown");
+						this:RegisterForClicks("LeftButtonDown", "RightButtonDown")
 					</OnLoad>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
-			----------------------------------------- FRAME 3  --------------------------------------------------------------
+			----------------------------------------- FRAME 3  -----------------------------------------
 			<Button name="AtlasQuestItemframe3" virtual="true" hidden="false">
 				<Size>
 					<AbsDimension x="236" y="30"/>
@@ -248,24 +248,24 @@
 				</Layers>
 				<Scripts>
 					<OnEnter>
-						AQTHISISSHOWN = 3;
-						AtlasQuestItem_OnEnter();
+						AQTHISISSHOWN = 3
+						AtlasQuestItem_OnEnter()
 					</OnEnter>
 					<OnLeave>
-						AtlasQuestItem_OnLeave();
+						AtlasQuestItem_OnLeave()
 					</OnLeave>
 					<OnClick>
-						AtlasQuestItem_OnClick(arg1);
+						AtlasQuestItem_OnClick(arg1)
 					</OnClick>
 					<OnLoad>
-						this:RegisterForClicks("LeftButtonDown", "RightButtonDown");
+						this:RegisterForClicks("LeftButtonDown", "RightButtonDown")
 					</OnLoad>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
-			---------------------------------------- FRAME 4  --------------------------------------------------------------
+			----------------------------------------- FRAME 4  -----------------------------------------
 			<Button name="AtlasQuestItemframe4" virtual="true" hidden="false">
 				<Size>
 					<AbsDimension x="236" y="30"/>
@@ -312,24 +312,24 @@
 				</Layers>
 				<Scripts>
 					<OnEnter>
-						AQTHISISSHOWN = 4;
-						AtlasQuestItem_OnEnter();
+						AQTHISISSHOWN = 4
+						AtlasQuestItem_OnEnter()
 					</OnEnter>
 					<OnLeave>
-						AtlasQuestItem_OnLeave();
+						AtlasQuestItem_OnLeave()
 					</OnLeave>
 					<OnClick>
-						AtlasQuestItem_OnClick(arg1);
+						AtlasQuestItem_OnClick(arg1)
 					</OnClick>
 					<OnLoad>
-						this:RegisterForClicks("LeftButtonDown", "RightButtonDown");
+						this:RegisterForClicks("LeftButtonDown", "RightButtonDown")
 					</OnLoad>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
-			----------------------------------------- FRAME 5  --------------------------------------------------------------
+			----------------------------------------- FRAME 5  -----------------------------------------
 			<Button name="AtlasQuestItemframe5" virtual="true" hidden="false">
 				<Size>
 					<AbsDimension x="236" y="30"/>
@@ -376,24 +376,24 @@
 				</Layers>
 				<Scripts>
 					<OnEnter>
-						AQTHISISSHOWN = 5;
-						AtlasQuestItem_OnEnter();
+						AQTHISISSHOWN = 5
+						AtlasQuestItem_OnEnter()
 					</OnEnter>
 					<OnLeave>
-						AtlasQuestItem_OnLeave();
+						AtlasQuestItem_OnLeave()
 					</OnLeave>
 					<OnClick>
-						AtlasQuestItem_OnClick(arg1);
+						AtlasQuestItem_OnClick(arg1)
 					</OnClick>
 					<OnLoad>
-						this:RegisterForClicks("LeftButtonDown", "RightButtonDown");
+						this:RegisterForClicks("LeftButtonDown", "RightButtonDown")
 					</OnLoad>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
-			----------------------------------------- FRAME 6  --------------------------------------------------------------
+			----------------------------------------- FRAME 6  -----------------------------------------
 			<Button name="AtlasQuestItemframe6" virtual="true" hidden="false">
 				<Size>
 					<AbsDimension x="236" y="30"/>
@@ -440,24 +440,24 @@
 				</Layers>
 				<Scripts>
 					<OnEnter>
-						AQTHISISSHOWN = 6;
-						AtlasQuestItem_OnEnter();
+						AQTHISISSHOWN = 6
+						AtlasQuestItem_OnEnter()
 					</OnEnter>
 					<OnLeave>
-						AtlasQuestItem_OnLeave();
+						AtlasQuestItem_OnLeave()
 					</OnLeave>
 					<OnClick>
-						AtlasQuestItem_OnClick(arg1);
+						AtlasQuestItem_OnClick(arg1)
 					</OnClick>
 					<OnLoad>
-						this:RegisterForClicks("LeftButtonDown", "RightButtonDown");
+						this:RegisterForClicks("LeftButtonDown", "RightButtonDown")
 					</OnLoad>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
-			--------------------------------------------FRAME ENDE-----------------------------------------------------------
+			---------------------------------------- FRAME ENDE ----------------------------------------
 			<Button name="CLOSEbutton2" inherits="UIPanelCloseButton" text="X">
 				<Size>
 					<AbsDimension x="30" y="30"/>
@@ -471,10 +471,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AQCLOSE2_OnClick();
+						AQCLOSE2_OnClick()
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -493,9 +493,9 @@
 					<AbsInset left="0" right="0" top="0" bottom="0"/>
 				</HitRectInsets>
 				<Scripts>
-					<OnClick> AQFinishedQuest_OnClick(); </OnClick>
+					<OnClick> AQFinishedQuest_OnClick() </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 2 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 2 )
 					</OnShow>
 				</Scripts>
 			</CheckButton>
@@ -514,9 +514,9 @@
 				<PushedTexture file="Interface\Glues\Common\Glue-RightArrow-Button-Down"/>
 				<HighlightTexture file="Interface\Glues\Common\Glue-RightArrow-Button-Highlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQNextPageR_OnClick(); </OnClick>
+					<OnClick> AQNextPageR_OnClick() </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 2 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 2 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -535,9 +535,9 @@
 				<PushedTexture file="Interface\Glues\Common\Glue-LeftArrow-Button-Down"/>
 				<HighlightTexture file="Interface\Glues\Common\Glue-LeftArrow-Button-Highlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQNextPageL_OnClick(); </OnClick>
+					<OnClick> AQNextPageL_OnClick() </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 2 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 2 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -552,7 +552,7 @@
 					<Color r="0" g="0" b="0" a="0.75"/>
 				</Texture>
 			</Layer>
-			<Layer level="OVERLAY">
+			<Layer level="BACKGROUND">
 				<FontString name="QuestName" inherits="SystemFont">
 					<Size>
 						<AbsDimension x="400" y="12"/>
@@ -653,7 +653,7 @@
 		</Layers>
 		<Scripts>
 			<OnEvent>
-				AQ_OnEvent(event);
+				AQ_OnEvent(event)
 			</OnEvent>
 		</Scripts>
 	</Frame>
@@ -682,16 +682,16 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AQCLOSE_OnClick();
+						AQCLOSE_OnClick()
 					</OnClick>
 					<OnUpdate>
 						if ( AtlasFrame == nil ) then
-						this:Hide();
+						this:Hide()
 						end
 					</OnUpdate>
 					<OnShow>
 						if ( AtlasFrame == nil ) then
-						this:Hide();
+						this:Hide()
 						end
 					</OnShow>
 				</Scripts>

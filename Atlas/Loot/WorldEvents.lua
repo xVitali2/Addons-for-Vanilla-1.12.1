@@ -1,5 +1,5 @@
 AtlasLoot_Data["AtlasLootWorldEvents"] = {
-	EmptyInstance = {};
+	EmptyInstance = {},
 	----------------------------------
 	---- Abyssal Bosses ----
 	----------------------------------
@@ -30,8 +30,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 20663, "INV_Weapon_Bow_10", "=q3=Deep Strike Bow", "=ds=#w2#", "2.55%" },
 		{ 20661, "INV_Gauntlets_05", "=q2=Abyssal Leather Gloves", "=ds=#s9#, #a2# =q2=#e23#", "13.16%" },
 		{ 20662, "INV_Boots_Plate_05", "=q2=Abyssal Plate Greaves", "=ds=#s12#, #a4# =q2=#e23#", "12.93%" },
-		{ 20513, "INV_Jewelry_Talisman_05", "=q2=Abyssal Crest", "=ds=#m3#", "100%" },
-	};
+		{ 20513, "INV_Jewelry_Talisman_05", "=q2=Abyssal Crest", "=ds=#m3#", "100%" }
+	},
 	AbyssalDukes = {
 		{ 0, "INV_Box_01", "=q6=#x86#", "=q1=#j10#" },
 		{ 20665, "INV_Pants_Leather_05", "=q3=Abyssal Leather Leggings", "=ds=#s11#, #a2# =q2=#e23#", "22.50%" },
@@ -59,8 +59,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 20671, "INV_Pants_Plate_12", "=q3=Abyssal Plate Legplates", "=ds=#s11#, #a4# =q2=#e23#", "22.63%" },
 		{ 20672, "INV_Wand_12", "=q3=Sparkling Crystal Wand", "=ds=#w12#", "28.90%" },
 		{ 20514, "INV_Jewelry_Ring_36", "=q3=Abyssal Signet", "=ds=#m3#", "100%" },
-		{ 20670, "INV_Belt_16", "=q2=Abyssal Mail Clutch", "=ds=#s10#, #a3# =q2=#e23#", "28.16%" },
-	};
+		{ 20670, "INV_Belt_16", "=q2=Abyssal Mail Clutch", "=ds=#s10#, #a3# =q2=#e23#", "28.16%" }
+	},
 	AbyssalLords = {
 		{ 0, "INV_Box_01", "=q6=#x90#", "=q1=#j10#" },
 		{ 20682, "INV_Jewelry_Ring_23", "=q4=Elemental Focus Band", "=ds=#s13#", "22.83%" },
@@ -87,8 +87,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 20688, "INV_Shield_15", "=q4=Earthen Guard", "=ds=#w8#", "20.64%" },
 		{ 20515, "INV_Staff_13", "=q4=Abyssal Scepter", "=ds=#m3#", "100%" },
 		{ 20686, "INV_Shoulder_25", "=q3=Abyssal Cloth Amice", "=ds=#s3#, #a1# =q2=#e23#", "23.96%" },
-		{ 20687, "INV_Bracer_19", "=q3=Abyssal Plate Vambraces", "=ds=#s8#, #a4# =q2=#e23#", "23.66%" },
-	};
+		{ 20687, "INV_Bracer_19", "=q3=Abyssal Plate Vambraces", "=ds=#s8#, #a4# =q2=#e23#", "23.66%" }
+	},
 	ElementalInvasion = {
 		{ 0, "INV_Box_01", "=q6=#x92#", "=q1=#j10#, #zone7#" },
 		{ 18671, "INV_Mace_08", "=q3=Baron Charr's Sceptre", "=ds=#h3#, #w6#", "12.18%" },
@@ -114,8 +114,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 18676, "INV_Belt_31", "=q3=Sash of the Windreaver", "=ds=#s10#, #a3#", "16.76%" },
 		{ 19268, "INV_Misc_Ticket_Tarot_Elemental_01", "=q3=Ace of Elementals", "=ds=#e16#", "9.76%" },
 		{ 21548, "INV_Scroll_03", "=q3=Pattern: Stormshroud Gloves", "=ds=#p7# (300)", "36.28%" },
-		{ 18677, "INV_Misc_Cape_13", "=q2=Zephyr Cloak", "=ds=#s4#", "52.47%" },
-	};
+		{ 18677, "INV_Misc_Cape_13", "=q2=Zephyr Cloak", "=ds=#s4#", "52.47%" }
+	},
 	GurubashiArena = {
 		{ 0,"","","" },
 		{ 18709, "INV_Bracer_10", "=q3=Arena Wristguards", "=ds=#s8#, #a1#", "5.0%" },
@@ -134,8 +134,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 0,"","","" },
 		{ 0,"","","" },
 		{ 18706, "INV_Misc_ArmorKit_14", "=q2=Arena Master", "=ds=#m2#, =ds=#s14#", "100%" },
-		{ 19024, "INV_Misc_ArmorKit_04", "=q3=Arena Grand Master", "=q1=#m4# =ds=#s14#" },
-	};
+		{ 19024, "INV_Misc_ArmorKit_04", "=q3=Arena Grand Master", "=q1=#m4# =ds=#s14#" }
+	},
 	FishingExtravaganza = {
 		{ 0, "INV_Box_01", "=q6=#j7#", "=q1=#j6#" },
 		{ 19970, "INV_Fishingpole_01", "=q3=Arcanite Fishing Pole", "=ds=#w14#" },
@@ -159,15 +159,15 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 0, "INV_Box_01", "=q6=#j8#", "" },
 		{ 19972, "INV_Helmet_31", "=q2=Lucky Fishing Hat", "=ds=#s1#, #a1#" },
 		{ 19969, "INV_Boots_09", "=q2=Nat Pagle's Extreme Anglin' Boots", "=ds=#s12#, #a1#" },
-		{ 19971, "INV_Fabric_Mageweave_02", "=q2=High Test Eternium Fishing Line", "=ds=#m27#" },
-	};
+		{ 19971, "INV_Fabric_Mageweave_02", "=q2=High Test Eternium Fishing Line", "=ds=#m27#" }
+	},
 	ChildrensWeek = {
 		{ 0,"","","" },
 		{ 23007, "INV_Belt_25", "=q1=Piglet's Collar", "=ds=#e15#" },
 		{ 23015, "INV_Box_PetCarrier_01", "=q1=Rat Cage", "=ds=#e15#" },
 		{ 23002, "INV_Crate_03", "=q1=Turtle Box", "=ds=#e15#" },
-		{ 23022, "INV_Misc_Bag_10_Black", "=q1=Curmudgeon's Payoff", "=ds=#m23#" },
-	};
+		{ 23022, "INV_Misc_Bag_10_Black", "=q1=Curmudgeon's Payoff", "=ds=#m23#" }
+	},
 	Valentineday = {
 		{ 22206, "INV_RoseBouquet01", "=q2=Bouquet of Red Roses", "=ds=#s15#", "0.43%" },
 		{ 0,"","","" },
@@ -189,20 +189,20 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 22280, "INV_Chest_Cloth_17", "=q1=Lovely Purple Dress", "=q1=#m4# =ds=#s5#" },
 		{ 22277, "INV_Shirt_Red_01", "=q1=Red Dinner Suit", "=q1=#m4# =ds=#s5#" },
 		{ 22281, "INV_Shirt_Blue_01", "=q1=Blue Dinner Suit", "=q1=#m4# =ds=#s5#" },
-		{ 22282, "INV_Shirt_Purple_01", "=q1=Purple Dinner Suit", "=q1=#m4# =ds=#s5#" },
-	};
+		{ 22282, "INV_Shirt_Purple_01", "=q1=Purple Dinner Suit", "=q1=#m4# =ds=#s5#" }
+	},
 	Halloween1 = {
 		{ 20400, "INV_Misc_Food_59", "=q2=Pumpkin Bag", "=ds=#m21#" },
 		{ 0,"","","" },
 		{ 18633, "INV_Misc_Food_26", "=q1=Styleen's Sour Suckerpop", "=ds=#e2#" },
 		{ 18632, "INV_Misc_Food_30", "=q1=Moonbrook Riot Taffy", "=ds=#e2#" },
 		{ 18635, "INV_Misc_Food_27", "=q1=Bellara's Nutterbar", "=ds=#e2#" },
+		{ 20516, "INV_Misc_Food_19", "=q1=Bobbing Apple", "=ds=#e2#" },
 		{ 20557, "INV_Misc_Food_59", "=q1=Hallow's End Pumpkin Treat", "=ds=#m20#" },
 		{ 0,"","","" },
 		{ 20389, "INV_Misc_Food_30", "=q1=Candy Corn", "=ds=#e2#" },
 		{ 20388, "INV_Misc_Food_26", "=q1=Lollipop", "=ds=#e2#" },
 		{ 20390, "INV_Misc_Food_27", "=q1=Candy Bar", "=ds=#e2#" },
-		{ 0,"","","" },
 		{ 0,"","","" },
 		{ 0,"","","" },
 		{ 0,"","","" },
@@ -215,8 +215,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 20397, "INV_Wand_12", "=q1=Hallowed Wand - Pirate", "=ds=#m20#" },
 		{ 20413, "INV_Wand_12", "=q1=Hallowed Wand - Random", "=ds=#m20#" },
 		{ 20411, "INV_Wand_12", "=q1=Hallowed Wand - Skeleton", "=ds=#m20#" },
-		{ 20414, "INV_Wand_12", "=q1=Hallowed Wand - Wisp", "=ds=#m20#" },
-	};
+		{ 20414, "INV_Wand_12", "=q1=Hallowed Wand - Wisp", "=ds=#m20#" }
+	},
 	Halloween2 = {
 		{ 0, "INV_Misc_Bag_11", "=q6=#cb8#", "" },
 		{ 20561, "INV_Misc_Head_Dwarf_01", "=q1=Flimsy Male Dwarf Mask", "=ds=#s1#" },
@@ -241,8 +241,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 20569, "INV_Misc_Head_Orc_02", "=q1=Flimsy Female Orc Mask", "=ds=#s1#" },
 		{ 20571, "INV_Misc_Head_Tauren_02", "=q1=Flimsy Female Tauren Mask", "=ds=#s1#" },
 		{ 20567, "INV_Misc_Head_Troll_02", "=q1=Flimsy Female Troll Mask", "=ds=#s1#" },
-		{ 20574, "INV_Misc_Head_Undead_02", "=q1=Flimsy Female Undead Mask", "=ds=#s1#" },
-	};
+		{ 20574, "INV_Misc_Head_Undead_02", "=q1=Flimsy Female Undead Mask", "=ds=#s1#" }
+	},
 	Winterviel1 = {
 		{ 21525, "INV_Helmet_68", "=q2=Green Winter Hat", "=ds=#s1#" },
 		{ 21524, "INV_Helmet_67", "=q2=Red Winter Hat", "=ds=#s1#" },
@@ -272,8 +272,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 0,"","","" },
 		{ 0, "INV_Holiday_Christmas_Present_01", "=q6=#m32#", "" }, 
 		{ 21235, "INV_Misc_Food_50", "=q1=Winter Veil Roast", "=ds=#e2#" },
-		{ 21241, "INV_Drink_16", "=q1=Winter Veil Eggnog", "=ds=#e3#" },
-	};
+		{ 21241, "INV_Drink_16", "=q1=Winter Veil Eggnog", "=ds=#e3#" }
+	},
 	Winterviel2 = {
 		{ 0, "INV_Holiday_Christmas_Present_01", "=q6=#m36#", "" }, 
 		{ 17201, "INV_Scroll_03", "=q1=Recipe: Egg Nog", "=ds=#p3# (35)" },
@@ -292,8 +292,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 0,"","","" },
 		{ 17303, "INV_Holiday_Christmas_Wrapping_03", "=q1=Blue Ribboned Wrapping Paper", "=ds=#m20#" },
 		{ 17304, "INV_Holiday_Christmas_Wrapping_01", "=q1=Green Ribboned Wrapping Paper", "=ds=#m20#" },
-		{ 17307, "INV_Holiday_Christmas_Wrapping_02", "=q1=Purple Ribboned Wrapping Paper", "=ds=#m20#" },
-	};
+		{ 17307, "INV_Holiday_Christmas_Wrapping_02", "=q1=Purple Ribboned Wrapping Paper", "=ds=#m20#" }
+	},
 	Noblegarden = {
 		{ 0, "INV_Egg_03", "=q6=#cb9#", "" }, 
 		{ 19028, "INV_Chest_Cloth_04", "=q1=Elegant Dress", "=ds=#s5#" },
@@ -302,8 +302,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 0,"","","" },
 		{ 7807, "INV_Misc_Food_27", "=q1=Candy Bar", "=ds=#e2#" },
 		{ 7808, "INV_Misc_Food_29", "=q1=Chocolate Square", "=ds=#e2#" },
-		{ 7806, "INV_Misc_Food_26", "=q1=Lollipop", "=ds=#e2#" },
-	};
+		{ 7806, "INV_Misc_Food_26", "=q1=Lollipop", "=ds=#e2#" }
+	},
 	HarvestFestival = {
 		{ 19697, "INV_Misc_Horn_03", "=q1=Bounty of the Harvest", "=q1=#m4# =ds=#m20#" },
 		{ 20009, "INV_Misc_Book_07", "=q1=For the Light!", "=q1=#m4# =ds=#m20# =q8=#m7#" },
@@ -313,7 +313,15 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 19996, "INV_Misc_Fish_19", "=q1=Harvest Fish", "=ds=#e2#" },
 		{ 19994, "INV_Misc_Food_41", "=q1=Harvest Fruit", "=ds=#e2#" },
 		{ 19997, "INV_Drink_04", "=q1=Harvest Nectar", "=ds=#e3#" },
-	};
+		{ 0,"","","" },
+		{ 0,"","","" },
+		{ 0,"","","" },
+		{ 0,"","","" },
+		{ 0,"","","" },
+		{ 0,"","","" },
+		{ 0,"","","" },
+		{ 19696,"INV_Misc_Food_33","=q1=Harvest Bread","=ds=#e2#" }
+	},
 	ScourgeInvasionEvent1 = {
 		{ 23123, "INV_Potion_26", "=q2=Blessed Wizard Oil", "=ds=#m27#" },
 		{ 23122, "INV_Stone_SharpeningStone_02", "=q2=Consecrated Sharpening Stone", "=ds=#m27#" },
@@ -343,8 +351,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 0, "INV_Jewelry_Talisman_13", "=q6=#oth_s14#", "=ec1=#a4#" },
 		{ 23087, "INV_Chest_Plate10", "=q3=Breastplate of Undead Slaying", "=ds=#s5#, #a4#", "" },
 		{ 23090, "INV_Bracer_14", "=q3=Bracers of Undead Slaying", "=ds=#s8#, #a4#", "" },
-		{ 23078, "INV_Gauntlets_29", "=q3=Gauntlets of Undead Slaying", "=ds=#s9#, #a4#", "" },
-	};
+		{ 23078, "INV_Gauntlets_29", "=q3=Gauntlets of Undead Slaying", "=ds=#s9#, #a4#", "" }
+	},
 	ScourgeInvasionEvent2 = {
 		{ 0, "INV_Box_01", "=q6=#db66#", "=q1=#zone1#" }, 
 		{ 23126, "INV_Belt_13", "=q3=Waistband of Balzaphon", "=ds=#s10#, #a1#", "27.38%" },  
@@ -352,9 +360,9 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 23124, "INV_Staff_07", "=q3=Staff of Balzaphon", "=ds=#w9#", "24.74%" },   
 		{ 0,"","","" },
 		{ 0, "INV_Box_01", "=q6=#db67#", "=q1=#zone2#" },
-		{ 23132, "INV_Sword_05", "=q3=Lord Blackwood's Blade", "=ds=#h1#, #w10#", "12.83%" };
-		{ 23156, "INV_Misc_Bone_10", "=q3=Blackwood's Thigh", "=ds=#s15#", "45.21%" };
-		{ 23139, "INV_Shield_02", "=q3=Lord Blackwood's Buckler", "=ds=#w8#", "38.75%" };
+		{ 23132, "INV_Sword_05", "=q3=Lord Blackwood's Blade", "=ds=#h1#, #w10#", "12.83%" },
+		{ 23156, "INV_Misc_Bone_10", "=q3=Blackwood's Thigh", "=ds=#s15#", "45.21%" },
+		{ 23139, "INV_Shield_02", "=q3=Lord Blackwood's Buckler", "=ds=#w8#", "38.75%" },
 		{ 0,"","","" },
 		{ 0, "INV_Box_01", "=q6=#db68#", "=q1=#zone3#" }, 
 		{ 23127, "INV_Misc_Cape_02", "=q3=Cloak of Revanchion", "=ds=#s4#", "38.49%" },
@@ -373,8 +381,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 0,"","","" },
 		{ 0, "INV_Box_01", "=q6=#db71#", "=q1=#zone6#" },
 		{ 23178, "INV_Misc_Cape_17", "=q3=Mantle of Lady Falther'ess", "=ds=#s4#", "61.24%" },
-		{ 23177, "INV_Wand_12", "=q3=Lady Falther'ess' Finger", "=ds=#w12#", "38.17%" },
-	};
+		{ 23177, "INV_Wand_12", "=q3=Lady Falther'ess' Finger", "=ds=#w12#", "38.17%" }
+	},
 	LunarFestival1 = {
 		{ 21100, "INV_Misc_ElvenCoins", "=q1=Coin of Ancestry", "=ds=#m14#" },
 		{ 0,"","","" },
@@ -404,8 +412,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 21595, "INV_Misc_MissileLarge_Yellow", "=q1=Large Yellow Rocket", "=ds=#m15#" },
 		{ 0,"","","" },
 		{ 21537, "INV_Misc_Food_DimSum", "=q1=Festival Dumplings", "=ds=#m25#" },
-		{ 21713, "INV_Musket_02", "=q1=Elune's Candle", "=ds=#m20#" },
-	};
+		{ 21713, "INV_Musket_02", "=q1=Elune's Candle", "=ds=#m20#" }
+	},
 	LunarFestival2 = {
 		{ 21738, "INV_Scroll_06", "=q2=Schematic: Firework Launcher ", "=ds=#p5# (225)" },
 		{ 0,"","","" },
@@ -435,8 +443,8 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 0, "INV_Scroll_06", "=q6=#cb13#", "" },
 		{ 21733, "INV_Scroll_06", "=q2=Schematic: Large Blue Rocket Cluster", "=ds=#p5# (275)" },
 		{ 21734, "INV_Scroll_06", "=q2=Schematic: Large Green Rocket Cluster", "=ds=#p5# (275)" },
-		{ 21735, "INV_Scroll_06", "=q2=Schematic: Large Red Rocket Cluster", "=ds=#p5# (275)" },
-	};
+		{ 21735, "INV_Scroll_06", "=q2=Schematic: Large Red Rocket Cluster", "=ds=#p5# (275)" }
+	},
 	MidsummerFestival = {
 		{ 23379, "INV_Bracer_09", "=q2=Cinder Bracers", "=ds=#e15#" },
 		{ 0,"","","" },
@@ -449,6 +457,6 @@ AtlasLoot_Data["AtlasLootWorldEvents"] = {
 		{ 23435, "INV_Misc_Food_10", "=q1=Elderberry Pie", "=ds=#e2#" },
 		{ 23327, "INV_Misc_Food_11", "=q1=Fire-toasted Bun", "=ds=#e2#" },
 		{ 23326, "INV_Misc_Food_53", "=q1=Midsummer Sausage", "=ds=#e2#" },
-		{ 23211, "INV_SummerFest_Smorc", "=q1=Toasted Smorc", "=ds=#e2#" },
-	};
-};
+		{ 23211, "INV_SummerFest_Smorc", "=q1=Toasted Smorc", "=ds=#e2#" }
+	}
+}

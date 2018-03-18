@@ -1,28 +1,28 @@
 AtlasLootWBBossButtons = {
 	FourDragons = {
-		"";
-		"";
-		"";
-		"";
-		"";
-		"DLethon";
-		"DEmeriss";
-		"DTaerar";
-		"DYsondre";
-		"";
-		"DTrash";
-	};
+		"",
+		"",
+		"",
+		"",
+		"",
+		"DLethon",
+		"DEmeriss",
+		"DTaerar",
+		"DYsondre",
+		"",
+		"DTrash"
+	},
 	Azuregos = {
-		"AAzuregos";
-		"ASpiritA";
-	};
+		"AAzuregos",
+		"ASpiritA"
+	},
 	LordKazzak = {
-		"KKazzak";
-	};
-};
+		"KKazzak"
+	}
+}
 
 AtlasLoot_Data["AtlasLootWBItems"] = {
-	EmptyInstance = {};
+	EmptyInstance = {},
 	KKazzak = {
 		{ 18546, "INV_Helmet_18", "=q4=Infernal Headcage", "=ds=#s1#, #a3#", "9.39%" },
 		{ 17111, "INV_Jewelry_Talisman_01", "=q4=Blazefury Medallion", "=ds=#s2#", "10.95%" },
@@ -37,8 +37,8 @@ AtlasLoot_Data["AtlasLootWBItems"] = {
 		{ 0, "", "", "", "" },
 		{ 18665, "Spell_Shadow_UnholyFrenzy", "=q4=The Eye of Shadow", "=ds=#s14#", "29.98%" },
 		{ 18608, "INV_Staff_30", "=q4=Benediction", "=q1=#m4# =ds=#w9# =q9=#c5#" },
-		{ 18609, "INV_Staff_12", "=q4=Anathema", "=q1=#m4# =ds=#w9# =q9=#c5#" },
-	};
+		{ 18609, "INV_Staff_12", "=q4=Anathema", "=q1=#m4# =ds=#w9# =q9=#c5#" }
+	},
 	DTaerar = {
 		{ 20633, "INV_Shoulder_29", "=q4=Unnatural Leather Spaulders", "=ds=#s3#, #a2#", "11.30%" },
 		{ 20631, "INV_Boots_Cloth_05", "=q4=Mendicant's Slippers", "=ds=#s12#, #a1#", "13.14%" },
@@ -69,8 +69,8 @@ AtlasLoot_Data["AtlasLootWBItems"] = {
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
-		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=#p16# (315)" },
-	};
+		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=#p16# (315)" }
+	},
 	DEmeriss = {
 		{ 20623, "INV_Helmet_17", "=q4=Circlet of Restless Dreams", "=ds=#s1#, #a2#", "10.51%" },
 		{ 20622, "INV_Jewelry_Necklace_18", "=q4=Dragonheart Necklace", "=ds=#s2#", "12.35%" },
@@ -101,8 +101,8 @@ AtlasLoot_Data["AtlasLootWBItems"] = {
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
-		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=#p16# (315)" },
-	};
+		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=#p16# (315)" }
+	},
 	DLethon = {
 		{ 20628, "INV_Helmet_43", "=q4=Deviate Growth Cap", "=ds=#s1#, #a2#", "15.80%" },
 		{ 20626, "INV_Bracer_07", "=q4=Black Bark Wristbands", "=ds=#s8#, #a1#", "9.44%" },
@@ -133,8 +133,8 @@ AtlasLoot_Data["AtlasLootWBItems"] = {
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
-		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=#p16# (315)" },
-	};
+		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=#p16# (315)" }
+	},
 	DYsondre = {
 		{ 20637, "INV_Shoulder_11", "=q4=Acid Inscribed Pauldrons", "=ds=#s3#, #a4#", "10.13%" },
 		{ 20635, "INV_Chest_Cloth_39", "=q4=Jade Inlaid Vestments", "=ds=#s5#, #a1#", "14.19%" },
@@ -165,14 +165,14 @@ AtlasLoot_Data["AtlasLootWBItems"] = {
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
 		{ 0, "", "", "", "" },
-		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=#p16# (315)" },
-	};
+		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "=ds=#e12# =q5=#p16# (315)" }
+	},
 	DTrash	= {
 		{ 21146, "Spell_Shadow_AntiMagicShell", "=q1=Fragment of the Nightmare's Corruption", "=ds=#m3#", "1%" },
 		{ 21147, "Spell_Shadow_AntiMagicShell", "=q1=Fragment of the Nightmare's Corruption", "=ds=#m3#", "1%" },
 		{ 21148, "Spell_Shadow_AntiMagicShell", "=q1=Fragment of the Nightmare's Corruption", "=ds=#m3#", "1%" },
-		{ 21149, "Spell_Shadow_AntiMagicShell", "=q1=Fragment of the Nightmare's Corruption", "=ds=#m3# =q7=#x71#", "100%" },
-	};
+		{ 21149, "Spell_Shadow_AntiMagicShell", "=q1=Fragment of the Nightmare's Corruption", "=ds=#m3# =q7=#x71#", "100%" }
+	},
 	AAzuregos = {
 		{ 19132, "INV_Crown_01", "=q4=Crystal Adorned Crown", "=ds=#s1#, #a1#", "13.54%" },
 		{ 18208, "INV_Misc_Cape_04", "=q4=Drape of Benediction", "=ds=#s4#", "11.22%" },
@@ -186,9 +186,9 @@ AtlasLoot_Data["AtlasLootWBItems"] = {
 		{ 18542, "INV_Sword_41", "=q4=Typhoon", "=ds=#h2#, #w10#", "16.89%" },
 		{ 0, "", "", "", "" },
 		{ 18704, "INV_Misc_Bandage_04", "=q4=Mature Blue Dragon Sinew", "=ds=#m3#", "51.56%" },
-		{ 18714, "INV_Misc_Quiver_03", "=q4=Ancient Sinew Wrapped Lamina", "=q1=#m4# =ds=#e9# #m12# =q14=#c2#" },
-	};
+		{ 18714, "INV_Misc_Quiver_03", "=q4=Ancient Sinew Wrapped Lamina", "=q1=#m4# =ds=#e9# #m12# =q14=#c2#" }
+	},
 	ASpiritA = {
-		{ 20949, "INV_Letter_16", "=q1=Magical Ledger", "=ds=#m2#", "" },
-	};
-};
+		{ 20949, "INV_Letter_16", "=q1=Magical Ledger", "=ds=#m2#", "" }
+	}
+}

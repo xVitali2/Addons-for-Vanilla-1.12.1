@@ -23,11 +23,11 @@
 
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 	
-	<Script file="Instances.lua" />
-	<Script file="Buttons.lua" />
-	<Script file="OptionUI.lua" />
-	<Script file="Items.lua" />
-	<Script file="AtlasQuest.lua" />
+	<Script file="Instances.lua"/>
+	<Script file="Buttons.lua"/>
+	<Script file="OptionUI.lua"/>
+	<Script file="Items.lua"/>
+	<Script file="AtlasQuest.lua"/>
 	
 	-- Tooltip
 	<GameTooltip name="AtlasQuestTooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true"/>
@@ -190,10 +190,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						HideUIPanel(AtlasQuestOptionFrame);
+						HideUIPanel(AtlasQuestOptionFrame)
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -213,10 +213,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AQAutoshowOption_OnClick();
+						AQAutoshowOption_OnClick()
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</CheckButton>
@@ -236,10 +236,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AQLEFTOption_OnClick();
+						AQLEFTOption_OnClick()
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</CheckButton>
@@ -259,10 +259,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AQRIGHTOption_OnClick();
+						AQRIGHTOption_OnClick()
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</CheckButton>
@@ -282,10 +282,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AQColourOption_OnClick();
+						AQColourOption_OnClick()
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</CheckButton>
@@ -305,10 +305,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AQCheckQuestlogButton_OnClick();
+						AQCheckQuestlogButton_OnClick()
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</CheckButton>
@@ -328,10 +328,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AQAutoQueryOption_OnClick();
+						AQAutoQueryOption_OnClick()
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</CheckButton>	
@@ -351,10 +351,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AQNoQuerySpamOption_OnClick();
+						AQNoQuerySpamOption_OnClick()
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</CheckButton>		
@@ -374,27 +374,27 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AQCompareTooltipOption_OnClick();
+						AQCompareTooltipOption_OnClick()
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</CheckButton>
 		</Frames>
 		<Scripts>
 			<OnLoad>
-				this:RegisterForDrag("LeftButton");
-				this:SetMovable(1);
-				getglobal("AtlasQuestOptionFrame_Title"):SetText(AQOptionsCaptionTEXT);
+				this:RegisterForDrag("LeftButton")
+				this:SetMovable(1)
+				getglobal("AtlasQuestOptionFrame_Title"):SetText(AQOptionsCaptionTEXT)
 			</OnLoad>
 			<OnDragStart>
-				this:StartMoving();
-				this.isMoving = true;
+				this:StartMoving()
+				this.isMoving = true
 			</OnDragStart>
 			<OnDragStop>
-				this:StopMovingOrSizing();
-				this.isMoving = false;
+				this:StopMovingOrSizing()
+				this.isMoving = false
 			</OnDragStop>
 		</Scripts>
 	</Frame>
@@ -436,10 +436,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AQCLOSE1_OnClick();
+						AQCLOSE1_OnClick()
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -456,10 +456,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AQOPTION1_OnClick();
+						AQOPTION1_OnClick()
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -476,10 +476,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AQSTORY1_OnClick();
+						AQSTORY1_OnClick()
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -498,9 +498,9 @@
 					<AbsInset left="0" right="0" top="0" bottom="0"/>
 				</HitRectInsets>
 				<Scripts>
-					<OnClick> Alliance_OnClick(); </OnClick>
+					<OnClick> Alliance_OnClick() </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</CheckButton>
@@ -519,9 +519,9 @@
 					<AbsInset left="0" right="0" top="0" bottom="0"/>
 				</HitRectInsets>
 				<Scripts>
-					<OnClick> Horde_OnClick(); </OnClick>
+					<OnClick> Horde_OnClick() </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</CheckButton>
@@ -539,10 +539,10 @@
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
 					<OnClick>
-						AQGeneral_OnClick(arg1);
+						AQGeneral_OnClick(arg1)
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -560,11 +560,11 @@
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
 					<OnClick>
-						AQSHOWNQUEST = 1;
-						Quest_OnClick(arg1);
+						AQSHOWNQUEST = 1
+						Quest_OnClick(arg1)
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -582,11 +582,11 @@
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
 					<OnClick>
-						AQSHOWNQUEST = 2;
-						Quest_OnClick(arg1);
+						AQSHOWNQUEST = 2
+						Quest_OnClick(arg1)
 					</OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -603,9 +603,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 3; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 3 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -622,9 +622,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 4; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 4 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -641,9 +641,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 5;  Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 5  Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -660,9 +660,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 6; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 6 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -679,9 +679,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 7; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 7 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -698,9 +698,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 8; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 8 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -717,9 +717,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 9; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 9 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -736,9 +736,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 10; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 10 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -755,9 +755,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 11; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 11 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -774,9 +774,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 12; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 12 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -793,9 +793,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 13; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 13 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -812,9 +812,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 14; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 14 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -831,9 +831,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 15; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 15 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -850,9 +850,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 16; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 16 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -869,9 +869,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 17; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 17 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -888,9 +888,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 18; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 18 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -907,9 +907,9 @@
 				</Anchors>
 				<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD"/>
 				<Scripts>
-					<OnClick> AQSHOWNQUEST = 19; Quest_OnClick(arg1); </OnClick>
+					<OnClick> AQSHOWNQUEST = 19 Quest_OnClick(arg1) </OnClick>
 					<OnShow>
-						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 );
+						this:SetFrameLevel( this:GetParent():GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -951,12 +951,12 @@
 				</FontString>
 				<FontString name="AtlasQuestAnzahl" inherits="GameFontNormal">
 					<Size>
-						<AbsDimension x="60" y="40"/>
+						<AbsDimension x="70" y="40"/>
 					</Size>
 					<Anchors>
 						<Anchor point="TOP">
 							<Offset>
-								<AbsDimension x="0" y="-45"/>
+								<AbsDimension x="-5" y="-45"/>
 							</Offset>
 						</Anchor>
 					</Anchors>
@@ -1291,17 +1291,17 @@
 		</Layers>
 		<Scripts>
 			<OnLoad>
-				AQ_OnLoad();
-				getglobal("AtlasQuestFrame_Title"):SetText("AtlasQuest");
+				AQ_OnLoad()
+				getglobal("AtlasQuestFrame_Title"):SetText("AtlasQuest")
 			</OnLoad>
 			<OnUpdate>
-				AQ_OnUpdate(arg1);
+				AQ_OnUpdate(arg1)
 			</OnUpdate>
 			<OnShow>
-				AQ_OnShow();
+				AQ_OnShow()
 			</OnShow>
 			<OnEvent>
-				AtlasQuest_OnEvent();
+				AtlasQuest_OnEvent()
 			</OnEvent>
 		</Scripts>
 	</Frame>
@@ -1321,7 +1321,7 @@
 		</Anchors>
 		<Scripts>
 			<OnClick>
-				AQCLOSE_OnClick();
+				AQCLOSE_OnClick()
 			</OnClick>
 		</Scripts>
 	</Button>

@@ -7,10 +7,10 @@
 ## Notes-zhCN: 副本地图浏览器
 ## Notes-esES: Navegador de Mapas de Mazmorras
 ## Notes-ruRU: Обозреватель подземелий
-## Version: 1.12.0.1
-## Version-AtlasLoot: 4.06.04
-## Version-AtlasQuest: 4.1.2.1
-## X-Date: July, 2008
+## Version: 1.12.2
+## Version-AtlasLoot: 4.06.07
+## Version-AtlasQuest: 4.1.3
+## X-Date: March, 2018
 ## Author: Dan Gilbert, Daviesh, Thandrenn, Asurn, Loather, Rabidmax, Dazerdude (mod by CFM), Lichery
 ## X-Email: loglow@gmail.com
 ## X-Website: http://www.atlasmod.com
@@ -45,6 +45,7 @@ Loot\WorldEvents.lua
 Loot\Factions.lua
 Loot\Instances.lua
 Loot\WorldBosses.lua
+Loot\KnownTooltips.lua
 Loot\LootTables.lua
 Loot\Core\AtlasLoot.xml
 

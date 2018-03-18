@@ -76,45 +76,45 @@
 				</Layers>
 				<Scripts>
 					<OnLoad>
-						getglobal(this:GetName().."Icon"):SetVertexColor(1, 1, 0);
-						this:RegisterForDrag("RightButton");
-						this.dragme = false;
+						getglobal(this:GetName().."Icon"):SetVertexColor(1, 1, 0)
+						this:RegisterForDrag("RightButton")
+						this.dragme = false
 					</OnLoad>
 					<OnDragStart> 
-						this.dragme = true;
+						this.dragme = true
 					</OnDragStart> 
 					<OnDragStop>
-						this.dragme = false;
+						this.dragme = false
 					</OnDragStop>
 					<OnUpdate>
 						if(this.dragme == true) then
-							AtlasButton_BeingDragged();
+							AtlasButton_BeingDragged()
 						end
 					</OnUpdate>
 					<OnClick>
-						AtlasButton_OnClick();
+						AtlasButton_OnClick()
 					</OnClick>
 					<OnMouseUp>
 						if ( arg1 == "MiddleButton" ) then
-							AtlasOptions_Toggle();
+							AtlasOptions_Toggle()
 						end
 					</OnMouseUp>
 					<OnEnter>
-						AtlasButton_OnEnter();
+						AtlasButton_OnEnter()
 					</OnEnter>
 					<OnLeave>
-						GameTooltip:Hide();
+						GameTooltip:Hide()
 					</OnLeave>
 				</Scripts>
 			</Button>
 		</Frames>
 		<Scripts>
 			<OnLoad>
-				this:RegisterEvent("VARIABLES_LOADED");
+				this:RegisterEvent("VARIABLES_LOADED")
 			</OnLoad>
 			<OnEvent>
-				AtlasButton_Init();
-				AtlasButton_UpdatePosition();
+				AtlasButton_Init()
+				AtlasButton_UpdatePosition()
 			</OnEvent>
 		</Scripts>
 	</Frame>

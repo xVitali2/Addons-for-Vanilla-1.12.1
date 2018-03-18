@@ -24,12 +24,12 @@
 
 <Bindings>
 	<Binding name="ATLAS_TOGGLE" header="ATLAS_TITLE">
-		Atlas_Toggle();
+		Atlas_Toggle()
 	</Binding>
 	<Binding name="ATLAS_OPTIONS">
-		AtlasOptions_Toggle();
+		AtlasOptions_Toggle()
 	</Binding>
 	<Binding name="ATLAS_AUTOSEL">
-		Atlas_AutoSelect();
+		Atlas_AutoSelect()
 	</Binding>
 </Bindings>

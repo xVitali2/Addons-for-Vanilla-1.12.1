@@ -78,10 +78,10 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						getglobal(this:GetName().."Text"):SetText(ATLAS_OPTIONS_SHOWBUT);
+						getglobal(this:GetName().."Text"):SetText(ATLAS_OPTIONS_SHOWBUT)
 					</OnLoad>
 					<OnClick>
-						AtlasButton_Toggle();
+						AtlasButton_Toggle()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -95,10 +95,10 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						getglobal(this:GetName().."Text"):SetText(ATLAS_OPTIONS_AUTOSEL);
+						getglobal(this:GetName().."Text"):SetText(ATLAS_OPTIONS_AUTOSEL)
 					</OnLoad>
 					<OnClick>
-						AtlasOptions_AutoSelectToggle();
+						AtlasOptions_AutoSelectToggle()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -112,10 +112,10 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						getglobal(this:GetName().."Text"):SetText(ATLAS_OPTIONS_RCLICK);
+						getglobal(this:GetName().."Text"):SetText(ATLAS_OPTIONS_RCLICK)
 					</OnLoad>
 					<OnClick>
-						AtlasOptions_RightClickToggle();
+						AtlasOptions_RightClickToggle()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -129,10 +129,10 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						getglobal(this:GetName().."Text"):SetText(ATLAS_OPTIONS_ACRONYMS);
+						getglobal(this:GetName().."Text"):SetText(ATLAS_OPTIONS_ACRONYMS)
 					</OnLoad>
 					<OnClick>
-						AtlasOptions_AcronymsToggle();
+						AtlasOptions_AcronymsToggle()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -146,10 +146,10 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						getglobal(this:GetName().."Text"):SetText(ATLAS_OPTIONS_CLAMPED);
+						getglobal(this:GetName().."Text"):SetText(ATLAS_OPTIONS_CLAMPED)
 					</OnLoad>
 					<OnClick>
-						AtlasOptions_ClampedToggle();
+						AtlasOptions_ClampedToggle()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -166,12 +166,12 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						AtlasOptions_SetupSlider(ATLAS_OPTIONS_BUTPOS, 0, 360, 1);
+						AtlasOptions_SetupSlider(ATLAS_OPTIONS_BUTPOS, 0, 360, 1)
 					</OnLoad>
 					<OnValueChanged>
-						AtlasOptions_UpdateSlider(ATLAS_OPTIONS_BUTPOS);
-						AtlasOptions.AtlasButtonPosition = this:GetValue();
-						AtlasButton_UpdatePosition();
+						AtlasOptions_UpdateSlider(ATLAS_OPTIONS_BUTPOS)
+						AtlasOptions.AtlasButtonPosition = this:GetValue()
+						AtlasButton_UpdatePosition()
 					</OnValueChanged>
 				</Scripts>
 			</Slider>
@@ -188,12 +188,12 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						AtlasOptions_SetupSlider(ATLAS_OPTIONS_BUTRAD, 0, 200, 1);
+						AtlasOptions_SetupSlider(ATLAS_OPTIONS_BUTRAD, 0, 200, 1)
 					</OnLoad>
 					<OnValueChanged>
-						AtlasOptions_UpdateSlider(ATLAS_OPTIONS_BUTRAD);
-						AtlasOptions.AtlasButtonRadius = this:GetValue();
-						AtlasButton_UpdatePosition();
+						AtlasOptions_UpdateSlider(ATLAS_OPTIONS_BUTRAD)
+						AtlasOptions.AtlasButtonRadius = this:GetValue()
+						AtlasButton_UpdatePosition()
 					</OnValueChanged>
 				</Scripts>
 			</Slider>
@@ -210,12 +210,12 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						AtlasOptions_SetupSlider(ATLAS_OPTIONS_TRANS, 0.25, 1.0, 0.01);
+						AtlasOptions_SetupSlider(ATLAS_OPTIONS_TRANS, 0.25, 1.0, 0.01)
 					</OnLoad>
 					<OnValueChanged>
-						AtlasOptions_UpdateSlider(ATLAS_OPTIONS_TRANS);
-						AtlasOptions.AtlasAlpha = this:GetValue();
-						Atlas_UpdateAlpha();
+						AtlasOptions_UpdateSlider(ATLAS_OPTIONS_TRANS)
+						AtlasOptions.AtlasAlpha = this:GetValue()
+						Atlas_UpdateAlpha()
 					</OnValueChanged>
 				</Scripts>
 			</Slider>
@@ -232,12 +232,12 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						AtlasOptions_SetupSlider(ATLAS_OPTIONS_SCALE, 0.25, 1.5, 0.01);
+						AtlasOptions_SetupSlider(ATLAS_OPTIONS_SCALE, 0.25, 1.5, 0.01)
 					</OnLoad>
 					<OnValueChanged>
-						AtlasOptions_UpdateSlider(ATLAS_OPTIONS_SCALE);
-						AtlasOptions.AtlasScale = this:GetValue();
-						Atlas_UpdateScale();
+						AtlasOptions_UpdateSlider(ATLAS_OPTIONS_SCALE)
+						AtlasOptions.AtlasScale = this:GetValue()
+						Atlas_UpdateScale()
 					</OnValueChanged>
 				</Scripts>
 			</Slider>
@@ -264,7 +264,7 @@
 				</Anchors>
 				<Scripts>
 					<OnShow>
-						AtlasOptionsFrameDropDownCats_OnShow();
+						AtlasOptionsFrameDropDownCats_OnShow()
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -281,7 +281,7 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AtlasOptions_ResetPosition();
+						AtlasOptions_ResetPosition()
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -298,25 +298,25 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						AtlasOptions_Toggle();
+						AtlasOptions_Toggle()
 					</OnClick>
 				</Scripts>
 			</Button>
 		</Frames>
 		<Scripts>
 			<OnLoad>
-				this:RegisterForDrag("LeftButton");
-				this:SetMovable(1);
-				local AL = AceLibrary("AceLocale-2.2"):new("Atlas");
-				getglobal("AtlasOptionsFrame_Title"):SetText(AL["Atlas Options"]);
+				this:RegisterForDrag("LeftButton")
+				this:SetMovable(1)
+				local AL = AceLibrary("AceLocale-2.2"):new("Atlas")
+				getglobal("AtlasOptionsFrame_Title"):SetText(AL["Atlas Options"])
 			</OnLoad>
 			<OnDragStart>
-				this:StartMoving();
-				this.isMoving = true;
+				this:StartMoving()
+				this.isMoving = true
 			</OnDragStart>
 			<OnDragStop>
-				this:StopMovingOrSizing();
-				this.isMoving = false;
+				this:StopMovingOrSizing()
+				this.isMoving = false
 			</OnDragStop>
 		</Scripts>
 	</Frame>
