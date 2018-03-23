@@ -11,7 +11,7 @@ local spellIds = {
 	[BS["Feral Charge Effect"]] = Root, -- Feral Charge Efect
 	[BS["Hibernate"]] = CC, -- Hibernate
 	[BS["Pounce"]] = CC, -- Pounce
-	[BS["Entangling Roots"]] = Root, -- Entangling Roots	
+	[BS["Entangling Roots"]] = Root, -- Entangling Roots
 	-- Hunter
 	[BS["Freezing Trap"]] = CC, -- Freezing Trap
 	[BS["Intimidation"]] = CC, -- Intimidation
@@ -76,6 +76,7 @@ local spellIds = {
 	LCPlayer.maxExpirationTime = 0
 	LCPlayer:Hide()
 	LCPlayer:SetScript("OnEvent", function()
+		if event=="UNIT_AURA" and arg1 ~= "player" then return end
 		local spellFound = false
 		for i=1, 16 do -- 16 is enough due to HARMFUL filter
 			local texture = UnitDebuff("player", i)
@@ -99,7 +100,7 @@ local spellIds = {
 						end
 						return
 					end
-				end		
+				end
 			end
 		end
 		if spellFound == false then
