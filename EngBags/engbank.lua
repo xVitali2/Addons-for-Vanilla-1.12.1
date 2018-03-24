@@ -698,7 +698,7 @@ function EngBank_SetDefaultValues(re)
         EBank_SetDefault("putinslot--HEALINGPOTION", 3, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--HEALTHSTONE", 3, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--MANAPOTION", 2, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-        EBank_SetDefault("putinslot--BANDAGE", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+        EBank_SetDefault("putinslot--BANDAGE", 3, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--REAGENT", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--JUJU", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--MISC", 14, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);

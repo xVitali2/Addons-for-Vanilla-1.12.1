@@ -173,7 +173,27 @@ EngBank_LOCALIZATION = {
 			{ "ROGUE_POWDER", "Flash Powder" },
 			{ "QUESTITEMS", "Use: Bind pages [0-9]" },	-- shredder operating manual & green hills of stranglethorn
 			{ "KEYS", " Key" },
-			{ "KEYS", "Key" }
+			{ "KEYS", "Key" },
+			{ "BOP_BOE", "Binds when"},
+			{ "EQUIPSHIRT", "Shirt"},
+			{ "EQUIPSHOULDER", "Shoulder"},
+			{ "EQUIPLEGS", "Legs"},
+			{ "EQUIPFEET", "Feet"},
+			{ "EQUIPFINGER", "Finger"},
+			{ "EQUIPWRIST", "Wrist"},
+			{ "EQUIPTABARD", "Tabard"},
+			{ "EQUIPBACK", "Back"},
+			{ "EQUIPCHEST", "Chest"},
+			{ "EQUIPHEAD", "Head"},
+			{ "EQUIPNECK", "Neck"},
+			{ "EQUIPHANDS", "Hands"},
+			{ "EQUIPWAIST", "Waist"},
+			{ "EQUIPTRINKET", "Trinket"},
+			{ "EQUIPFIRERESIST", "Fire Resist"},
+			{ "EQUIPFROSTRESIST", "Frost Resist"},
+			{ "EQUIPSHADOWRESIST", "Shadow Resist"},
+			{ "EQUIPNATURERESIST", "Nature Resist"},
+			{ "EQUIPARCANERESIST", "Arcane Resist"}
 		},
 		{ -- german
 			{ "FOOD", "Stellt im Verlauf von ([0-9.]+) Sek. ([0-9.]+) Punkt(e) Gesundheit wieder her." },
@@ -209,13 +229,33 @@ EngBank_LOCALIZATION = {
 			{ "ROGUE_POWDER", "Ослепляющий порошок" },
 			{ "ROGUE_POWDER", "Воспламеняющийся порошок" },
 			{ "QUESTITEMS", "Использование: Переплести страницы [0-9]" },	-- Руководства пользователя крошера & green hills of stranglethorn
-			{ "KEYS", "Ключ" },
-			{ "KEYS", "Отмычка" },
-			{ "KEYS", "отмычка" },
-			{ "KEYS", "ключ" }
+			{ "KEYS", "Ключ"},
+			{ "KEYS", "Отмычка"},
+			{ "KEYS", "отмычка"},
+			{ "KEYS", "ключ"},			
+			{ "BOP_BOE", "Становится персональным при"},
+			{ "EQUIPSHIRT", "Рубашка"},
+			{ "EQUIPSHOULDER", "Плечо"},
+			{ "EQUIPLEGS", "Ноги"},
+			{ "EQUIPFEET", "Ступни"},
+			{ "EQUIPFINGER", "Палец"},
+			{ "EQUIPWRIST", "Запястья"},
+			{ "EQUIPTABARD", "Гербовая накидка"},
+			{ "EQUIPBACK", "Спина"},
+			{ "EQUIPCHEST", "Грудь"},
+			{ "EQUIPHEAD", "Голова"},
+			{ "EQUIPNECK", "Шея"},
+			{ "EQUIPHANDS", "Кисти рук"},
+			{ "EQUIPWAIST", "Пояс"},
+			{ "EQUIPTRINKET", "Аксессуар"},
+			{ "EQUIPFIRERESIST", "сопротивлению (огонь)"},
+			{ "EQUIPFROSTRESIST", "сопротивлению (лед)"},
+			{ "EQUIPSHADOWRESIST", "сопротивлению (тьма)"},
+			{ "EQUIPNATURERESIST", "сопротивлению (природа)"},
+			{ "EQUIPARCANERESIST", "сопротивлению (тайная магия)"}
+			
 		}
 		},	-- end of string searches
-
 
 	-- values from GetItemInfo()  (itemType)
 	["tradegoods"] = {
@@ -430,13 +470,13 @@ ENGINVENTORY_HELP = {
 	["RU"] = {
 		"EngBank Комманды:",
 		" /eb show",
-		" /eb hide  -- hide window",
-		" /eb scale #.##  -- set the window scale.  use a number between 0.64 and 1.00",
+		" /eb hide  -- Скрыть окно",
+		" /eb scale #.##  -- установить масштаб окна. используй числа в диапазоне 0.64 и 1.00",
 		" /eb update",
-		" /eb debug  -- turn debug info on/off",
-		" /eb display  -- display item cache",
-		" /eb checkhooks  -- see if everything is registered properly",
-		" /eb resetdefaults  -- sets everything back to default values"
+		" /eb debug  -- Включить или выключить debug режим",
+		" /eb display  -- показывать сохраненные предметы",
+		" /eb checkhooks  -- проверить всё ли зарегистрировано правильно",
+		" /eb resetdefaults  -- сбросить настройки"
 		}
 	};
 
@@ -473,7 +513,6 @@ ENGINVENTORY_LOCALIZATION = {
 		"Soulbound",
 		"Персональный предмет"
 		},
-
 	["Warlock"] = {
 		"Warlock",
 		"Warlock",
@@ -500,7 +539,7 @@ ENGINVENTORY_LOCALIZATION = {
 		},
 	["Warrior"] = {
 		"Warrior",
-		"Warrior",		
+		"Warrior",
 		"Warrior",
 		"Воин"
 		},
@@ -540,7 +579,6 @@ ENGINVENTORY_LOCALIZATION = {
 		"First Aid",
 		"Первая помощь"
 		},
-
 	["string_searches"] = {
 		{ -- english
 			{ "FOOD", "Restores ([0-9.]+) health over ([0-9.]+) sec" },
@@ -565,7 +603,27 @@ ENGINVENTORY_LOCALIZATION = {
 			{ "ROGUE_POWDER", "Flash Powder" },
 			{ "QUESTITEMS", "Use: Bind pages [0-9]" },	-- shredder operating manual & green hills of stranglethorn
 			{ "KEYS", " Key" },
-			{ "KEYS", "Key" }
+			{ "KEYS", "Key" },
+			{ "BOP_BOE", "Binds when"},
+			{ "EQUIPSHIRT", "Shirt"},
+			{ "EQUIPSHOULDER", "Shoulder"},
+			{ "EQUIPLEGS", "Legs"},
+			{ "EQUIPFEET", "Feet"},
+			{ "EQUIPFINGER", "Finger"},
+			{ "EQUIPWRIST", "Wrist"},
+			{ "EQUIPTABARD", "Tabard"},
+			{ "EQUIPBACK", "Back"},
+			{ "EQUIPCHEST", "Chest"},
+			{ "EQUIPHEAD", "Head"},
+			{ "EQUIPNECK", "Neck"},
+			{ "EQUIPHANDS", "Hands"},
+			{ "EQUIPWAIST", "Waist"},
+			{ "EQUIPTRINKET", "Trinket"},
+			{ "EQUIPFIRERESIST", "Fire Resist"},
+			{ "EQUIPFROSTRESIST", "Frost Resist"},
+			{ "EQUIPSHADOWRESIST", "Shadow Resist"},
+			{ "EQUIPNATURERESIST", "Nature Resist"},
+			{ "EQUIPARCANERESIST", "Arcane Resist"}
 		},
 		{ -- german
 			{ "FOOD", "Stellt im Verlauf von ([0-9.]+) Sek. ([0-9.]+) Punkt(e) Gesundheit wieder her." },
@@ -600,12 +658,32 @@ ENGINVENTORY_LOCALIZATION = {
 			{ "ROGUE_POISON", "Нейтрализующий яд [IV]*" },
 			{ "ROGUE_POWDER", "Ослепляющий порошок" },
 			{ "ROGUE_POWDER", "Воспламеняющийся порошок" },
-			{ "QUESTITEMS", "Использование: Переплести страницы [0-9]" },	-- shredder operating manual & green hills of stranglethorn
-			{ "KEYS", "Ключ" },
-			{ "KEYS", "Отмычка" },
-			{ "KEYS", "отмычка" },
-			{ "KEYS", "ключ" }
-		},
+			{ "QUESTITEMS", "Использование: Переплести страницы [0-9]" },	-- Руководства пользователя крошера & green hills of stranglethorn
+			{ "KEYS", "Ключ"},
+			{ "KEYS", "Отмычка"},
+			{ "KEYS", "отмычка"},
+			{ "KEYS", "ключ"},
+			{ "BOP_BOE", "Становится персональным при"},
+			{ "EQUIPSHIRT", "Рубашка"},
+			{ "EQUIPSHOULDER", "Плечо"},
+			{ "EQUIPLEGS", "Ноги"},
+			{ "EQUIPFEET", "Ступни"},
+			{ "EQUIPFINGER", "Палец"},
+			{ "EQUIPWRIST", "Запястья"},
+			{ "EQUIPTABARD", "Гербовая накидка"},
+			{ "EQUIPBACK", "Спина"},
+			{ "EQUIPCHEST", "Грудь"},
+			{ "EQUIPHEAD", "Голова"},
+			{ "EQUIPNECK", "Шея"},
+			{ "EQUIPHANDS", "Кисти рук"},
+			{ "EQUIPWAIST", "Пояс"},
+			{ "EQUIPTRINKET", "Аксессуар"},
+			{ "EQUIPFIRERESIST", "сопротивлению (огонь)"},
+			{ "EQUIPFROSTRESIST", "сопротивлению (лед)"},
+			{ "EQUIPSHADOWRESIST", "сопротивлению (тьма)"},
+			{ "EQUIPNATURERESIST", "сопротивлению (природа)"},
+			{ "EQUIPARCANERESIST", "сопротивлению (тайная магия)"}
+		}
 		},	-- end of string searches
 	-- values from GetItemInfo()  (itemType)
 	["tradegoods"] = {
@@ -638,7 +716,6 @@ ENGINVENTORY_LOCALIZATION = {
 		"consumable",
 		"Расходуемые"
 		},
-
 	-- window elements
 	["EngInventory_Button_HighlightToggle_on"] = {
 		"Hilight New: ON",
@@ -712,7 +789,6 @@ ENGINVENTORY_LOCALIZATION = {
 		"Edit Mode:\n  Select this option to move classes of items into different 'bars' (the red numbers).\n\n",
 		"Режим редактирования:\n  Выбрать эту опцию для перемещения классов предметов в разные бары (красные цифры).\n\n"
 		},
-
 	["EngInventory_Button_ColumnsAdd_buttontitle"] = {
 		"<<-- -->>",
 		"<<-- -->>",
@@ -731,7 +807,6 @@ ENGINVENTORY_LOCALIZATION = {
 		"Increase the number of columns displayed",
 		"Увеличить число отображаемых столбцов"
 		},
-
 	["EngInventory_Button_ColumnsDel_buttontitle"] = {
 		"-->> <<--",
 		"-->> <<--",
@@ -750,7 +825,6 @@ ENGINVENTORY_LOCALIZATION = {
 		"Decrease the number of columns displayed",
 		"Уменьшить число отображаемых столбцов"
 		},
-
 	["help_text"] = {
 		"EN",
 		"DE",
