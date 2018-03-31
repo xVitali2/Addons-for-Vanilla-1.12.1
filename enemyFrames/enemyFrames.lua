@@ -72,7 +72,7 @@ local 	enemyFrame = CreateFrame('Frame', 'enemyFrameDisplay', UIParent)
 		
 		enemyFrame.top = CreateFrame('Frame', nil, enemyFrame)
 		enemyFrame.top:SetFrameLevel(0)
-		enemyFrame.top:ClearAllPoints()		
+		enemyFrame.top:ClearAllPoints()
 		enemyFrame.top:SetHeight(enemyFrame:GetHeight())
 		enemyFrame.top:SetBackdrop(BACKDROP)
 		enemyFrame.top:SetBackdropColor(0, 0, 0, .6)

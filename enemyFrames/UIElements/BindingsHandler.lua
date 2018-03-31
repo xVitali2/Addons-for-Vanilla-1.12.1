@@ -16,7 +16,7 @@
 	
 	
 	function getKTbind()
-		if enabled then
+		if enabled and ENEMYFRAMECOREGetRaidTargetbyIcon('skull') then
 			TargetByName(ENEMYFRAMECOREGetRaidTargetbyIcon('skull'), true)
 		end
 	end

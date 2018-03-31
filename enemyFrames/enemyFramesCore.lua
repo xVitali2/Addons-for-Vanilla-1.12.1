@@ -364,9 +364,9 @@ local function enemyFramesCoreOnUpdate()
 		
 		
 		-- hide if no enemies while outdoors
-		if not _G['enemyFramesSettings']:IsShown() then		
+		if not _G['enemyFramesSettings']:IsShown() then
 			if not insideBG then
-				if tlength(playerList) == 0 then				
+				if tlength(playerList) == 0 then
 					_G['enemyFrameDisplay']:Hide()
 				else
 					_G['enemyFrameDisplay']:Show()
