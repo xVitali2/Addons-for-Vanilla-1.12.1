@@ -28,6 +28,8 @@
 
 <img src="https://user-images.githubusercontent.com/15636669/38377294-4653b83c-3903-11e8-9dc0-f67b99474c20.jpg" alt="bgassist"/>
 
+<img src="https://user-images.githubusercontent.com/15636669/38380047-3b7b7b9a-390b-11e8-8d95-c12cacd43a5b.jpg" alt="bgassist_2"/>
+
 **BigWigs LH**
 Боссмод с таймерами(аналог DBM). Переведен на русский.
 
