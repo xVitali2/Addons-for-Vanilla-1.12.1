@@ -4,6 +4,7 @@
 	000000:000:000:000-SB
 --]]
 EngBags_DefaultItemOverrides = {
+	["16309:0:0:0"] = "KEYS",			-- Drakefire Amulet
 	["6948:0:0:0-SB"] = "HEARTH",		-- hearthstone
 	["6265:0:0:0-SB"] = "SOULSHARDS",	-- soulshards
 	["7005:0:0:0"] = "TRADETOOLS",		-- skinning knife
