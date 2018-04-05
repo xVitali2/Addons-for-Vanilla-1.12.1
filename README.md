@@ -157,11 +157,6 @@ https://github.com/shagu/pfUI
 <img src="https://user-images.githubusercontent.com/15636669/34522290-f2015544-f0a2-11e7-8584-d51689d2900f.png" alt="pfui-elite"/>
 https://github.com/shagu/pfUI-eliteoverlay
 
-**Prat**
-Изменение окна чата.
-
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586628/2b2dbdba-d0e4-11e6-9ec0-5f5982cba853.jpg" alt="prat"/>
-
 **QuestieRU**
 Лучший аддон для заданий, показывает место выполнения заданий, а также места еще не взятых квестов. Ctrl+Shift+LClick для перемещения трекера заданий.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586632/34857402-d0e4-11e6-8526-e9a14772fdd6.jpg" alt="questie"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586634/3485c4d4-d0e4-11e6-8e0a-82bd25c95a56.jpg" alt="questie_2"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586633/3485a9f4-d0e4-11e6-9d8e-95046c805f28.jpg" alt="questie_3"/>
@@ -190,19 +185,6 @@ https://github.com/shagu/pfUI-eliteoverlay
 **SpamThrottle**
 Спам фильтр: голдселлеры и тд. уже не помешают
 <img src="https://cloud.githubusercontent.com/assets/15636669/21587182/643c98c8-d0ea-11e6-9816-4fd333cc1cc6.jpg" alt="spamthrottle"/>
-
-**TheoryCraft**
-Показывает силу каждого заклинания в зависимости от бонусов предметов.
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586675/812fde0a-d0e4-11e6-9016-7c2ba01901b3.jpg" alt="theorycraft"/>
-
-**unitscan**
-Поиск существ, игроков и нпс по имени. Например /unitscan ИМЯ МОБА
-<img src="https://user-images.githubusercontent.com/15636669/34522405-7d7ea5c2-f0a3-11e7-8cbe-d012fe59e501.jpg" alt="unitscan"/>
-https://github.com/shirsig/unitscan
-
-**VanillaGuide** (нет русского языка)
-Путеводитель для прокачки персонажа и профессий.
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586676/8484efbe-d0e4-11e6-98de-9b0a7cee6722.jpg" alt="vanillaguide_1"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586677/849c7a94-d0e4-11e6-8817-fff8af1e1527.jpg" alt="vanillaguide_2"/>
 
 **vQueue**
 Поиск товарищей в подземелье или рейд(берет из чата).
