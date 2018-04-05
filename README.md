@@ -2,6 +2,10 @@
 ДОНАТ/DONATE: 14vBXfA2Xfsy2Xgkh9Gx7hVAkXFynogscW биткоин кошелёк, спасибо за поддержку!!!/bitcoin wallet thanks for the support!!!
 #<a href="https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases/latest">Скачать</a>
 
+**AdvancedTradeSkillWindow**
+Улучшенное окно профессий.
+<img src="https://user-images.githubusercontent.com/15636669/34521629-c7c21352-f09f-11e7-8aa3-9cc22477bcd7.jpg" alt="atsw"/>
+
 **Atlas**
 Все для подземелий: показывает карту подземелий, задания для них, дроп с боссов и профит с профессий.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586274/2d7f9d58-d0e0-11e6-8730-b65671e5abb3.jpg" alt="atlas ai"/>
@@ -70,10 +74,6 @@
 Сортировка предметов в сумках и в банке, удаленный банк.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586323/a40d5500-d0e0-11e6-83fb-6e59fc3ced91.jpg" alt="engbags"/><img src="https://cloud.githubusercontent.com/assets/15636669/21586324/a40d9006-d0e0-11e6-81df-311d9bec4463.jpg" alt="engbags_2"/>
 
-**EnhancedTradeSkills**
-Включает информацию с содержащимся в банке при крафте.
-<img src="https://cloud.githubusercontent.com/assets/15636669/21586373/8d486ce6-d0e1-11e6-86af-0eccbb4e1af5.jpg" alt="enhancedtradeskills"/>
-
 **Eql3**
 Расширенное окно заданий и база комментариев с wowhead в вов.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586375/9a896c2a-d0e1-11e6-96ca-8a87531fd11b.jpg" alt="eql3"/>
@@ -141,10 +141,6 @@ https://github.com/shirsig/Mail
 Расчитывает и отображает количество здоровья цели после нанесения урона, запоминает с каких существ выпали те или иные предметы и тд.
 
 <img src="https://user-images.githubusercontent.com/15636669/34522183-84e8cd3e-f0a2-11e7-8eeb-9173546bd2a0.jpg" alt="mobinfo2"/>
-
-**NotGrid**
-Фреймы группы и рейда в минималистичном стиле.
-<img src="https://cloud.githubusercontent.com/assets/15636669/22841825/13d827c6-efe4-11e6-9cc1-55b64de14e74.png" alt="notgrid"/>
 
 **oRA2**
 Проверка готовности рейда и контроль рейда.
