@@ -19,6 +19,11 @@
 
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586280/47bc0bfc-d0e0-11e6-8f71-d0f7ad64badf.jpg" alt="better_raidmarker"/>
 
+**BGAssist**
+Помощник на бг. Переведен на русский.
+
+<img src="https://user-images.githubusercontent.com/15636669/38377294-4653b83c-3903-11e8-9dc0-f67b99474c20.jpg" alt="bgassist"/>
+
 **BigWigs LH**
 Боссмод с таймерами(аналог DBM). Переведен на русский.
 
@@ -89,6 +94,11 @@
 **Gatherer**
 Запоминает расположение месторождений руды, травы, сундуков на карте.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586400/dc061a68-d0e1-11e6-9f16-0fd8da155904.jpg" alt="gatherer"/>
+
+**HonorSpy**
+Сбор информации о количестве очков чести игроков, и расчет на основании этих данных вашего ранга.
+
+<img src="https://user-images.githubusercontent.com/15636669/38377646-1f55de8a-3904-11e8-9bdb-7dded0b726ce.jpg" alt="honorspy"/>
 
 **Informant**
 Цена предметов (своя база - не нужно подходить к продавцу), к какому классу относится предмет и т.д. в окне подсказки.
@@ -171,12 +181,6 @@ https://github.com/shagu/pfUI-eliteoverlay
 Выбирает максимально возможный уровень вашего хил заклинания в зависимости от количества вашей маны и здоровья цели.
 
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586648/49c61b8c-d0e4-11e6-804f-daddc084be2e.jpg" alt="smartheal"/>
-
-**ShaguCopy**
-Дает возможность копировать текст с чатов.
-<img src="https://user-images.githubusercontent.com/15636669/34522333-2dfd044e-f0a3-11e7-9ce4-185b5bd1cf17.jpg" alt="shagucopy"/>
-
-https://github.com/shagu/ShaguCopy
 
 **SpecialTalent**
 Расширенное окно талантов.
