@@ -1,0 +1,6 @@
+## Interface: 11200
+## Title: BGAssistRU
+## Notes: Расширение для полей боя.
+## Author: Marc, CFM
+## SavedVariables: BGAssistRU_Config
+BGAssistRU.xml
