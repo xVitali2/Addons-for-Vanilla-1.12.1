@@ -33,7 +33,7 @@ EngInventory_WindowBottomPadding = ENGINVENTORY_WINDOWBOTTOMPADDING_NORMALMODE;
         EI_bagslots:Hide()
      end
     local min, max = 0, 3
-    EI_bagslots:SetPoint("TOPLEFT", EngInventory_MoneyFrame, 100, -8)
+    EI_bagslots:SetPoint("BOTTOMLEFT", EngInventory_frame, -button_size/5*4, 0)
     local width = (button_size/5*4 + b*2) * (max-min+1)
     local height = b + (button_size/5*4 + b)
     EI_bagslots:SetWidth(width)
