@@ -4,43 +4,44 @@
 ---------------------------------------------------------------------------------------------------
 function Questie.CreateMinimapButton()
 Questie.minimapButton = CreateFrame('Button', 'QuestieMinimap', Minimap)
-if (QuestieMinimapPosition == nil) then
-    QuestieMinimapPosition = -90
+if (QuestieMinimapPosition == nil) or type(QuestieMinimapPosition) == "number" then
+	QuestieMinimapPosition = {}
+	QuestieMinimapPosition.x, QuestieMinimapPosition.y = {-180,0}
 end
 
 Questie.minimapButton:SetMovable(true)
 Questie.minimapButton:EnableMouse(true)
-    Questie.minimapButton:SetFrameStrata('LOW')
-Questie.minimapButton:SetWidth(31)
-Questie.minimapButton:SetHeight(31)
+Questie.minimapButton:SetFrameStrata('LOW')
+Questie.minimapButton:SetWidth(30)
+Questie.minimapButton:SetHeight(30)
 Questie.minimapButton:SetFrameLevel(9)
 Questie.minimapButton:SetHighlightTexture('Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight')
-if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square") or (pfUI and pfUI.minimap)) then---------by CFM
-	Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52-math.max(-82,math.min((110*cos(QuestieMinimapPosition)),84)),math.max(-86,math.min((110*sin(QuestieMinimapPosition)),82))-52)
-else---------by CFM
-	Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52-(80*cos(QuestieMinimapPosition)),(80*sin(QuestieMinimapPosition))-52)
-end---------by CFM
-Questie.minimapButton:RegisterForDrag("LeftButton")
+Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT",QuestieMinimapPosition.x,QuestieMinimapPosition.y)
+Questie.minimapButton:RegisterForDrag("RightButton")
 Questie.minimapButton.draggingFrame = CreateFrame("Frame", "QuestieMinimapDragging", Questie.minimapButton)
 Questie.minimapButton.draggingFrame:Hide();
 Questie.minimapButton.draggingFrame:SetScript("OnUpdate", function()
-    local xpos,ypos = GetCursorPosition()
-    local xmin,ymin = Minimap:GetLeft() or 400, Minimap:GetBottom() or 400---------by CFM
-	xpos = xmin-xpos/UIParent:GetScale()+70
-	ypos = ypos/UIParent:GetScale()-ymin-70
-	QuestieMinimapPosition = math.deg(math.atan2(ypos,xpos))
-	local pos = QuestieMinimapPosition---------by CFM
-	if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")---------by CFM
+---------by CFM
+	local xpos,ypos = GetCursorPosition()
+	local xmin,ymin,xm,ym = Minimap:GetLeft(), Minimap:GetBottom(), Minimap:GetRight(), Minimap:GetTop()
+	local scale = Minimap:GetEffectiveScale()
+	local xdelta, ydelta = (xm - xmin + 5)/2*scale, (ym - ymin + 5) /2 * scale
+	xpos = xmin*scale-xpos+xdelta
+	ypos = ypos-ymin*scale-ydelta
+	local angle = math.deg(math.atan2(ypos,xpos))
+	local x,y =0,0
+	if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")
 		or (pfUI and pfUI.minimap)) then
-		xpos = 110 * cos(pos or 0)
-		ypos = 110 * sin(pos or 0)
-		xpos = math.max(-82,math.min(xpos,84))
-		ypos = math.max(-86,math.min(ypos,82))
-	else---------by CFM
-		xpos = 80*cos(pos or 0)
-		ypos = 80*sin(pos or 0)
-	end---------by CFM
-	Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 52-xpos,ypos-52)---------by CFM
+		x = math.max(-xdelta-10, math.min((xdelta*1.5) * cos(angle), xdelta+10))
+		y = math.max(-ydelta-10, math.min((ydelta*1.5) * sin(angle), ydelta+10))
+	else
+		x= cos(angle)*xdelta
+		y= sin(angle)*ydelta
+	end
+	local sc= this:GetEffectiveScale()
+	QuestieMinimapPosition.x = (xdelta-x)/sc-17
+	QuestieMinimapPosition.y = (y-ydelta)/sc+17
+	Questie.minimapButton:SetPoint("TOPLEFT", Minimap, "TOPLEFT", QuestieMinimapPosition.x,QuestieMinimapPosition.y)---------by CFM
 end)
 Questie.minimapButton:SetScript("OnDragStart", function()
     this:LockHighlight();
@@ -77,8 +78,8 @@ Questie.minimapButton:SetScript("OnLeave", function()
 end)
 
 Questie.minimapButton.overlay = Questie.minimapButton:CreateTexture(nil, 'OVERLAY')
-Questie.minimapButton.overlay:SetWidth(53)
-Questie.minimapButton.overlay:SetHeight(53)
+Questie.minimapButton.overlay:SetWidth(50)
+Questie.minimapButton.overlay:SetHeight(50)
 Questie.minimapButton.overlay:SetTexture('Interface\\Minimap\\MiniMap-TrackingBorder')
 Questie.minimapButton.overlay:SetPoint('TOPLEFT', 0,0)
 Questie.minimapButton.icon = Questie.minimapButton:CreateTexture(nil, 'BACKGROUND')
