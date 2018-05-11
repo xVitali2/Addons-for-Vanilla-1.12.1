@@ -1440,7 +1440,7 @@ function vQueue_OnEvent(event)
 		
 		DEFAULT_CHAT_FRAME:AddMessage(L["Loaded "] .. arg1)
 		vQueueminimapButton = CreateFrame("Button", "vQueueMap", Minimap)
-		vQueueminimapButton:SetFrameStrata("HIGH")
+		vQueueminimapButton:SetFrameStrata('LOW')
 		vQueueminimapButton:SetWidth(32)
 		vQueueminimapButton:SetHeight(32)
 		vQueueminimapButton:ClearAllPoints()
@@ -1505,7 +1505,7 @@ function vQueue_OnEvent(event)
 				xpos = xmin*scale-xpos+xdelta;
 				ypos = ypos-ymin*scale-ydelta;
 				local angle = math.deg(math.atan2(ypos,xpos));
-				local	x,y =0,0;
+				local x,y =0,0;
 				if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")
 							or (pfUI and pfUI.minimap)) then
 					x = math.max(-xdelta-10, math.min((xdelta*1.5) * cos(angle), xdelta+10))
@@ -2213,7 +2213,7 @@ function vQueue_addToGroup(category, groupinfo)
 	local args = split(groupinfo, "\:")
 	for k, v in pairs(groups) do
 		for kk, vv in pairs(groups[k]) do
-			if kk == args[2] and vv ~= nil and k ~= category and k ~= "waitlist" then
+			if args[2] and category and kk == args[2] and vv ~= nil and k ~= category and k ~= "waitlist" then
 				groups[category][args[2]] = groups[k][kk]
 				groups[k][kk]:Hide()
 				groups[k][kk] = nil
