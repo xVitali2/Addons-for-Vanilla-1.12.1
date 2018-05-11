@@ -482,7 +482,7 @@ function Questie:GetTooltipLines(path, indent, highlightInfo, lines)
         elseif sourceType == "rewardedby" then
             prefix = "Награда с";       ---------by CFM
         elseif sourceType == "contained" then
-            prefix = "Находится в";      ---------by CFM
+            prefix = "Находится";      ---------by CFM
         elseif sourceType == "contained_id" then
             prefix = "Находится в";       ---------by CFM
         elseif sourceType == "containedi" then

@@ -4421,7 +4421,7 @@ QuestieLevLookup = {
   ["Убейте 8 чернокнижников из клана Гордунни, 8 шаманов из клана Гордунни и 8 громил из клана Гордунни по просьбе Ангелас Лунный Бриз."]={77,307010717},
  },
  ["Женщинам – цветы, детям – ..."]={
-  ["Купите своему подопечному клубничное мороженое. Кажется, мальчик предпочитает мороженое Тигуле и Форора."]={255,1877285495},
+  ["Купите своему подопечному клубничное мороженое. Кажется, мальчик предпочитает мороженое Тигуле и Форора."]={178,1877285495},
   ["Купите своему подопечному клубничное мороженое. Кажется, мальчик предпочитает мороженое Тигуля и Форора."]={77,2029232277},
  },
  ["Королевские почести"]={
@@ -25423,7 +25423,8 @@ QuestieHashMap = {
   ['finishedBy']="Орк-сирота",
   ['level']=10,
   ['questLevel']='60',
-  ['rr']=178
+  ['rr']=178,
+  ['rq']=383048626
  },
  [1199484021]={
   ['name']="Дворфские экипировщики",
@@ -33460,7 +33461,8 @@ QuestieHashMap = {
   ['finishedBy']="Орк-сирота",
   ['level']=60,
   ['questLevel']='60',
-  ['rr']=178
+  ['rr']=178,
+  ['rq']=1877285495
  },
  [1461077520]={
   ['name']="Возвращение блудного лича",
@@ -40223,7 +40225,7 @@ QuestieHashMap = {
   ['finishedBy']="Орк-сирота",
   ['level']=10,
   ['questLevel']='60',
-  ['rr']=255,
+  ['rr']=178,
   ['rq']=2032710178
  },
  [1157296488]={
@@ -45417,7 +45419,7 @@ QuestieHashMap = {
   ['level']=60,
   ['questLevel']='60',
   ['rr']=178,
-  ['rq']=379244690
+  ['rq']=383048626
  },
  [2056504269]={
   ['name']="Рутинное задание",
@@ -55318,11 +55320,13 @@ function GetEntityLocations(entity)
         end
         if sourceType == "contained" then
             for sourceName, b in pairs(sources) do
-                local locationMeta, ids = GetObjectLocations(sourceName)
-                if next(locationMeta) then
-                    if locations[sourceType] == nil then locations[sourceType] = {} end
-                    locations[sourceType][sourceName] = locationMeta
-                    for c, zs in pairs(ids) do if mapIds[c] == nil then mapIds[c] = {} end for z, b in pairs(zs) do mapIds[c][z] = true end end
+                if (not entity['locations_rr']) or (not entity['locations_rr'][sourceName]) or checkRequirements(class, race, nil, entity['locations_rr'][sourceName]) then
+                  local locationMeta, ids = GetObjectLocations(sourceName)
+                  if next(locationMeta) then
+                      if locations[sourceType] == nil then locations[sourceType] = {} end
+                      locations[sourceType][sourceName] = locationMeta
+                      for c, zs in pairs(ids) do if mapIds[c] == nil then mapIds[c] = {} end for z, b in pairs(zs) do mapIds[c][z] = true end end
+                  end
                 end
             end
         end
