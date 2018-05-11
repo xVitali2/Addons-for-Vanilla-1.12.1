@@ -5,6 +5,71 @@ local Silence = "Silence"
 local Root    = "Root"
 local Snare   = "Snare"
 
+--[[
+	SaySapped: Says "Sapped!" when you get sapped allowing you to notify nearby players about it.
+	Also works for many other CCs.
+	Author: Coax  - Nostalrius PvP
+	Translate and rework by: CFM - LH
+	Original idea: Bitbyte of Icecrown
+--]]
+
+-- Slash Command
+SLASH_LOSECONTROL1 = '/saysapped'
+SLASH_LOSECONTROL2 = '/ssap'
+function SlashCmdList.LOSECONTROL(msg, editbox)
+  	if SaySappedConfig then
+		SaySappedConfig = false
+		DEFAULT_CHAT_FRAME:AddMessage(SS_DISABLED)
+	else
+		SaySappedConfig = true
+		DEFAULT_CHAT_FRAME:AddMessage(SS_ENABLED)
+	end
+end
+
+-- Translated by CFM
+if GetLocale()=="ruRU" then
+	SS_Sapped='Sapped!'
+	SS_SpellSap='"Ошеломление".'
+	SS_Loaded='|cffffff55LoseControl загружен /ssap. Мод от CFM.'
+	SS_SELFHARMFULL='Вы находитесь'
+	SS_DISABLED='|cffffff55SaySapped выключен!'
+	SS_ENABLED='|cffffff55SaySapped включен!'
+else
+	SS_Sapped='Sapped!'
+	SS_SpellSap=' Sap.'
+	SS_Loaded='|cffffff55LoseControl loaded /ssap. Mod by CFM.'
+	SS_SELFHARMFULL='You are'
+	SS_DISABLED='|cffffff55SaySapped disabled!'
+	SS_ENABLED='|cffffff55SaySapped enabled!'
+end
+
+local SaySapped = CreateFrame("Frame",nil,UIParent)
+SaySapped:RegisterEvent("ADDON_LOADED")
+
+SaySapped:SetScript("OnEvent", function()
+	if arg1 == "LoseControl" then
+		DEFAULT_CHAT_FRAME:AddMessage(SS_Loaded)
+		if not SaySappedConfig then
+			SaySappedConfig = true;
+		end
+		SaySapped.checkbuff = CreateFrame("Frame")
+		SaySapped.checkbuff:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE")
+		SaySapped.checkbuff:SetScript("OnEvent", function()
+			if string.find(arg1, SS_SELFHARMFULL) then
+				SaySapped_FilterDebuffs(arg1)
+			end
+		end)
+	end
+end)
+
+-- Check if sapped
+function SaySapped_FilterDebuffs(spell)
+	if string.find(spell, SS_SpellSap) and SaySappedConfig then
+		SendChatMessage(SS_Sapped,"SAY")
+		DEFAULT_CHAT_FRAME:AddMessage(SS_Sapped)
+	end
+end
+
 local spellIds = {
 	-- Druid
 	[BS["Bash"]] = CC, -- Bash
@@ -23,7 +88,7 @@ local spellIds = {
 	[BS["Polymorph"]] = CC, -- Polymorph
 	[BS["Frostbite"]] = Root, -- Frostbite
 	[BS["Freeze"]] = Root, -- Freeze
-	[BS["Cone of Cold"]] = Snare, -- Cone of Cold	
+	[BS["Cone of Cold"]] = Snare, -- Cone of Cold
 	[BS["Counterspell - Silenced"]] = Silence, -- Counterspell - Silenced
 	-- Paladin
 	[BS["Hammer of Justice"]] = CC, -- Hammer of Justice
@@ -32,6 +97,7 @@ local spellIds = {
 	[BS["Mind Control"]] = CC, -- Mind Control
 	[BS["Psychic Scream"]] = CC, -- Psychic Scream
 	[BS["Silence"]] = Silence, -- Silence
+	[BS["Blackout"]] = CC, -- Затмение
 	-- Rogue
 	[BS["Blind"]] = CC, -- Blind
 	[BS["Cheap Shot"]] = CC, -- Cheap Shot
@@ -48,10 +114,11 @@ local spellIds = {
 	[BS["Intercept Stun"]] = CC, -- Intercept Stun
 	[BS["Intimidating Shout"]] = CC, -- Intimidating Shout
 	[BS["Piercing Howl"]] = Snare, -- Piercing Howl
-	
+	[BS["Mortal Strike"]] = Snare, -- Mortal Strike CFM
+	--CFM
 	-- other
 	[BS["War Stomp"]] = CC, -- War Stomp
-	--CFM
+	--[BS["Mace Stun Effect"]] = СС, -- Mace Specialization CFM
 	[BS["Ice Blast"]] = CC, -- Ice Yeti
 	[BS["Snap Kick"]] = CC, -- Ashenvale Outrunner
 	[BS["Lash"]] = CC, -- Lashtail Raptor
@@ -61,6 +128,9 @@ local spellIds = {
 	[BS["Terrifying Screech"]] = CC, -- Pterrordax
 	[BS["Flash Freeze"]] = CC, -- Freezing Ghoul
 	[BS["Knockdown"]] = CC, -- Zaeldarr the Outcast etc
+	[BS["Net"]] = Root,-- Witherbark Headhunter etc
+	[BS["Flash Bomb"]] = CC,-- AV 	Световая бомба
+	[BS["Reckless Charge"]] = CC, -- инженерка Безрассудная атака
 }
 
 	LCPlayer = CreateFrame("Frame", "LoseControlPlayer", ActionButtonTemplate)
