@@ -1478,7 +1478,7 @@ function DoTimer_ButtonClicked(index,indexid) --the script for when an icon is c
 				end
 				CastSpellByName(spell.."("..rank..")") 
 			else 
-				TargetByName(casted[index].target) 
+				TargetByName(casted[index].target)
 			end
 		else
 			if not (casted[index].target == UnitName("target") and casted[index].level == UnitLevel("target") and casted[index].sex == UnitSex("target")) then TargetByName(casted[index].target) end
