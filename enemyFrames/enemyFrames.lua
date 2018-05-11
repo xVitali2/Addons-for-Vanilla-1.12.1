@@ -239,9 +239,9 @@ local leftSpacing = 5
 -- draw player units
 for i = 1, unitLimit,1 do
 	units[i] = CreateEnemyUnitFrame('enemyFrameUnit'..i, enemyFrame)
-	units[i].index = i	
+	units[i].index = i
 		
-	units[i]:SetScript('OnClick', function()	if arg1 == 'LeftButton' and this.tar ~= nil  then  	TargetByName(this.tar, true)			end
+	units[i]:SetScript('OnClick', function()	if arg1 == 'LeftButton' and this.tar ~= nil  then  	TargetByName(this.tar, true) end
 		if arg1 == 'RightButton' then	
 			spawnRTMenu(this, this.tar)	end
 	end)
@@ -576,15 +576,14 @@ local function drawUnits(list)
 	i = i == 1 and 1 or i -1
 	enemyFrame.totalPlayers:SetText(nearU .. ' / ' .. i)
 	
-	if not insideBG or ENEMYFRAMESPLAYERDATA['displayOnlyNearby'] then		
+	if not insideBG or ENEMYFRAMESPLAYERDATA['displayOnlyNearby'] then
 		local unitPointBottom = ENEMYFRAMESPLAYERDATA['layout'] == 'vertical' and i or i > ENEMYFRAMESPLAYERDATA['groupsize'] and ENEMYFRAMESPLAYERDATA['groupsize'] or i
 		
 		if ENEMYFRAMESPLAYERDATA['layout'] == 'hblock' or ENEMYFRAMESPLAYERDATA['layout'] == 'vblock' then
 			local a = math.floor(i/ENEMYFRAMESPLAYERDATA['groupsize'])
 			unitPointBottom = a  == 0 and 1 or (a * ENEMYFRAMESPLAYERDATA['groupsize']) +1
 		end
-		
-		enemyFrame.bottom:SetPoint('TOPLEFT', units[unitPointBottom].castbar.icon, 'BOTTOMLEFT', 1, -6)
+		if unitPointBottom and units[unitPointBottom].castbar.icon then enemyFrame.bottom:SetPoint('TOPLEFT', units[unitPointBottom].castbar.icon, 'BOTTOMLEFT', 1, -6) end
 		
 		--/Script print(math.floor(4/5))
 	end
@@ -610,7 +609,7 @@ local function updateUnits()
 			units[i].border:SetColor(enemyFactionColor['r'], enemyFactionColor['g'], enemyFactionColor['b'])
 			
 			units[i].hpbar:SetBackdropColor(enemyFactionColor['r'] - .6, enemyFactionColor['g'] - .6, enemyFactionColor['b'] - .6, .6)
-			units[i].manabar:SetBackdropColor(enemyFactionColor['r'] - .6, enemyFactionColor['g'] - .6, enemyFactionColor['b'] - .6, .6)			
+			units[i].manabar:SetBackdropColor(enemyFactionColor['r'] - .6, enemyFactionColor['g'] - .6, enemyFactionColor['b'] - .6, .6)
 		else
 			units[i].border:SetColor(.1, .1, .1)
 			

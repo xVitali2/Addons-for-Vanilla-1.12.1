@@ -134,8 +134,11 @@
 		if currentTarget and currentTarget ~= c then
 			local b = checkCasterTarget(c)
 			
-			if currentTarget == nil then	ClearTarget()	
-			else	TargetByName(currentTarget, true)	end
+			if currentTarget == nil then
+				ClearTarget()
+			else
+				TargetByName(currentTarget, true)
+			end
 			
 			if b then
 				removeDoubleEntry(c)
