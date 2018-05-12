@@ -499,17 +499,17 @@ local function drawUnits(list)
 		local powerColor = RGB_POWER_COLORS[v['powerType']]
 		
 		-- hightlight nearby unit
-		if v['nearby'] then		
+		if v['nearby'] then
 			units[i].hpbar:SetStatusBarColor(colour.r, colour.g, colour.b)
 			if not units[i].mo then
-				units[i].name:SetTextColor(colour.r, colour.g, colour.b)	
+				units[i].name:SetTextColor(colour.r, colour.g, colour.b)
 			end			
-			units[i].manabar:SetStatusBarColor(powerColor[1], powerColor[2], powerColor[3])			
+			units[i].manabar:SetStatusBarColor(powerColor[1], powerColor[2], powerColor[3])
 			units[i].cc.icon:SetVertexColor(1, 1, 1, 1)
 			
 			--units[i].targetCount.text:SetTextColor(.898, 898, .199)
 			
-			units[i]:SetScript('OnEnter', function()	
+			units[i]:SetScript('OnEnter', function()
 				units[this.index].name:SetTextColor(enemyFactionColor['r'], enemyFactionColor['g'], enemyFactionColor['b'])	
 				this.mo = true
 				MOUSEOVERUNINAME = this.tar
@@ -583,7 +583,10 @@ local function drawUnits(list)
 			local a = math.floor(i/ENEMYFRAMESPLAYERDATA['groupsize'])
 			unitPointBottom = a  == 0 and 1 or (a * ENEMYFRAMESPLAYERDATA['groupsize']) +1
 		end
-		if unitPointBottom and units[unitPointBottom].castbar.icon then enemyFrame.bottom:SetPoint('TOPLEFT', units[unitPointBottom].castbar.icon, 'BOTTOMLEFT', 1, -6) end
+		--ace:print(unitPointBottom.." -- unitPointBottom")
+		if unitPointBottom < 41 and units[unitPointBottom].castbar.icon then
+			enemyFrame.bottom:SetPoint('TOPLEFT', units[unitPointBottom].castbar.icon, 'BOTTOMLEFT', 1, -6)
+		end
 		
 		--/Script print(math.floor(4/5))
 	end
