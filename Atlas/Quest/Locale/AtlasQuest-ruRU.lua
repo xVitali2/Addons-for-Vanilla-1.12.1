@@ -105,7 +105,7 @@ if ( GetLocale() == "ruRU" ) then
 	------------------
 	
 	AQITEM_DAGGER = " Кинжал"
-	AQITEM_POLEARM = " Древковое"
+	AQITEM_POLEARM = "Древковое"
 	AQITEM_SWORD = " Меч"
 	AQITEM_AXE = " Топор"
 	AQITEM_WAND = "Жезл"
@@ -116,6 +116,7 @@ if ( GetLocale() == "ruRU" ) then
 	AQITEM_BOW = "Лук"
 	AQITEM_CROSSBOW = "Арбалет"
 	AQITEM_THROWN = "Метательное"
+	AQITEM_HELDOFFHAND = "Левая рука"
 	
 	AQITEM_WAIST = "Пояс,"
 	AQITEM_SHOULDER = "Плечо,"
@@ -133,7 +134,7 @@ if ( GetLocale() == "ruRU" ) then
 	AQITEM_MAIL = " Кольчуга"
 	AQITEM_PLATE = " Латы"
 	
-	AQITEM_OFFHAND = "Левая рука"
+	AQITEM_OFFHAND = "Левая рука,"
 	AQITEM_MAINHAND = "Правая рука,"
 	AQITEM_ONEHAND = "Одноручное,"
 	AQITEM_TWOHAND = "Двуручное,"
@@ -142,7 +143,6 @@ if ( GetLocale() == "ruRU" ) then
 	AQITEM_TRINKET = "Аксессуар"
 	AQITEM_RELIC = "Реликвия"
 	AQITEM_POTION = "Зелье"
-	AQITEM_OFFHAND = "Левая рука"
 	AQITEM_NECK = "Шея"
 	AQITEM_PATTERN = "Выкройка"
 	AQITEM_BAG = "Сумка"
@@ -355,7 +355,7 @@ if ( GetLocale() == "ruRU" ) then
 	Inst2Quest3_HORDE_Aim = "Аптекарь Зама из Громового Утеса просит Вас принести ей 10 змеецветов."
 	Inst2Quest3_HORDE_Location = "Аптекарь Зама (Громовой Утес - Вершина Духов; "..YELLOW.."22,20 "..WHITE..")"
 	Inst2Quest3_HORDE_Note = "Аптекарь Зама находится в пещере под Вершиной Духов.\nСобрать Змеецвет можно внутри пещеры перед подземельем и внутри него. Игроки с навыком травничества могут видеть Змеецвет на миникарте."
-	Inst2Quest3_HORDE_Prequest = "Споры грибов -> Аптекарь Зама" -- 848 -> 853
+	Inst2Quest3_HORDE_Prequest = "Нет"
 	Inst2Quest3_HORDE_Folgequest = "Нет"
 	--
 	Inst2Quest3name1_HORDE = "Apothecary Gloves"
@@ -388,7 +388,7 @@ if ( GetLocale() == "ruRU" ) then
 	--Quest 6 Horde
 	Inst2Quest6_HORDE = "6. Повелители Змей" -- 914
 	Inst2Quest6_HORDE_Level = "22"
-	Inst2Quest6_HORDE_Attain = "11"
+	Inst2Quest6_HORDE_Attain = "10"
 	Inst2Quest6_HORDE_Aim = "Принесите самоцветы Кобрана, Анакондры, Пифаса и Серпентиса Наре Буйногривой в Громовой Утес."
 	Inst2Quest6_HORDE_Location = "Нара Буйногривая (Громовой Утес - Вершина старейшин; "..YELLOW.."75,31"..WHITE..")"
 	Inst2Quest6_HORDE_Note = "Серия заданий начинается у Хамуула Рунного Тотема. (Громовой Утес - Вершина старейшин; "..YELLOW.."78,28"..WHITE..")\nКамни падают с 4 друидов "..YELLOW.."[2]"..WHITE..", "..YELLOW.."[3]"..WHITE..", "..YELLOW.."[5]"..WHITE..", "..YELLOW.."[7]"..WHITE.."."
@@ -612,7 +612,7 @@ if ( GetLocale() == "ruRU" ) then
 	--Quest 11 Alliance
 	Inst4Quest11 = "11. Время собирать камни" -- 2201
 	Inst4Quest11_Level = "43"
-	Inst4Quest11_Attain = "40"
+	Inst4Quest11_Attain = "37"
 	Inst4Quest11_Aim = "Найдите рубин, сапфир, и топаз, которые спрятаны в разных местах Ульдамана. Когда найдете, свяжитесь с Талвашем дель Кисселем, используя фиал Видения, который он предоставил."
 	Inst4Quest11_Location = "Останки паладина (Ульдаман; "..YELLOW.."[2]"..WHITE..")"
 	Inst4Quest11_Note = "Камни находятся около "..YELLOW.."[1]"..WHITE.." в урне, "..YELLOW.."[8]"..WHITE.." из тайника клана Теневого горна, и "..YELLOW.."[9]"..WHITE.." с Гримлока. Обратите внимание, что когда вы откроете тайник, появятся несколько мобов и атакуют Вас.\nИспользуйте Чашу прорицания Талваша, чтобы сдать задание и продожить дальше."

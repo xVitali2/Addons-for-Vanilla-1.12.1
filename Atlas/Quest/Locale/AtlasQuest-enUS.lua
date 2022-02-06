@@ -101,7 +101,7 @@ AQFinishedTEXT = "Quest finished: ";
 ------------------
 
 AQITEM_DAGGER = " Dagger"
-AQITEM_POLEARM = " Polearm"
+AQITEM_POLEARM = "Polearm"
 AQITEM_SWORD = " Sword"
 AQITEM_AXE = " Axe"
 AQITEM_WAND = "Wand"
@@ -112,6 +112,7 @@ AQITEM_GUN = "Gun"
 AQITEM_BOW = "Bow"
 AQITEM_CROSSBOW = "Crossbow"
 AQITEM_THROWN = "Thrown"
+AQITEM_HELDOFFHAND = "Held In Off-hand"
 
 AQITEM_WAIST = "Waist,"
 AQITEM_SHOULDER = "Shoulder,"
@@ -129,7 +130,7 @@ AQITEM_LEATHER = " Leather"
 AQITEM_MAIL = " Mail"
 AQITEM_PLATE = " Plate"
 
-AQITEM_OFFHAND = "Off Hand"
+AQITEM_OFFHAND = "Off Hand,"
 AQITEM_MAINHAND = "Main Hand,"
 AQITEM_ONEHAND = "One-Hand,"
 AQITEM_TWOHAND = "Two-Hand,"
@@ -138,7 +139,6 @@ AQITEM_ITEM = "Item" -- Use this for those oddball rewards which aren't really a
 AQITEM_TRINKET = "Trinket"
 AQITEM_RELIC = "Relic"
 AQITEM_POTION = "Potion"
-AQITEM_OFFHAND = "Held In Off-hand"
 AQITEM_NECK = "Neck"
 AQITEM_PATTERN = "Pattern"
 AQITEM_BAG = "Bag"
@@ -156,7 +156,7 @@ AQITEM_ENCHANT = "Enchant"
 
 --------------- INST1 - Deadmines (DM) ---------------
 Inst1Story = "Once the greatest gold production center in the human lands, the Dead Mines were abandoned when the Horde razed Stormwind city during the First War. Now the Defias Brotherhood has taken up residence and turned the dark tunnels into their private sanctum. It is rumored that the thieves have conscripted the clever goblins to help them build something terrible at the bottom of the mines - but what that may be is still uncertain. Rumor has it that the way into the Deadmines lies through the quiet, unassuming village of Moonbrook."
-Inst1Caption = "Deadmines"
+Inst1Caption = "The Deadmines"
 Inst1QAA = "7 Quests" -- how many quests for alliance
 Inst1QAH = "No Quests" -- for horde
 
@@ -351,7 +351,7 @@ Inst2Quest3_HORDE_Attain = "14"
 Inst2Quest3_HORDE_Aim = "Apothecary Zamah in Thunder Bluff wants you to collect 10 Serpentbloom."
 Inst2Quest3_HORDE_Location = "Apothecary Zamah (Thunder Bluff - Spirit Rise; "..YELLOW.."22,20"..WHITE..")"
 Inst2Quest3_HORDE_Note = "Apothecary Zamah is in a cave under the Spirit Rise.  You get the prequest from Apothecary Helbrim (Barrens - Crossroads; "..YELLOW.."51,30"..WHITE..").\nYou get the Serpentbloom inside the cave in front of the instance and inside the instance. Players with Herbalism can see the plants on their minimap."
-Inst2Quest3_HORDE_Prequest = "Fungal Spores -> Apothecary Zamah" -- 848 -> 853
+Inst2Quest3_HORDE_Prequest = "No"
 Inst2Quest3_HORDE_Folgequest = "No"
 --
 Inst2Quest3name1_HORDE = "Apothecary Gloves"
@@ -384,7 +384,7 @@ Inst2Quest5name3_HORDE = Inst2Quest4name3
 --Quest 6 Horde
 Inst2Quest6_HORDE = "6. Leaders of the Fang" -- 914
 Inst2Quest6_HORDE_Level = "22"
-Inst2Quest6_HORDE_Attain = "11"
+Inst2Quest6_HORDE_Attain = "10"
 Inst2Quest6_HORDE_Aim = "Bring the Gems of Cobrahn, Anacondra, Pythas and Serpentis to Nara Wildmane in Thunder Bluff."
 Inst2Quest6_HORDE_Location = "Nara Wildmane (Thunder Bluff - Elder Rise; "..YELLOW.."75,31"..WHITE..")"
 Inst2Quest6_HORDE_Note = "The Questline starts at Hamuul Runetotem (Thunderbluff - Elder Rise; "..YELLOW.."78,28"..WHITE..")\nThe 4 druids drop the gems "..YELLOW.."[2]"..WHITE..", "..YELLOW.."[3]"..WHITE..", "..YELLOW.."[5]"..WHITE..", "..YELLOW.."[7]"..WHITE.."."

@@ -181,6 +181,7 @@ ReagentData['cooking'] = ReagentData_Flatten({
      ReagentData['monster']['buzzardwing'],
      ReagentData['monster']['raptorflesh'],
      ReagentData['monster']['mysterymeat'],
+     ReagentData['monster']['turtlemeat'],
      ReagentData['monster']['tigermeat'],
      ReagentData['monster']['redwolfmeat'],
      ReagentData['monster']['heavykodomeat'],

@@ -2,10 +2,10 @@
 ## Title: AdvancedTradeSkillWindow
 ## Notes: An improved window for your tradeskills for Vanilla
 ## RequiredDeps:
-## Version: v0.5.5d 
+## Version: v0.5.6 
 ## SavedVariables: atsw_orderby, atsw_bankitemlist, atsw_merchantlist, atsw_itemlist, atsw_considerbank, atsw_consideralts, atsw_considermerchants, atsw_autobuy, atsw_multicount, atsw_recipetooltip, atsw_customsorting, atsw_customheaders, atsw_displayshoppinglist, atsw_disabled, atsw_savedqueue, atsw_savednecessaryitems
 
-## X-ReleaseDate: $Date: 2017-03-05 $
+## X-ReleaseDate: $Date: 2018-07-16 $
 ## X-Email: laytya@gmail.com
 ## X-Category: Tradeskill
 ## X-Website: https://github.com/laytya/AdvancedTradeSkillWindow-vanilla

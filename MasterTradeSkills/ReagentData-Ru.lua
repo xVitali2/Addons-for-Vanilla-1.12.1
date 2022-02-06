@@ -7,6 +7,7 @@ function ReagentData_LoadRussian()
 -- Basic Items --
 -----------------
 -- Reagent Data: Alchemy Fish
+
 ReagentData["alchemyfish"] = {
      ["oilyblackmouth"] = "Масляный черноротик",
      ["firefinsnapper"] = "Огнеперый луциан",
@@ -182,7 +183,7 @@ ReagentData["leather"] = {
      ["chimera"] = "Кожа химеры",
      ["frostsaber"] = "Кожа ледопарда",
      ["warbear"] = "Кожа боевого медведя",
-     ["core"] = "Кожа Недр",     
+     ["core"] = "Кожа Недр",
      ["primalbat"] = "Кожа древней летучей мыши",
      ["primaltiger"] = "Кожа древнего тигра",
 };
@@ -815,7 +816,7 @@ ReagentData["quest"]["Ruins of Anh\'Qiraj"]["item"] = {
 	},
 	["drape"] = {
 		["martial"] = "Киражская воинская пелерина",
-		["regal"] = "Киражская монаршая пелерина",		
+		["regal"] = "Киражская монаршая пелерина",
 	},
 };
 ReagentData["quest"]["Anh\'Qiraj"] = {};

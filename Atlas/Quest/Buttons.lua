@@ -629,7 +629,7 @@ end
 function AQFinishedQuest_OnClick()
 	if AQFinishedQuest:GetChecked() and Allianceorhorde == 1 then
 		AQ[ "AQFinishedQuest_Inst"..AQINSTANCE.."Quest"..AQSHOWNQUEST ] = 1
-		setfenv(1, "AQFinishedQuest_Inst"..AQINSTANCE.."Quest"..AQSHOWNQUEST)
+		setglobal("AQFinishedQuest_Inst"..AQINSTANCE.."Quest"..AQSHOWNQUEST , 1);
 	elseif AQFinishedQuest:GetChecked() and Allianceorhorde == 2 then
 		AQ[ "AQFinishedQuest_Inst"..AQINSTANCE.."Quest"..AQSHOWNQUEST.."_HORDE" ] = 1
 	elseif not AQFinishedQuest:GetChecked() and Allianceorhorde == 1 then

@@ -35,6 +35,7 @@ function Questie:OptionsForm_Init()
     QO_minshowlevel_current = getglobal(QO_FormName.."MinShowLevelSlider".."Current")
     QO_resizeworldmap = getglobal(QO_FormName.."ResizeWorldmapCheck")
     QO_showmapnotes = getglobal(QO_FormName.."ShowMapNotesCheck")
+	QO_hideobjectives = getglobal(QO_FormName.."HideObjectives")
     QO_showprofessionquests = getglobal(QO_FormName.."ShowProfessionQuestsCheck")
     QO_showtooltips = getglobal(QO_FormName.."ShowToolTipsCheck")
     QO_showtrackerheader = getglobal(QO_FormName.."ShowTrackerHeaderCheck")
@@ -79,6 +80,7 @@ function Questie:OptionsForm_Display()
 
     QO_showmapnotes:SetChecked(QuestieConfig["showMapNotes"])
 
+	QO_hideobjectives:SetChecked(QuestieConfig["hideObjectives"])
     QO_showprofessionquests:SetChecked(QuestieConfig["showProfessionQuests"])
 
     QO_showtooltips:SetChecked(QuestieConfig["showToolTips"])
@@ -133,6 +135,7 @@ function Questie:OptionsForm_ApplyOptions()
 
     QuestieConfig.showMapNotes = Questie:toboolean(QO_showmapnotes:GetChecked())
 
+	QuestieConfig.hideObjectives = Questie:toboolean(QO_hideobjectives:GetChecked())
     QuestieConfig.showProfessionQuests = Questie:toboolean(QO_showprofessionquests:GetChecked())
 
     QuestieConfig.trackerAlpha = tonumber((QO_trackertransparency:GetValue()) / 100)

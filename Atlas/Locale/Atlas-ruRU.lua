@@ -332,6 +332,7 @@ L:RegisterTranslations("ruRU", function() return {
 	["High Priestess of Thaurissan"] = "Верховная жрица Тауриссана",
 	["The Black Forge"] = "Черная Кузня",
 	["Core Fragment"] = "Осколок из Огненных Недр",
+	["The Behemoth"] = "Чудище",
 	
 	--Blackrock Spire (Lower)
 	["Vaelan"] = "Ваелан",
@@ -391,6 +392,7 @@ L:RegisterTranslations("ruRU", function() return {
 	["Four Horsemen Chest"] = "Сундук Четырех Всадников",
 	["Plague Wing"] = "Чумной квартал",
 	["Frostwyrm Lair"] = "Логово ледяного змея",
+	["Icebellow Anvil"] = "Горн Ледяного грохота",
 	
 	--SM: Library
 	["Doan's Strongbox"] = "Сейф Доана",

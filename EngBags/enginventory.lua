@@ -3,20 +3,16 @@ ENGINVENTORY_DEBUGMESSAGES = 0;         -- 0 = off, 1 = on
 ENGINVENTORY_SHOWITEMDEBUGINFO = 0;
 ENGINVENTORY_WIPECONFIGONLOAD = 0;	-- for debugging, test it out on a new config every load
 
-local function print(text)
-	DEFAULT_CHAT_FRAME:AddMessage(text)
-end
+--local function print(text)
+--	DEFAULT_CHAT_FRAME:AddMessage(text)
+--end
 
 BINDING_HEADER_ENGINVENTORY = "EngInventory @ EngBags";
 BINDING_NAME_EI_TOGGLE = "Toggle Inventory Window";
 
-ENGINVENTORY_MAXBUTTONS = 109;
-
-
-ENGINVENTORY_TOP_PADWINDOW = 30;
-
-
-EngInventory_ShowPrice = 1;     -- ???
+ENGINVENTORY_MAXBUTTONS = 109
+ENGINVENTORY_TOP_PADWINDOW = 30
+EngInventory_ShowPrice = 1
 
 ENGINVENTORY_WINDOWBOTTOMPADDING_EDITMODE = 50;
 ENGINVENTORY_WINDOWBOTTOMPADDING_NORMALMODE = 25;
@@ -24,6 +20,79 @@ ENGINVENTORY_WINDOWBOTTOMPADDING_NORMALMODE = 25;
 EngInventory_WindowBottomPadding = ENGINVENTORY_WINDOWBOTTOMPADDING_NORMALMODE;
 
 --//CFM
+EB_backdrop_def = {
+  bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = false, tileSize = 8,
+  edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", edgeSize = 8,
+  insets = {left = 2, right = 2, top = 2, bottom = 2},
+}
+EB_backdrop = {
+  bgFile = "Interface\\BUTTONS\\WHITE8X8", tile = false, tileSize = 0,
+  edgeFile = "Interface\\BUTTONS\\WHITE8X8", edgeSize = 1,
+  insets = {left = -1, right = -1, top = -1, bottom = -1},
+}
+function EB_CreateBackdrop(f, border, bd, ab)
+	if not f then return end
+	if not f.backdrop then
+		f:SetBackdrop(nil)
+		local backdrop
+		if bd then
+			backdrop = EB_backdrop
+		else
+			backdrop = EB_backdrop_def
+		end
+		local b = CreateFrame("Frame", nil, f)
+		if tonumber(border) > 1 then
+		  local border = tonumber(border) - 1
+		  backdrop.insets = {left = -1, right = -1, top = -1, bottom = -1}
+		  b:SetPoint("TOPLEFT", f, "TOPLEFT", -border, border)
+		  b:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", border, -border)
+		else
+		  local border = tonumber(border)
+		  b:SetPoint("TOPLEFT", f, "TOPLEFT", -border, border)
+		  b:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", border, -border)
+		end
+		local level = f:GetFrameLevel()
+		if level < 1 then
+			b:SetFrameLevel(level)
+		elseif not bd and ab then
+			b:SetFrameLevel(level - 1)
+		else
+			b:SetFrameLevel(level + 1)
+		end
+		f.backdrop = b
+		b:SetBackdrop(backdrop)
+	end
+	local b = f.backdrop
+	if not bd and not ab then
+		b:Hide()
+		f:SetBackdrop(nil)
+		f.backdrop=nil
+	elseif not ab and bd==0 then
+		b:SetBackdropColor(0,1,1,.5)
+	elseif not ab and bd==1 then
+		b:SetBackdropColor(0,1,0,.5)
+	elseif not ab and bd==2 then
+		b:SetBackdropColor(0,0,1,.5)
+	elseif not ab and bd==3 then
+		b:SetBackdropColor(1,0,0,.5)
+	elseif not ab and bd==4 then
+		b:SetBackdropColor(1,1,0,.5)
+	elseif not ab and bd==5 then
+		b:SetBackdropColor(1,0,1,.5)
+	else
+		b:SetBackdropColor(
+			EngInventoryConfig["bar_colors_"..EngBags_MAINWINDOWCOLORIDX.."_background_r"],
+			EngInventoryConfig["bar_colors_"..EngBags_MAINWINDOWCOLORIDX.."_background_g"],
+			EngInventoryConfig["bar_colors_"..EngBags_MAINWINDOWCOLORIDX.."_background_b"],
+			EngInventoryConfig["bar_colors_"..EngBags_MAINWINDOWCOLORIDX.."_background_a"] )
+		b:SetBackdropBorderColor(
+			EngInventoryConfig["bar_colors_"..EngBags_MAINWINDOWCOLORIDX.."_border_r"],
+			EngInventoryConfig["bar_colors_"..EngBags_MAINWINDOWCOLORIDX.."_border_g"],
+			EngInventoryConfig["bar_colors_"..EngBags_MAINWINDOWCOLORIDX.."_border_b"],
+			EngInventoryConfig["bar_colors_"..EngBags_MAINWINDOWCOLORIDX.."_border_a"] )
+	end
+end
+
  function EI_CreateBagsBar()
   if pfUI then
     local button_size, b=EngInventoryConfig["frameButtonSize"],.1
@@ -51,14 +120,20 @@ EngInventory_WindowBottomPadding = ENGINVENTORY_WINDOWBOTTOMPADDING_NORMALMODE;
         border:SetTexture("")
         EI_bagslots.slots[slot].frame.slot = slot
         EI_bagslots.slots[slot].slot = slot
-        local SlotEnter = EI_bagslots.slots[slot].frame:GetScript("OnEnter")
-        EI_bagslots.slots[slot].frame:SetScript("OnEnter", function()
-          SlotEnter()
-        end)
-        local SlotLeave = EI_bagslots.slots[slot].frame:GetScript("OnLeave")
-        EI_bagslots.slots[slot].frame:SetScript("OnLeave", function()
-          SlotLeave()
-        end)
+		EI_bagslots.slots[slot].frame:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+		EI_bagslots.slots[slot].frame:SetScript("OnClick", function()
+			for index=1, ENGINVENTORY_MAXBUTTONS do
+				local bagframe = getglobal("EngInventory_frame_Item_"..index)
+				if (bagframe and EngInventory_buttons["EngInventory_frame_Item_"..index] and EngInventory_buttons["EngInventory_frame_Item_"..index]["bagnum"]==this.slot+1) then
+					if arg1 == "LeftButton" then
+						EB_CreateBackdrop(bagframe, 3, this.slot)
+						bagframe.backdrop:SetBackdropBorderColor(.2,1,.8,1)
+					else
+						EB_CreateBackdrop(bagframe, -1)
+					end
+				end
+			end
+		end)
       end
      local left = (slot-min)*(button_size/5*4+3*2) + b
      local top = -b
@@ -67,6 +142,7 @@ EngInventory_WindowBottomPadding = ENGINVENTORY_WINDOWBOTTOMPADDING_NORMALMODE;
       EI_bagslots.slots[slot].frame:SetHeight(button_size/5*4)
       EI_bagslots.slots[slot].frame:SetWidth(button_size/5*4)
       local id, texture = GetInventorySlotInfo("Bag" .. slot .. "Slot")
+      EB_CreateBackdrop(EI_bagslots.slots[slot].frame, 3, false, true)
       EI_bagslots.slots[slot].frame:Show()
     end
     EI_bagslots:Show();
@@ -623,27 +699,27 @@ function EngInventory_CreateConfigOptions()
 	for key,value in EngInventoryConfig["item_search_list"] do
 		table.insert( EngInventory_ConfigOptions,
 			{
-{ ["type"] = "Text", ["ID"] = 1, ["width"] = 0.025, ["color"] = { 1,0,1 }, ["text"] = key.."." },
-{ ["type"] = "UpButton", ["ID"] = 1, ["width"] = 0.025,
-  ["param1"] = key, ["param2"] = key-1,
-  ["func"] = EngInventory_Config_SwapSearchListItems
-},
-{ ["type"] = "DownButton", ["ID"] = 1, ["width"] = 0.025,
-  ["param1"] = key, ["param2"] = key+1,
-  ["func"] = EngInventory_Config_SwapSearchListItems
-},
-{ ["type"] = "Edit", ["ID"] = 1, ["width"] = 0.20, ["letters"]=50, ["param1"] = key, ["param2"] = 1,
-  ["defaultValue"] = EngInventory_Config_GetItemSearchListLower, ["func"] = EngInventory_Config_AssignItemSearchListUpper
-},
-{ ["type"] = "Edit", ["ID"] = 2, ["width"] = 0.20, ["letters"]=50, ["param1"] = key, ["param2"] = 2,
-  ["defaultValue"] = EngInventory_Config_GetItemSearchListLower, ["func"] = EngInventory_Config_AssignItemSearchListUpper
-},
-{ ["type"] = "Edit", ["ID"] = 3, ["width"] = 0.35, ["letters"]=50, ["param1"] = key, ["param2"] = 3,
-  ["defaultValue"] = EngInventory_Config_GetItemSearchList, ["func"] = EngInventory_Config_AssignItemSearchList
-},
-{ ["type"] = "Edit", ["ID"] = 4, ["width"] = 0.175, ["letters"]=50, ["param1"] = key, ["param2"] = 4,
-  ["defaultValue"] = EngInventory_Config_GetItemSearchList, ["func"] = EngInventory_Config_AssignItemSearchList
-}
+				{ ["type"] = "Text", ["ID"] = 1, ["width"] = 0.025, ["color"] = { 1,0,1 }, ["text"] = key.."." },
+				{ ["type"] = "UpButton", ["ID"] = 1, ["width"] = 0.025,
+				  ["param1"] = key, ["param2"] = key-1,
+				  ["func"] = EngInventory_Config_SwapSearchListItems
+				},
+				{ ["type"] = "DownButton", ["ID"] = 1, ["width"] = 0.025,
+				  ["param1"] = key, ["param2"] = key+1,
+				  ["func"] = EngInventory_Config_SwapSearchListItems
+				},
+				{ ["type"] = "Edit", ["ID"] = 1, ["width"] = 0.20, ["letters"]=50, ["param1"] = key, ["param2"] = 1,
+				  ["defaultValue"] = EngInventory_Config_GetItemSearchListLower, ["func"] = EngInventory_Config_AssignItemSearchListUpper
+				},
+				{ ["type"] = "Edit", ["ID"] = 2, ["width"] = 0.20, ["letters"]=50, ["param1"] = key, ["param2"] = 2,
+				  ["defaultValue"] = EngInventory_Config_GetItemSearchListLower, ["func"] = EngInventory_Config_AssignItemSearchListUpper
+				},
+				{ ["type"] = "Edit", ["ID"] = 3, ["width"] = 0.35, ["letters"]=50, ["param1"] = key, ["param2"] = 3,
+				  ["defaultValue"] = EngInventory_Config_GetItemSearchList, ["func"] = EngInventory_Config_AssignItemSearchList
+				},
+				{ ["type"] = "Edit", ["ID"] = 4, ["width"] = 0.175, ["letters"]=50, ["param1"] = key, ["param2"] = 4,
+				  ["defaultValue"] = EngInventory_Config_GetItemSearchList, ["func"] = EngInventory_Config_AssignItemSearchList
+				}
 			}  );
 	
 	end
@@ -906,7 +982,6 @@ function EngInventory_SetDefaultValues(re)
         EI_SetDefault("putinslot--CLASS_ITEMS2", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 
 	-- NEW EQUIP SORTING
-	EI_SetDefault("putinslot--BOP_BOE", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 	EI_SetDefault("putinslot--EQUIPSHIRT", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 	EI_SetDefault("putinslot--EQUIPSHOULDER", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 	EI_SetDefault("putinslot--EQUIPLEGS", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
@@ -926,6 +1001,7 @@ function EngInventory_SetDefaultValues(re)
 	EI_SetDefault("putinslot--EQUIPSHADOWRESIST", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 	EI_SetDefault("putinslot--EQUIPNATURERESIST", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 	EI_SetDefault("putinslot--EQUIPARCANERESIST", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+	EI_SetDefault("putinslot--BOP_BOE", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 
 
         -- default item overrides
@@ -1093,9 +1169,9 @@ function EngInventory_init()
 
 	EngInventory_OnEvent("UPDATE_INVENTORY_ALERTS");	-- reload the items currently equipped
 	-- init bagsbar
-	EI_CreateBagsBar();
+	EI_CreateBagsBar()
 	-- Force update item cache.
-	EngInventory_Update_item_cache();
+	EngInventory_Update_item_cache()
 	if ( CT_Mail_newTradeFrameShow == nil ) then
 		EngInventory_oldTradeFrameShow = TradeFrame:GetScript("OnShow");
 		TradeFrame:SetScript("OnShow", EngInventory_newTradeFrameShow);
@@ -1171,7 +1247,7 @@ end
 --	EngInventory_item_cache[ bag ][ slot ]
 function EngInventory_Update_item_cache()
 	local bag, slot;	-- used as "for loop" counters
-	local itm;		-- entry that will be written to the cache
+	local itm-- entry that will be written to the cache
 	local update_suggested = 0;
 	local resort_suggested = 0;
 	local resort_mandatory = 0;
@@ -1182,17 +1258,17 @@ function EngInventory_Update_item_cache()
 	-- variables used in inner loop, slots:
 	local a,b,c,d;
 	local sequencial_slot_num = 0;
-	EngInventory_item_cache = EngBagsItems[EngBags_PLAYERID];
+	EngInventory_item_cache = EngBagsItems[EngBags_PLAYERID]
 	for index, bagnum in ipairs(EngInventory_Bags) do
 		if (EngInventoryConfig["show_Bag"..bagnum] == 1) then
 			if (EngInventory_item_cache[bagnum] == nil) then
-				EngInventory_item_cache[bagnum] = {};
+				EngInventory_item_cache[bagnum] = {}
 			end
 
 			if (bagnum == KEYRING_CONTAINER) then
-				bagNumSlots = GetKeyRingSize(KEYRING_CONTAINER);
+				bagNumSlots = GetKeyRingSize(KEYRING_CONTAINER)
 			else
-				bagNumSlots = GetContainerNumSlots(bagnum);		
+				bagNumSlots = GetContainerNumSlots(bagnum)
 			end
 
 			if (bagNumSlots > 0) then
@@ -1340,14 +1416,14 @@ function EngInventory_Update_item_cache()
 						itm["indexed_on"] = 1;
 						itm["display_string"] = "NewItemText_Off";
 					end
-					-- EngInventory_item_cache[bagnum][slotnum] = itm;	-- save updated information
+					 EngInventory_item_cache[bagnum][slotnum] = itm;	-- save updated information
 				end
 			else
 				-- bagNumSlots = 0, make sure you wipe the cache entry
 				if (table.getn(EngInventory_item_cache[bagnum]) ~= 0) then
-					resort_mandatory = 1;
+					resort_mandatory = 1
 				end
-				EngInventory_item_cache[bagnum] = {};
+				EngInventory_item_cache[bagnum] = {}
 			end
 		end
 	end
@@ -1532,15 +1608,15 @@ function EngInventory_PickBar(itm)
 
 					-- check keywords
 					if ( (value[2] ~= "") and (itm["keywords"][value[2]] == nil) ) then
-						found = nil;
+						found = nil
 					end
 					-- check tooltip
 					if ( (value[3] ~= "") and (not string.find(tooltip_info_concat, value[3])) ) then
-						found = nil;
+						found = nil
 					end
 					-- check itemType
 					if ( (value[4] ~= "") and (itm["itemtype"] ~= value[4]) ) then
-						found = nil;
+						found = nil
 					end
 
 					if (found) then
@@ -1607,9 +1683,9 @@ function EngInventory_Sort_item_cache()
 				for slotnum = 1, bagNumSlots do
 					-- Insert only not null slots, this is for Hide Empty KeyRing Slots.
 					if ( (EngInventory_item_cache[bagnum][slotnum]["itemlink"] == nil) and (EngInventoryConfig["hide_keyring_empty_slots"] == 1) and (bagnum == KEYRING_CONTAINER) ) then
-						EngInventory_item_cache[bagnum][slotnum] = EngInventory_PickBar( EngInventory_item_cache[bagnum][slotnum] );
+						EngInventory_item_cache[bagnum][slotnum] = EngInventory_PickBar( EngInventory_item_cache[bagnum][slotnum] )
 					else
-						EngInventory_item_cache[bagnum][slotnum] = EngInventory_PickBar( EngInventory_item_cache[bagnum][slotnum] );
+						EngInventory_item_cache[bagnum][slotnum] = EngInventory_PickBar( EngInventory_item_cache[bagnum][slotnum] )
 						table.insert( EngInventory_bar_positions[ EngInventory_item_cache[bagnum][slotnum]["bar"] ], { ["bagnum"]=bagnum, ["slotnum"]=slotnum } );
 					end
 				end
@@ -1797,13 +1873,13 @@ function EngInventory_GetBarPositionAndCache()
 		local bagnum, slotnum;
 
         if (EngInventory_buttons[this:GetName()] ~= nil) then
-                bar = EngInventory_buttons[this:GetName()]["bar"];
-                position = EngInventory_buttons[this:GetName()]["position"];
+                bar = EngInventory_buttons[this:GetName()]["bar"]
+                position = EngInventory_buttons[this:GetName()]["position"]
 
-		bagnum = EngInventory_bar_positions[bar][position]["bagnum"];
-		slotnum = EngInventory_bar_positions[bar][position]["slotnum"];
+                bagnum = EngInventory_bar_positions[bar][position]["bagnum"]
+                slotnum = EngInventory_bar_positions[bar][position]["slotnum"]
 
-                itm = EngInventory_item_cache[bagnum][slotnum];
+                itm = EngInventory_item_cache[bagnum][slotnum]
 
                 return bar,position,itm;
         else
@@ -1888,7 +1964,7 @@ function EngInventory_ItemButton_OnEnter()
 			else
 				GameTooltip:AddLine(" ", 0,0,0);
 				GameTooltip:AddLine("|cFF00FF7FLeft click to select catagory to move:|r "..itm["barClass"], 1,0.25,0.5 );
-				GameTooltip:AddLine("Right click to assign this item to a different catagory", 1,0,0 );
+				GameTooltip:AddLine("Right click to assign this item to a different category", 1,0,0 );
 				GameTooltip:AddLine(" ", 0,0,0);
 			end
                 else
@@ -1897,10 +1973,11 @@ function EngInventory_ItemButton_OnEnter()
         end
 
 	if itm["bagname"] == nil then
-		itm["bagname"] = "Backpack";
+		itm["bagname"] = "Backpack"
 	end
 
-	GameTooltip:AddLine(EILocal["Container"]..":"..itm["bagname"], 1,0,0 );
+	GameTooltip:AddLine(EILocal["Container"]..": "..itm["bagname"], 1,0,0 )
+	--GameTooltip:AddLine("SLOT&BAG:"..itm["slotnum"].. " "..itm["bagnum"], 1,0,0 )
 
 	if ( EngInventoryConfig["tooltip_mode"] == 1 ) then
 		EngBags_ModifyItemTooltip(itm["bagnum"], itm["slotnum"], "GameTooltip", itm);
@@ -2730,15 +2807,15 @@ function EngInventory_frame_RightClickMenu_populate(level)
 				["value"] = nil,
 				["func"] = function()
 						if (EngInventoryConfig["hide_bag_icons"] == 0) then
-							EngInventoryConfig["hide_bag_icons"] = 1;
-							EngBags_Print("Empty Bag Icons Activated.");
+							EngInventoryConfig["hide_bag_icons"] = 1
+							EngBags_Print("Empty Bag Icons Activated.")
 						else
-							EngInventoryConfig["hide_bag_icons"] = 0;
-							EngBags_Print("Empty Bag Icons Disabled.");
+							EngInventoryConfig["hide_bag_icons"] = 0
+							EngBags_Print("Empty Bag Icons Disabled.")
 						end
 
-						EngInventory_window_update_required = ENGINVENTORY_MANDATORY;
-						EngInventory_UpdateWindow();
+						EngInventory_window_update_required = ENGINVENTORY_MANDATORY
+						EngInventory_UpdateWindow()
 					end
 				};
 			if (EngInventoryConfig["hide_bag_icons"] == 1) then
@@ -2893,7 +2970,7 @@ function EngInventory_frame_RightClickMenu_populate(level)
 										EngInventory_CalcButtonSize(EngInventoryConfig["frameButtonSize"]);
 										EngInventory_window_update_required = ENGINVENTORY_MANDATORY;
 										EngInventory_UpdateWindow();
-										EI_CreateBagsBar();
+										EI_CreateBagsBar()
 									end
 								end
 							};
@@ -2974,19 +3051,19 @@ end
 -- frame == name of background frame to be relative to
 -- width/height == max number of buttons to place into frame
 function EngInventory_AssignButtonsToFrame(barnum, currentbutton, frame, width, height)
-        local cur_x, cur_y, tmpframe;
-	local position;
-	local bagnum, slotnum;
+        local cur_x, cur_y, tmpframe
+	local position
+	local bagnum, slotnum
 
-        cur_x = 0;
-        cur_y = 0;
+        cur_x = 0
+        cur_y = 0
 
         if (table.getn(EngInventory_bar_positions[barnum]) > 0) then
                 for position = 1, table.getn(EngInventory_bar_positions[barnum]) do
-			bagnum = EngInventory_bar_positions[barnum][position]["bagnum"];
-			slotnum = EngInventory_bar_positions[barnum][position]["slotnum"];
+			bagnum = EngInventory_bar_positions[barnum][position]["bagnum"]
+			slotnum = EngInventory_bar_positions[barnum][position]["slotnum"]
 
-                        EngInventory_item_cache[bagnum][slotnum]["button_num"] = currentbutton;
+                        EngInventory_item_cache[bagnum][slotnum]["button_num"] = currentbutton
 
                         EngInventory_MoveAndSizeFrame("EngInventory_frame_Item_"..currentbutton, "BOTTOMRIGHT",
                                 frame, "BOTTOMRIGHT",
@@ -2995,24 +3072,23 @@ function EngInventory_AssignButtonsToFrame(barnum, currentbutton, frame, width, 
                                 ),
                                 ((cur_y*EngBags_BUTTONFRAME_HEIGHT)+EngBags_BUTTONFRAME_Y_PADDING) + EngInventoryConfig["frameYSpace"],
                                 EngBags_BUTTONFRAME_BUTTONWIDTH,
-                                EngBags_BUTTONFRAME_BUTTONHEIGHT );
+                                EngBags_BUTTONFRAME_BUTTONHEIGHT )
                         EngInventory_MoveAndSizeFrame("EngInventory_frame_Item_"..currentbutton.."_bkgr", "TOPLEFT",
                                 "EngInventory_frame_Item_"..currentbutton, "TOPLEFT",
                                 0-EngBags_BUTTONFRAME_X_PADDING,
                                 EngBags_BUTTONFRAME_Y_PADDING,
                                 EngBags_BKGRFRAME_WIDTH,
-                                EngBags_BKGRFRAME_HEIGHT );
+                                EngBags_BKGRFRAME_HEIGHT )
 
-                        EngInventory_buttons["EngInventory_frame_Item_"..currentbutton] = { ["bar"]=barnum, ["position"]=position, ["bagnum"]=bagnum, ["slotnum"]=slotnum };
-                        EngInventory_UpdateButton( getglobal("EngInventory_frame_Item_"..currentbutton), EngInventory_item_cache[bagnum][slotnum] );
+                        EngInventory_buttons["EngInventory_frame_Item_"..currentbutton] = { ["bar"]=barnum, ["position"]=position, ["bagnum"]=bagnum, ["slotnum"]=slotnum }
+                        EngInventory_UpdateButton( getglobal("EngInventory_frame_Item_"..currentbutton), EngInventory_item_cache[bagnum][slotnum] )
 
-                        cur_x = cur_x + 1;
+                        cur_x = cur_x + 1
                         if (cur_x == width) then
                                 cur_x = 0;
                                 cur_y = cur_y + 1;
                         end
-
-                        currentbutton = currentbutton + 1;
+                        currentbutton = currentbutton + 1
                 end
         end
 
@@ -3039,14 +3115,11 @@ function EngInventory_AssignButtonsToFrame(barnum, currentbutton, frame, width, 
                 tmpframe = getglobal("EngInventory_frame_SlotTarget_"..barnum.."_bkgr");
                 tmpframe:SetVertexColor( 1,0,0.25, 0.5 );
         end
-
         return currentbutton;
 end
 
 EngInventory_WindowIsUpdating = 0;
 function EngInventory_UpdateWindow()
-	
-
         local frame = getglobal("EngInventory_frame");
         
         local currentbutton, barnum, slotnum;
@@ -3304,8 +3377,7 @@ function EngInventory_UpdateWindow()
 				else
 					barframe_three:Hide();
 				end
-
-				-----
+				
 				if (EngInventoryConfig["hide_items_in_bar_"..(barnum)] == 0 or EngInventory_edit_mode == 1) then
 				currentbutton = EngInventory_AssignButtonsToFrame(barnum, currentbutton,
 					"EngInventory_frame_bar_"..(barnum),
@@ -3321,7 +3393,6 @@ function EngInventory_UpdateWindow()
 					"EngInventory_frame_bar_"..(barnum+2),
 					calc_dat["third_width"], calc_dat["height"] );
 				end
-
 				cur_y = cur_y + (calc_dat["height"]*EngBags_BUTTONFRAME_HEIGHT)+(3*EngInventoryConfig["frameYSpace"]);
 			end
 		end
@@ -3329,9 +3400,9 @@ function EngInventory_UpdateWindow()
 		-- hide unused buttons
 		if (currentbutton <= ENGINVENTORY_MAXBUTTONS) then
 			for currentbutton = currentbutton, ENGINVENTORY_MAXBUTTONS do
-				tmpframe = getglobal("EngInventory_frame_Item_"..(currentbutton));
+				tmpframe = getglobal("EngInventory_frame_Item_"..(currentbutton))
 				tmpframe:Hide();
-				tmpframe = getglobal("EngInventory_frame_Item_"..(currentbutton).."_bkgr");
+				tmpframe = getglobal("EngInventory_frame_Item_"..(currentbutton).."_bkgr")
 				tmpframe:Hide();
 			end
 		end
@@ -3440,9 +3511,9 @@ function EngInventory_UpdateWindow()
 		end
 	end
 
-	EngInventory_window_update_required = ENGINVENTORY_NOTNEEDED;
+	EngInventory_window_update_required = ENGINVENTORY_NOTNEEDED
 
-        EngInventory_WindowIsUpdating = 0;
+    EngInventory_WindowIsUpdating = 0
 end
 function EngInventory_UpdateBagState()
         local shouldBeChecked = EngInventory_frame:IsVisible();

@@ -170,6 +170,18 @@ QuestieInterfaceTexts = {
                 ["description"] = "Переключение состояния заметок на карте мира.",
             },
         },
+        ["hideObjectives"] = {
+            ["enUS"] = {
+                ["default"] = "false",
+                ["name"] = "Hide Objective Markers",
+                ["description"] = "This option toggles showing of objectives (mob locations etc). If enabled only quest icons (!/?) are shown.",
+            },
+            ["ruRU"] = {
+                ["default"] = "выключено",
+                ["name"] = "Скрыть цели заданий",
+                ["description"] = "Переключение состояния заметок целей заданий (расположение монстров и т.д.). Если включено, будут отображаться только значки заданий (!/?).",
+            },
+        },
         ["showProfessionQuests"] = {
             ["enUS"] = {
                 ["default"] = "false",

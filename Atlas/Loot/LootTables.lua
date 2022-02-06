@@ -29,6 +29,7 @@ AtlasLoot_TableNames = {
 	["BFDAkumai"] = { BB["Aku'mai"], "AtlasLootItems" },
 	["BFDTrash"] = { L["Trash Mobs"].." ("..BZ["Blackfathom Deeps"]..")", "AtlasLootItems" },
 	--Blackrock Mountain
+	["BRMBehemoth"] = { L["The Behemoth"], "AtlasLootItems" },
 	["BRMScarshieldQuartermaster"] = { L["Scarshield Quartermaster"], "AtlasLootItems" },
 	--Blackrock Depths
 	["BRDPyron"] = { L["Overmaster Pyron"], "AtlasLootItems" },
@@ -212,6 +213,7 @@ AtlasLoot_TableNames = {
 	["NAXNoththePlaguebringer"] = { BB["Noth the Plaguebringer"], "AtlasLootItems" },
 	["NAXHeigantheUnclean"] = { BB["Heigan the Unclean"], "AtlasLootItems" },
 	["NAXLoatheb"] = { BB["Loatheb"], "AtlasLootItems" },
+	["NAXOmarion"] = { BB["Master Craftsman Omarion"], "AtlasLootItems" },
 	["NAXSapphiron"] = { BB["Sapphiron"], "AtlasLootItems" },
 	["NAXKelThuzard"] = { BB["Kel'Thuzad"], "AtlasLootItems" },
 	["NAXTrash"] = { L["Trash Mobs"].." ("..BZ["Naxxramas"]..")", "AtlasLootItems" },
@@ -873,6 +875,7 @@ AtlasLoot_TableNamesBoss = {
 		["BFDTrash"] = { L["Trash Mobs"].." ("..BZ["Blackfathom Deeps"]..")", "AtlasLootItems" },
 	},
 	[BZ["Blackrock Mountain"]] = {
+		["BRMBehemoth"] = { L["The Behemoth"], "AtlasLootItems" },
 		["BRMScarshieldQuartermaster"] = { L["Scarshield Quartermaster"], "AtlasLootItems" },
 		["BRDPyron"] = { L["Overmaster Pyron"], "AtlasLootItems" },
 	},
@@ -1074,6 +1077,7 @@ AtlasLoot_TableNamesBoss = {
 		["NAXNoththePlaguebringer"] = { BB["Noth the Plaguebringer"], "AtlasLootItems" },
 		["NAXHeigantheUnclean"] = { BB["Heigan the Unclean"], "AtlasLootItems" },
 		["NAXLoatheb"] = { BB["Loatheb"], "AtlasLootItems" },
+		["NAXOmarion"] = { BB["Master Craftsman Omarion"], "AtlasLootItems" },
 		["NAXSapphiron"] = { BB["Sapphiron"], "AtlasLootItems" },
 		["NAXKelThuzard"] = { BB["Kel'Thuzad"], "AtlasLootItems" },
 		["NAXTrash"] = { L["Trash Mobs"].." ("..BZ["Naxxramas"]..")", "AtlasLootItems" },

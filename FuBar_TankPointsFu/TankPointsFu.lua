@@ -478,7 +478,7 @@ function TankPointsFu:CalculateBaseBlockValue()
 		slotName = "SecondaryHandSlot"
 		slotId = GetInventorySlotInfo(slotName)
 		hasItem,_,_ = gratuity:SetInventoryItem("player", slotId)
-		blockValue = gratuity:FindDeformat("%d Block")
+		blockValue = gratuity:FindDeformat(L["%d Block"])
 		if (blockValue) then
 			statData["BASEBLOCKVALUE"] = blockValue
 		end
@@ -488,19 +488,19 @@ function TankPointsFu:CalculateBaseBlockValue()
 			slotId = GetInventorySlotInfo(slotName)
 			hasItem,_,_ = gratuity:SetInventoryItem("player", slotId)
 			-- Logic to check for +hit
-			toHit = gratuity:FindDeformat("Equip: Improves your chance to hit by %d%.")
+			toHit = gratuity:FindDeformat(L["Equip: Improves your chance to hit by %d%."])
 			if (toHit) then
 				statData["HIT"] = statData["HIT"] + toHit
 			end
 			-- Logic to check for +blockvalue
 			if (statData["BASEBLOCKVALUE"] > 0) then
-				blockValue = gratuity:FindDeformat("Equip: Increases the block value of your shield by %d.")
+				blockValue = gratuity:FindDeformat(L["Equip: Increases the block value of your shield by %d."])
 				if (blockValue) then
 					statData["BASEBLOCKVALUE"] = statData["BASEBLOCKVALUE"] + blockValue
 				end
 				-- Additional check for ZG enchantment
 				if ( slotName == "HeadSlot" or slotName == "LegsSlot" ) then
-					_,_,blockValue = gratuity:FindDeformat("Defense +%d/Stamina +%d/Block Value +%d")
+					_,_,blockValue = gratuity:FindDeformat(L["Defense +%d/Stamina +%d/Block Value +%d"])
 --					self:Debug(slotName," : ",blockValue)
 					if (blockValue) then
 						statData["BASEBLOCKVALUE"] = statData["BASEBLOCKVALUE"] + blockValue

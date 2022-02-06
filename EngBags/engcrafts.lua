@@ -57,7 +57,7 @@ function EngBags_Crafts()
 								if (reagentItemLink ~= nil) then
 									for a,b,c,d in string.gfind(reagentItemLink, "(%d+):(%d+):(%d+):(%d+)") do
 										reagentItemLink = ""..a..":0:"..c..":0";
-									end						
+									end
 									
 									if (EngBagsConfig[EngBags_PLAYERID]["tradeskill_items"][reagentItemLink] == nil) then
 										EngBagsConfig[EngBags_PLAYERID]["tradeskill_items"][reagentItemLink] = {};
@@ -140,7 +140,7 @@ function EngBags_Trade()
 								if (reagentItemLink ~= nil) then
 									for a,b,c,d in string.gfind(reagentItemLink, "(%d+):(%d+):(%d+):(%d+)") do
 										reagentItemLink = ""..a..":0:"..c..":0";
-									end						
+									end
 									
 									if (EngBagsConfig[EngBags_PLAYERID]["tradeskill_items"][reagentItemLink] == nil) then
 										EngBagsConfig[EngBags_PLAYERID]["tradeskill_items"][reagentItemLink] = {};

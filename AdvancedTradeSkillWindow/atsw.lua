@@ -424,7 +424,7 @@ function ATSWFrame_OnEvent()
 		end
 		elseif(event=="UNIT_PORTRAIT_UPDATE") then
 		if(arg1=="player") then
-			--SetPortraitTexture(TradeSkillFramePortrait, "player");
+			SetPortraitTexture(TradeSkillFramePortrait, "player");
 		end
 		elseif(event=="UPDATE_TRADESKILL_RECAST") then
 		ATSWInputBox:SetNumber(GetTradeskillRepeatCount());
@@ -1004,8 +1004,14 @@ function ATSW_ItemOnClick(link)
 	if( arg1 and arg1 == "RightButton") then
 		if aux_frame:IsVisible() then
 			local _,_,linkid = string.find(link, 'item:(%d+)') 
-			local link = string.format("item:%d",tonumber(linkid)) 
-			SetItemRef(link,"","RightButton")
+			local linkout
+			if not linkid then
+				_,_,linkid = string.find(link, 'enchant:(%d+)')
+				linkout = string.format("enchant:%d",tonumber(linkid or 0)) 
+			else
+				linkout = string.format("item:%d",tonumber(linkid or 0)) 
+			end
+			SetItemRef(linkout,"","RightButton")
 		elseif(CanSendAuctionQuery()) then
 			BrowseName:SetText(link);
 			AuctionFrameBrowse_Search();
@@ -2632,20 +2638,40 @@ end
 -- auction functions
 
 atsw_displayshoppinglist=true;
+shoppinglist_updatedelay = 0.2;
 
-function ATSWAuction_ShowShoppingList()
-	if(AuctionFrame:IsVisible() and table.getn(atsw_queue)>0 and atsw_displayshoppinglist) then
-		ATSWShoppingListFrame:Show();
-		if not aux_frame:IsVisible() then
-			ATSWShoppingListFrame:SetPoint("TOPLEFT","AuctionFrame","TOPLEFT",353,-436);
-			else
-			ATSWShoppingListFrame:SetParent(aux_frame);
+function ATSWShoppingListFrameOnUpdate()
+	
+	if(shoppinglist_updatedelay>0) then
+		
+		shoppinglist_updatedelay=shoppinglist_updatedelay-arg1;
+		if(shoppinglist_updatedelay<=0) then
+
+			if((AuctionFrame:IsVisible() or (aux_frame and aux_frame:IsVisible())) and table.getn(atsw_queue)>0 and atsw_displayshoppinglist) then
+
+				if aux_frame and aux_frame:IsVisible() then
 			ATSWShoppingListFrame:ClearAllPoints();
 			ATSWShoppingListFrame:SetPoint("TOPRIGHT","aux_frame","BOTTOMRIGHT",0,0);
+				else
+					ATSWShoppingListFrame:SetPoint("TOPLEFT","AuctionFrame","TOPLEFT",353,-436);
 		end
 		ATSW_NoteNecessaryItemsForQueue();
 		ATSWAuction_UpdateReagentList();
+			else 
+				ATSWShoppingListFrame:Hide();
+			end
+			shoppinglist_updatedelay=0;
+		end
 	end
+	end
+
+function ATSWAuction_ShowShoppingList()
+	if (table.getn(atsw_queue)>0 and atsw_displayshoppinglist) then
+		ATSWShoppingListFrame:Show();
+		ATSW_NoteNecessaryItemsForQueue();
+		ATSWAuction_UpdateReagentList();
+		shoppinglist_updatedelay = 0.2;
+	end;
 end
 
 function ATSWAuction_HideShoppingList()
@@ -2737,8 +2763,14 @@ end
 function ATSWAuction_SearchForItem(itemname)
 	if aux_frame:IsVisible() then
 		local _,_,linkid = string.find(this.link, 'item:(%d+)') 
-		local link = string.format("item:%d",tonumber(linkid)) 
-		SetItemRef(link,"","RightButton")
+		local linkout
+		if not linkid then
+			_,_,linkid = string.find(link, 'enchant:(%d+)')
+			linkout = string.format("enchant:%d",tonumber(linkid or 0)) 
+		else
+			linkout = string.format("item:%d",tonumber(linkid or 0)) 
+		end
+		SetItemRef(linkout,"","RightButton")
 		elseif(CanSendAuctionQuery()) then
 		BrowseName:SetText(itemname);
 		AuctionFrameBrowse_Search();

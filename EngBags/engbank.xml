@@ -678,8 +678,7 @@
 					</Anchor>
 				</Anchors>
 			</Button>
-
-
+			
 			<Frame name="EngBags_UserDropdown" inherits="UIDropDownMenuTemplate" enableMouse="true">
 				<Anchors>
 					<Anchor point="TOPRIGHT">

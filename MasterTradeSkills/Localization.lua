@@ -23,13 +23,13 @@ BINDING_HEADER_MTS_SEP	= "Master Trade Skills";
 
 -- Messages That Are Localized Below Here
 
-	MTS_LOADED = "Master Trade Skills v".. MTS_VERSION .. " /mts options";
+	MTS_LOADED = "Master Trade Skills v".. MTS_VERSION .. " /mts";
 	MTS_HELP = {
 		[1] = "|cFFFF0000MasterTradeSkills commands:|r";
 		[2] = "/MTS On : Turn MasterTradeSkills on";
 		[3] = "/MTS Off : Turn MasterTradeSkills on";
 		[4] = "/MTS Toggle : Toggle between on and off";
-		[5] = "/MTS Options : Show the options dialog";
+		[5] = "/MTS : Show the options dialog";
 		[6] = "/MTS Show : Shows All Recipes Without Any Filters";
 	};
 	MTS_WRONGSLASH = "For help type \"/MasterTradeSkills help\"";

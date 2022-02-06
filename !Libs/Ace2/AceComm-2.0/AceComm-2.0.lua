@@ -1689,7 +1689,9 @@ local function HandleMessage(prefix, message, distribution, sender, customChanne
 		chunk[current] = message
 		if current == max then
 			table_setn(chunk, max)
-			message = table_concat(chunk)
+			if chunk then
+				message = table_concat(chunk)
+			end
 			queue[x] = del(queue[x])
 		else
 			return

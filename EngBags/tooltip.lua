@@ -177,7 +177,7 @@ function EngBags_ModifyItemTooltip(bag, slot, tooltipName, itm)
 	EngBags_ReagentHelper_ModifyItemTooltip(bag, slot, tooltipName, itm);
 	EngBags_LootLink_ModifyItemTooltip(bag, slot, tooltipName, itm);
 	local tooltip = getglobal(tooltipName);
-	if ( not tooltip ) then	
+	if ( not tooltip ) then
 		return;
 	end
 

@@ -282,3 +282,7 @@ v0.5.5c:
 
 v0.5.5d
 - more fix for AUX support (reagent list #7)
+v0.5.6
+- Fix double item links on shiftclicks
+- Fix ShoppingList placement (aux support)
+- Added "enchant" links support (aux not understand it yet)

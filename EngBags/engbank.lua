@@ -1,23 +1,23 @@
 -- Constants
-EngBank_DEBUGMESSAGES = 0;         -- 0 = off, 1 = on
-EngBank_SHOWITEMDEBUGINFO = 0;
-EngBank_WIPECONFIGONLOAD = 0;	-- for debugging, test it out on a new config every load
-BINDING_HEADER_EngBank = "EngBank @ EngBags";
-BINDING_NAME_EB_TOGGLE = "Toggle Bank Window";
-EngBank_MAXBUTTONS = 144;
-EngBank_TOP_PADWINDOW = 75;
-EngBank_WINDOWBOTTOMPADDING_EDITMODE = 50;
-EngBank_WINDOWBOTTOMPADDING_NORMALMODE = 25;
-EngBank_WindowBottomPadding = EngBank_WINDOWBOTTOMPADDING_NORMALMODE;
-EngBank_AtBank = 0;
-EngReplaceBank          = 1;
-local BankFrame_Saved = nil;
+EngBank_DEBUGMESSAGES = 0         -- 0 = off, 1 = on
+EngBank_SHOWITEMDEBUGINFO = 0
+EngBank_WIPECONFIGONLOAD = 0	-- for debugging, test it out on a new config every load
+BINDING_HEADER_EngBank = "EngBank @ EngBags"
+BINDING_NAME_EB_TOGGLE = "Toggle Bank Window"
+EngBank_MAXBUTTONS = 144
+EngBank_TOP_PADWINDOW = 75
+EngBank_WINDOWBOTTOMPADDING_EDITMODE = 50
+EngBank_WINDOWBOTTOMPADDING_NORMALMODE = 25
+EngBank_WindowBottomPadding = EngBank_WINDOWBOTTOMPADDING_NORMALMODE
+EngBank_AtBank = 0
+EngReplaceBank          = 1
+local BankFrame_Saved = nil
 
 EngBank_item_cache = { {}, {}, {}, {}, {}, {}, {} };	-- cache of all the items as they appear in bags
-EngBank_bar_positions = {};
-EngBank_buttons = {};
-EngBank_hilight_new = 0;
-EngBank_edit_mode = 0;
+EngBank_bar_positions = {}
+EngBank_buttons = {}
+EngBank_hilight_new = 0
+EngBank_edit_mode = 0
 EngBank_edit_hilight = "";         -- when editmode is 1, which items do you want to hilight
 EngBank_edit_selected = "";        -- when editmode is 1, this is the class of item you clicked on
 EngBank_RightClickMenu_mode = "";
@@ -616,7 +616,7 @@ function EngBank_SetDefaultValues(re)
 	EBank_SetDefault("show_Bag9", 1, 1+re, EngBags_NumericRange, 0, 1);
 	EBank_SetDefault("show_Bag10", 1, 1+re, EngBags_NumericRange, 0, 1);
 
-	EBank_SetDefault("frameButtonSize", 40, 1+re, EngBags_NumericRange, 15, 80);
+	EBank_SetDefault("frameButtonSize", 30, 1+re, EngBags_NumericRange, 15, 80);
 
 	EngBank_CalcButtonSize(EngBankConfig["frameButtonSize"]);
 
@@ -630,13 +630,13 @@ function EngBank_SetDefaultValues(re)
 	EBank_SetDefault("frameXSpace", 5, 1+re, EngBags_NumericRange, 0, 20);
         EBank_SetDefault("frameYSpace", 5, 1+re, EngBags_NumericRange, 0, 20);
 
-	EBank_SetDefault("show_top_graphics", 1, 1+re, EngBags_NumericRange, 0, 1);
-	EBank_SetDefault("build_trade_list", 0, 1+re, EngBags_NumericRange, 0, 1);
+		EBank_SetDefault("show_top_graphics", 1, 1+re, EngBags_NumericRange, 0, 1);
+		EBank_SetDefault("build_trade_list", 0, 1+re, EngBags_NumericRange, 0, 1);
 
         EBank_SetDefault("newItemText", "*New*", 1+re);
         EBank_SetDefault("newItemTextPlus", "++", 1+re);
         EBank_SetDefault("newItemTextMinus", "--", 1+re);
-	EBank_SetDefault("newItemText_Off", "", 1+re);
+		EBank_SetDefault("newItemText_Off", "", 1+re);
         EBank_SetDefault("newItemTimeout", 60*60*3 , 1+re, EngBags_NumericRange);     -- 3 hours for an item to lose "new" status
         EBank_SetDefault("newItemTimeout2", 60*10 , 1+re, EngBags_NumericRange);      -- 10 minutes
         EBank_SetDefault("newItemColor1_R", 0.9 , 1+re, EngBags_NumericRange, 0, 1.0);
@@ -661,40 +661,37 @@ function EngBank_SetDefaultValues(re)
 	EngBank_SetClassBars();
 
         -- default slot locations for items
-	EBank_SetDefault("putinslot--CLASS_ITEMS1", 15, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-        EBank_SetDefault("putinslot--EMPTY_PROJECTILE_SLOTS", 15, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-        EBank_SetDefault("putinslot--USED_PROJECTILE_SLOTS", 15, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-        EBank_SetDefault("putinslot--PROJECTILE", 14, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);          -- arrows and bullets that AREN'T in your shot bags
-        EBank_SetDefault("putinslot--EMPTY_SLOTS", 13, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);         -- Empty slots go in this bar
-        EBank_SetDefault("putinslot--GRAY_ITEMS", 13, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);          -- Gray items go in this bar
+		EBank_SetDefault("putinslot--CLASS_ITEMS1", 15, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)
+        EBank_SetDefault("putinslot--EMPTY_PROJECTILE_SLOTS", 15, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)
+        EBank_SetDefault("putinslot--USED_PROJECTILE_SLOTS", 15, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)
+        EBank_SetDefault("putinslot--PROJECTILE", 14, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)          -- arrows and bullets that AREN'T in your shot bags
+        EBank_SetDefault("putinslot--EMPTY_SLOTS", 13, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)         -- Empty slots go in this bar
+        EBank_SetDefault("putinslot--GRAY_ITEMS", 13, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)          -- Gray items go in this bar
         --
-        EBank_SetDefault("putinslot--OTHERORUNKNOWN", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);      -- if not soulbound, but doesn't match any other catagory, it goes here
-        EBank_SetDefault("putinslot--TRADEGOODS", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--RECIPE", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--PATTERN", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--SCHEMATIC", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--FORMULA", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--TRADESKILL_COOKING", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--TRADESKILL_FIRSTAID", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+        EBank_SetDefault("putinslot--OTHERORUNKNOWN", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)      -- if not soulbound, but doesn't match any other catagory, it goes here
+        EBank_SetDefault("putinslot--TRADEGOODS", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)
+		EBank_SetDefault("putinslot--RECIPE", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)
+		EBank_SetDefault("putinslot--PATTERN", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)
+		EBank_SetDefault("putinslot--SCHEMATIC", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)
+		EBank_SetDefault("putinslot--FORMULA", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)
+		EBank_SetDefault("putinslot--TRADESKILL_COOKING", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)
+		EBank_SetDefault("putinslot--TRADESKILL_FIRSTAID", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS)
         EBank_SetDefault("putinslot--OTHERSOULBOUND", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);       -- this will usually be soulbound equipment
-	EBank_SetDefault("putinslot--CUSTOM_01", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--CUSTOM_02", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--CUSTOM_03", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--CUSTOM_04", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--CUSTOM_05", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--CUSTOM_06", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	--
+		EBank_SetDefault("putinslot--CUSTOM_01", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--CUSTOM_02", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--CUSTOM_03", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--CUSTOM_04", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--CUSTOM_05", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--CUSTOM_06", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--CONSUMABLE", 9, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--TRADESKILL_2", 8, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--TRADESKILL_1", 8, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--TRADESKILL_2_CREATED", 8, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--TRADESKILL_1_CREATED", 8, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--EQUIPPED", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-        --
         EBank_SetDefault("putinslot--FOOD", 6, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--DRINK", 5, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--QUESTITEMS", 4, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-        --
         EBank_SetDefault("putinslot--HEALINGPOTION", 3, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--HEALTHSTONE", 3, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
         EBank_SetDefault("putinslot--MANAPOTION", 2, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
@@ -708,46 +705,46 @@ function EngBank_SetDefaultValues(re)
 		EBank_SetDefault("putinslot--KEYS", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 		EBank_SetDefault("putinslot--CLASS_ITEMS2", 1, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 
-	-- NEW EQUIP SORTING
-	EBank_SetDefault("putinslot--BOP_BOE", 12, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPSHIRT", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPSHOULDER", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPLEGS", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPFEET", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPFINGER", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPWRIST", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPTABARD", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPBACK", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPCHEST", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPHEAD", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPNECK", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPHANDS", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPWAIST", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPTRINKET", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPFIRERESIST", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPFROSTRESIST", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPSHADOWRESIST", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPNATURERESIST", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
-	EBank_SetDefault("putinslot--EQUIPARCANERESIST", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		-- NEW EQUIP SORTING
+		EBank_SetDefault("putinslot--BOP_BOE", 10, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPSHIRT", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPSHOULDER", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPLEGS", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPFEET", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPFINGER", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPWRIST", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPTABARD", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPBACK", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPCHEST", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPHEAD", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPNECK", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPHANDS", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPWAIST", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPTRINKET", 11, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPFIRERESIST", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPFROSTRESIST", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPSHADOWRESIST", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPNATURERESIST", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
+		EBank_SetDefault("putinslot--EQUIPARCANERESIST", 7, 1+re, EngBags_NumericRange, 1, EngBags_MAX_BARS);
 
         -- default item overrides
-	EBank_SetDefault("itemoverride_loaddefaults", 1, 3+re, EngBags_NumericRange, 0, 1);
-	if (EngBankConfig["itemoverride_loaddefaults"] == 1) then
-		EngBankConfig["item_overrides"] = EngBags_DefaultItemOverrides;
-		EngBankConfig["item_search_list"] = EngBags_DefaultSearchList;
+		EBank_SetDefault("itemoverride_loaddefaults", 1, 3+re, EngBags_NumericRange, 0, 1);
+		if (EngBankConfig["itemoverride_loaddefaults"] == 1) then
+			EngBankConfig["item_overrides"] = EngBags_DefaultItemOverrides;
+			EngBankConfig["item_search_list"] = EngBags_DefaultSearchList;
 
-		for key,value in EngBankConfig["item_search_list"] do
-			if (string.sub(value[4], 1, 5) == "loc::") then
-				EngBankConfig["item_search_list"][key][4] = EBLocal[ string.sub(value[4],6) ];
+			for key,value in EngBankConfig["item_search_list"] do
+				if (string.sub(value[4], 1, 5) == "loc::") then
+					EngBankConfig["item_search_list"][key][4] = EBLocal[ string.sub(value[4],6) ];
+				end
 			end
-		end
-		for key,value in EBLocal["string_searches"] do
-			table.insert(EngBankConfig["item_search_list"], EngBags_DefaultSearchItemsINSERTTO,
-				{ value[1], "", value[2], "" } );
-		end
+			for key,value in EBLocal["string_searches"] do
+				table.insert(EngBankConfig["item_search_list"], EngBags_DefaultSearchItemsINSERTTO,
+					{ value[1], "", value[2], "" } );
+			end
 
-		EngBankConfig["itemoverride_loaddefaults"] = 0;
-	end
+			EngBankConfig["itemoverride_loaddefaults"] = 0;
+		end
 
 	-- cleanup old overrides that shouldn't be in the config anymore
 	newEngBankConfig = EngBankConfig;
@@ -797,9 +794,9 @@ function EngBank_SetTradeSkills()
 end
 
 function EngBank_init()
-	EngBags_SetDefaultValues();
-	EngBags_PLAYERID = UnitName("player").."|"..EngBags_Trim(GetCVar("realmName"));
-	EngBank_PLAYERID = EngBags_PLAYERID;
+	EngBags_SetDefaultValues()
+	EngBags_PLAYERID = UnitName("player").."|"..EngBags_Trim(GetCVar("realmName"))
+	EngBank_PLAYERID = EngBags_PLAYERID
 
 
 	if ( EngBagsItems[EngBank_PLAYERID] == nil) then
@@ -892,11 +889,11 @@ end
 function EngBank_Update_BagSlots()
 	local numSlots, full = GetNumBankSlots();
 	local cost = GetBankSlotCost(numSlots);
-	if ( (not full) and (EngBankConfig["hide_purchase button"]==0) ) then
+	if not full and EngBankConfig["hide_purchase button"]~=1 then
 		MoneyFrame_Update("EngBank_SlotCostFrame", cost);
 	else
-		EngBank_SlotCostFrame:Hide();
-		EngBank_PurchaseButton:Hide();
+		EngBank_SlotCostFrame:Hide()
+		EngBank_PurchaseButton:Hide()
 	end
 	B4nkFrameBag1:SetScale(0.7);
 	B4nkFrameBag2:SetScale(0.7);
@@ -904,23 +901,40 @@ function EngBank_Update_BagSlots()
 	B4nkFrameBag4:SetScale(0.7);
 	B4nkFrameBag5:SetScale(0.7);
 	B4nkFrameBag6:SetScale(0.7);
-	if (numSlots < 1) then B4nkFrameBag1:Hide(); else B4nkFrameBag1:Show(); end
-	if (numSlots < 2) then B4nkFrameBag2:Hide(); else B4nkFrameBag2:Show(); end
-	if (numSlots < 3) then B4nkFrameBag3:Hide(); else B4nkFrameBag3:Show(); end
-	if (numSlots < 4) then B4nkFrameBag4:Hide(); else B4nkFrameBag4:Show(); end
-	if (numSlots < 5) then B4nkFrameBag5:Hide(); else B4nkFrameBag5:Show(); end
-	if (numSlots < 6) then B4nkFrameBag6:Hide(); else B4nkFrameBag6:Show(); end
+	if (numSlots < 1) then B4nkFrameBag1:Hide() else B4nkFrameBag1:Show() end
+	if (numSlots < 2) then B4nkFrameBag2:Hide() else B4nkFrameBag2:Show() end
+	if (numSlots < 3) then B4nkFrameBag3:Hide() else B4nkFrameBag3:Show() end
+	if (numSlots < 4) then B4nkFrameBag4:Hide() else B4nkFrameBag4:Show() end
+	if (numSlots < 5) then B4nkFrameBag5:Hide() else B4nkFrameBag5:Show() end
+	if (numSlots < 6) then B4nkFrameBag6:Hide() else B4nkFrameBag6:Show() end
 
-	for i=1, NUM_BANKBAGSLOTS, 1 do
-		local button = getglobal("B4nkFrameBag"..i);
-		local tooltipText;
-		if ( button ) then
+	for i=1, NUM_BANKBAGSLOTS do
+		local button = getglobal("B4nkFrameBag"..i)
+		local tooltipText
+		if button then
+			if pfUI then
+				button.slot = i
+				button:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+				button:SetScript("OnClick", function()
+					for index=1, EngBank_MAXBUTTONS do
+						local bagframe = getglobal("EngBank_frame_Item_"..index)
+						if (bagframe and EngBank_buttons["EngBank_frame_Item_"..index] and EngBank_buttons["EngBank_frame_Item_"..index]["bagnum"]==this.slot+4) then
+							if arg1 == "LeftButton" then
+								EB_CreateBackdrop(bagframe, 3, this.slot - 1)
+								bagframe.backdrop:SetBackdropBorderColor(.2,1,.8,1)
+							else
+								EB_CreateBackdrop(bagframe, -1)
+							end
+						end
+					end
+				end)
+			end
 			if ( i <= numSlots ) then
-				SetItemButtonTextureVertexColor(button, 1.0,1.0,1.0);
-				button.tooltipText = BANK_BAG;
+				SetItemButtonTextureVertexColor(button, 1,1,1)
+				button.tooltipText = BANK_BAG
 			else
-				SetItemButtonTextureVertexColor(button, 1.0,0.1,0.1);
-				button.tooltipText = BANK_BAG_PURCHASE;
+				SetItemButtonTextureVertexColor(button, 1,.1,.1)
+				button.tooltipText = BANK_BAG_PURCHASE 
 			end
 		end
 	end
@@ -942,7 +956,7 @@ function EngBank_OnEvent(event)
 	elseif (event == "BANKFRAME_CLOSED") then
 		EngBank_AtBank = 0;
 		CloseBackpack(); -- Close Backpack when leaving
-	 	if EngReplaceBank == 1 then			
+	 	if EngReplaceBank == 1 then
 			EngBank_frame:Hide();
 		end
 
@@ -960,10 +974,10 @@ function EngBank_OnEvent(event)
                 EngBank_UpdateWindow();
 	elseif ( event == "PLAYERBANKBAGSLOTS_CHANGED" or event == "PLAYERBANKSLOTS_CHANGED") then
 		EngBank_Update_BagSlots();
---	elseif ( event == "CRAFT_SHOW" ) then
---		EngBags_Craft();
---	elseif ( event == "TRADE_SKILL_SHOW" ) then
---		EngBags_Trade();
+	elseif ( event == "CRAFT_SHOW" ) then
+		EngBags_Craft()
+	elseif ( event == "TRADE_SKILL_SHOW" ) then
+		EngBags_Trade()
 --	elseif ( event == "UPDATE_INVENTORY_ALERTS" ) then
 --		local itemLink;
 --		local a,b,c,d;

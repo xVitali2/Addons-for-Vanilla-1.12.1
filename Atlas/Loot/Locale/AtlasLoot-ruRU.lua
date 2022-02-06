@@ -294,6 +294,7 @@ L:RegisterTranslations("ruRU", function() return {
 	["Dukes"] = "Герцоги",
 	["High Council"] = "Высокий Совет",
 	["Scarshield Quartermaster"] = "Интендант из легиона Изрубленного Щита",
+	["The Behemoth"] = "Чудище",
 	["Overmaster Pyron"] = "Подчинитель Пирон",
 	["Father Flame"] = "Огонь отцов",
 	["Knot Thimblejack"] = "Уззл Наперстяк",

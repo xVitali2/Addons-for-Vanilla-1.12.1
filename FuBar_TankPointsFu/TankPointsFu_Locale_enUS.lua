@@ -13,6 +13,10 @@ L:RegisterTranslations("enUS", function() return {
 	["Last Stand"] = true,
 	["Shield Wall"] = true,
 	["Challenging Shout"] = true,
+	["Equip: Improves your chance to hit by %d%."] = true,
+	["Equip: Increases the block value of your shield by %d."] = true,
+	["Defense +%d/Stamina +%d/Block Value +%d"] = true,
+	["%d Block"] = true,
 
 	["Defensive Stance"] = true, -- Header line
 	["Berserker Stance"] = true, -- Header line

@@ -9,14 +9,15 @@
 ## Notes-ruRU: Обозреватель подземелий
 ## Version: 1.12.2
 ## Version-AtlasLoot: 4.06.07
-## Version-AtlasQuest: 4.1.3
+## Version-AtlasQuest: 4.2
 ## X-Date: March, 2018
 ## Author: Dan Gilbert, Daviesh, Thandrenn, Asurn, Loather, Rabidmax, Dazerdude (mod by CFM), Lichery
 ## X-Email: loglow@gmail.com
 ## X-Website: http://www.atlasmod.com
 ## X-Category: MYADDONS_CATEGORY_MAP
 ## X-OptionsFrame: AtlasOptionsFrame
-## SavedVariables: AtlasQuest_Options, AtlasOptions, AtlasLootCharDB
+## SavedVariables: AtlasOptions
+## SavedVariablesPerCharacter: AtlasQuest_Options, AtlasLootCharDB
 ## OptionalDeps: Titan, myAddOns, EarthFeatureFrame, Alphamap, AtlasLoader, LootLink, ItemSync, EquipCompare, EQCompare
 ## RequiredDeps: !Libs
 

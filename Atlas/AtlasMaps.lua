@@ -731,6 +731,8 @@ AtlasMaps = {
 		{ _RED..INDENT..INDENT..BB["Lady Blaumeux"], NPC, 16065 },
 		{ _RED..INDENT..INDENT..BB["Highlord Mograine"], NPC, 16062 },
 		{ _RED..INDENT..INDENT..BB["Sir Zeliek"], NPC, 16063 },
+		{ _RED..INDENT.."1') "..BB["Master Craftsman Omarion"], NPC, 16365 };
+		{ _RED..INDENT.."2') "..L["Icebellow Anvil"], OBJECT, 181168 };
 		{ GREEN..L["Frostwyrm Lair"] },
 		{ GREEN..INDENT.."1) "..BB["Sapphiron"], NPC, 15989 },
 		{ GREEN..INDENT.."2) "..BB["Kel'Thuzad"], NPC, 15990 },
@@ -1131,7 +1133,8 @@ AtlasMaps = {
 		{ GREY.."4) "..L["Meeting Stone"].." (BRD)" },
 		{ GREY.."5) "..L["Orb of Command"].." (BWL "..L["Teleport"]..")", OBJECT, 179879 },
 		{ GREY.."6) "..L["Meeting Stone"].." (LBRS, UBRS)" },
-		{ GREY.."7) "..L["Scarshield Quartermaster"].." ("..L["Rare"]..")", NPC, 9046 }
+		{ GREY.."7) "..L["Scarshield Quartermaster"].." ("..L["Rare"]..")", NPC, 9046 },
+		{ GREY.."8) "..L["The Behemoth"].." ("..L["Rare"]..")", NPC, 8924 }
 	},
 	GnomereganEnt = {
 		ZoneName = { BZ["Gnomeregan"].." ("..L["Entrance"]..")", 133 },

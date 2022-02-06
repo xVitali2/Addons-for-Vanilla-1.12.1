@@ -3,7 +3,7 @@
 ## Title: aux
 ## Notes: Auction House replacement
 ## Notes-ruRU: Замена интерфейса аукциона
-## Version: 29.11.2017
+## Version: 19.08.2018
 ## OptionalDeps: Informant
 ## SavedVariables: aux, aux_scale, aux_post_bid, aux_ignore_owner, aux_items, aux_item_ids, aux_auctionable_items, aux_merchant_buy, aux_merchant_sell
 

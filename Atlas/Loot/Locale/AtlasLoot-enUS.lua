@@ -312,6 +312,7 @@ L:RegisterTranslations("enUS", function() return {
 	["Dukes"] = true,
 	["High Council"] = true,
 	["Scarshield Quartermaster"] = true,
+	["The Behemoth"] = true,
 	["Overmaster Pyron"] = true,
 	["Father Flame"] = true,
 	["Knot Thimblejack"] = true,

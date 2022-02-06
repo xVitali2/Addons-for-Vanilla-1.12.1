@@ -314,7 +314,7 @@ function  MasterTradeSkills_Command(msg)
 		end
 	elseif(msg == "toggle") then
 		MTS_Options_Toggle();
-	elseif(msg == "options") then
+	elseif(msg == "") then
 		if (MTS_OptionsFrame:IsVisible()) then 
 			MTS_OptionsFrame:Hide();
 		else 

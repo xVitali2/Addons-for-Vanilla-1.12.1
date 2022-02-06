@@ -338,7 +338,7 @@
 	<Button name="ATSWItemTemplate" inherits="QuestItemTemplate" virtual="true">
 		<Scripts>
 			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "LeftButtonDown","RightButtonUp","RightButtonDown")
+				this:RegisterForClicks("LeftButtonUp","RightButtonUp")
 			</OnLoad>
 			<OnEnter>
 				GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT");
@@ -3805,6 +3805,9 @@
           </OnShow>
           <OnHide>
           </OnHide>
+        <OnUpdate>
+				ATSWShoppingListFrameOnUpdate();
+		  </OnUpdate>
         </Scripts>
     </Frame>
 

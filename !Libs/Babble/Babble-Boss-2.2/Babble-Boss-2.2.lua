@@ -368,6 +368,7 @@ BabbleBoss:RegisterTranslations("enUS", function()
 		["Gurubashi Berserker"] = true;
 		["Elder Mottled Boar"] = true,
 		["Stoneskin Gargoyle"] = true,
+		["Master Craftsman Omarion"] = true
 	}
 end)
 
@@ -932,6 +933,7 @@ BabbleBoss:RegisterTranslations("ruRU", function()
 		["Gurubashi Berserker"] = "Берсерк из племени Гурубаши";
 		["Elder Mottled Boar"] = "Старый крапчатый вепрь",
 		["Stoneskin Gargoyle"] = "Каменная горгулья",
+		["Master Craftsman Omarion"] = "Мастер-ремесленник Омарион"
 	}
 end)
 

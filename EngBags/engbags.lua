@@ -1,4 +1,4 @@
-ENGBAGS_VERSION = "1.57";
+ENGBAGS_VERSION = "1.58";
 
 BINDING_HEADER_EngBags = "EngBags";
 
@@ -154,31 +154,26 @@ function EngBags_SplitSpace(strtosplit)
 end
 
 function EngBags_Print(msg,r,g,b,frame,id,unknown4th)
-        if (not r) then r = 1.0; end
-        if (not g) then g = 1.0; end
-        if (not b) then b = 0.0; end
-        if ( Print ) then
-                Print(msg, r, g, b, frame, id, unknown4th);
-                return;
-        end
+        if (not r) then r = 1.0 end
+        if (not g) then g = 1.0 end
+        if (not b) then b = 0.0 end
         if(unknown4th) then
-                local temp = id;
-                id = unknown4th;
-                unknown4th = id;
+                local temp = id
+                id = unknown4th
+                unknown4th = id
         end
-                                
         if ( frame ) then 
-                frame:AddMessage(msg,r,g,b);
+                frame:AddMessage(msg,r,g,b)
         else
                 if ( DEFAULT_CHAT_FRAME ) then 
-                        DEFAULT_CHAT_FRAME:AddMessage(msg, r, g, b);
+                        DEFAULT_CHAT_FRAME:AddMessage(msg, r, g, b)
                 end
         end
 end
 
 function EngBags_PrintDEBUG(msg,r,g,b,frame,id,unknown4th)
 	if ((EngBags_DEBUGMESSAGES) == 1 or (ENGINVENTORY_DEBUGMESSAGES == 1)) then
-		EngBags_Print(msg,r,g,b,frame,id,unknown4th)
+		--EngBags_Print(msg,r,g,b,frame,id,unknown4th)
 	end
 end
 

@@ -439,10 +439,10 @@ function AQ_AtlasOrAlphamap()
 		AtlasQuestFrame:SetParent(AtlasFrame)
 		if AQ_ShownSide == "Right" then
 			AtlasQuestFrame:ClearAllPoints()
-			AtlasQuestFrame:SetPoint("TOP","AtlasFrame", 567, -80)
+			AtlasQuestFrame:SetPoint("TOP","AtlasFrame", 567, -36)
 		else
 			AtlasQuestFrame:ClearAllPoints()
-			AtlasQuestFrame:SetPoint("TOP","AtlasFrame", -556, -80)
+			AtlasQuestFrame:SetPoint("TOP","AtlasFrame", -556, -36)
 		end
 		AtlasQuestInsideFrame:SetParent(AtlasFrame)
 		AtlasQuestInsideFrame:ClearAllPoints()
@@ -701,7 +701,7 @@ function Atlas_OnShow()
 	-- AQ_AtlasOrAlphamap()
 	if AQ_ShownSide == "Right" then
 		AtlasQuestFrame:ClearAllPoints()
-		AtlasQuestFrame:SetPoint("TOP","AtlasFrame", 567, -80)
+		AtlasQuestFrame:SetPoint("TOP","AtlasFrame", 567, -36)
 	end
 	original_Atlas_OnShow() -- new line #2
 end

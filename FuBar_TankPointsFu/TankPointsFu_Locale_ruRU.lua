@@ -13,6 +13,10 @@ L:RegisterTranslations("ruRU", function() return {
 	["Last Stand"] = "Ни шагу назад",
 	["Shield Wall"] = "Глухая оборона",
 	["Challenging Shout"] = "Вызывающий крик",
+	["Equip: Improves your chance to hit by %d%."] = "Если на персонаже: Повышает меткость на %d%.",
+	["Equip: Increases the block value of your shield by %d."] = "Если на персонаже: Увеличивает показатель блокирования вашего щита на %d ед.",
+	["Defense +%d/Stamina +%d/Block Value +%d"] = "+%d к защите/+%d к выносливости/+%d к блокированию",
+	["%d Block"] = "Блокирование: %d",
 
 	["Defensive Stance"] = "Оборонительная стойка", -- Header line
 	["Berserker Stance"] = "Стойка берсерка", -- Header line

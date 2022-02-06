@@ -6,7 +6,7 @@
 ## OptionalDeps: pfUI, lootlink, auctioneer, equipcompare
 ## SavedVariables: EngBagsItems, EngBagsConfig
 ## SavedVariablesPerCharacter:
-## Version: 1.57
+## Version: 1.58
 ## Dependencies: 
 ## LoadOnDemand: 0
 EngBank.xml

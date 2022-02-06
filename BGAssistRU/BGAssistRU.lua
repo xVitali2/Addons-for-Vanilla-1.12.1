@@ -2280,7 +2280,6 @@ function BGAssist_Target_OnClick()
 		end
 	elseif (name) then
 		TargetByName(name)
-		ace:print("BGAssist_Target_OnClick")
 	end
 end
 

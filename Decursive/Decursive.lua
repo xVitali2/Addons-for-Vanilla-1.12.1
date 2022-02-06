@@ -2340,7 +2340,7 @@ function Dcr_Clean(UseThisTarget, SwitchToTarget) --{{{
 	elseif (targetName) then
 	    -- we had a friendly targeted... switch back if not still targeted
 	    if ( targetName ~= (UnitName("target")) ) then
-		TargetByName(targetName);
+		TargetByName(targetName)
 	    end
 	else
 	    -- we had nobody targeted originally

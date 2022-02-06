@@ -360,6 +360,7 @@ L:RegisterTranslations("enUS", function() return {
 	["The Black Forge"] = true,
 	["Core Fragment"] = true,
 	["Overmaster Pyron"] = true,
+	["The Behemoth"] = true,
 	
 	--Blackrock Spire (Lower)
 	["Vaelan"] = true,
@@ -419,6 +420,7 @@ L:RegisterTranslations("enUS", function() return {
 	["Four Horsemen Chest"] = true,
 	["Plague Wing"] = true,
 	["Frostwyrm Lair"] = true,
+	["Icebellow Anvil"] = true,
 	
 	--SM: Library
 	["Doan's Strongbox"] = true,
@@ -513,7 +515,7 @@ L:RegisterTranslations("enUS", function() return {
 	["Zealot Lor'Khan"] = true,
 	["Muddy Churning Waters"] = true,
 	["Jinxed Hoodoo Pile"] = true,
-	["ZG Enchants"] = true,		
+	["ZG Enchants"] = true,
 	
 	--************************************************
 	-- Instance Entrance Maps

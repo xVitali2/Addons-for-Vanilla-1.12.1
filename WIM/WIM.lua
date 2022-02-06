@@ -228,7 +228,7 @@ function WIM_Incoming(event)
 				WIM_IconFrame:Hide();
 			else
 				WIM_IconFrame:Show();
-				WIM_IconFrame:SetFrameStrata("HIGH");
+				WIM_IconFrame:SetFrameStrata("LOW");
 				WIM_IconFrame:SetPoint("TOPLEFT", "UIParent", "BOTTOMLEFT",WIM_Data.miniFreeMoving.left,WIM_Data.miniFreeMoving.top);
 			end
 		else
@@ -1017,15 +1017,15 @@ function WIM_ShorcutButton_Clicked()
 	local cmd = this.cmd;
 	local theUser = this:GetParent():GetParent().theUser;
 	if(cmd == "target") then
-		TargetByName(theUser, true);
+		TargetByName(theUser, true)
 	elseif(cmd == "invite") then
-		InviteByName(theUser);
+		InviteByName(theUser)
 	elseif(cmd == "trade") then
-		TargetByName(theUser, true);
-		InitiateTrade("target");
+		TargetByName(theUser, true)
+		InitiateTrade("target")
 	elseif(cmd == "inspect") then
-		TargetByName(theUser, true);
-		InspectUnit("target");
+		TargetByName(theUser, true)
+		InspectUnit("target")
 	elseif(cmd == "ignore") then
 		getglobal(this:GetParent():GetParent():GetName().."IgnoreConfirm"):Show();
 	end

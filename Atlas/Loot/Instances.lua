@@ -109,7 +109,8 @@ AtlasLootBossButtons = {
 		"",
 		"",
 		"",
-		"BRMScarshieldQuartermaster"
+		"BRMScarshieldQuartermaster",
+		"BRMBehemoth"
 	},
 	BlackrockSpireUpper = {
 		"VanillaKeys",
@@ -406,6 +407,7 @@ AtlasLootBossButtons = {
 		"",
 		"",
 		"",
+		"NAXOmarion",
 		"",
 		"",
 		"NAXSapphiron",
@@ -5210,6 +5212,9 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 23039, "INV_Weapon_Halberd_04", "=q4=The Eye of Nerub", "=ds=#w7#" },
 		{ 22800, "INV_Staff_13", "=q4=Brimstone Staff", "=ds=#w9#" },
 	},
+	NAXOmarion = {
+		{ 22719, "INV_Misc_Book_09", "=q1=Omarion's Handbook", "=ds=#m2#" },
+	},
 	NAXSapphiron = {
 		{ 23050, "INV_Misc_Cape_Naxxramas_03", "=q4=Cloak of the Necropolis", "=ds=#s4#" },
 		{ 23045, "INV_Misc_Cape_Naxxramas_03", "=q4=Shroud of Dominion", "=ds=#s4#" },
@@ -5289,6 +5294,9 @@ AtlasLoot_Data["AtlasLootItems"] = {
 	},
 	BRDPyron = {
 		{ 14486, "INV_Scroll_03", "=q3=Pattern: Cloak of Fire", "=ds=#p8# (275)", "17.95%" },
+	},
+	BRMBehemoth = {
+		{ 11603, "Ability_Whirlwind", "=q3=Vilerend Slicer", "=ds=#h3#, #w13#", "99%" },
 	},
 	BRMScarshieldQuartermaster = {
 		{ 13254, "INV_Shield_12", "=q3=Astral Guard", "=ds=#w8#", "1.03%" },

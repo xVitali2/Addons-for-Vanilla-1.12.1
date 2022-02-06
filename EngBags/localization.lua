@@ -73,14 +73,12 @@ EngBank_LOCALIZATION = {
 		"New Items",
 		"Новые предметы"
 		},
-
 	["soulbound_search"] = {	-- looking for soulbound keyword is special
 		"Soulbound",
 		"Seelengebunden",
 		"Soulbound",
 		"Персональный предмет"
 		},
-
 	["Warlock"] = {
 		"Warlock",
 		"Warlock",
@@ -107,7 +105,7 @@ EngBank_LOCALIZATION = {
 		},
 	["Warrior"] = {
 		"Warrior",
-		"Warrior",		
+		"Warrior",
 		"Warrior",
 		"Воин"
 		},
@@ -135,7 +133,6 @@ EngBank_LOCALIZATION = {
 		"Paladin",
 		"Паладин"
 		},
-
 	["Cooking"] = {
 		"Cooking",
 		"Cooking",
@@ -151,10 +148,10 @@ EngBank_LOCALIZATION = {
 
 	["string_searches"] = {
 		{ -- english
-			{ "FOOD", "Restores ([0-9.]+) health over ([0-9.]+) sec" },
-			{ "DRINK", "Restores ([0-9.]+) mana over ([0-9.]+) sec" },
-			{ "HEALINGPOTION", "Restores ([0-9.]+) to ([0-9.]+) health." },
-			{ "MANAPOTION", "Restores ([0-9.]+) to ([0-9.]+) mana." },
+			{ "FOOD", "Restores ([0-9.]+) health over " },
+			{ "DRINK", "Restores ([0-9.]+) mana over " },
+			{ "HEALINGPOTION", " to ([0-9.]+) health." },
+			{ "MANAPOTION", " to ([0-9.]+) mana." },
 			{ "PROJECTILE", "Projectile" },
 			{ "JUJU", "Juju" },
 			{ "BANDAGE", " Bandage" },
@@ -172,28 +169,7 @@ EngBank_LOCALIZATION = {
 			{ "ROGUE_POWDER", "Blinding Powder" },
 			{ "ROGUE_POWDER", "Flash Powder" },
 			{ "QUESTITEMS", "Use: Bind pages [0-9]" },	-- shredder operating manual & green hills of stranglethorn
-			{ "KEYS", " Key" },
-			{ "KEYS", "Key" },
-			{ "BOP_BOE", "Binds when"},
-			{ "EQUIPSHIRT", "Shirt"},
-			{ "EQUIPSHOULDER", "Shoulder"},
-			{ "EQUIPLEGS", "Legs"},
-			{ "EQUIPFEET", "Feet"},
-			{ "EQUIPFINGER", "Finger"},
-			{ "EQUIPWRIST", "Wrist"},
-			{ "EQUIPTABARD", "Tabard"},
-			{ "EQUIPBACK", "Back"},
-			{ "EQUIPCHEST", "Chest"},
-			{ "EQUIPHEAD", "Head"},
-			{ "EQUIPNECK", "Neck"},
-			{ "EQUIPHANDS", "Hands"},
-			{ "EQUIPWAIST", "Waist"},
-			{ "EQUIPTRINKET", "Trinket"},
-			{ "EQUIPFIRERESIST", "Fire Resist"},
-			{ "EQUIPFROSTRESIST", "Frost Resist"},
-			{ "EQUIPSHADOWRESIST", "Shadow Resist"},
-			{ "EQUIPNATURERESIST", "Nature Resist"},
-			{ "EQUIPARCANERESIST", "Arcane Resist"}
+			{ "KEYS", "Key" }
 		},
 		{ -- german
 			{ "FOOD", "Stellt im Verlauf von ([0-9.]+) Sek. ([0-9.]+) Punkt(e) Gesundheit wieder her." },
@@ -208,10 +184,10 @@ EngBank_LOCALIZATION = {
 		{ -- french
 		},
 		{ -- russian
-			{ "FOOD", "Восстанавливает ([0-9.]+) ед. здоровья за ([0-9.]+) сек." },
-			{ "DRINK", "Восполнение ([0-9.]+) ед. маны за ([0-9.]+) сек." },
-			{ "HEALINGPOTION", "- ([0-9.]+) ед. здоровья." },
-			{ "MANAPOTION", "- ([0-9.]+) ед. маны." },
+			{ "FOOD", "Восстанавливает ([0-9.]+) ед. здоровья за "},
+			{ "DRINK", "Восполнение ([0-9.]+) ед. маны за "},
+			{ "HEALINGPOTION", "- ([0-9.]+) ед. здоровья"},
+			{ "MANAPOTION", "- ([0-9.]+) ед. маны"},
 			{ "PROJECTILE", "Боеприпасы" },
 			{ "JUJU", "джуджу" },
 			{ "BANDAGE", " бинты" },
@@ -220,7 +196,7 @@ EngBank_LOCALIZATION = {
 			{ "PATTERN", "Выкройка:" },
 			{ "SCHEMATIC", "Схема:" },
 			{ "FORMULA", "Формула:" },
-			{ "MINIPET", "Щелкните правой кнопкой мыши, чтобы призвать или отпустить" },
+			{ "MINIPET", "Щелкните правой кнопкой мыши, чтобы призвать" },
 			{ "ROGUE_POISON", "Калечащий яд [IV]*" },
 			{ "ROGUE_POISON", "Смертельный яд [IV]*" },
 			{ "ROGUE_POISON", "Быстродействующий яд [IV]*" },
@@ -232,64 +208,11 @@ EngBank_LOCALIZATION = {
 			{ "KEYS", "Ключ"},
 			{ "KEYS", "Отмычка"},
 			{ "KEYS", "отмычка"},
-			{ "KEYS", "ключ"},			
-			{ "BOP_BOE", "Становится персональным при"},
-			{ "EQUIPSHIRT", "Рубашка"},
-			{ "EQUIPSHOULDER", "Плечо"},
-			{ "EQUIPLEGS", "Ноги"},
-			{ "EQUIPFEET", "Ступни"},
-			{ "EQUIPFINGER", "Палец"},
-			{ "EQUIPWRIST", "Запястья"},
-			{ "EQUIPTABARD", "Гербовая накидка"},
-			{ "EQUIPBACK", "Спина"},
-			{ "EQUIPCHEST", "Грудь"},
-			{ "EQUIPHEAD", "Голова"},
-			{ "EQUIPNECK", "Шея"},
-			{ "EQUIPHANDS", "Кисти рук"},
-			{ "EQUIPWAIST", "Пояс"},
-			{ "EQUIPTRINKET", "Аксессуар"},
-			{ "EQUIPFIRERESIST", "сопротивлению (огонь)"},
-			{ "EQUIPFROSTRESIST", "сопротивлению (лед)"},
-			{ "EQUIPSHADOWRESIST", "сопротивлению (тьма)"},
-			{ "EQUIPNATURERESIST", "сопротивлению (природа)"},
-			{ "EQUIPARCANERESIST", "сопротивлению (тайная магия)"}
-			
+			{ "KEYS", "ключ"}
 		}
 		},	-- end of string searches
 
-	-- values from GetItemInfo()  (itemType)
-	["tradegoods"] = {
-		"Trade Goods",
-		"Handwerkswaren",
-		"Trade Goods",
-		"Хозяйственные товары"
-		},
-	["miscellaneous"] = {
-		"Miscellaneous",
-		"Verschiedenes",
-		"Misellaneous",
-		"Разное"
-		},
-	["reagent"] = {
-		"Reagent",
-		"Reagenz",
-		"Reagent",
-		"Реагент"
-		},
-	["quest"] = {
-		"Quest",
-		"Quest",
-		"Quest",
-		"Задания"
-		},
-	["consumable"] = {
-		"Consumable",
-		"Verbrauchbar",
-		"consumable",
-		"Расходуемые"
-		},
-
-	-- window elements
+		-- window elements
 	["EngBank_Button_HighlightToggle_on"] = {
 		"Hilight New: ON",
 		"Hilight New: ON",
@@ -414,7 +337,7 @@ function EngBank_load_Localization(loadlang)
 	elseif ( loadlang == "FR" ) then
 		loadlang_num = 3;
 	elseif ( loadlang == "RU" ) then
-		loadlang_num = 4;	
+		loadlang_num = 4
 	end
 
 	-- the string.gsub is there because the editor I'm using is being stupid and is randomly replaceing spaces with tabs.
@@ -581,10 +504,10 @@ ENGINVENTORY_LOCALIZATION = {
 		},
 	["string_searches"] = {
 		{ -- english
-			{ "FOOD", "Restores ([0-9.]+) health over ([0-9.]+) sec" },
-			{ "DRINK", "Restores ([0-9.]+) mana over ([0-9.]+) sec" },
-			{ "HEALINGPOTION", "Restores ([0-9.]+) to ([0-9.]+) health." },
-			{ "MANAPOTION", "Restores ([0-9.]+) to ([0-9.]+) mana." },
+			{ "FOOD", "Restores ([0-9.]+) health over " },
+			{ "DRINK", "Restores ([0-9.]+) mana over " },
+			{ "HEALINGPOTION", " to ([0-9.]+) health." },
+			{ "MANAPOTION", " to ([0-9.]+) mana." },
 			{ "PROJECTILE", "Projectile" },
 			{ "JUJU", "Juju" },
 			{ "BANDAGE", " Bandage" },
@@ -602,28 +525,7 @@ ENGINVENTORY_LOCALIZATION = {
 			{ "ROGUE_POWDER", "Blinding Powder" },
 			{ "ROGUE_POWDER", "Flash Powder" },
 			{ "QUESTITEMS", "Use: Bind pages [0-9]" },	-- shredder operating manual & green hills of stranglethorn
-			{ "KEYS", " Key" },
-			{ "KEYS", "Key" },
-			{ "BOP_BOE", "Binds when"},
-			{ "EQUIPSHIRT", "Shirt"},
-			{ "EQUIPSHOULDER", "Shoulder"},
-			{ "EQUIPLEGS", "Legs"},
-			{ "EQUIPFEET", "Feet"},
-			{ "EQUIPFINGER", "Finger"},
-			{ "EQUIPWRIST", "Wrist"},
-			{ "EQUIPTABARD", "Tabard"},
-			{ "EQUIPBACK", "Back"},
-			{ "EQUIPCHEST", "Chest"},
-			{ "EQUIPHEAD", "Head"},
-			{ "EQUIPNECK", "Neck"},
-			{ "EQUIPHANDS", "Hands"},
-			{ "EQUIPWAIST", "Waist"},
-			{ "EQUIPTRINKET", "Trinket"},
-			{ "EQUIPFIRERESIST", "Fire Resist"},
-			{ "EQUIPFROSTRESIST", "Frost Resist"},
-			{ "EQUIPSHADOWRESIST", "Shadow Resist"},
-			{ "EQUIPNATURERESIST", "Nature Resist"},
-			{ "EQUIPARCANERESIST", "Arcane Resist"}
+			{ "KEYS", "Key" }
 		},
 		{ -- german
 			{ "FOOD", "Stellt im Verlauf von ([0-9.]+) Sek. ([0-9.]+) Punkt(e) Gesundheit wieder her." },
@@ -638,11 +540,11 @@ ENGINVENTORY_LOCALIZATION = {
 		{ -- french
 		},
 		{ -- russian
-			{ "FOOD", "Восстанавливает ([0-9.]+) ед. здоровья за ([0-9.]+) сек." },
-			{ "DRINK", "Восполнение ([0-9.]+) ед. маны за ([0-9.]+) сек." },
-			{ "HEALINGPOTION", "- ([0-9.]+) ед. здоровья." },
-			{ "MANAPOTION", "- ([0-9.]+) ед. маны." },
-			{ "PROJECTILE", "Боеприпасы" },
+			{ "FOOD", "Восстанавливает ([0-9.]+) ед. здоровья за "},
+			{ "DRINK", "Восполнение ([0-9.]+) ед. маны за "},
+			{ "HEALINGPOTION", "- ([0-9.]+) ед. здоровья"},
+			{ "MANAPOTION", "- ([0-9.]+) ед. маны"},
+			{ "PROJECTILE", "Боеприпасы"},
 			{ "JUJU", "джуджу" },
 			{ "BANDAGE", " бинты" },
 			{ "HEALTHSTONE", " камень здоровья" },
@@ -650,7 +552,7 @@ ENGINVENTORY_LOCALIZATION = {
 			{ "PATTERN", "Выкройка:" },
 			{ "SCHEMATIC", "Схема:" },
 			{ "FORMULA", "Формула:" },
-			{ "MINIPET", "Щелкните правой кнопкой мыши, чтобы призвать или отпустить" },
+			{ "MINIPET", "Щелкните правой кнопкой мыши, чтобы призвать" },
 			{ "ROGUE_POISON", "Калечащий яд [IV]*" },
 			{ "ROGUE_POISON", "Смертельный яд [IV]*" },
 			{ "ROGUE_POISON", "Быстродействующий яд [IV]*" },
@@ -658,64 +560,14 @@ ENGINVENTORY_LOCALIZATION = {
 			{ "ROGUE_POISON", "Нейтрализующий яд [IV]*" },
 			{ "ROGUE_POWDER", "Ослепляющий порошок" },
 			{ "ROGUE_POWDER", "Воспламеняющийся порошок" },
-			{ "QUESTITEMS", "Использование: Переплести страницы [0-9]" },	-- Руководства пользователя крошера & green hills of stranglethorn
+			{ "QUESTITEMS", "Использование: Переплести страницы [0-9]" },-- Руководства пользователя крошера & green hills of stranglethorn
 			{ "KEYS", "Ключ"},
 			{ "KEYS", "Отмычка"},
 			{ "KEYS", "отмычка"},
-			{ "KEYS", "ключ"},
-			{ "BOP_BOE", "Становится персональным при"},
-			{ "EQUIPSHIRT", "Рубашка"},
-			{ "EQUIPSHOULDER", "Плечо"},
-			{ "EQUIPLEGS", "Ноги"},
-			{ "EQUIPFEET", "Ступни"},
-			{ "EQUIPFINGER", "Палец"},
-			{ "EQUIPWRIST", "Запястья"},
-			{ "EQUIPTABARD", "Гербовая накидка"},
-			{ "EQUIPBACK", "Спина"},
-			{ "EQUIPCHEST", "Грудь"},
-			{ "EQUIPHEAD", "Голова"},
-			{ "EQUIPNECK", "Шея"},
-			{ "EQUIPHANDS", "Кисти рук"},
-			{ "EQUIPWAIST", "Пояс"},
-			{ "EQUIPTRINKET", "Аксессуар"},
-			{ "EQUIPFIRERESIST", "сопротивлению (огонь)"},
-			{ "EQUIPFROSTRESIST", "сопротивлению (лед)"},
-			{ "EQUIPSHADOWRESIST", "сопротивлению (тьма)"},
-			{ "EQUIPNATURERESIST", "сопротивлению (природа)"},
-			{ "EQUIPARCANERESIST", "сопротивлению (тайная магия)"}
+			{ "KEYS", "ключ"}
 		}
 		},	-- end of string searches
-	-- values from GetItemInfo()  (itemType)
-	["tradegoods"] = {
-		"Trade Goods",
-		"Handwerkswaren",
-		"Trade Goods",
-		"Хозяйственные товары"
-		},
-	["miscellaneous"] = {
-		"Miscellaneous",
-		"Verschiedenes",
-		"Misellaneous",
-		"Разное"
-		},
-	["reagent"] = {
-		"Reagent",
-		"Reagenz",
-		"Reagent",
-		"Реагент"
-		},
-	["quest"] = {
-		"Quest",
-		"Quest",
-		"Quest",
-		"Задания"
-		},
-	["consumable"] = {
-		"Consumable",
-		"Verbrauchbar",
-		"consumable",
-		"Расходуемые"
-		},
+		
 	-- window elements
 	["EngInventory_Button_HighlightToggle_on"] = {
 		"Hilight New: ON",

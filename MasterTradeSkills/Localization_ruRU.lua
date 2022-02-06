@@ -1,12 +1,12 @@
 function MasterTradeSkills_LoadRussian()
 --by CFM
-	MTS_LOADED = "Master Trade Skills в.".. MTS_VERSION .. " /mts options";
+	MTS_LOADED = "Master Trade Skills в.".. MTS_VERSION .. " /mts";
 	MTS_HELP = {
 		[1] = "|cFFFF0000MasterTradeSkills команды:|r";
 		[2] = "/MTS On : включить MasterTradeSkills";
 		[3] = "/MTS Off : выключить MasterTradeSkills";
 		[4] = "/MTS Toggle : Переключить состояние между вкл и выкл.";
-		[5] = "/MTS Options : Показать настройки";
+		[5] = "/MTS : Показать настройки";
 		[6] = "/MTS Show : Показывать Все рецепты без фильтров";
 	};
 	MTS_WRONGSLASH = "Для помощи введите \"/MasterTradeSkills help\"";
@@ -39,12 +39,12 @@ function MasterTradeSkills_LoadRussian()
 		[5] = "unknown";
 	};
 	
-		MTS_DIF1 = "Показывать |cFFA0A0A0[ Trivial ]";
-		MTS_DIF2 = "Показывать |cFF40C040[ Easy ]";
-		MTS_DIF3 = "Показывать |cFFFFEE00[ Medium ]";
-		MTS_DIF4 = "Показывать |cFFFF9900[ Optimal ]";
-		MTS_DIF5 = "Показывать |cFFFF0000[ Too High ]";
-		MTS_REVERSE = "Высокий уровень рецептов сверху";
+		MTS_DIF1 = "Показывать |cFFA0A0A0[ Простейшие ]";
+		MTS_DIF2 = "Показывать |cFF40C040[ Легкие ]";
+		MTS_DIF3 = "Показывать |cFFFFEE00[ Средние ]";
+		MTS_DIF4 = "Показывать |cFFFF9900[ Оптимальные ]";
+		MTS_DIF5 = "Показывать |cFFFF0000[ Сложные ]";
+		MTS_REVERSE = "Сложный уровень рецептов сверху";
 
 	MTS_OPT_ENABLE = "Включен " .. MTS_NAME;
 	MTS_OPT_SHOWLEARNED = "Показывать изученные рецепты";
@@ -211,7 +211,7 @@ MTS_RECIPENAME = {
     ["Cindercloth Pants"] = "Штаны из пепельной ткани",
     ["Cindercloth Robe"] = "Одеяние из пепельной ткани",
     ["Cindercloth Vest"] = "Жилет из пепельной ткани",
-    ["Clam Chowder"] = "Накидка часового",
+    ["Clam Chowder"] = "Похлебка из моллюсков",
     ["Cloak of Fire"] = "Плащ огня",
     ["Cloak of Warding"] = "Плащ стражи",
     ["Cluster Launcher"] = "Пусковая установка для связок фейерверков",
@@ -301,7 +301,7 @@ MTS_RECIPENAME = {
     ["Dawn's Edge"] = "Лезвие Рассвета",
     ["Dawnbringer Shoulders"] = "Наплечники Вестника Рассвета",
     ["Dazzling Mithril Rapier"] = "Ослепительная мифриловая рапира",
-    ["Deadly Blunderbuss"] = "Кушак мистика",
+    ["Deadly Blunderbuss"] = "Смертоносный мушкетон",
     ["Deadly Bronze Poniard"] = "Смертоносный бронзовый короткий кинжал",
     ["Deadly Poison II"] = "Смертельный яд II",
     ["Deadly Poison III"] = "Смертельный яд III",

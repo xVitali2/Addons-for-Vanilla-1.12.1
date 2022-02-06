@@ -175,7 +175,7 @@ CATARGS["graveyard"] = {
 }
 CATARGS["library"] = {
 	"library",
-	"sm",
+--	"sm",
 	"lib",
 	"sm all",
 	"sm any",
@@ -233,7 +233,7 @@ CATARGS["mara"] = {
 	"maru"
 }
 CATARGS["st"] = {
-	"st",
+--	"st",  -- "Server Time" workaround... #16
 	"sunken",
 	"sunk",
 	"sunkentemple"
@@ -285,7 +285,7 @@ CATARGS["ony"] = {
 }
 CATARGS["zg"] = {
 	"zg",
-	"zul",
+	"zul gurub", -- #15
 	"gurub",
 	"hakkar"
 }

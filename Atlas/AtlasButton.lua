@@ -61,7 +61,7 @@ function AtlasButton_BeingDragged()
 	-- Thanks to Gello for this code
 	local xpos,ypos = GetCursorPosition() 
 	local xmin,ymin = Minimap:GetLeft(), Minimap:GetBottom() 
-	
+
 	xpos = xmin-xpos/UIParent:GetScale()+70 
 	ypos = ypos/UIParent:GetScale()-ymin-70 
 	

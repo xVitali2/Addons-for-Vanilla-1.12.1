@@ -30,7 +30,7 @@ if not MyMinimapButton or MyMinimapButton.Version<version then
 		local frame = getglobal(frameName)
 		frame:SetWidth(31)
 		frame:SetHeight(31)
-		frame:SetFrameStrata("MEDIUM")
+		frame:SetFrameStrata("LOW")
 		frame:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight")
 		frame:CreateTexture(frameName.."Icon","BACKGROUND")
 		local icon = getglobal(frameName.."Icon")
@@ -145,7 +145,8 @@ if not MyMinimapButton or MyMinimapButton.Version<version then
 			button.modSettings.position = newPosition or button.modSettings.position
 			local xpos,ypos
 			local angle = button.modSettings.position
-			if button.modSettings.drag=="SQUARE" then
+			if (Squeenix or (simpleMinimap_Skins and simpleMinimap_Skins:GetShape() == "square")
+							or (pfUI and pfUI.minimap) or button.modSettings.drag=="SQUARE") then
 				xpos = 110 * cos(angle)
 				ypos = 110 * sin(angle)
 				xpos = math.max(-82,math.min(xpos,84))
