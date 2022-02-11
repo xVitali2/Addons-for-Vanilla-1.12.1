@@ -494,7 +494,6 @@ local function MI2_StoreLootItems( mobIndex, mobData )
 		mobInfo = {}
 		MobInfoDB[mobIndex] = mobInfo
 	end
-
 	-- create loot item list string for database
 	local itemList = ""
 	if mobData.itemList then

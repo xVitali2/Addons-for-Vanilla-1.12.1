@@ -318,10 +318,11 @@ local function MI2_OnTargetChanged()
 			MI2_StoreResistData( MI2_LastTargetIdx )
 		end
 	end
-
-	if name and level and maxHealth == 100
-			and (UnitCanAttack("player","target") or UnitIsPlayer("target")) then
+	
+	if name and level and maxHealth == 100 and (UnitCanAttack("player","target") or UnitIsPlayer("target")) then
 		MI2_Target = { name=name, level=level, tempDamage=0, maxHealth=100 }
+	elseif name and level and (UnitCanAttack("player","target") or UnitIsPlayer("target")) then
+		MI2_Target = { name=name, level=level, tempDamage=0, maxHealth=maxHealth }
 		MI2_Target.class = UnitClass("target")
 		MI2_Target.lastPercent = UnitHealth("target")
 
