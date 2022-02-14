@@ -23,14 +23,14 @@
 
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 	
+	<Script file="OptionUI.lua"/>
 	<Script file="Instances.lua"/>
 	<Script file="Buttons.lua"/>
-	<Script file="OptionUI.lua"/>
 	<Script file="Items.lua"/>
 	<Script file="AtlasQuest.lua"/>
 	
 	-- Tooltip
-	<GameTooltip name="AtlasQuestTooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true"/>
+	--<GameTooltip name="AtlasQuestTooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true"/>
 	
 	<!-- Option panel -->
 	<Frame name="AtlasQuestOptionFrame" enableMouse="true" movable="true" hidden="true" parent="UIParent" toplevel="true" frameStrata="DIALOG" enableKeyboard="true">

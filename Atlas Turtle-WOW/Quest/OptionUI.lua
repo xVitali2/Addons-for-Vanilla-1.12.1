@@ -26,7 +26,6 @@
 -- and sets checks after the variables
 -----------------------------------------------------------------------------
 function AtlasQuestOptionFrame_OnShow()
-	
 	--autoshow
 	if AQAtlasAuto == 2 then
 		AQAutoshowOption:SetChecked(false)
@@ -100,7 +99,7 @@ end
 -- Right option
 -----------------------------------------------------------------------------
 function AQRIGHTOption_OnClick()
-	if (AtlasFrame ~= nil) and (AtlasORAlphaMap == "Atlas") then
+	if (AtlasFrame ~= nil) and (AtlasORAlphaMap == "Atlas Turtle-WOW") then
 		AtlasQuestFrame:ClearAllPoints()
 		AtlasQuestFrame:SetPoint("TOP","AtlasFrame", 567, -36)
 	elseif AtlasORAlphaMap == "AlphaMap" then
@@ -121,7 +120,7 @@ end
 -- Left option
 -----------------------------------------------------------------------------
 function AQLEFTOption_OnClick()
-	if (AtlasFrame ~= nil) and (AtlasORAlphaMap == "Atlas") and ( AQ_ShownSide == "Right") then
+	if (AtlasFrame ~= nil) and (AtlasORAlphaMap == "Atlas Turtle-WOW") and ( AQ_ShownSide == "Right") then
 		AtlasQuestFrame:ClearAllPoints()
 		AtlasQuestFrame:SetPoint("TOP","AtlasFrame", -556, -36)
 	elseif (AtlasORAlphaMap == "AlphaMap") and ( AQ_ShownSide == "Right") then

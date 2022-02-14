@@ -49,7 +49,7 @@ local Blau = "|cff0070dd"
 -----------------------------------------------------------------------------
 
 local Initialized = nil -- the variables are not loaded yet
-
+local TooltipInitForPfUI = nil
 Allianceorhorde = 1 -- variable that configures whether horde or allians is shown
 
 AQINSTANCE = 1 -- currently shown instance-pic (see Instances.lua)
@@ -77,7 +77,7 @@ local AtlasQuest_Defaults = {
 	["Version"] = ATLASQUEST_VERSION,
 	[UnitName("player")] = {
 		["ShownSide"] = "Left",
-		["AtlasAutoShow"] = 2,
+		["AtlasAutoShow"] = 1,
 		["NOColourCheck"] = nil,
 		["CheckQuestlog"] = nil,
 		["AutoQuery"] = nil,
@@ -129,8 +129,9 @@ function AtlasQuest_Initialize()
 	if type(AtlasQuest_Options[UnitName("player")]) == "table" then
 		AQVersionCheck()
 		AtlasQuest_LoadData()
+		AtlasQuestOptionFrame_OnShow()
 	end
-	
+
 	-- Register AQ Tooltip with EquipCompare if enabled.
 	if AQCompareTooltip ~= nil then
 		if IsAddOnLoaded("EquipCompare") then
@@ -396,7 +397,7 @@ function AQ_OnUpdate(arg1)
 	AQ_AtlasOrAMVISCheck() -- Show whether atlas or am is shown atm
 	
 	------- SEE AtlasQuest_Instanzen.lua
-	if AtlasORAlphaMap == "Atlas" then
+	if AtlasORAlphaMap == "Atlas Turtle-WOW" then
 		AtlasQuest_Instanzenchecken()
 	elseif AtlasORAlphaMap == "AlphaMap" then
 		AtlasQuest_InstanzencheckAM()
@@ -422,7 +423,7 @@ end
 -----------------------------------------------------------------------------
 function AQ_AtlasOrAMVISCheck()
 	if AtlasFrame ~= nil and AtlasFrame:IsVisible() then
-		AtlasORAlphaMap = "Atlas"
+		AtlasORAlphaMap = "Atlas Turtle-WOW"
 	elseif AlphaMapFrame:IsVisible() then
 		AtlasORAlphaMap = "AlphaMap"
 	end
@@ -434,8 +435,8 @@ end
 -----------------------------------------------------------------------------
 function AQ_AtlasOrAlphamap()
 	if AtlasFrame ~= nil and AtlasFrame:IsVisible() then
-		AtlasORAlphaMap = "Atlas"
-		--
+		AtlasORAlphaMap = "Atlas Turtle-WOW"
+
 		AtlasQuestFrame:SetParent(AtlasFrame)
 		if AQ_ShownSide == "Right" then
 			AtlasQuestFrame:ClearAllPoints()
@@ -679,7 +680,15 @@ function AQCompareQLtoAQ(Quest)
 	end
 end
 
+-- Events: HookScript (function)
 
+function HookScript(f, script, func)
+  local prev = f:GetScript(script)
+  f:SetScript(script, function(a1,a2,a3,a4,a5,a6,a7,a8,a9)
+    if prev then prev(a1,a2,a3,a4,a5,a6,a7,a8,a9) end
+    func(a1,a2,a3,a4,a5,a6,a7,a8,a9)
+  end)
+end
 
 
 --******************************************
@@ -702,6 +711,18 @@ function Atlas_OnShow()
 	if AQ_ShownSide == "Right" then
 		AtlasQuestFrame:ClearAllPoints()
 		AtlasQuestFrame:SetPoint("TOP","AtlasFrame", 567, -36)
+	end
+	if AQCompareTooltip ~= nil and IsAddOnLoaded("pfUI") and not TooltipInitForPfUI then
+		pfUI.api.CreateBackdrop(AtlasQuestTooltip)
+		pfUI.api.CreateBackdropShadow(AtlasQuestTooltip)
+		if pfUI.eqcompare then
+			HookScript(AtlasQuestTooltip, "OnShow", pfUI.eqcompare.GameTooltipShow)
+			HookScript(AtlasQuestTooltip, "OnHide", function()
+				ShoppingTooltip1:Hide()
+				ShoppingTooltip2:Hide()
+			end)
+		end
+		TooltipInitForPfUI = true
 	end
 	original_Atlas_OnShow() -- new line #2
 end

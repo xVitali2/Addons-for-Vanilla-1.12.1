@@ -5797,7 +5797,18 @@ if ( GetLocale() == "ruRU" ) then
 	--
 	Inst32Quest5name1_HORDE = "Brilliant Gold Ring"
 	
-	
+--Quest 6 Horde
+Inst32Quest6_HORDE = "6. Backup Capacitor" -- 55006
+Inst32Quest6_HORDE_Level = "34"
+Inst32Quest6_HORDE_Attain = "29"
+Inst32Quest6_HORDE_Aim = "Bring the Megaflux Capacitor to Technician Grimzlow."
+Inst32Quest6_HORDE_Location = "Technician Grimzlow (Durotar - Sparkwater Port; "..YELLOW.."57,27"..WHITE..")"
+Inst32Quest6_HORDE_Note = "You get the prequest from Technician Grimzlow. Drop from the last boss."
+Inst32Quest6_HORDE_Prequest = "A New Power Source" --55003
+Inst32Quest6_HORDE_Folgequest = "No"
+--
+Inst32Quest6name1_HORDE = "Razorblade Buckler"
+Inst32Quest6name2_HORDE = "Crackling Zapper"
 	
 	---------------------------------------------------
 	---------------- OUTDOOR RAIDS --------------------
@@ -6396,6 +6407,85 @@ if ( GetLocale() == "ruRU" ) then
 	Inst38QAH = "Нет заданий"
 	
 	
+--------------- INST39 - The Crescent Grove (TCG) ---------------
+Inst39Story = ""
+Inst39Caption = "The Crescent Grove"
+Inst39QAA = "3 Quests"
+Inst39QAH = "3 Quests"
+--Quest 1 Alliance
+Inst39Quest1 = "1. The Rampant Groveweald" -- 40089
+Inst39Quest1_Level = "33"
+Inst39Quest1_Attain = "26"
+Inst39Quest1_Aim = "Venture into the Crescent Grove and collect 8 Groveweald Badges from the furbolgs inside for Grol the Exile."
+Inst39Quest1_Location = "Grol the Exile (Ashenvale "..YELLOW.."56,59"..WHITE..")"
+Inst39Quest1_Note = "Drop from furbolgs."
+Inst39Quest1_Prequest = "No"
+Inst39Quest1_Folgequest = "No"
+--Quest 2 Alliance
+Inst39Quest2 = "2. The Unwise Elders" -- 40090
+Inst39Quest2_Level = "34"
+Inst39Quest2_Attain = "26"
+Inst39Quest2_Aim = "Bring the paws of Elder 'One Eye' and Elder Blackmaw from within the Crescent Grove to Grol the Exile."
+Inst39Quest2_Location = "Grol the Exile (Ashenvale "..YELLOW.."56,59"..WHITE..")"
+Inst39Quest2_Note = "Drop from furbolgs near first boss."
+Inst39Quest2_Prequest = "No"
+Inst39Quest2_Folgequest = "No"
+Inst39Quest2name1 = "Grol's Band" --60179
+--Quest 3 Alliance
+Inst39Quest3 = "3. The Crescent Grove" -- 40091
+Inst39Quest3_Level = "37"
+Inst39Quest3_Attain = "28"
+Inst39Quest3_Aim = "Destroy the source of corruption inside Crescent Grove."
+Inst39Quest3_Location = "Denatharion <Druid Trainer> (Teldrassil - Darnassus "..YELLOW.."24,48"..WHITE..")"
+Inst39Quest3_Note = "You need to kill the last boss."
+Inst39Quest3_Prequest = "No"
+Inst39Quest3_Folgequest = "No"
+Inst39Quest3name1 = "Chain of Denatharion" --60180
+Inst39Quest3name2 = "Cloak of Denatharion" --60181
+Inst39Quest3name3 = "Epaulets of Denatharion" --60182
+Inst39Quest3name4 = "Mask of Denatharion" --60183
+--Quest 4 Alliance
+Inst39Quest4 = "4. Kalanar's Mallet" -- 40326
+Inst39Quest4_Level = "33"
+Inst39Quest4_Attain = "25"
+Inst39Quest4_Aim = "Travel to the Crescent Grove and find the burned down home of Kalanar Brightshine. Then retrieve Kalanar's Mallet and return it to him in Astranaar."
+Inst39Quest4_Location = "Kalanar Brightshine (Ashenvale "..YELLOW.."36,52"..WHITE..")"
+Inst39Quest4_Note = "Contained in Kalanar's Strongbox."
+Inst39Quest4_Prequest = "No"
+Inst39Quest4_Folgequest = "No"
+
+--Quest 1 Horde
+Inst39Quest1_HORDE = "1. The Rampant Groveweald" -- 40089
+Inst39Quest1_HORDE_Level = "33"
+Inst39Quest1_HORDE_Attain = "26"
+Inst39Quest1_HORDE_Aim = "Venture into the Crescent Grove and collect 8 Groveweald Badges from the furbolgs inside for Grol the Exile."
+Inst39Quest1_HORDE_Location = "Grol the Exile (Ashenvale "..YELLOW.."56,59"..WHITE..")"
+Inst39Quest1_HORDE_Note = "Drop from furbolgs."
+Inst39Quest1_HORDE_Prequest = "No"
+Inst39Quest1_HORDE_Folgequest = "No"
+--Quest 2 Horde
+Inst39Quest2_HORDE = "2. The Unwise Elders" -- 40090
+Inst39Quest2_HORDE_Level = "34"
+Inst39Quest2_HORDE_Attain = "26"
+Inst39Quest2_HORDE_Aim = "Bring the paws of Elder 'One Eye' and Elder Blackmaw from within the Crescent Grove to Grol the Exile."
+Inst39Quest2_HORDE_Location = "Grol the Exile (Ashenvale "..YELLOW.."56,59"..WHITE..")"
+Inst39Quest2_HORDE_Note = "Drop from furbolgs near first boss."
+Inst39Quest2_HORDE_Prequest = "No"
+Inst39Quest2_HORDE_Folgequest = "No"
+Inst39Quest2name1_HORDE = "Grol's Band" --60179
+--Quest 3 Horde
+Inst39Quest3_HORDE = "3. Rooting Out Evil" -- 40147
+Inst39Quest3_HORDE_Level = "37"
+Inst39Quest3_HORDE_Attain = "26"
+Inst39Quest3_HORDE_Aim = "Venture into the Crescent Grove and root out the evil inside."
+Inst39Quest3_HORDE_Location = "Loruk Foreststrider (Ashenvale - Splintertree Post "..YELLOW.."73,59"..WHITE..")"
+Inst39Quest3_HORDE_Note = "The Questline starts at Loruk Foreststrider too. You need to kill the last boss."
+Inst39Quest3_HORDE_Prequest = "Mysteries of the Grove -> Feran's Report" -- 40145 -> 40146
+Inst39Quest3_HORDE_Folgequest = "No"
+Inst39Quest3name1_HORDE = "Chain of Loruk" --60213
+Inst39Quest3name2_HORDE = "Cloak of Loruk" --60214
+Inst39Quest3name3_HORDE = "Shoulders of Loruk" --60215
+Inst39Quest3name4_HORDE = "Hat of Loruk" --60216
 	
 	
 	---------------------------

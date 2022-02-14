@@ -3786,7 +3786,16 @@ Inst32Quest5ITC1_HORDE = Itemc3
 Inst32Quest5description1_HORDE = AQITEM_RING
 Inst32Quest5ID1_HORDE = "9362"
 
-
+--Quest 6 Horde
+Inst32Quest6Rewardtext_HORDE = AQDiscription_REWARD..WHITE.."1"..AQDiscription_OR..WHITE.."2"
+--ITEM1
+Inst32Quest6ITC1_HORDE = Itemc4
+Inst32Quest6description1_HORDE = AQITEM_SHIELD
+Inst32Quest6ID1_HORDE = "81319"
+--ITEM2
+Inst32Quest6ITC2_HORDE = Itemc4
+Inst32Quest6description2_HORDE = AQITEM_WAND
+Inst32Quest6ID2_HORDE = "81320"
 
 ---------------------------------------------------
 ---------------- OUTDOOR RAIDS --------------------

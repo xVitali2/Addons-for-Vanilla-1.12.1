@@ -5786,6 +5786,18 @@ Inst32Quest5_HORDE_Folgequest = "Nogg's Ring Redo" -- 2950
 --
 Inst32Quest5name1_HORDE = "Brilliant Gold Ring"
 
+--Quest 6 Horde
+Inst32Quest6_HORDE = "6. Backup Capacitor" -- 55006
+Inst32Quest6_HORDE_Level = "34"
+Inst32Quest6_HORDE_Attain = "29"
+Inst32Quest6_HORDE_Aim = "Bring the Megaflux Capacitor to Technician Grimzlow."
+Inst32Quest6_HORDE_Location = "Technician Grimzlow (Durotar - Sparkwater Port; "..YELLOW.."57,27"..WHITE..")"
+Inst32Quest6_HORDE_Note = "You get the prequest from Technician Grimzlow. Drop from the last boss."
+Inst32Quest6_HORDE_Prequest = "A New Power Source" --55003
+Inst32Quest6_HORDE_Folgequest = "No"
+--
+Inst32Quest6name1_HORDE = "Razorblade Buckler"
+Inst32Quest6name2_HORDE = "Crackling Zapper"
 
 
 ---------------------------------------------------
@@ -6421,7 +6433,15 @@ Inst39Quest3name1 = "Chain of Denatharion" --60180
 Inst39Quest3name2 = "Cloak of Denatharion" --60181
 Inst39Quest3name3 = "Epaulets of Denatharion" --60182
 Inst39Quest3name4 = "Mask of Denatharion" --60183
-
+--Quest 4 Alliance
+Inst39Quest4 = "4. Kalanar's Mallet" -- 40326
+Inst39Quest4_Level = "33"
+Inst39Quest4_Attain = "25"
+Inst39Quest4_Aim = "Travel to the Crescent Grove and find the burned down home of Kalanar Brightshine. Then retrieve Kalanar's Mallet and return it to him in Astranaar."
+Inst39Quest4_Location = "Kalanar Brightshine (Ashenvale "..YELLOW.."36,52"..WHITE..")"
+Inst39Quest4_Note = "Contained in Kalanar's Strongbox."
+Inst39Quest4_Prequest = "No"
+Inst39Quest4_Folgequest = "No"
 
 --Quest 1 Horde
 Inst39Quest1_HORDE = "1. The Rampant Groveweald" -- 40089
