@@ -5347,8 +5347,8 @@ Inst30Quest4_Note = "Hydromancer Velratha drops the Tiara of the Deep at "..YELL
 Inst30Quest4_Prequest = "Tabetha's Task" -- 2861
 Inst30Quest4_Folgequest = "No"
 --
-Inst30Quest3name1 = "Spellshifter Rod"
-Inst30Quest3name2 = "Gemshale Pauldrons"
+Inst30Quest4name1 = "Spellshifter Rod"
+Inst30Quest4name2 = "Gemshale Pauldrons"
 
 --Quest 5 Alliance
 Inst30Quest5 = "5. The Prophecy of Mosh'aru" -- 3527
