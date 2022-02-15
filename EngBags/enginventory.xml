@@ -537,9 +537,37 @@
 					<OnClick>
 						EngInventory_Button_BankToggle_OnClick();
 					</OnClick>
+					<OnEnter>
+						GameTooltip_AddNewbieTip(EILocal["EngInventory_Button_BankToggle"], 1.0, 1.0, 1.0, EILocal["EngInventory_Button_BankToggle_tooltip"]);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</Button>
-			
+			<!-- 
+			<Button name="EngInventory_Button_Garbage" inherits="GameMenuButtonTemplate" text="Garbage">
+				<Size><AbsDimension x="80" y="25"/></Size>
+				<Anchors>
+				<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="87" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						EngInventory_Button_Garbage_OnClick();
+					</OnClick>
+					<OnEnter>
+						GameTooltip_AddNewbieTip(EILocal["EngInventory_Button_Garbage"], 1.0, 1.0, 1.0, EILocal["EngInventory_Button_Garbage_tooltip"]);
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+			 -->
 			<Button name="EngInventory_Button_HighlightToggle" inherits="GameMenuButtonTemplate" text="Hilight New: OFF">
 				<Size><AbsDimension x="150" y="25"/></Size>
 				<Anchors>

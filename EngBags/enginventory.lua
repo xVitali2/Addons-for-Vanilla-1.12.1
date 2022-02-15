@@ -2211,7 +2211,7 @@ function EngInventory_RightClick_PickupItem()
 		message("Error, value not found.");
 	end
 end
-
+-- bank button section
 function EngInventory_Button_BankToggle_OnClick()
 	EngBank_SlotCostFrame:Hide()
 	EngBank_PurchaseButton:Hide()
@@ -2224,6 +2224,93 @@ function EngInventory_Button_BankToggle_OnClick()
 	EngBags_UserDropdown:Show()
 	EngBank_frame:Show()
 end
+
+-- -- Garbage section
+
+-- function EngInventory_Button_Garbage_OnClick()
+	-- if IsShiftKeyDown() then
+		-- GarbageFu:DropFirstItem();
+	-- end
+	-- if IsControlKeyDown() then
+		-- GarbageFu:KeepFirstItem();
+	-- end
+-- end
+
+-- function GarbageFu:KeepFirstItem()
+	-- local item = self:GetFirstDroppableItem();
+	-- if item then
+		-- self:KeepItem(item);
+	-- end
+-- end
+
+-- function GarbageFu:KeepItem(item)
+	-- if item then
+		-- self:ToggleKeepItem(item.id);
+		-- self:MyPrint(L["Adding %s to keep item list "],item.link );
+	-- end
+-- end
+
+-- function GarbageFu:DropFirstItem()
+	-- local item = self:GetFirstDroppableItem();
+	-- if item then
+		-- self:DropItem(item);
+	-- end
+-- end
+
+-- function GarbageFu:DropItem(item)
+	-- if not item or not item.bag or not item.slot then return end
+	-- if not self:IsSafeToDelete() then return end
+	-- if self:IsItemDroppable(item) then
+		-- if (MerchantFrame:IsVisible()) then
+			-- self:MyPrint(L["Selling x%s %s worth %s"], item.stack, item.name, self:GetMoneyString(item.totvalue) );
+			-- UseContainerItem(item.bag, item.slot)
+			-- self:SetSafeToDelete(false);
+		-- else
+			-- self:MyPrint(L["Dropping x%s %s worth %s"], item.stack, item.name, self:GetMoneyString(item.totvalue) );
+			-- PickupContainerItem(item.bag, item.slot)
+			-- DeleteCursorItem();
+			-- self:SetSafeToDelete(false);
+		-- end
+	-- end
+-- end
+
+-- function GarbageFu:GetMoneyString(value)
+	-- if ( value == 0 ) then
+		-- return "|cffffcc00??|r"; -- No price
+	-- elseif ( self.db.profile.moneyformat == 1 ) then
+		-- return abacus:FormatMoneyCondensed(value,true,true)
+	-- elseif ( self.db.profile.moneyformat == 2 ) then
+		-- return abacus:FormatMoneyShort(value,true,true)
+	-- elseif ( self.db.profile.moneyformat == 3 ) then
+		-- return abacus:FormatMoneyFull(value,true,true)
+	-- else
+		-- return abacus:FormatMoneyExtended(value,true,true)
+	-- end
+-- end
+
+-- -- Check if an item is elegiable for drop
+-- function GarbageFu:IsItemDroppable(item)
+	-- if (item.notseen) then self:UpdateItem(item.bag,item.slot) end -- Not seen item. Try again.
+	-- if (item.notseen) then return false end -- Still not seen.
+	-- if (item.totvalue == 0 and item.qual > 0) then return false end -- All items above poor quality without price is not dropped for saftey reasons
+	-- if (self.db.profile.keepitem[item.id]) then return false end
+	-- if (self.db.profile.dropitem[item.id]) then return true end
+	-- if self:IsItemInKeepSets(item.id) then return false end
+	-- if self:IsItemInDropSets(item.id) then return true end
+	-- if (item.qual <= self:GetDropThreshold()) then return true end
+	-- return false
+-- end
+
+-- function GarbageFu:GetFirstDroppableItem()
+	-- for i,item in self.vars.items do
+		-- if self:IsItemDroppable(item) then
+			-- return item
+		-- end
+	-- end
+-- end
+
+--EngInventory section
+
 function EngInventory_Button_HighlightToggle_OnClick()
 	PlaySound("igMainMenuOptionCheckBoxOn");
 	if (EngInventory_hilight_new == 0) then

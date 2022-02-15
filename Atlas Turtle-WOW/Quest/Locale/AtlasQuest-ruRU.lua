@@ -75,7 +75,7 @@ if ( GetLocale() == "ruRU" ) then
 	AQOptionsNoQuerySpamTEXT = "Подавление спама запросов к серверу."
 	
 	-- Use Comparison Tooltips
-	AQOptionsCompareTooltipTEXT = "Сравнение награды с надетыми вещами."
+	AQOptionsCompareTooltipTEXT = "Сравнение награды с надетыми вещами (нужно /rl)."
 	
 	
 	AQAbilities = BLUE .. "Способности:"

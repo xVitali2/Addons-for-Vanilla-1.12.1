@@ -71,7 +71,7 @@ AQOptionsAutoQueryTEXT = "Automatically query the server for items you haven't s
 AQOptionsNoQuerySpamTEXT = "Suppress Server Query spam."
 
 -- Use Comparison Tooltips
-AQOptionsCompareTooltipTEXT = "Compare rewards to currently equipped items."
+AQOptionsCompareTooltipTEXT = "Compare rewards to currently equipped items (need /rl)."
 
 
 AQAbilities = BLUE .. "Abilities:" .. WHITE;

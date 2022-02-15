@@ -7,7 +7,7 @@
 ## SavedVariables: EngBagsItems, EngBagsConfig
 ## SavedVariablesPerCharacter:
 ## Version: 1.58
-## Dependencies: 
+## Dependencies:
 ## LoadOnDemand: 0
 EngBank.xml
 eb_options.xml

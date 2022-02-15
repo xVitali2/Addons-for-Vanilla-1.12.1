@@ -587,17 +587,35 @@ ENGINVENTORY_LOCALIZATION = {
 		"Hilight New: OFF",
 		"Подсветка новых: выкл"
 		},
+	["EngInventory_Button_HighlightToggle_off_tooltip"] = {
+		"Highlight of new items is off.",
+		"Highlight of new items is off.",
+		"Highlight of new items is off.",
+		"Подсветка новых предметов выключена."
+		},
 	["EngInventory_Button_BankToggle"] = {
 		"Bank",
 		"Bank",
 		"Bank",
 		"Банк"
 		},
-	["EngInventory_Button_HighlightToggle_off_tooltip"] = {
-		"Highlight of new items is off.",
-		"Highlight of new items is off.",
-		"Highlight of new items is off.",
-		"Подсветка новых предметов выключена."
+	["EngInventory_Button_BankToggle_tooltip"] = {
+		"Show bank",
+		"Show bank",
+		"Show bank",
+		"Показать банк"
+		},
+	["EngInventory_Button_Garbage"] = {
+		"Garbage",
+		"Garbage",
+		"Garbage",
+		"Хлам"
+		},
+	["EngInventory_Button_Garbage_tooltip"] = {
+		"Drop lowest price item.",
+		"Drop lowest price item.",
+		"Drop lowest price item.",
+		"Выбросить самый дешёвый серый предмет."
 		},
 	["EngInventory_Button_MoveLock_locked"] = {
 		"L",
