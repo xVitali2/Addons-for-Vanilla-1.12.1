@@ -429,7 +429,9 @@ function Gatherer_OnEvent(event)
 
 	-- process tooltips text for 1.12
 	elseif ( event == "SPELLCAST_START" ) then
+	--	Gatherer_ChatPrint("Gatherer:GameTooltipTextLeft1:GetText() -"..GameTooltipTextLeft1:GetText());
 		if ( arg1 and (arg1 == GATHER_HERBALISM or arg1 == TRADE_MINING or arg1 == TRADE_OPENING or arg1 =="") ) then
+			
 			Gatherer_Debug("|cffffffffEvent :|r "..event.." => "..arg1);
 			Gatherer_currentNode = GameTooltipTextLeft1:GetText();
 			Gatherer_currentAction = arg1;

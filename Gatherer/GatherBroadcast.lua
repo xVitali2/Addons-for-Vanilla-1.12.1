@@ -7,15 +7,17 @@ function Gatherer_BroadcastGather(gather, gatherType, gatherC, gatherZ, gatherX,
 
     if Gatherer_Settings.debug then
         local prettyNodeName = gather;
-        local prettyZoneName = GatherRegionData[gatherC][gatherZ].name;
-        Gatherer_ChatNotify(
-			"Broadcasting new " .. prettyNodeName .. " node found in " .. prettyZoneName .. ".",
-			Gatherer_ENotificationType.sending
-		);
-        Gatherer_ChatNotify(
-			"gatherType: " .. gatherType .. ", gatherEventType: " .. gatherEventType .. ".",
-			Gatherer_ENotificationType.sending
-		);
+		if gatherZ ~=nil and gatherZ ~= 0 and gatherC ~=nil and gatherC ~= 0 and gatherZ < 26 and GatherRegionData[gatherC][gatherZ].name ~=nil then
+			local prettyZoneName = GatherRegionData[gatherC][gatherZ].name;
+			Gatherer_ChatNotify(
+				"Broadcasting new " .. prettyNodeName .. " node found in " .. prettyZoneName .. ".",
+				Gatherer_ENotificationType.sending
+			);
+			Gatherer_ChatNotify(
+				"gatherType: " .. gatherType .. ", gatherEventType: " .. gatherEventType .. ".",
+				Gatherer_ENotificationType.sending
+			);
+		end
     end
 
     Gatherer_SendRawMessage(message);
@@ -119,21 +121,23 @@ end
 
 function Gatherer_ReceiveBroadcast(message)
     local sender, gather, gatherType, gatherC, gatherZ, gatherX, gatherY, iconIndex, gatherEventType = Gatherer_DecodeGather(message);
-    assert(type(iconIndex) == 'number')
+	assert(type(iconIndex) == 'number')
     if sender ~= GetUnitName("player") then
         if Gatherer_Settings.debug then
             local prettyNodeName = gather;
-            local prettyZoneName = GatherRegionData[gatherC][gatherZ].name;
-            Gatherer_ChatNotify(
-                Gatherer_coloredText(
-					sender, {170, 115, 255}
-				) .. " discovered a new " .. prettyNodeName .. " node in " .. prettyZoneName .. ".",
-				Gatherer_ENotificationType.receiving
-			);
-			Gatherer_ChatNotify(
-				'gatherType: '..gatherType..', iconIndex: '.. iconIndex ..', gatherEventType: '..gatherEventType,
-				Gatherer_ENotificationType.receiving
-			)
+			if gatherZ ~=nil and gatherZ ~= 0 and gatherC ~=nil and gatherC ~= 0 and gatherZ < 26 and GatherRegionData[gatherC][gatherZ].name ~=nil then
+				local prettyZoneName = GatherRegionData[gatherC][gatherZ].name;
+				Gatherer_ChatNotify(
+					Gatherer_coloredText(
+						sender, {170, 115, 255}
+					) .. " discovered a new " .. prettyNodeName .. " node in " .. prettyZoneName .. ".",
+					Gatherer_ENotificationType.receiving
+				);
+				Gatherer_ChatNotify(
+					'gatherType: '..gatherType..', iconIndex: '.. iconIndex ..', gatherEventType: '..gatherEventType,
+					Gatherer_ENotificationType.receiving
+				)
+			end
         end
         local newNodeFound = Gatherer_AddGatherToBase(gather, gatherType, gatherC, gatherZ, gatherX, gatherY, iconIndex, gatherEventType, false);
         if Gatherer_Settings.debug then

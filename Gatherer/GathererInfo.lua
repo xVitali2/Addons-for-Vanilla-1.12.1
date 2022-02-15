@@ -96,11 +96,13 @@ function GathererInfo_LocZoneDropDown_Initialize()
 		gi_cont = GathererInfoContinents[gi_t_cont];
 
 		for index in GatherItems[gi_cont] do
-			-- grab zone text from table initiated by Gatherer Main
-			info.text = GathererInfoZones[gi_cont][index].zone;
-			info.checked = nil;
-			info.func = GathererInfo_LocZoneDropDown_OnClick;
-			UIDropDownMenu_AddButton(info);
+			if gi_cont~=nil and index~=nil and GathererInfoZones[gi_cont][index].zone~=nil then
+				-- grab zone text from table initiated by Gatherer Main
+				info.text = GathererInfoZones[gi_cont][index].zone;
+				info.checked = nil;
+				info.func = GathererInfo_LocZoneDropDown_OnClick;
+				UIDropDownMenu_AddButton(info);
+			end
 		end
 	end
 end
