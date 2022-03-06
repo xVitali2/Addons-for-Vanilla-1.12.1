@@ -2390,7 +2390,7 @@ Inst11Quest4name4_HORDE = Inst11Quest4name4
 Inst12Story = Inst10Story
 Inst12Caption = "Dire Maul (West)"
 Inst12QAA = "17 Quests"
-Inst12QAH = "17 Quests"
+Inst12QAH = "18 Quests"
 
 --Quest 1 Alliance
 Inst12Quest1 = "1. Elven Legends" -- 7482
@@ -2797,7 +2797,18 @@ Inst12Quest17_HORDE_Prequest = Inst12Quest17_Prequest
 Inst12Quest17_HORDE_Folgequest = Inst12Quest17_Folgequest
 -- No Rewards for this quest
 
-
+--Quest 18 Alliance
+Inst12Quest18_HORDE = "18. Keeping Secrets" -- 40254
+Inst12Quest18_HORDE_Level = "58"
+Inst12Quest18_HORDE_Attain = "45"
+Inst12Quest18_HORDE_Aim = "Travel to Dire Maul, and slay the great evil being that the Highborne are leeching energy upon, gather from it Pure Ley Essence, and return to Keeper Laena in Azshara."
+Inst12Quest18_HORDE_Location = "Keeper Laena (Azshara - The Shattered Strand; "..YELLOW.."Teleport 76, 40"..WHITE..")"
+Inst12Quest18_HORDE_Note = "You get the prequest from Keeper Iselus (Azshara - Tower of Eldara; "..YELLOW.."89.8, 33.8"..WHITE.."). You need to kill Immol'thar "..YELLOW.."[6]"..WHITE.."."
+Inst12Quest18_HORDE_Prequest = "The Keepers Charge -> The Keepers Possession ->> Restoring the Ley Lines"
+Inst12Quest18_HORDE_Folgequest = "No"
+--
+Inst12Quest18name1_HORDE = "Azshara Keepers Staff"
+Inst12Quest18name2_HORDE = "Ring of Eldara"
 
 --------------- INST13 - Maraudon (Mara) ---------------
 Inst13Story = "Protected by the fierce Maraudine centaur, Maraudon is one of the most sacred sites within Desolace. The great temple/cavern is the burial place of Zaetar, one of two immortal sons born to the demigod, Cenarius. Legend holds that Zaetar and the earth elemental princess, Theradras, sired the misbegotten centaur race. It is said that upon their emergence, the barbaric centaur turned on their father and killed him. Some believe that Theradras, in her grief, trapped Zaetar's spirit within the winding cavern - used its energies for some malign purpose. The subterranean tunnels are populated by the vicious, long-dead ghosts of the Centaur Khans, as well as Theradras' own raging, elemental minions."
@@ -5047,8 +5058,8 @@ Inst28Quest2_HORDE_Level = Inst28Quest2_Level
 Inst28Quest2_HORDE_Attain = Inst28Quest2_Attain
 Inst28Quest2_HORDE_Aim = Inst28Quest2_Aim
 Inst28Quest2_HORDE_Location = Inst28Quest2_Location
-Inst28Quest2_HORDE_Note = Inst28Quest2_Note
-Inst28Quest2_HORDE_Prequest = Inst28Quest2_Prequest
+Inst28Quest2_HORDE_Note = "The Prequest 'The Sunken Temple' starts at Witch Doctor Uzer'i (Feralas; "..YELLOW.."74,43"..WHITE.."). The Altar is at "..YELLOW.."[1]"..WHITE.."."
+Inst28Quest2_HORDE_Prequest = "The Sunken Temple -> The Stone Circle" -- 3380 -> 3444
 Inst28Quest2_HORDE_Folgequest = Inst28Quest2_Folgequest
 -- No Rewards for this quest
 
@@ -6399,7 +6410,7 @@ Inst38QAH = "No Quests"
 --------------- INST39 - The Crescent Grove (TCG) ---------------
 Inst39Story = ""
 Inst39Caption = "The Crescent Grove"
-Inst39QAA = "3 Quests"
+Inst39QAA = "4 Quests"
 Inst39QAH = "3 Quests"
 --Quest 1 Alliance
 Inst39Quest1 = "1. The Rampant Groveweald" -- 40089

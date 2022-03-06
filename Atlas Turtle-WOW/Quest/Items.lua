@@ -1694,7 +1694,16 @@ Inst12Quest16ID1_HORDE = "18329"
 --Quest 17 Horde
 Inst12Quest17Rewardtext_HORDE = AQNoReward
 
-
+--Quest 18 Horde
+Inst12Quest18Rewardtext_HORDE = AQDiscription_REWARD..WHITE.."1"..AQDiscription_OR..WHITE.."2"
+--ITEM1
+Inst12Quest18ITC1_HORDE = Itemc4
+Inst12Quest18description1_HORDE = AQITEM_STAFF
+Inst12Quest18ID1_HORDE = "60333"
+--ITEM2
+Inst12Quest18ITC2_HORDE = Itemc4
+Inst12Quest18description2_HORDE = AQITEM_RING
+Inst12Quest18ID2_HORDE = "60334"
 
 --------------- INST13 - Maraudon (Mara) ---------------
 
