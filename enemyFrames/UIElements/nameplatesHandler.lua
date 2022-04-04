@@ -1,8 +1,9 @@
 	-------------------------------------------------------------------------------
+	local L = enemyFrames.L
 	local refreshInterval, nextRefresh = 1/60, 0
 	local f = CreateFrame'Frame'
 	-------------------------------------------------------------------------------
-	local isPlate = function(frame)
+	local isPlate = function(frame)     
 		if frame and frame.nameplate then return true end
 		local overlayRegion = frame:GetRegions()
 		if not overlayRegion or overlayRegion:GetObjectType() ~= 'Texture'
@@ -85,7 +86,7 @@
 			plate.castBar.text:SetShadowOffset(1, -1)
 			plate.castBar.text:SetShadowColor(0, 0, 0)
 			plate.castBar.text:SetPoint('LEFT', plate.castBar, 2, 1)
-			plate.castBar.text:SetText(EF_L_POLYMORPH)
+			plate.castBar.text:SetText(L['Polymorph'])
 
 			plate.castBar.timer = plate.castBar:CreateFontString(nil, 'OVERLAY')
 			plate.castBar.timer:SetTextColor(1, 1, 1)
@@ -121,7 +122,7 @@
 						sparkPosition = (GetTime() - castInfo.timeStart) / (castInfo.timeEnd - castInfo.timeStart)
 					end
 					plate.castBar.text:SetText(castInfo.spell)
-					plate.castBar.timer:SetText(getTimerLeft(castInfo.timeEnd)..EF_L_S)
+					plate.castBar.timer:SetText(getTimerLeft(castInfo.timeEnd)..'s')
 					plate.castBar.icon:SetTexture(castInfo.icon)
 					plate.castBar:SetAlpha(plate:GetAlpha())
 					-- border colors
@@ -146,7 +147,7 @@
 		if not plate.buffs then			
 			plate.buffs = {}
 			for i = 1, maxBuffs do
-				local buffWidth, buffHeight = 20, 16
+				local buffWidth, buffHeight = 20, 16--20, 16
 				
 				plate.buffs[i] = CreateFrame('Frame', 'NamePlateBuff'..i, plate)
 				plate.buffs[i]:SetWidth(buffWidth) plate.buffs[i]:SetHeight(buffHeight)

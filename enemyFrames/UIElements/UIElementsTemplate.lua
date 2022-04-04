@@ -3,6 +3,7 @@
 	local BACKDROP 	= {bgFile = [[Interface\Tooltips\UI-Tooltip-Background]],}
 	local ISTEXTURE = [[Interface\AddOns\enemyFrames\globals\resources\arrow2]]
 	-------------------------------------------------------------------------------
+	local L = enemyFrames.L
 	local unitWidth, unitHeight, castBarHeight, ccIconWidth, manaBarHeight = 64, 22, 8, 28, 6
 	UIElementsGetDimensions = function()
 		return unitWidth, unitHeight, castBarHeight, ccIconWidth, manaBarHeight
@@ -186,7 +187,7 @@
 		this.you = this:CreateFontString(nil, 'OVERLAY')
 		this.you:SetFont(STANDARD_TEXT_FONT, 16, 'OUTLINE')
 		this.you:SetPoint('LEFT', this.arrow, 'TOPRIGHT', -2, 4)
-		this.you:SetText(EF_L_YOU2)
+		this.you:SetText(L["You"])
 		
 		this.button = CreateFrame('Button', nil, this)
 		this.button:SetPoint('TOPLEFT', this.caster, 'TOPLEFT')

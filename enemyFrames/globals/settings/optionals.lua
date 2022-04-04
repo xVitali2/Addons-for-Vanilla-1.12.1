@@ -1,4 +1,5 @@
 	-------------------------------------------------------------------------------
+	local L = enemyFrames.L
 	local settings = _G['enemyFramesSettings']
 	
 	local container = CreateFrame('Frame', 'enemyFramesSettingsoptionalsContainer', settings)
@@ -8,19 +9,19 @@
 	container:EnableMouseWheel(true)
 	container:Hide()
 	-------------------------------------------------------------------------------
-	local checkBoxOptionalsN, checkBoxOptionals  = 5, { [1] = {['id'] = 'displayNames', 		['label'] = EF_L_DISPLAYNAMES}, 
-														--[2] = {['id'] = 'displayHealthValues', 	['label'] = 'Display Health %'}, 
-														[2] = {['id'] = 'displayManabar', 		['label'] = EF_L_DISPLAYMANABAR},
-														[3] = {['id'] = 'castTimers', 			['label'] = EF_L_DISPLAYCASTTIMERS},
-														[4] = {['id'] = 'displayOnlyNearby', 	['label'] = EF_L_DISPLAYNEARBYUNITSONLY},
-														[5] = {['id'] = 'targetCounter', 		['label'] = EF_L_DISPLAYTARGETCOUNTER},
+	local checkBoxOptionalsN, checkBoxOptionals  = 5, { [1] = {['id'] = 'displayNames', 		['label'] = L['Display names']}, 
+														--[2] = {['id'] = 'displayHealthValues', 	['label'] = L['Display Health %']}, 
+														[2] = {['id'] = 'displayManabar', 		['label'] = L['Display mana bar']},
+														[3] = {['id'] = 'castTimers', 			['label'] = L['Display cast timers']},
+														[4] = {['id'] = 'displayOnlyNearby', 	['label'] = L['Display nearby units only']},
+														[5] = {['id'] = 'targetCounter', 		['label'] = L['Display Target Counter']},
 														
 													}
 	-------------------------------------------------------------------------------
 	-- optionals
 	container.optionals = container:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
 	container.optionals:SetPoint('LEFT', container, 'TOPLEFT', 45, -30)
-	container.optionals:SetText(EF_L_OPTIONAL)
+	container.optionals:SetText(L['optional'])
 
 	container.optinalsList = {}
 	for i = 1, checkBoxOptionalsN, 1 do

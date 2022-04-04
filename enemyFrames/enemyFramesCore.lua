@@ -1,7 +1,10 @@
+local L = enemyFrames.L
+
 local playerFaction
-local bgs = {[EF_L_WARSONG] = 10, 
-			 [EF_L_ARATHI] = 15, 
-			 [EF_L_ALTERAC] = 40}
+local bgs = {[L['Warsong Gulch']] = 10, 
+			 [L['Arathi Basin']] = 15, 
+			 [L['Alterac Valley']] = 40
+			 }
 -- TIMERS
 local playerListInterval, playerListRefresh, enemyNearbyInterval, enemyNearbyRefresh = 30, 0, .3, 0
 local raidMemberIndex = 1
@@ -23,25 +26,26 @@ local function fillPlayerList()
 	local f
 	local gotData = false
 	local l = {}
-	if UnitFactionGroup('player') == EF_L_ALLIANCE2 then f = 0 else f = 1 end
+	
+	if UnitFactionGroup('player') == 'Alliance' then f = 0 else f = 1 end
 	-- get opposing faction players
 	for i=1, GetNumBattlefieldScores() do
 		local name, killingBlows, honorableKills, deaths, honorGained, faction, rank, race, class = GetBattlefieldScore(i)
 		if faction == f then
-			l[name] = {['name'] = name, ['class'] = changeEngClassName(class), ['rank'] = rank-4, ['race'] = changeEngRaceName(race), ['sex'] = 'MALE'} -- rank starts at -4 apparently
-			l[name]['powerType']  =  l[name]['class'] == EF_L_ROGUE and EF_L_ENERGY or l[name]['class'] == EF_L_WARRIOR and EF_L_RAGE or EF_L_MANA
+			l[name] = {['name'] = name, ['class'] = enemyFrames:GetEnglishClass(class), ['rank'] = rank-4, ['race'] = enemyFrames:GetEnglishRace(race), ['sex'] = 'MALE'} -- rank starts at -4 apparently
+			l[name]['powerType']  =  l[name]['class'] == 'ROGUE' and 'energy' or l[name]['class'] == 'WARRIOR' and 'rage' or 'mana'
 			gotData = true
 		end
 	end	
 	
 	-- add new players
 	for k, v in pairs(l) do
-		if playerList[v['name']] == nil then
-			playerList[v['name']]  = v 
+		if playerList[v['name']] == nil then	
+			playerList[v['name']] 			 = v 		
 			refreshUnits = true 
 		end
 	end
-	-- remove absent players
+	-- remove aabsent players
 	for k, v in pairs(playerList) do
 		if l[v['name']] == nil then	
 			playerList[v['name']] = nil	
@@ -88,6 +92,10 @@ local function addNearbyPlayers(players)
 			
 			playerList[v['name']]['nextCheck'] 	= nextCheck
 			playerList[v['name']]['nearby'] 	= true
+			
+			--if GetTime() > enemyNearbyRefresh then
+			--	playerList[v['name']]['targetcount'] = playerList[v['name']]['targetcount'] and  playerList[v['name']]['targetcount'] + 1 or 1
+			--end
 		end
 	end
 end
@@ -95,24 +103,22 @@ end
 local function verifyUnitInfo(unit)
 	if UnitExists(unit) and UnitIsPlayer(unit) and UnitFactionGroup(unit) ~= playerFaction then --UnitIsEnemy(unit, 'player') then
 		local u = {}
-		u['name']			= UnitName(unit)
+		u['name']		= UnitName(unit)
 		if not insideBG then
-			local _, c 		= UnitClass(unit)
-			u['class']		= changeEngClassName(c)
+			local _, c = UnitClass(unit)
+			u['class']		= c
 			u['rank']		= UnitPVPRank(unit) - 4
-			local r 		= UnitRace(unit)
-			if r then
-				u['race']	= changeEngRaceName(r)
-			end
+			local _, r = UnitRace(unit)
+			u['race'] = r		
 		end
-		u['health'] 		= UnitHealth(unit)
-		u['maxhealth'] 		= UnitHealthMax(unit)
-		u['mana'] 			= UnitMana(unit)
-		u['maxmana']		= UnitManaMax(unit)
-		local power 		= UnitPowerType(unit)
-		u['powerType'] 		= power == 3 and EF_L_ENERGY or power == 1 and EF_L_RAGE or EF_L_MANA
-		local s 			= UnitSex(unit)
-		u['sex']			= (s == 1 or s == 2) and 'MALE' or s == 3 and 'FEMALE' 
+		u['health'] 	= UnitHealth(unit)
+		u['maxhealth'] 	= UnitHealthMax(unit)
+		u['mana'] 		= UnitMana(unit)
+		u['maxmana']	= UnitManaMax(unit)
+		local power = UnitPowerType(unit)
+		u['powerType']  =  power == 3 and 'energy' or power == 1 and 'rage' or 'mana'
+		local s = UnitSex(unit)
+		u['sex']		= (s == 1 or s == 2) and 'MALE' or s == 3 and 'FEMALE' 
 
 		addNearbyPlayers({u})
 		-- update fc health text
@@ -168,7 +174,7 @@ local function updatePlayerListInfo()
 				refreshUnits 	= true 	
 				v['nearby'] 	= false
 				v['health']		= v['maxhealth'] and v['maxhealth'] or 100
-				v['mana'] 		= v['class'] == EF_L_WARRIOR and 0 or v['maxmana'] and v['maxmana']  or 100
+				v['mana'] 		= v['class'] == 'WARRIOR' and 0 or v['maxmana'] and v['maxmana']  or 100
 				
 				if not insideBG then v['lastSeen'] = nextSeen	end 
 			end	
@@ -217,7 +223,7 @@ local function orderUnitsforOutput()
 	local list, listb = {}, {}
 	-- order nearby units first -- this loop avoid units jumping from hopping around in the unit matrix
 	local i = 1
-	local nSize = tlength(nearbyList)
+	local nSize = getn(nearbyList)
 	
 	for k, v in pairs(playerList) do
 		if v['nearby'] then
@@ -273,9 +279,12 @@ function ENEMYFRAMECOREUpdateFlagCarriers(fc)
 		-- refresh if player's fc status changed
 		v['refresh'] = f ~= v['fc'] and true or false
 	end
+	
 	refreshUnits = true
+	PVPMAPUpdateFlagCarrier(fc)
 	TARGETFRAMEsetFC(fc)
 	WSGUIupdateFC(fc)
+	WSGHANDLERsetFlagCarriers(fc)
 end
 
 function ENEMYFRAMECORESetPlayersData(list)
@@ -364,9 +373,9 @@ local function enemyFramesCoreOnUpdate()
 		
 		
 		-- hide if no enemies while outdoors
-		if not _G['enemyFramesSettings']:IsShown() then
+		if not _G['enemyFramesSettings']:IsShown() then		
 			if not insideBG then
-				if tlength(playerList) == 0 then
+				if getn(playerList) == 0 then				
 					_G['enemyFrameDisplay']:Hide()
 				else
 					_G['enemyFrameDisplay']:Show()
@@ -380,13 +389,14 @@ end
 local function initializeValues()
 	insideBG = false
 	playerFaction = UnitFactionGroup('player')
+		
 	playerList = {}
 	raidTargets = {}
 	prioMembers = {}
 	nearbyList = {}
 	playerListRefresh = 0
 		
-	local maxUnits = bgs[GetZoneText()] and bgs[GetZoneText()] or ENEMYFRAMESPLAYERDATA['enableOutdoors'] and maxUnitsDisplayed or nil
+	local maxUnits = bgs[GetZoneText()] and bgs[GetZoneText()] or maxUnitsDisplayed --ENEMYFRAMESPLAYERDATA['enableOutdoors'] and maxUnitsDisplayed or nil
 	if maxUnits then
 		--
 		insideBG = bgs[GetZoneText()] and true or false
@@ -435,5 +445,16 @@ f:SetScript('OnEvent', eventHandler)
 
 SLASH_ENEMYFRAMECORE1 = '/efc'
 SlashCmdList["ENEMYFRAMECORE"] = function(msg)
+	if msg == 'bg' then
+		print('bg info:')
+		for i=1, GetNumBattlefieldScores() do
+			local name, killingBlows, honorableKills, deaths, honorGained, faction, rank, race, class = GetBattlefieldScore(i)
+			print(name)
+		end	
+	else
+		print('playerlist:')
+		for k, v in pairs(playerList) do
+			print(v['name'])
+		end
+	end
 end
-

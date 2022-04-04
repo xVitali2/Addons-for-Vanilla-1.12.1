@@ -1,4 +1,5 @@
 	-------------------------------------------------------------------------------
+	local L = enemyFrames.L
 	local settings = _G['enemyFramesSettings']
 	
 	local container = CreateFrame('Frame', 'enemyFramesSettingsfeaturesContainer', settings)
@@ -8,23 +9,23 @@
 	container:EnableMouseWheel(true)
 	container:Hide()
 	-------------------------------------------------------------------------------
-	local checkBoxFeaturesN, checkBoxFeatures  = 7, { 	[1] = {['id'] = 'enableOutdoors', 		['label'] = EF_L_ENABLEOUTSIDEOFBATTLEGROUNS},
-														[2] = {['id'] = 'mouseOver', 			['label'] = EF_L_MOUSEOVERCASTONFRAMES},	
-														[3] = {['id'] = 'targetFrameCastbar', 	['label'] = EF_L_MOVEABLETARGETCASTBAR},														
-														[4] = {['id'] = 'integratedTargetFrameCastbar', 	['label'] = EF_L_INTEGRATEDTARGETCASTBAR},
-														[5] = {['id'] = 'targetPortraitDebuff', ['label'] = EF_L_PRIODEBUFFONTARGETPORTRAIT},
-														[6] = {['id'] = 'playerPortraitDebuff', ['label'] = EF_L_PRIODEBUFFONPLAYERPORTRAIT},
-														[7] = {['id'] = 'targetDebuffTimers', 	['label'] = EF_L_DEBUFFTIMERSONTARGET},
+	local checkBoxFeaturesN, checkBoxFeatures  = 6, { 	--[1] = {['id'] = 'enableOutdoors', 		['label'] = L['Enable outside of BattleGrounds']},
+														[1] = {['id'] = 'mouseOver', 			['label'] = L['Mouseover cast on frames']},	
+														[2] = {['id'] = 'targetFrameCastbar', 	['label'] = L['Moveable Target Cast Bar']},														
+														[3] = {['id'] = 'integratedTargetFrameCastbar', 	['label'] = L['Integrated Target Cast Bar']},
+														[4] = {['id'] = 'targetPortraitDebuff', ['label'] = L['Prio debuff on Target Portrait']},
+														[5] = {['id'] = 'playerPortraitDebuff', ['label'] = L['Prio debuff on Player Portrait']},
+														[6] = {['id'] = 'targetDebuffTimers', 	['label'] = L['Debuff timers on target']},
 													}
-	local checkBoxFeaturesBGN, checkBoxFeaturesBG  = 3, {	[1] = {['id'] = 'incomingSpells', 		['label'] = EF_L_INCOMINGSPELLSBGSONLY},
-															[2] = {['id'] = 'pvpmapblips', 			['label'] = EF_L_CLASSCOLOREDMAPBLIPS},
-															[3] = {['id'] = 'efcBGannouncement', 	['label'] = EF_L_LOWHEALTHEFCANN},
+	local checkBoxFeaturesBGN, checkBoxFeaturesBG  = 3, {	[1] = {['id'] = 'incomingSpells', 		['label'] = L['Incoming Spells (BGs only)']},
+															[2] = {['id'] = 'pvpmapblips', 			['label'] = L['Class colored map blips']},
+															[3] = {['id'] = 'efcBGannouncement', 	['label'] = L['Low Health EFC announcement']},
 														}
 	-------------------------------------------------------------------------------
 	-- features
 	container.features = container:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
 	container.features:SetPoint('LEFT', container, 'TOPLEFT', 45, -30)
-	container.features:SetText(EF_L_FEATURES)
+	container.features:SetText(L['features'])
 
 	container.featuresList = {}
 	for i = 1, checkBoxFeaturesN, 1 do
@@ -42,7 +43,7 @@
 	-------------------------------------------------------------------------------
 	container.bgLabel = container:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
 	container.bgLabel:SetPoint('LEFT', container.featuresList[checkBoxFeaturesN], 'LEFT', 0, -30)
-	container.bgLabel:SetText(EF_L_BATTLEGROUNDS)
+	container.bgLabel:SetText(L['battlegrounds'])
 	
 	container.bgList = {}
 	for i = 1, checkBoxFeaturesBGN, 1 do
@@ -73,10 +74,9 @@
 		
 		-- disable incoming spells for rogues
 		local _, c = UnitClass'player'
-		c=changeEngClassName(c);
-		if c == EF_L_ROGUE then
-			ENEMYFRAMESPLAYERDATA['incomingSpells'] = false 
-			container.bgList[1]:Disable()  
-			_G[container.bgList[1]:GetName()..'Text']:SetTextColor(.5, .5, .5, .9)
+		if c == 'ROGUE' then 	ENEMYFRAMESPLAYERDATA['incomingSpells'] = false 
+								container.bgList[1]:Disable()  
+								_G[container.bgList[1]:GetName()..'Text']:SetTextColor(.5, .5, .5, .9)								
 		end
 	end
+	-------------------------------------------------------------------------------

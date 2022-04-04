@@ -1,14 +1,14 @@
 
     HEX_CLASS_COLORS = {
-        [EF_L_DRUID]   = 'ff7d0a',
-        [EF_L_HUNTER]  = 'abd473',
-        [EF_L_MAGE]    = '69ccf0',
-        [EF_L_PALADIN] = 'f58cba',
-        [EF_L_PRIEST]  = 'ffffff',
-        [EF_L_ROGUE]   = 'fff569',
-        [EF_L_SHAMAN]  = 'f58cba',--'0070de',
-        [EF_L_WARLOCK] = '9482c9',
-        [EF_L_WARRIOR] = 'c79c6e',
+        ['DRUID']   = 'ff7d0a',
+        ['HUNTER']  = 'abd473',
+        ['MAGE']    = '69ccf0',
+        ['PALADIN'] = 'f58cba',
+        ['PRIEST']  = 'ffffff',
+        ['ROGUE']   = 'fff569',
+        ['SHAMAN']  = 'f58cba',--'0070de',
+        ['WARLOCK'] = '9482c9',
+        ['WARRIOR'] = 'c79c6e',
     }
 	
 	RGB_SPELL_SCHOOL_COLORS = 
@@ -24,16 +24,16 @@
 
 	RGB_FACTION_COLORS = 
 	{
-		[EF_L_ALLIANCE2] 	= {['r'] = 0, ['g'] = .68, ['b'] = .94}, 
-		[EF_L_HORDE2] 		= {['r'] = 1, ['g'] = .1, ['b'] = .1}
+		['Alliance'] 	= {['r'] = 0, ['g'] = .68, ['b'] = .94}, 
+		['Horde'] 		= {['r'] = 1, ['g'] = .1, ['b'] = .1}
 	}
 	
 	RGB_POWER_COLORS =
 	{
-		[EF_L_ENERGY]		= {1, 1, 0},
-		[EF_L_FOCUS]		= {1, .5, .25},
-		[EF_L_MANA]		= {0, 0, 1},
-		[EF_L_RAGE]		= {1, 0, 0},
+		['energy']		= {1, 1, 0},
+		['focus']		= {1, .5, .25},
+		['mana']		= {0, 0, 1},
+		['rage']		= {1, 0, 0},
 		
 	}
 	
@@ -67,6 +67,7 @@
 		['circle']		= {.25, .5, 0, .25},
 		['diamond']		= {.5, .75, 0, .25},
 		['triangle']	= {.75, 1, 0, .25},
+		
 		['moon']		= {0, .25, .25, .5},
 		['square']		= {.25, .5, .25, .5},
 		['cross']		= {.5, .75, .25, .5},
@@ -74,6 +75,8 @@
 	}		
     
 	SPELLINFO_WSG_FLAGS = {
-		[EF_L_ALLIANCE2] 	= {['icon'] = [[Interface\Icons\inv_bannerpvp_02]]},
-		[EF_L_HORDE2] 		= {['icon'] = [[Interface\Icons\inv_bannerpvp_01]]},
+		['Alliance'] 	= {['icon'] = [[Interface\Icons\inv_bannerpvp_02]]},
+		['Horde'] 		= {['icon'] = [[Interface\Icons\inv_bannerpvp_01]]},
 	}
+
+	--

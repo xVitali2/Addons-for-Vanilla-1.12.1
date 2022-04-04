@@ -1,57 +1,72 @@
 	-------------------------------------------------------------------------------
+	local L = enemyFrames.L
 	local paladins 		= {}
 	local targetSeals 	= {}
+	local playerName = UnitName'player'
 	-------------------------------------------------------------------------------
 	local addSeal = function()
-		local nSeal = EF_L_SEALOF			local fnSeal 	= string.find(arg1, nSeal)
+		local pnSeal = AURAADDEDSELFHELPFUL			local fpnSeal 	= string.find(arg1, enemyFrames:SanitizePattern(pnSeal))
+		local onSeal = AURAADDEDOTHERHELPFUL			local fonSeal 	= string.find(arg1, enemyFrames:SanitizePattern(onSeal))
 		
-		if fnSeal then
-			local c = gsub(arg1, nSeal, '%1')			
-			local b = gsub(arg1, nSeal, '%2')			b = b == (EF_L_GAIN or EF_L_GAINS) and true or false
-			local s = gsub(arg1, nSeal, '%3')
+		if string.find(arg1, L['Seal of']) and (fpnSeal or fonSeal) then
+			local m = fpnSeal and pnSeal or fonSeal and onSeal
+			local first, second = enemyFrames:cmatch(arg1, m)
+			local c = m == pnSeal and playerName or first
+			local s = m == pnSeal and first or second
 			
-			if b then
+			if c and s then
 				paladins[c] = s
 			end
 		end
 	end
 	-------------------------------------------------------------------------------
 	local remSeal = function()
-		local fSeal = EF_L_SEALOFFADESFROM	local ffSeal 	= string.find(arg1, fSeal)
+		local pfSeal = AURAREMOVEDSELF	local fpfSeal 	= string.find(arg1, enemyFrames:SanitizePattern(pfSeal))
+		local ofSeal = AURAREMOVEDOTHER	local fofSeal 	= string.find(arg1, enemyFrames:SanitizePattern(ofSeal))
 		
-		if ffSeal then
-			local c = gsub(arg1, fSeal, '%2')
+		if string.find(arg1, L['Seal of']) and (fpfSeal or fofSeal) then
+			local m = fpfSeal and pfSeal or fofSeal and ofSeal
+			local first, second = enemyFrames:cmatch(arg1, m)
+			local s = first
+			local c = m == pfSeal and playerName or second
 			
-			paladins[c] = nil
+			if s and c then
+				paladins[c] = nil
+			end
 		end
 	end
 	-------------------------------------------------------------------------------
 	local judge = function()
-		local cJudge = EF_L_JUDGEMENT			local fJudge 	= string.find(arg1, cJudge)
+		local pHitsJudge = SPELLLOGSCHOOLSELFOTHER			local fpHitsJudge 	= string.find(arg1, enemyFrames:SanitizePattern(pHitsJudge))
+		local pCritsJudge = SPELLLOGCRITSCHOOLSELFOTHER			local fpCritsJudge 	= string.find(arg1, enemyFrames:SanitizePattern(pCritsJudge))
+		local oHitsJudge = SPELLLOGSCHOOLOTHEROTHER			local fHitsJudge 	= string.find(arg1, enemyFrames:SanitizePattern(oHitsJudge))
+		local oCritsJudge = SPELLLOGCRITSCHOOLOTHEROTHER			local fCritsJudge 	= string.find(arg1, enemyFrames:SanitizePattern(oCritsJudge))
 		
-		if fJudge then
-			local c = gsub(arg1, cJudge, '%1')			
-			local b = gsub(arg1, cJudge, '%2')			b = b == EF_L_CAST or EF_L_CASTS and true or false
+		if string.find(arg1, L['Judgement of']) and (fpHitsJudge or fpCritsJudge or fHitsJudge or fCritsJudge) then
+			local m = fpHitsJudge and pHitsJudge or fpCritsJudge and pCritsJudge or fHitsJudge and oHitsJudge or fCritsJudge and oCritsJudge
+			local first = enemyFrames:cmatch(arg1, m)
+			local c = (fpHitsJudge or fpCritsJudge) and playerName or first
 			
-			if b  and paladins[c] then
-				targetSeals[c] = EF_L_JUDGEMENTOF..paladins[c]
+			if c and paladins[c] then
+				targetSeals[c] = L['Judgement of']..' '..paladins[c]
 			end
 		end
 	end
 	-------------------------------------------------------------------------------
 	local refreshSealDebuff = function()
-		local ph = EF_L_HITFOR			local fph = string.find(arg1, ph)	
-		local pc = EF_L_CRITFOR			local fpc = string.find(arg1, pc)
-		local oh = EF_L_HITSFOR			local foh = string.find(arg1, oh)
-		local oc = EF_L_CRITSFOR		local foc = string.find(arg1, oc)
-		
+		local ph = COMBATHITSELFOTHER			local fph = string.find(arg1, enemyFrames:SanitizePattern(ph))	
+		local pc = COMBATHITCRITSELFOTHER			local fpc = string.find(arg1, enemyFrames:SanitizePattern(pc))
+		local oh = COMBATHITOTHEROTHER			local foh = string.find(arg1, enemyFrames:SanitizePattern(oh))
+		local oc = COMBATHITCRITOTHEROTHER			local foc = string.find(arg1, enemyFrames:SanitizePattern(oc))
+
 		if fph or fpc or foh or foc then
 			local m = fph and ph or fpc and pc or foh and oh or foc and oc
-			local c = gsub(arg1, m, '%1')		
-			local t = gsub(arg1, m, '%2')
+			local first, second = enemyFrames:cmatch(arg1, m)
+			local c = (m == ph or m == pc) and playerName or first
+			local t = (m == ph or m == pc) and first or second
 
 			if targetSeals[c] then
-				SPELLCASTINGCORErefreshBuff(t, targetSeals[c], 1)
+				SPELLCASTINGCORErefreshBuff(t, targetSeals[c], 1) --print(c)
 			end
 		end
 	end

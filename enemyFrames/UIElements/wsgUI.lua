@@ -1,14 +1,15 @@
 	-------------------------------------------------------------------------------
+	local L = enemyFrames.L
 	local flagCarriers = {}
 	local fcHealth = {}
-	local sentAnnoucement, healthWarnings = false, {10, 40}
+	local sentAnnoucement, healthWarnings = false, {10, 20, 40}
 	local nextAnnouncement = 0
 	-------------------------------------------------------------------------------
 	local h = WorldStateAlwaysUpFrame:CreateFontString(nil, 'OVERLAY')
     h:SetFontObject(GameFontNormalSmall)
-    h:SetTextColor(RGB_FACTION_COLORS[EF_L_ALLIANCE2]['r'], RGB_FACTION_COLORS[EF_L_ALLIANCE2]['g'], RGB_FACTION_COLORS[EF_L_ALLIANCE2]['b'])
+    h:SetTextColor(RGB_FACTION_COLORS['Alliance']['r'], RGB_FACTION_COLORS['Alliance']['g'], RGB_FACTION_COLORS['Alliance']['b'])
     h:SetJustifyH'LEFT'
-	h:SetText(EF_L_HORDE)
+	h:SetText(L['Horde'])
 	
 	local hb = CreateFrame('Button', nil, WorldStateAlwaysUpFrame)
     hb:SetFrameLevel(2)
@@ -25,9 +26,9 @@
 	
     local a = WorldStateAlwaysUpFrame:CreateFontString(nil, 'OVERLAY')
     a:SetFontObject(GameFontNormalSmall)
-	a:SetTextColor(RGB_FACTION_COLORS[EF_L_HORDE2]['r'], RGB_FACTION_COLORS[EF_L_HORDE2]['g'], RGB_FACTION_COLORS[EF_L_HORDE2]['b'])
+	a:SetTextColor(RGB_FACTION_COLORS['Horde']['r'], RGB_FACTION_COLORS['Horde']['g'], RGB_FACTION_COLORS['Horde']['b'])
     a:SetJustifyH'LEFT'
-	a:SetText(EF_L_ALLIANCE)
+	a:SetText(L['Alliance'])
 	
 	local ab = CreateFrame('Button', nil, WorldStateAlwaysUpFrame)
     ab:SetFrameLevel(2)
@@ -46,13 +47,13 @@
 		label:SetTextColor(.9, .9, .4)
 		if label:GetText() ~= '' then
 			GameTooltip:SetOwner(this, 'ANCHOR_TOPRIGHT', -40, 10)
-			GameTooltip:SetText(EF_L_CLICKTOTARGET..label:GetText())
+			GameTooltip:SetText(L['Click to target']..' '..label:GetText())
 			GameTooltip:Show()
 		end
 	end
 	local OnLeave = function()
 		local label = this == hb and h or a
-		local f = label == a and EF_L_HORDE2 or EF_L_ALLIANCE2
+		local f = label == a and 'Horde' or 'Alliance'
 		label:SetTextColor(RGB_FACTION_COLORS[f]['r'], RGB_FACTION_COLORS[f]['g'], RGB_FACTION_COLORS[f]['b'])
 		GameTooltip:Hide()
 	end
@@ -60,6 +61,11 @@
         local text = this == hb and h or a
         local t = text:GetText()
         TargetByName(t, true)
+		--	bandaid to avoid targeting hunter pets with the same name as its owner
+		if UnitExists'target' and UnitPowerType'target' == 2 then	
+			TargetByName(t, false)
+		end
+		--
     end
 	
 	
@@ -74,38 +80,38 @@
 	WSGUIupdateFC = function(fc)
 		flagCarriers = fc
 		
-		if flagCarriers[EF_L_ALLIANCE2] then
-			a:SetText(flagCarriers[EF_L_ALLIANCE2])
+		if flagCarriers['Alliance'] then
+			a:SetText(flagCarriers['Alliance'])
 		else
 			a:SetText('')
 			ah:SetText('')
-			fcHealth[EF_L_ALLIANCE2] = nil
+			fcHealth['Alliance'] = nil
 		end
 		
-		if flagCarriers[EF_L_HORDE2] then
-			h:SetText(flagCarriers[EF_L_HORDE2])
+		if flagCarriers['Horde'] then
+			h:SetText(flagCarriers['Horde'])
 		else
 			h:SetText('')
 			hh:SetText('')
-			fcHealth[EF_L_HORDE2] = nil
+			fcHealth['Horde'] = nil
 		end
 	end
 	-------------------------------------------------------------------------------
-	local w = 100
+	local w, timeInterval = 100, 4
 	local efcLowHealth = function()
 		local f = UnitFactionGroup'player'
-		local x = UnitFactionGroup'player' == EF_L_ALLIANCE2 and EF_L_HORDE2 or EF_L_ALLIANCE2
+		local x = UnitFactionGroup'player' == 'Alliance' and 'Horde' or 'Alliance'
 
 		local now = GetTime()
 		if flagCarriers[f] and fcHealth[f]  then
-			for i = 1, tlength(healthWarnings) do
+			for i = 1, getn(healthWarnings) do
 				if fcHealth[f] < healthWarnings[i]  then
 					if (not sentAnnoucement or healthWarnings[i] < w) and now > nextAnnouncement then
-						nextAnnouncement = now + 2
+						nextAnnouncement = now + timeInterval
 						w = healthWarnings[i]
 						--print('EFC has less than '..healthWarnings[i]..'%! Get ready to cap!')
-						local msgb = flagCarriers[x] and EF_L_GETREADYTOCAP or ''
-						SendChatMessage(EF_L_EFCHASLESSTHAN..healthWarnings[i]..EF_L_PERCHEALTH.. msgb, 'BATTLEGROUND')
+						local msgb = flagCarriers[x] and ' '..L['Get ready to cap!'] or ''
+						SendChatMessage(format(L['EFC has less than %d%% Health!'], healthWarnings[i]) .. msgb, 'BATTLEGROUND')
 						sentAnnoucement = true
 					end
 					return
@@ -125,13 +131,14 @@
 	-------------------------------------------------------------------------------
 	WSGUIupdateFChealth = function(unit)
 		if unit then
-			if UnitName(unit) == flagCarriers[EF_L_ALLIANCE2] then
-				fcHealth[EF_L_ALLIANCE2] = getPerc(unit)
-				ah:SetText(fcHealth[EF_L_ALLIANCE2]..'%')
+			if UnitPowerType(unit) == 2 then return end	--simple way to know its a hunter pet with the same name as its owner(powertype = 2(focus))
+			if UnitName(unit) == flagCarriers['Alliance'] then
+				fcHealth['Alliance'] = getPerc(unit)
+				ah:SetText(fcHealth['Alliance']..'%')
 			end
-			if UnitName(unit) == flagCarriers[EF_L_HORDE2] then
-				fcHealth[EF_L_HORDE2] = getPerc(unit)
-				hh:SetText(fcHealth[EF_L_HORDE2]..'%')
+			if UnitName(unit) == flagCarriers['Horde'] then
+				fcHealth['Horde'] = getPerc(unit)
+				hh:SetText(fcHealth['Horde']..'%')
 			end
 		end
 		

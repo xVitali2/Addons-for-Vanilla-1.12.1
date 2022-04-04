@@ -779,13 +779,15 @@ function MasterTradeSkills_ReadRecipes()
 			if (MTS_DATA[tradeskill] == nil) then
 				MTS_DATA[tradeskill] = {};
 			end
-			if (MTS_DATA[tradeskill][crafted_object] == nil) then
-				MTS_DATA[tradeskill][crafted_object] = {};
-				MTS_DATA[tradeskill][crafted_object].LearntBy = {};
-				MTS_DATA[tradeskill][crafted_object].LearntBy[MTS_CHAR_INDEX] = skill_type;
-			else
-				--MTS_Write(crafted_object .. " - " .. skill_type);
-				MTS_DATA[tradeskill][crafted_object].LearntBy[MTS_CHAR_INDEX] = skill_type;
+			if crafted_object and skill_type then
+				if (MTS_DATA[tradeskill][crafted_object] == nil) then
+					MTS_DATA[tradeskill][crafted_object] = {};
+					MTS_DATA[tradeskill][crafted_object].LearntBy = {};
+					MTS_DATA[tradeskill][crafted_object].LearntBy[MTS_CHAR_INDEX] = skill_type;
+				else
+					--MTS_Write(crafted_object .. " - " .. skill_type);
+					MTS_DATA[tradeskill][crafted_object].LearntBy[MTS_CHAR_INDEX] = skill_type;
+				end
 			end
 		end
 	end

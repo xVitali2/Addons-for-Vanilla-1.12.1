@@ -643,6 +643,7 @@ AtlasLoot_TableNames = {
     ["Turtlhu"] = { "Turtlhu, the Black Turtle of Doom", "AtlasLootWBItems" },
     ["Nerubian"] = { "Nerubian Overseer", "AtlasLootWBItems" },
     ["Reaver"] = { "Dark Reaver of Karazhan", "AtlasLootWBItems" },
+    ["Concavius"] = { "Concavius Voidspawn", "AtlasLootWBItems" },
 	--Doom Lord Kazzak
 	["KKazzak"] = { BB["Lord Kazzak"], "AtlasLootWBItems" },
 	--Emrald Dragons
@@ -1587,6 +1588,7 @@ AtlasLoot_TableNamesBoss = {
         ["Turtlhu"] = { "Turtlhu, the Black Turtle of Doom", "AtlasLootWBItems" },
         ["Nerubian"] = { "Nerubian Overseer", "AtlasLootWBItems" },
         ["Reaver"] = { "Dark Reaver of Karazhan", "AtlasLootWBItems" },
+        ["Concavius"] = { "Concavius Voidspawn", "AtlasLootWBItems" }, --by CFM
         ["KKazzak"] = { BB["Lord Kazzak"], "AtlasLootWBItems" },
 		--Emrald Dragons
 		["DEmeriss"] = { BB["Emeriss"], "AtlasLootWBItems" },

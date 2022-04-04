@@ -420,7 +420,6 @@ end
 
 function BGAssist_OnLoad()
 	_G = getfenv(0)
-	this:RegisterEvent("VARIABLES_LOADED")
 	this:RegisterEvent("ADDON_LOADED")
 	this:RegisterEvent("PLAYER_ENTERING_WORLD")
 	-- Autoenter
@@ -444,12 +443,12 @@ function BGAssist_ButtonAutomates(rank,ahorde)
 end
 
 function BGAssist_OnEvent(event)
-	if (event == "VARIABLES_LOADED") then
+	--if (event == "VARIABLES_LOADED") then
 		-- BGAssistRU_Config_Loaded = 1;
 		-- if (BGAssist_Player) then
 			-- BGAssistRU_ConfigInit();
 		-- end
-	elseif event == "ADDON_LOADED" and arg1 == BINDING_HEADER_BGASSIST_SEP then
+	if event == "ADDON_LOADED" and arg1 == BINDING_HEADER_BGASSIST_SEP then
 		BGAssistRU_Config_Loaded = 1;
 		if (BGAssist_Player) then
 			BGAssistRU_ConfigInit();

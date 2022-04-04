@@ -1445,7 +1445,7 @@ AtlasMaps = {
 		{ ORNG..L["Damage: "]..L["Nature"]..', '..L["Shadow"] }
 	},
 	Reaver = {
-		ZoneName = { "Dark Reaver of Karazhan", NPC, 18728 };
+		ZoneName = { "Dark Reaver of Karazhan", NPC, 80936 };
 		Acronym = "Reaver";
 		Location = { BZ["Deadwind Pass"], ZONE, 41 };
 		LevelRange = "--";
@@ -1476,6 +1476,39 @@ AtlasMaps = {
 		{ "" };
 		{ "" };
 		--{ ORNG..AL["Damage: "]..AL["Physical"] };
+	},
+	--by CFM
+	Concavius = {
+		ZoneName = { "Concavius Voidspawn", NPC, 92213 };
+		Acronym = "Concavius";
+		Location = { BZ["Desolace"], ZONE, 405 };
+		LevelRange = "60+";
+		MinLevel = "--";
+		PlayerLimit = "20+";
+		Continent = BZ["Kalimdor"];
+		{ GREY.."1) ".."Concavius Voidspawn", NPC, 92213 };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
 	},
 	AlteracValleyNorth = {
 		ZoneName = { BZ["Alterac Valley"].." ("..L["North"]..")", 2597 },

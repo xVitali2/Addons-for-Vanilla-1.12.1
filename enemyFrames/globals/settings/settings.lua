@@ -1,12 +1,12 @@
+
 _G = getfenv(0)
 
 print = function(m) DEFAULT_CHAT_FRAME:AddMessage(m) end
 
-tlength = function(t)	local i = 0 for k, j in ipairs(t) do i = i + 1 end return i end
-
-ENEMYFRAMESVERSION = 1.24
-ENEMYFRAMESNEWVERSION = 0
+ENEMYFRAMESVERSION = 1.33
+ENEMYFRAMESNEWVERSION = ENEMYFRAMESVERSION
 ENEMYFRAMESVERSIONFOUND = false
+
 
 ENEMYFRAMESPLAYERDATA = 
 {
@@ -19,7 +19,7 @@ ENEMYFRAMESPLAYERDATA =
 	['enableFrames']			= true,
 	-- features
 	['mouseOver']				= false,
-	['enableOutdoors']			= false,
+	['enableOutdoors']			= true,
 	['targetFrameCastbar']		= true,
 	['integratedTargetFrameCastbar']		= true,
 	['playerPortraitDebuff']	= false,
@@ -27,14 +27,14 @@ ENEMYFRAMESPLAYERDATA =
 	['targetDebuffTimers']		= false,
 	-- bgs
 	['incomingSpells']			= false,
-	['pvpmapblips']				= false,
+	['pvpmapblips']				= false,	
 	['efcBGannouncement']		= false,
 	-- optionals
 	['displayNames']			= true,
 	--['displayHealthValues'] = false,
 	['displayManabar']			= false,
 	['displayOnlyNearby']		= false,
-	['castTimers']				= false,
+	['castTimers']				= false,		
 	['targetCounter']			= false,
 	-- nameplates
 	['nameplatesClassColor'] 	= true,
@@ -42,12 +42,14 @@ ENEMYFRAMESPLAYERDATA =
 	['nameplatesCastbar']		= true,
 	['plateDebuffSize']			= 1,
 	['nameplatesRaidMarks']		= true,
-
+	
+	
 	['offX']				= 0,
 	['offY']				= 0,
 }
 
 
+local L = enemyFrames.L
 local playerFaction, insideBG = false
 ------------ UI ELEMENTS ------------------
 local enemyFactionColor
@@ -82,7 +84,7 @@ settings.header:SetVertexColor(.2, .2, .2)
 
 settings.header.t = settings:CreateFontString(nil, 'ARTWORK', 'GameFontNormal')
 settings.header.t:SetPoint('TOP', settings.header, 0, -14)
-settings.header.t:SetText(EF_L_ENEMYFRAMESSETTINGS)
+settings.header.t:SetText(L['enemyFrames Settings'])
 
 -- container scrollframe
 
@@ -101,14 +103,14 @@ local tabElements = {'Left', 'LeftDisabled', 'Middle', 'MiddleDisabled', 'Right'
 settings.tabs = {}
 for i = 1, settings.numTabs do
 	settings.tabs[i] = CreateFrame('Button', settings:GetName()..'Tab'..i, settings, 'WorldStateScoreFrameTabButtonTemplate')
-	settings.tabs[i]:SetText(tabNames[i])
+	settings.tabs[i]:SetText(L[tabNames[i]])
 	if i == 1 then
 		settings.tabs[i]:SetPoint('TOPLEFT', settings, 'BOTTOMLEFT',0, 3)
 	else
 		settings.tabs[i]:SetPoint('LEFT', settings.tabs[i-1], 'RIGHT', -12, 0)
 	end
 	settings.tabs[i].id = i
-	for j  = 1, tlength(tabElements) do
+	for j  = 1, getn(tabElements) do
 		_G[settings.tabs[i]:GetName()..tabElements[j]]:SetVertexColor(.2, .2, .2)
 	end
 	
@@ -132,10 +134,10 @@ end
 
 function setupSettings()
 	playerFaction = UnitFactionGroup'player'
-	if playerFaction == EF_L_ALLIANCE2 then 
-		enemyFactionColor = RGB_FACTION_COLORS[EF_L_HORDE2]
+	if playerFaction == 'Alliance' then 
+		enemyFactionColor = RGB_FACTION_COLORS['Horde']
 	else 
-		enemyFactionColor = RGB_FACTION_COLORS[EF_L_ALLIANCE2]	
+		enemyFactionColor = RGB_FACTION_COLORS['Alliance']	
 	end
 	settings.header.t:SetTextColor(enemyFactionColor['r'], enemyFactionColor['g'], enemyFactionColor['b'], .9)
 
@@ -182,8 +184,7 @@ local closeSettings = function()
 		_G['enemyFrameDisplay']:Hide() 
 	end 
 
-	INCOMINGSPELLSsettings(false)
-	TARGETFRAMECASTBARsettings(false)
+	INCOMINGSPELLSsettings(false) TARGETFRAMECASTBARsettings(false)
 end
 -- x button
 settings.x:SetScript('OnClick', function() 
@@ -194,12 +195,12 @@ end)
 local function eventHandler()
 	if event == 'PLAYER_LOGIN' then
 		playerFaction = UnitFactionGroup'player'
-		local tc = playerFaction == EF_L_ALLIANCE2 and 'FF1A1A' or '00ADF0'
-		print('|cff' ..tc.. EF_L_EFLOADED ..tc.. EF_L_FORMENUSETTINGS)
+		local tc = playerFaction == 'Alliance' and 'FF1A1A' or '00ADF0'
+		print('|cff' ..tc.. format(L['[enemyFrames] v%s loaded. |cffffffff/efs|cff%s for menu settings.'], ENEMYFRAMESVERSION, tc))
 		_G['enemyFrameDisplay']:SetScale(ENEMYFRAMESPLAYERDATA['scale'])
-		_G['enemyFrameDisplay']:SetPoint('CENTER', UIParent,'CENTER', ENEMYFRAMESPLAYERDATA['offX'], ENEMYFRAMESPLAYERDATA['offY'])
+		_G['enemyFrameDisplay']:SetPoint('CENTER', UIParent, ENEMYFRAMESPLAYERDATA['offX'], ENEMYFRAMESPLAYERDATA['offY'])
 	elseif event == 'PLAYER_LOGOUT' then
-		local _,_,_,xOfs,yOfs = _G['enemyFrameDisplay']:GetPoint()
+		local point, relativeTo, relativePoint, xOfs, yOfs = _G['enemyFrameDisplay']:GetPoint()
 		ENEMYFRAMESPLAYERDATA['offX'] = xOfs
 		ENEMYFRAMESPLAYERDATA['offY'] = yOfs
 	elseif event == 'ZONE_CHANGED_NEW_AREA' then

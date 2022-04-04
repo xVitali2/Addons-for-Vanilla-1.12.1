@@ -1,3 +1,4 @@
+local L = enemyFrames.L
 local playerFaction
 local insideBG = false
 -- TIMERS
@@ -25,9 +26,8 @@ local enemyFactionColor
 
 local 	enemyFrame = CreateFrame('Frame', 'enemyFrameDisplay', UIParent)
 		enemyFrame:SetFrameStrata("BACKGROUND")
-		enemyFrame:SetPoint('CENTER', UIParent, UIParent:GetHeight()/3, UIParent:GetHeight()/3)
+		enemyFrame:SetPoint('CENTER', UIParent, UIParent:GetHeight()/3, UIParent:GetHeight()/3)		
 		enemyFrame:SetHeight(20)
-		enemyFrame:SetWidth(20)
 		
 		--enemyFrame:SetBackdrop(BACKDROP)
 		--enemyFrame:SetBackdropColor(0, 0, 0, .6)
@@ -67,12 +67,31 @@ local 	enemyFrame = CreateFrame('Frame', 'enemyFrameDisplay', UIParent)
 			GameTooltip:Hide()
 		end)
 		
+		
+		-- efc low announcement button
+		enemyFrame.efcButton = CreateFrame('Button', nil, enemyFrame)
+		enemyFrame.efcButton:SetHeight(15)	enemyFrame.efcButton:SetWidth(15)
+		enemyFrame.efcButton:SetPoint('LEFT', enemyFrame.Title, 'RIGHT', 2, 0)
+		enemyFrame.efcButton:SetScript('OnEnter', function()
+			GameTooltip:SetOwner(this, 'ANCHOR_TOPRIGHT', -30, -30)
+			GameTooltip:SetText(L['toggle EFC low health announcement'])
+			GameTooltip:Show()
+		end)
+		enemyFrame.efcButton:SetScript('OnLeave', function()
+			GameTooltip:Hide()
+		end)	
+
+		enemyFrame.efcButton.flagTexture = enemyFrame.efcButton:CreateTexture(nil, 'ARTWORK')
+		enemyFrame.efcButton.flagTexture:SetAllPoints()
+
+		--enemyFrame.efcButton:Hide()
+		
 			
 		-- top frame
 		
 		enemyFrame.top = CreateFrame('Frame', nil, enemyFrame)
 		enemyFrame.top:SetFrameLevel(0)
-		enemyFrame.top:ClearAllPoints()
+		enemyFrame.top:ClearAllPoints()		
 		enemyFrame.top:SetHeight(enemyFrame:GetHeight())
 		enemyFrame.top:SetBackdrop(BACKDROP)
 		enemyFrame.top:SetBackdropColor(0, 0, 0, .6)
@@ -100,13 +119,13 @@ local 	enemyFrame = CreateFrame('Frame', 'enemyFrameDisplay', UIParent)
 		
 		enemyFrame.bottom.settings.text = enemyFrame.bottom.settings:CreateFontString(nil, 'OVERLAY')
 		enemyFrame.bottom.settings.text:SetFont(STANDARD_TEXT_FONT, 12, 'OUTLINE')
-		enemyFrame.bottom.settings.text:SetText(EF_L_S2)
+		enemyFrame.bottom.settings.text:SetText(L['S'])
 		
 		enemyFrame.bottom.settings:SetScript('OnEnter', function()
 			enemyFrame.bottom.settings.text:SetTextColor(.9, .9, .4)
 			
 			GameTooltip:SetOwner(this, 'ANCHOR_TOPRIGHT', -10, -60)
-			GameTooltip:SetText(EF_L_SETTINGSMENU)
+			GameTooltip:SetText(L['settings menu'])
 			GameTooltip:Show()
 		end)
 		enemyFrame.bottom.settings:SetScript('OnLeave', function()
@@ -114,9 +133,9 @@ local 	enemyFrame = CreateFrame('Frame', 'enemyFrameDisplay', UIParent)
 			GameTooltip:Hide()
 		end)
 		enemyFrame.bottom.settings:SetScript('OnClick', function()
-			setupSettings() 
-		end)
-
+												if enabled then setupSettings() end
+												end)
+		
 		--enemyFrame.bottom:Hide()
 		-- class
 		enemyFrame.bottom.classButton = CreateFrame('Button', nil, enemyFrame.bottom)
@@ -125,7 +144,7 @@ local 	enemyFrame = CreateFrame('Frame', 'enemyFrameDisplay', UIParent)
 		
 		enemyFrame.bottom.classIcon = enemyFrame.bottom.classButton:CreateTexture(nil, 'ARTWORK')
 		enemyFrame.bottom.classIcon:SetAllPoints()
-		enemyFrame.bottom.classIcon:SetTexture(GET_DEFAULT_ICON('class', EF_L_WARRIOR))
+		enemyFrame.bottom.classIcon:SetTexture(GET_DEFAULT_ICON('class', 'WARRIOR'))
 		enemyFrame.bottom.classIcon:SetTexCoord(.1, .9, .25, .75)
 		
 		-- rank
@@ -158,7 +177,7 @@ local 	enemyFrame = CreateFrame('Frame', 'enemyFrameDisplay', UIParent)
 		enemyFrame.raidTargetFrame.text:SetFont(STANDARD_TEXT_FONT, 18, 'OUTLINE')
 		enemyFrame.raidTargetFrame.text:SetTextColor(.8, .8, .8, .8)
 		enemyFrame.raidTargetFrame.text:SetPoint('CENTER', enemyFrame.raidTargetFrame)
-		enemyFrame.raidTargetFrame.text:SetText(EF_L_PLAYER)
+		enemyFrame.raidTargetFrame.text:SetText(L["Player"])
 	
 		enemyFrame.raidTargetFrame.iconl = enemyFrame.raidTargetFrame:CreateTexture(nil, 'OVERLAY')
 		enemyFrame.raidTargetFrame.iconl:SetTexture([[Interface\TargetingFrame\UI-RaidTargetingIcons]])
@@ -239,9 +258,9 @@ local leftSpacing = 5
 -- draw player units
 for i = 1, unitLimit,1 do
 	units[i] = CreateEnemyUnitFrame('enemyFrameUnit'..i, enemyFrame)
-	units[i].index = i
+	units[i].index = i	
 		
-	units[i]:SetScript('OnClick', function()	if arg1 == 'LeftButton' and this.tar ~= nil  then  	TargetByName(this.tar, true) end
+	units[i]:SetScript('OnClick', function()	if arg1 == 'LeftButton' and this.tar ~= nil  then  	TargetByName(this.tar, true)			end
 		if arg1 == 'RightButton' then	
 			spawnRTMenu(this, this.tar)	end
 	end)
@@ -252,10 +271,10 @@ end
 local function defaultVisuals()
 	for i = 1, unitLimit do
 		units[i].castbar.icon:SetTexture([[Interface\Icons\Inv_misc_gem_sapphire_01]])
-		units[i].castbar.text:SetText(EF_L_ENTANGLINGROOTS)
+		units[i].castbar.text:SetText(L['Entangling Roots'])
 		units[i].castbar.text:SetText(string.sub(units[i].castbar.text:GetText(), 1, 18))
 		
-		units[i].name:SetText(EF_L_PLAYER .. i)
+		units[i].name:SetText(L["Player"] .. ' ' .. i)
 		
 		units[i].raidTarget.icon:SetTexCoord(.75, 1, 0.25, .5)
 		
@@ -300,7 +319,7 @@ local function optionals()
 	end
 end
 local function setccIcon(p)
-	local d = p == 'class' and EF_L_WARRIOR or p == 'rank' and 6 or p == 'portrait' and ( playerFaction == EF_L_ALLIANCE2 and 'MALE-ORC' or 'MALE-HUMAN')
+	local d = p == 'class' and 'WARRIOR' or p == 'rank' and 6 or p == 'portrait' and ( playerFaction == 'Alliance' and 'MALE-ORC' or 'MALE-HUMAN')
 	for i = 1, unitLimit do
 		units[i].cc.icon:SetTexture(GET_DEFAULT_ICON(p, d))
 	end
@@ -311,10 +330,10 @@ local function arrangeUnits()
 	local unitGroup, layout = ENEMYFRAMESPLAYERDATA['groupsize'], ENEMYFRAMESPLAYERDATA['layout']
 	
 	-- adjust title
-	if playerFaction == EF_L_ALLIANCE2 then 
-		enemyFrame.Title:SetText(layout == 'vertical' and EF_L_H or EF_L_HORDE2)
+	if playerFaction == 'Alliance' then 
+		enemyFrame.Title:SetText(layout == 'vertical' and L['H']..' ' or L['Horde'])
 	else 
-		enemyFrame.Title:SetText(layout == 'vertical' and EF_L_A or EF_L_ALLIANCE2)
+		enemyFrame.Title:SetText(layout == 'vertical' and L['A']..' ' or L['Alliance'])
 	end
 	
 	for i = 1, unitLimit do	
@@ -340,12 +359,12 @@ end
 
 local function showHideBars()
 	if ENEMYFRAMESPLAYERDATA['frameMovable'] then
-		enemyFrame.spawnText.Button.tt = 'lock'
+		enemyFrame.spawnText.Button.tt = L['lock']
 		enemyFrame.top:Show()--SetAlpha(1)
 		enemyFrame.bottom:Show()--SetAlpha(1)
 		enemyFrame.spawnText:SetText('-')		
 	else
-		enemyFrame.spawnText.Button.tt = 'unlock'
+		enemyFrame.spawnText.Button.tt = L['unlock']
 		enemyFrame.top:Hide()--SetAlpha(0)
 		enemyFrame.bottom:Hide()--SetAlpha(0)
 		enemyFrame.spawnText:SetText('+')
@@ -358,12 +377,12 @@ local function SetupFrames(maxU)
 	-- get player's faction
 	playerFaction = UnitFactionGroup('player')
 	
-	if playerFaction == EF_L_ALLIANCE2 then 
-		enemyFactionColor = RGB_FACTION_COLORS[EF_L_HORDE2]
-		enemyFrame.Title:SetText(EF_L_HORDE2)
+	if playerFaction == 'Alliance' then 
+		enemyFactionColor = RGB_FACTION_COLORS['Horde']
+		enemyFrame.Title:SetText(L['Horde'])
 	else 
-		enemyFactionColor = RGB_FACTION_COLORS[EF_L_ALLIANCE2]
-		enemyFrame.Title:SetText(EF_L_ALLIANCE2)		
+		enemyFactionColor = RGB_FACTION_COLORS['Alliance']
+		enemyFrame.Title:SetText(L['Alliance'])		
 	end
 	
 	enemyFrame.Title:SetTextColor(enemyFactionColor['r'], enemyFactionColor['g'], enemyFactionColor['b'], .9)
@@ -389,6 +408,25 @@ local function SetupFrames(maxU)
 			GameTooltip:SetText(this.tt)
 			GameTooltip:Show()
 		end)
+		
+		
+	enemyFrame.efcButton.flagTexture:SetTexture('Interface\\WorldStateFrame\\'..playerFaction..'Flag')
+--	enemyFrame.efcButton.flagTexture:SetVertexColor(.3, .3, .3)
+	enemyFrame.efcButton:SetScript('OnClick', function()
+		if ENEMYFRAMESPLAYERDATA['efcBGannouncement'] == true then
+			ENEMYFRAMESPLAYERDATA['efcBGannouncement'] = false
+			this.flagTexture:SetVertexColor(.3, .3, .3)
+			
+		else 
+			ENEMYFRAMESPLAYERDATA['efcBGannouncement'] = true
+			this.flagTexture:SetVertexColor(1, 1, 1)
+				end
+	end)
+		
+	if ENEMYFRAMESPLAYERDATA['efcBGannouncement'] then
+		enemyFrame.efcButton.flagTexture:SetVertexColor( 1, 1, 1)
+	else enemyFrame.efcButton.flagTexture:SetVertexColor(.3, .3, .3)	end
+		
 		
 	showHideBars()
 	
@@ -449,7 +487,7 @@ local function SetupFrames(maxU)
 			if not enabled then setccIcon('rank')	end
 		end)
 		
-	local r = playerFaction == EF_L_ALLIANCE2 and 'MALE-ORC' or 'MALE-HUMAN'
+	local r = playerFaction == 'Alliance' and 'MALE-ORC' or 'MALE-HUMAN'
 	enemyFrame.bottom.raceIcon:SetTexture(GET_DEFAULT_ICON('portrait', r))
 	enemyFrame.bottom.raceButton:SetScript('OnClick', function()
 			ENEMYFRAMESPLAYERDATA['defaultIcon'] = 'portrait'
@@ -482,6 +520,7 @@ local getTimerLeft = function(tEnd)
 end
 
 local function SetDefaultIconTex(p)
+	if not p['race'] then ChatFrame1:AddMessage(tostring(p)) end
 	p['portrait']	= p['sex'] .. '-' .. p['race']
 	local d = ENEMYFRAMESPLAYERDATA['defaultIcon']
 	if d == 'rank' and (p['rank'] < 0 or not p['rank']) then d = 'portrait' end
@@ -495,21 +534,22 @@ local function drawUnits(list)
 	
 	for k,v in pairs(playerList) do
 		-- set for redrawn
+		
 		local colour = RAID_CLASS_COLORS[v['class']]
 		local powerColor = RGB_POWER_COLORS[v['powerType']]
 		
 		-- hightlight nearby unit
-		if v['nearby'] then
+		if v['nearby'] then		
 			units[i].hpbar:SetStatusBarColor(colour.r, colour.g, colour.b)
 			if not units[i].mo then
-				units[i].name:SetTextColor(colour.r, colour.g, colour.b)
+				units[i].name:SetTextColor(colour.r, colour.g, colour.b)	
 			end			
-			units[i].manabar:SetStatusBarColor(powerColor[1], powerColor[2], powerColor[3])
+			units[i].manabar:SetStatusBarColor(powerColor[1], powerColor[2], powerColor[3])			
 			units[i].cc.icon:SetVertexColor(1, 1, 1, 1)
 			
 			--units[i].targetCount.text:SetTextColor(.898, 898, .199)
 			
-			units[i]:SetScript('OnEnter', function()
+			units[i]:SetScript('OnEnter', function()	
 				units[this.index].name:SetTextColor(enemyFactionColor['r'], enemyFactionColor['g'], enemyFactionColor['b'])	
 				this.mo = true
 				MOUSEOVERUNINAME = this.tar
@@ -576,16 +616,16 @@ local function drawUnits(list)
 	i = i == 1 and 1 or i -1
 	enemyFrame.totalPlayers:SetText(nearU .. ' / ' .. i)
 	
-	if not insideBG or ENEMYFRAMESPLAYERDATA['displayOnlyNearby'] then
+	if not insideBG or ENEMYFRAMESPLAYERDATA['displayOnlyNearby'] then		
 		local unitPointBottom = ENEMYFRAMESPLAYERDATA['layout'] == 'vertical' and i or i > ENEMYFRAMESPLAYERDATA['groupsize'] and ENEMYFRAMESPLAYERDATA['groupsize'] or i
 		
 		if ENEMYFRAMESPLAYERDATA['layout'] == 'hblock' or ENEMYFRAMESPLAYERDATA['layout'] == 'vblock' then
 			local a = math.floor(i/ENEMYFRAMESPLAYERDATA['groupsize'])
 			unitPointBottom = a  == 0 and 1 or (a * ENEMYFRAMESPLAYERDATA['groupsize']) +1
 		end
-		--ace:print(unitPointBottom.." -- unitPointBottom")
+		
 		if unitPointBottom < 41 and units[unitPointBottom].castbar.icon then
-			enemyFrame.bottom:SetPoint('TOPLEFT', units[unitPointBottom].castbar.icon, 'BOTTOMLEFT', 1, -6)
+		enemyFrame.bottom:SetPoint('TOPLEFT', units[unitPointBottom].castbar.icon, 'BOTTOMLEFT', 1, -6)
 		end
 		
 		--/Script print(math.floor(4/5))
@@ -612,7 +652,7 @@ local function updateUnits()
 			units[i].border:SetColor(enemyFactionColor['r'], enemyFactionColor['g'], enemyFactionColor['b'])
 			
 			units[i].hpbar:SetBackdropColor(enemyFactionColor['r'] - .6, enemyFactionColor['g'] - .6, enemyFactionColor['b'] - .6, .6)
-			units[i].manabar:SetBackdropColor(enemyFactionColor['r'] - .6, enemyFactionColor['g'] - .6, enemyFactionColor['b'] - .6, .6)
+			units[i].manabar:SetBackdropColor(enemyFactionColor['r'] - .6, enemyFactionColor['g'] - .6, enemyFactionColor['b'] - .6, .6)			
 		else
 			units[i].border:SetColor(.1, .1, .1)
 			
@@ -636,7 +676,7 @@ local function updateUnits()
 			local charLim = ENEMYFRAMESPLAYERDATA['castTimers'] and 14 or 15
 			units[i].castbar.text:SetText(string.sub(units[i].castbar.text:GetText(), 1, charLim))
 			
-			units[i].castbar.timer:SetText(getTimerLeft(castInfo.timeEnd))--..EF_L_S)
+			units[i].castbar.timer:SetText(getTimerLeft(castInfo.timeEnd))--..'s')
 			
 			units[i].castbar.icon:SetTexture(castInfo.icon)
 			units[i].castbar:Show()		
@@ -725,6 +765,12 @@ function ENEMYFRAMESInitialize(maxUnits, isBG)
 		arrangeUnits()
 		optionals()
 		enabled = true
+		
+		if insideBG and GetZoneText() == L['Warsong Gulch'] then
+			enemyFrame.efcButton:Show()
+		else
+			enemyFrame.efcButton:Hide()
+		end
 		
 		if ENEMYFRAMESPLAYERDATA['enableFrames'] then
 			enemyFrame:Show()

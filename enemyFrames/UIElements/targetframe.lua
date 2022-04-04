@@ -1,4 +1,5 @@
 	-------------------------------------------------------------------------------
+	local L = enemyFrames.L
 	local raidTargetFrame = CreateFrame('Frame', nil, TargetFrame)
 	raidTargetFrame:SetFrameLevel(2)
 	raidTargetFrame:SetHeight(36)	raidTargetFrame:SetWidth(36)
@@ -50,7 +51,7 @@
     --TargetFrame.EFcast.text:SetShadowOffset(1, -1)
     TargetFrame.EFcast.text:SetShadowColor(0, 0, 0)
     TargetFrame.EFcast.text:SetPoint('LEFT', TargetFrame.EFcast, 2, .5)
-    TargetFrame.EFcast.text:SetText('drag-me')
+    TargetFrame.EFcast.text:SetText(L['drag-me'])
 
     TargetFrame.EFcast.timer = TargetFrame.EFcast:CreateFontString(nil, 'OVERLAY')
     TargetFrame.EFcast.timer:SetTextColor(1, 1, 1)
@@ -75,15 +76,17 @@
 	TargetFrame.IntegratedCastBar = CreateFrame('StatusBar', 'enemyFramesTargetFrameCastbar', TargetFrame)
     TargetFrame.IntegratedCastBar:SetStatusBarTexture(TEXTURE)
     TargetFrame.IntegratedCastBar:SetStatusBarColor(1, .4, 0)
-    --TargetFrame.IntegratedCastBar:SetBackdrop(BACKDROP)
-    TargetFrame.IntegratedCastBar:SetBackdropColor(0, 0, 0, .5)
+    TargetFrame.IntegratedCastBar:SetBackdrop(BACKDROP)
+    TargetFrame.IntegratedCastBar:SetBackdropColor(0, 0, 0, .9)
 	TargetFrame.IntegratedCastBar:SetPoint('TOPLEFT', TargetFrameNameBackground, 'TOPLEFT')
 	TargetFrame.IntegratedCastBar:SetPoint('BOTTOMRIGHT', TargetFrameNameBackground, 'BOTTOMRIGHT')
 	TargetFrame.IntegratedCastBar:SetFrameLevel(1)
-	
+	TargetFrame.IntegratedCastBar:SetMinMaxValues(0, 10)
+	TargetFrame.IntegratedCastBar:SetValue(6)
+	--[[
 	TargetFrame.IntegratedCastBar.bg = TargetFrame.IntegratedCastBar:CreateTexture(nil, 'ARTWORK')
 	TargetFrame.IntegratedCastBar.bg:SetTexture(0, 0, 0, .7)
-	TargetFrame.IntegratedCastBar.bg:SetAllPoints()	
+	TargetFrame.IntegratedCastBar.bg:SetAllPoints()	]]--
 	
 	TargetFrame.IntegratedCastBar.spark = TargetFrame.IntegratedCastBar:CreateTexture(nil, 'OVERLAY')
 	TargetFrame.IntegratedCastBar.spark:SetTexture([[Interface\CastingBar\UI-CastingBar-Spark]])
@@ -96,14 +99,14 @@
     TargetFrame.IntegratedCastBar.spellText:SetFont(STANDARD_TEXT_FONT, 10, 'OUTLINE')
     TargetFrame.IntegratedCastBar.spellText:SetShadowColor(0, 0, 0)
     TargetFrame.IntegratedCastBar.spellText:SetPoint('LEFT', TargetFrame.IntegratedCastBar, 1, .5)
-    TargetFrame.IntegratedCastBar.spellText:SetText(EF_L_POLYMORPH) 
+    TargetFrame.IntegratedCastBar.spellText:SetText(L['Polymorph']) 
 	
 	TargetFrame.IntegratedCastBar.timer = TargetFrame.IntegratedCastBar:CreateFontString(nil, 'OVERLAY')
     TargetFrame.IntegratedCastBar.timer:SetTextColor(1, 1, 1)
     TargetFrame.IntegratedCastBar.timer:SetFont(STANDARD_TEXT_FONT, 8, 'OUTLINE')
     TargetFrame.IntegratedCastBar.timer:SetShadowColor(0, 0, 0)
     TargetFrame.IntegratedCastBar.timer:SetPoint('RIGHT', TargetFrame.IntegratedCastBar, -2, .5)
-    TargetFrame.IntegratedCastBar.timer:SetText(EF_L_3_5s)
+    TargetFrame.IntegratedCastBar.timer:SetText'3.5s'
 	-------------------------------------------------------------------------------
 	local function round(num, idp)
 		local mult = 10^(idp or 0)
@@ -124,14 +127,20 @@
 			end
 			if ENEMYFRAMESPLAYERDATA['integratedTargetFrameCastbar'] then
 				TargetFrame.IntegratedCastBar:Show()
+				--TargetFrameNameBackground:SetDrawLayer'BACKGROUND'
+				TargetFrameNameBackground:SetAlpha(.3)
 				TargetName:Hide()	
 			else
 				TargetFrame.IntegratedCastBar:Hide()
+				--TargetFrameNameBackground:SetDrawLayer'BORDER'
+				TargetFrameNameBackground:SetAlpha(1)
 				TargetName:Show()
 			end		
 		else
 			TargetFrame.EFcast:Hide()
 			TargetFrame.IntegratedCastBar:Hide()
+			--TargetFrameNameBackground:SetDrawLayer'BORDER'
+			TargetFrameNameBackground:SetAlpha(1)
 			TargetName:Show()
 		end
 		if UnitExists'target' then
@@ -153,8 +162,8 @@
 						sparkPosition = (GetTime() - v.timeStart) / (v.timeEnd - v.timeStart)
 					end
 					
-					TargetFrame.EFcast.text:SetText(string.sub(v.spell, 1, 17))
-					TargetFrame.IntegratedCastBar.spellText:SetText(string.sub(v.spell, 1, 15))
+					TargetFrame.EFcast.text:SetText(v.spell)
+					TargetFrame.IntegratedCastBar.spellText:SetText(v.spell)
 					TargetFrame.EFcast.timer:SetText(getTimerLeft(v.timeEnd)..'s')
 					TargetFrame.IntegratedCastBar.timer:SetText(getTimerLeft(v.timeEnd)..'s')
 					TargetFrame.EFcast.icon:SetTexture(v.icon)
@@ -174,6 +183,8 @@
 					end
 					if ENEMYFRAMESPLAYERDATA['integratedTargetFrameCastbar'] then
 						TargetFrame.IntegratedCastBar:Show()
+						--TargetFrameNameBackground:SetDrawLayer'BACKGROUND'
+						TargetFrameNameBackground:SetAlpha(.3)
 						TargetName:Hide()							
 					end	
 				end
@@ -207,11 +218,11 @@
 	portraitDurationFrame:SetFrameLevel(2)
 	
 	portraitDebuff.duration = portraitDurationFrame:CreateFontString(nil, 'OVERLAY')--, 'GameFontNormalSmall')
-	portraitDebuff.duration:SetFont(STANDARD_TEXT_FONT, 14, 'OUTLINE')
+	portraitDebuff.duration:SetFont(STANDARD_TEXT_FONT, 16, 'OUTLINE')
 	portraitDebuff.duration:SetTextColor(.9, .9, .2, 1)
 	portraitDebuff.duration:SetShadowOffset(1, -1)
 	portraitDebuff.duration:SetShadowColor(0, 0, 0)
-	portraitDebuff.duration:SetPoint('CENTER', TargetPortrait, 'CENTER', 0, -7)
+	portraitDebuff.duration:SetPoint('CENTER', TargetPortrait, 'CENTER', 0, -5)
 	-- cooldown spiral
 	portraitDebuff.cd = CreateCooldown(portraitDebuff, 1.054, true)
 	portraitDebuff.cd:SetAlpha(1)
@@ -219,7 +230,7 @@
 	local a, maxa, b, c = .002, .058, 0, 1
 	local showPortraitDebuff = function()
 		if UnitExists'target' then
-			local xtFaction = UnitFactionGroup'target' == EF_L_ALLIANCE2 and EF_L_HORDE2 or EF_L_ALLIANCE2
+			local xtFaction = UnitFactionGroup'target' == 'Alliance' and 'Horde' or 'Alliance'
 			local prioBuff = SPELLCASTINGCOREgetPrioBuff(UnitName'target', 1)[1]
 
 			if prioBuff ~= nil then
@@ -346,6 +357,8 @@
 			else
 				TargetFrame.EFcast:Hide()
 				TargetFrame.IntegratedCastBar:Hide()	
+				--TargetFrameNameBackground:SetDrawLayer'BORDER'
+				TargetFrameNameBackground:SetAlpha(1)
 				TargetName:Show()				
 			end
 			if ENEMYFRAMESPLAYERDATA['targetPortraitDebuff'] then

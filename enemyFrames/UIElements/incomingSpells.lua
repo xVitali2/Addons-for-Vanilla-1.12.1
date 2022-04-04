@@ -87,7 +87,7 @@
 		if b then incFrame.border:Show() else incFrame.border:Hide()	end
 		incFrame:EnableMouse(b)
 		incFrame:SetBackdropColor(0, 0, 0, b and .6 or 0)
-		incFrame.title:SetText(b and EF_L_INCOMINGSPELLS or '')
+		incFrame.title:SetText(b and 'incoming spells' or '')
 		frameMovable = b
 		for i=1,unitsLimit do
 			units[i].icon:SetTexture([[Interface\Icons\Inv_misc_gem_sapphire_01]])
@@ -134,11 +134,8 @@
 		if currentTarget and currentTarget ~= c then
 			local b = checkCasterTarget(c)
 			
-			if currentTarget == nil then
-				ClearTarget()
-			else
-				TargetByName(currentTarget, true)
-			end
+			if currentTarget == nil then	ClearTarget()	
+			else	TargetByName(currentTarget, true)	end
 			
 			if b then
 				removeDoubleEntry(c)
@@ -150,12 +147,14 @@
 	end
 	-------------------------------------------------------------------------------
 	local parseCombatLog = function()
-		local bCast = EF_L_SPELLCASTOTHERSTART	local bbCast = string.find(arg1, bCast)
+		local bCast = SPELLCASTOTHERSTART	local bbCast = string.find(arg1, enemyFrames:SanitizePattern(bCast))
 		
 		if bbCast then
 			local m = bCast
-			local c = gsub(arg1, m, '%1')
-			local s = gsub(arg1, m, '%2')
+			local first, second = enemyFrames:cmatch(arg1, m)
+			local c = first
+			local s = second
+			
 			if not SPELLINFO_SINGLE_TARGET_BUFF_SPELLS[s] and SPELLINFO_SPELLCASTS_TO_TRACK[s] then
 				newCasterEntry(c, s)
 			end

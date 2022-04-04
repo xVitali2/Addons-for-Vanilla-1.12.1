@@ -27,11 +27,25 @@ AtlasLootWBBossButtons = {
     },
     Reaver = {
         "Reaver";
+    },
+    Concavius = {
+        "Concavius";
     }
 };
 
 AtlasLoot_Data["AtlasLootWBItems"] = {
     EmptyInstance = {},
+    Concavius = { -- by CFM
+        { 83233, "", "=q4=Charm of Dark Domination", "=ds=#s2#", "17%" },
+        { 83234, "", "=q4=Voidclaw Choker", "=ds=#s2#", "17%" },
+        { 0, "", "", "", "" },
+        { 83237, "", "=q4=Band of Ancient Lethality", "=ds=#s13#", "17%" },
+        { 83238, "", "=q4=Ring of the Abyss Watcher", "=ds=#s13#", "17%" },
+        { 83239, "", "=q4=Signet of the Voidwalker", "=ds=#s13#", "17%" },
+        { 83240, "", "=q4=Ring of the Whispering Mist", "=ds=#s13#", "17%" },
+        { 0, "", "", "", "" },
+        { 83236, "", "=q3=Void-Linked Satchel of Goods", "=ds=#m23# =q2=#e25#", "100%" },
+    },
     Reaver = {
         { 81090, "", "=q4=", "", "1%" },
         { 51778, "", "=q4=", "", "3.85%" },

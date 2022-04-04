@@ -7,10 +7,10 @@
 ## Notes-zhCN: 副本地图浏览器
 ## Notes-esES: Navegador de Mapas de Mazmorras
 ## Notes-ruRU: Обозреватель подземелий
-## Version: 1.16
+## Version: 1.16a
 ## Version-AtlasLoot: 4.08.09
 ## Version-AtlasQuest: 4.2
-## X-Date: February, 2022
+## X-Date: April, 2022
 ## Author: CFM, Dan Gilbert, Daviesh, Thandrenn, Asurn, Loather, Rabidmax, Dazerdude, Lichery, Pompa (Turtle WoW World Bosses), Xerron (Turtle WoW World Bosses), Gurky
 ## X-Category: MYADDONS_CATEGORY_MAP
 ## X-OptionsFrame: AtlasOptionsFrame

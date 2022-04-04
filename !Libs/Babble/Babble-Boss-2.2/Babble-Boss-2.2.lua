@@ -239,7 +239,6 @@ BabbleBoss:RegisterTranslations("enUS", function()
 		["Wolf Master Nandos"] = true,
 		["Rend Blackhand"] = true,
 		["Kurinnaxx"] = true,
-
 		["Maur Grimtotem"] = true,
 		["Oggleflint"] = true,
 		["Taragaman the Hungerer"] = true,
@@ -368,7 +367,9 @@ BabbleBoss:RegisterTranslations("enUS", function()
 		["Gurubashi Berserker"] = true;
 		["Elder Mottled Boar"] = true,
 		["Stoneskin Gargoyle"] = true,
-		["Master Craftsman Omarion"] = true
+		["Master Craftsman Omarion"] = true,
+		["Alterac Valley"] = true,
+		["Arathi Basin"] = true
 	}
 end)
 

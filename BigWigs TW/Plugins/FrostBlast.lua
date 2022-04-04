@@ -272,7 +272,7 @@ end
 function BigWigsFrostBlast:TestFBFrame()
 	if not anchor then self:SetupFrames() end
 	anchor:Show()
-	for i=1,4 do
+	for i=1,5 do
 		anchor.bar[i].unit="player"
 		anchor.bar[i].status:SetScript("OnUpdate", self.OnUpdate)
 		anchor.bar[i]:Show()
@@ -318,7 +318,7 @@ function BigWigsFrostBlast:FrostBlastUpdate()
 	if not BigWigsFrostBlast.db.profile.disabled then
 		if not anchor then self:SetupFrames() anchor:Show() end
 		local numEntries = getn(FrostblastTargets)
-		for i=1,4 do
+		for i=1,5 do
 			if i<=numEntries then
 				anchor.bar[i].unit=FrostblastTargets[i];
 				anchor.bar[i].status:SetScript("OnUpdate", self.OnUpdate)
@@ -334,7 +334,7 @@ end
 
 function BigWigsFrostBlast:StopFrostBlastUpdate()
 	if anchor then
-		for i=1,4 do
+		for i=1,5 do
 			anchor.bar[i].unit=nil;
 			anchor.bar[i].status:SetScript("OnUpdate", nil)
 			anchor.bar[i]:Hide()
@@ -387,7 +387,7 @@ function BigWigsFrostBlast:SetupFrames()
 
 	frame:SetBackdrop({
 		bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16,
-		edgeFile = "Interface\\AddOns\\BigWigs\\Textures\\otravi-semi-full-border", edgeSize = 32,
+		edgeFile = "Interface\\AddOns\\BigWigs TW\\Textures\\otravi-semi-full-border", edgeSize = 32,
 		--edgeFile = "", edgeSize = 32,
 		insets = {left = 1, right = 1, top = 20, bottom = 1},
 	})
@@ -424,7 +424,7 @@ function BigWigsFrostBlast:SetupFrames()
 
 	--Bar1
 	frame.bar = {}
-	for i=1, 4 do
+	for i=1, 5 do
 		local bar = CreateFrame("Button", "FBTargetBar_"..i, UIParent)
 		bar:ClearAllPoints()
 		if i==1 then
@@ -442,7 +442,7 @@ function BigWigsFrostBlast:SetupFrames()
 		bar.status = CreateFrame("StatusBar",nil, bar)
 		bar.status:ClearAllPoints()
 		bar.status:SetPoint("CENTER", bar)
-		bar.status:SetStatusBarTexture("Interface\\AddOns\\BigWigs\\textures\\smooth")
+		bar.status:SetStatusBarTexture("Interface\\AddOns\\BigWigs TW\\textures\\smooth")
 		bar.status:SetMinMaxValues(0, 100)
 		bar.status:SetValue(100)
 		bar.status:SetWidth(196)
@@ -488,7 +488,7 @@ function BigWigsFrostBlast:SetupFrames()
 	end
 
 	local close = frame:CreateTexture(nil, "ARTWORK")
-	close:SetTexture("Interface\\AddOns\\BigWigs\\Textures\\otravi-close")
+	close:SetTexture("Interface\\AddOns\\BigWigs TW\\Textures\\otravi-close")
 	close:SetTexCoord(0, .625, 0, .9333)
 	close:SetWidth(20)
 	close:SetHeight(14)

@@ -1,4 +1,5 @@
 	-------------------------------------------------------------------------------
+	local L = enemyFrames.L
 	local settings = _G['enemyFramesSettings']
 	
 	local container = CreateFrame('Frame', 'enemyFramesSettingsgeneralContainer', settings)
@@ -8,7 +9,7 @@
 	container:EnableMouseWheel(true)
 	container:Hide()
 	-------------------------------------------------------------------------------
-	local checkBoxGeneralN, checkBoxGeneral  = 1, { 	[1] = {['id'] = 'enableFrames', 		['label'] = EF_L_SHOWENEMYFRAMES},
+	local checkBoxGeneralN, checkBoxGeneral  = 1, { 	[1] = {['id'] = 'enableFrames', 		['label'] = L['Show enemyFrames']},
 													}
 	-------------------------------------------------------------------------------
 	-- general checkbox
@@ -33,7 +34,7 @@
 	-- scale
 	container.scale = container:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
 	container.scale:SetPoint('LEFT', container.generalList[checkBoxGeneralN], 'LEFT', 0, -30)
-	container.scale:SetText(EF_L_SCALE)
+	container.scale:SetText(L['scale'])
 
 	container.scaleSlider = CreateFrame('Slider', 'enemyFramesScaleSlider', container, 'OptionsSliderTemplate')
 	container.scaleSlider:SetWidth(215) 	container.scaleSlider:SetHeight(14)
@@ -53,15 +54,15 @@
 
 	container.layout = container:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
 	container.layout:SetPoint('LEFT', container.scaleSlider, 'LEFT', 0, -50)
-	container.layout:SetText(EF_L_LAYOUT)
+	container.layout:SetText(L['layout'])
 
 	container.layoutSlider = CreateFrame('Slider', 'enemyFramesLayoutSlider', container, 'OptionsSliderTemplate')
 	container.layoutSlider:SetWidth(215) 	container.layoutSlider:SetHeight(14)
 	container.layoutSlider:SetPoint('LEFT', container.layout, 'LEFT', 0, -30)
 	container.layoutSlider:SetMinMaxValues(0, 4)
 	container.layoutSlider:SetValueStep(1)
-	_G[container.layoutSlider:GetName()..'Low']:SetText'horizontal'
-	_G[container.layoutSlider:GetName()..'High']:SetText'vertical'
+	_G[container.layoutSlider:GetName()..'Low']:SetText'1x15'
+	_G[container.layoutSlider:GetName()..'High']:SetText'15x1'
 
 
 	container.layoutSlider:SetScript('OnValueChanged', function() 
@@ -79,7 +80,7 @@
 	container.version:SetPoint('LEFT', container.layoutSlider, 'LEFT', 0, -80)
 	container.version:SetJustifyH('LEFT')
 	container.version:SetTextColor(1, 1, 1)
-	container.version:SetText(EF_L_ENEMYFRAMESBYKUURTS .. ENEMYFRAMESVERSION)
+	container.version:SetText('enemyFrames by kuurtz \nver - |cffffff00' .. ENEMYFRAMESVERSION)
 	
 	container.forumlink = CreateFrame('EditBox', 'enemyFrame_forumlink', container, 'InputBoxTemplate')
     container.forumlink:SetFont(STANDARD_TEXT_FONT, 12)
@@ -89,14 +90,14 @@
     
 	
 	container.newversion = container:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
-	container.newversion:SetPoint('BOTTOMLEFT', container.version, 'TOP', -10, 5)
-	container.newversion:SetText(EF_L_VER..ENEMYFRAMESNEWVERSION..EF_L_AVAILABLE)
+	container.newversion:SetPoint('BOTTOMLEFT', container.version, 'TOP', -10, 5)	
 	container.newversion:Hide()
 	
 	container.forumlink:SetScript('OnShow', function()
-        this:SetText'https://forum.elysium-project.org/index.php?showtopic=25538'
+        this:SetText'https://github.com/zetone/enemyFrames'
 		
 		if ENEMYFRAMESVERSIONFOUND then
+			container.newversion:SetText('|cffffff00( '..format(L['!ver %s available!'], ENEMYFRAMESNEWVERSION)..' )')
 			container.newversion:Show()
 		end
     end)
@@ -116,6 +117,6 @@
 		container.scaleSlider:SetValue(ENEMYFRAMESPLAYERDATA['scale'])
 		container.layoutSlider:SetValue(ENEMYFRAMESPLAYERDATA['layout'] == 'horizontal' and 0 or ENEMYFRAMESPLAYERDATA['layout'] == 'hblock' and 1 or ENEMYFRAMESPLAYERDATA['layout'] == 'block' and 2 or ENEMYFRAMESPLAYERDATA['layout'] == 'vblock' and 3 or 4)
 		
-		container.newversion:SetTextColor(color['r'], color['g'], color['b'], .9)
+		--container.newversion:SetTextColor(color['r'], color['g'], color['b'], .9)
 	end
 	-------------------------------------------------------------------------------

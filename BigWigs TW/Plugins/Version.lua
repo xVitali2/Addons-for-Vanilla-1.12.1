@@ -43,7 +43,7 @@ L:RegisterTranslations("enUS", function() return {
 	["Nr Replies"] = true,
 	["Ancient"] = true,
 
-	["Your version of Big Wigs Elysium is out of date!\nPlease visit https://github.com/Hosq/BigWigs to get the latest version."] = true,
+	["Your version of Big Wigs Turtle-WoW is out of date!\nPlease visit https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases to get the latest version."] = true,
 	["Close"] = true,
 	["Cancel"] = true,
 
@@ -51,7 +51,7 @@ L:RegisterTranslations("enUS", function() return {
 	["Notify old versions"] = true,
 	["Notify old versions"] = true,
 	["List people with old versions to raid chat."] = true,
-	["Download newest version from https://github.com/Hosq/BigWigs"] = true,
+	["Download newest version from https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases"] = true,
 
 	["Show popup"] = true,
 	["Show popup warning on out of date version"] = true,
@@ -121,14 +121,14 @@ L:RegisterTranslations("esES", function() return {
 	["Nr Replies"] = "Nr repuesta",
 	["Ancient"] = "Anciano",
 
-	["Your version of Big Wigs Elysium is out of date!\nPlease visit https://github.com/Hosq/BigWigs to get the latest version."] = "¡Tu versión de Big Wigs es anticuada!\n Por favor visite https://github.com/Hosq/BigWigs para descargar la última versión.",
+	["Your version of Big Wigs Turtle-WoW is out of date!\nPlease visit https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases to get the latest version."] = "¡Tu versión de Big Wigs es anticuada!\n Por favor visite https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases para descargar la última versión.",
 	["Close"] = "Cerrar",
 	["Cancel"] = "Cancelar",
 
 	["People with outdated BigWigs:"] = "Personas con BigWigs anticuado:",
 	["Notify old versions"] = "Notificar de versiones anticuadas",
 	["List people with old versions to raid chat."] = "Enumera las personas con versiones anticuadas al chat de la banda",
-	["Download newest version from https://github.com/Hosq/BigWigs"] = "Descarga la última versión en https://github.com/Hosq/BigWigs",
+	["Download newest version from https://github.com/Hosq/BigWigs"] = "Descarga la última versión en https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases",
 
 	["Show popup"] = "Mostrar Ventana Emergente",
 	["Show popup warning on out of date version"] = "Muesta la ventana emergente para versiones anticuadas",
@@ -162,7 +162,7 @@ L:RegisterTranslations("deDE", function() return {
 	["Nr Replies"] = "Anzahl der Antworten",
 	["Ancient"] = "Alt",
 
-	["Your version of Big Wigs Elysium is out of date!\nPlease visit https://github.com/Hosq/BigWigs to get the latest version."] = "Deine Version von Big Wigs Elysium ist veraltet! Bitte downloade die neuste Version von https://github.com/Hosq/BigWigs",
+	["Your version of Big Wigs Turtle-WoW is out of date!\nPlease visit https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases to get the latest version."] = "Deine Version von Big Wigs Turtle-WoW ist veraltet! Bitte downloade die neuste Version von https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases",
 	["Close"] = "Schliessen",
 	["Cancel"] = "Abbrechen",
 } end )
@@ -329,12 +329,12 @@ end
 function BigWigsVersionQuery:IsOutOfDate()
 	if not self.OutOfDateShown then
 		self.OutOfDateShown = true
-		BigWigs:Print(L["Your version of Big Wigs Elysium is out of date!\nPlease visit https://github.com/Hosq/BigWigs to get the latest version."])
+		BigWigs:Print(L["Your version of Big Wigs Turtle-WoW is out of date!\nPlease visit https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases to get the latest version."])
 
 		if self.db.profile.popup then
 			local dialog = nil
 			StaticPopupDialogs["BigWigsOutOfDateDialog"] = {
-				text = L["Your version of Big Wigs Elysium is out of date!\nPlease visit https://github.com/Hosq/BigWigs to get the latest version."],
+				text = L["Your version of Big Wigs Turtle-WoW is out of date!\nPlease visit https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases to get the latest version."],
 				button1 = L["Close"],
 				button2 = L["Cancel"],
 				OnAccept = function()
@@ -345,7 +345,7 @@ function BigWigsVersionQuery:IsOutOfDate()
 				end,
 				OnShow = function (self, data)
 					local editbox = getglobal(this:GetName().."WideEditBox")
-					editbox:SetText("https://github.com/Hosq/BigWigs")
+					editbox:SetText("https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases")
 					editbox:SetWidth(250)
 					editbox:ClearFocus()
 					editbox:HighlightText()
@@ -379,7 +379,7 @@ function BigWigsVersionQuery:NotifyOldVersions()
 	end
 	SendChatMessage(L["People with outdated BigWigs:"],"RAID")
 	SendChatMessage(line,"RAID")
-	SendChatMessage(L["Download newest version from https://github.com/Hosq/BigWigs"], "RAID")
+	SendChatMessage(L["Download newest version from https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases"], "RAID")
 end
 
 function BigWigsVersionQuery:OnTooltipUpdate()
@@ -473,6 +473,19 @@ function BigWigsVersionQuery:QueryVersion(zone)
 
 	self.responseTable = {}
 
+	if GetNumRaidMembers() > 0 then
+		for i = 0, GetNumRaidMembers() do
+			if GetRaidRosterInfo(i) then
+				local n, _, _, _, _, _, z = GetRaidRosterInfo(i);
+
+				if z == 'Offline' then
+					self.responseTable[n] = -2
+				else
+					self.responseTable[n] = 0
+				end
+			end
+		end
+	end
 	if not self.zoneRevisions then self:PopulateRevisions() end
 	if not self.zoneRevisions[zone] then
 		self.responseTable[UnitName("player")] = -1

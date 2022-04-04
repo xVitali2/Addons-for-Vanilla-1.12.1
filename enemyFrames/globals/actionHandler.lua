@@ -39,7 +39,7 @@
 		
 		if b then 
 			if currentTarget == nil then	ClearTarget()	
-			else	TargetByName(currentTarget, true) end
+			else	TargetByName(currentTarget, true)	end
 		end	
 	end
 	-------------------------------------------------------------------------------

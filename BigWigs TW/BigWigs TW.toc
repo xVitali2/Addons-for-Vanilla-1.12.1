@@ -1,13 +1,13 @@
 ## Interface: 11200
-## Title: Big Wigs |cff7fff7fLH|r
-## Title-zhCN: |cff7fff7fLH|r Big Wigs 
+## Title: Big Wigs |cffabd473Turtle-WoW|r
+## Title-zhCN: |cffabd473Turtle-WoW|r Big Wigs
 ## Notes: Boss Mods with Timer bars.
 ## Notes-ruRU: Босс мод. Оповещает и выводит таймеры способностей/действий боссов.
 ## Notes-esES: Módulos para Jefes con barras temporizadoras.
 ## Notes-zhCN: 团队首领战信息提示插件，带有计时条。
 ## Notes-zhTW: 團隊首領戰訊息提示插件，帶有計時條。
-## Author: Tekkub Stoutwrithe, Ammo, Shyva, Rabbit, LYQ, Dorann, Hosq, ruRUbyCFM & Others
-## Version: 2.0.5
+## Author: Tekkub Stoutwrithe, Ammo, Shyva, Rabbit, LYQ, Dorann, Hosq, CosminPOP, ruRUbyCFM & Others
+## Version: 2.0.6
 ## X-Website: https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases
 ## X-Category: Raid
 ## X-RelSite-WoWI: 5086
@@ -51,6 +51,7 @@ Plugins\ScorchTimer.lua
 Plugins\FRBuffMacro.lua
 Plugins\Farclip.lua
 Plugins\FrostBlast.lua
+Plugins\Pulltimer.lua
 
 Raids\ZG\Arlokk.lua
 Raids\ZG\Jeklik.lua
@@ -115,9 +116,11 @@ Raids\Other\Lethon.lua
 Raids\Other\Taerar.lua
 Raids\Other\Ysondre.lua
 Raids\Other\Gordok.lua
+Raids\Other\Nerubian.lua
 
 Raids\Onyxia\Onyxia.lua
 
+Raids\Naxxramas\Gargoyle.lua
 Raids\Naxxramas\Anubrekhan.lua
 Raids\Naxxramas\Gluth.lua
 Raids\Naxxramas\Razuvious.lua
@@ -133,3 +136,6 @@ Raids\Naxxramas\Loatheb.lua
 Raids\Naxxramas\Horsemen.lua
 Raids\Naxxramas\Sapphiron.lua
 Raids\Naxxramas\Kelthuzad.lua
+
+Battlegrounds\AlteracValley.lua
+Battlegrounds\ArathiBasin.lua

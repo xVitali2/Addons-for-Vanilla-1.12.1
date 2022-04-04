@@ -9,12 +9,12 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs")
 
 local surface = AceLibrary("Surface-1.0")
 
-surface:Register("Armory", "Interface\\AddOns\\BigWigs\\Textures\\Armory")
-surface:Register("Otravi", "Interface\\AddOns\\BigWigs\\Textures\\otravi")
-surface:Register("Smooth", "Interface\\AddOns\\BigWigs\\Textures\\smooth")
-surface:Register("Glaze", "Interface\\AddOns\\BigWigs\\Textures\\glaze")
-surface:Register("Charcoal", "Interface\\AddOns\\BigWigs\\Textures\\Charcoal")
-surface:Register("BantoBar", "Interface\\AddOns\\BigWigs\\Textures\\default")
+surface:Register("Armory", "Interface\\AddOns\\BigWigs TW\\Textures\\Armory")
+surface:Register("Otravi", "Interface\\AddOns\\BigWigs TW\\Textures\\otravi")
+surface:Register("Smooth", "Interface\\AddOns\\BigWigs TW\\Textures\\smooth")
+surface:Register("Glaze", "Interface\\AddOns\\BigWigs TW\\Textures\\glaze")
+surface:Register("Charcoal", "Interface\\AddOns\\BigWigs TW\\Textures\\Charcoal")
+surface:Register("BantoBar", "Interface\\AddOns\\BigWigs TW\\Textures\\default")
 
 ----------------------------
 --      Localization      --
@@ -73,7 +73,11 @@ L:RegisterTranslations("enUS", function() return {
 	["Silithus"] = true,
 	["Outdoor Raid Bosses"] = "Outdoor",
 	["Outdoor Raid Bosses Zone"] = "Outdoor Raid Bosses", -- DO NOT EVER TRANSLATE untill I find a more elegant option
-
+	
+	["Battlegrounds"] = true,
+	["Alterac Valley"] = true,
+	["Arathi Basin"] = true,
+	
 	--Name for exception bosses (neutrals that enable modules)
 	["Vaelastrasz the Corrupt"] = true,
 	["Lord Victor Nefarius"] = true,
@@ -127,6 +131,10 @@ L:RegisterTranslations("ruRU", function() return { --by CFM
 	["Silithus"] = "Силитус",
 	["Outdoor Raid Bosses"] = "Внешние",
 	["Outdoor Raid Bosses Zone"] = "ВнешниеБоссы", -- DO NOT EVER TRANSLATE untill I find a more elegant option
+
+	["Battlegrounds"] = "Поля боя",
+	["Alterac Valley"] = "Альтеракская долина",
+	["Arathi Basin"] = "Низина Арати",
 
 	--Name for exception bosses (neutrals that enable modules)
 	["Vaelastrasz the Corrupt"] = "Валестраз Порочный",
@@ -280,7 +288,7 @@ BigWigs.cmdtable = {type = "group", handler = BigWigs, args = {
 }}
 BigWigs:RegisterChatCommand({"/bw", "/BigWigs"}, BigWigs.cmdtable)
 BigWigs.debugFrame = ChatFrame1
-BigWigs.revision = 20022
+BigWigs.revision = 20023
 
 
 function BigWigs:DebugMessage(msg, module)

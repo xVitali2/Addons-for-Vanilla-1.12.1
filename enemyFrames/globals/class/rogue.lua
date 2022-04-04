@@ -1,15 +1,16 @@
 	-------------------------------------------------------------------------------
 	local _, class = UnitClass'player'
 	if class ~= 'ROGUE' then return end
+	local L = enemyFrames.L
+	-------------------------------------------------------------------------------
+	SPELLINFO_UNIQUE_DEBUFFS[L['Rupture']]['display'] = true
 	-------------------------------------------------------------------------------
 	local processDebuff = function(tar, spell, cp)
-	
-		if cp > 0 and UnitExists(tar) then
+		if cp > 0 and UnitExists(tar) and SPELLINFO_UNIQUE_DEBUFFS[spell] then
 			local b = SPELLCASTINGCOREqueueBuff(UnitName(tar), spell, cp)
-			if b then 	
-				--b = UnitInBattleground('player') and true or false
-				sendMSG('BF', UnitName(tar)..'/'..spell, cp, IsInsideBG())	
-			end
+			--if b then 	
+				--sendMSG('BF', UnitName(tar)..'/'..spell, cp, IsInsideBG())	
+			--end
 		end
 	end
 	-------------------------------------------------------------------------------

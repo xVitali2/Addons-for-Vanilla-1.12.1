@@ -64,6 +64,7 @@ BabbleFaction:RegisterTranslations("enUS", function()
 	["Wildhammer Clan"] = true,
 	["Wintersaber Trainers"] = true,
 	["Zandalar Tribe"] = true,
+	
 
 	--Rep Levels
 	["Neutral"] = true,

@@ -6,7 +6,7 @@
 Улучшенное окно профессий.
 <img src="https://user-images.githubusercontent.com/15636669/34521629-c7c21352-f09f-11e7-8aa3-9cc22477bcd7.jpg" alt="atsw"/>
 
-**Atlas**
+**Atlas Turtle-WOW**
 Все для подземелий: показывает карту подземелий, задания для них, дроп с боссов и профит с профессий.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586274/2d7f9d58-d0e0-11e6-8730-b65671e5abb3.jpg" alt="atlas ai"/>
 
@@ -30,7 +30,7 @@
 
 <img src="https://user-images.githubusercontent.com/15636669/38380047-3b7b7b9a-390b-11e8-8d95-c12cacd43a5b.jpg" alt="bgassist_2"/>
 
-**BigWigs LH**
+**BigWigs TW**
 Боссмод с таймерами(аналог DBM). Переведен на русский.
 
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586282/520f6112-d0e0-11e6-9356-5f2dcdbf75db.jpg" alt="bigwigs"/>

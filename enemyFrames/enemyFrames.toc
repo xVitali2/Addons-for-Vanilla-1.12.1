@@ -1,11 +1,10 @@
 ## Interface: 11200
 ## Title: BG Enemy Frames
 ## Notes: by kuurtzen
-## Notes-ruRU: Мод для полей боя
+## Notes-ruRU: Удобные рамки противников на полях боя.
 ## SavedVariablesPerCharacter: ENEMYFRAMESPLAYERDATA
 
-localization_en.lua
-localization_ru.lua
+locale\locale.xml
 
 globals\actionHandler.lua
 globals\spellCastingCore.lua
@@ -22,7 +21,6 @@ globals\settings\nameplates.lua
 globals\settings\optionals.lua
 globals\class\rogue.lua
 globals\class\paladin.lua
-globals\rank.lua
 
 UIElements\BindingsHandler.lua
 UIElements\nameplatesHandler.lua

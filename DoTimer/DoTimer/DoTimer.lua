@@ -65,7 +65,7 @@ function DoTimer_ReturnEnglish(spellname) --returns the english name of the spel
 end
 
 function DoTimer_ToLocale(spellname) -- returns the localized name of the english spell
---	DoTimer_Debug("DoTimer_ToLocale")
+	
 	for index,value in pairs(DoTimer_SpellData[class]) do
 		if value.name == spellname then
 			local i = 1
@@ -73,12 +73,14 @@ function DoTimer_ToLocale(spellname) -- returns the localized name of the englis
 				local texture = GetSpellTexture(i,BOOKTYPE_SPELL)
 				if texture == index then
 					local spell = GetSpellName(i,BOOKTYPE_SPELL)
+				--	DoTimer_AddText(spell)
 					return spell
 				end
 				i = i + 1
 			end
 		end
 	end
+	--DoTimer_AddText("unknown")
 	return "unknown"
 end
 
@@ -823,12 +825,14 @@ function DoTimer_ReturnManaCost(spellname,rankname) --parsing the mana cost of t
 		end
 		i = i + 1
 	end
-	if found then
+	--DoTimer_AddText("SPELLNAME: "..spellname)
+	if found and spellname ~= "Shoot" then
 		--DoTimer_AddText("spell found at "..found)
 		DoTimerScanningFrame:ClearLines()
 		DoTimerScanningFrame:SetSpell(found,"spell")
 		local mana = SpellSystem_ParseString(DoTimerScanningFrameTextLeft2:GetText(),"^(%d+) ")
-		--DoTimer_AddText("mana: "..UnitMana("player")..", needed: "..mana)
+		--DoTimer_AddText("GetText: "..DoTimerScanningFrameTextLeft2:GetText())
+	--	DoTimer_AddText("mana: "..UnitMana("player")..", needed: "..mana)
 		return (mana or false)
 	else
 		--DoTimer_AddText("cant find spell")

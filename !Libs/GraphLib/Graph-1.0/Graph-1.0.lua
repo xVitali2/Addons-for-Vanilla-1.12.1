@@ -19,7 +19,7 @@ local lib={}
 local GraphFunctions={}
 
 --Search for just Addon\\ at the front since the interface part often gets trimmed
-local TextureDirectory="Interface\\AddOns\\DPSMate\\libs\\GraphLib\\GraphTextures\\"
+local TextureDirectory="Interface\\AddOns\\!Libs\\GraphLib\\GraphTextures\\"
 
 
 

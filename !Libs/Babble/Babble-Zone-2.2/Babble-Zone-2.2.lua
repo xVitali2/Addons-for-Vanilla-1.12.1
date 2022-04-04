@@ -126,6 +126,7 @@ BabbleZone:RegisterTranslations("enUS", function()
 		["Winterspring"] = true,
 		["Zul'Farrak"] = true,
 		["Zul'Gurub"] = true,
+		["Battlegrounds"] = true
 	}
 end)
 
