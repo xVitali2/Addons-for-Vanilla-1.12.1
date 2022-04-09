@@ -341,7 +341,7 @@ function Atlas_PopulateDropdowns()
 			table.insert(ATLAS_DROPDOWNS[n], v)
 		end
 		
-		if subcatOrder[n] ~= ATLAS_DDL_ALL_MENU and subcatOrder[n] ~= ATLAS_DDL_WORLDBOSSES then 
+		if subcatOrder[n] ~= ATLAS_DDL_ALL_MENU1 and subcatOrder[n] ~= ATLAS_DDL_ALL_MENU2 and subcatOrder[n] ~= ATLAS_DDL_WORLDBOSSES then 
 			table.sort(ATLAS_DROPDOWNS[n], Atlas_SortZonesAlpha)
 		end
 		

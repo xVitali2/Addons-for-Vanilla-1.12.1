@@ -364,39 +364,6 @@ AtlasMaps = {
 		{ "" },
 		{ ORNG..L["Damage: "]..L["Fire"] }
 	},
-	TheCrescentGrove = {
-		ZoneName = { L["The Crescent Grove"], 3333 },
-		Acronym = "TCG",
-		Location = { BZ["Ashenvale"], 331 },
-		LevelRange = "32-38",
-		MinLevel = "26",
-		PlayerLimit = "5",
-		Continent = BZ["Kalimdor"],
-		{ BLUE.."A) "..L["Entrance"] },
-		{ GREY.."1) "..L["Grovetender Engryss"], NPC, 92107 },
-		{ GREY.."2) "..L["Keeper Ranathos"],NPC, 92109 },
-		{ GREY.."3) "..L["High Priestess A'lathea"], NPC, 92108 },
-		{ GREY.."4) "..L["Fenektis the Deceiver"], NPC, 92109 },
-		{ GREY.."5) "..L["Master Raxxieth"], NPC, 92110 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ ORNG.."Damage: ??? "..L["Shadow"] }
-	},
 	TheTempleofAhnQiraj = {
 		ZoneName = { BZ["Temple of Ahn'Qiraj"], 3428 },
 		Acronym = "AQ40",
@@ -1491,6 +1458,106 @@ AtlasMaps = {
 		{ "" };
 		{ "" };
 		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+	},
+	CavernsOfTimeBlackMorass = {
+		ZoneName = { "Caverns Of Time: Black Morass", 3335 };
+		Acronym = "BM";
+		Location = { BZ["Tanaris"], ZONE, 440 };
+		LevelRange = "60";
+		MinLevel = "60";
+		PlayerLimit = "5";
+		Continent = BZ["Kalimdor"];
+		{ "" };
+		{ "" };
+		{ GREY.."1) ".."Chronar", NPC, 65113 };
+		{ GREY.."2) ".."Harbinger Aph'ygth", NPC, 65114 };
+		{ GREY.."3) ".."Time-Lord Epochronos", NPC, 65116 };
+		{ GREY.."4) ".."Antnormi", NPC, 65125 };
+		{ GREY.."5) ".."Infinite Chromie", NPC, 65121 };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+	},
+	TheCrescentGrove = {
+		ZoneName = { L["The Crescent Grove"], 3333 },
+		Acronym = "TCG",
+		Location = { BZ["Ashenvale"], 331 },
+		LevelRange = "32-38",
+		MinLevel = "26",
+		PlayerLimit = "5",
+		Continent = BZ["Kalimdor"],
+		{ BLUE.."A) "..L["Entrance"] },
+		{ GREY.."1) "..L["Grovetender Engryss"], NPC, 92107 },
+		{ GREY.."2) "..L["Keeper Ranathos"],NPC, 92109 },
+		{ GREY.."3) "..L["High Priestess A'lathea"], NPC, 92108 },
+		{ GREY.."4) "..L["Fenektis the Deceiver"], NPC, 92109 },
+		{ GREY.."5) "..L["Master Raxxieth"], NPC, 92110 },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" }
+	},
+	KarazhanCrypt = {
+		ZoneName = { "Karazhan Crypt", 3334 };
+		Acronym = "KC";
+		Location = { BZ["Deadwind Pass"], ZONE, 41 };
+		LevelRange = "60";
+		MinLevel = "58";
+		PlayerLimit = "5";
+		Continent = BZ["Eastern Kingdoms"];
+		{ ORNG..L["Key"]..": Karazhan Crypt Key", ITEM, 51356 },
+		{ "" };
+		{ GREY.."1) ".."Marrowspike", NPC, 91920 };
+		{ GREY.."2) ".."Hivaxxis", NPC, 91929 };
+		{ GREY.."3) ".."Corpsemuncher", NPC, 91917 };
+		{ GREY.."4) ".."Archlich Enkhraz", NPC, 91916 };
+		{ GREY.."5) ".."Alarus", NPC, 91928 };
 		{ "" };
 		{ "" };
 		{ "" };

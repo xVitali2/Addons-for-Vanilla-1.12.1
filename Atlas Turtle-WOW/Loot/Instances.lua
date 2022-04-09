@@ -630,7 +630,7 @@ AtlasLootBossButtons = {
 		"TCGMasterRaxxieth"
 	},
 	KarazhanCrypt = {
-		"",
+		"VanillaKeys",
 		"",
         "KCMarrowspike",
         "KCHivaxxis",
@@ -641,11 +641,11 @@ AtlasLootBossButtons = {
 	CavernsOfTimeBlackMorass = {
 		"",
 		"",
-        "COTBMChronar",
-	"COTBMHarbingerAphygth",
-        "COTBMTimeLordEpochronos",
-        "COTBMAntnormi",
-	"COTBMInfiniteChromie"
+		"COTBMChronar",
+		"COTBMHarbingerAphygth",
+		"COTBMTimeLordEpochronos",
+		"COTBMAntnormi",
+		"COTBMInfiniteChromie"
 	},
 	StormwindVault = {
 		"",

@@ -6487,6 +6487,128 @@ Inst39Quest3name2_HORDE = "Cloak of Loruk" --60214
 Inst39Quest3name3_HORDE = "Shoulders of Loruk" --60215
 Inst39Quest3name4_HORDE = "Hat of Loruk" --60216
 
+--------------- INST41 - Karazhan Crypt (KC) ---------------
+Inst41Story = ""
+Inst41Caption = "Karazhan Crypt"
+Inst41QAA = "1 Quest"
+Inst41QAH = "1 Quest"
+--Quest 1 Alliance
+Inst41Quest1 = "1. The Mystery of Karazhan VII" -- 40311
+Inst41Quest1_Level = "60"
+Inst41Quest1_Attain = "58"
+Inst41Quest1_Aim = "Venture forth into the Karazhan Crypts, once inside slay Alarus, the watcher of the Crypts for Magus Ariden Dusktower in Deadwind Pass."
+Inst41Quest1_Location = "Magus Ariden Dusktower (Deadwind Pass "..YELLOW.."52,34"..WHITE..")"
+Inst41Quest1_Note = "Karazhan Crypt Key from (The Mystery of Karazhan VI) quest. You can find Alarus at [5]."
+Inst41Quest1_Prequest = "The Mystery of Karazhan I >> The Mystery of Karazhan VI"
+Inst41Quest1_Folgequest = "No"
+Inst41Quest1name1 = "Arcane Charged Pendant" --60463
+Inst41Quest1name2 = "Orb of Kaladoon" --60464
+Inst41Quest1name3 = "Arcane Strengthened Band" --60465
+--Quest 1 Horde
+Inst41Quest1_HORDE = "1. The Depths of Karazhan VII" -- 40311
+Inst41Quest1_HORDE_Level = "60"
+Inst41Quest1_HORDE_Attain = "58"
+Inst41Quest1_HORDE_Aim = "Venture forth into the Karazhan Crypts, once inside slay Alarus, the watcher of the Crypts for Kor'gan in Stonard."
+Inst41Quest1_HORDE_Location = "Kor'gan (Swamp of Sorrows "..YELLOW.."44,55"..WHITE..")"
+Inst41Quest1_HORDE_Note = "Karazhan Crypt Key from (The Depths of Karazhan VI) quest.You can find Alarus at [5]."
+Inst41Quest1_HORDE_Prequest = "The Depths of Karazhan I >> The Depths of Karazhan VI"
+Inst41Quest1_HORDE_Folgequest = "No"
+Inst41Quest1name1_HORDE = "Charged Arcane Ring" --60459
+Inst41Quest1name2_HORDE = "Tusk of Gardon" --60460
+Inst41Quest1name3_HORDE = "Blackfire Orb" --60461
+
+--------------- INST45 - CavernsOfTimeBlackMorass (BM) ---------------
+Inst45Story = ""
+Inst45Caption = "Caverns Of Time: Black Morass"
+Inst45QAA = "4 Quest"
+Inst45QAH = "4 Quest"
+--Quest 1 Alliance
+Inst45Quest1 = "1. The First Opening of The Dark Portal" -- 80605
+Inst45Quest1_Level = "60"
+Inst45Quest1_Attain = "60"
+Inst45Quest1_Aim = "Enter the Timeways into Black Morass's past and slay Antnormi. Bring her head to Kheyna."
+Inst45Quest1_Location = "Chromie (Tanaris - Caverns of Time "..YELLOW.."57,59"..WHITE..")"
+Inst45Quest1_Note = "Prequest from Chromie (Western Plaguelands - Ruins of Andorhal "..YELLOW.."40,67"..WHITE.."). Drop from [4]."
+Inst45Quest1_Prequest = "A Journey Into The Caverns"
+Inst45Quest1_Folgequest = "No"
+Inst45Quest1name1 = "X-51 Arcane Ocular Implants" --82950
+Inst45Quest1name2 = "X-52 Stealth Ocular Implants" --82951
+Inst45Quest1name3 = "X-53 Ranger Ocular Implants" --82952
+Inst45Quest1name4 = "X-54 Guardian Ocular Implants" --82953
+--Quest 1 Horde (same as Quest 1 Alliance)
+Inst45Quest1_HORDE = Inst45Quest1
+Inst45Quest1_HORDE_Level = Inst45Quest1_Level
+Inst45Quest1_HORDE_Attain = Inst45Quest1_Attain
+Inst45Quest1_HORDE_Aim = Inst45Quest1_Aim
+Inst45Quest1_HORDE_Location = Inst45Quest1_Location
+Inst45Quest1_HORDE_Note = Inst45Quest1_Note
+Inst45Quest1_HORDE_Prequest = Inst45Quest1_Prequest
+Inst45Quest1_HORDE_Folgequest = Inst45Quest1_Folgequest
+Inst45Quest1name1_HORDE = Inst45Quest1name1
+Inst45Quest1name2_HORDE = Inst45Quest1name2
+Inst45Quest1name3_HORDE = Inst45Quest1name3
+Inst45Quest1name4_HORDE = Inst45Quest1name4
+--Quest 2 Alliance
+Inst45Quest2 = "2. The Bronze Betrayal" -- 40342
+Inst45Quest2_Level = "60"
+Inst45Quest2_Attain = "58"
+Inst45Quest2_Aim = "Slay Chronar, and bring his head to Tyvadrius in the Caverns of Time."
+Inst45Quest2_Location = "Tyvadrius (Tanaris - Caverns of Time "..YELLOW.."59,60"..WHITE..")"
+Inst45Quest2_Note = "Drop from [1]."
+Inst45Quest2_Prequest = "No"
+Inst45Quest2_Folgequest = "No"
+Inst45Quest2name1 = "Pendant of Tyvadrius" --60497
+Inst45Quest2name2 = "Halberd of the Bronze Defender" --60498
+Inst45Quest2name3 = "Ring of Tyvadrius" --60499
+--Quest 2 Horde (same as Quest 2 Alliance)
+Inst45Quest2_HORDE = Inst45Quest2
+Inst45Quest2_HORDE_Level = Inst45Quest2_Level
+Inst45Quest2_HORDE_Attain = Inst45Quest2_Attain
+Inst45Quest2_HORDE_Aim = Inst45Quest2_Aim
+Inst45Quest2_HORDE_Location = Inst45Quest2_Location
+Inst45Quest2_HORDE_Note = Inst45Quest2_Note
+Inst45Quest2_HORDE_Prequest = Inst45Quest2_Prequest
+Inst45Quest2_HORDE_Folgequest = Inst45Quest2_Folgequest
+Inst45Quest2name1_HORDE = Inst45Quest2name1
+Inst45Quest2name2_HORDE = Inst45Quest2name2
+Inst45Quest2name3_HORDE = Inst45Quest2name3
+--Quest 3 Alliance
+Inst45Quest3 = "3. Corrupted Sand" -- 40340
+Inst45Quest3_Level = "60"
+Inst45Quest3_Attain = "58"
+Inst45Quest3_Aim = "Collect a Corrupted Sand for Dronormu in the Caverns of Time."
+Inst45Quest3_Location = "Dronormu (Tanaris - Caverns of Time "..YELLOW.."63,58"..WHITE..")"
+Inst45Quest3_Note = "Drop from mobs and bosses."
+Inst45Quest3_Prequest = "No"
+Inst45Quest3_Folgequest = "No"
+--Quest 3 Horde (same as Quest 3 Alliance)
+Inst45Quest3_HORDE = Inst45Quest3
+Inst45Quest3_HORDE_Level = Inst45Quest3_Level
+Inst45Quest3_HORDE_Attain = Inst45Quest3_Attain
+Inst45Quest3_HORDE_Aim = Inst45Quest3_Aim
+Inst45Quest3_HORDE_Location = Inst45Quest3_Location
+Inst45Quest3_HORDE_Note = Inst45Quest3_Note
+Inst45Quest3_HORDE_Prequest = Inst45Quest3_Prequest
+Inst45Quest3_HORDE_Folgequest = Inst45Quest3_Folgequest
+--Quest 4 Alliance
+Inst45Quest4 = "4. Sand in Bulk" -- 40341
+Inst45Quest4_Level = "60"
+Inst45Quest4_Attain = "58"
+Inst45Quest4_Aim = "Collect 10 Corrupted Sand for Dronormu in the Caverns of Time."
+Inst45Quest4_Location = "Dronormu (Tanaris - Caverns of Time "..YELLOW.."63,58"..WHITE..")"
+Inst45Quest4_Note = "Drop from mobs and bosses."
+Inst45Quest4_Prequest = "No"
+Inst45Quest4_Folgequest = "No"
+--Quest 4 Horde (same as Quest 4 Alliance)
+Inst45Quest4_HORDE = Inst45Quest4
+Inst45Quest4_HORDE_Level = Inst45Quest4_Level
+Inst45Quest4_HORDE_Attain = Inst45Quest4_Attain
+Inst45Quest4_HORDE_Aim = Inst45Quest4_Aim
+Inst45Quest4_HORDE_Location = Inst45Quest4_Location
+Inst45Quest4_HORDE_Note = Inst45Quest4_Note
+Inst45Quest4_HORDE_Prequest = Inst45Quest4_Prequest
+Inst45Quest4_HORDE_Folgequest = Inst45Quest4_Folgequest
+
 ---------------------------
 --- AQ Instance Numbers ---
 ---------------------------

@@ -155,6 +155,18 @@ function AtlasQuest_Instanzenchecken()
 		-- Turtle-WOW
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\TheCrescentGrove" then
 		AQINSTANCE = 39
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Concavius" then
+		AQINSTANCE = 40
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\KarazhanCrypt" then
+		AQINSTANCE = 41
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Nerubian" then
+		AQINSTANCE = 42
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Reaver" then
+		AQINSTANCE = 43
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Turtlhu" then
+		AQINSTANCE = 44
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\CavernsOfTimeBlackMorass" then
+		AQINSTANCE = 45
 		
 		-- Default
 		
@@ -351,4 +363,5 @@ end
 -- 37 = Arathi Basin (AB)
 -- 38 = Warsong Gulch (WSG)
 -- 39 = The Crescent Grove (TCG)
+-- 40 = Concavius (Concavius)
 -- 99 = default "rest"

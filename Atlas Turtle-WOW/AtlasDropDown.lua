@@ -72,12 +72,13 @@ Atlas_DropDownLayouts_Order = {
 		[7] = GREEN..ATLAS_DDL_FLIGHT_PATHS
 	},
 	[ATLAS_DDL_ALL] = {
-		[1] = ATLAS_DDL_ALL_MENU,
-		[2] = ATLAS_DDL_WORLDBOSSES,
-		[3] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
-		[4] = GREEN..ATLAS_DDL_BGS,
-		[5] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
-		[6] = GREEN..ATLAS_DDL_FLIGHT_PATHS
+		[1] = ATLAS_DDL_ALL_MENU1,
+		[2] = ATLAS_DDL_ALL_MENU2,
+		[3] = ATLAS_DDL_WORLDBOSSES,
+		[4] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
+		[5] = GREEN..ATLAS_DDL_BGS,
+		[6] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
+		[7] = GREEN..ATLAS_DDL_FLIGHT_PATHS
 	}
 }
 
@@ -109,6 +110,7 @@ Atlas_DropDownLayouts = {
 			"DireMaulEast",
 			"DireMaulNorth",
 			"DireMaulWest",
+			"CavernsOfTimeBlackMorass",
 			"Maraudon",
 			"OnyxiasLair",
 			"RagefireChasm",
@@ -127,7 +129,7 @@ Atlas_DropDownLayouts = {
 			"Turtlhu",
 			"Nerubian",
 			"Reaver",
-			"Concavius",
+			"Concavius"
 		},
 		[GREEN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
@@ -161,12 +163,14 @@ Atlas_DropDownLayouts = {
 	[ATLAS_DDL_PARTYSIZE] = {
 		[ATLAS_DDL_PARTYSIZE_5] = {
 			"BlackrockDepths",
+			"CavernsOfTimeBlackMorass",
 			"DireMaulEast",
 			"DireMaulEnt",
 			"DireMaulNorth",
 			"DireMaulWest",
 			"Scholomance",
 			"Stratholme",
+			"KarazhanCrypt",
 			"BlackrockSpireLower",
 			"Gnomeregan",
 			"Maraudon",
@@ -270,9 +274,11 @@ Atlas_DropDownLayouts = {
 			"BlackrockDepths",
 			"BlackrockSpireLower",
 			"BlackrockSpireUpper",
+			"CavernsOfTimeBlackMorass",
 			"DireMaulEast",
 			"DireMaulNorth",
 			"DireMaulWest",
+			"KarazhanCrypt",
 			"Scholomance",
 			"Stratholme"
 		},
@@ -329,12 +335,13 @@ Atlas_DropDownLayouts = {
 			"BlackrockDepths",
 			"BlackrockSpireLower",
 			"BlackrockSpireUpper",
+			"CavernsOfTimeBlackMorass",
 			"DireMaulEast",
 			"DireMaulNorth",
 			"DireMaulWest",
 			"Gnomeregan",
+			"KarazhanCrypt",
 			"Maraudon",
-			"TheDeadmines",
 			"RagefireChasm",
 			"RazorfenDowns",
 			"RazorfenKraul",
@@ -345,6 +352,7 @@ Atlas_DropDownLayouts = {
 			"SMGraveyard",
 			"SMLibrary",
 			"Stratholme",
+			"TheDeadmines",
 			"TheCrescentGrove",
 			"TheStockade",
 			"TheSunkenTemple",
@@ -400,7 +408,7 @@ Atlas_DropDownLayouts = {
 		},
 	},
 	[ATLAS_DDL_ALL] = {
-		[ATLAS_DDL_ALL_MENU] = {
+		[ATLAS_DDL_ALL_MENU1] = {
 			"RagefireChasm",
 			"WailingCaverns",
 			"TheDeadmines",
@@ -409,6 +417,7 @@ Atlas_DropDownLayouts = {
 			"TheStockade",
 			"Gnomeregan",
 			"RazorfenKraul",
+			"TheCrescentGrove",
 			"SMGraveyard",
 			"SMLibrary",
 			"SMArmory",
@@ -419,19 +428,22 @@ Atlas_DropDownLayouts = {
 			"Maraudon",
 			"TheSunkenTemple",
 			"BlackrockDepths",
+			"CavernsOfTimeBlackMorass",
 			"DireMaulEast",
 			"DireMaulWest",
 			"DireMaulNorth",
 			"Scholomance",
 			"Stratholme",
+			"KarazhanCrypt",
 			"BlackrockSpireLower",
 			"BlackrockSpireUpper",
 			"ZulGurub",
-			"TheRuinsofAhnQiraj",
+			"TheRuinsofAhnQiraj"
+		},
+		[ATLAS_DDL_ALL_MENU2] = {
 			"MoltenCore",
 			"OnyxiasLair",
 			"BlackwingLair",
-			"TheCrescentGrove",
 			"TheTempleofAhnQiraj",
 			"Naxxramas"
 		},
