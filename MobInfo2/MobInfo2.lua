@@ -1645,7 +1645,7 @@ end -- MI2_GetLootItemString()
 -----------------------------------------------------------------------------
 local function MI2_AddOneItemToTooltip( mobData, itemID, amount, useFilter )
 	local itemText, itemColor = MI2_GetLootItemString( itemID )
-	
+
 	-- apply item filter is requested
 	if useFilter then
 		if MobInfoConfig.ItemFilter ~= ""  then
@@ -1658,9 +1658,11 @@ local function MI2_AddOneItemToTooltip( mobData, itemID, amount, useFilter )
 
 	-- shorten item text to keep tooltip reasonably small
 	local shortItemNames = true
+	
 	if shortItemNames and string.len(itemText) > 35 then
 		itemText = string.sub(itemText,1,35).."..."
 	end
+	
 	itemText = itemText..": "..amount
 
 	local totalAmount = mobData.loots
@@ -1709,23 +1711,23 @@ local function MI2_AddItemsToTooltip( mobData )
 		end
 	end
 
-	-- add normal and collapsed items to tooltip
-	if MobInfoConfig.ShowItems == 1 then
-		for itemID, amount in pairs(normalList) do
-			MI2_AddOneItemToTooltip( mobData, itemID, amount, true )
-		end
-		for itemID, amount in pairs(collapsedList) do
-			MI2_AddOneItemToTooltip( mobData, itemID, amount, true )
-		end
-	end
-
-	-- third: add all cloth and skinning items to tooltip
+	-- add all cloth and skinning items to tooltip
 	if MobInfoConfig.ShowClothSkin == 1 then
 		for itemID, amount in pairs(skinList) do
 			MI2_AddOneItemToTooltip( mobData, itemID, amount, false )
 		end
 		for itemID, amount in pairs(clothList) do
 			MI2_AddOneItemToTooltip( mobData, itemID, amount, false )
+		end
+	end
+
+	-- third: add normal and collapsed items to tooltip
+	if MobInfoConfig.ShowItems == 1 then
+		for itemID, amount in pairs(normalList) do
+			MI2_AddOneItemToTooltip( mobData, itemID, amount, true )
+		end
+		for itemID, amount in pairs(collapsedList) do
+			MI2_AddOneItemToTooltip( mobData, itemID, amount, true )
 		end
 	end
 end -- MI2_AddItemsToTooltip
