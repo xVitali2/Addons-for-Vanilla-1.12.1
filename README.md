@@ -1,5 +1,4 @@
 # Addons-for-Vanilla-1.12.1-CFM
-ДОНАТ/DONATE: 14vBXfA2Xfsy2Xgkh9Gx7hVAkXFynogscW биткоин кошелёк, спасибо за поддержку!!!/bitcoin wallet thanks for the support!!!
 #<a href="https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases/latest">Скачать</a>
 
 **AdvancedTradeSkillWindow**
