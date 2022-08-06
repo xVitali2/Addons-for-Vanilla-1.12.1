@@ -341,7 +341,7 @@ function Atlas_PopulateDropdowns()
 			table.insert(ATLAS_DROPDOWNS[n], v)
 		end
 		
-		if subcatOrder[n] ~= ATLAS_DDL_ALL_MENU1 and subcatOrder[n] ~= ATLAS_DDL_ALL_MENU2 and subcatOrder[n] ~= ATLAS_DDL_WORLDBOSSES then 
+		if subcatOrder[n] ~= ATLAS_DDL_ALL_MENU1 and subcatOrder[n] ~= ATLAS_DDL_ALL_MENU2 and subcatOrder[n] ~= ATLAS_DDL_WORLDBOSSES and subcatOrder[n] ~= ATLAS_DDL_RAREMOBS then 
 			table.sort(ATLAS_DROPDOWNS[n], Atlas_SortZonesAlpha)
 		end
 		
@@ -536,6 +536,8 @@ function Atlas_Refresh()
 	
 	local tLoc = ""
 	local tLR = ""
+	local tHP = ""
+	local tMP = ""
 	local tML = ""
 	local tPL = ""
 	if base.Location[1] then
@@ -543,6 +545,12 @@ function Atlas_Refresh()
 	end
 	if base.LevelRange then
 		tLR = ATLAS_STRING_LEVELRANGE..": "..base.LevelRange
+	end
+	if base.Health then
+		tHP = ATLAS_STRING_HEALTH..": "..base.Health
+	end
+	if base.Mana then
+		tMP = ATLAS_STRING_MANA..": "..base.Mana
 	end
 	if base.MinLevel then
 		tML = ATLAS_STRING_MINLEVEL..": "..base.MinLevel
@@ -552,6 +560,8 @@ function Atlas_Refresh()
 	end
 	AtlasText_Location_Text:SetText(tLoc)
 	AtlasText_LevelRange_Text:SetText(tLR)
+	AtlasText_Health_Text:SetText(tHP)
+	AtlasText_Mana_Text:SetText(tMP)
 	AtlasText_MinLevel_Text:SetText(tML)
 	AtlasText_PlayerLimit_Text:SetText(tPL)
 	

@@ -17,6 +17,8 @@ if GetLocale() == "ruRU" then
 	
 	ATLAS_STRING_LOCATION = "Расположение"
 	ATLAS_STRING_LEVELRANGE = "Диапазон уровней"
+	ATLAS_STRING_HEALTH = "Здоровье"
+	ATLAS_STRING_MANA = "Мана"
 	ATLAS_STRING_PLAYERLIMIT = "Лимит игроков"
 	ATLAS_STRING_SELECT_CAT = "Выбор категории"
 	ATLAS_STRING_SELECT_MAP = "Выбор карты"
@@ -64,6 +66,7 @@ if GetLocale() == "ruRU" then
 	ATLAS_DDL_TYPE = "Типу"
 	ATLAS_DDL_TYPE_DUNGEONS = "Подземелья"
 	ATLAS_DDL_TYPE_RAIDS = "Рейды"
+	ATLAS_DDL_RAREMOBS = "Редкие существа"
 	ATLAS_DDL_WORLDBOSSES = "Места внешних рейдовых схваток"
 	ATLAS_DDL_TYPE_ENTRANCE = "Карты входов"
 	ATLAS_DDL_BGS = "Поля боя"

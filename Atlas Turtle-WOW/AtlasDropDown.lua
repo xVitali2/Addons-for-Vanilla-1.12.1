@@ -32,22 +32,24 @@ Atlas_DropDownLayouts_Order = {
 	[ATLAS_DDL_CONTINENT] = {
 		[1] = ATLAS_DDL_CONTINENT_EASTERN,
 		[2] = ATLAS_DDL_CONTINENT_KALIMDOR,
-		[3] = ATLAS_DDL_WORLDBOSSES,
-		[4] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
-		[5] = GREEN..ATLAS_DDL_BGS,
-		[6] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
-		[7] = GREEN..ATLAS_DDL_FLIGHT_PATHS
+		[3] = ATLAS_DDL_RAREMOBS,
+		[4] = ATLAS_DDL_WORLDBOSSES,
+		[5] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
+		[6] = GREEN..ATLAS_DDL_BGS,
+		[7] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
+		[8] = GREEN..ATLAS_DDL_FLIGHT_PATHS
 	},
 	[ATLAS_DDL_PARTYSIZE] = {
 		[1] = ATLAS_DDL_PARTYSIZE_5,
 		[2] = ATLAS_DDL_PARTYSIZE_10,
 		[3] = ATLAS_DDL_PARTYSIZE_20,
 		[4] = ATLAS_DDL_PARTYSIZE_40,
-		[5] = ATLAS_DDL_WORLDBOSSES,
-		[6] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
-		[7] = GREEN..ATLAS_DDL_BGS,
-		[8] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
-		[9] = GREEN..ATLAS_DDL_FLIGHT_PATHS
+		[5] = ATLAS_DDL_RAREMOBS,
+		[6] = ATLAS_DDL_WORLDBOSSES,
+		[7] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
+		[8] = GREEN..ATLAS_DDL_BGS,
+		[9] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
+		[10] = GREEN..ATLAS_DDL_FLIGHT_PATHS
 	},
 	[ATLAS_DDL_LEVEL] = {
 		[1] = ATLAS_DDL_LEVEL_10TO20,
@@ -56,29 +58,32 @@ Atlas_DropDownLayouts_Order = {
 		[4] = ATLAS_DDL_LEVEL_40TO50,
 		[5] = ATLAS_DDL_LEVEL_50TO60,
 		[6] = ATLAS_DDL_LEVEL_60,
-		[7] = ATLAS_DDL_WORLDBOSSES,
-		[8] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
-		[9] = GREEN..ATLAS_DDL_BGS,
-		[10] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
-		[11] = GREEN..ATLAS_DDL_FLIGHT_PATHS
+		[7] = ATLAS_DDL_RAREMOBS,
+		[8] = ATLAS_DDL_WORLDBOSSES,
+		[9] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
+		[10] = GREEN..ATLAS_DDL_BGS,
+		[11] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
+		[12] = GREEN..ATLAS_DDL_FLIGHT_PATHS
 	},
 	[ATLAS_DDL_TYPE] = {
 		[1] = ATLAS_DDL_TYPE_DUNGEONS,
 		[2] = ATLAS_DDL_TYPE_RAIDS,
-		[3] = ATLAS_DDL_WORLDBOSSES,
-		[4] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
-		[5] = GREEN..ATLAS_DDL_BGS,
-		[6] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
-		[7] = GREEN..ATLAS_DDL_FLIGHT_PATHS
+		[3] = ATLAS_DDL_RAREMOBS,
+		[4] = ATLAS_DDL_WORLDBOSSES,
+		[5] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
+		[6] = GREEN..ATLAS_DDL_BGS,
+		[7] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
+		[8] = GREEN..ATLAS_DDL_FLIGHT_PATHS
 	},
 	[ATLAS_DDL_ALL] = {
 		[1] = ATLAS_DDL_ALL_MENU1,
 		[2] = ATLAS_DDL_ALL_MENU2,
-		[3] = ATLAS_DDL_WORLDBOSSES,
-		[4] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
-		[5] = GREEN..ATLAS_DDL_BGS,
-		[6] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
-		[7] = GREEN..ATLAS_DDL_FLIGHT_PATHS
+		[3] = ATLAS_DDL_RAREMOBS,
+		[4] = ATLAS_DDL_WORLDBOSSES,
+		[5] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
+		[6] = GREEN..ATLAS_DDL_BGS,
+		[7] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
+		[8] = GREEN..ATLAS_DDL_FLIGHT_PATHS
 	}
 }
 
@@ -90,6 +95,8 @@ Atlas_DropDownLayouts = {
 			"BlackrockSpireUpper",
 			"BlackwingLair",
 			"Gnomeregan",
+			"HateforgeQuarry",
+			"KarazhanCrypt",
 			"MoltenCore",
 			"Naxxramas",
 			"Scholomance",
@@ -121,6 +128,18 @@ Atlas_DropDownLayouts = {
 			"TheTempleofAhnQiraj",
 			"WailingCaverns",
 			"ZulFarrak"
+		},
+		[ATLAS_DDL_RAREMOBS] = {
+			"Grugthok",
+			"Ashbeard",
+			"Jalakar",
+			"Xalvic",
+			"WanderingKnight",
+			"Tarangos",
+			"Zareth",
+			"Mallon",
+			"Kargron",
+			"CrusaderLarsarius"
 		},
 		[ATLAS_DDL_WORLDBOSSES] = {
 			"Azuregos",
@@ -173,6 +192,7 @@ Atlas_DropDownLayouts = {
 			"KarazhanCrypt",
 			"BlackrockSpireLower",
 			"Gnomeregan",
+			"HateforgeQuarry",
 			"Maraudon",
 			"TheDeadmines",
 			"RagefireChasm",
@@ -204,6 +224,18 @@ Atlas_DropDownLayouts = {
 			"Naxxramas",
 			"OnyxiasLair",
 			"TheTempleofAhnQiraj"
+		},
+		[ATLAS_DDL_RAREMOBS] = {
+			"Grugthok",
+			"Ashbeard",
+			"Jalakar",
+			"Xalvic",
+			"WanderingKnight",
+			"Tarangos",
+			"Zareth",
+			"Mallon",
+			"Kargron",
+			"CrusaderLarsarius"
 		},
 		[ATLAS_DDL_WORLDBOSSES] = {
 			"Azuregos",
@@ -278,6 +310,7 @@ Atlas_DropDownLayouts = {
 			"DireMaulEast",
 			"DireMaulNorth",
 			"DireMaulWest",
+			"HateforgeQuarry",
 			"KarazhanCrypt",
 			"Scholomance",
 			"Stratholme"
@@ -291,6 +324,18 @@ Atlas_DropDownLayouts = {
 			"TheTempleofAhnQiraj",
 			"ZulGurub"
 		},
+		[ATLAS_DDL_RAREMOBS] = {
+			"Grugthok",
+			"Ashbeard",
+			"Jalakar",
+			"Xalvic",
+			"WanderingKnight",
+			"Tarangos",
+			"Zareth",
+			"Mallon",
+			"Kargron",
+			"CrusaderLarsarius"
+		},
 		[ATLAS_DDL_WORLDBOSSES] = {
 			"Azuregos",
 			"FourDragons",
@@ -298,7 +343,7 @@ Atlas_DropDownLayouts = {
 			"Turtlhu",
 			"Nerubian",
 			"Reaver",
-			"Concavius",
+			"Concavius"
 		},
 		[GREEN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
@@ -340,6 +385,7 @@ Atlas_DropDownLayouts = {
 			"DireMaulNorth",
 			"DireMaulWest",
 			"Gnomeregan",
+			"HateforgeQuarry",
 			"KarazhanCrypt",
 			"Maraudon",
 			"RagefireChasm",
@@ -368,6 +414,18 @@ Atlas_DropDownLayouts = {
 			"TheRuinsofAhnQiraj",
 			"TheTempleofAhnQiraj",
 			"ZulGurub"
+		},
+		[ATLAS_DDL_RAREMOBS] = {
+			"Grugthok",
+			"Ashbeard",
+			"Jalakar",
+			"Xalvic",
+			"WanderingKnight",
+			"Tarangos",
+			"Zareth",
+			"Mallon",
+			"Kargron",
+			"CrusaderLarsarius"
 		},
 		[ATLAS_DDL_WORLDBOSSES] = {
 			"Azuregos",
@@ -416,6 +474,7 @@ Atlas_DropDownLayouts = {
 			"BlackfathomDeeps",
 			"TheStockade",
 			"Gnomeregan",
+			"HateforgeQuarry",
 			"RazorfenKraul",
 			"TheCrescentGrove",
 			"SMGraveyard",
@@ -446,6 +505,18 @@ Atlas_DropDownLayouts = {
 			"BlackwingLair",
 			"TheTempleofAhnQiraj",
 			"Naxxramas"
+		},
+		[ATLAS_DDL_RAREMOBS] = {
+			"Grugthok",
+			"Ashbeard",
+			"Jalakar",
+			"Xalvic",
+			"WanderingKnight",
+			"Tarangos",
+			"Zareth",
+			"Mallon",
+			"Kargron",
+			"CrusaderLarsarius"
 		},
 		[ATLAS_DDL_WORLDBOSSES] = {
 			"Azuregos",

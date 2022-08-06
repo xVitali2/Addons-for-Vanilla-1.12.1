@@ -126,6 +126,7 @@ L:RegisterTranslations("ruRU", function() return {
 	["Blacksmithing Plans"] = "Чертежи кузнечного дела",
 	["Consumable"] = "Расходуемый",	
 	["Needed to purchase rewards"] = "Нужны для покупки наград",
+	["Rare Mobs"] = "Редкие существа",
 	["World Bosses"] = "Мировые боссы",
 	["Reputation Factions"] = "Репутация у фракций",
 	["Sets/Collections"] = "Комплекты/Коллекции",

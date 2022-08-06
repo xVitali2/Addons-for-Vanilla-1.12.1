@@ -870,6 +870,26 @@ AtlasLoot_ButtonRegistry = {
 		Back_Page = "CRAFTSET",
 		Back_Title = L["Crafted Sets"]
 	},
+	["AugerersAttire"] = {
+        	Title = "Augerer's Attire",
+        	Back_Page = "CRAFTSET",
+        	Back_Title = L["Crafted Sets"],
+	},
+	["ShadoweaveSet"] = {
+        	Title = "Shadoweave",
+        	Back_Page = "CRAFTSET",
+        	Back_Title = L["Crafted Sets"],
+	},
+	["DivinersGarments"] = {
+        	Title = "Diviner's Garments",
+        	Back_Page = "CRAFTSET",
+        	Back_Title = L["Crafted Sets"],
+	},
+	["PillagersGarb"] = {
+        	Title = "Pillager's Garb",
+        	Back_Page = "CRAFTSET",
+        	Back_Title = L["Crafted Sets"],
+	},
 	["BloodvineG"] = {
 		Title = BIS["Bloodvine Garb"],
 		Back_Page = "CRAFTSET",

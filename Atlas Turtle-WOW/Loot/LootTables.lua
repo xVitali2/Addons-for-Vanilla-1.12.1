@@ -363,12 +363,18 @@ AtlasLoot_TableNames = {
 	["STHazzas"] = { BB["Hazzas"], "AtlasLootItems" },
 	["STEranikus"] = { BB["Shade of Eranikus"], "AtlasLootItems" },
 	["STTrash"] = { L["Trash Mobs"].." ("..L["The Sunken Temple"]..")", "AtlasLootItems" },
-     -- The Crescent Grove
+	-- The Crescent Grove
     ["TCGGrovetenderEngryss"] = { L["Grovetender Engryss"], "AtlasLootItems" },
-	["TCGKeeperRanathos"] = { L["Keeper Ranathos"], "AtlasLootItems" },
-	["TCGHighPriestessAlathea"] = { L["High Priestess A'lathea"], "AtlasLootItems" },
-	["TCGFenektistheDeceiver"] = { L["Fenektis the Deceiver"], "AtlasLootItems" },
-	["TCGMasterRaxxieth"] = { L["Master Raxxieth"], "AtlasLootItems" },
+    ["TCGKeeperRanathos"] = { L["Keeper Ranathos"], "AtlasLootItems" },
+    ["TCGHighPriestessAlathea"] = { L["High Priestess A'lathea"], "AtlasLootItems" },
+    ["TCGFenektistheDeceiver"] = { L["Fenektis the Deceiver"], "AtlasLootItems" },
+    ["TCGMasterRaxxieth"] = { L["Master Raxxieth"], "AtlasLootItems" },
+	-- Hateforge Quarry
+    ["HQHighForemanBargulBlackhammer"] = { "High Foreman Bargul Blackhammer", "AtlasLootItems" },
+    ["HQEngineerFiggles"] = { "Engineer Figgles", "AtlasLootItems" },
+    ["HQCorrosis"] = { "Corrosis", "AtlasLootItems" },
+    ["HQHatereaverAnnihilator"] = { "Hatereaver Annihilator", "AtlasLootItems" },
+    ["HQHargeshDoomcaller"] = { "Hargesh Doomcaller", "AtlasLootItems" },
 	-- Karazhan Crypt
     ["KCMarrowspike"] = { L["Marrowspike"], "AtlasLootItems" },
     ["KCHivaxxis"] = { L["Hivaxxis"], "AtlasLootItems" },
@@ -637,14 +643,12 @@ AtlasLoot_TableNames = {
 	--- World Bosses ---
 	--------------------
 	
-	--Azuregos
 	["AAzuregos"] = { BB["Azuregos"], "AtlasLootWBItems" },
 	["ASpiritA"] = { L["Spirit of Azuregos"], "AtlasLootWBItems" },
     ["Turtlhu"] = { "Turtlhu, the Black Turtle of Doom", "AtlasLootWBItems" },
     ["Nerubian"] = { "Nerubian Overseer", "AtlasLootWBItems" },
     ["Reaver"] = { "Dark Reaver of Karazhan", "AtlasLootWBItems" },
     ["Concavius"] = { "Concavius Voidspawn", "AtlasLootWBItems" },
-	--Doom Lord Kazzak
 	["KKazzak"] = { BB["Lord Kazzak"], "AtlasLootWBItems" },
 	--Emrald Dragons
 	["DEmeriss"] = { BB["Emeriss"], "AtlasLootWBItems" },
@@ -652,6 +656,21 @@ AtlasLoot_TableNames = {
 	["DTaerar"] = { BB["Taerar"], "AtlasLootWBItems" },
 	["DYsondre"] = { BB["Ysondre"], "AtlasLootWBItems" },
 	["DTrash"] = { L["Trash Mobs"].." ("..L["Emerald Dragons"]..")", "AtlasLootWBItems" },
+	
+    --------------------------
+    --- Rare Spawns (1.16) ---
+    --------------------------
+	
+	["Tarangos"] = { "Tarangos <The Dampener>", "AtlasLootRMItems" },
+	["Kargron"] = { "Blademaster Kargron", "AtlasLootRMItems" },
+	["Xalvic"] = { "Xalvic Blackclaw", "AtlasLootRMItems" },
+	["Mallon"] = { "Mallon The Moontouched", "AtlasLootRMItems" },
+	["Grugthok"] = { "Grug'thok the Seer", "AtlasLootRMItems" },
+	["WanderingKnight"] = { "The Wandering Knight", "AtlasLootRMItems" },
+	["CrusaderLarsarius"] = { "Crusader Larsarius <The Scarlet Crusade>", "AtlasLootRMItems" },
+	["Zareth"] = { "Zareth Terrorblade <Demon Hunter>", "AtlasLootRMItems" },
+	["Jalakar"] = { "Jal'akar <Dire Troll>", "AtlasLootRMItems" },
+	["Ashbeard"] = { "Explorer Ashbeard", "AtlasLootRMItems" },
 	
 	--------------
 	--- Events ---
@@ -1012,6 +1031,13 @@ AtlasLoot_TableNamesBoss = {
 		["DMBrainwashedNoble"] = { L["Brainwashed Noble"].." ("..L["Rare"]..")", "AtlasLootItems" },
 		["DMForemanThistlenettle"] = { L["Foreman Thistlenettle"], "AtlasLootItems" },
 	},
+    ["Hateforge Quarry"] = {
+        ["HQHighForemanBargulBlackhammer"] = { "High Foreman Bargul Blackhammer", "AtlasLootItems" },
+		["HQEngineerFiggles"] = { "Engineer Figgles", "AtlasLootItems" },
+		["HQCorrosis"] = { "Corrosis", "AtlasLootItems" },
+		["HQHatereaverAnnihilator"] = { "Hatereaver Annihilator", "AtlasLootItems" },
+		["HQHargeshDoomcaller"] = { "Hargesh Doomcaller", "AtlasLootItems" },
+    },
 	[L["The Crescent Grove"]] = {
 		["TCGGrovetenderEngryss"] = { L["Grovetender Engryss"], "AtlasLootItems" },
 		["TCGKeeperRanathos"] = { L["Keeper Ranathos"], "AtlasLootItems" },
@@ -1577,6 +1603,22 @@ AtlasLoot_TableNamesBoss = {
 	--- Misc Collections ---
 	------------------------
 	
+	--------------------
+	--- Rare mobs ---
+	--------------------
+	
+	[L["Rare Mobs"]] = {
+		["Tarangos"] = { "Tarangos <The Dampener>", "AtlasLootRMItems" },
+		["Kargron"] = { "Blademaster Kargron", "AtlasLootRMItems" },
+        ["Xalvic"] = { "Xalvic Blackclaw", "AtlasLootRMItems" },
+        ["Mallon"] = { "Mallon The Moontouched", "AtlasLootRMItems" },
+        ["Grugthok"] = { "Grug'thok the Seer", "AtlasLootRMItems" },
+        ["WanderingKnight"] = { "The Wandering Knight", "AtlasLootRMItems" },
+        ["CrusaderLarsarius"] = { "Crusader Larsarius <The Scarlet Crusade>", "AtlasLootRMItems" },
+		["Zareth"] = { "Zareth Terrorblade <Demon Hunter>", "AtlasLootRMItems" },
+		["Jalakar"] = { "Jal'akar <Dire Troll>", "AtlasLootRMItems" },
+		["Ashbeard"] = { "Explorer Ashbeard", "AtlasLootRMItems" }
+	},
 	
 	--------------------
 	--- World Bosses ---

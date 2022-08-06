@@ -76,8 +76,8 @@ local BIS = AceLibrary("Babble-ItemSet-2.2")
 
 --Establish version number and compatible version of Atlas
 local VERSION_MAJOR = "4"
-local VERSION_MINOR = "08"
-local VERSION_BOSSES = "09"
+local VERSION_MINOR = "09"
+local VERSION_BOSSES = "01"
 ATLASLOOT_VERSION = "|cffFF8400AtlasLoot TW Edition v"..VERSION_MAJOR.."."..VERSION_MINOR.."."..VERSION_BOSSES.."|r"
 
 --Compatibility with old EquipCompare/EQCompare
@@ -611,6 +611,10 @@ function AtlasLoot_AtlasScrollBar_Update()
 					_G["AtlasBossLine"..line]:Enable()
 					_G["AtlasBossLine"..line.."_Loot"]:Show()
 					_G["AtlasBossLine"..line.."_Selected"]:Hide()
+				elseif AtlasLootRareMobsButtons[zoneID]~=nil and AtlasLootRareMobsButtons[zoneID][lineplusoffset] ~= nil and AtlasLootRareMobsButtons[zoneID][lineplusoffset] ~= "" then
+					_G["AtlasBossLine"..line]:Enable()
+					_G["AtlasBossLine"..line.."_Loot"]:Show()
+					_G["AtlasBossLine"..line.."_Selected"]:Hide()
 				elseif AtlasLootBattlegrounds[zoneID]~=nil and AtlasLootBattlegrounds[zoneID][lineplusoffset] ~= nil and AtlasLootBattlegrounds[zoneID][lineplusoffset] ~= "" then
 					_G["AtlasBossLine"..line]:Enable()
 					_G["AtlasBossLine"..line.."_Loot"]:Show()
@@ -669,6 +673,8 @@ function AtlasLoot_Refresh()
 	AtlasText_ZoneName_Text:SetText(tName)
 	local tLoc = ""
 	local tLR = ""
+	local tHP = ""
+	local tMP = ""
 	local tML = ""
 	local tPL = ""
 	if base.Location[1] then
@@ -676,6 +682,12 @@ function AtlasLoot_Refresh()
 	end
 	if base.LevelRange then
 		tLR = ATLAS_STRING_LEVELRANGE..": "..base.LevelRange
+	end
+	if base.Health then
+		tHP = ATLAS_STRING_HEALTH..": "..base.Health
+	end
+	if base.Mana then
+		tMP = ATLAS_STRING_MANA..": "..base.Mana
 	end
 	if base.MinLevel then
 		tML = ATLAS_STRING_MINLEVEL..": "..base.MinLevel
@@ -685,6 +697,8 @@ function AtlasLoot_Refresh()
 	end
 	AtlasText_Location_Text:SetText(tLoc)
 	AtlasText_LevelRange_Text:SetText(tLR)
+	AtlasText_Health_Text:SetText(tHP)
+	AtlasText_Mana_Text:SetText(tMP)
 	AtlasText_MinLevel_Text:SetText(tML)
 	AtlasText_PlayerLimit_Text:SetText(tPL)
 	Atlastextbase = base
@@ -849,6 +863,15 @@ function AtlasLootBoss_OnClick(name)
 				_G[name.."_Loot"]:Hide()
 				local _,_,boss = string.find(_G[name.."_Text"]:GetText(), "|c%x%x%x%x%x%x%x%x%s*[%dX']*[%) ]*(.*[^%,])[%,]?$")
 				AtlasLoot_ShowBossLoot(AtlasLootBossButtons[zoneID][id], boss, AtlasFrame)
+				AtlasLootItemsFrame.activeBoss = id
+				AtlasLoot_AtlasScrollBar_Update()
+			end
+		elseif AtlasLootRareMobsButtons[zoneID] ~= nil and AtlasLootRareMobsButtons[zoneID][id] ~= nil and AtlasLootRareMobsButtons[zoneID][id] ~= "" then
+			if AtlasLoot_IsLootTableAvailable(AtlasLootRareMobsButtons[zoneID][id]) then
+				_G[name.."_Selected"]:Show()
+				_G[name.."_Loot"]:Hide()
+				local _,_,boss = string.find(_G[name.."_Text"]:GetText(), "|c%x%x%x%x%x%x%x%x%s*[%dX]*[%) ]*(.*[^%,])[%,]?$")
+				AtlasLoot_ShowBossLoot(AtlasLootRareMobsButtons[zoneID][id], boss, AtlasFrame)
 				AtlasLootItemsFrame.activeBoss = id
 				AtlasLoot_AtlasScrollBar_Update()
 			end
@@ -2152,12 +2175,15 @@ AtlasLoot_DewDropDown = {
 				{ BZ["Gnomeregan"], "Gnomeregan", "Submenu" },
 			},
 			[8] = { 
+				{ "HateforgeQuarry", "HateforgeQuarry", "Submenu" },
+			},			
+			[9] = { 
 				{ BZ["Razorfen Kraul"], "RazorfenKraul", "Submenu" },
 			},
-			[9] = { 
+			[10] = { 
 				{ L["The Crescent Grove"], "TheCrescentGrove", "Submenu" },
 			},
-			[10] = {
+			[11] = {
 				[BZ["Scarlet Monastery"]] = {
 					{ BZ["Scarlet Monastery"].." "..L["Graveyard"], "SMGraveyard", "Submenu" },
 					{ BZ["Scarlet Monastery"].." "..L["Library"], "SMLibrary", "Submenu" },
@@ -2165,71 +2191,71 @@ AtlasLoot_DewDropDown = {
 					{ BZ["Scarlet Monastery"].." "..L["Cathedral"], "SMCathedral", "Submenu" },
 				},
 			},
-			[11] = { 
+			[12] = { 
 				{ BZ["Razorfen Downs"], "RazorfenDowns", "Submenu" },
 			},
-			[12] = { 
+			[13] = { 
 				{ BZ["Uldaman"], "Uldaman", "Submenu" },
 			},
-			[13] = { 
+			[14] = { 
 				{ BZ["Maraudon"], "Maraudon", "Submenu" },
 			},
-			[14] = { 
+			[15] = { 
 				{ BZ["Zul'Farrak"], "ZulFarrak", "Submenu" },
 			},
-			[15] = { 
+			[16] = { 
 				{ L["The Sunken Temple"], "SunkenTemple", "Submenu" },
 			},
-			[16] = { 
+			[17] = { 
 				{ BZ["Blackrock Depths"], "BlackrockDepths", "Submenu" },
 			},
-			[17] = { 
+			[18] = { 
 				[BZ["Dire Maul"]] = {
 					{ BZ["Dire Maul"].." "..L["East"], "DireMaulEast", "Submenu" },
 					{ BZ["Dire Maul"].." "..L["West"], "DireMaulWest", "Submenu" },
 					{ BZ["Dire Maul"].." "..L["North"], "DireMaulNorth", "Submenu" },
 				}, 
 			},
-			[18] = { 
+			[19] = { 
 				{ BZ["Scholomance"], "Scholomance", "Submenu" },
 			},
-			[19] = { 
+			[20] = { 
 				{ BZ["Stratholme"], "Stratholme", "Submenu" },
 			},
-			[20] = { 
+			[21] = { 
 				{ BZ["Lower Blackrock Spire"], "LowerBlackrock", "Submenu" },
 			},
-			[21] = { 
+			[22] = { 
 				{ BZ["Upper Blackrock Spire"], "UpperBlackrock", "Submenu" },
 			},
-			[22] = { 
+			[23] = { 
 				{ L["Karazhan Crypt"], "KarazhanCrypt", "Submenu" },
 			},
-			[23] = { 
+			[24] = { 
 				{ L["Caverns of Time: Black Morass"], "CavernsOfTimeBlackMorass", "Submenu" },
 			},
-			[24] = { 
+			[25] = { 
 				{ L["Stormwind Vault"], "StormwindVault", "Submenu" },
 			},
-			[25] = { 
+			[26] = { 
 				{ BZ["Zul'Gurub"], "ZulGurub", "Submenu" },
 			},
-			[26] = { 
+			[27] = { 
 				{ BZ["Ruins of Ahn'Qiraj"], "RuinsofAQ", "Submenu" },
 			},
-			[27] = { 
+			[28] = { 
 				{ BZ["Molten Core"], "MoltenCore", "Submenu" },
 			},
-			[28] = { 
+			[29] = { 
 				{ BZ["Onyxia's Lair"], "Onyxia", "Submenu" },
 			},
-			[29] = { 
+			[30] = { 
 				{ BZ["Blackwing Lair"], "BlackwingLair", "Submenu" },
 			},
-			[30] = { 
+			[31] = { 
 				{ BZ["Temple of Ahn'Qiraj"], "TempleofAQ", "Submenu" },
 			},
-			[31] = { 
+			[32] = { 
 				{ BZ["Naxxramas"], "Naxxramas", "Submenu" },
 			},
 		},
@@ -2237,7 +2263,11 @@ AtlasLoot_DewDropDown = {
 	[2] = {
 		{ L["World Bosses"], "WorldBosses", "Submenu" },
 	},
+
 	[3] = {
+		{ L["Rare Mobs"], "Raremobs", "Submenu" },
+	},
+	[4] = {
 		[L["PvP Rewards"]] = {
 			[1] = { 
 				{ L["PvP Armor Sets"], "PvPArmorSets", "Submenu" },
@@ -2262,7 +2292,7 @@ AtlasLoot_DewDropDown = {
 			},
 		},
 	},
-	[4] = {
+	[5] = {
 		[L["Sets/Collections"]] = {
 			[1] = { 
 				{ L["Pre 60 Sets"], "Pre60Sets", "Submenu" },
@@ -2314,10 +2344,10 @@ AtlasLoot_DewDropDown = {
 			},
 		},
 	},
-	[5] = {
+	[6] = {
 		{ L["Reputation Factions"], "Factions", "Submenu" },
 	},
-	[6] = {
+	[7] = {
 		[L["World Events"]] = {
 			[1] = { 
 				{ L["Abyssal Council"], "AbyssalCouncil1", "Submenu" },
@@ -2360,7 +2390,7 @@ AtlasLoot_DewDropDown = {
 			},
 		},
 	},
-	[7] = {
+	[8] = {
 		[L["Crafting"]] = {
 			[1] = { { BS["Alchemy"], "Alchemy", "Submenu" }, },
 			[2] = { { (BS["Blacksmithing"]), "Blacksmithing", "Submenu" }, },
@@ -2388,6 +2418,13 @@ AtlasLoot_DewDropDown = {
 --This table defines all the subtables needed for the full menu
 --Each sub table entry contains the text entry and the loot table that goes wih it
 AtlasLoot_DewDropDown_SubTables = {
+	["HateforgeQuarry"] = {
+		{ "High Foreman Bargul Blackhammer", "HQHighForemanBargulBlackhammer" },
+		{ "Engineer Figgles", "HQEngineerFiggles" },
+		{ "Corrosis", "HQCorrosis" },
+		{ "Hatereaver Annihilator", "HQHatereaverAnnihilator" },
+		{ "Hargesh Doomcaller", "HQHargeshDoomcaller" },
+	},
 	["BlackrockDepths"] = {
 		{ BB["Lord Roccor"], "BRDLordRoccor" },
 		{ BB["High Interrogator Gerstahn"], "BRDHighInterrogatorGerstahn" },
@@ -2825,7 +2862,18 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ "Turtlhu, the Black Turtle of Doom", "Turtlhu" },
 		{ "Nerubian Overseer", "Nerubian" },
 		{ "Dark Reaver of Karazhan", "Reaver" },
-		{ "Concavius Voidspawn", "Concavius" },
+	},
+	["Raremobs"] = {
+		{ "Tarangos <The Dampener>", "Tarangos" },
+		{ "Blademaster Kargron", "Kargron" },
+		{ "Xalvic Blackclaw", "Xalvic" },
+		{ "Mallon The Moontouched", "Mallon" },
+		{ "Grug'thok the Seer", "Grugthok" },
+		{ "The Wandering Knight", "WanderingKnight" },
+		{ "Crusader Larsarius <The Scarlet Crusade>", "CrusaderLarsarius" },
+		{ "Zareth Terrorblade <Demon Hunter>", "Zareth" },
+		{ "Jal'akar <Dire Troll>", "Jalakar" },
+		{ "Explorer Ashbeard", "Ashbeard" },
 	},
 	["AbyssalCouncil1"] = {
 		{ L["Abyssal Council"].." - "..L["Templars"], "AbyssalTemplars" },

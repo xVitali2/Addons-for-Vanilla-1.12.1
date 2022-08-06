@@ -145,6 +145,7 @@ L:RegisterTranslations("enUS", function() return {
 	["Consumable"] = true,
 	["Needed to purchase rewards"] = true,
 	["World Bosses"] = true,
+	["Rare Mobs"] = true,
 	["Reputation Factions"] = true,
 	["Sets/Collections"] = true,
 	["Used to summon boss"] = true,
@@ -549,6 +550,7 @@ L:RegisterTranslations("enUS", function() return {
 	["Lokholar the Ice Lord"] = true,
 	["Ivus the Forest Lord"] = true,
 --TW
+	["Hateforge Quarry"] = true,
 	["The Crescent Grove"] = true,
 	["Grovetender Engryss"] = true,
 	["Keeper Ranathos"] = true,

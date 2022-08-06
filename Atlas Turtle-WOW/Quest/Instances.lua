@@ -167,6 +167,28 @@ function AtlasQuest_Instanzenchecken()
 		AQINSTANCE = 44
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\CavernsOfTimeBlackMorass" then
 		AQINSTANCE = 45
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\HateforgeQuarry" then
+		AQINSTANCE = 46
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Zareth" then
+		AQINSTANCE = 47
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Xalvic" then
+		AQINSTANCE = 48
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\WanderingKnight" then
+		AQINSTANCE = 49
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Tarangos" then
+		AQINSTANCE = 50
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Mallon" then
+		AQINSTANCE = 51
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Kargron" then
+		AQINSTANCE = 52
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Jalakar" then
+		AQINSTANCE = 53
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Grugthok" then
+		AQINSTANCE = 54
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\CrusaderLarsarius" then
+		AQINSTANCE = 55
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Ashbeard" then
+		AQINSTANCE = 56
 		
 		-- Default
 		

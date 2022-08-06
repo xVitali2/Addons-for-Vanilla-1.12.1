@@ -6554,7 +6554,7 @@ Inst45Quest2_Level = "60"
 Inst45Quest2_Attain = "58"
 Inst45Quest2_Aim = "Slay Chronar, and bring his head to Tyvadrius in the Caverns of Time."
 Inst45Quest2_Location = "Tyvadrius (Tanaris - Caverns of Time "..YELLOW.."59,60"..WHITE..")"
-Inst45Quest2_Note = "Drop from [1]."
+Inst45Quest2_Note = "You need to kill the first boss."
 Inst45Quest2_Prequest = "No"
 Inst45Quest2_Folgequest = "No"
 Inst45Quest2name1 = "Pendant of Tyvadrius" --60497
@@ -6608,6 +6608,73 @@ Inst45Quest4_HORDE_Location = Inst45Quest4_Location
 Inst45Quest4_HORDE_Note = Inst45Quest4_Note
 Inst45Quest4_HORDE_Prequest = Inst45Quest4_Prequest
 Inst45Quest4_HORDE_Folgequest = Inst45Quest4_Folgequest
+
+--------------- INST46 - Hateforge Quarry (HQ) ---------------
+Inst46Story = ""
+Inst46Caption = "Hateforge Quarry"
+Inst46QAA = "2 Quest"
+Inst46QAH = "3 Quest"
+--Quest 1 Alliance
+Inst46Quest1 = "1. The True High Foreman" -- 40463
+Inst46Quest1_Level = "51"
+Inst46Quest1_Attain = "45"
+Inst46Quest1_Aim = "Slay Bargul Blackhammer, and recover the Senate's Orders for Orvak Sternrock at the Blackrock Pass in Burning Steppes."
+Inst46Quest1_Location = "Orvak Sternrock (Burning Steppes "..YELLOW.."76,68"..WHITE..")"
+Inst46Quest1_Note = "Prequest from Radgan Deepblaze (Burning Steppes "..YELLOW.."76,67"..WHITE.."). You need to kill the first boss."
+Inst46Quest1_Prequest = "Gaining Orvak's Trust -> Hearing Orvak's Story -> The Sternrock Stash"
+Inst46Quest1_Folgequest = "No"
+Inst46Quest1name1 = "Sternrock Trudgers" --60666
+Inst46Quest1name2 = "Firepike's Lucky Trousers" --60667
+Inst46Quest1name3 = "Deepblaze Signet" -- 60665
+--Quest 1 Horde (same as Quest 1 Alliance)
+Inst46Quest1_HORDE = Inst46Quest1
+Inst46Quest1_HORDE_Level = Inst46Quest1_Level
+Inst46Quest1_HORDE_Attain = Inst46Quest1_Attain
+Inst46Quest1_HORDE_Aim = Inst46Quest1_Aim
+Inst46Quest1_HORDE_Location = Inst46Quest1_Location
+Inst46Quest1_HORDE_Note = Inst46Quest1_Note
+Inst46Quest1_HORDE_Prequest = Inst46Quest1_Prequest
+Inst46Quest1_HORDE_Folgequest = Inst46Quest1_Folgequest
+Inst46Quest1name1_HORDE = Inst46Quest1name1
+Inst46Quest1name2_HORDE = Inst46Quest1name2
+Inst46Quest1name3_HORDE = Inst46Quest1name3
+--Quest 2 Alliance
+Inst46Quest2 = "2. Assaulting Hateforge" -- 40489
+Inst46Quest2_Level = "57"
+Inst46Quest2_Attain = "45"
+Inst46Quest2_Aim = "Venture into The Hateforge Quarry and remove the presence of the Twilight Hammer from deep within, when completed, return to King Magni Bronzebeard in Ironforge."
+Inst46Quest2_Location = "Senator Granitebelt (Burning Steppes "..YELLOW.."85,68"..WHITE..")"
+Inst46Quest2_Note = "You get the prequest from the same NPC. You need to kill the last boss."
+Inst46Quest2_Prequest = "Investigating Hateforge -> The Hateforge Report -> The King's Response"
+Inst46Quest2_Folgequest = "No"
+Inst46Quest2name1 = "Crown of Grobi" --60694
+Inst46Quest2name2 = "Sigil of Heritage" --60695
+Inst46Quest2name3 = "Rubyheart Mallet" --60696
+--Quest 2 Horde
+Inst46Quest2_HORDE = "2. Of New and Old IV" -- 40504
+Inst46Quest2_HORDE_Level = "57"
+Inst46Quest2_HORDE_Attain = "45"
+Inst46Quest2_HORDE_Aim = "Venture into the Hateforge Quarry, and remove the Twilight Hammer presence within for Karfang in Karfang Hold."
+Inst46Quest2_HORDE_Location = "Karfang (Burning Steppes - Karfang Hold "..YELLOW.."90,23"..WHITE..")"
+Inst46Quest2_HORDE_Note = "Prequest from Councilor Vargek (Burning Steppes - Karfang Hold "..YELLOW.."90,23"..WHITE.."). You need to kill the last boss."
+Inst46Quest2_HORDE_Prequest = "Of New and Old -> Of New and Old II -> Of New and Old III"
+Inst46Quest2_HORDE_Folgequest = "No"
+Inst46Quest2name1_HORDE = "Blade of the Warleader" -- 60734
+Inst46Quest2name2_HORDE = "Obsidian Gem Choker" -- 60735
+Inst46Quest2name3_HORDE = "Battlemaster Helm" -- 60736
+--Quest 3 Horde
+Inst46Quest3_HORDE = "2. Hunting Engineer Figgles" -- 40539
+Inst46Quest3_HORDE_Level = "55"
+Inst46Quest3_HORDE_Attain = "48"
+Inst46Quest3_HORDE_Aim = "Kill Engineer Figgles in Hateforge Quarry for Worg Mistress Katalla."
+Inst46Quest3_HORDE_Location = "Mistress Katalla (Burning Steppes - Karfang Hold "..YELLOW.."89,25"..WHITE..")"
+Inst46Quest3_HORDE_Note = "You get the prequest from the same NPC. You need to kill the second boss."
+Inst46Quest3_HORDE_Prequest = "Peculiar Won't Even Cut It"
+Inst46Quest3_HORDE_Folgequest = "No"
+Inst46Quest3name1_HORDE = "Pyrehand Gloves" -- 60771
+Inst46Quest3name2_HORDE = "Fur of Navakesh" -- 60772
+Inst46Quest3name3_HORDE = "Blackrock Authority" -- 60773
+Inst46Quest3name4_HORDE = "Girdle of Galron" -- 60774
 
 ---------------------------
 --- AQ Instance Numbers ---
