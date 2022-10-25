@@ -1,0 +1,2500 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+    <Script file="TWThreat.lua"/>
+
+    <Frame name="TankModeExtraFrameTemplate" virtual="true">
+        <Size>
+            <AbsDimension x="300" y="24"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOPLEFT">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentBG" file="Interface\addons\TWThreat\images\textures\Smooth">
+                    <Size>
+                        <AbsDimension x="298" y="24"/>
+                    </Size>
+                    <TexCoords left="1" right="0" top="0.1" bottom="1"/>
+                    <Anchors>
+                        <Anchor point="LEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+
+                <Texture name="$parentRaidTargetIcon" file="Interface\TargetingFrame\UI-RaidTargetingIcons">
+                    <Size>
+                        <AbsDimension x="18" y="18"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="LEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+
+                <FontString name="$parentTarget" inherits="GameFontNormalLarge" text="Princess Huhuran nnnnnn"
+                            justifyH="LEFT">
+                    <Size>
+                        <AbsDimension x="140" y="30"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="LEFT">
+                            <Offset>
+                                <AbsDimension x="20" y="-1"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentPlayer" inherits="GameFontNormalLarge" text="Tonysoprano"
+                            justifyH="LEFT">
+                    <Size>
+                        <AbsDimension x="100" y="30"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeTo="$parentTarget" relativePoint="RIGHT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentPerc" inherits="GameFontNormalLarge" text="99%"
+                            justifyH="RIGHT">
+                    <Size>
+                        <AbsDimension x="70" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="RIGHT">
+                            <Offset>
+                                <AbsDimension x="-5" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button name="$parentTargetButton" inherits="UIPanelButtonTemplate">
+                <NormalTexture/>
+                <PushedTexture/>
+                <!--                <HighlightTexture/>-->
+                <Size>
+                    <AbsDimension x="300" y="24"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        TWTTargetButton_OnClick(this:GetID())
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+    </Frame>
+
+    <Button name="TWTFontFrameTemplate" inherits="UIPanelButtonTemplate" virtual="true">
+        <NormalTexture/>
+        <PushedTexture/>
+        <HighlightTexture name="$parentHT" file="Interface\addons\TWThreat\images\textures\Smooth" alphaMode="ADD"/>
+        <Size>
+            <AbsDimension x="140" y="16"/>
+        </Size>
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString name="$parentName" justifyH="LEFT">
+                    <Size>
+                        <AbsDimension x="140" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset>
+                                <AbsDimension x="2" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Anchors>
+            <Anchor point="TOPLEFT">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Scripts>
+            <OnClick>
+                TWTFontSelect(this:GetID())
+            </OnClick>
+        </Scripts>
+    </Button>
+
+    <Frame name="TWThreat" virtual="true">
+        <Size>
+            <AbsDimension x="1" y="19"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOPLEFT">
+                <Offset>
+                    <AbsDimension x="1" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentBG" file="Interface\addons\TWThreat\images\textures\Smooth">
+                    <Size>
+                        <AbsDimension x="298" y="18"/>
+                    </Size>
+                    <TexCoords left="1" right="0" top="0.1" bottom="1"/>
+                    <Anchors>
+                        <Anchor point="LEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+
+                <Texture name="$parentAGRO" file="Interface\CharacterFrame\UI-StateIcon" hidden="true">
+                    <Size>
+                        <AbsDimension x="24" y="24"/>
+                    </Size>
+                    <TexCoords left="0.5" right="1.0" top="0" bottom="0.49"/>
+                    <Anchors>
+                        <Anchor point="LEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+
+                <Texture name="$parentRole" file="" hidden="true">
+                    <Size>
+                        <AbsDimension x="24" y="24"/>
+                    </Size>
+                    <TexCoords left="0.08" right="0.92" top="0.08" bottom="0.92"/>
+                    <Anchors>
+                        <Anchor point="LEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+
+                <FontString name="$parentName" inherits="GameFontHighlightSmall" justifyH="LEFT" text="Name">
+                    <Size>
+                        <AbsDimension x="130" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="LEFT">
+                            <Offset>
+                                <AbsDimension x="20" y="-1"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+
+                <FontString name="$parentPerc" inherits="GameFontHighlightSmall" text="perc" justifyH="RIGHT">
+                    <Size>
+                        <AbsDimension x="70" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="RIGHT">
+                            <Offset>
+                                <AbsDimension x="-5" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+
+                <FontString name="$parentThreat" inherits="GameFontHighlightSmall" text="threat" justifyH="RIGHT">
+                    <Size>
+                        <AbsDimension x="80" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="RIGHT" relativeTo="$parentPerc" relativePoint="LEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+
+                <FontString name="$parentTPS" inherits="GameFontHighlightSmall" text="TPS" justifyH="RIGHT">
+                    <Size>
+                        <AbsDimension x="70" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="RIGHT" relativeTo="$parentThreat" relativePoint="LEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Slider name="TWTSliderTemplate" orientation="HORIZONTAL" enableMouse="true" virtual="true">
+        <Size x="144" y="17"/>
+        <HitRectInsets left="0" right="0" top="-10" bottom="-10"/>
+        <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background"
+                  edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+            <EdgeSize val="8"/>
+            <TileSize val="8"/>
+            <BackgroundInsets left="3" right="3" top="6" bottom="6"/>
+        </Backdrop>
+        <ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+            <Size x="32" y="32"/>
+        </ThumbTexture>
+    </Slider>
+
+    <Frame name="TWTFullScreenGlow" alpha="0" hidden="true" toplevel="false" frameStrata="LOW">
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentTexture" file="Interface\addons\TWThreat\images\fs_glow" alphaMode="ADD">
+                    <Anchors>
+                        <Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Font name="Mono" font="Interface\addons\TWThreat\fonts\RobotoMono.ttf" virtual="true">
+        <FontHeight>
+            <AbsValue val="10"/>
+        </FontHeight>
+    </Font>
+
+    <Frame name="TWTWarning" hidden="true" parent="UIParent">
+        <Size>
+            <AbsDimension x="500" y="40"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="care">
+                    <FontHeight val="40"/>
+                    <Color r="1" g="0.1" b="0.1" a="1"/>
+                    <Shadow>
+                        <Offset x="1" y="-1"/>
+                        <Color r="0" g="0" b="0"/>
+                    </Shadow>
+                    <Size>
+                        <AbsDimension x="500" y="40"/>
+                    </Size>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Frame name="TWTMain" hidden="true" toplevel="true"
+           parent="UIParent" movable="false" enableMouse="true" resizable="true">
+        <Size>
+            <AbsDimension x="300"/>
+        </Size>
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background">
+        </Backdrop>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER"/>
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture name="$parentTitleBG" file="Interface\addons\TWThreat\images\textures\Smooth">
+                    <Size>
+                        <AbsDimension x="298" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="0"/>
+                            </Offset>
+                        </Anchor>
+                        <Anchor point="TOPRIGHT">
+                            <Offset>
+                                <AbsDimension x="-1" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+
+                <Texture name="$parentBarsBG" file="Interface\DialogFrame\UI-DialogBox-Background">
+                    <Size>
+                        <AbsDimension x="298" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="-40"/>
+                            </Offset>
+                        </Anchor>
+                        <Anchor point="BOTTOMRIGHT">
+                            <Offset>
+                                <AbsDimension x="-1" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+
+                <FontString name="CombatHeal" font="Fonts\FRIZQT__.TTF" text="+1242" hidden="true">
+                    <FontHeight val="40"/>
+                    <Color r="0.1" g="1" b="0.1" a="1"/>
+                    <Shadow>
+                        <Offset x="1" y="-1"/>
+                        <Color r="0" g="0" b="0"/>
+                    </Shadow>
+                    <Size>
+                        <AbsDimension x="300" y="40"/>
+                    </Size>
+                </FontString>
+
+                <FontString name="pps" inherits="GameFontHighlightSmall" text="pps"
+                            justifyH="LEFT" hidden="true">
+                    <Size>
+                        <AbsDimension x="305" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="5" y="20"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+
+                <FontString name="$parentTitle" inherits="GameFontHighlight" text="Name" justifyH="LEFT">
+                    <Size>
+                        <AbsDimension x="300" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="5" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentNameLabel" inherits="GameFontHighlightSmall" text="Name"
+                            justifyH="LEFT">
+                    <Size>
+                        <AbsDimension x="115" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="5" y="-20"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+
+                <FontString name="$parentPercLabel" inherits="GameFontHighlightSmall" text="% Max" justifyH="RIGHT">
+                    <Size>
+                        <AbsDimension x="70" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPRIGHT">
+                            <Offset>
+                                <AbsDimension x="-10" y="-21"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentThreatLabel" inherits="GameFontHighlightSmall" text="Threat" justifyH="RIGHT">
+                    <Size>
+                        <AbsDimension x="70" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="RIGHT" relativeTo="$parentPercLabel" relativePoint="LEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentTPSLabel" inherits="GameFontHighlightSmall" text="TPS" justifyH="RIGHT">
+                    <Size>
+                        <AbsDimension x="70" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="RIGHT" relativeTo="$parentThreatLabel" relativePoint="LEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                this:RegisterForDrag("LeftButton");
+                this:SetMovable(1);
+                this:SetUserPlaced(true);
+            </OnLoad>
+            <OnDragStart>
+                if getglobal('TWTMainLockButtonNT'):GetTexture() == 'Interface\\addons\\TWThreat\\images\\icon_unlocked'
+                then
+                this:StartMoving();
+                this.isMoving = true;
+                end
+            </OnDragStart>
+            <OnDragStop>
+                this:StopMovingOrSizing();
+                this.isMoving = false;
+            </OnDragStop>
+        </Scripts>
+        <Frames>
+
+            <Button name="$parentSettingsButton" inherits="UIPanelButtonTemplate" text="">
+                <NormalTexture file="Interface\addons\TWThreat\images\icon_cog"/>
+                <PushedTexture/>
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-38" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        TWTSettingsToggle_OnClick()
+                    </OnClick>
+                    <OnEnter>
+                        GameTooltip:ClearLines();
+                        GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                        GameTooltip:AddLine('Open Settings');
+                        GameTooltip:Show();
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentLockButton" inherits="UIPanelButtonTemplate" text="">
+                <NormalTexture name="$parentNT" file="Interface\addons\TWThreat\images\icon_unlocked"/>
+                <PushedTexture/>
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-20" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        TWTChangeSetting_OnClick(0, 'lock')
+                    </OnClick>
+                    <OnEnter>
+                        GameTooltip:ClearLines();
+                        GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                        GameTooltip:AddLine('Lock/Unlock Window')
+                        GameTooltip:Show();
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentCloseButton" inherits="UIPanelButtonTemplate" text="">
+                <NormalTexture file="Interface\addons\TWThreat\images\icon_x"/>
+                <PushedTexture/>
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-2" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        TWTCloseButton_OnClick()
+                    </OnClick>
+                    <OnEnter>
+                        GameTooltip:ClearLines();
+                        GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                        GameTooltip:AddLine('Close Window');
+                        GameTooltip:Show();
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+
+            <Button name="TWTResizeButton">
+                <NormalTexture file="Interface\AddOns\TWThreat\images\ResizeGrip"/>
+                <HighlightTexture file="Interface\AddOns\TWThreat\images\ResizeGrip" alphaMode="ADD"/>
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnMouseDown>
+                        TWTMain:StartSizing("BOTTOMRIGHT")
+                        TWTMain:SetUserPlaced(true)
+                        TWTMainWindow_Resizing()
+                    </OnMouseDown>
+                    <OnMouseUp>
+                        TWTMain:StopMovingOrSizing()
+                        TWTMainMainWindow_Resized()
+                    </OnMouseUp>
+                    <OnClick>
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+        </Frames>
+    </Frame>
+
+    <Frame name="TWTMainSettings" hidden="true" toplevel="true"
+           movable="true" enableMouse="true">
+        <Size>
+            <AbsDimension x="300" y="320"/>
+        </Size>
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+                  tile="false">
+        </Backdrop>
+        <Anchors>
+            <Anchor point="CENTER" relativeTo="UIParent">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture name="$parentTitleBG" file="Interface\addons\TWThreat\images\textures\Smooth">
+                    <Size>
+                        <AbsDimension x="298" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString name="$parentTitle" inherits="GameFontHighlight" text="Settings">
+                    <Size>
+                        <AbsDimension x="300" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+
+                <Texture name="$parentTabsUnderline" file="Interface\addons\TWThreat\images\textures\Smooth">
+                    <Size>
+                        <AbsDimension x="298" y="1"/>
+                    </Size>
+                    <TexCoords left="0" right="1" top="0.8" bottom="0.9"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="-44"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+
+            </Layer>
+        </Layers>
+        <Frames>
+
+            <Button name="$parentCloseButton" inherits="UIPanelButtonTemplate" text="">
+                <NormalTexture file="Interface\addons\TWThreat\images\icon_x"/>
+                <PushedTexture/>
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-3" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        TWTSettingsToggle_OnClick()
+                    </OnClick>
+                    <OnEnter>
+                        GameTooltip:ClearLines();
+                        GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                        GameTooltip:AddLine('Close Window');
+                        GameTooltip:Show();
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentTab1Button" inherits="UIPanelButtonTemplate" text="General" id="1">
+                <NormalTexture name="$parentNT" file="Interface\addons\TWThreat\images\textures\Smooth"/>
+                <PushedTexture name="$parentPT" file="Interface\addons\TWThreat\images\textures\Smooth"/>
+                <HighlightTexture name="$parentHT" file="Interface\addons\TWThreat\images\textures\Smooth"/>
+                <Size>
+                    <AbsDimension x="80" y="22"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="1" y="-22"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        TWTSettingsTab_OnClick(this:GetID())
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentTab2Button" inherits="UIPanelButtonTemplate" text="Bars" id="2">
+                <NormalTexture name="$parentNT" file="Interface\addons\TWThreat\images\textures\Smooth"/>
+                <PushedTexture name="$parentPT" file="Interface\addons\TWThreat\images\textures\Smooth"/>
+                <HighlightTexture name="$parentHT" file="Interface\addons\TWThreat\images\textures\Smooth"/>
+                <Size>
+                    <AbsDimension x="80" y="22"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab1Button" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        TWTSettingsTab_OnClick(this:GetID())
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentTab3Button" inherits="UIPanelButtonTemplate" text="Integration" id="3">
+                <NormalTexture name="$parentNT" file="Interface\addons\TWThreat\images\textures\Smooth"/>
+                <PushedTexture name="$parentPT" file="Interface\addons\TWThreat\images\textures\Smooth"/>
+                <HighlightTexture name="$parentHT" file="Interface\addons\TWThreat\images\textures\Smooth"/>
+                <Size>
+                    <AbsDimension x="80" y="22"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab2Button" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="2" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        TWTSettingsTab_OnClick(this:GetID())
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <Frame name="$parentTab1">
+                <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+                          tile="false">
+                </Backdrop>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-45"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT"/>
+                </Anchors>
+                <Frames>
+
+                    <CheckButton name="TWTMainSettingsShowInCombat" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="10" y="-20"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="Always Show in Combat">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'showInCombat')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Combat Show');
+                                GameTooltip:AddLine('Automatically shows the window when combat begins.', 1, 1, 1);
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+                    <CheckButton name="TWTMainSettingsHideOOC" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="10" y="-50"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="Hide Out Of Combat">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'hideOOC')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Combat Hide');
+                                GameTooltip:AddLine('Automatically hides the window when combat ends.', 1, 1, 1);
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+                    <CheckButton name="TWTMainSettingsTankMode" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="10" y="-110"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="Tank Mode">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'tankMode')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Tank Mode');
+                                GameTooltip:AddLine('Extra window showing creatures you are tanking.', 1, 1, 1);
+                                GameTooltip:AddLine('Disables Full Screen Glow effect and Agro Warning Sound.', 1,1,1);
+                                GameTooltip:AddLine('This frame is visible only when you are tanking', 1, 1, 1);
+                                GameTooltip:AddLine('more than one creature.', 1, 1, 1);
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+                    <CheckButton name="TWTMainSettingsLabelRow" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="10" y="-80"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="Show Labels">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'labelRow')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Label Row');
+                                GameTooltip:AddLine('Show TPS/Threat/% Max Label Row', 1, 1, 1);
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+                    <Button name="TWTMainSettingsHealerMasterTargetButton" inherits="UIPanelButtonTemplate"
+                            text="From Target" hidden="true">
+                        <NormalTexture name="$parentNT" file="Interface\addons\TWThreat\images\textures\Smooth"
+                                       alphaMode="ADD">
+                        </NormalTexture>
+                        <PushedTexture name="$parentPT" file="Interface\addons\TWThreat\images\textures\Smooth"/>
+                        <HighlightTexture/>
+                        <Size>
+                            <AbsDimension x="140" y="16"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="150" y="-110"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString name="$parentText" inherits="GameFontNormal" text="Healer Master Target"
+                                            justifyH="LEFT">
+                                    <Size>
+                                        <AbsDimension x="150" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="LEFT">
+                                            <Offset>
+                                                <AbsDimension x="-140" y="0"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Scripts>
+                            <OnClick>
+                                TWTHealerMasterTarget_OnClick()
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Healer Master Target *EXPERIMENTAL*');
+                                GameTooltip:AddLine('Select a tank to get his target\'s threat information.', 1,1,1);
+                                GameTooltip:AddLine('Clicking this button with no target or with the same', 1,1,1);
+                                GameTooltip:AddLine('target will reset Master Target.', 1,1,1);
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                    </Button>
+
+                    <Slider name="TWTMainSettingsWindowScaleSlider" inherits="TWTSliderTemplate"
+                            minValue="0.5" maxValue="1.5" valueStep="0.05">
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="148" y="-145"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString name="$parentText" inherits="GameFontNormal" text="Window Scale"
+                                            justifyH="LEFT">
+                                    <Size>
+                                        <AbsDimension x="100" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset>
+                                                <AbsDimension x="-138" y="5"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+
+                                <FontString inherits="GameFontHighlight" text="1" justifyH="CENTER">
+                                    <Size>
+                                        <AbsDimension x="30" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOP">
+                                            <Offset>
+                                                <AbsDimension x="-2" y="15"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+
+                                <FontString inherits="GameFontHighlightSmall" text="0.5" justifyH="CENTER">
+                                    <Size>
+                                        <AbsDimension x="30" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset>
+                                                <AbsDimension x="0" y="15"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+
+                                <FontString inherits="GameFontHighlightSmall" text="1.5" justifyH="CENTER">
+                                    <Size>
+                                        <AbsDimension x="30" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPRIGHT">
+                                            <Offset>
+                                                <AbsDimension x="0" y="15"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Scripts>
+                            <OnValueChanged>
+                                WindowScaleSlider_OnValueChanged()
+                            </OnValueChanged>
+                        </Scripts>
+                    </Slider>
+
+                    <Slider name="TWTMainSettingsCombatAlphaSlider" inherits="TWTSliderTemplate"
+                            minValue="0.5" maxValue="1" valueStep="0.05">
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="148" y="-175"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString name="$parentText" inherits="GameFontNormal" text="Combat Opacity"
+                                            justifyH="LEFT">
+                                    <Size>
+                                        <AbsDimension x="150" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset>
+                                                <AbsDimension x="-138" y="5"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+
+                                <FontString inherits="GameFontHighlightSmall" text="0.5" justifyH="CENTER">
+                                    <Size>
+                                        <AbsDimension x="30" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset>
+                                                <AbsDimension x="0" y="15"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+
+                                <FontString inherits="GameFontHighlightSmall" text="1" justifyH="CENTER">
+                                    <Size>
+                                        <AbsDimension x="30" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPRIGHT">
+                                            <Offset>
+                                                <AbsDimension x="0" y="15"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Scripts>
+                            <OnValueChanged>
+                                CombatOpacitySlider_OnValueChanged()
+                            </OnValueChanged>
+                        </Scripts>
+                    </Slider>
+
+                    <Slider name="TWTMainSettingsOOCAlphaSlider" inherits="TWTSliderTemplate"
+                            minValue="0.5" maxValue="1" valueStep="0.05">
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="148" y="-205"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString name="$parentText" inherits="GameFontNormal" text="OOC Opacity"
+                                            justifyH="LEFT">
+                                    <Size>
+                                        <AbsDimension x="150" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset>
+                                                <AbsDimension x="-138" y="5"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+
+                                <FontString inherits="GameFontHighlightSmall" text="0.5" justifyH="CENTER">
+                                    <Size>
+                                        <AbsDimension x="30" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset>
+                                                <AbsDimension x="0" y="15"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+
+                                <FontString inherits="GameFontHighlightSmall" text="1" justifyH="CENTER">
+                                    <Size>
+                                        <AbsDimension x="30" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPRIGHT">
+                                            <Offset>
+                                                <AbsDimension x="0" y="15"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Scripts>
+                            <OnValueChanged>
+                                OOCombatSlider_OnValueChanged()
+                            </OnValueChanged>
+                        </Scripts>
+                    </Slider>
+
+
+                </Frames>
+            </Frame>
+
+            <Frame name="$parentTab2">
+                <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+                          tile="false">
+                </Backdrop>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-45"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT"/>
+                </Anchors>
+                <Frames>
+
+                    <Button name="TWTMainSettingsFontButton" inherits="UIPanelButtonTemplate" text="Font">
+                        <NormalTexture name="$parentNT" file="Interface\addons\TWThreat\images\textures\Smooth"
+                                       alphaMode="ADD">
+                        </NormalTexture>
+                        <PushedTexture name="$parentPT" file="Interface\addons\TWThreat\images\textures\Smooth"/>
+                        <HighlightTexture/>
+                        <Size>
+                            <AbsDimension x="140" y="16"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="150" y="-20"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString name="$parentSBarFont" inherits="GameFontNormal" text="Bar Font"
+                                            justifyH="LEFT">
+                                    <Size>
+                                        <AbsDimension x="100" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="LEFT">
+                                            <Offset>
+                                                <AbsDimension x="-140" y="0"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Scripts>
+                            <OnClick>
+                                TWTFontButton_OnClick()
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Frame name="TWTMainSettingsFontList" hidden="true" frameStrata="DIALOG">
+                        <Size>
+                            <AbsDimension x="140" y="240"/>
+                        </Size>
+                        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+                                  tile="false">
+                        </Backdrop>
+                        <Anchors>
+                            <Anchor point="TOP" relativeTo="TWTMainSettingsFontButton">
+                                <Offset>
+                                    <AbsDimension x="0" y="-16"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Frames>
+
+                        </Frames>
+                    </Frame>
+
+                    <Slider name="TWTMainSettingsFrameHeightSlider" inherits="TWTSliderTemplate"
+                            minValue="20" maxValue="30" valueStep="2">
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="148" y="-55"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString name="$parentText" inherits="GameFontNormal" text="Bar Height"
+                                            justifyH="LEFT">
+                                    <Size>
+                                        <AbsDimension x="100" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset>
+                                                <AbsDimension x="-138" y="5"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+
+                                <FontString inherits="GameFontHighlightSmall" text="20" justifyH="CENTER">
+                                    <Size>
+                                        <AbsDimension x="30" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset>
+                                                <AbsDimension x="0" y="15"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+
+                                <FontString inherits="GameFontHighlightSmall" text="30" justifyH="CENTER">
+                                    <Size>
+                                        <AbsDimension x="30" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPRIGHT">
+                                            <Offset>
+                                                <AbsDimension x="0" y="15"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Scripts>
+                            <OnValueChanged>
+                                FrameHeightSlider_OnValueChanged()
+                            </OnValueChanged>
+                        </Scripts>
+                    </Slider>
+
+                    <CheckButton name="TWTMainSettingsColumnsTPS" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="10" y="-90"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="Show TPS">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'colTPS')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Show TPS Column');
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+                    <CheckButton name="TWTMainSettingsColumnsThreat" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="10" y="-110"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="Show Threat">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'colThreat')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Show Threat Column');
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+                    <CheckButton name="TWTMainSettingsColumnsPercent" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="10" y="-130"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="Show % Max">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'colPerc')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Show Percent Column');
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+                </Frames>
+            </Frame>
+
+            <Frame name="$parentTab3">
+                <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+                          tile="false">
+                </Backdrop>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="0" y="-45"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT"/>
+                </Anchors>
+                <Frames>
+
+                    <CheckButton name="TWTMainSettingsTargetFrameGlow" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="10" y="-20"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="Target Frame Glow (default UI)">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'glow')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Glow');
+                                GameTooltip:AddLine('Shows a colored aura ranging from Green/Yellow/Red', 1, 1, 1);
+                                GameTooltip:AddLine('on the Default UI\'s target frame. The color of the aura',1,1,1);
+                                GameTooltip:AddLine('is based on your current threat threshold:', 1, 1, 1);
+                                GameTooltip:AddLine(' green - yellow for 0% - 49%', 1, 1, 1);
+                                GameTooltip:AddLine(' yellow - red for 50% - 100%', 1, 1, 1);
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+                    <CheckButton name="TWTMainSettingsPercNumbers" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="10" y="-50"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="Target Frame Threat Percentage (default UI)">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'perc')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Percentages');
+                                GameTooltip:AddLine('Shows threat percentages on the default target frame.', 1, 1, 1);
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+
+                    <CheckButton name="TWTMainSettingsTargetFrameGlowPFUI" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="10" y="-80"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="Target Frame Glow (pfUI)">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'glowPFUI')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Glow');
+                                GameTooltip:AddLine('Shows a colored aura ranging from Green/Yellow/Red', 1, 1, 1);
+                                GameTooltip:AddLine('on the pfUI target frame. The color of the aura', 1, 1, 1);
+                                GameTooltip:AddLine('is based on your current threat threshold:', 1, 1, 1);
+                                GameTooltip:AddLine(' green - yellow for 0% - 49%', 1, 1, 1);
+                                GameTooltip:AddLine(' yellow - red for 50% - 100%', 1, 1, 1);
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+                    <CheckButton name="TWTMainSettingsPercNumbersPFUI" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="10" y="-110"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="Target Frame Threat Percentage (pfUI)">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'percPFUI')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Percentages');
+                                GameTooltip:AddLine('Shows threat percentages on pfUI target frame.', 1, 1, 1);
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+                    <CheckButton name="TWTMainSettingsPercNumbersPFUItop" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="30" y="-130"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="TOP">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'percPFUItop')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Anchor TOP');
+<!--                                GameTooltip:AddLine('Shows threat percentages on the default target frame.', 1, 1, 1);-->
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+                    <CheckButton name="TWTMainSettingsPercNumbersPFUIbottom" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="90" y="-130"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="BOTTOM">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'percPFUIbottom')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Anchor BOTTOM');
+                                <!--                                GameTooltip:AddLine('Shows threat percentages on the default target frame.', 1, 1, 1);-->
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+
+                    <CheckButton name="TWTMainSettingsFullScreenGlow" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="10" y="-160"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="Full Screen Glow">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'fullScreenGlow')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Full Screen Glow');
+                                GameTooltip:AddLine('Red glowing screen edges when you reach aggro threshold.',1,1,1);
+                                GameTooltip:AddLine('This feature is disabled in Tank Mode.', 1, 1, 1);
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+                    <CheckButton name="TWTMainSettingsAggroSound" hidden="false">
+                        <Size>
+                            <AbsDimension x="20" y="20"/>
+                        </Size>
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="10" y="-190"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentLabel" inherits="GameFontNormal"
+                                            text="Sound Warning">
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativePoint="RIGHT">
+                                            <Offset>
+                                                <AbsDimension x="1" y="1"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                        </Frames>
+                        <Scripts>
+                            <OnClick>
+                                TWTChangeSetting_OnClick(this:GetChecked(), 'aggroSound')
+                            </OnClick>
+                            <OnEnter>
+                                GameTooltip:ClearLines();
+                                GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                                GameTooltip:AddLine('Aggro Warning Sound');
+                                GameTooltip:AddLine('Plays a warning sound when you reach aggro threshold.',1,1,1);
+                                GameTooltip:AddLine('This feature is disabled in Tank Mode.', 1, 1, 1);
+                                GameTooltip:Show();
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide();
+                            </OnLeave>
+                        </Scripts>
+                        <NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+                        <PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+                        <HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+                        <CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+                        <DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+                    </CheckButton>
+
+                    <Slider name="TWTMainSettingsAggroThresholdSlider" inherits="TWTSliderTemplate"
+                            minValue="65" maxValue="95" valueStep="1">
+                        <Anchors>
+                            <Anchor point="TOPLEFT">
+                                <Offset>
+                                    <AbsDimension x="148" y="-225"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString name="$parentText" inherits="GameFontNormal" text="Aggro Threshold"
+                                            justifyH="LEFT">
+                                    <Size>
+                                        <AbsDimension x="150" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset>
+                                                <AbsDimension x="-138" y="5"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+
+                                <FontString inherits="GameFontHighlightSmall" text="65%" justifyH="CENTER">
+                                    <Size>
+                                        <AbsDimension x="30" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT">
+                                            <Offset>
+                                                <AbsDimension x="0" y="15"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+
+                                <FontString inherits="GameFontHighlightSmall" text="80%" justifyH="CENTER">
+                                    <Size>
+                                        <AbsDimension x="30" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOP">
+                                            <Offset>
+                                                <AbsDimension x="0" y="15"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+
+                                <FontString inherits="GameFontHighlightSmall" text="95%" justifyH="CENTER">
+                                    <Size>
+                                        <AbsDimension x="30" y="20"/>
+                                    </Size>
+                                    <Anchors>
+                                        <Anchor point="TOPRIGHT">
+                                            <Offset>
+                                                <AbsDimension x="0" y="15"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Scripts>
+                            <OnValueChanged>
+                                AggroThresholdSlider_OnValueChanged()
+                            </OnValueChanged>
+                        </Scripts>
+                    </Slider>
+
+
+                </Frames>
+            </Frame>
+
+
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                this:RegisterForDrag("LeftButton");
+                this:SetMovable(1);
+                this:SetUserPlaced(true);
+            </OnLoad>
+            <OnDragStart>
+                this:StartMoving();
+                this.isMoving = true;
+            </OnDragStart>
+            <OnDragStop>
+                this:StopMovingOrSizing();
+                this.isMoving = false;
+            </OnDragStop>
+        </Scripts>
+    </Frame>
+
+    <Frame name="TWTMainTankModeWindow" hidden="true" toplevel="true"
+           parent="UIParent" movable="true" enableMouse="true">
+        <Size>
+            <AbsDimension x="300" y="60"/>
+        </Size>
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+                  tile="false">
+        </Backdrop>
+        <Anchors>
+            <Anchor point="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture name="$parentTitleBG" file="Interface\addons\TWThreat\images\textures\Smooth">
+                    <Size>
+                        <AbsDimension x="298" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString name="$parentTitle" inherits="GameFontHighlight" text="Tank Mode Window">
+                    <Size>
+                        <AbsDimension x="300" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+
+            <Button name="$parentCloseButton" inherits="UIPanelButtonTemplate" text="">
+                <NormalTexture file="Interface\addons\TWThreat\images\icon_x"/>
+                <PushedTexture/>
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-2" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        TWTTankModeWindowCloseButton_OnClick()
+                    </OnClick>
+                    <OnEnter>
+                        GameTooltip:ClearLines();
+                        GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                        GameTooltip:AddLine('Close Window and disable Tank Mode');
+                        GameTooltip:Show();
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentStickTopButton" hidden="true" inherits="UIPanelButtonTemplate" text="">
+                <NormalTexture file="Interface\addons\TWThreat\images\arrow_to_top"/>
+                <PushedTexture/>
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="2" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        TWTTankModeWindowChangeStick_OnClick('Top')
+                    </OnClick>
+                    <OnEnter>
+                        GameTooltip:ClearLines();
+                        GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                        GameTooltip:AddLine('Stick Top');
+                        GameTooltip:AddLine('Stick this window to the top of the main window.');
+                        GameTooltip:Show();
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="$parentStickRightButton" hidden="true" inherits="UIPanelButtonTemplate" text="">
+                <NormalTexture file="Interface\addons\TWThreat\images\arrow_to_right"/>
+                <PushedTexture/>
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="20" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        TWTTankModeWindowChangeStick_OnClick('Right')
+                    </OnClick>
+                    <OnEnter>
+                        GameTooltip:ClearLines();
+                        GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                        GameTooltip:AddLine('Stick Right');
+                        GameTooltip:AddLine('Stick this window to the right of the main window.');
+                        GameTooltip:Show();
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="$parentStickBottomButton" hidden="true" inherits="UIPanelButtonTemplate" text="">
+                <NormalTexture file="Interface\addons\TWThreat\images\arrow_to_bottom"/>
+                <PushedTexture/>
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="38" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        TWTTankModeWindowChangeStick_OnClick('Bottom')
+                    </OnClick>
+                    <OnEnter>
+                        GameTooltip:ClearLines();
+                        GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                        GameTooltip:AddLine('Stick Bottom');
+                        GameTooltip:AddLine('Stick this window to the bottom of the main window.');
+                        GameTooltip:Show();
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="$parentStickLeftButton" hidden="true" inherits="UIPanelButtonTemplate" text="">
+                <NormalTexture file="Interface\addons\TWThreat\images\arrow_to_left"/>
+                <PushedTexture/>
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="56" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        TWTTankModeWindowChangeStick_OnClick('Left')
+                    </OnClick>
+                    <OnEnter>
+                        GameTooltip:ClearLines();
+                        GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2) + 5, 0);
+                        GameTooltip:AddLine('Stick Left');
+                        GameTooltip:AddLine('Stick this window to the left of the main window.');
+                        GameTooltip:Show();
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide();
+                    </OnLeave>
+                </Scripts>
+            </Button>
+
+            <Frame name="TMEF1" hidden="true" inherits="TankModeExtraFrameTemplate"/>
+            <Frame name="TMEF2" hidden="true" inherits="TankModeExtraFrameTemplate"/>
+            <Frame name="TMEF3" hidden="true" inherits="TankModeExtraFrameTemplate"/>
+            <Frame name="TMEF4" hidden="true" inherits="TankModeExtraFrameTemplate"/>
+            <Frame name="TMEF5" hidden="true" inherits="TankModeExtraFrameTemplate"/>
+
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                this:RegisterForDrag("LeftButton");
+                this:SetMovable(1);
+                this:SetUserPlaced(true);
+            </OnLoad>
+            <OnDragStart>
+                if getglobal('TWTMainLockButtonNT'):GetTexture() == 'Interface\\addons\\TWThreat\\images\\icon_unlocked'
+                then
+                this:StartMoving();
+                this.isMoving = true;
+                end
+            </OnDragStart>
+            <OnDragStop>
+                this:StopMovingOrSizing();
+                this.isMoving = false;
+                TWTTankModeWindowChangeStick_OnClick('Free')
+            </OnDragStop>
+        </Scripts>
+    </Frame>
+
+    <Frame name="TWThreatDisplayTarget" frameStrata="LOW" hidden="true">
+        <Size>
+            <AbsDimension x="232" y="100"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="TargetFrame">
+                <Offset>
+                    <AbsDimension x="1" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentGlow" hidden="true">
+                    <Size>
+                        <AbsDimension x="256" y="128"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="-11" y="13"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="BORDER">
+                <Texture name="$parentNumericBG" hidden="true"
+                         file="Interface\TargetingFrame\UI-StatusBar">
+                    <Size>
+                        <AbsDimension x="36" y="13"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="44" y="-7"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture name="$parentNumericBorder" hidden="true"
+                         file="Interface\addons\TWThreat\images\numericthreatborder">
+                    <Size>
+                        <AbsDimension x="64" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="38" y="-3"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+                <FontString name="$parentNumericPerc" hidden="true"
+                            inherits="GameFontHighlightSmall" text="87%">
+                    <Size>
+                        <AbsDimension x="64" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="31" y="3"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Frame name="TWThreatDisplayTargetPFUI" frameStrata="LOW" hidden="true">
+        <Size>
+            <AbsDimension x="2" y="2"/>
+        </Size>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="pfTarget" relativePoint="TOPLEFT">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+            <Anchor point="BOTTOMRIGHT" relativeTo="pfTarget" relativePoint="BOTTOMRIGHT">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentGlow" hidden="true"
+                         file="Interface\addons\TWThreat\images\pfui_glow">
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="-10" y="7"/>
+                            </Offset>
+                        </Anchor>
+                        <Anchor point="BOTTOMRIGHT">
+                            <Offset>
+                                <AbsDimension x="10" y="-7"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="BORDER">
+                <Texture name="$parentNumericBG" hidden="false"
+                         file="Interface\TargetingFrame\UI-StatusBar">
+                    <Size>
+                        <AbsDimension x="37" y="16"/>
+                    </Size>
+                    <TexCoords left="0" right="0.5" top="0" bottom="0.5"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="18"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture name="$parentNumericBorder" hidden="false"
+                         file="Interface\addons\TWThreat\images\numericthreatborder_pfui">
+                    <Size>
+                        <AbsDimension x="128" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="-6" y="19"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+                <FontString name="$parentNumericPerc" hidden="false"
+                            inherits="GameFontHighlightSmall" text="87%">
+                    <Size>
+                        <AbsDimension x="64" y="32"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="-12" y="25"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Frame name="TWTWithAddonList" hidden="true" toplevel="true" parent="UIParent" movable="true" enableMouse="true">
+        <Size>
+            <AbsDimension x="540" y="210"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" tile="true">
+        </Backdrop>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture name="$parentTitleBG" file="Interface\addons\TWThreat\images\textures\Smooth">
+                    <Size>
+                        <AbsDimension x="298" y="20"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="0"/>
+                            </Offset>
+                        </Anchor>
+                        <Anchor point="TOPRIGHT">
+                            <Offset>
+                                <AbsDimension x="-1" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString name="$parentTitle" inherits="GameFontHighlight" text="Addon Raid Status">
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset>
+                                <AbsDimension x="0" y="-5"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+                <FontString name="$parentText" inherits="Mono" text="">
+                    <Anchors>
+                        <Anchor point="CENTER">
+                            <Offset>
+                                <AbsDimension x="0" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button name="$parentRefreshButton" inherits="UIPanelButtonTemplate" text="Refresh">
+                <NormalTexture name="$parentNT" file="Interface\addons\TWThreat\images\textures\Smooth" alphaMode="ADD">
+                </NormalTexture>
+                <PushedTexture name="$parentPT" file="Interface\addons\TWThreat\images\textures\Smooth"/>
+                <HighlightTexture/>
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT">
+                        <Offset>
+                            <AbsDimension x="1" y="1"/>
+                        </Offset>
+                    </Anchor>
+                    <Anchor point="BOTTOMRIGHT">
+                        <Offset>
+                            <AbsDimension x="-1" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        QueryWho_OnClick()
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="$parentCloseButton" inherits="UIPanelButtonTemplate" text="x">
+                <NormalTexture name="$parentNT" file="Interface\addons\TWThreat\images\textures\Smooth" alphaMode="ADD">
+                </NormalTexture>
+                <PushedTexture name="$parentPT" file="Interface\addons\TWThreat\images\textures\Smooth"/>
+                <HighlightTexture/>
+                <Size>
+                    <AbsDimension x="16" y="16"/>
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="-2" y="-2"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        getglobal('TWTWithAddonList'):Hide()
+                    </OnClick>
+                </Scripts>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                this:RegisterForDrag("LeftButton");
+                this:SetMovable(1);
+                this:SetUserPlaced(true);
+            </OnLoad>
+            <OnDragStart>
+                this:StartMoving();
+                this.isMoving = true;
+            </OnDragStart>
+            <OnDragStop>
+                this:StopMovingOrSizing();
+                this.isMoving = false;
+            </OnDragStop>
+        </Scripts>
+    </Frame>
+
+</Ui>
