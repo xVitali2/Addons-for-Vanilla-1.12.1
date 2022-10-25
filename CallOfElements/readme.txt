@@ -1,4 +1,4 @@
-CALL OF ELEMENTS v2.7
+CALL OF ELEMENTS v2.8
 by Wyverex
 
 

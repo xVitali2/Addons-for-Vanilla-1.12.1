@@ -184,7 +184,7 @@ function COE:ScanTotems()
 		
 		-- is this a totem?
 		-- -----------------
-		if( string.find( SpellName, COESTR_SCANTOTEMS ) ~= nil ) then
+		if( string.find( SpellName, COESTR_SCANTOTEMS ) ~= nil and string.find( SpellName, "Totemic Recall" ) == nil ) then
 		
 			local newtotem = true;
 			local totem = nil;
@@ -584,7 +584,9 @@ function COE:ReorderNewTotems()
 				-- assign the currently free slot
 				-- -------------------------------
 				COE_DisplayedTotems[totem.SpellName].Order = nextslot[totem.Element];
-				nextslot[totem.Element] = nextslot[totem.Element] - 1;
+				if nextslot[totem.Element] ~= nil then
+					nextslot[totem.Element] = nextslot[totem.Element] - 1;
+				end
 			end
 
 			-- register that this slot of the element is now in use

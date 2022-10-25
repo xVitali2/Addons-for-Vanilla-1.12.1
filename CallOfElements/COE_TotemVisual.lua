@@ -192,8 +192,9 @@ function COE_Totem:ConfigureTotemButtons()
 		
 		-- increase button counter
 		-- ------------------------
-		buttons[totem.Element] = buttons[totem.Element] + 1;
-		
+		if buttons[totem.Element] then
+			buttons[totem.Element]= buttons[totem.Element] + 1;
+		end
 		local order = COE_DisplayedTotems[totem.SpellName].Order;
 		local button;		
 
@@ -1040,7 +1041,6 @@ function COE_Totem:OnTotemButtonEvent( event )
 			this.totem and this.totem == COE.TotemPending.Totem ) then
 				COE_Totem:ActivatePendingTotem( this.totem );
 		end
-			
 	end
 	
 end

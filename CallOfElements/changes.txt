@@ -1,3 +1,7 @@
+v2.8
+ADDITIONS:
+-support Totemic Recall from Turtle WOW
+
 v2.7
 ADDITIONS:
 -save positions

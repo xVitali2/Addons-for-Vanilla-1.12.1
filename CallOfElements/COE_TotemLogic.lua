@@ -983,7 +983,10 @@ function COE_Totem:SetupTimerHooks()
 
 	COE_Totem.TimerHooks["UseAction"] = UseAction;
 	UseAction = function( id, book, onself ) 
-		COE_Totem:HookUseAction( id, book ); 
+		COE_Totem:HookUseAction( id, book );
+		if ( GetActionTexture(id) == "Interface\\Icons\\Spell_Shaman_TotemRecall" ) then -- by CFM for Turtle WOW Totemic Recall
+		  COE_Totem:ResetTimers();
+		end
 		COE_Totem.TimerHooks["UseAction"]( id, book, onself ); 
 	end;
 
@@ -1199,5 +1202,4 @@ function COE_Totem:HookUseInventoryItem( slotid )
 	COE_Totem:SetPendingTotem( nil );
 	
 end
- 
 
