@@ -139,7 +139,7 @@ function MI2_CalculateHealth( updateMaxHealth )
 			MI2_Target.maxHealth = curHealthMax
 			MI2_Target.unitHealth = math.floor(100.0 * MI2_Target.unitHealth / MI2_Target.maxHealth + 0.5)
 			MI2_Target.showHealth = 1
-		elseif MI2_Target.totalPercent > 0 then
+		elseif MI2_Target.totalPercent and MI2_Target.totalPercent > 0 then
 			local ppp = MI2_Target.totalDamage / MI2_Target.totalPercent
 			MI2_Target.curHealth = math.floor(MI2_Target.unitHealth * ppp + 0.5)
 			if updateMaxHealth then
