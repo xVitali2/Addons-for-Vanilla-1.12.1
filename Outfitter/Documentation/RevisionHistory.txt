@@ -11,6 +11,12 @@ Judgement Legplates)
 Generating an outfit will not find items in the main bank slots
 -------------------------------------------
 
+Version 1.4.1 Changes
+
+- Inventory changes optimized for better performance while shooting
+- Moonkin German translation corrected
+- Combat detection should work better for druids shifting to bear form with Furor talents
+
 Version 1.4 Changes
 
 - Special Occassion outfit added for mages when evocating

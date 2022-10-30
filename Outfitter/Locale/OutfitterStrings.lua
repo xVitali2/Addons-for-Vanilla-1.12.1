@@ -1,7 +1,5 @@
-Outfitter_cVersion = "1.4";
-
 Outfitter_cTitle = "Outfitter";
-Outfitter_cTitleVersion = Outfitter_cTitle.." "..Outfitter_cVersion;
+Outfitter_cTitleVersion = "Outfitter 1.4.1";
 
 Outfitter_cNameLabel = "Name:";
 Outfitter_cCreateUsingTitle = "Optimize for:";
@@ -76,11 +74,6 @@ Outfitter_cStormwind = "Stormwind City";
 Outfitter_cOrgrimmar = "Orgrimmar";
 Outfitter_cThunderBluff = "Thunder Bluff";
 Outfitter_cUndercity = "Undercity";
-
---Instances
-Outfitter_cAQ20 = "Ruins of Ahn'Qiraj";
-Outfitter_cAQ40 = "Ahn'Qiraj";
-Outfitter_cZG = "Zul'Gurub";
 
 Outfitter_cFishingPole = "Fishing Pole";
 Outfitter_cStrongFishingPole = "Strong Fishing Pole";
@@ -245,8 +238,7 @@ Outfitter_cCityOutfitDescription = "This outfit will automatically be worn whene
 
 Outfitter_cKeyBinding = "Key Binding";
 
-BINDING_HEADER_OUTFITTER_TITLE = Outfitter_cTitle;
-
+BINDING_HEADER_OUTFITTER_TITLE = "Outfitter"
 BINDING_NAME_OUTFITTER_OUTFIT1  = "Outfit 1";
 BINDING_NAME_OUTFITTER_OUTFIT2  = "Outfit 2";
 BINDING_NAME_OUTFITTER_OUTFIT3  = "Outfit 3";
@@ -260,10 +252,8 @@ BINDING_NAME_OUTFITTER_OUTFIT10 = "Outfit 10";
 
 Outfitter_cDisableOutfit = "Disable Outfit";
 Outfitter_cDisableOutfitInBG = "Disable Outfit When in Battlegrounds";
-Outfitter_cDisableOutfitInInstance = "Disable Outfit When in Instances";
 Outfitter_cDisabledOutfitName = "%s (Disabled)";
 
-Outfitter_cMinimapButtonTitle = "Outfitter Minimap Button";
 Outfitter_cMinimapButtonDescription = "Click to select a different outfit or drag to re-position this button.";
 
 Outfitter_cDruidClassName = "Druid";

@@ -383,7 +383,6 @@ local Outfitter_cZoneSpecialIDs =
 	"AV",
 	"AB",
 	"WSG",
-	"Instance",
 };
 
 local Outfitter_cZoneSpecialIDMap =
@@ -403,9 +402,6 @@ local Outfitter_cZoneSpecialIDMap =
 	[Outfitter_cOrgrimmar] = {"City"},
 	[Outfitter_cThunderBluff] = {"City"},
 	[Outfitter_cUndercity] = {"City"},
-	[Outfitter_cAQ20] = {"Instance"},
-	[Outfitter_cAQ40] = {"Instance"},
-	[Outfitter_cZG] = {"Instance"},
 };
 
 local gOutfitter_StatDistribution =
@@ -913,11 +909,7 @@ function Outfitter_InventoryChanged(pEvent)
 end
 
 function Outfitter_InventoryChanged2()
-	OutfitterItemList_FlushEquippableItems(); -- Flush everything because the game sends bag update
-	                                          -- events for an item after it's already appeared in the inventory.  This
-	                                          -- creates a brief situation in which the item appears to be both in the
-	                                          -- bank and in the inventory which causes various problems for Outfitter
-	                                          -- when checking for items.
+	OutfitterItemList_FlushChangedItems();
 	
 	gOutfitter_DisplayIsDirty = true; -- Update the list so the checkboxes reflect the current state
 	
@@ -1190,8 +1182,6 @@ function OutfitterItemDropDown_Initialize()
 		if vIsSpecialOutfit then
 			Outfitter_AddMenuItem(vFrame, Outfitter_cDisableOutfit, "DISABLE", vOutfit.Disabled);
 			Outfitter_AddMenuItem(vFrame, Outfitter_cDisableOutfitInBG, "BGDISABLE", vOutfit.BGDisabled);
-			--hax
-			Outfitter_AddMenuItem(vFrame, Outfitter_cDisableOutfitInInstance, "INSTDISABLE", vOutfit.InstDisabled);
 		else
 			Outfitter_AddMenuItem(vFrame, PET_RENAME, "RENAME");
 		end
@@ -1950,6 +1940,8 @@ function Outfitter_UpdateSlotEnables(pOutfit, pEquippableItems)
 				vCheckbox:SetCheckedTexture("Interface\\Buttons\\UI-CheckBox-Check");
 				vCheckbox.IsUnknown = false;
 			else
+				--Outfitter_TestMessage("OutfitterItemList_InventorySlotContainsItem: not found");
+				--Outfitter_DumpArray("InventoryItems", pEquippableItems.InventoryItems, 4);
 				vCheckbox:SetCheckedTexture("Interface\\Addons\\Outfitter\\Textures\\CheckboxUnknown");
 				vCheckbox.IsUnknown = true;
 			end
@@ -3017,7 +3009,7 @@ function Outfitter_UpdateEquippedItems()
 	local	vCurrentTime = GetTime();
 	
 	if vCurrentTime - gOutfitter_LastEquipmentUpdateTime < Outfitter_cMinEquipmentUpdateInterval then
-		OutfitterTimer_AdjustTimer();
+		Outfitter_ScheduleEquipmentUpdate();
 		return;
 	end
 	
@@ -3037,7 +3029,7 @@ function Outfitter_UpdateEquippedItems()
 	-- delay the change until they're out of combat but go
 	-- ahead and swap the weapon slots if there are any
 	
-	if gOutfitter_InCombat then
+	if UnitAffectingCombat("player") then -- Using UnitAffectingCombat instead of gOutfittin_InCombat to avoid race conditions
 		if vWeaponsNeedUpdate
 		and Outfitter_OutfitHasCombatEquipmentSlots(vCompiledOutfit) then
 			
@@ -3064,6 +3056,7 @@ function Outfitter_UpdateEquippedItems()
 			-- No weapon changes, just defer the whole outfit change
 			
 			gOutfitter_EquippedNeedsUpdate = true;
+			Outfitter_ScheduleEquipmentUpdate();
 			return;
 		end
 	end
@@ -3085,6 +3078,8 @@ function Outfitter_UpdateEquippedItems()
 	for vInventorySlot, vItem in vCompiledOutfit.Items do
 		gOutfitter_ExpectedOutfit.Items[vInventorySlot] = vCompiledOutfit.Items[vInventorySlot];
 	end
+	
+	Outfitter_ScheduleEquipmentUpdate();
 end
 
 function Outfitter_InitDebugging()
@@ -3216,11 +3211,11 @@ end
 
 local	gOutfitter_AmmoSlotInfoCache = nil;
 
-function Outfitter_FindAmmoSlotItem(pName, pTexture)
+function Outfitter_FindAmmoSlotItemLink(pName, pTexture)
 	if gOutfitter_AmmoSlotInfoCache
 	and gOutfitter_AmmoSlotInfoCache.Name == pName
 	and gOutfitter_AmmoSlotInfoCache.Texture == pTexture then
-		return gOutfitter_AmmoSlotInfoCache.ItemInfo;
+		return gOutfitter_AmmoSlotInfoCache.ItemLink;
 	end
 		
 	for vBagIndex = 0, NUM_BAG_SLOTS do
@@ -3231,18 +3226,18 @@ function Outfitter_FindAmmoSlotItem(pName, pTexture)
 				local	vTexture = GetContainerItemInfo(vBagIndex, vBagSlotIndex);
 				
 				if vTexture == pTexture then
-					local	vItemInfo = Outfitter_GetBagItemInfo(vBagIndex, vBagSlotIndex);
+					local	vItemLink = GetContainerItemLink(vBagIndex, vBagSlotIndex);
 					
-					if vItemInfo.Name == pName then
+					if vItemLink and string.find(vItemLink, pName) then
 						if not gOutfitter_AmmoSlotInfoCache then
 							gOutfitter_AmmoSlotInfoCache = {};
 						end
 						
 						gOutfitter_AmmoSlotInfoCache.Name = pName;
 						gOutfitter_AmmoSlotInfoCache.Texture = pTexture;
-						gOutfitter_AmmoSlotInfoCache.ItemInfo = vItemInfo;
+						gOutfitter_AmmoSlotInfoCache.ItemLink = vItemLink;
 						
-						return vItemInfo;
+						return gOutfitter_AmmoSlotInfoCache.ItemLink;
 					end
 				end
 			end -- for vBagSlotIndex
@@ -3252,32 +3247,29 @@ function Outfitter_FindAmmoSlotItem(pName, pTexture)
 	return nil;
 end
 
-function Outfitter_GetInventoryItemInfo(pInventorySlot)
-	local	vSlotID = GetInventorySlotInfo(pInventorySlot);
-	local	vItemLink = GetInventoryItemLink("player", vSlotID);
+function Outfitter_GetAmmotSlotItemLink()
+	local	vSlotID = GetInventorySlotInfo("AmmoSlot");
 	
-	-- GetInventoryItemLink doesn't work for the ammo slot, so instead get the icon
-	-- for the slot and then search for a matching icon in the bags
+	OutfitterTooltip:SetOwner(OutfitterFrame, "ANCHOR_BOTTOMRIGHT", 0, 0);
+	OutfitterTooltip:SetInventoryItem("player", vSlotID);
 	
-	if vItemLink == nil
-	and pInventorySlot == "AmmoSlot" then
-		OutfitterTooltip:SetOwner(OutfitterFrame, "ANCHOR_BOTTOMRIGHT", 0, 0);
-		OutfitterTooltip:SetInventoryItem("player", vSlotID);
-		
-		if not OutfitterTooltipTextLeft1:IsShown() then
-			OutfitterTooltip:Hide();
-			return nil;
-		end
-		
-		local	vAmmoItemName = OutfitterTooltipTextLeft1:GetText();
-		
+	if not OutfitterTooltipTextLeft1:IsShown() then
 		OutfitterTooltip:Hide();
-		
-		local	vAmmoItemTexture = GetInventoryItemTexture("player", vSlotID);
-		
-		return Outfitter_FindAmmoSlotItem(vAmmoItemName, vAmmoItemTexture);
+		return nil;
 	end
 	
+	local	vAmmoItemName = OutfitterTooltipTextLeft1:GetText();
+	
+	OutfitterTooltip:Hide();
+	
+	local	vAmmoItemTexture = GetInventoryItemTexture("player", vSlotID);
+	
+	return Outfitter_FindAmmoSlotItemLink(vAmmoItemName, vAmmoItemTexture);
+end
+
+function Outfitter_GetInventoryItemInfo(pInventorySlot)
+	local	vSlotID = GetInventorySlotInfo(pInventorySlot);
+	local	vItemLink = Outfitter_GetInventorySlotLink(pInventorySlot);
 	local	vItemInfo = Outfitter_GetItemInfoFromLink(vItemLink);
 	
 	if not vItemInfo then
@@ -3856,14 +3848,13 @@ end
 
 function Outfitter_SetSpecialOutfitEnabled(pSpecialID, pEnable)
 	local	vOutfit = Outfitter_GetSpecialOutfit(pSpecialID);
-
+	
 	if not vOutfit
 	or vOutfit.Disabled
-	or (pEnable and vOutfit.BGDisabled and Outfitter_InBattlegroundZone())
-	or (pEnable and vOutfit.InstDisabled and Outfitter_InInstanceZone()) then
+	or (pEnable and vOutfit.BGDisabled and Outfitter_InBattlegroundZone()) then
 		return;
 	end
-
+	
 	if pEnable then
 		-- Start monitoring health and mana if it's the dining outfit
 		
@@ -3948,12 +3939,6 @@ function Outfitter_InBattlegroundZone()
 	local	vZoneSpecialIDMap = Outfitter_cZoneSpecialIDMap[gOutfitter_CurrentZone];
 	
 	return vZoneSpecialIDMap and vZoneSpecialIDMap[1] == "Battleground";
-end
-
-function Outfitter_InInstanceZone()
-	local	vZoneSpecialIDMap = Outfitter_cZoneSpecialIDMap[gOutfitter_CurrentZone];
-	
-	return vZoneSpecialIDMap and vZoneSpecialIDMap[1] == "Instance";
 end
 
 function Outfitter_SetAllSlotEnables(pEnable)
@@ -4654,13 +4639,6 @@ function Outfitter_OutfitItemSelected(pMenu, pValue)
 			vOutfit.BGDisabled = true;
 		end
 		gOutfitter_DisplayIsDirty = true;
-	elseif pValue == "INSTDISABLE" then
-		if vOutfit.InstDisabled then
-			vOutfit.InstDisabled = nil;
-		else
-			vOutfit.InstDisabled = true;
-		end
-		gOutfitter_DisplayIsDirty = true;
 	elseif pValue == "ACCESSORY" then
 		vOutfit.IsAccessory = true;
 		Outfitter_UpdateOutfitCategory(vOutfit);
@@ -4829,43 +4807,19 @@ function OutfitterInputBox_TabPressed()
 	end
 end
 
-function OutfitterTimer_AdjustTimer()
-	local	vNeedTimer = false;
-	
-	if OutfitterMinimapButton.IsDragging then
-		vNeedTimer = true;
+function Outfitter_ScheduleEquipmentUpdate()
+	if not gOutfitter_EquippedNeedsUpdate
+	and not gOutfitter_WeaponsNeedUpdate then
+		return;
 	end
 	
-	if gOutfitter_EquippedNeedsUpdate
-	or gOutfitter_WeaponsNeedUpdate then
-		vNeedTimer = true;
+	local	vDelay = Outfitter_cMinEquipmentUpdateInterval - (GetTime() - gOutfitter_LastEquipmentUpdateTime);
+	
+	 if vDelay < 0.25 then
+		vDelay = 0.25;
 	end
 	
-	if vNeedTimer then
-		OutfitterUpdateFrame:Show();
-	else
-		OutfitterUpdateFrame:Hide();
-		OutfitterUpdateFrame.Elapsed = nil;
-	end
-end
-
-function OutfitterUpdateFrame_OnUpdate(pElapsed)
-	if OutfitterMinimapButton.IsDragging then
-		OutfitterMinimapButton_UpdateDragPosition();
-	end
-	
-	if not OutfitterUpdateFrame.Elapsed then
-		OutfitterUpdateFrame.Elapsed = 0;
-	else
-		OutfitterUpdateFrame.Elapsed = OutfitterUpdateFrame.Elapsed + pElapsed;
-		
-		if OutfitterUpdateFrame.Elapsed > 0.25 then
-			Outfitter_UpdateEquippedItems();
-			OutfitterUpdateFrame.Elapsed = 0;
-		end
-	end
-	
-	OutfitterTimer_AdjustTimer();
+	MCSchedulerLib:ScheduleUniqueTask(vDelay, Outfitter_UpdateEquippedItems);
 end
 
 function OutfitterMinimapButton_MouseDown()
@@ -4887,13 +4841,11 @@ function OutfitterMinimapButton_MouseDown()
 end
 
 function OutfitterMinimapButton_DragStart()
-	OutfitterMinimapButton.IsDragging = true;
-	OutfitterTimer_AdjustTimer();
+	MCSchedulerLib:ScheduleUniqueRepeatingTask(0, OutfitterMinimapButton_UpdateDragPosition);
 end
 
 function OutfitterMinimapButton_DragEnd()
-	OutfitterMinimapButton.IsDragging = false;
-	OutfitterTimer_AdjustTimer();
+	MCSchedulerLib:UnscheduleTask(OutfitterMinimapButton_UpdateDragPosition);
 end
 
 function OutfitterMinimapButton_UpdateDragPosition()
@@ -5003,6 +4955,12 @@ function OutfitterMinimapButton_ItemSelected(pMenu, pValue)
 	return false;
 end
 
+function Outfitter_WearingOutfitName(pOutfitName)
+	local	vOutfit = Outfitter_FindOutfitByName(pOutfitName);
+	
+	return vOutfit and Outfitter_WearingOutfit(vOutfit);
+end
+
 function Outfitter_WearingOutfit(pOutfit)
 	return OutfitterStack_FindOutfit(pOutfit);
 end
@@ -5061,7 +5019,6 @@ function Outfitter_CheckDatabase()
 		
 		if vRidingOutfit then
 			vRidingOutfit.BGDisabled = true;
-			vRidingOutfit.InstDisabled = true;
 		end
 		
 		gOutfitter_Settings.Version = 4;
@@ -5256,6 +5213,68 @@ function Outfitter_GetNumBags()
 		return NUM_BAG_SLOTS + NUM_BANKBAGSLOTS, -1;
 	else
 		return NUM_BAG_SLOTS, 0;
+	end
+end
+
+function Outfitter_GetInventorySlotLink(pInventorySlot)
+	if pInventorySlot == "AmmoSlot" then
+		return Outfitter_GetAmmotSlotItemLink();
+	else
+		local	vSlotID = GetInventorySlotInfo(pInventorySlot);
+		return  GetInventoryItemLink("player", vSlotID);
+	end
+end
+
+function Outfitter_GetInventorySlotItemCode(pInventorySlot)
+	local	vItemCode, vItemEnchantCode, vItemSubCode;
+	local	vItemLink = Outfitter_GetInventorySlotLink(pInventorySlot);
+	
+	if vItemLink then
+		local	vStartIndex, vEndIndex;
+		
+		vStartIndex, vEndIndex, vItemCode, vItemEnchantCode, vItemSubCode = strfind(vItemLink, "|%x+|Hitem:(%d+):(%d+):(%d+):%d+|h%[[^%]]+%]|h|r");
+		
+		vItemCode = tonumber(vItemCode);
+		vItemSubCode = tonumber(vItemSubCode);
+		vItemEnchantCode = tonumber(vItemEnchantCode);
+	end
+	
+	return vItemCode, vItemEnchantCode, vItemSubCode;
+end
+
+function OutfitterItemList_FlushChangedItems()
+	if not gOutfitter_EquippableItems then
+		return;
+	end
+	
+	-- Check inventory
+	
+	local	vFlushInventory = false;
+	
+	for _, vInventorySlot in Outfitter_cSlotNames do
+		local	vItemCode, vItemEnchantCode, vItemSubCode = Outfitter_GetInventorySlotItemCode(vInventorySlot);
+		local	vItemInfo = gOutfitter_EquippableItems.InventoryItems[vInventorySlot];
+		
+		if (vItemCode ~= nil) ~= (vItemInfo ~= nil) then
+			vFlushInventory = true;
+			break;
+		end
+		
+		if vItemInfo
+		and (vItemInfo.Code ~= vItemCode
+		  or vItemInfo.SubCode ~= vItemSubCode
+		  or vItemInfo.EnchantCode ~= vItemEnchantCode) then
+			vFlushInventory = true;
+			break;
+		end
+	end
+	
+	-- Have to flush bags too since inventory event changes probably
+	-- also have bag event changes and not flushing the bag can result
+	-- in a strange state where an item appears to be in two places at once
+	
+	if vFlushInventory then
+		OutfitterItemList_FlushEquippableItems();
 	end
 end
 
@@ -5732,7 +5751,7 @@ function OutfitterItemList_InventorySlotContainsItem(pEquippableItems, pInventor
 		return false, nil;
 	end
 	
-	-- If the item specifies and empty slot check to see if the slot is actually empty
+	-- If the item specifies an empty slot check to see if the slot is actually empty
 	
 	if pOutfitItem.Code == 0 then
 		return pEquippableItems.InventoryItems[pInventorySlot] == nil;
@@ -5742,13 +5761,19 @@ function OutfitterItemList_InventorySlotContainsItem(pEquippableItems, pInventor
 	local	vNumItems = OutfitterItemList_FindAllItemsOrAlt(pEquippableItems, pOutfitItem, nil, vItems);
 	
 	if vNumItems == 0 then
+		-- Outfitter_TestMessage("Item "..pOutfitItem.Name.." not found in slot "..pInventorySlot);
 		return false;
 	elseif vNumItems == 1 then
+		-- Outfitter_TestMessage("One of item "..pOutfitItem.Name.." found in slot "..pInventorySlot);
+		--Outfitter_DumpArray(pInventorySlot, vItems);
+		
 		-- If there's only one of that item then the enchant code
 		-- is disregarded so just make sure it's in the slot
 		
 		return vItems[1].SlotName == pInventorySlot, vItems[1];
 	else
+		-- Outfitter_TestMessage(vNumItems.." of item "..pOutfitItem.Name.." found in slot "..pInventorySlot);
+		
 		-- See if one of the items is in the slot
 		
 		for vIndex, vItem in vItems do
@@ -6488,8 +6513,8 @@ function Outfitter_TestAmmoSlot()
 	local	vSlotID = GetInventorySlotInfo("AmmoSlot");
 	local	vItemLink = GetInventoryItemLink("player", vSlotID);
 	
+	Outfitter_DumpArray("vItemInfo", vItemInfo);
+	
 	Outfitter_TestMessage("SlotID: "..vSlotID);
 	Outfitter_TestMessage("ItemLink: "..vItemLink);
-	
-	Outfitter_DumpArray("vItemInfo", vItemInfo);
 end

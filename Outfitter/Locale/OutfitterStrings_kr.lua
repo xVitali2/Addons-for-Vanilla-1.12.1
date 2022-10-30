@@ -1,7 +1,4 @@
 if GetLocale() == "koKR" then	
-	Outfitter_cTitle = "Outfitter";
-	Outfitter_cTitleVersion = Outfitter_cTitle.." "..Outfitter_cVersion;
-
 	Outfitter_cNameLabel = "이름:";
 	Outfitter_cCreateUsingTitle = "최적화:";
 	Outfitter_cUseCurrentOutfit = "현재 장비 세트 사용";
@@ -239,8 +236,6 @@ if GetLocale() == "koKR" then
 
 	Outfitter_cKeyBinding = "단축키";
 
-	BINDING_HEADER_OUTFITTER_TITLE = Outfitter_cTitle;
-
 	BINDING_NAME_OUTFITTER_OUTFIT1  = "세트 1";
 	BINDING_NAME_OUTFITTER_OUTFIT2  = "세트 2";
 	BINDING_NAME_OUTFITTER_OUTFIT3  = "세트 3";
@@ -256,7 +251,6 @@ if GetLocale() == "koKR" then
 	Outfitter_cDisableOutfitInBG = "전장에서 사용 안함";
 	Outfitter_cDisabledOutfitName = "%s (사용 안함)";
 
-	Outfitter_cMinimapButtonTitle = "미니맵 버튼";
 	Outfitter_cMinimapButtonDescription = "클릭 : 세트 선택, 드래그 : 미니맵 버튼 이동";
 
 	Outfitter_cDruidClassName = "드루이드";
@@ -278,7 +272,7 @@ if GetLocale() == "koKR" then
 	Outfitter_cWarriorBerserkerStance = "전사: 광폭 태세";
 
 	Outfitter_cBearForm = "곰 변신";
-	Outfitter_cCatForm = "표범 변신표범 변신";
+	Outfitter_cCatForm = "표범 변신";
 	Outfitter_cAquaticForm = "바다표범 변신";
 	Outfitter_cTravelForm = "치타 변신";
 	Outfitter_cDireBearForm = "광포한 곰 변신";

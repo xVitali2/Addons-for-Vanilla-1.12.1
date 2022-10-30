@@ -1,7 +1,4 @@
 if GetLocale() == "frFR" then
-	Outfitter_cTitle = "Outfitter";
-	Outfitter_cTitleVersion = Outfitter_cTitle.." "..Outfitter_cVersion;
-
 	Outfitter_cNameLabel = "Nom:";
 	Outfitter_cCreateUsingTitle = "Optimiser pour:";
 	Outfitter_cUseCurrentOutfit = "Utiliser la tenue actuelle";
@@ -234,8 +231,6 @@ if GetLocale() == "frFR" then
 
 	Outfitter_cKeyBinding = "Raccourcis";
 
-	BINDING_HEADER_OUTFITTER_TITLE = Outfitter_cTitle;
-
 	BINDING_NAME_OUTFITTER_OUTFIT1  = "Tenue 1";
 	BINDING_NAME_OUTFITTER_OUTFIT2  = "Tenue 2";
 	BINDING_NAME_OUTFITTER_OUTFIT3  = "Tenue 3";
@@ -251,7 +246,6 @@ if GetLocale() == "frFR" then
 	Outfitter_cDisableOutfitInBG = "D\195\169sactiver la tenue dans les Champs de Bataille";
 	Outfitter_cDisabledOutfitName = "%s (D\195\169sactiv\195\169)";
 
-	Outfitter_cMinimapButtonTitle = "Outfitter";
 	Outfitter_cMinimapButtonDescription = "Cliquez pour s\195\169l\195\169ctionner une autre tenue ou d\195\169placez pour changer la position du bouton.";
 
 	Outfitter_cDruidClassName = "Druide";
