@@ -84,7 +84,7 @@ L:RegisterTranslations("ruRU", function() return {
 	["Crafted Sets - Leatherworking"] = "Создаваемые комплекты - Кожевничество",
 	["Welcome to Atlasloot TW Edition. Please take a moment to set your preferences."] = "Добро пожаловать в Atlasloot TW Edition. Пожалуйста, уделите немного времени, чтобы настроить его.",
 	["New feature in 4.05.00: Advanced searching functionality is now available. You can type in a partial item name, for example typing 'elixir' gives all items in the database with 'elixir' in the name. Big thanks to Kurax for his help."] = "Новая функция в 4.05.00: Расширенные функциональные возможности поиска теперь доступны. Вы можете ввести частичное имя предмета, например, набрав 'эликсир' предоставляются все предметы в базе данных с 'эликсир' в названии. Большое спасибо Kurax за помощь.",
-	["New feature in 4.06.00: All professions are now included in the AtlasLoot_Crafting module."] = "Новая функция в 4.06.00: Все профессии теперь включены в модуль AtlasLoot_Crafting.",
+	["New feature in 4.06.02: All professions are now included in the AtlasLoot_Crafting module."] = "Новая функция в 4.06.00: Все профессии теперь включены в модуль AtlasLoot_Crafting.",
 	["Setup"] = "Настройка",
 	["OK"] = "ОК",
 	["Professions"] = "Профессии",

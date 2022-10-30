@@ -17977,6 +17977,189 @@ GetSpellInfoVanillaDB = {
 				[5] = {15407, 3},
 				[6] = {14341, 8}
 			}
+		},
+		[46620] = {
+			["name"] = "Leatherworking: Grifter's Boots",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 45,
+			["text"] = "",
+			["craftItem"] = 83405,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {4304, 7},
+				[2] = {4291, 3}
+			}
+		},
+		[46621] = {
+			["name"] = "Leatherworking: Grifter's Gauntlets",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 45,
+			["text"] = "",
+			["craftItem"] = 83404,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {4304, 6},
+				[2] = {4291, 2}
+			}
+		},
+		[46622] = {
+			["name"] = "Leatherworking: Grifter's Belt",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 45,
+			["text"] = "",
+			["craftItem"] = 83403,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {4234, 10},
+				[2] = {4291},
+				[3] = {4236}
+			}
+		},
+		[46623] = {
+			["name"] = "Leatherworking: Grifter's Leggings",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 45,
+			["text"] = "",
+			["craftItem"] = 83402,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {4304, 10},
+				[2] = {4234, 2},
+				[3] = {4291, 3},
+				[4] = {2605}
+			}
+		},
+		[46624] = {
+			["name"] = "Leatherworking: Grifter's Tunic",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 45,
+			["text"] = "",
+			["craftItem"] = 83401,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {4304, 12},
+				[2] = {3575, 2},
+				[3] = {4291, 4},
+				[4] = {2605, 2}
+			}
+		},
+		[46625] = {
+			["name"] = "Leatherworking: Grifter's Cover",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 45,
+			["text"] = "",
+			["craftItem"] = 83400,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {4304, 8},
+				[2] = {4338, 4},
+				[3] = {4291, 2},
+				[4] = {2605}
+			}
+		},
+		[47020] = {
+			["name"] = "Leatherworking: Primalist's Boots",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 50,
+			["text"] = "",
+			["craftItem"] = 81065,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {8170, 8},
+				[2] = {14047, 4},
+				[3] = {14341}
+			}
+		},
+		[47015] = {
+			["name"] = "Leatherworking: Primalist's Gloves",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 50,
+			["text"] = "",
+			["craftItem"] = 81061,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {8170, 6},
+				[2] = {14047, 4},
+				[3] = {14341}
+			}
+		},
+		[47017] = {
+			["name"] = "Leatherworking: Primalist's Headdress",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 50,
+			["text"] = "",
+			["craftItem"] = 81063,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {8170, 10},
+				[2] = {7080},
+				[3] = {12803},
+				[4] = {14341}
+			}
+		},
+		[47018] = {
+			["name"] = "Leatherworking: Primalist's Pants",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 50,
+			["text"] = "",
+			["craftItem"] = 81064,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {8170, 12},
+				[2] = {8343, 2},
+				[3] = {14341}
+			}
+		},
+		[47016] = {
+			["name"] = "Leatherworking: Primalist's Shoulders",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 50,
+			["text"] = "",
+			["craftItem"] = 81062,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {8170, 12},
+				[2] = {12803},
+				[3] = {14341}
+			}
+		},
+		[47019] = {
+			["name"] = "Leatherworking: Primalist's Vest",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 60,
+			["text"] = "",
+			["craftItem"] = 81066,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {8170, 24},
+				[2] = {12803, 4},
+				[3] = {15407},
+				[4] = {14341}
+			}
 		}
 	}
 }

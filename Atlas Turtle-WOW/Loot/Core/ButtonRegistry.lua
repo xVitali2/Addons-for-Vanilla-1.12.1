@@ -895,6 +895,16 @@ AtlasLoot_ButtonRegistry = {
 		Back_Page = "CRAFTSET",
 		Back_Title = L["Crafted Sets"]
 	},
+	["GriftersArmor"] = {
+		Title = "Grifter's Armor",
+		Back_Page = "CRAFTSET",
+		Back_Title = L["Crafted Sets"]
+	},
+	["PrimalistsTrappings"] = {
+		Title = "Primalist's Trappings",
+		Back_Page = "CRAFTSET",
+		Back_Title = L["Crafted Sets"]
+	},
 	["VolcanicArmor"] = {
 		Title = BIS["Volcanic Armor"],
 		Back_Page = "CRAFTSET",

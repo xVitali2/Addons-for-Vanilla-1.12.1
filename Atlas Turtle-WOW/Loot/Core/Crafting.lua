@@ -155,10 +155,16 @@ function AtlasLootCraftedSetMenu()
 	AtlasLootMenuItem_6.lootpage="BloodvineG"
 	AtlasLootMenuItem_6:Show()
 	--Leatherworking Leather Header
-	AtlasLootMenuItem_8_Name:SetText(RED..BS["Leatherworking"])
-	AtlasLootMenuItem_8_Extra:SetText(WHITE..L["Leather"])
-	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\INV_Chest_Leather_04")
-	AtlasLootMenuItem_8.isheader = true
+	AtlasLootMenuItem_7_Name:SetText(RED..BS["Leatherworking"])
+	AtlasLootMenuItem_7_Extra:SetText(WHITE..L["Leather"])
+	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\INV_Chest_Leather_04")
+	AtlasLootMenuItem_7.isheader = true
+	AtlasLootMenuItem_7:Show()
+	--Grifter's Armor
+	AtlasLootMenuItem_8_Name:SetText("Grifter's Armor")
+	AtlasLootMenuItem_8_Extra:SetText("")
+	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\INV_Helmet_33")
+	AtlasLootMenuItem_8.lootpage="GriftersArmor"
 	AtlasLootMenuItem_8:Show()
 	--Volcanic Armor
 	AtlasLootMenuItem_9_Name:SetText(BIS["Volcanic Armor"])
@@ -196,6 +202,12 @@ function AtlasLootCraftedSetMenu()
 	AtlasLootMenuItem_14_Icon:SetTexture("Interface\\Icons\\INV_Chest_Leather_03")
 	AtlasLootMenuItem_14.lootpage="PrimalBatskin"
 	AtlasLootMenuItem_14:Show()
+	--Primalist's Trappings
+	AtlasLootMenuItem_15_Name:SetText("Primalist's Trappings")
+	AtlasLootMenuItem_15_Extra:SetText("")
+	AtlasLootMenuItem_15_Icon:SetTexture("Interface\\Icons\\Inv_Chest_Plate06")
+	AtlasLootMenuItem_15.lootpage="PrimalistsTrappings"
+	AtlasLootMenuItem_15:Show()
 	--Mail Blacksmithing Header
 	AtlasLootMenuItem_16_Name:SetText(RED..BS["Blacksmithing"])
 	AtlasLootMenuItem_16_Extra:SetText(WHITE..L["Mail"])

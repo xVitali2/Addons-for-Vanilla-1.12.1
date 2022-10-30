@@ -77,7 +77,7 @@ local BIS = AceLibrary("Babble-ItemSet-2.2")
 --Establish version number and compatible version of Atlas
 local VERSION_MAJOR = "4"
 local VERSION_MINOR = "09"
-local VERSION_BOSSES = "01"
+local VERSION_BOSSES = "02"
 ATLASLOOT_VERSION = "|cffFF8400AtlasLoot TW Edition v"..VERSION_MAJOR.."."..VERSION_MINOR.."."..VERSION_BOSSES.."|r"
 
 --Compatibility with old EquipCompare/EQCompare
@@ -124,7 +124,7 @@ AtlasLoot:RegisterDB("AtlasLootDB")
 
 --Popup Box for first time users
 StaticPopupDialogs["ATLASLOOT_SETUP"] = {
-	text = L["Welcome to Atlasloot TW Edition. Please take a moment to set your preferences."].."\n\n"..L["New feature in 4.06.00: All professions are now included in the AtlasLoot_Crafting module."].."\n\n"..L["New feature in 4.05.00: Advanced searching functionality is now available. You can type in a partial item name, for example typing 'elixir' gives all items in the database with 'elixir' in the name. Big thanks to Kurax for his help."].."\n",
+	text = L["Welcome to Atlasloot TW Edition. Please take a moment to set your preferences."].."\n\n"..L["New feature in 4.06.02: All professions are now included in the AtlasLoot_Crafting module."].."\n\n"..L["New feature in 4.05.00: Advanced searching functionality is now available. You can type in a partial item name, for example typing 'elixir' gives all items in the database with 'elixir' in the name. Big thanks to Kurax for his help."].."\n",
 	button1 = L["Setup"],
 	OnAccept = function()
 		AtlasLootOptions_Toggle()
@@ -2939,6 +2939,8 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ BIS["Bloodsoul Embrace"], "BloodsoulEmbrace" },
 	},
 	["CraftSetLeatherwork"] = {
+		{ "Grifter's Armor", "GriftersArmor" },
+		{ "Primalist's Trappings", "PrimalistsTrappings" },
 		{ BIS["Volcanic Armor"], "VolcanicArmor" },
 		{ BIS["Ironfeather Armor"], "IronfeatherArmor" },
 		{ BIS["Stormshroud Armor"], "StormshroudArmor" },

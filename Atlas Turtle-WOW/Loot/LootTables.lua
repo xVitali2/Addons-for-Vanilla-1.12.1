@@ -522,6 +522,8 @@ AtlasLoot_TableNames = {
 	["PillagersGarb"] = { "Pillager's Garb", "AtlasLootCrafting" },
 	["BloodvineG"] = { BIS["Bloodvine Garb"], "AtlasLootCrafting" },
 	--Crafted Sets - Leatherworking
+	["GriftersArmor"] = { "Grifter's Armor", "AtlasLootCrafting" },
+	["PrimalistsTrappings"] = { "Primalist's Trappings", "AtlasLootCrafting" },
 	["VolcanicArmor"] = { BIS["Volcanic Armor"], "AtlasLootCrafting" },
 	["IronfeatherArmor"] = { BIS["Ironfeather Armor"], "AtlasLootCrafting" },
 	["StormshroudArmor"] = { BIS["Stormshroud Armor"], "AtlasLootCrafting" },
@@ -1510,7 +1512,9 @@ AtlasLoot_TableNamesBoss = {
 		["PillagersGarb"] = { "Pillager's Garb", "AtlasLootCrafting" },
         ["BloodvineG"] = { BIS["Bloodvine Garb"], "AtlasLootCrafting" },
 	},
-	[L["Crafted Sets - Leatherworking"]] = {
+	[L["Crafted Sets - Leatherworking"]] = {		
+		["GriftersArmor"] = { "Grifter's Armor", "AtlasLootCrafting" },
+		["PrimalistsTrappings"] = { "Primalist's Trappings", "AtlasLootCrafting" },
 		["VolcanicArmor"] = { BIS["Volcanic Armor"], "AtlasLootCrafting" },
 		["IronfeatherArmor"] = { BIS["Ironfeather Armor"], "AtlasLootCrafting" },
 		["StormshroudArmor"] = { BIS["Stormshroud Armor"], "AtlasLootCrafting" },

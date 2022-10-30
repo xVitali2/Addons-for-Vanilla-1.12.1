@@ -102,7 +102,7 @@ L:RegisterTranslations("enUS", function() return {
 	["Crafted Sets - Leatherworking"] = true,
 	["Welcome to Atlasloot TW Edition. Please take a moment to set your preferences."] = true,
 	["New feature in 4.05.00: Advanced searching functionality is now available. You can type in a partial item name, for example typing 'elixir' gives all items in the database with 'elixir' in the name. Big thanks to Kurax for his help."] = true,
-	["New feature in 4.06.00: All professions are now included in the AtlasLoot_Crafting module."] = true,
+	["New feature in 4.06.02: All professions are now included in the AtlasLoot_Crafting module."] = true,
 	["Setup"] = true,
 	["OK"] = true,
 	["Professions"] = true,
