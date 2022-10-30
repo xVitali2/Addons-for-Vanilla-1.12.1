@@ -408,6 +408,7 @@ AtlasLootBossButtons = {
 		"",
 		"",
 		"",
+		"",
 		"NAXOmarion",
 		"",
 		"",
