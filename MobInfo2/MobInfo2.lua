@@ -1405,7 +1405,7 @@ function MI2_FindItemValue( itemID )
 		if (itdata and itdata['sell'] and itdata['sell'] ~= 0) then price=itdata['sell'] end --byCFM
 	end
 	-- check if pfUI is installed and knows the price
-	if price == 0 and pfUI then
+	if price == 0 and pfUI and pfSellData then
 		if pfSellData[itemID] then --by CFM
 			local _, _, sell,_ = strfind(pfSellData[itemID], "(.*),(.*)") -- by CFM
 			price = tonumber(sell) -- by CFM
