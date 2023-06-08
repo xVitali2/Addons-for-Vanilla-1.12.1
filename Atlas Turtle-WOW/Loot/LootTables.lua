@@ -379,8 +379,11 @@ AtlasLoot_TableNames = {
     ["KCMarrowspike"] = { L["Marrowspike"], "AtlasLootItems" },
     ["KCHivaxxis"] = { L["Hivaxxis"], "AtlasLootItems" },
     ["KCCorpsemuncher"] = { L["Corpsemuncher"], "AtlasLootItems" },
+	["KCGuardCaptainGort"] = { "Guard Captain Gort", "AtlasLootItems" },
     ["KCArchlichEnkhraz"] = { L["Archlich Enkhraz"], "AtlasLootItems" },
+	["KCCommanderAnderson"] = { "Commander Anderson", "AtlasLootItems" },
     ["KCAlarus"] = { L["Alarus"], "AtlasLootItems" },
+	["KCTreasure"] = { "Half-Buried Treasure Chest", "AtlasLootItems" },
 	-- Caverns of Time: Black Morass
     ["COTBMChronar"] = { L["Chronar"], "AtlasLootItems" },
     ["COTBMHarbingerAphygth"] = { L["Harbinger Aph'ygth"], "AtlasLootItems" },
@@ -512,6 +515,7 @@ AtlasLoot_TableNames = {
 	["RarePets1"] = { L["Rare Pets"], "AtlasLootSetItems" },
 	["RarePets2"] = { L["Rare Pets"], "AtlasLootSetItems" },
 	--Crafted Sets - Blacksmithing
+	["SteelPlate"] = { "Steel Plate", "AtlasLootCrafting" },
 	["ImperialPlate"] = { BIS["Imperial Plate"], "AtlasLootCrafting" },
 	["TheDarksoul"] = { BIS["The Darksoul"], "AtlasLootCrafting" },
 	["BloodsoulEmbrace"] = { BIS["Bloodsoul Embrace"], "AtlasLootCrafting" },
@@ -530,6 +534,7 @@ AtlasLoot_TableNames = {
 	["DevilsaurArmor"] = { BIS["Devilsaur Armor"], "AtlasLootCrafting" },
 	["BloodTigerH"] = { BIS["Blood Tiger Harness"], "AtlasLootCrafting" },
 	["PrimalBatskin"] = { BIS["Primal Batskin"], "AtlasLootCrafting" },
+	["RedDragonM"] = { "Red Dragon Mail", "AtlasLootCrafting" },
 	["GreenDragonM"] = { BIS["Green Dragon Mail"], "AtlasLootCrafting" },
 	["BlueDragonM"] = { BIS["Blue Dragon Mail"], "AtlasLootCrafting" },
 	["BlackDragonM"] = { BIS["Black Dragon Mail"], "AtlasLootCrafting" },
@@ -650,8 +655,10 @@ AtlasLoot_TableNames = {
     ["Turtlhu"] = { "Turtlhu, the Black Turtle of Doom", "AtlasLootWBItems" },
     ["Nerubian"] = { "Nerubian Overseer", "AtlasLootWBItems" },
     ["Reaver"] = { "Dark Reaver of Karazhan", "AtlasLootWBItems" },
+	["Ostarius"] = { "Ostarius", "AtlasLootWBItems" },
     ["Concavius"] = { "Concavius Voidspawn", "AtlasLootWBItems" },
 	["KKazzak"] = { BB["Lord Kazzak"], "AtlasLootWBItems" },
+	["CowKing"] = { "CowKing", "AtlasLootWBItems" },
 	--Emrald Dragons
 	["DEmeriss"] = { BB["Emeriss"], "AtlasLootWBItems" },
 	["DLethon"] = { BB["Lethon"], "AtlasLootWBItems" },
@@ -673,7 +680,7 @@ AtlasLoot_TableNames = {
 	["Zareth"] = { "Zareth Terrorblade <Demon Hunter>", "AtlasLootRMItems" },
 	["Jalakar"] = { "Jal'akar <Dire Troll>", "AtlasLootRMItems" },
 	["Ashbeard"] = { "Explorer Ashbeard", "AtlasLootRMItems" },
-	
+	["AdmiralBareanWestwind"] = { "Admiral Barean Westwind", "AtlasLootRMItems" },
 	--------------
 	--- Events ---
 	--------------
@@ -739,6 +746,7 @@ AtlasLoot_TableNames = {
 	["Thorium2"] = { BF["Thorium Brotherhood"]..": "..BF["Revered"].."/"..BF["Exalted"], "AtlasLootRepItems" },
 	--Timbermaw Hold
 	["Timbermaw"] = { BF["Timbermaw Hold"], "AtlasLootRepItems" },
+	["Warderns1"] = { "Wardens of Time", "AtlasLootRepItems" },
 	--Wintersaber Trainers
 	["Wintersaber1"] = { BF["Wintersaber Trainers"], "AtlasLootRepItems" },
 	--Zandalar Tribe
@@ -746,6 +754,16 @@ AtlasLoot_TableNames = {
 	["Zandalar2"] = { BF["Zandalar Tribe"]..": "..BF["Revered"].."/"..BF["Exalted"], "AtlasLootRepItems" },
     ["Helf"] = { "Silvermoon Remnant", "AtlasLootRepItems" },
     ["Revantusk"] = { "Revantusk Trolls", "AtlasLootRepItems" },
+    ["Ironforge"] = { "Ironforge", "AtlasLootRepItems" },
+    ["Darnassus"] = { "Darnassus", "AtlasLootRepItems" },
+    ["Stormwind"] = { "Stormwind", "AtlasLootRepItems" },
+    ["GnomereganExiles"] = { "Gnomeregan Exiles", "AtlasLootRepItems" },
+	["DarkspearTrolls"] = { "Darkspear Trolls", "AtlasLootRepItems" },
+    ["DurotarLaborUnion"] = { "Durotar Labor Union", "AtlasLootRepItems" },
+    ["Undercity"] = { "Undercity", "AtlasLootRepItems" },
+    ["Orgrimmar"] = { "Orgrimmar", "AtlasLootRepItems" },
+    ["ThunderBluff"] = { "Thunder Bluff", "AtlasLootRepItems" },
+	["Dalaran"] = { "Dalaran", "AtlasLootRepItems" },
 	
 	--------------
 	--- Trades ---
@@ -825,6 +843,7 @@ AtlasLoot_TableNames = {
 	["CookingArtisan1"] = { BS["Cooking"]..": "..L["Artisan"], "AtlasLootCrafting" },
 	--FirstAid
 	["FirstAid1"] = { BS["First Aid"], "AtlasLootCrafting" },
+	["Survival1"] = { "Survival", "AtlasLootCrafting" },
 	--Poisons
 	["Poisons1"] = { BC["Rogue"]..": "..BS["Poisons"], "AtlasLootCrafting" },
 	
@@ -833,6 +852,11 @@ AtlasLoot_TableNames = {
 	-----------
 	
 	--Battlegrounds
+	--Blood Ring
+    ["BRRepFriendly"] = { "Blood Ring" .. " " .. L["Friendly Rewards"], "AtlasLootBGItems" },
+    ["BRRepHonored"] = { "Blood Ring" .. " " .. L["Honored Rewards"], "AtlasLootBGItems" },
+    ["BRRepRevered"] = { "Blood Ring" .. " " .. L["Revered Rewards"], "AtlasLootBGItems" },
+    ["BRRepExalted"] = { "Blood Ring" .. " " .. L["Exalted Rewards"], "AtlasLootBGItems" },
  	--Alterac Valley
 	["AVIvus"] = { BZ["Alterac Valley"].." - "..L["Ivus the Forest Lord"], "AtlasLootBGItems" },
 	["AVLokholar"] = { BZ["Alterac Valley"].." - "..L["Lokholar the Ice Lord"], "AtlasLootBGItems" },
@@ -899,6 +923,7 @@ AtlasLoot_TableNames = {
 	["AVRepMenu"] = { "dummy", "dummy" },
 	["ABRepMenu"] = { "dummy", "dummy" },
 	["WSGRepMenu"] = { "dummy", "dummy" },
+	["BRRepMenu"] = { "dummy", "dummy" },
 	["AQ40SET"] = { "dummy", "dummy" },
 	["AQ20SET"] = { "dummy", "dummy" },
 	["ZGSET"] = { "dummy", "dummy" },
@@ -1634,6 +1659,7 @@ AtlasLoot_TableNamesBoss = {
         ["Turtlhu"] = { "Turtlhu, the Black Turtle of Doom", "AtlasLootWBItems" },
         ["Nerubian"] = { "Nerubian Overseer", "AtlasLootWBItems" },
         ["Reaver"] = { "Dark Reaver of Karazhan", "AtlasLootWBItems" },
+		["Ostarius"] = { "Ostarius", "AtlasLootWBItems" },
         ["Concavius"] = { "Concavius Voidspawn", "AtlasLootWBItems" }, --by CFM
         ["KKazzak"] = { BB["Lord Kazzak"], "AtlasLootWBItems" },
 		--Emrald Dragons
@@ -1710,6 +1736,7 @@ AtlasLoot_TableNamesBoss = {
 		["Thorium2"] = { BF["Thorium Brotherhood"]..": "..BF["Revered"].."/"..BF["Exalted"], "AtlasLootRepItems" },
 		--Timbermaw Hold
 		["Timbermaw"] = { BF["Timbermaw Hold"], "AtlasLootRepItems" },
+		["Warderns1"] = { "Wardens of Time", "AtlasLootRepItems" },
 		--Wintersaber Trainers
 		["Wintersaber1"] = { BF["Wintersaber Trainers"], "AtlasLootRepItems" },
 		--Zandalar Tribe
@@ -1717,6 +1744,15 @@ AtlasLoot_TableNamesBoss = {
 		["Zandalar2"] = { BF["Zandalar Tribe"]..": "..BF["Revered"].."/"..BF["Exalted"], "AtlasLootRepItems" },
         ["Helf"] = { "Silvermoon Remnant", "AtlasLootRepItems" },
         ["Revantusk"] = { "Revantusk Trolls", "AtlasLootRepItems" },
+        ["Ironforge"] = { "Ironforge", "AtlasLootRepItems" },
+        ["Darnassus"] = { "Darnassus", "AtlasLootRepItems" },
+        ["Stormwind"] = { "Stormwind", "AtlasLootRepItems" },
+        ["GnomereganExiles"] = { "Gnomeregan Exiles", "AtlasLootRepItems" },
+	["DarkspearTrolls"] = { "Darkspear Trolls", "AtlasLootRepItems" },
+        ["DurotarLaborUnion"] = { "Durotar Labor Union", "AtlasLootRepItems" },
+        ["Undercity"] = { "Undercity", "AtlasLootRepItems" },
+        ["Orgrimmar"] = { "Orgrimmar", "AtlasLootRepItems" },
+        ["ThunderBluff"] = { "Thunder Bluff", "AtlasLootRepItems" },
 	},
 	
 	--------------
@@ -1798,6 +1834,7 @@ AtlasLoot_TableNamesBoss = {
 		["CookingArtisan1"] = { BS["Cooking"]..": "..L["Artisan"], "AtlasLootCrafting" },
 		--FirstAid
 		["FirstAid1"] = { BS["First Aid"], "AtlasLootCrafting" },
+        ["Survival1"] = { "Survival", "AtlasLootCrafting" },
 		--Poisons
 		["Poisons1"] = { BC["Rogue"]..": "..BS["Poisons"], "AtlasLootCrafting" },
 	},
@@ -1807,6 +1844,11 @@ AtlasLoot_TableNamesBoss = {
 	-----------
 	
 	[L["Battlegrounds"]] = {
+        --Blood Ring
+        ["BRRepFriendly"] = { "Blood Ring" .. " " .. L["Friendly Rewards"], "AtlasLootBGItems" },
+        ["BRRepHonored"] = { "Blood Ring" .. " " .. L["Honored Rewards"], "AtlasLootBGItems" },
+        ["BRRepRevered"] = { "Blood Ring" .. " " .. L["Revered Rewards"], "AtlasLootBGItems" },
+        ["BRRepExalted"] = { "Blood Ring" .. " " .. L["Exalted Rewards"], "AtlasLootBGItems" },
 		--Alterac Valley
 		["AVIvus"] = { BZ["Alterac Valley"].." - "..L["Ivus the Forest Lord"], "AtlasLootBGItems" },
 		["AVLokholar"] = { BZ["Alterac Valley"].." - "..L["Lokholar the Ice Lord"], "AtlasLootBGItems" },

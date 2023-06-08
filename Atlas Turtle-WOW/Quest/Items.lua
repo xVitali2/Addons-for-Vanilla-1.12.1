@@ -4198,7 +4198,6 @@ Inst45Quest4Rewardtext = AQNoReward
 --Quest 4 Horde
 Inst45Quest4Rewardtext_HORDE = AQNoReward
 
-
 --------------- INST46 - Hateforge Quarry (HQ) ---------------
 --Quest 1 Alliance
 Inst46Quest1Rewardtext = AQDiscription_REWARD..WHITE.."1"..AQDiscription_OR..WHITE.."2"..AQDiscription_OR..WHITE.."3"
@@ -4274,3 +4273,33 @@ Inst46Quest3ID3_HORDE = "60773"
 Inst46Quest3ITC4_HORDE = Itemc3
 Inst46Quest3description4_HORDE = AQITEM_WAIST..AQITEM_MAIL
 Inst46Quest3ID4_HORDE = "60774"
+
+--------------- INST57 - Stormwind Vault (SV) ---------------
+--Quest 2 Alliance
+Inst57Quest2Rewardtext = AQDiscription_REWARD..WHITE.."1"..AQDiscription_OR..WHITE.."2"..AQDiscription_OR..WHITE.."3"
+--ITEM1
+Inst57Quest2ITC1 = Itemc3
+Inst57Quest2description1 = AQITEM_CROSSBOW
+Inst57Quest2ID1 = "60624"
+--ITEM2
+Inst57Quest2ITC2 = Itemc3
+Inst57Quest2description2 = AQITEM_HANDS..AQITEM_PLATE
+Inst57Quest2ID2 = "60625"
+--ITEM3
+Inst57Quest2ITC3 = Itemc3
+Inst57Quest2description3 = AQITEM_WAIST..AQITEM_CLOTH
+Inst57Quest2ID3 = "60626"
+--Quest 2 Horde
+Inst57Quest2Rewardtext_HORDE = AQDiscription_REWARD..WHITE.."1"..AQDiscription_OR..WHITE.."2"..AQDiscription_OR..WHITE.."3"
+--ITEM1
+Inst57Quest2ITC1_HORDE = Itemc3
+Inst57Quest2description1_HORDE = AQITEM_CROSSBOW
+Inst57Quest2ID1_HORDE = "60624"
+--ITEM2
+Inst57Quest2ITC2_HORDE = Itemc3
+Inst57Quest2description2_HORDE = AQITEM_HANDS..AQITEM_PLATE
+Inst57Quest2ID2_HORDE = "60625"
+--ITEM3
+Inst57Quest2ITC3_HORDE = Itemc3
+Inst57Quest2description3_HORDE = AQITEM_WAIST..AQITEM_CLOTH
+Inst57Quest2ID3_HORDE = "60626"

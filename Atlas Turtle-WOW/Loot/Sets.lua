@@ -4,6 +4,7 @@ AtlasLoot_Data["AtlasLootSetItems"] = {
 		{ 0, "", "", "" },
 		{ 0,"INV_Box_01","=q6=#oth_s1#","" },
 		{ 0, "", "", "" },
+		{ 81007, "INV_Misc_Bandana_03", "=q3=Blackened Defias Mask", "=ds=#s1#, #a2# =q7=#x96#", "20%" },
 		{ 10399, "INV_Chest_Leather_08", "=q3=Blackened Defias Armor", "=ds=#s5#, #a2# =q7=#x6#", "14.77%" },
 		{ 10401, "INV_Gauntlets_18", "=q2=Blackened Defias Gloves", "=ds=#s9#, #a2# =q7=#x9#", "1.76%" },
 		{ 10403, "INV_Belt_26", "=q2=Blackened Defias Belt", "=ds=#s10#, #a2# =q7=#x8#", "23.26%" },

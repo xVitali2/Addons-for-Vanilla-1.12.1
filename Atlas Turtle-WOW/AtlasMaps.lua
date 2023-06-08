@@ -1445,6 +1445,38 @@ AtlasMaps = {
 		--{ ORNG..AL["Damage: "]..AL["Physical"] };
 	},
 	--by CFM
+	CowKing = {
+		ZoneName = { "There Is No Cow Level", NPC, 91799 };
+		Acronym = "CowKing";
+		Location = { BZ["Elwynn Forest"], ZONE, 12 };
+		LevelRange = "60+";
+		MinLevel = "--";
+		PlayerLimit = "20+";
+		Continent = BZ["Eastern Kingdoms"];
+		{ GREY.."1) ".."Moo", NPC, 91799 };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+	},
 	Concavius = {
 		ZoneName = { "Concavius Voidspawn", NPC, 92213 };
 		Acronym = "Concavius";
@@ -1454,6 +1486,38 @@ AtlasMaps = {
 		PlayerLimit = "20+";
 		Continent = BZ["Kalimdor"];
 		{ GREY.."1) ".."Concavius Voidspawn", NPC, 92213 };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+		{ "" };
+	},
+	Ostarius = {
+		ZoneName = { "Ostarius", NPC, 80935 };
+		Acronym = "Ostarius";
+		Location = { BZ["Tanaris"], ZONE, 440 };
+		LevelRange = "60+";
+		MinLevel = "--";
+		PlayerLimit = "40+";
+		Continent = BZ["Kalimdor"];
+		{ GREY.."1) ".."Ostarius", NPC, 80935 };
 		{ "" };
 		{ "" };
 		{ "" };
@@ -1552,33 +1616,35 @@ AtlasMaps = {
 		PlayerLimit = "5";
 		Continent = BZ["Eastern Kingdoms"];
 		{ ORNG..L["Key"]..": Karazhan Crypt Key", ITEM, 51356 },
-		{ "" };
-		{ GREY.."1) ".."Marrowspike", NPC, 91920 };
-		{ GREY.."2) ".."Hivaxxis", NPC, 91929 };
-		{ GREY.."3) ".."Corpsemuncher", NPC, 91917 };
-		{ GREY.."4) ".."Archlich Enkhraz", NPC, 91916 };
-		{ GREY.."5) ".."Alarus", NPC, 91928 };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
+		{ "" },
+		{ GREY.."1) ".."Marrowspike", NPC, 91920 },
+		{ GREY.."2) ".."Hivaxxis", NPC, 91929 },
+		{ GREY.."3) ".."Corpsemuncher", NPC, 91917 },
+		{ GREY.."4) ".."Guard Captain Gort", NPC, 92935 },
+		{ GREY.."5) ".."Archlich Enkhraz", NPC, 91916 },
+		{ GREY.."6) ".."Commander Anderson", NPC, 91919 },
+		{ GREY.."7) ".."Alarus", NPC, 91928 },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" }
 	},
 	HateforgeQuarry = {
-		ZoneName = { "Hateforge Quarry", 3334 },
+		ZoneName = { "Hateforge Quarry", 3335 },
 		Acronym = "HQ",
 		Location = { BZ["Burning Steppes"], 331 },
 		LevelRange = "50-57",
@@ -1594,6 +1660,39 @@ AtlasMaps = {
 		{ GREY.."5) ".."Har'gesh Doomcaller", NPC, 60737 },
 		{ "" },
 		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" }
+	},
+	StormwindVault = {
+		ZoneName = { "Stormwind Vault", 3336 },
+		Acronym = "SV",
+		Location = { BZ["Stormwind City"], 1519 },
+		LevelRange = "60",
+		MinLevel = "58",
+		PlayerLimit = "5",
+		Continent = BZ["Eastern Kingdoms"],
+		{ "" },
+		{ "" },
+		{ GREY.."1) ".."Aszosh Grimflame", NPC, 80853 },
+		{ GREY.."2) ".."Tham'Grarr",NPC, 80852 },
+		{ GREY.."3) ".."Black Bride", NPC, 80850 },
+		{ GREY.."4) ".."Damian", NPC, 80854 },
+		{ GREY.."5) ".."Volkan Cruelblade", NPC, 80851 },
+		{ GREY.."6) ".."Arc'tiras", NPC, 93107 },
+		{ GREY.."-) ".."Vault Armory Equipment", OBJECT, 2010867 },
 		{ "" },
 		{ "" },
 		{ "" },
@@ -1648,6 +1747,37 @@ AtlasMaps = {
 		Health = "28140",
 		Mana = "20000",
 		{ GREY.."1) ".."Crusader Larsarius <The Scarlet Crusade>", NPC, 49008 },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" }
+	},
+	AdmiralBareanWestwind = {
+		ZoneName = { "Admiral Barean Westwind", NPC, 60525	},
+		Location = { "", ZONE, 0 },
+		LevelRange = "60",
+		Health = "141057",
+		Mana = "12000",
+		{ GREY.."1) ".."Admiral Barean Westwind", NPC, 60525 },
 		{ "" },
 		{ "" },
 		{ "" },

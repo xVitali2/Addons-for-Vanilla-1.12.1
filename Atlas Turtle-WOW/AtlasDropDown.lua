@@ -105,6 +105,7 @@ Atlas_DropDownLayouts = {
 			"SMCathedral",
 			"SMGraveyard",
 			"SMLibrary",
+			"StormwindVault",
 			"Stratholme",
 			"TheDeadmines",
 			"TheStockade",
@@ -139,7 +140,8 @@ Atlas_DropDownLayouts = {
 			"Zareth",
 			"Mallon",
 			"Kargron",
-			"CrusaderLarsarius"
+			"CrusaderLarsarius",
+			"AdmiralBareanWestwind"
 		},
 		[ATLAS_DDL_WORLDBOSSES] = {
 			"Azuregos",
@@ -148,7 +150,9 @@ Atlas_DropDownLayouts = {
 			"Turtlhu",
 			"Nerubian",
 			"Reaver",
-			"Concavius"
+			"Ostarius",
+			"Concavius",
+			"CowKing"
 		},
 		[GREEN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
@@ -188,6 +192,7 @@ Atlas_DropDownLayouts = {
 			"DireMaulNorth",
 			"DireMaulWest",
 			"Scholomance",
+			"StormwindVault",
 			"Stratholme",
 			"KarazhanCrypt",
 			"BlackrockSpireLower",
@@ -235,7 +240,8 @@ Atlas_DropDownLayouts = {
 			"Zareth",
 			"Mallon",
 			"Kargron",
-			"CrusaderLarsarius"
+			"CrusaderLarsarius",
+			"AdmiralBareanWestwind"
 		},
 		[ATLAS_DDL_WORLDBOSSES] = {
 			"Azuregos",
@@ -244,7 +250,9 @@ Atlas_DropDownLayouts = {
 			"Turtlhu",
 			"Nerubian",
 			"Reaver",
+			"Ostarius",			
 			"Concavius",
+			"CowKing",
 		},
 		[GREEN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
@@ -313,6 +321,7 @@ Atlas_DropDownLayouts = {
 			"HateforgeQuarry",
 			"KarazhanCrypt",
 			"Scholomance",
+			"StormwindVault",
 			"Stratholme"
 		},
 		[ATLAS_DDL_LEVEL_60] = {
@@ -334,7 +343,8 @@ Atlas_DropDownLayouts = {
 			"Zareth",
 			"Mallon",
 			"Kargron",
-			"CrusaderLarsarius"
+			"CrusaderLarsarius",
+			"AdmiralBareanWestwind"
 		},
 		[ATLAS_DDL_WORLDBOSSES] = {
 			"Azuregos",
@@ -343,7 +353,9 @@ Atlas_DropDownLayouts = {
 			"Turtlhu",
 			"Nerubian",
 			"Reaver",
-			"Concavius"
+			"Ostarius",
+			"Concavius",
+			"CowKing",
 		},
 		[GREEN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
@@ -397,6 +409,7 @@ Atlas_DropDownLayouts = {
 			"SMCathedral",
 			"SMGraveyard",
 			"SMLibrary",
+			"StormwindVault",
 			"Stratholme",
 			"TheDeadmines",
 			"TheCrescentGrove",
@@ -425,7 +438,8 @@ Atlas_DropDownLayouts = {
 			"Zareth",
 			"Mallon",
 			"Kargron",
-			"CrusaderLarsarius"
+			"CrusaderLarsarius",
+			"AdmiralBareanWestwind"
 		},
 		[ATLAS_DDL_WORLDBOSSES] = {
 			"Azuregos",
@@ -434,7 +448,9 @@ Atlas_DropDownLayouts = {
 			"Turtlhu",
 			"Nerubian",
 			"Reaver",
+			"Ostarius",
 			"Concavius",
+			"CowKing",
 		},
 		[GREEN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
@@ -492,14 +508,15 @@ Atlas_DropDownLayouts = {
 			"DireMaulWest",
 			"DireMaulNorth",
 			"Scholomance",
+			"StormwindVault",
 			"Stratholme",
 			"KarazhanCrypt",
-			"BlackrockSpireLower",
-			"BlackrockSpireUpper",
-			"ZulGurub",
-			"TheRuinsofAhnQiraj"
+			"BlackrockSpireLower"
 		},
 		[ATLAS_DDL_ALL_MENU2] = {
+			"BlackrockSpireUpper",
+			"ZulGurub",
+			"TheRuinsofAhnQiraj",
 			"MoltenCore",
 			"OnyxiasLair",
 			"BlackwingLair",
@@ -516,7 +533,8 @@ Atlas_DropDownLayouts = {
 			"Zareth",
 			"Mallon",
 			"Kargron",
-			"CrusaderLarsarius"
+			"CrusaderLarsarius",
+			"AdmiralBareanWestwind"
 		},
 		[ATLAS_DDL_WORLDBOSSES] = {
 			"Azuregos",
@@ -525,6 +543,7 @@ Atlas_DropDownLayouts = {
 			"Turtlhu",
 			"Nerubian",
 			"Reaver",
+			"Ostarius",
 			"Concavius",
 		},
 		[GREEN..ATLAS_DDL_TYPE_ENTRANCE] = {

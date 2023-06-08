@@ -1,11 +1,2525 @@
 ﻿local L = AceLibrary("AceLocale-2.2"):new("AtlasLoot") 
 local BC = AceLibrary("Babble-Class-2.2")
 local BS = AceLibrary("Babble-Spell-2.2")
+local BB = AceLibrary("Babble-Boss-2.2")
 local BF = AceLibrary("Babble-Faction-2.2")
 local BZ = AceLibrary("Babble-Zone-2.2")
 local BIS = AceLibrary("Babble-ItemSet-2.2")
 
 AtlasLoot_ButtonRegistry = {
+	--WoW Instances
+    ["HQHighForemanBargulBlackhammer"] = {
+        Title = "High Foreman Bargul Blackhammer",
+        Next_Page = "HQEngineerFiggles",
+        Next_Title = "Engineer Figgles"
+    },
+    ["HQEngineerFiggles"] = {
+        Title = "Engineer Figgles";
+        Next_Page = "HQCorrosis";
+        Next_Title = "Corrosis";
+        Prev_Page = "HQHighForemanBargulBlackhammer";
+        Prev_Title = "High Foreman Bargul Blackhammer"
+    },
+    ["HQCorrosis"] = {
+        Title = "Corrosis";
+        Next_Page = "HQHatereaverAnnihilator";
+        Next_Title = "Hatereaver Annihilator";
+        Prev_Page = "HQEngineerFiggles";
+        Prev_Title = "Engineer Figgles"
+    },
+    ["HQHatereaverAnnihilator"] = {
+        Title = "Hatereaver Annihilator";
+        Next_Page = "HQHargeshDoomcaller";
+        Next_Title = "Hargesh Doomcaller";
+        Prev_Page = "HQCorrosis";
+        Prev_Title = "Corrosis"
+    },
+    ["HQHargeshDoomcaller"] = {
+        Title = "Hargesh Doomcaller";
+        Prev_Page = "HQHatereaverAnnihilator";
+        Prev_Title = "Hatereaver Annihilator"
+    },
+    ["BRDLordRoccor"] = {
+        Title = "Lord Roccor";
+        Next_Page = "BRDHighInterrogatorGerstahn";
+        Next_Title = "High Interrogator Gerstahn"
+    },
+    ["BRDHighInterrogatorGerstahn"] = {
+        Title = "High Interrogator Gerstahn";
+        Next_Page = "BRDAnubshiah";
+        Next_Title = "Anub'shiah";
+        Prev_Page = "BRDLordRoccor";
+        Prev_Title = "Lord Roccor"
+    },
+	["BRDAnubshiah"] = {
+        Title = "Anub'shiah";
+        Next_Page = "BRDEviscerator";
+        Next_Title = "Eviscerator";
+        Prev_Page = "BRDHighInterrogatorGerstahn";
+        Prev_Title = "High Interrogator Gerstahn";
+    },
+    ["BRDEviscerator"] = {
+        Title = "Eviscerator",
+        Next_Page = "BRDGorosh";
+        Next_Title = "Gorosh the Dervish",
+        Prev_Page = "BRDAnubshiah";
+        Prev_Title = "Anub'shiah",
+    },
+    ["BRDGorosh"] = {
+        Title = "Gorosh the Dervish",
+        Next_Page = "BRDGrizzle";
+        Next_Title = "Grizzle",
+        Prev_Page = "BRDEviscerator";
+        Prev_Title = "Eviscerator",
+    },
+    ["BRDGrizzle"] = {
+        Title = "Grizzle",
+        Next_Page = "BRDHedrum";
+        Next_Title = "Hedrum the Creeper",
+        Prev_Page = "BRDGorosh";
+        Prev_Title = "Gorosh the Dervish",
+    },
+    ["BRDHedrum"] = {
+        Title = "Hedrum the Creeper",
+        Next_Page = "BRDOkthor";
+        Next_Title = "Ok'thor the Breaker",
+        Prev_Page = "BRDGrizzle";
+        Prev_Title = "Grizzle",
+    },
+    ["BRDOkthor"] = {
+        Title = "Ok'thor the Breaker",
+        Next_Page = "BRDTheldren";
+        Next_Title = "Theldren",
+        Prev_Page = "BRDHedrum";
+        Prev_Title = "Hedrum the Creeper",
+    },
+    ["BRDTheldren"] = {
+        Title = "Theldren",
+        Next_Page = "BRDHoundmaster";
+        Next_Title = "Houndmaster Grebmar",
+        Prev_Page = "BRDOkthor";
+        Prev_Title = "Ok'thor the Breaker",
+    },
+    ["BRDHoundmaster"] = {
+        Title = "Houndmaster Grebmar",
+        Next_Page = "BRDPyromancerLoregrain";
+        Next_Title = "Pyromancer Loregrain".." ("..L["Rare"]..")";
+        Prev_Page = "BRDTheldren";
+        Prev_Title = "Theldren",
+    },
+    ["BRDPyromancerLoregrain"] = {
+        Title = "Pyromancer Loregrain".." ("..L["Rare"]..")";
+        Next_Page = "BRDTheVault";
+        Next_Title = "The Vault",
+        Prev_Page = "BRDHoundmaster";
+        Prev_Title = "Houndmaster Grebmar",
+    },
+    ["BRDTheVault"] = {
+        Title = "The Vault",
+        Next_Page = "BRDWarderStilgiss";
+        Next_Title = "Warder Stilgiss".." ("..L["Rare"]..")";
+        Prev_Page = "BRDPyromancerLoregrain";
+        Prev_Title = "Pyromancer Loregrain".." ("..L["Rare"]..")";
+    },
+    ["BRDWarderStilgiss"] = {
+        Title = "Warder Stilgiss".." ("..L["Rare"]..")";
+        Next_Page = "BRDVerek";
+        Next_Title = "Verek".." ("..L["Rare"]..")";
+        Prev_Page = "BRDTheVault";
+        Prev_Title = "The Vault",
+    },
+    ["BRDVerek"] = {
+        Title = "Verek".." ("..L["Rare"]..")";
+        Next_Page = "BRDFineousDarkvire";
+        Next_Title = "Fineous Darkvire",
+        Prev_Page = "BRDWarderStilgiss";
+        Prev_Title = "Warder Stilgiss".." ("..L["Rare"]..")";
+    },
+    ["BRDFineousDarkvire"] = {
+        Title = "Fineous Darkvire",
+        Next_Page = "BRDLordIncendius";
+        Next_Title = "Lord Incendius",
+        Prev_Page = "BRDVerek";
+        Prev_Title = "Verek".." ("..L["Rare"]..")";
+    },
+    ["BRDLordIncendius"] = {
+        Title = "Lord Incendius",
+        Next_Page = "BRDBaelGar";
+        Next_Title = "Bael'Gar",
+        Prev_Page = "BRDFineousDarkvire";
+        Prev_Title = "Fineous Darkvire",
+    },
+    ["BRDBaelGar"] = {
+        Title = "Bael'Gar",
+        Next_Page = "BRDGeneralAngerforge";
+        Next_Title = "General Angerforge",
+        Prev_Page = "BRDLordIncendius";
+        Prev_Title = "Lord Incendius",
+    },
+    ["BRDGeneralAngerforge"] = {
+        Title = "General Angerforge",
+        Next_Page = "BRDGolemLordArgelmach";
+        Next_Title = "Golem Lord Argelmach",
+        Prev_Page = "BRDBaelGar";
+        Prev_Title = "Bael'Gar",
+    },
+    ["BRDGolemLordArgelmach"] = {
+        Title = "Golem Lord Argelmach",
+        Next_Page = "BRDGuzzler";
+        Next_Title = "The Grim Guzzler",
+        Prev_Page = "BRDGeneralAngerforge";
+        Prev_Title = "General Angerforge",
+    },
+    ["BRDGuzzler"] = {
+        Title = "The Grim Guzzler",
+        Next_Page = "BRDFlamelash";
+        Next_Title = "Ambassador Flamelash",
+        Prev_Page = "BRDGolemLordArgelmach";
+        Prev_Title = "Golem Lord Argelmach",
+    },
+    ["BRDFlamelash"] = {
+        Title = "Ambassador Flamelash",
+        Next_Page = "BRDPanzor";
+        Next_Title = "Panzor the Invincible".." ("..L["Rare"]..")";
+        Prev_Page = "BRDGuzzler";
+        Prev_Title = "The Grim Guzzler",
+    },
+    ["BRDPanzor"] = {
+        Title = "Panzor the Invincible".." ("..L["Rare"]..")";
+        Next_Page = "BRDTomb";
+        Next_Title = "Summoner's Tomb",
+        Prev_Page = "BRDFlamelash";
+        Prev_Title = "Ambassador Flamelash",
+    },
+    ["BRDTomb"] = {
+        Title = "Summoner's Tomb",
+        Next_Page = "BRDMagmus";
+        Next_Title = "Magmus",
+        Prev_Page = "BRDPanzor";
+        Prev_Title = "Panzor the Invincible".." ("..L["Rare"]..")";
+    },
+    ["BRDMagmus"] = {
+        Title = "Magmus",
+        Next_Page = "BRDPrincess";
+        Next_Title = "Princess Moira Bronzebeard",
+        Prev_Page = "BRDTomb";
+        Prev_Title = "Summoner's Tomb",
+    },
+    ["BRDPrincess"] = {
+        Title = "Princess Moira Bronzebeard",
+        Next_Page = "BRDEmperorDagranThaurissan";
+        Next_Title = "Emperor Dagran Thaurissan",
+        Prev_Page = "BRDMagmus";
+        Prev_Title = "Magmus",
+    },
+    ["BRDEmperorDagranThaurissan"] = {
+        Title = "Emperor Dagran Thaurissan",
+        Next_Page = "BRDTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "BRDPrincess";
+        Prev_Title = "Princess Moira Bronzebeard",
+    },
+    ["BRDTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "BRDEmperorDagranThaurissan";
+        Prev_Title = "Emperor Dagran Thaurissan",
+    },
+    ["LBRSSpirestoneButcher"] = {
+        Title = "Spirestone Butcher".." ("..L["Rare"]..")";
+        Next_Page = "LBRSSpirestoneBattleLord";
+        Next_Title = "Spirestone Battle Lord".." ("..L["Rare"]..")";
+    },
+    ["LBRSSpirestoneBattleLord"] = {
+        Title = "Spirestone Battle Lord".." ("..L["Rare"]..")";
+        Next_Page = "LBRSSpirestoneLordMagus";
+        Next_Title = "Spirestone Lord Magus".." ("..L["Rare"]..")";
+        Prev_Page = "LBRSSpirestoneButcher";
+        Prev_Title = "Spirestone Butcher".." ("..L["Rare"]..")";
+    },
+    ["LBRSSpirestoneLordMagus"] = {
+        Title = "Spirestone Lord Magus".." ("..L["Rare"]..")";
+        Next_Page = "LBRSOmokk";
+        Next_Title = "Highlord Omokk",
+        Prev_Page = "LBRSSpirestoneBattleLord";
+        Prev_Title = "Spirestone Battle Lord".." ("..L["Rare"]..")";
+    },
+    ["LBRSOmokk"] = {
+        Title = "Highlord Omokk",
+        Next_Page = "LBRSVosh";
+        Next_Title = "Shadow Hunter Vosh'gajin",
+        Prev_Page = "LBRSSpirestoneLordMagus";
+        Prev_Title = "Spirestone Lord Magus".." ("..L["Rare"]..")";
+    },
+    ["LBRSVosh"] = {
+        Title = "Shadow Hunter Vosh'gajin",
+        Next_Page = "LBRSVoone";
+        Next_Title = "War Master Voone",
+        Prev_Page = "LBRSOmokk";
+        Prev_Title = "Highlord Omokk",
+    },
+    ["LBRSVoone"] = {
+        Title = "War Master Voone",
+        Next_Page = "LBRSFelguard";
+        Next_Title = "Burning Felguard".." ("..L["Rare"]..")";
+        Prev_Page = "LBRSVosh";
+        Prev_Title = "Shadow Hunter Vosh'gajin",
+    },
+    ["LBRSFelguard"] = {
+        Title = "Burning Felguard".." ("..L["Rare"]..")";
+        Next_Page = "LBRSGrayhoof";
+        Next_Title = "Mor Grayhoof",
+        Prev_Page = "LBRSVoone";
+        Prev_Title = "War Master Voone",
+    },
+    ["LBRSGrayhoof"] = {
+        Title = "Mor Grayhoof",
+        Next_Page = "LBRSGrimaxe";
+        Next_Title = "Bannok Grimaxe".." ("..L["Rare"]..")";
+        Prev_Page = "LBRSFelguard";
+        Prev_Title = "Burning Felguard".." ("..L["Rare"]..")";
+    },
+    ["LBRSGrimaxe"] = {
+        Title = "Bannok Grimaxe".." ("..L["Rare"]..")";
+        Next_Page = "LBRSSmolderweb";
+        Next_Title = "Mother Smolderweb",
+        Prev_Page = "LBRSGrayhoof";
+        Prev_Title = "Mor Grayhoof",
+    },
+    ["LBRSSmolderweb"] = {
+        Title = "Mother Smolderweb",
+        Next_Page = "LBRSCrystalFang";
+        Next_Title = "Crystal Fang".." ("..L["Rare"]..")";
+        Prev_Page = "LBRSGrimaxe";
+        Prev_Title = "Bannok Grimaxe".." ("..L["Rare"]..")";
+    },
+    ["LBRSCrystalFang"] = {
+        Title = "Crystal Fang".." ("..L["Rare"]..")";
+        Next_Page = "LBRSDoomhowl";
+        Next_Title = "Urok Doomhowl",
+        Prev_Page = "LBRSSmolderweb";
+        Prev_Title = "Mother Smolderweb",
+    },
+    ["LBRSDoomhowl"] = {
+        Title = "Urok Doomhowl",
+        Next_Page = "LBRSZigris";
+        Next_Title = "Quartermaster Zigris",
+        Prev_Page = "LBRSCrystalFang";
+        Prev_Title = "Crystal Fang".." ("..L["Rare"]..")";
+    },
+    ["LBRSZigris"] = {
+        Title = "Quartermaster Zigris",
+        Next_Page = "LBRSHalycon";
+        Next_Title = "Halycon",
+        Prev_Page = "LBRSDoomhowl";
+        Prev_Title = "Urok Doomhowl",
+    },
+    ["LBRSHalycon"] = {
+        Title = "Halycon",
+        Next_Page = "LBRSSlavener";
+        Next_Title = "Gizrul the Slavener",
+        Prev_Page = "LBRSZigris";
+        Prev_Title = "Quartermaster Zigris",
+    },
+    ["LBRSSlavener"] = {
+        Title = "Gizrul the Slavener",
+        Next_Page = "LBRSBashguud";
+        Next_Title = "Ghok Bashguud".." ("..L["Rare"]..")";
+        Prev_Page = "LBRSHalycon";
+        Prev_Title = "Halycon",
+    },
+    ["LBRSBashguud"] = {
+        Title = "Ghok Bashguud".." ("..L["Rare"]..")";
+        Next_Page = "LBRSWyrmthalak";
+        Next_Title = "Overlord Wyrmthalak",
+        Prev_Page = "LBRSSlavener";
+        Prev_Title = "Gizrul the Slavener",
+    },
+    ["LBRSWyrmthalak"] = {
+        Title = "Overlord Wyrmthalak",
+        Next_Page = "LBRSTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "LBRSBashguud";
+        Prev_Title = "Ghok Bashguud".." ("..L["Rare"]..")";
+    },
+    ["LBRSTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "LBRSWyrmthalak";
+        Prev_Title = "Overlord Wyrmthalak",
+    },
+    ["UBRSEmberseer"] = {
+        Title = "Pyroguard Emberseer",
+        Next_Page = "UBRSSolakar";
+        Next_Title = "Solakar Flamewreath",
+    },
+    ["UBRSSolakar"] = {
+        Title = "Solakar Flamewreath",
+        Next_Page = "UBRSFlame";
+        Next_Title = "Father Flame",
+        Prev_Page = "UBRSEmberseer";
+        Prev_Title = "Pyroguard Emberseer",
+    },
+    ["UBRSFlame"] = {
+        Title = "Father Flame",
+        Next_Page = "UBRSRunewatcher";
+        Next_Title = "Jed Runewatcher".." ("..L["Rare"]..")";
+        Prev_Page = "UBRSSolakar";
+        Prev_Title = "Solakar Flamewreath",
+    },
+    ["UBRSRunewatcher"] = {
+        Title = "Jed Runewatcher".." ("..L["Rare"]..")";
+        Next_Page = "UBRSAnvilcrack";
+        Next_Title = "Goraluk Anvilcrack".." ("..L["Rare"]..")";
+        Prev_Page = "UBRSFlame";
+        Prev_Title = "Father Flame",
+    },
+    ["UBRSAnvilcrack"] = {
+        Title = "Goraluk Anvilcrack".." ("..L["Rare"]..")";
+        Next_Page = "UBRSRend";
+        Next_Title = "Warchief Rend Blackhand",
+        Prev_Page = "UBRSRunewatcher";
+        Prev_Title = "Jed Runewatcher".." ("..L["Rare"]..")";
+    },
+    ["UBRSRend"] = {
+        Title = "Warchief Rend Blackhand",
+        Next_Page = "UBRSGyth";
+        Next_Title = "Gyth",
+        Prev_Page = "UBRSAnvilcrack";
+        Prev_Title = "Goraluk Anvilcrack".." ("..L["Rare"]..")";
+    },
+    ["UBRSGyth"] = {
+        Title = "Gyth",
+        Next_Page = "UBRSBeast";
+        Next_Title = "The Beast",
+        Prev_Page = "UBRSRend";
+        Prev_Title = "Warchief Rend Blackhand",
+    },
+    ["UBRSBeast"] = {
+        Title = "The Beast",
+        Next_Page = "UBRSValthalak";
+        Next_Title = "Lord Valthalak",
+        Prev_Page = "UBRSGyth";
+        Prev_Title = "Gyth",
+    },
+    ["UBRSValthalak"] = {
+        Title = "Lord Valthalak",
+        Next_Page = "UBRSDrakkisath";
+        Next_Title = "General Drakkisath",
+        Prev_Page = "UBRSBeast";
+        Prev_Title = "The Beast",
+    },
+    ["UBRSDrakkisath"] = {
+        Title = "General Drakkisath",
+        Next_Page = "UBRSTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "UBRSValthalak";
+        Prev_Title = "Lord Valthalak",
+    },
+    ["UBRSTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "UBRSDrakkisath";
+        Prev_Title = "General Drakkisath",
+    },
+    ["KCMarrowspike"] = {
+        Title = "Marrowspike",
+        Next_Page = "KCHivaxxis";
+        Next_Title = "Hivaxxis",
+    },
+    ["KCHivaxxis"] = {
+        Title = "Hivaxxis",
+        Next_Page = "KCCorpsemuncher";
+        Next_Title = "Corpsemuncher",
+        Prev_Page = "KCMarrowspike";
+        Prev_Title = "Marrowspike",
+    },
+    ["KCCorpsemuncher"] = {
+        Title = "Corpsemuncher",
+        Next_Page = "KCGuardCaptainGort";
+        Next_Title = "Guard Captain Gort",
+        Prev_Page = "KCHivaxxis";
+        Prev_Title = "Hivaxxis",
+    },
+    ["KCGuardCaptainGort"] = {
+        Title = "Guard Captain Gort",
+        Next_Page = "KCArchlichEnkhraz";
+        Next_Title = "Archlich Enkhraz",
+        Prev_Page = "KCCorpsemuncher";
+        Prev_Title = "Corpsemuncher",
+    },
+    ["KCArchlichEnkhraz"] = {
+        Title = "Archlich Enkhraz",
+        Next_Page = "KCCommanderAnderson";
+        Next_Title = "Commander Anderson",
+        Prev_Page = "KCGuardCaptainGort";
+        Prev_Title = "Guard Captain Gort",
+    },
+    ["KCCommanderAnderson"] = {
+        Title = "Commander Anderson",
+        Next_Page = "KCAlarus";
+        Next_Title = "Alarus",
+        Prev_Page = "KCArchlichEnkhraz";
+        Prev_Title = "Archlich Enkhraz",
+    },
+    ["KCAlarus"] = {
+        Title = "Alarus",
+        Next_Page = "KCTreasure";
+        Next_Title = "Half-Buried Treasure Chest",
+        Prev_Page = "KCCommanderAnderson";
+        Prev_Title = "Commander Anderson",
+    },
+	["KCTreasure"] = {
+		Title = "Half-Buried Treasure Chest",
+        Prev_Page = "KCAlarus";
+        Prev_Title = "Alarus",
+	},
+    ["COTBMChronar"] = {
+        Title = "Chronar",
+        Next_Page = "COTBMHarbingerAphygth";
+        Next_Title = "Harbinger Aph'ygth",
+    },
+    ["COTBMHarbingerAphygth"] = {
+        Title = "Harbinger Aph'ygth",
+        Next_Page = "COTBMTimeLordEpochronos";
+        Next_Title = "Time-Lord Epochronos",
+        Prev_Page = "COTBMChronar";
+        Prev_Title = "Chronar",
+    },
+    ["COTBMTimeLordEpochronos"] = {
+        Title = "Time-Lord Epochronos",
+        Next_Page = "COTBMAntnormi";
+        Next_Title = "Antnormi",
+        Prev_Page = "COTBMHarbingerAphygth";
+        Prev_Title = "Harbinger Aph'ygth",
+    },
+    ["COTBMAntnormi"] = {
+        Title = "Antnormi",
+        Next_Page = "COTBMInfiniteChromie";
+        Next_Title = "Infinite Chromie",
+        Prev_Page = "COTBMTimeLordEpochronos";
+        Prev_Title = "Time-Lord Epochronos",
+    },
+    ["COTBMInfiniteChromie"] = {
+        Title = "Infinite Chromie",
+        Prev_Page = "COTBMAntnormi";
+        Prev_Title = "Antnormi",
+    },
+    ["SWVAszoshGrimflame"] = {
+        Title = "Aszosh Grimflame",
+        Next_Page = "SWVThamGrarr";
+        Next_Title = "Tham'Grarr",
+    },
+    ["SWVThamGrarr"] = {
+        Title = "Tham'Grarr",
+        Next_Page = "SWVBlackBride";
+        Next_Title = "Black Bride",
+        Prev_Page = "SWVAszoshGrimflame";
+        Prev_Title = "Aszosh Grimflame",
+    },
+    ["SWVBlackBride"] = {
+        Title = "Black Bride",
+        Next_Page = "SWVDamian";
+        Next_Title = "Damian",
+        Prev_Page = "SWVThamGrarr";
+        Prev_Title = "Tham'Grarr",
+    },
+    ["SWVDamian"] = {
+        Title = "Damian",
+        Next_Page = "SWVVolkanCruelblade";
+        Next_Title = "Volkan Cruelblade",
+        Prev_Page = "SWVBlackBride";
+        Prev_Title = "Black Bride",
+    },
+    ["SWVVolkanCruelblade"] = {
+        Title = "Volkan Cruelblade",
+        Next_Page = "SWVArctiras";
+        Next_Title = "Arc'tiras",
+        Prev_Page = "SWVDamian";
+        Prev_Title = "Damian",
+    },
+    ["SWVArctiras"] = {
+        Title = "Arc'tiras",
+        Next_Page = "SWVVaultArmoryEquipment";
+        Next_Title = "Vault Armory Equipment",
+        Prev_Page = "SWVVolkanCruelblade";
+        Prev_Title = "Volkan Cruelblade",
+    },
+    ["SWVVaultArmoryEquipment"] = {
+        Title = "Vault Armory Equipment",
+        Prev_Page = "SWVArctiras";
+        Prev_Title = "Arc'tiras",
+    },
+    ["BWLRazorgore"] = {
+        Title = "Razorgore the Untamed",
+        Next_Page = "BWLVaelastrasz";
+        Next_Title = "Vaelastrasz the Corrupt",
+    },
+    ["BWLVaelastrasz"] = {
+        Title = "Vaelastrasz the Corrupt",
+        Next_Page = "BWLLashlayer";
+        Next_Title = "Broodlord Lashlayer",
+        Prev_Page = "BWLRazorgore";
+        Prev_Title = "Razorgore the Untamed",
+    },
+    ["BWLLashlayer"] = {
+        Title = "Broodlord Lashlayer",
+        Next_Page = "BWLFiremaw";
+        Next_Title = "Firemaw",
+        Prev_Page = "BWLVaelastrasz";
+        Prev_Title = "Vaelastrasz the Corrupt",
+    },
+    ["BWLFiremaw"] = {
+        Title = "Firemaw",
+        Next_Page = "BWLEbonroc";
+        Next_Title = "Ebonroc",
+        Prev_Page = "BWLLashlayer";
+        Prev_Title = "Broodlord Lashlayer",
+    },
+    ["BWLEbonroc"] = {
+        Title = "Ebonroc",
+        Next_Page = "BWLFlamegor";
+        Next_Title = "Flamegor",
+        Prev_Page = "BWLFiremaw";
+        Prev_Title = "Firemaw",
+    },
+    ["BWLFlamegor"] = {
+        Title = "Flamegor",
+        Next_Page = "BWLChromaggus";
+        Next_Title = "Chromaggus",
+        Prev_Page = "BWLEbonroc";
+        Prev_Title = "Ebonroc",
+    },
+    ["BWLChromaggus"] = {
+        Title = "Chromaggus",
+        Next_Page = "BWLNefarian";
+        Next_Title = "Nefarian",
+        Prev_Page = "BWLFlamegor";
+        Prev_Title = "Flamegor",
+    },
+    ["BWLNefarian"] = {
+        Title = "Nefarian",
+        Next_Page = "BWLTrashMobs";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "BWLChromaggus";
+        Prev_Title = "Chromaggus",
+    },
+    ["BWLTrashMobs"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "BWLNefarian";
+        Prev_Title = "Nefarian",
+    },
+    ["DMRhahkZor"] = {
+        Title = "Rhahk'Zor",
+        Next_Page = "DMMinerJohnson";
+        Next_Title = "Miner Johnson".." ("..L["Rare"]..")";
+    },
+    ["DMMinerJohnson"] = {
+        Title = "Miner Johnson".." ("..L["Rare"]..")";
+        Next_Page = "DMSneed";
+        Next_Title = "Sneed",
+        Prev_Page = "DMRhahkZor";
+        Prev_Title = "Rhahk'Zor",
+    },
+    ["DMSneed"] = {
+        Title = "Sneed",
+        Next_Page = "DMSneedsShredder";
+        Next_Title = "Sneed's Shredder",
+        Prev_Page = "DMMinerJohnson";
+        Prev_Title = "Miner Johnson".." ("..L["Rare"]..")";
+    },
+    ["DMSneedsShredder"] = {
+        Title = "Sneed's Shredder",
+        Next_Page = "DMGilnid";
+        Next_Title = "Gilnid",
+        Prev_Page = "DMSneed";
+        Prev_Title = "Sneed",
+    },
+    ["DMGilnid"] = {
+        Title = "Gilnid",
+        Next_Page = "DMMrSmite";
+        Next_Title = "Mr. Smite",
+        Prev_Page = "DMSneedsShredder";
+        Prev_Title = "Sneed's Shredder",
+    },
+    ["DMMrSmite"] = {
+        Title = "Mr. Smite",
+        Next_Page = "DMCookie";
+        Next_Title = "Cookie",
+        Prev_Page = "DMGilnid";
+        Prev_Title = "Gilnid",
+    },
+    ["DMCookie"] = {
+        Title = "Cookie",
+        Next_Page = "DMCaptainGreenskin";
+        Next_Title = "Captain Greenskin",
+        Prev_Page = "DMMrSmite";
+        Prev_Title = "Mr. Smite",
+    },
+    ["DMCaptainGreenskin"] = {
+        Title = "Captain Greenskin",
+        Next_Page = "DMVanCleef";
+        Next_Title = "Edwin VanCleef",
+        Prev_Page = "DMCookie";
+        Prev_Title = "Cookie",
+    },
+    ["DMVanCleef"] = {
+        Title = "Edwin VanCleef",
+        Next_Page = "DMTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "DMCaptainGreenskin";
+        Prev_Title = "Captain Greenskin",
+    },
+    ["DMTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "DMVanCleef";
+        Prev_Title = "Edwin VanCleef",
+    },
+    ["TCGGrovetenderEngryss"] = {
+        Title = "Grovetender Engryss",
+        Next_Page = "TCGKeeperRanathos";
+        Next_Title = "Keeper Ranathos",
+    },
+    ["TCGKeeperRanathos"] = {
+        Title = "Keeper Ranathos",
+        Next_Page = "TCGHighPriestessAlathea";
+        Next_Title = "High Priestess A'lathea",
+        Prev_Page = "TCGGrovetenderEngryss";
+        Prev_Title = "Grovetender Engryss",
+    },
+    ["TCGHighPriestessAlathea"] = {
+        Title = "High Priestess A'lathea",
+        Next_Page = "TCGFenektistheDeceiver";
+        Next_Title = "Fenektis the Deceiver",
+        Prev_Page = "TCGKeeperRanathos";
+        Prev_Title = "Keeper Ranathos",
+    },
+    ["TCGFenektistheDeceiver"] = {
+        Title = "Fenektis the Deceiver",
+        Next_Page = "TCGMasterRaxxieth";
+        Next_Title = "Master Raxxieth",
+        Prev_Page = "TCGHighPriestessAlathea";
+        Prev_Title = "High Priestess A'lathea",
+    },
+    ["TCGMasterRaxxieth"] = {
+        Title = "Master Raxxieth",
+        Next_Page = "TCGTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "TCGFenektistheDeceiver";
+        Prev_Title = "Fenektis the Deceiver",
+    },
+    ["TCGTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "TCGMasterRaxxieth";
+        Prev_Title = "Master Raxxieth",
+    },
+    ["GnGrubbis"] = {
+        Title = "Grubbis",
+        Next_Page = "GnViscousFallout";
+        Next_Title = "Viscous Fallout",
+    },
+    ["GnViscousFallout"] = {
+        Title = "Viscous Fallout",
+        Next_Page = "GnElectrocutioner6000";
+        Next_Title = "Electrocutioner 6000",
+        Prev_Page = "GnGrubbis";
+        Prev_Title = "Grubbis",
+    },
+    ["GnElectrocutioner6000"] = {
+        Title = "Electrocutioner 6000",
+        Next_Page = "GnCrowdPummeler960";
+        Next_Title = "Crowd Pummeler 9-60",
+        Prev_Page = "GnViscousFallout";
+        Prev_Title = "Viscous Fallout",
+    },
+    ["GnCrowdPummeler960"] = {
+        Title = "Crowd Pummeler 9-60",
+        Next_Page = "GnDIAmbassador";
+        Next_Title = "Dark Iron Ambassador",
+        Prev_Page = "GnElectrocutioner6000";
+        Prev_Title = "Electrocutioner 6000",
+    },
+    ["GnDIAmbassador"] = {
+        Title = "Dark Iron Ambassador",
+        Next_Page = "GnMekgineerThermaplugg";
+        Next_Title = "Mekgineer Thermaplugg",
+        Prev_Page = "GnCrowdPummeler960";
+        Prev_Title = "Crowd Pummeler 9-60",
+    },
+    ["GnMekgineerThermaplugg"] = {
+        Title = "Mekgineer Thermaplugg",
+        Next_Page = "GnTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "GnDIAmbassador";
+        Prev_Title = "Dark Iron Ambassador",
+    },
+    ["GnTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "GnMekgineerThermaplugg";
+        Prev_Title = "Mekgineer Thermaplugg",
+    },
+    ["MCLucifron"] = {
+        Title = "Lucifron",
+        Next_Page = "MCMagmadar";
+        Next_Title = "Magmadar",
+    },
+    ["MCMagmadar"] = {
+        Title = "Magmadar",
+        Next_Page = "MCGehennas";
+        Next_Title = "Gehennas",
+        Prev_Page = "MCLucifron";
+        Prev_Title = "Lucifron",
+    },
+    ["MCGehennas"] = {
+        Title = "Gehennas",
+        Next_Page = "MCGarr";
+        Next_Title = "Garr",
+        Prev_Page = "MCMagmadar";
+        Prev_Title = "Magmadar",
+    },
+    ["MCGarr"] = {
+        Title = "Garr",
+        Next_Page = "MCShazzrah";
+        Next_Title = "Shazzrah",
+        Prev_Page = "MCGehennas";
+        Prev_Title = "Gehennas",
+    },
+    ["MCShazzrah"] = {
+        Title = "Shazzrah",
+        Next_Page = "MCGeddon";
+        Next_Title = "Baron Geddon",
+        Prev_Page = "MCGarr";
+        Prev_Title = "Garr",
+    },
+    ["MCGeddon"] = {
+        Title = "Baron Geddon",
+        Next_Page = "MCGolemagg";
+        Next_Title = "Golemagg the Incinerator",
+        Prev_Page = "MCShazzrah";
+        Prev_Title = "Shazzrah",
+    },
+    ["MCGolemagg"] = {
+        Title = "Golemagg the Incinerator",
+        Next_Page = "MCSulfuron";
+        Next_Title = "Sulfuron Harbinger",
+        Prev_Page = "MCGeddon";
+        Prev_Title = "Baron Geddon",
+    },
+    ["MCSulfuron"] = {
+        Title = "Sulfuron Harbinger",
+        Next_Page = "MCMajordomo";
+        Next_Title = "Majordomo Executus",
+        Prev_Page = "MCGolemagg";
+        Prev_Title = "Golemagg the Incinerator",
+    },
+    ["MCMajordomo"] = {
+        Title = "Majordomo Executus",
+        Next_Page = "MCRagnaros";
+        Next_Title = "Ragnaros",
+        Prev_Page = "MCSulfuron";
+        Prev_Title = "Sulfuron Harbinger",
+    },
+    ["MCRagnaros"] = {
+        Title = "Ragnaros",
+        Next_Page = "MCTrashMobs";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "MCMajordomo";
+        Prev_Title = "Majordomo Executus",
+    },
+    ["MCTrashMobs"] = {
+        Title = "Trash Mobs",
+        Next_Page = "MCRANDOMBOSSDROPS";
+        Next_Title = "Random Boss Loot",
+        Prev_Page = "MCRagnaros";
+        Prev_Title = "Ragnaros",
+    },
+    ["MCRANDOMBOSSDROPS"] = {
+        Title = "Random Boss Loot",
+        Prev_Page = "MCTrashMobs";
+        Prev_Title = "Trash Mobs",
+    },
+    ["NAXPatchwerk"] = {
+        Title = "Patchwerk",
+        Next_Page = "NAXGrobbulus";
+        Next_Title = "Grobbulus",
+    },
+    ["NAXGrobbulus"] = {
+        Title = "Grobbulus",
+        Next_Page = "NAXGluth";
+        Next_Title = "Gluth",
+        Prev_Page = "NAXPatchwerk";
+        Prev_Title = "Patchwerk",
+    },
+    ["NAXGluth"] = {
+        Title = "Gluth",
+        Next_Page = "NAXThaddius";
+        Next_Title = "Thaddius",
+        Prev_Page = "NAXGrobbulus";
+        Prev_Title = "Grobbulus",
+    },
+    ["NAXThaddius"] = {
+        Title = "Thaddius",
+        Next_Page = "NAXAnubRekhan";
+        Next_Title = "Anub'Rekhan",
+        Prev_Page = "NAXGluth";
+        Prev_Title = "Gluth",
+    },
+    ["NAXAnubRekhan"] = {
+        Title = "Anub'Rekhan",
+        Next_Page = "NAXGrandWidowFaerlina";
+        Next_Title = "Grand Widow Faerlina",
+        Prev_Page = "NAXThaddius";
+        Prev_Title = "Thaddius",
+    },
+    ["NAXGrandWidowFaerlina"] = {
+        Title = "Grand Widow Faerlina",
+        Next_Page = "NAXMaexxna";
+        Next_Title = "Maexxna",
+        Prev_Page = "NAXAnubRekhan";
+        Prev_Title = "Anub'Rekhan",
+    },
+    ["NAXMaexxna"] = {
+        Title = "Maexxna",
+        Next_Page = "NAXNoththePlaguebringer";
+        Next_Title = "Noth the Plaguebringer",
+        Prev_Page = "NAXGrandWidowFaerlina";
+        Prev_Title = "Grand Widow Faerlina",
+    },
+    ["NAXNoththePlaguebringer"] = {
+        Title = "Noth the Plaguebringer",
+        Next_Page = "NAXHeigantheUnclean";
+        Next_Title = "Heigan the Unclean",
+        Prev_Page = "NAXMaexxna";
+        Prev_Title = "Maexxna",
+    },
+    ["NAXHeigantheUnclean"] = {
+        Title = "Heigan the Unclean",
+        Next_Page = "NAXLoatheb";
+        Next_Title = "Loatheb",
+        Prev_Page = "NAXNoththePlaguebringer";
+        Prev_Title = "Noth the Plaguebringer",
+    },
+    ["NAXLoatheb"] = {
+        Title = "Loatheb",
+        Next_Page = "NAXInstructorRazuvious";
+        Next_Title = "Instructor Razuvious",
+        Prev_Page = "NAXHeigantheUnclean";
+        Prev_Title = "Heigan the Unclean",
+    },
+    ["NAXInstructorRazuvious"] = {
+        Title = "Instructor Razuvious",
+        Next_Page = "NAXGothiktheHarvester";
+        Next_Title = "Gothik the Harvester",
+        Prev_Page = "NAXLoatheb";
+        Prev_Title = "Loatheb",
+    },
+    ["NAXGothiktheHarvester"] = {
+        Title = "Gothik the Harvester",
+        Next_Page = "NAXTheFourHorsemen";
+        Next_Title = "The Four Horsemen",
+        Prev_Page = "NAXInstructorRazuvious";
+        Prev_Title = "Instructor Razuvious",
+    },
+    ["NAXTheFourHorsemen"] = {
+        Title = "The Four Horsemen",
+        Next_Page = "NAXSapphiron";
+        Next_Title = "Sapphiron",
+        Prev_Page = "NAXGothiktheHarvester";
+        Prev_Title = "Gothik the Harvester",
+    },
+    ["NAXSapphiron"] = {
+        Title = "Sapphiron",
+        Next_Page = "NAXKelThuzard";
+        Next_Title = "Kel'Thuzad",
+        Prev_Page = "NAXTheFourHorsemen";
+        Prev_Title = "The Four Horsemen",
+    },
+    ["NAXKelThuzard"] = {
+        Title = "Kel'Thuzad",
+        Next_Page = "NAXTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "NAXSapphiron";
+        Prev_Title = "Sapphiron",
+    },
+    ["NAXTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "NAXKelThuzard";
+        Prev_Title = "Kel'Thuzad",
+    },
+    ["SMVishas"] = {
+        Title = "Interrogator Vishas",
+        Next_Page = "SMScorn";
+        Next_Title = "Scorn".." (".."Scourge Invasion"..")";
+    },
+    ["SMScorn"] = {
+        Title = "Scorn".." (".."Scourge Invasion"..")";
+        Next_Page = "SMIronspine";
+        Next_Title = "Ironspine".." ("..L["Rare"]..")";
+        Prev_Page = "SMVishas";
+        Prev_Title = "Interrogator Vishas",
+    },
+    ["SMIronspine"] = {
+        Title = "Ironspine".." ("..L["Rare"]..")";
+        Next_Page = "SMAzshir";
+        Next_Title = "Azshir the Sleepless".." ("..L["Rare"]..")";
+        Prev_Page = "SMScorn";
+        Prev_Title = "Scorn".." (".."Scourge Invasion"..")";
+    },
+    ["SMAzshir"] = {
+        Title = "Azshir the Sleepless".." ("..L["Rare"]..")";
+        Next_Page = "SMFallenChampion";
+        Next_Title = "Fallen Champion".." ("..L["Rare"]..")";
+        Prev_Page = "SMIronspine";
+        Prev_Title = "Ironspine".." ("..L["Rare"]..")";
+    },
+    ["SMFallenChampion"] = {
+        Title = "Fallen Champion".." ("..L["Rare"]..")";
+        Next_Page = "SMBloodmageThalnos";
+        Next_Title = "Bloodmage Thalnos",
+        Prev_Page = "SMAzshir";
+        Prev_Title = "Azshir the Sleepless".." ("..L["Rare"]..")";
+    },
+    ["SMBloodmageThalnos"] = {
+        Title = "Bloodmage Thalnos",
+        Next_Page = "SMGTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "SMFallenChampion";
+        Prev_Title = "Fallen Champion".." ("..L["Rare"]..")";
+    },
+    ["SMGTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "SMBloodmageThalnos";
+        Prev_Title = "Bloodmage Thalnos",
+    },
+    ["SMHoundmasterLoksey"] = {
+        Title = "Houndmaster Loksey",
+        Next_Page = "SMDoan";
+        Next_Title = "Arcanist Doan",
+    },
+    ["SMDoan"] = {
+        Title = "Arcanist Doan",
+        Next_Page = "SMLTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "SMHoundmasterLoksey";
+        Prev_Title = "Houndmaster Loksey",
+    },
+    ["SMLTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "SMDoan";
+        Prev_Title = "Arcanist Doan",
+    },
+    ["SMHerod"] = {
+        Title = "Herod",
+        Next_Page = "SMATrash";
+        Next_Title = "Trash Mobs",
+    },
+    ["SMATrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "SMHerod";
+        Prev_Title = "Herod",
+    },
+    ["SMFairbanks"] = {
+        Title = "High Inquisitor Fairbanks",
+        Next_Page = "SMMograine";
+        Next_Title = "Scarlet Commander Mograine",
+    },
+    ["SMMograine"] = {
+        Title = "Scarlet Commander Mograine",
+        Next_Page = "SMWhitemane";
+        Next_Title = "High Inquisitor Whitemane",
+        Prev_Page = "SMFairbanks";
+        Prev_Title = "High Inquisitor Fairbanks",
+    },
+    ["SMWhitemane"] = {
+        Title = "High Inquisitor Whitemane",
+        Next_Page = "SMCTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "SMMograine";
+        Prev_Title = "Scarlet Commander Mograine",
+    },
+    ["SMCTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "SMWhitemane";
+        Prev_Title = "High Inquisitor Whitemane",
+    },
+    ["SCHOLOBlood"] = {
+        Title = "Blood Steward of Kirtonos",
+        Next_Page = "SCHOLOKirtonostheHerald";
+        Next_Title = "Kirtonos the Herald",
+    },
+    ["SCHOLOKirtonostheHerald"] = {
+        Title = "Kirtonos the Herald",
+        Next_Page = "SCHOLOJandiceBarov";
+        Next_Title = "Jandice Barov",
+        Prev_Page = "SCHOLOBlood";
+        Prev_Title = "Blood Steward of Kirtonos",
+    },
+    ["SCHOLOJandiceBarov"] = {
+        Title = "Jandice Barov",
+        Next_Page = "SCHOLOLordBlackwood";
+        Next_Title = "Lord Blackwood".." (".."Scourge Invasion"..")";
+        Prev_Page = "SCHOLOKirtonostheHerald";
+        Prev_Title = "Kirtonos the Herald",
+    },
+    ["SCHOLOLordBlackwood"] = {
+        Title = "Lord Blackwood".." (".."Scourge Invasion"..")";
+        Next_Page = "SCHOLORattlegore";
+        Next_Title = "Rattlegore",
+        Prev_Page = "SCHOLOJandiceBarov";
+        Prev_Title = "Jandice Barov",
+    },
+    ["SCHOLORattlegore"] = {
+        Title = "Rattlegore",
+        Next_Page = "SCHOLODeathKnight";
+        Next_Title = "Death Knight Darkreaver",
+        Prev_Page = "SCHOLOLordBlackwood";
+        Prev_Title = "Lord Blackwood".." (".."Scourge Invasion"..")";
+    },
+    ["SCHOLODeathKnight"] = {
+        Title = "Death Knight Darkreaver",
+        Next_Page = "SCHOLOMarduk";
+        Next_Title = "Marduk Blackpool",
+        Prev_Page = "SCHOLORattlegore";
+        Prev_Title = "Rattlegore",
+    },
+    ["SCHOLOMarduk"] = {
+        Title = "Marduk Blackpool",
+        Next_Page = "SCHOLOVectus";
+        Next_Title = "Vectus",
+        Prev_Page = "SCHOLODeathKnight";
+        Prev_Title = "Death Knight Darkreaver",
+    },
+    ["SCHOLOVectus"] = {
+        Title = "Vectus",
+        Next_Page = "SCHOLORasFrostwhisper";
+        Next_Title = "Ras Frostwhisper",
+        Prev_Page = "SCHOLOMarduk";
+        Prev_Title = "Marduk Blackpool",
+    },
+    ["SCHOLORasFrostwhisper"] = {
+        Title = "Ras Frostwhisper",
+        Next_Page = "SCHOLOKormok";
+        Next_Title = "Kormok",
+        Prev_Page = "SCHOLOVectus";
+        Prev_Title = "Vectus",
+    },
+    ["SCHOLOKormok"] = {
+        Title = "Kormok",
+        Next_Page = "SCHOLOInstructorMalicia";
+        Next_Title = "Instructor Malicia",
+        Prev_Page = "SCHOLORasFrostwhisper";
+        Prev_Title = "Ras Frostwhisper",
+    },
+    ["SCHOLOInstructorMalicia"] = {
+        Title = "Instructor Malicia",
+        Next_Page = "SCHOLODoctorTheolenKrastinov";
+        Next_Title = "Doctor Theolen Krastinov",
+        Prev_Page = "SCHOLOKormok";
+        Prev_Title = "Kormok",
+    },
+    ["SCHOLODoctorTheolenKrastinov"] = {
+        Title = "Doctor Theolen Krastinov",
+        Next_Page = "SCHOLOLorekeeperPolkelt";
+        Next_Title = "Lorekeeper Polkelt",
+        Prev_Page = "SCHOLOInstructorMalicia";
+        Prev_Title = "Instructor Malicia",
+    },
+    ["SCHOLOLorekeeperPolkelt"] = {
+        Title = "Lorekeeper Polkelt",
+        Next_Page = "SCHOLOTheRavenian";
+        Next_Title = "The Ravenian",
+        Prev_Page = "SCHOLODoctorTheolenKrastinov";
+        Prev_Title = "Doctor Theolen Krastinov",
+    },
+    ["SCHOLOTheRavenian"] = {
+        Title = "The Ravenian",
+        Next_Page = "SCHOLOLordAlexeiBarov";
+        Next_Title = "Lord Alexei Barov",
+        Prev_Page = "SCHOLOLorekeeperPolkelt";
+        Prev_Title = "Lorekeeper Polkelt",
+    },
+    ["SCHOLOLordAlexeiBarov"] = {
+        Title = "Lord Alexei Barov",
+        Next_Page = "SCHOLOLadyIlluciaBarov";
+        Next_Title = "Lady Illucia Barov",
+        Prev_Page = "SCHOLOTheRavenian";
+        Prev_Title = "The Ravenian",
+    },
+    ["SCHOLOLadyIlluciaBarov"] = {
+        Title = "Lady Illucia Barov",
+        Next_Page = "SCHOLODarkmasterGandling";
+        Next_Title = "Darkmaster Gandling",
+        Prev_Page = "SCHOLOLordAlexeiBarov";
+        Prev_Title = "Lord Alexei Barov",
+    },
+    ["SCHOLODarkmasterGandling"] = {
+        Title = "Darkmaster Gandling",
+        Next_Page = "SCHOLOTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "SCHOLOLadyIlluciaBarov";
+        Prev_Title = "Lady Illucia Barov",
+    },
+    ["SCHOLOTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "SCHOLODarkmasterGandling";
+        Prev_Title = "Darkmaster Gandling",
+    },
+    ["SFKRethilgore"] = {
+        Title = "Rethilgore",
+        Next_Page = "SFKFelSteed";
+        Next_Title = "Fel Steed",
+    },
+    ["SFKFelSteed"] = {
+        Title = "Fel Steed",
+        Next_Page = "SFKRazorclawtheButcher";
+        Next_Title = "Razorclaw the Butcher",
+        Prev_Page = "SFKRethilgore";
+        Prev_Title = "Rethilgore",
+    },
+    ["SFKRazorclawtheButcher"] = {
+        Title = "Razorclaw the Butcher",
+        Next_Page = "SFKSilverlaine";
+        Next_Title = "Baron Silverlaine",
+        Prev_Page = "SFKFelSteed";
+        Prev_Title = "Fel Steed",
+    },
+    ["SFKSilverlaine"] = {
+        Title = "Baron Silverlaine",
+        Next_Page = "SFKSpringvale";
+        Next_Title = "Commander Springvale",
+        Prev_Page = "SFKRazorclawtheButcher";
+        Prev_Title = "Razorclaw the Butcher",
+    },
+    ["SFKSpringvale"] = {
+        Title = "Commander Springvale",
+        Next_Page = "SFKSever";
+        Next_Title = "Sever".." (".."Scourge Invasion"..")";
+        Prev_Page = "SFKSilverlaine";
+        Prev_Title = "Baron Silverlaine",
+    },
+    ["SFKSever"] = {
+        Title = "Sever".." (".."Scourge Invasion"..")";
+        Next_Page = "SFKOdotheBlindwatcher";
+        Next_Title = "Odo the Blindwatcher",
+        Prev_Page = "SFKSpringvale";
+        Prev_Title = "Commander Springvale",
+    },
+    ["SFKOdotheBlindwatcher"] = {
+        Title = "Odo the Blindwatcher",
+        Next_Page = "SFKDeathswornCaptain";
+        Next_Title = "Deathsworn Captain".." ("..L["Rare"]..")";
+        Prev_Page = "SFKSever";
+        Prev_Title = "Sever".." (".."Scourge Invasion"..")";
+    },
+    ["SFKDeathswornCaptain"] = {
+        Title = "Deathsworn Captain".." ("..L["Rare"]..")";
+        Next_Page = "SFKFenrustheDevourer";
+        Next_Title = "Fenrus the Devourer",
+        Prev_Page = "SFKOdotheBlindwatcher";
+        Prev_Title = "Odo the Blindwatcher",
+    },
+    ["SFKFenrustheDevourer"] = {
+        Title = "Fenrus the Devourer",
+        Next_Page = "SFKArugalsVoidwalker";
+        Next_Title = "Arugal's Voidwalker",
+        Prev_Page = "SFKDeathswornCaptain";
+        Prev_Title = "Deathsworn Captain".." ("..L["Rare"]..")";
+    },
+    ["SFKArugalsVoidwalker"] = {
+        Title = "Arugal's Voidwalker",
+        Next_Page = "SFKWolfMasterNandos";
+        Next_Title = "Wolf Master Nandos",
+        Prev_Page = "SFKFenrustheDevourer";
+        Prev_Title = "Fenrus the Devourer",
+    },
+    ["SFKWolfMasterNandos"] = {
+        Title = "Wolf Master Nandos",
+        Next_Page = "SFKArchmageArugal";
+        Next_Title = "Archmage Arugal",
+        Prev_Page = "SFKArugalsVoidwalker";
+        Prev_Title = "Arugal's Voidwalker",
+    },
+    ["SFKArchmageArugal"] = {
+        Title = "Archmage Arugal",
+        Next_Page = "SFKTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "SFKWolfMasterNandos";
+        Prev_Title = "Wolf Master Nandos",
+    },
+    ["SFKTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "SFKArchmageArugal";
+        Prev_Title = "Archmage Arugal",
+    },
+    ["SWStTargorr"] = {
+        Title = "Targorr the Dread",
+        Next_Page = "SWStKamDeepfury";
+        Next_Title = "Kam Deepfury",
+    },
+    ["SWStKamDeepfury"] = {
+        Title = "Kam Deepfury",
+        Next_Page = "SWStHamhock";
+        Next_Title = "Hamhock",
+        Prev_Page = "SWStTargorr";
+        Prev_Title = "Targorr the Dread",
+    },
+    ["SWStHamhock"] = {
+        Title = "Hamhock",
+        Next_Page = "SWStDextren";
+        Next_Title = "Dextren Ward",
+        Prev_Page = "SWStKamDeepfury";
+        Prev_Title = "Kam Deepfury",
+    },
+    ["SWStDextren"] = {
+        Title = "Dextren Ward",
+        Next_Page = "SWStBazil";
+        Next_Title = "Bazil Thredd",
+        Prev_Page = "SWStHamhock";
+        Prev_Title = "Hamhock",
+    },
+    ["SWStBazil"] = {
+        Title = "Bazil Thredd",
+        Next_Page = "SWStBruegalIronknuckle";
+        Next_Title = "Bruegal Ironknuckle".." ("..L["Rare"]..")";
+        Prev_Page = "SWStDextren";
+        Prev_Title = "Dextren Ward",
+    },
+    ["SWStBruegalIronknuckle"] = {
+        Title = "Bruegal Ironknuckle".." ("..L["Rare"]..")";
+        Next_Page = "SWStTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "SWStBazil";
+        Prev_Title = "Bazil Thredd",
+    },
+    ["SWStTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "SWStBruegalIronknuckle";
+        Prev_Title = "Bruegal Ironknuckle".." ("..L["Rare"]..")";
+    },
+    ["STRATSkull"] = {
+        Title = "Skul".." ("..L["Rare"]..")";
+        Next_Page = "STRATStratholmeCourier";
+        Next_Title = "Stratholme Courier",
+    },
+    ["STRATStratholmeCourier"] = {
+        Title = "Stratholme Courier",
+        Next_Page = "STRATPostmaster";
+        Next_Title = "Postmaster Malown",
+        Prev_Page = "STRATSkull";
+        Prev_Title = "Skul".." ("..L["Rare"]..")";
+    },
+    ["STRATPostmaster"] = {
+        Title = "Postmaster Malown",
+        Next_Page = "STRATFrasSiabi";
+        Next_Title = "Fras Siabi",
+        Prev_Page = "STRATStratholmeCourier";
+        Prev_Title = "Stratholme Courier",
+    },
+    ["STRATFrasSiabi"] = {
+        Title = "Fras Siabi",
+        Next_Page = "STRATAtiesh";
+        Next_Title = "Atiesh",
+        Prev_Page = "STRATPostmaster";
+        Prev_Title = "Postmaster Malown",
+    },
+    ["STRATAtiesh"] = {
+        Title = "Atiesh",
+        Next_Page = "STRATBalzaphon";
+        Next_Title = "Balzaphon".." (".."Scourge Invasion"..")";
+        Prev_Page = "STRATFrasSiabi";
+        Prev_Title = "Fras Siabi",
+    },
+    ["STRATBalzaphon"] = {
+        Title = "Balzaphon".." (".."Scourge Invasion"..")";
+        Next_Page = "STRATHearthsingerForresten";
+        Next_Title = "Hearthsinger Forresten".." ("..L["Rare"]..")";
+        Prev_Page = "STRATAtiesh";
+        Prev_Title = "Atiesh",
+    },
+    ["STRATHearthsingerForresten"] = {
+        Title = "Hearthsinger Forresten".." ("..L["Rare"]..")";
+        Next_Page = "STRATTheUnforgiven";
+        Next_Title = "The Unforgiven",
+        Prev_Page = "STRATBalzaphon";
+        Prev_Title = "Balzaphon".." (".."Scourge Invasion"..")";
+    },
+    ["STRATTheUnforgiven"] = {
+        Title = "The Unforgiven",
+        Next_Page = "STRATTimmytheCruel";
+        Next_Title = "Timmy the Cruel",
+        Prev_Page = "STRATHearthsingerForresten";
+        Prev_Title = "Hearthsinger Forresten".." ("..L["Rare"]..")";
+    },
+    ["STRATTimmytheCruel"] = {
+        Title = "Timmy the Cruel",
+        Next_Page = "STRATMalor";
+        Next_Title = "Malor the Zealous",
+        Prev_Page = "STRATTheUnforgiven";
+        Prev_Title = "The Unforgiven",
+    },
+    ["STRATMalor"] = {
+        Title = "Malor the Zealous",
+        Next_Page = "STRATMalorsStrongbox";
+        Next_Title = "Malor's Strongbox",
+        Prev_Page = "STRATTimmytheCruel";
+        Prev_Title = "Timmy the Cruel",
+    },
+    ["STRATMalorsStrongbox"] = {
+        Title = "Malor's Strongbox",
+        Next_Page = "STRATCrimsonHammersmith";
+        Next_Title = "Crimson Hammersmith",
+        Prev_Page = "STRATMalor";
+        Prev_Title = "Malor the Zealous",
+    },
+    ["STRATCrimsonHammersmith"] = {
+        Title = "Crimson Hammersmith",
+        Next_Page = "STRATCannonMasterWilley";
+        Next_Title = "Cannon Master Willey",
+        Prev_Page = "STRATMalorsStrongbox";
+        Prev_Title = "Malor's Strongbox",
+    },
+    ["STRATCannonMasterWilley"] = {
+        Title = "Cannon Master Willey",
+        Next_Page = "STRATArchivistGalford";
+        Next_Title = "Archivist Galford",
+        Prev_Page = "STRATCrimsonHammersmith";
+        Prev_Title = "Crimson Hammersmith",
+    },
+    ["STRATArchivistGalford"] = {
+        Title = "Archivist Galford",
+        Next_Page = "STRATBalnazzar";
+        Next_Title = "Balnazzar",
+        Prev_Page = "STRATCannonMasterWilley";
+        Prev_Title = "Cannon Master Willey",
+    },
+    ["STRATBalnazzar"] = {
+        Title = "Balnazzar",
+        Next_Page = "STRATSothosJarien";
+        Next_Title = "Sothos".." & ".."Jarien",
+        Prev_Page = "STRATArchivistGalford";
+        Prev_Title = "Archivist Galford",
+    },
+    ["STRATSothosJarien"] = {
+        Title = "Sothos".." & ".."Jarien",
+        Next_Page = "STRATStonespine";
+        Next_Title = "Stonespine".." ("..L["Rare"]..")";
+        Prev_Page = "STRATBalnazzar";
+        Prev_Title = "Balnazzar",
+    },
+    ["STRATStonespine"] = {
+        Title = "Stonespine".." ("..L["Rare"]..")";
+        Next_Page = "STRATBaronessAnastari";
+        Next_Title = "Baroness Anastari",
+        Prev_Page = "STRATSothosJarien";
+        Prev_Title = "Sothos".." & ".."Jarien",
+    },
+    ["STRATBaronessAnastari"] = {
+        Title = "Baroness Anastari",
+        Next_Page = "STRATBlackGuardSwordsmith";
+        Next_Title = "Black Guard Swordsmith",
+        Prev_Page = "STRATStonespine";
+        Prev_Title = "Stonespine".." ("..L["Rare"]..")";
+    },
+    ["STRATBlackGuardSwordsmith"] = {
+        Title = "Black Guard Swordsmith",
+        Next_Page = "STRATNerubenkan";
+        Next_Title = "Nerub'enkan",
+        Prev_Page = "STRATBaronessAnastari";
+        Prev_Title = "Baroness Anastari",
+    },
+    ["STRATNerubenkan"] = {
+        Title = "Nerub'enkan",
+        Next_Page = "STRATMalekithePallid";
+        Next_Title = "Maleki the Pallid",
+        Prev_Page = "STRATBlackGuardSwordsmith";
+        Prev_Title = "Black Guard Swordsmith",
+    },
+    ["STRATMalekithePallid"] = {
+        Title = "Maleki the Pallid",
+        Next_Page = "STRATMagistrateBarthilas";
+        Next_Title = "Magistrate Barthilas",
+        Prev_Page = "STRATNerubenkan";
+        Prev_Title = "Nerub'enkan",
+    },
+    ["STRATMagistrateBarthilas"] = {
+        Title = "Magistrate Barthilas",
+        Next_Page = "STRATRamsteintheGorger";
+        Next_Title = "Ramstein the Gorger",
+        Prev_Page = "STRATMalekithePallid";
+        Prev_Title = "Maleki the Pallid",
+    },
+    ["STRATRamsteintheGorger"] = {
+        Title = "Ramstein the Gorger",
+        Next_Page = "STRATBaronRivendare";
+        Next_Title = "Baron Rivendare",
+        Prev_Page = "STRATMagistrateBarthilas";
+        Prev_Title = "Magistrate Barthilas",
+    },
+    ["STRATBaronRivendare"] = {
+        Title = "Baron Rivendare",
+        Next_Page = "STRATTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "STRATRamsteintheGorger";
+        Prev_Title = "Ramstein the Gorger",
+    },
+    ["STRATTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "STRATBaronRivendare";
+        Prev_Title = "Baron Rivendare",
+    },
+    ["STBalconyMinibosses"] = {
+        Title = "Balcony Minibosses",
+        Next_Page = "STAtalalarion";
+        Next_Title = "Atal'alarion",
+    },
+    ["STAtalalarion"] = {
+        Title = "Atal'alarion",
+        Next_Page = "STSpawnOfHakkar";
+        Next_Title = "Spawn of Hakkar",
+        Prev_Page = "STBalconyMinibosses";
+        Prev_Title = "Balcony Minibosses",
+    },
+    ["STSpawnOfHakkar"] = {
+        Title = "Spawn of Hakkar",
+        Next_Page = "STAvatarofHakkar";
+        Next_Title = "Avatar of Hakkar",
+        Prev_Page = "STAtalalarion";
+        Prev_Title = "Atal'alarion",
+    },
+    ["STAvatarofHakkar"] = {
+        Title = "Avatar of Hakkar",
+        Next_Page = "STJammalan";
+        Next_Title = "Jammal'an the Prophet",
+        Prev_Page = "STSpawnOfHakkar";
+        Prev_Title = "Spawn of Hakkar",
+    },
+    ["STJammalan"] = {
+        Title = "Jammal'an the Prophet",
+        Next_Page = "STOgom";
+        Next_Title = "Ogom the Wretched",
+        Prev_Page = "STAvatarofHakkar";
+        Prev_Title = "Avatar of Hakkar",
+    },
+    ["STOgom"] = {
+        Title = "Ogom the Wretched",
+        Next_Page = "STDreamscythe";
+        Next_Title = "Dreamscythe",
+        Prev_Page = "STJammalan";
+        Prev_Title = "Jammal'an the Prophet",
+    },
+    ["STDreamscythe"] = {
+        Title = "Dreamscythe",
+        Next_Page = "STWeaver";
+        Next_Title = "Weaver",
+        Prev_Page = "STOgom";
+        Prev_Title = "Ogom the Wretched",
+    },
+    ["STWeaver"] = {
+        Title = "Weaver",
+        Next_Page = "STMorphaz";
+        Next_Title = "Morphaz",
+        Prev_Page = "STDreamscythe";
+        Prev_Title = "Dreamscythe",
+    },
+    ["STMorphaz"] = {
+        Title = "Morphaz",
+        Next_Page = "STHazzas";
+        Next_Title = "Hazzas",
+        Prev_Page = "STWeaver";
+        Prev_Title = "Weaver",
+    },
+    ["STHazzas"] = {
+        Title = "Hazzas",
+        Next_Page = "STEranikus";
+        Next_Title = "Shade of Eranikus",
+        Prev_Page = "STMorphaz";
+        Prev_Title = "Morphaz",
+    },
+    ["STEranikus"] = {
+        Title = "Shade of Eranikus",
+        Next_Page = "STTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "STHazzas";
+        Prev_Title = "Hazzas",
+    },
+    ["STTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "STEranikus";
+        Prev_Title = "Shade of Eranikus",
+    },
+    ["UldBaelog"] = {
+        Title = "Baelog",
+        Next_Page = "UldOlaf";
+        Next_Title = "Olaf",
+    },
+    ["UldOlaf"] = {
+        Title = "Olaf",
+        Next_Page = "UldEric";
+        Next_Title = "Eric 'The Swift'",
+        Prev_Page = "UldBaelog";
+        Prev_Title = "Baelog",
+    },
+    ["UldEric"] = {
+        Title = "Eric 'The Swift'",
+        Next_Page = "UldRevelosh";
+        Next_Title = "Revelosh",
+        Prev_Page = "UldOlaf";
+        Prev_Title = "Olaf",
+    },
+    ["UldRevelosh"] = {
+        Title = "Revelosh",
+        Next_Page = "UldIronaya";
+        Next_Title = "Ironaya",
+        Prev_Page = "UldEric";
+        Prev_Title = "Eric 'The Swift'",
+    },
+    ["UldIronaya"] = {
+        Title = "Ironaya",
+        Next_Page = "UldAncientStoneKeeper";
+        Next_Title = "Ancient Stone Keeper",
+        Prev_Page = "UldRevelosh";
+        Prev_Title = "Revelosh",
+    },
+    ["UldAncientStoneKeeper"] = {
+        Title = "Ancient Stone Keeper",
+        Next_Page = "UldGalgannFirehammer";
+        Next_Title = "Galgann Firehammer",
+        Prev_Page = "UldIronaya";
+        Prev_Title = "Ironaya",
+    },
+    ["UldGalgannFirehammer"] = {
+        Title = "Galgann Firehammer",
+        Next_Page = "UldGrimlok";
+        Next_Title = "Grimlok",
+        Prev_Page = "UldAncientStoneKeeper";
+        Prev_Title = "Ancient Stone Keeper",
+    },
+    ["UldGrimlok"] = {
+        Title = "Grimlok",
+        Next_Page = "UldArchaedas";
+        Next_Title = "Archaedas",
+        Prev_Page = "UldGalgannFirehammer";
+        Prev_Title = "Galgann Firehammer",
+    },
+    ["UldArchaedas"] = {
+        Title = "Archaedas",
+        Next_Page = "UldTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "UldGrimlok";
+        Prev_Title = "Grimlok",
+    },
+    ["UldTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "UldArchaedas";
+        Prev_Title = "Archaedas",
+    },
+    ["ZGJeklik"] = {
+        Title = "High Priestess Jeklik",
+        Next_Page = "ZGVenoxis";
+        Next_Title = "High Priest Venoxis",
+    },
+    ["ZGVenoxis"] = {
+        Title = "High Priest Venoxis",
+        Next_Page = "ZGMarli";
+        Next_Title = "High Priestess Mar'li",
+        Prev_Page = "ZGJeklik";
+        Prev_Title = "High Priestess Jeklik",
+    },
+    ["ZGMarli"] = {
+        Title = "High Priestess Mar'li",
+        Next_Page = "ZGMandokir";
+        Next_Title = "Bloodlord Mandokir",
+        Prev_Page = "ZGVenoxis";
+        Prev_Title = "High Priest Venoxis",
+    },
+    ["ZGMandokir"] = {
+        Title = "Bloodlord Mandokir",
+        Next_Page = "ZGGrilek";
+        Next_Title = "Gri'lek",
+        Prev_Page = "ZGMarli";
+        Prev_Title = "High Priestess Mar'li",
+    },
+    ["ZGGrilek"] = {
+        Title = "Gri'lek",
+        Next_Page = "ZGHazzarah";
+        Next_Title = "Hazza'rah",
+        Prev_Page = "ZGMandokir";
+        Prev_Title = "Bloodlord Mandokir",
+    },
+    ["ZGHazzarah"] = {
+        Title = "Hazza'rah",
+        Next_Page = "ZGRenataki";
+        Next_Title = "Renataki",
+        Prev_Page = "ZGGrilek";
+        Prev_Title = "Gri'lek",
+    },
+    ["ZGRenataki"] = {
+        Title = "Renataki",
+        Next_Page = "ZGWushoolay";
+        Next_Title = "Wushoolay",
+        Prev_Page = "ZGHazzarah";
+        Prev_Title = "Hazza'rah",
+    },
+    ["ZGWushoolay"] = {
+        Title = "Wushoolay",
+        Next_Page = "ZGGahzranka";
+        Next_Title = "Gahz'ranka",
+        Prev_Page = "ZGRenataki";
+        Prev_Title = "Renataki",
+    },
+    ["ZGGahzranka"] = {
+        Title = "Gahz'ranka",
+        Next_Page = "ZGThekal";
+        Next_Title = "High Priest Thekal",
+        Prev_Page = "ZGWushoolay";
+        Prev_Title = "Wushoolay",
+    },
+    ["ZGThekal"] = {
+        Title = "High Priest Thekal",
+        Next_Page = "ZGArlokk";
+        Next_Title = "High Priestess Arlokk",
+        Prev_Page = "ZGGahzranka";
+        Prev_Title = "Gahz'ranka",
+    },
+    ["ZGArlokk"] = {
+        Title = "High Priestess Arlokk",
+        Next_Page = "ZGJindo";
+        Next_Title = "Jin'do the Hexxer",
+        Prev_Page = "ZGThekal";
+        Prev_Title = "High Priest Thekal",
+    },
+    ["ZGJindo"] = {
+        Title = "Jin'do the Hexxer",
+        Next_Page = "ZGHakkar";
+        Next_Title = "Hakkar",
+        Prev_Page = "ZGArlokk";
+        Prev_Title = "High Priestess Arlokk",
+    },
+    ["ZGHakkar"] = {
+        Title = "Hakkar",
+        Next_Page = "ZGShared";
+        Next_Title = "Random Boss Loot",
+        Prev_Page = "ZGJindo";
+        Prev_Title = "Jin'do the Hexxer",
+    },
+    ["ZGShared"] = {
+        Title = "Random Boss Loot",
+        Next_Page = "ZGTrash1";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "ZGHakkar";
+        Prev_Title = "Hakkar",
+    },
+    ["ZGTrash1"] = {
+        Title = "Trash Mobs",
+        Next_Page = "ZGEnchants";
+        Next_Title = "ZG Enchants",
+        Prev_Page = "ZGShared";
+        Prev_Title = "Random Boss Loot",
+    },
+    ["ZGEnchants"] = {
+        Title = "ZG Enchants",
+        Prev_Page = "ZGTrash1";
+        Prev_Title = "Trash Mobs",
+    },
+    ["BFDGhamoora"] = {
+        Title = "Ghamoo-ra",
+        Next_Page = "BFDLadySarevess";
+        Next_Title = "Lady Sarevess",
+    },
+    ["BFDLadySarevess"] = {
+        Title = "Lady Sarevess",
+        Next_Page = "BFDGelihast";
+        Next_Title = "Gelihast",
+        Prev_Page = "BFDGhamoora";
+        Prev_Title = "Ghamoo-ra",
+    },
+    ["BFDGelihast"] = {
+        Title = "Gelihast",
+        Next_Page = "BFDBaronAquanis";
+        Next_Title = "Baron Aquanis",
+        Prev_Page = "BFDLadySarevess";
+        Prev_Title = "Lady Sarevess",
+    },
+    ["BFDBaronAquanis"] = {
+        Title = "Baron Aquanis",
+        Next_Page = "BFDTwilightLordKelris";
+        Next_Title = "Twilight Lord Kelris",
+        Prev_Page = "BFDGelihast";
+        Prev_Title = "Gelihast",
+    },
+    ["BFDTwilightLordKelris"] = {
+        Title = "Twilight Lord Kelris",
+        Next_Page = "BFDOldSerrakis";
+        Next_Title = "Old Serra'kis",
+        Prev_Page = "BFDBaronAquanis";
+        Prev_Title = "Baron Aquanis",
+    },
+    ["BFDOldSerrakis"] = {
+        Title = "Old Serra'kis",
+        Next_Page = "BFDAkumai";
+        Next_Title = "Aku'mai",
+        Prev_Page = "BFDTwilightLordKelris";
+        Prev_Title = "Twilight Lord Kelris",
+    },
+    ["BFDAkumai"] = {
+        Title = "Aku'mai",
+        Next_Page = "BFDTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "BFDOldSerrakis";
+        Prev_Title = "Old Serra'kis",
+    },
+    ["BFDTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "BFDAkumai";
+        Prev_Title = "Aku'mai",
+    },
+    ["DMEPusillin"] = {
+        Title = "Pusillin",
+        Next_Page = "DMEZevrimThornhoof";
+        Next_Title = "Zevrim Thornhoof",
+    },
+    ["DMEZevrimThornhoof"] = {
+        Title = "Zevrim Thornhoof",
+        Next_Page = "DMEHydro";
+        Next_Title = "Hydrospawn",
+        Prev_Page = "DMEPusillin";
+        Prev_Title = "Pusillin",
+    },
+    ["DMEHydro"] = {
+        Title = "Hydrospawn",
+        Next_Page = "DMELethtendris";
+        Next_Title = "Lethtendris",
+        Prev_Page = "DMEZevrimThornhoof";
+        Prev_Title = "Zevrim Thornhoof",
+    },
+    ["DMELethtendris"] = {
+        Title = "Lethtendris",
+        Next_Page = "DMEPimgib";
+        Next_Title = "Pimgib",
+        Prev_Page = "DMEHydro";
+        Prev_Title = "Hydrospawn",
+    },
+    ["DMEPimgib"] = {
+        Title = "Pimgib",
+        Next_Page = "DMEIsalien";
+        Next_Title = "Isalien",
+        Prev_Page = "DMELethtendris";
+        Prev_Title = "Lethtendris",
+    },
+    ["DMEIsalien"] = {
+        Title = "Isalien",
+        Next_Page = "DMEAlzzin";
+        Next_Title = "Alzzin the Wildshaper",
+        Prev_Page = "DMEPimgib";
+        Prev_Title = "Pimgib",
+    },
+    ["DMEAlzzin"] = {
+        Title = "Alzzin the Wildshaper",
+        Next_Page = "DMETrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "DMEIsalien";
+        Prev_Title = "Isalien",
+    },
+    ["DMETrash"] = {
+        Title = "Trash Mobs",
+        Next_Page = "DMBooks";
+        Next_Title = "Dire Maul Books",
+        Prev_Page = "DMEAlzzin";
+        Prev_Title = "Alzzin the Wildshaper",
+    },
+    ["DMBooks"] = {
+        Title = "Dire Maul Books",
+        Prev_Page = "DMETrash";
+        Prev_Title = "Trash Mobs",
+    },
+    ["DMWTendrisWarpwood"] = {
+        Title = "Tendris Warpwood",
+        Next_Page = "DMWIllyannaRavenoak";
+        Next_Title = "Illyanna Ravenoak",
+    },
+    ["DMWIllyannaRavenoak"] = {
+        Title = "Illyanna Ravenoak",
+        Next_Page = "DMWMagisterKalendris";
+        Next_Title = "Magister Kalendris",
+        Prev_Page = "DMWTendrisWarpwood";
+        Prev_Title = "Tendris Warpwood",
+    },
+    ["DMWMagisterKalendris"] = {
+        Title = "Magister Kalendris",
+        Next_Page = "DMWTsuzee";
+        Next_Title = "Tsu'zee".." ("..L["Rare"]..")";
+        Prev_Page = "DMWIllyannaRavenoak";
+        Prev_Title = "Illyanna Ravenoak",
+    },
+    ["DMWTsuzee"] = {
+        Title = "Tsu'zee".." ("..L["Rare"]..")";
+        Next_Page = "DMWRevanchion";
+        Next_Title = "Revanchion".." (".."Scourge Invasion"..")";
+        Prev_Page = "DMWMagisterKalendris";
+        Prev_Title = "Magister Kalendris",
+    },
+    ["DMWRevanchion"] = {
+        Title = "Revanchion".." (".."Scourge Invasion"..")";
+        Next_Page = "DMWImmolthar";
+        Next_Title = "Immol'thar",
+        Prev_Page = "DMWTsuzee";
+        Prev_Title = "Tsu'zee".." ("..L["Rare"]..")";
+    },
+    ["DMWImmolthar"] = {
+        Title = "Immol'thar",
+        Next_Page = "DMWHelnurath";
+        Next_Title = "Lord Hel'nurath".." ("..L["Rare"]..")";
+        Prev_Page = "DMWRevanchion";
+        Prev_Title = "Revanchion".." (".."Scourge Invasion"..")";
+    },
+    ["DMWHelnurath"] = {
+        Title = "Lord Hel'nurath".." ("..L["Rare"]..")";
+        Next_Page = "DMWPrinceTortheldrin";
+        Next_Title = "Prince Tortheldrin",
+        Prev_Page = "DMWImmolthar";
+        Prev_Title = "Immol'thar",
+    },
+    ["DMWPrinceTortheldrin"] = {
+        Title = "Prince Tortheldrin",
+        Next_Page = "DMWTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "DMWHelnurath";
+        Prev_Title = "Lord Hel'nurath".." ("..L["Rare"]..")";
+    },
+    ["DMWTrash"] = {
+        Title = "Trash Mobs",
+        Next_Page = "DMBooks";
+        Next_Title = "Dire Maul Books",
+        Prev_Page = "DMWPrinceTortheldrin";
+        Prev_Title = "Prince Tortheldrin",
+    },
+    ["DMBooks"] = {
+        Title = "Dire Maul Books",
+        Prev_Page = "DMWTrash";
+        Prev_Title = "Trash Mobs",
+    },
+    ["DMNGuardMoldar"] = {
+        Title = "Guard Mol'dar",
+        Next_Page = "DMNStomperKreeg";
+        Next_Title = "Stomper Kreeg",
+    },
+    ["DMNStomperKreeg"] = {
+        Title = "Stomper Kreeg",
+        Next_Page = "DMNGuardFengus";
+        Next_Title = "Guard Fengus",
+        Prev_Page = "DMNGuardMoldar";
+        Prev_Title = "Guard Mol'dar",
+    },
+    ["DMNGuardFengus"] = {
+        Title = "Guard Fengus",
+        Next_Page = "DMNThimblejack";
+        Next_Title = "Knot Thimblejack",
+        Prev_Page = "DMNStomperKreeg";
+        Prev_Title = "Stomper Kreeg",
+    },
+    ["DMNThimblejack"] = {
+        Title = "Knot Thimblejack",
+        Next_Page = "DMNGuardSlipkik";
+        Next_Title = "Guard Slip'kik",
+        Prev_Page = "DMNGuardFengus";
+        Prev_Title = "Guard Fengus",
+    },
+    ["DMNGuardSlipkik"] = {
+        Title = "Guard Slip'kik",
+        Next_Page = "DMNCaptainKromcrush";
+        Next_Title = "Captain Kromcrush",
+        Prev_Page = "DMNThimblejack";
+        Prev_Title = "Knot Thimblejack",
+    },
+    ["DMNCaptainKromcrush"] = {
+        Title = "Captain Kromcrush",
+        Next_Page = "DMNChoRush";
+        Next_Title = "Cho'Rush the Observer",
+        Prev_Page = "DMNGuardSlipkik";
+        Prev_Title = "Guard Slip'kik",
+    },
+    ["DMNChoRush"] = {
+        Title = "Cho'Rush the Observer",
+        Next_Page = "DMNKingGordok";
+        Next_Title = "King Gordok",
+        Prev_Page = "DMNCaptainKromcrush";
+        Prev_Title = "Captain Kromcrush",
+    },
+    ["DMNKingGordok"] = {
+        Title = "King Gordok",
+        Next_Page = "DMNTRIBUTERUN";
+        Next_Title = "Tribute Run",
+        Prev_Page = "DMNChoRush";
+        Prev_Title = "Cho'Rush the Observer",
+    },
+    ["DMNTRIBUTERUN"] = {
+        Title = "Tribute Run",
+        Next_Page = "DMNTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "DMNKingGordok";
+        Prev_Title = "King Gordok",
+    },
+    ["DMNTrash"] = {
+        Title = "Trash Mobs",
+        Next_Page = "DMBooks";
+        Next_Title = "Dire Maul Books",
+        Prev_Page = "DMNTRIBUTERUN";
+        Prev_Title = "Tribute Run",
+    },
+    ["DMBooks"] = {
+        Title = "Dire Maul Books",
+        Prev_Page = "DMNTrash";
+        Prev_Title = "Trash Mobs",
+    },
+    ["MaraNoxxion"] = {
+        Title = "Noxxion",
+        Next_Page = "MaraRazorlash";
+        Next_Title = "Razorlash",
+    },
+    ["MaraRazorlash"] = {
+        Title = "Razorlash",
+        Next_Page = "MaraLordVyletongue";
+        Next_Title = "Lord Vyletongue",
+        Prev_Page = "MaraNoxxion";
+        Prev_Title = "Noxxion",
+    },
+    ["MaraLordVyletongue"] = {
+        Title = "Lord Vyletongue",
+        Next_Page = "MaraMeshlok";
+        Next_Title = "Meshlok the Harvester".." ("..L["Rare"]..")";
+        Prev_Page = "MaraRazorlash";
+        Prev_Title = "Razorlash",
+    },
+    ["MaraMeshlok"] = {
+        Title = "Meshlok the Harvester".." ("..L["Rare"]..")";
+        Next_Page = "MaraCelebras";
+        Next_Title = "Celebras the Cursed",
+        Prev_Page = "MaraLordVyletongue";
+        Prev_Title = "Lord Vyletongue",
+    },
+    ["MaraCelebras"] = {
+        Title = "Celebras the Cursed",
+        Next_Page = "MaraLandslide";
+        Next_Title = "Landslide",
+        Prev_Page = "MaraMeshlok";
+        Prev_Title = "Meshlok the Harvester".." ("..L["Rare"]..")";
+    },
+    ["MaraLandslide"] = {
+        Title = "Landslide",
+        Next_Page = "MaraTinkererGizlock";
+        Next_Title = "Tinkerer Gizlock",
+        Prev_Page = "MaraCelebras";
+        Prev_Title = "Celebras the Cursed",
+    },
+    ["MaraTinkererGizlock"] = {
+        Title = "Tinkerer Gizlock",
+        Next_Page = "MaraRotgrip";
+        Next_Title = "Rotgrip",
+        Prev_Page = "MaraLandslide";
+        Prev_Title = "Landslide",
+    },
+    ["MaraRotgrip"] = {
+        Title = "Rotgrip",
+        Next_Page = "MaraPrincessTheradras";
+        Next_Title = "Princess Theradras",
+        Prev_Page = "MaraTinkererGizlock";
+        Prev_Title = "Tinkerer Gizlock",
+    },
+    ["MaraPrincessTheradras"] = {
+        Title = "Princess Theradras",
+        Next_Page = "MaraTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "MaraRotgrip";
+        Prev_Title = "Rotgrip",
+    },
+    ["MaraTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "MaraPrincessTheradras";
+        Prev_Title = "Princess Theradras",
+    },
+    ["RFCTaragaman"] = {
+        Title = "Taragaman the Hungerer",
+        Next_Page = "RFCOggleflint";
+        Next_Title = "Oggleflint",
+    },
+    ["RFCOggleflint"] = {
+        Title = "Oggleflint",
+        Next_Page = "RFCJergosh";
+        Next_Title = "Jergosh the Invoker",
+        Prev_Page = "RFCTaragaman";
+        Prev_Title = "Taragaman the Hungerer",
+    },
+    ["RFCJergosh"] = {
+        Title = "Jergosh the Invoker",
+        Next_Page = "RFCBazzalan";
+        Next_Title = "Bazzalan",
+        Prev_Page = "RFCOggleflint";
+        Prev_Title = "Oggleflint",
+    },
+    ["RFCBazzalan"] = {
+        Title = "Bazzalan",
+        Prev_Page = "RFCJergosh";
+        Prev_Title = "Jergosh the Invoker",
+    },
+    ["RFDTutenkash"] = {
+        Title = "Tuten'kash",
+        Next_Page = "RFDLadyF";
+        Next_Title = "Lady Falther'ess".." (".."Scourge Invasion"..")";
+    },
+    ["RFDLadyF"] = {
+        Title = "Lady Falther'ess".." (".."Scourge Invasion"..")";
+        Next_Page = "RFDPlaguemaw";
+        Next_Title = "Plaguemaw the Rotting",
+        Prev_Page = "RFDTutenkash";
+        Prev_Title = "Tuten'kash",
+    },
+    ["RFDPlaguemaw"] = {
+        Title = "Plaguemaw the Rotting",
+        Next_Page = "RFDMordreshFireEye";
+        Next_Title = "Mordresh Fire Eye",
+        Prev_Page = "RFDLadyF";
+        Prev_Title = "Lady Falther'ess".." (".."Scourge Invasion"..")";
+    },
+    ["RFDMordreshFireEye"] = {
+        Title = "Mordresh Fire Eye",
+        Next_Page = "RFDGlutton";
+        Next_Title = "Glutton",
+        Prev_Page = "RFDPlaguemaw";
+        Prev_Title = "Plaguemaw the Rotting",
+    },
+    ["RFDGlutton"] = {
+        Title = "Glutton",
+        Next_Page = "RFDRagglesnout";
+        Next_Title = "Ragglesnout".." ("..L["Rare"]..")";
+        Prev_Page = "RFDMordreshFireEye";
+        Prev_Title = "Mordresh Fire Eye",
+    },
+    ["RFDRagglesnout"] = {
+        Title = "Ragglesnout".." ("..L["Rare"]..")";
+        Next_Page = "RFDAmnennar";
+        Next_Title = "Amnennar the Coldbringer",
+        Prev_Page = "RFDGlutton";
+        Prev_Title = "Glutton",
+    },
+    ["RFDAmnennar"] = {
+        Title = "Amnennar the Coldbringer",
+        Next_Page = "RFDTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "RFDRagglesnout";
+        Prev_Title = "Ragglesnout".." ("..L["Rare"]..")";
+    },
+    ["RFDTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "RFDAmnennar";
+        Prev_Title = "Amnennar the Coldbringer",
+    },
+    ["RFKAggem"] = {
+        Title = "Aggem Thorncurse",
+        Next_Page = "RFKDeathSpeakerJargba";
+        Next_Title = "Death Speaker Jargba",
+    },
+    ["RFKDeathSpeakerJargba"] = {
+        Title = "Death Speaker Jargba",
+        Next_Page = "RFKOverlordRamtusk";
+        Next_Title = "Overlord Ramtusk",
+        Prev_Page = "RFKAggem";
+        Prev_Title = "Aggem Thorncurse",
+    },
+    ["RFKOverlordRamtusk"] = {
+        Title = "Overlord Ramtusk",
+        Next_Page = "RFKRazorfenSpearhide";
+        Next_Title = "Razorfen Spearhide".." ("..L["Rare"]..")";
+        Prev_Page = "RFKDeathSpeakerJargba";
+        Prev_Title = "Death Speaker Jargba",
+    },
+    ["RFKRazorfenSpearhide"] = {
+        Title = "Razorfen Spearhide".." ("..L["Rare"]..")";
+        Next_Page = "RFKAgathelos";
+        Next_Title = "Agathelos the Raging",
+        Prev_Page = "RFKOverlordRamtusk";
+        Prev_Title = "Overlord Ramtusk",
+    },
+    ["RFKAgathelos"] = {
+        Title = "Agathelos the Raging",
+        Next_Page = "RFKBlindHunter";
+        Next_Title = "Blind Hunter".." ("..L["Rare"]..")";
+        Prev_Page = "RFKRazorfenSpearhide";
+        Prev_Title = "Razorfen Spearhide".." ("..L["Rare"]..")";
+    },
+    ["RFKBlindHunter"] = {
+        Title = "Blind Hunter".." ("..L["Rare"]..")";
+        Next_Page = "RFKCharlgaRazorflank";
+        Next_Title = "Charlga Razorflank",
+        Prev_Page = "RFKAgathelos";
+        Prev_Title = "Agathelos the Raging",
+    },
+    ["RFKCharlgaRazorflank"] = {
+        Title = "Charlga Razorflank",
+        Next_Page = "RFKEarthcallerHalmgar";
+        Next_Title = "Earthcaller Halmgar".." ("..L["Rare"]..")";
+        Prev_Page = "RFKBlindHunter";
+        Prev_Title = "Blind Hunter".." ("..L["Rare"]..")";
+    },
+    ["RFKEarthcallerHalmgar"] = {
+        Title = "Earthcaller Halmgar".." ("..L["Rare"]..")";
+        Next_Page = "RFKTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "RFKCharlgaRazorflank";
+        Prev_Title = "Charlga Razorflank",
+    },
+    ["RFKTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "RFKEarthcallerHalmgar";
+        Prev_Title = "Earthcaller Halmgar".." ("..L["Rare"]..")";
+    },
+    ["AQ20Kurinnaxx"] = {
+        Title = "Kurinnaxx",
+        Next_Page = "AQ20Andorov";
+        Next_Title = "Lieutenant General Andorov",
+    },
+    ["AQ20Andorov"] = {
+        Title = "Lieutenant General Andorov",
+        Next_Page = "AQ20CAPTAIN";
+        Next_Title = AtlasLoot_TableNames["AQ20CAPTAIN"][1];
+        Prev_Page = "AQ20Kurinnaxx";
+        Prev_Title = "Kurinnaxx",
+    },
+    ["AQ20CAPTAIN"] = {
+        Title = AtlasLoot_TableNames["AQ20CAPTAIN"][1];
+        Next_Page = "AQ20Rajaxx";
+        Next_Title = "General Rajaxx",
+        Prev_Page = "AQ20Andorov";
+        Prev_Title = "Lieutenant General Andorov",
+    },
+    ["AQ20Rajaxx"] = {
+        Title = "General Rajaxx",
+        Next_Page = "AQ20Moam";
+        Next_Title = "Moam",
+        Prev_Page = "AQ20CAPTAIN";
+        Prev_Title = AtlasLoot_TableNames["AQ20CAPTAIN"][1];
+    },
+    ["AQ20Moam"] = {
+        Title = "Moam",
+        Next_Page = "AQ20Buru";
+        Next_Title = "Buru the Gorger",
+        Prev_Page = "AQ20Rajaxx";
+        Prev_Title = "General Rajaxx",
+    },
+    ["AQ20Buru"] = {
+        Title = "Buru the Gorger",
+        Next_Page = "AQ20Ayamiss";
+        Next_Title = "Ayamiss the Hunter",
+        Prev_Page = "AQ20Moam";
+        Prev_Title = "Moam",
+    },
+    ["AQ20Ayamiss"] = {
+        Title = "Ayamiss the Hunter",
+        Next_Page = "AQ20Ossirian";
+        Next_Title = "Ossirian the Unscarred",
+        Prev_Page = "AQ20Buru";
+        Prev_Title = "Buru the Gorger",
+    },
+    ["AQ20Ossirian"] = {
+        Title = "Ossirian the Unscarred",
+        Next_Page = "AQ20Trash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "AQ20Ayamiss";
+        Prev_Title = "Ayamiss the Hunter",
+    },
+    ["AQ20Trash"] = {
+        Title = "Trash Mobs",
+        Next_Page = "AQ20ClassBooks";
+        Next_Title = "Class Books",
+        Prev_Page = "AQ20Ossirian";
+        Prev_Title = "Ossirian the Unscarred",
+    },
+    ["AQ20ClassBooks"] = {
+        Title = "Class Books",
+        Next_Page = "AQEnchants";
+        Next_Title = "AQ Enchants",
+        Prev_Page = "AQ20Trash";
+        Prev_Title = "Trash Mobs",
+    },
+    ["AQEnchants"] = {
+        Title = "AQ Enchants",
+        Prev_Page = "AQ20ClassBooks";
+        Prev_Title = "Class Books",
+    },
+    ["AQ40Skeram"] = {
+        Title = "The Prophet Skeram",
+        Next_Page = "AQ40Trio";
+        Next_Title = "The Bug Family",
+    },
+    ["AQ40Trio"] = {
+        Title = "The Bug Family",
+        Next_Page = "AQ40Sartura";
+        Next_Title = "Battleguard Sartura",
+        Prev_Page = "AQ40Skeram";
+        Prev_Title = "The Prophet Skeram",
+    },
+    ["AQ40Sartura"] = {
+        Title = "Battleguard Sartura",
+        Next_Page = "AQ40Fankriss";
+        Next_Title = "Fankriss the Unyielding",
+        Prev_Page = "AQ40Trio";
+        Prev_Title = "The Bug Family",
+    },
+    ["AQ40Fankriss"] = {
+        Title = "Fankriss the Unyielding",
+        Next_Page = "AQ40Viscidus";
+        Next_Title = "Viscidus",
+        Prev_Page = "AQ40Sartura";
+        Prev_Title = "Battleguard Sartura",
+    },
+    ["AQ40Viscidus"] = {
+        Title = "Viscidus",
+        Next_Page = "AQ40Huhuran";
+        Next_Title = "Princess Huhuran",
+        Prev_Page = "AQ40Fankriss";
+        Prev_Title = "Fankriss the Unyielding",
+    },
+    ["AQ40Huhuran"] = {
+        Title = "Princess Huhuran",
+        Next_Page = "AQ40Emperors";
+        Next_Title = "The Twin Emperors",
+        Prev_Page = "AQ40Viscidus";
+        Prev_Title = "Viscidus",
+    },
+    ["AQ40Emperors"] = {
+        Title = "The Twin Emperors",
+        Next_Page = "AQ40Ouro";
+        Next_Title = "Ouro",
+        Prev_Page = "AQ40Huhuran";
+        Prev_Title = "Princess Huhuran",
+    },
+    ["AQ40Ouro"] = {
+        Title = "Ouro",
+        Next_Page = "AQ40CThun";
+        Next_Title = "C'Thun",
+        Prev_Page = "AQ40Emperors";
+        Prev_Title = "The Twin Emperors",
+    },
+    ["AQ40CThun"] = {
+        Title = "C'Thun",
+        Next_Page = "AQ40Trash1";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "AQ40Ouro";
+        Prev_Title = "Ouro",
+    },
+    ["AQ40Trash1"] = {
+        Title = "Trash Mobs",
+        Next_Page = "AQEnchants";
+        Next_Title = "AQ Enchants",
+        Prev_Page = "AQ40CThun";
+        Prev_Title = "C'Thun",
+    },
+    ["AQEnchants"] = {
+        Title = "AQ Enchants",
+        Next_Page = "AQOpening";
+        Next_Title = "AQ Opening Quest Chain",
+        Prev_Page = "AQ40Trash1";
+        Prev_Title = "Trash Mobs",
+    },
+    ["AQOpening"] = {
+        Title = "AQ Opening Quest Chain",
+        Prev_Page = "AQEnchants";
+        Prev_Title = "AQ Enchants",
+    },
+    ["WCLordCobrahn"] = {
+        Title = "Lord Cobrahn",
+        Next_Page = "WCLadyAnacondra";
+        Next_Title = "Lady Anacondra",
+    },
+    ["WCLadyAnacondra"] = {
+        Title = "Lady Anacondra",
+        Next_Page = "WCKresh";
+        Next_Title = "Kresh",
+        Prev_Page = "WCLordCobrahn";
+        Prev_Title = "Lord Cobrahn",
+    },
+    ["WCKresh"] = {
+        Title = "Kresh",
+        Next_Page = "WCLordPythas";
+        Next_Title = "Lord Pythas",
+        Prev_Page = "WCLadyAnacondra";
+        Prev_Title = "Lady Anacondra",
+    },
+    ["WCLordPythas"] = {
+        Title = "Lord Pythas",
+        Next_Page = "WCSkum";
+        Next_Title = "Skum",
+        Prev_Page = "WCKresh";
+        Prev_Title = "Kresh",
+    },
+    ["WCSkum"] = {
+        Title = "Skum",
+        Next_Page = "WCLordSerpentis";
+        Next_Title = "Lord Serpentis",
+        Prev_Page = "WCLordPythas";
+        Prev_Title = "Lord Pythas",
+    },
+    ["WCLordSerpentis"] = {
+        Title = "Lord Serpentis",
+        Next_Page = "WCVerdan";
+        Next_Title = "Verdan the Everliving",
+        Prev_Page = "WCSkum";
+        Prev_Title = "Skum",
+    },
+    ["WCVerdan"] = {
+        Title = "Verdan the Everliving",
+        Next_Page = "WCMutanus";
+        Next_Title = "Mutanus the Devourer",
+        Prev_Page = "WCLordSerpentis";
+        Prev_Title = "Lord Serpentis",
+    },
+    ["WCMutanus"] = {
+        Title = "Mutanus the Devourer",
+        Next_Page = "WCDeviateFaerieDragon";
+        Next_Title = "Deviate Faerie Dragon".." ("..L["Rare"]..")";
+        Prev_Page = "WCVerdan";
+        Prev_Title = "Verdan the Everliving",
+    },
+    ["WCDeviateFaerieDragon"] = {
+        Title = "Deviate Faerie Dragon".." ("..L["Rare"]..")";
+        Next_Page = "WCTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "WCMutanus";
+        Prev_Title = "Mutanus the Devourer",
+    },
+    ["WCTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "WCDeviateFaerieDragon";
+        Prev_Title = "Deviate Faerie Dragon".." ("..L["Rare"]..")";
+    },
+    ["ZFAntusul"] = {
+        Title = "Antu'sul",
+        Next_Page = "ZFWitchDoctorZumrah";
+        Next_Title = "Witch Doctor Zum'rah",
+    },
+    ["ZFWitchDoctorZumrah"] = {
+        Title = "Witch Doctor Zum'rah",
+        Next_Page = "ZFSezzziz";
+        Next_Title = "Shadowpriest Sezz'ziz",
+        Prev_Page = "ZFAntusul";
+        Prev_Title = "Antu'sul",
+    },
+    ["ZFSezzziz"] = {
+        Title = "Shadowpriest Sezz'ziz",
+        Next_Page = "ZFDustwraith";
+        Next_Title = "Dustwraith".." ("..L["Rare"]..")";
+        Prev_Page = "ZFWitchDoctorZumrah";
+        Prev_Title = "Witch Doctor Zum'rah",
+    },
+    ["ZFDustwraith"] = {
+        Title = "Dustwraith".." ("..L["Rare"]..")";
+        Next_Page = "ZFZerillis";
+        Next_Title = "Zerillis".." ("..L["Rare"]..")";
+        Prev_Page = "ZFSezzziz";
+        Prev_Title = "Shadowpriest Sezz'ziz",
+    },
+    ["ZFZerillis"] = {
+        Title = "Zerillis".." ("..L["Rare"]..")";
+        Next_Page = "ZFGahzrilla";
+        Next_Title = "Gahz'rilla",
+        Prev_Page = "ZFDustwraith";
+        Prev_Title = "Dustwraith".." ("..L["Rare"]..")";
+    },
+    ["ZFGahzrilla"] = {
+        Title = "Gahz'rilla",
+        Next_Page = "ZFChiefUkorzSandscalp";
+        Next_Title = "Chief Ukorz Sandscalp",
+        Prev_Page = "ZFZerillis";
+        Prev_Title = "Zerillis".." ("..L["Rare"]..")";
+    },
+    ["ZFChiefUkorzSandscalp"] = {
+        Title = "Chief Ukorz Sandscalp",
+        Next_Page = "ZFTrash";
+        Next_Title = "Trash Mobs",
+        Prev_Page = "ZFGahzrilla";
+        Prev_Title = "Gahz'rilla",
+    },
+    ["ZFTrash"] = {
+        Title = "Trash Mobs",
+        Prev_Page = "ZFChiefUkorzSandscalp";
+        Prev_Title = "Chief Ukorz Sandscalp",
+    },
+    ["AAzuregos"] = {
+        Title = "Azuregos",
+        Next_Page = "DEmeriss";
+        Next_Title = "Emeriss",
+    },
+    ["DEmeriss"] = {
+        Title = "Emeriss",
+        Next_Page = "DLethon";
+        Next_Title = "Lethon",
+        Prev_Page = "AAzuregos";
+        Prev_Title = "Azuregos",
+    },
+    ["DLethon"] = {
+        Title = "Lethon",
+        Next_Page = "DTaerar";
+        Next_Title = "Taerar",
+        Prev_Page = "DEmeriss";
+        Prev_Title = "Emeriss",
+    },
+    ["DTaerar"] = {
+        Title = "Taerar",
+        Next_Page = "DYsondre";
+        Next_Title = "Ysondre",
+        Prev_Page = "DLethon";
+        Prev_Title = "Lethon",
+    },
+    ["DYsondre"] = {
+        Title = "Ysondre",
+        Next_Page = "KKazzak";
+        Next_Title = "Lord Kazzak",
+        Prev_Page = "DTaerar";
+        Prev_Title = "Taerar",
+    },
+    ["KKazzak"] = {
+        Title = "Lord Kazzak",
+        Next_Page = "Turtlhu";
+        Next_Title = "Turtlhu, the Black Turtle of Doom";
+        Prev_Page = "DYsondre";
+        Prev_Title = "Ysondre"
+    },
+    ["Turtlhu"] = {
+        Title = "Turtlhu, the Black Turtle of Doom";
+        Next_Page = "Nerubian";
+        Next_Title = "Nerubian Overseer";
+        Prev_Page = "KKazzak";
+        Prev_Title = "Lord Kazzak"
+    },
+    ["Nerubian"] = {
+        Title = "Nerubian Overseer";
+        Next_Page = "Reaver";
+        Next_Title = "Dark Reaver of Karazhan";
+        Prev_Page = "Turtlhu";
+        Prev_Title = "Turtlhu, the Black Turtle of Doom";
+    },
+    ["Reaver"] = {
+        Title = "Dark Reaver of Karazhan";
+        Next_Page = "Ostarius";
+        Next_Title = "Ostarius";
+        Prev_Page = "Nerubian";
+        Prev_Title = "Nerubian Overseer";
+    },
+    ["Ostarius"] = {
+        Title = "Ostarius";
+        Next_Page = "Concavius";
+        Next_Title = "Concavius";
+        Prev_Page = "Reaver";
+        Prev_Title = "Dark Reaver of Karazhan";
+    },
+    ["Concavius"] = {
+        Title = "Concavius";
+		Next_Page = "CowKing";
+		Next_Title = "The Cow King";
+        Prev_Page = "Ostarius";
+        Prev_Title = "Ostarius";
+    },
+	["CowKing"] = {
+        Title = "There Is No Cow Level";
+        Prev_Page = "Concavius";
+        Prev_Title = "Concavius";
+    },
 	--WoW Factions
 	["Argent1"] = {
 		Title = BF["Argent Dawn"]..": "..L["Token Hand-Ins"],
@@ -35,6 +2549,11 @@ AtlasLoot_ButtonRegistry = {
 		Back_Page = "REPMENU",
 		Back_Title = L["Factions"]
 	},
+	["Warderns1"] = {
+		Title = "Wardens of Time";
+        Back_Page = "REPMENU";
+        Back_Title = L["Factions"];
+    },
 	["AQBroodRings"] = {
 		Title = BF["Brood of Nozdormu"],
 		Back_Page = "REPMENU",
@@ -101,6 +2620,56 @@ AtlasLoot_ButtonRegistry = {
 		Title = BF["The League of Arathor"],
 		Back_Page = "REPMENU",
 		Back_Title = L["Factions"]
+        },
+    ["Ironforge"] = {
+        Title = BF["Ironforge"];
+        Back_Page = "REPMENU";
+        Back_Title = L["Factions"];
+    },
+    ["Darnassus"] = {
+        Title = BF["Darnassus"];
+        Back_Page = "REPMENU";
+        Back_Title = L["Factions"];
+    },
+    ["Stormwind"] = {
+        Title = BF["Stormwind"];
+        Back_Page = "REPMENU";
+        Back_Title = L["Factions"];
+    },
+    ["GnomereganExiles"] = {
+        Title = BF["Gnomeregan Exiles"];
+        Back_Page = "REPMENU";
+        Back_Title = L["Factions"];
+    },
+	["DarkspearTrolls"] = {
+		Title = BF["Darkspear Trolls"];
+		Back_Page = "REPMENU";
+		Back_Title = L["Factions"];
+	},
+    ["DurotarLaborUnion"] = {
+        Title = "Durotar Labor Union";
+        Back_Page = "REPMENU";
+        Back_Title = L["Factions"];
+    },
+    ["Undercity"] = {
+        Title = BF["Undercity"];
+        Back_Page = "REPMENU";
+        Back_Title = L["Factions"];
+    },
+    ["Orgrimmar"] = {
+        Title = BF["Orgrimmar"];
+        Back_Page = "REPMENU";
+        Back_Title = L["Factions"];
+    },
+    ["ThunderBluff"] = {
+        Title = BF["Thunder Bluff"];
+        Back_Page = "REPMENU";
+        Back_Title = L["Factions"];
+    },
+	["Dalaran"] = {
+        Title = "Dalaran";
+        Back_Page = "REPMENU";
+        Back_Title = L["Factions"];
     },
     ["Helf"] = {
         Title = "Silvermoon Remnant",
@@ -188,6 +2757,28 @@ AtlasLoot_ButtonRegistry = {
 		Back_Page = "REPMENU",
 		Back_Title = L["Factions"]
 	},
+    ["BRRepFriendly"] = {
+        Title = "Blood Ring Friendly Rewards";
+        Back_Page = "BRRepMenu";
+        Next_Page = "BRRepHonored";
+    },
+    ["BRRepHonored"] = {
+        Title = "Blood Ring Honored Rewards";
+        Back_Page = "BRRepMenu";
+        Next_Page = "BRRepRevered";
+        Prev_Page = "BRRepFriendly";
+    },
+    ["BRRepRevered"] = {
+        Title = "Blood Ring Revered Rewards";
+        Back_Page = "BRRepMenu";
+        Next_Page = "BRRepExalted";
+        Prev_Page = "BRRepHonored";
+    },
+    ["BRRepExalted"] = {
+        Title = "Blood Ring Exalted Rewards";
+        Back_Page = "BRRepMenu";
+        Prev_Page = "BRRepRevered";
+    },
     ["WSGRepFriendly2029"] = {
         Back_Page = "WSGRepMenu",
         Title = "20-29 "..L["Friendly Reputation Rewards"],
@@ -367,7 +2958,95 @@ AtlasLoot_ButtonRegistry = {
 		Title = L["Exalted Reputation Rewards"],
 		Back_Page = "AVRepMenu",
 		Prev_Page = "AVRepRevered",
-	},
+    },
+    ["WSGRepFriendly2029"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 20-29 Friendly Rewards";
+        Next_Page = "WSGRepFriendly3039";
+    },
+    ["WSGRepFriendly3039"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 30-39 Friendly Rewards";
+        Next_Page = "WSGRepFriendly4049";
+        Prev_Page = "WSGRepFriendly2029";
+    },
+    ["WSGRepFriendly4049"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 40-49 Friendly Rewards";
+        Prev_Page = "WSGRepFriendly3039";
+    },
+    ["WSGRepHonored1019"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 10-19 Honored Rewards";
+        Next_Page = "WSGRepHonored2029";
+    },
+    ["WSGRepHonored2029"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 20-29 Honored Rewards";
+        Next_Page = "WSGRepHonored3039";
+        Prev_Page = "WSGRepHonored1019";
+    },
+    ["WSGRepHonored3039"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 30-39 Honored Rewards";
+        Next_Page = "WSGRepHonored4049";
+        Prev_Page = "WSGRepHonored2029";
+    },
+    ["WSGRepHonored4049"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 40-49 Honored Rewards";
+        Next_Page = "WSGRepHonored5059";
+        Prev_Page = "WSGRepHonored3039";
+    },
+    ["WSGRepHonored5059"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 50-59 Honored Rewards";
+        Prev_Page = "WSGRepHonored4049";
+    },
+    ["WSGRepRevered1019"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 10-19 Revered Rewards";
+        Next_Page = "WSGRepRevered2029";
+    },
+    ["WSGRepRevered2029"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 20-29 Revered Rewards";
+        Next_Page = "WSGRepRevered3039";
+        Prev_Page = "WSGRepRevered1019";
+    },
+    ["WSGRepRevered3039"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 30-39 Revered Rewards";
+        Next_Page = "WSGRepRevered4049";
+        Prev_Page = "WSGRepRevered2029";
+    },
+    ["WSGRepRevered4049"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 40-49 Revered Rewards";
+        Next_Page = "WSGRepRevered5059";
+        Prev_Page = "WSGRepRevered3039";
+    },
+    ["WSGRepRevered5059"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 50-59 Revered Rewards";
+        Prev_Page = "WSGRepRevered4049";
+    },
+    ["WSGRepExalted4049"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 40-49 Exalted Rewards";
+        Next_Page = "WSGRepExalted5059";
+    },
+    ["WSGRepExalted5059"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 50-59 Exalted Rewards";
+        Next_Page = "WSGRepExalted60";
+        Prev_Page = "WSGRepExalted4049";
+    },
+    ["WSGRepExalted60"] = {
+        Back_Page = "WSGRepMenu";
+        Title = "WSG 60 Exalted Rewards";
+        Prev_Page = "WSGRepExalted5059";
+    },
 	["PvP60Accessories1"] = {
 		Title = L["PvP Trinkets"],
 		Next_Page = "PvP60Accessories2",
@@ -855,6 +3534,11 @@ AtlasLoot_ButtonRegistry = {
 		Back_Page = "PRE60SET",
 		Back_Title = L["Pre 60 Sets"]
 	},
+    ["SteelPlate"] = {
+        Title = "Steel Plate",
+        Back_Page = "CRAFTSET",
+        Back_Title = L["Crafted Sets"],
+    },
 	["ImperialPlate"] = {
 		Title = BIS["Imperial Plate"],
 		Back_Page = "CRAFTSET",
@@ -935,6 +3619,11 @@ AtlasLoot_ButtonRegistry = {
 		Back_Page = "CRAFTSET",
 		Back_Title = L["Crafted Sets"]
 	},
+    ["RedDragonM"] = {
+        Title = "Red Dragon Mail",
+        Back_Page = "CRAFTSET",
+        Back_Title = L["Crafted Sets"],
+    },
 	["GreenDragonM"] = {
 		Title = BIS["Green Dragon Mail"],
 		Back_Page = "CRAFTSET",
@@ -1951,6 +4640,11 @@ AtlasLoot_ButtonRegistry = {
 		Back_Page = "CRAFTINGMENU",
 		Back_Title = L["Crafting"]
 	},
+    ["Survival1"] = {
+        Title = "Survival";
+        Back_Page = "CRAFTINGMENU";
+        Back_Title = L["Crafting"];
+    },
 	["Poisons1"] = {
 		Title = BS["Poisons"],
 		Back_Page = "CRAFTINGMENU",

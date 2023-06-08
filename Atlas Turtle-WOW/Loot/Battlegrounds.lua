@@ -10,6 +10,74 @@ The English file also contains the loot tables for the battleground loot tables.
 -- Layout --
 ------------
 AtlasLootBattlegrounds = {
+	BloodRing = {
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"";
+		"BRRepFriendly1";
+		"BRRepHonored1";
+		"BRRepRevered1";
+		"BRRepExalted1";
+	},
 	AlteracValleyNorth = {
 		"Stormpike1",
 		"",
@@ -181,6 +249,58 @@ AtlasLoot_Data["AtlasLootBGItems"] = {
 		{ 19112, "INV_Bracer_18", "=q3=Frozen Steel Vambraces", "=ds=#s8#, #a4#", "24.80%" },
 		{ 19109, "INV_Jewelry_Ring_35", "=q3=Deep Rooted Ring", "=ds=#s13#", "12.93%" },
 		{ 19110, "INV_Sword_47", "=q3=Cold Forged Blade", "=ds=#h1#, #w4#", "17.28%" },
+	},
+	BRRepFriendly = {
+		{ 60366, "", "=q3=Gore Ring of the Gladiator", "=ds=#s13#" },
+		{ 60368, "", "=q3=Loop of Field Medicine", "=ds=#s13#" },
+		{ 60367, "", "=q3=Auspicious Ring of the Seer", "=ds=#s13#" },
+	},
+	BRRepHonored = {
+		{ 83421, "", "=q3=Bloody Gladiator's Handwraps", "=ds=#a1#, #s9#" },
+		{ 83420, "", "=q3=Bloody Gladiator's Sash", "=ds=#a1#, #s10#" },
+		{ "", "", "", "" },
+		{ 83430, "", "=q3=Bloody Gladiator's Gloves", "=ds=#a2#, #s9#" },
+		{ 83429, "", "=q3=Bloody Gladiator's Belt", "=ds=#a2#, #s10#" },
+		{ "", "", "", "" },
+		{ 60351, "", "=q3=Bloody Gladiator's Handguards", "=ds=#a3#, #s9#" },
+		{ 60350, "", "=q3=Bloody Gladiator's Cord", "=ds=#a3#, #s10#" },
+		{ "", "", "", "" },
+		{ 60359, "", "=q3=Bloody Gladiator's Gauntlets", "=ds=#a4#, #s9#" },
+		{ 60358, "", "=q3=Bloody Gladiator's Girdle", "=ds=#a4#, #s10#" },
+	},
+	BRRepRevered = {
+		{ 83425, "", "=q3=Bloody Gladiator's Wraps", "=ds=#a1#, #s8#" },
+		{ 83423, "", "=q3=Bloody Gladiator's Britches", "=ds=#a1#, #s11#" },
+		{ 83424, "", "=q3=Bloody Gladiator's Footwraps", "=ds=#a1#, #s12#" },
+		{ "", "", "", "" },
+		{ 83433, "", "=q3=Bloody Gladiator's Bands", "=ds=#a2#, #s8#" },
+		{ 83431, "", "=q3=Bloody Gladiator's Pants", "=ds=#a2#, #s11#" },
+		{ 83432, "", "=q3=Bloody Gladiator's Boots", "=ds=#a2#, #s12#" },
+		{ "", "", "", "" },
+		{ 60354, "", "=q3=Bloody Gladiator's Wristguards", "=ds=#a3#, #s8#" },
+		{ 60352, "", "=q3=Bloody Gladiator's Leggings", "=ds=#a3#, #s11#" },
+		{ 60353, "", "=q3=Bloody Gladiator's Trudgeons", "=ds=#a3#, #s12#" },
+		{ "", "", "", "" },
+		{ 60362, "", "=q3=Bloody Gladiator's Bracers", "=ds=#a4#, #s8#" },
+		{ 60360, "", "=q3=Bloody Gladiator's Legguards", "=ds=#a4#, #s11#" },
+		{ 60361, "", "=q3=Bloody Gladiator's Greaves", "=ds=#a4#, #s12#" },
+	},
+	BRRepExalted = {
+		{ 83428, "", "=q4=Bloody Gladiator's Circlet", "=ds=#a1#, #s1#" },
+		{ 83427, "", "=q4=Bloody Gladiator's Amice", "=ds=#a1#, #s3#" },
+		{ 83426, "", "=q4=Bloody Gladiator's Vestments", "=ds=#a1#, #s5#" },
+		{ "", "", "", "" },
+		{ 83436, "", "=q4=Bloody Gladiator's Headband", "=ds=#a2#, #s1#" },
+		{ 83435, "", "=q4=Bloody Gladiator's Shoulders", "=ds=#a2#, #s3#" },
+		{ 83434, "", "=q4=Bloody Gladiator's Tunic", "=ds=#a2#, #s5#" },
+		{ "", "", "", "" },
+		{ 60357, "", "=q4=Bloody Gladiator's Helmet", "=ds=#a3#, #s1#" },
+		{ 60356, "", "=q4=Bloody Gladiator's Pauldrons", "=ds=#a3#, #s3#" },
+		{ 60355, "", "=q4=Bloody Gladiator's Armor", "=ds=#a3#, #s5#" },
+		{ "", "", "", "" },
+		{ 60365, "", "=q4=Bloody Gladiator's Helm", "=ds=#a4#, #s1#" },
+		{ 60364, "", "=q4=Bloody Gladiator's Spaulders", "=ds=#a4#, #s3#" },
+		{ 60363, "", "=q4=Bloody Gladiator's Breastplate", "=ds=#a4#, #s5#" },
 	},
 	AVRepFriendly = {
 		{ 0, "INV_BannerPVP_02", "=q8=#m7#", "=q7=#b1#" },

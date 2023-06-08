@@ -6676,6 +6676,81 @@ Inst46Quest3name2_HORDE = "Fur of Navakesh" -- 60772
 Inst46Quest3name3_HORDE = "Blackrock Authority" -- 60773
 Inst46Quest3name4_HORDE = "Girdle of Galron" -- 60774
 
+--------------- INST57 - Stormwind Vault (SV) ---------------
+Inst57Story = ""
+Inst57Caption = "Stormwind Vault"
+Inst57QAA = "2 Quest"
+Inst57QAH = "2 Quest"
+--Quest 1 Alliance
+Inst57Quest1 = "1. Recovering Vault Shackles" -- 40426
+Inst57Quest1_Level = "63"
+Inst57Quest1_Attain = "55"
+Inst57Quest1_Aim = "Within the Stormwind Vault, slay Runic Constructs for 2 Runic Shackles, return them to Koli Steamheart."
+Inst57Quest1_Location = "Koli Steamheart (Stormwind "..YELLOW.."54,47"..WHITE..")"
+Inst57Quest1_Note = "You need to kill the Runic Construct mobs."
+Inst57Quest1_Prequest = "No"
+Inst57Quest1_Folgequest = "No"
+--Quest 2 Alliance
+Inst57Quest2 = "2. Ending Arc'Tiras" -- 40427
+Inst57Quest2_Level = "63"
+Inst57Quest2_Attain = "55"
+Inst57Quest2_Aim = "Venture deep within The Stormwind Vault, find Arc'tiras, and slay him for the good of Stormwind. When done, return to Pepin Ainsworth."
+Inst57Quest2_Location = "Pepin Ainsworth (Stormwind "..YELLOW.."54,47"..WHITE..")"
+Inst57Quest2_Note = "You need to kill the last boss."
+Inst57Quest2_Prequest = "No"
+Inst57Quest2_Folgequest = "No"
+Inst57Quest2name1 = "Goldplated Royal Crossbow" --60624
+Inst57Quest2name2 = "Golden Gauntlets of Stormwind" --60625
+Inst57Quest2name3 = "Regal Goldthreaded Sash" -- 60626
+--Quest 1 Horde (same as Quest 1 Alliance)
+Inst57Quest1_HORDE = Inst57Quest1
+Inst57Quest1_HORDE_Level = Inst57Quest1_Level
+Inst57Quest1_HORDE_Attain = Inst57Quest1_Attain
+Inst57Quest1_HORDE_Aim = Inst57Quest1_Aim
+Inst57Quest1_HORDE_Location = Inst57Quest1_Location
+Inst57Quest1_HORDE_Note = Inst57Quest1_Note
+Inst57Quest1_HORDE_Prequest = Inst57Quest1_Prequest
+Inst57Quest1_HORDE_Folgequest = Inst57Quest1_Folgequest
+Inst57Quest1name1_HORDE = Inst57Quest1name1
+Inst57Quest1name2_HORDE = Inst57Quest1name2
+Inst57Quest1name3_HORDE = Inst57Quest1name3
+--Quest 2 Horde (same as Quest 2 Alliance)
+Inst57Quest2_HORDE = Inst57Quest2
+Inst57Quest2_HORDE_Level = Inst57Quest2_Level
+Inst57Quest2_HORDE_Attain = Inst57Quest2_Attain
+Inst57Quest2_HORDE_Aim = Inst57Quest2_Aim
+Inst57Quest2_HORDE_Location = Inst57Quest2_Location
+Inst57Quest2_HORDE_Note = Inst57Quest2_Note
+Inst57Quest2_HORDE_Prequest = Inst57Quest2_Prequest
+Inst57Quest2_HORDE_Folgequest = Inst57Quest2_Folgequest
+Inst57Quest2name1_HORDE = Inst57Quest2name1
+Inst57Quest2name2_HORDE = Inst57Quest2name2
+Inst57Quest2name3_HORDE = Inst57Quest2name3
+
+--------------- INST58 - Ostarius (OST) ---------------
+Inst58Story = ""
+Inst58Caption = "Ostarius"
+Inst58QAA = "1 Quest"
+Inst58QAH = "1 Quest"
+--Quest 1 Alliance
+Inst58Quest1 = "1. Gate Keeper" -- 40107
+Inst58Quest1_Level = "60"
+Inst58Quest1_Attain = "58"
+Inst58Quest1_Aim = "Defeat Ostarius. Return to the Hall of Explorers and inform High Explorer Magellas about the events that occurred at the gate."
+Inst58Quest1_Location = "Uldum Pedestal (Tanaris "..YELLOW.."37,81"..WHITE..")"
+Inst58Quest1_Note = "Prequest from High Explorer Magellas (Ironforge - Hall of Explorers "..YELLOW.."69.9,18.5"..WHITE..").You need to kill Ostarius."
+Inst58Quest1_Prequest = "1.Unusual Partnership -> 2.Original Owner --> 7.Gates of Uldum"
+Inst58Quest1_Folgequest = "No"
+--Quest 1 Horde
+Inst58Quest1_HORDE = "1. Guardian of the Gate" -- 40115
+Inst58Quest1_HORDE_Level = "60"
+Inst58Quest1_HORDE_Attain = "58"
+Inst58Quest1_HORDE_Aim = "Defeat Ostarius. Return to the Thunder Bluff and inform Sage Truthseeker about the events that occurred at the gate."
+Inst58Quest1_HORDE_Location = "Uldum Pedestal (Tanaris "..YELLOW.."37,81"..WHITE..")"
+Inst58Quest1_HORDE_Note = "Prequest from Sage Truthseeker (Thunder Bluff "..YELLOW.."34,47"..WHITE..").You need to kill Ostarius."
+Inst58Quest1_HORDE_Prequest = "1.The Lone Wolf -> 2.Scarms of the Past --> 7.Uldum Awaits"
+Inst58Quest1_HORDE_Folgequest = "No"
+
 ---------------------------
 --- AQ Instance Numbers ---
 ---------------------------

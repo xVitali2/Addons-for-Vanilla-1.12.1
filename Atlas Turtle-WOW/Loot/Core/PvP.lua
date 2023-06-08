@@ -51,6 +51,12 @@ function AtlasLootPvPMenu()
 	AtlasLootMenuItem_17_Icon:SetTexture("Interface\\Icons\\INV_Misc_Rune_07")
 	AtlasLootMenuItem_17.lootpage="WSGRepMenu"
 	AtlasLootMenuItem_17:Show()
+	-- Blood Ring Rewards
+	AtlasLootMenuItem_18_Name:SetText("Blood Ring")
+	AtlasLootMenuItem_18_Extra:SetText("")
+	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\inv_jewelry_ring_04")
+	AtlasLootMenuItem_18.lootpage="BRRepMenu"
+	AtlasLootMenuItem_18:Show()
 	--Weapons
 	AtlasLootMenuItem_23_Name:SetText(L["Rank 14 Weapons"])
 	AtlasLootMenuItem_23_Extra:SetText("|cffFF8400"..L["Level 60"])
@@ -62,6 +68,50 @@ function AtlasLootPvPMenu()
 	end
 	AtlasLoot_BossName:SetText("|cffFFFFFF"..L["PvP Rewards"])
 	AtlasLoot_SetItemInfoFrame(AtlasLoot_AnchorFrame)
+end
+
+function AtlasLootBRRepMenu()
+	for i = 1, 30, 1 do
+		getglobal("AtlasLootItem_"..i):Hide()
+	end
+	for i = 1, 30, 1 do
+		getglobal("AtlasLootMenuItem_"..i):Hide()
+		getglobal("AtlasLootMenuItem_"..i).isheader = false
+	end
+	getglobal("AtlasLootItemsFrame_BACK"):Show()
+	getglobal("AtlasLootItemsFrame_BACK").lootpage = "PVPMENU"
+	getglobal("AtlasLootItemsFrame_NEXT"):Hide()
+	getglobal("AtlasLootItemsFrame_PREV"):Hide()
+	getglobal("AtlasLootServerQueryButton"):Hide()
+	--Friendly
+	AtlasLootMenuItem_2_Name:SetText("Friendly Reputation Rewards")
+	AtlasLootMenuItem_2_Extra:SetText("")
+	AtlasLootMenuItem_2_Icon:SetTexture("Interface\\Icons\\inv_jewelry_ring_04")
+	AtlasLootMenuItem_2.lootpage="BRRepFriendly"
+	AtlasLootMenuItem_2:Show()
+	--Honored
+	AtlasLootMenuItem_3_Name:SetText("Honored Reputation Rewards")
+	AtlasLootMenuItem_3_Extra:SetText("")
+	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\inv_jewelry_ring_04")
+	AtlasLootMenuItem_3.lootpage="BRRepHonored"
+	AtlasLootMenuItem_3:Show()
+	--Revered
+	AtlasLootMenuItem_4_Name:SetText("Revered Reputation Rewards")
+	AtlasLootMenuItem_4_Extra:SetText("")
+	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\inv_jewelry_ring_04")
+	AtlasLootMenuItem_4.lootpage="BRRepRevered"
+	AtlasLootMenuItem_4:Show()
+	--Exalted
+	AtlasLootMenuItem_5_Name:SetText("Exalted Reputation Rewards")
+	AtlasLootMenuItem_5_Extra:SetText("")
+	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\inv_jewelry_ring_04")
+	AtlasLootMenuItem_5.lootpage="BRRepExalted"
+	AtlasLootMenuItem_5:Show()
+	for i = 1, 30, 1 do
+		getglobal("AtlasLootMenuItem_"..i.."_Extra"):Show()
+	end
+	AtlasLoot_BossName:SetText("|cffFFFFFF".."Blood Ring")
+	AtlasLoot_SetItemInfoFrame(AtlasLoot_AnchorFrame);
 end
 
 function AtlasLootWSGRepMenu()

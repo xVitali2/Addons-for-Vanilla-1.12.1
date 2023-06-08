@@ -117,6 +117,7 @@ function AtlasLoot_FixText(text)
     text = gsub(text, "#p15#", L["Goblin Engineering"])
     text = gsub(text, "#p16#", BS["Skinning"])
     text = gsub(text, "#p17#", L["LW"])
+	text = gsub(text, "#p18#", "Survival")
 
     --Reputation
     text = gsub(text, "#r1#", BF["Neutral"])
@@ -317,6 +318,7 @@ function AtlasLoot_FixText(text)
     text = gsub(text, "#craftbp1#", BIS["Imperial Plate"])
     text = gsub(text, "#craftbp2#", BIS["The Darksoul"])
     text = gsub(text, "#craftbm1#", BIS["Bloodsoul Embrace"])
+    text = gsub(text, "#craftbp3#", "Steel Plate")
 
     -- Tailoring Crafted Sets
     	text = gsub(text, "#craftt1#", "Augerer's Attire")
@@ -337,6 +339,7 @@ function AtlasLoot_FixText(text)
     text = gsub(text, "#craftlwm1#", BIS["Green Dragon Mail"])
     text = gsub(text, "#craftlwm2#", BIS["Blue Dragon Mail"])
     text = gsub(text, "#craftlwm3#", BIS["Black Dragon Mail"])
+    text = gsub(text, "#craftlwm4#", "Red Dragon Mail");
     
 	-- Chests, boxes
     text = gsub(text, "#cb1#", L["Doan's Strongbox"])
@@ -487,6 +490,7 @@ function AtlasLoot_FixText(text)
     text = gsub(text, "#pvpeh6#", BIS["Warlord's Earthshaker"])
     text = gsub(text, "#pvpeh7#", BIS["Warlord's Threads"])
     text = gsub(text, "#pvpeh8#", BIS["Warlord's Battlegear"])
+    text = gsub(text, "#pvpeh9#", "Warlord's Aegis")
     
     --PvP Epic Alliance Sets
     text = gsub(text, "#pvpea1#", BIS["Field Marshal's Sanctuary"])
@@ -497,6 +501,7 @@ function AtlasLoot_FixText(text)
     text = gsub(text, "#pvpea6#", BIS["Field Marshal's Vestments"])
     text = gsub(text, "#pvpea7#", BIS["Field Marshal's Threads"])
     text = gsub(text, "#pvpea8#", BIS["Field Marshal's Battlegear"])
+    text = gsub(text, "#pvpea9#", "Field Marshal's Earthshaker")
     
     --PvP Rare Horde Sets
     text = gsub(text, "#pvprh1#", BIS["Champion's Refuge"])
@@ -507,6 +512,7 @@ function AtlasLoot_FixText(text)
     text = gsub(text, "#pvprh6#", BIS["Champion's Stormcaller"])
     text = gsub(text, "#pvprh7#", BIS["Champion's Dreadgear"])
     text = gsub(text, "#pvprh8#", BIS["Champion's Battlearmor"])
+    text = gsub(text, "#pvprh9#", "Champion's Redoubt")
     
     --PvP Rare Alliance Sets
     text = gsub(text, "#pvpra1#", BIS["Lieutenant Commander's Refuge"])
@@ -517,6 +523,7 @@ function AtlasLoot_FixText(text)
     text = gsub(text, "#pvpra6#", BIS["Lieutenant Commander's Guard"])
     text = gsub(text, "#pvpra7#", BIS["Lieutenant Commander's Dreadgear"])
     text = gsub(text, "#pvpra8#", BIS["Lieutenant Commander's Battlearmor"])
+    text = gsub(text, "#pvpra9#", "Lieutenant Commander's Stormcaller")
     
     --Rogue
     text = gsub(text, "#rp1#", BS["Poisons"])
