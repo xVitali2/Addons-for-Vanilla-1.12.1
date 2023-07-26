@@ -1589,7 +1589,7 @@ AtlasMaps = {
 		{ GREY.."3) "..L["High Priestess A'lathea"], NPC, 92108 },
 		{ GREY.."4) "..L["Fenektis the Deceiver"], NPC, 92109 },
 		{ GREY.."5) "..L["Master Raxxieth"], NPC, 92110 },
-		{ "" },
+		{ GREY.."6) ".."Trash Mobs" },
 		{ "" },
 		{ "" },
 		{ "" },

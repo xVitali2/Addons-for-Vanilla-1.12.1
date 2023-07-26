@@ -76,7 +76,7 @@ local BIS = AceLibrary("Babble-ItemSet-2.2")
 
 --Establish version number and compatible version of Atlas
 local VERSION_MAJOR = "4"
-local VERSION_MINOR = "09"
+local VERSION_MINOR = "10"
 local VERSION_BOSSES = "03"
 ATLASLOOT_VERSION = "|cffFF8400AtlasLoot TW Edition v"..VERSION_MAJOR.."."..VERSION_MINOR.."."..VERSION_BOSSES.."|r"
 
@@ -2549,7 +2549,7 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ "High Priestess A'lathea", "TCGHighPriestessAlathea" },
 		{ "Fenektis the Deceiver", "TCGFenektistheDeceiver" },
 		{ "Master Raxxieth", "TCGMasterRaxxieth" },
-		{ L["Trash Mobs"], "TCGTrash" },
+		{ "Trash Mobs", "TCGTrash" },
 	},
 	["Gnomeregan"] = {
 		{ BB["Grubbis"], "GnGrubbis" },

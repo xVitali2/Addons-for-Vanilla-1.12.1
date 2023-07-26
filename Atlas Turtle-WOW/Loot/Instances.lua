@@ -629,7 +629,7 @@ AtlasLootBossButtons = {
 		"TCGHighPriestessAlathea",
 		"TCGFenektistheDeceiver",
 		"TCGMasterRaxxieth",
-                "TCGTrash",
+        "TCGTrash"
 	},
 	KarazhanCrypt = {
 		"VanillaKeys",
@@ -641,7 +641,7 @@ AtlasLootBossButtons = {
         "KCArchlichEnkhraz",
         "KCCommanderAnderson",
         "KCAlarus",
-	"KCTreasure"
+		"KCTreasure"
 	},
 	CavernsOfTimeBlackMorass = {
 		"",

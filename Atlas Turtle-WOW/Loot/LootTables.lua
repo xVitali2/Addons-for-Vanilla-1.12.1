@@ -369,6 +369,7 @@ AtlasLoot_TableNames = {
     ["TCGHighPriestessAlathea"] = { L["High Priestess A'lathea"], "AtlasLootItems" },
     ["TCGFenektistheDeceiver"] = { L["Fenektis the Deceiver"], "AtlasLootItems" },
     ["TCGMasterRaxxieth"] = { L["Master Raxxieth"], "AtlasLootItems" },
+	["TCGTrash"] = { "Trash Mobs", "AtlasLootItems" },
 	-- Hateforge Quarry
     ["HQHighForemanBargulBlackhammer"] = { "High Foreman Bargul Blackhammer", "AtlasLootItems" },
     ["HQEngineerFiggles"] = { "Engineer Figgles", "AtlasLootItems" },
