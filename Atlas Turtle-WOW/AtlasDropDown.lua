@@ -334,6 +334,7 @@ Atlas_DropDownLayouts = {
 		},
 		[ATLAS_DDL_LEVEL_60] = {
 			"BlackwingLair",
+			"EmeraldSanctum",
 			"MoltenCore",
 			"Naxxramas",
 			"OnyxiasLair",
