@@ -197,6 +197,12 @@ function AtlasQuest_Instanzenchecken()
 		AQINSTANCE = 59
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\AdmiralBareanWestwind" then
 		AQINSTANCE = 60
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\GilneasCity" then
+		AQINSTANCE = 61
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\LowerKara" then
+		AQINSTANCE = 62
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\EmeraldSanctum" then
+		AQINSTANCE = 63
 		-- Default
 		
 	else --added for newer atlas version until i update atlasquest and for the flight pass maps

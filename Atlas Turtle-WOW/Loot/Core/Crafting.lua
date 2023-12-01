@@ -688,3 +688,29 @@ function AtlasLoot_MiningMenu()
 	AtlasLoot_BossName:SetText("|cffFFFFFF"..BS["Mining"])
 	AtlasLoot_SetItemInfoFrame(AtlasLoot_AnchorFrame)
 end
+function AtlasLoot_SurvivalMenu()
+	for i = 1, 30, 1 do
+		getglobal("AtlasLootItem_"..i):Hide();
+	end
+	for i = 1, 30, 1 do
+		getglobal("AtlasLootMenuItem_"..i):Hide();
+		getglobal("AtlasLootMenuItem_"..i).isheader = false;
+	end
+	getglobal("AtlasLootItemsFrame_BACK"):Show();
+	getglobal("AtlasLootItemsFrame_BACK").lootpage = "CRAFTINGMENU";
+	getglobal("AtlasLootItemsFrame_NEXT"):Hide();
+	getglobal("AtlasLootItemsFrame_PREV"):Hide();
+	getglobal("AtlasLootServerQueryButton"):Hide();
+	--Apprentice
+	AtlasLootMenuItem_2_Name:SetText(L["Survival"]);
+	AtlasLootMenuItem_2_Extra:SetText("");
+	AtlasLootMenuItem_2_Icon:SetTexture("Interface\\Icons\\Trade_Survival");
+	AtlasLootMenuItem_2.lootpage = "Survival1";
+	AtlasLootMenuItem_2:Show();
+	--Journeyman
+	AtlasLootMenuItem_3_Name:SetText(L["Garderning"]);
+	AtlasLootMenuItem_3_Extra:SetText("");
+	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\trade_herbalism");
+	AtlasLootMenuItem_3.lootpage = "Survival2";
+	AtlasLootMenuItem_3:Show();
+end

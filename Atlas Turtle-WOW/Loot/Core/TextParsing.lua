@@ -82,6 +82,7 @@ function AtlasLoot_FixText(text)
 	text = gsub(text, "#e24#", L["random resistance"])
 	text = gsub(text, "#e25#", L["random color"])
     text = gsub(text, "#e27#", "Token");
+	text = gsub(text, "#e28#", L["Toy"]);
 
     -- Classes
     text = gsub(text, "#c1#", BC["Druid"]) -- =q13=#c1#
@@ -117,7 +118,8 @@ function AtlasLoot_FixText(text)
     text = gsub(text, "#p15#", L["Goblin Engineering"])
     text = gsub(text, "#p16#", BS["Skinning"])
     text = gsub(text, "#p17#", L["LW"])
-	text = gsub(text, "#p18#", "Survival")
+    text = gsub(text, "#p18#", "Survival")
+    text = gsub(text, "#p19#", L["Garderning"])
 
     --Reputation
     text = gsub(text, "#r1#", BF["Neutral"])

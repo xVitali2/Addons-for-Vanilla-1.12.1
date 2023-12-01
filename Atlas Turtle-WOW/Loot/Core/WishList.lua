@@ -252,7 +252,14 @@ function AtlasLoot_CategorizeWishList(wlTable)
 		-- If a subheading is on the last row of a column, push it to next column
 		if ((table.getn(result) + 1) - math.floor((table.getn(result) + 1)/15)*15) == 0 then table.insert(result, { 0, "", "", "" }) end
 		-- Subheading
-		table.insert(result, { 0, "INV_Box_01", "=q6="..k, "=q0="..GetLootTableParent(strsplit("|", categories[k][1][5])) })
+		
+		--[[ some debug code that I've used to fix WishList errors before due to people adding drops to AtlasLoot incorrectly.
+		local box = k or "Unknown"
+		local cat = categories[k][1][5] or "Unknown"
+		print("box: "..box.." - cat: "..cat)
+		table.insert(result, { 0, "INV_Box_01", "=q6="..box, "=q0="..GetLootTableParent(strsplit("|", cat)) });]]--
+		
+		table.insert(result, { 0, "INV_Box_01", "=q6="..k, "=q0="..GetLootTableParent(strsplit("|", categories[k][1][5])) });
 		-- Sort first then add items
 		table.sort(v, AtlasLoot_WishListSortCheck) -- not works?
 		for i = 1, table.getn(v) do table.insert(result, v[i]) end

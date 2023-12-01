@@ -1703,6 +1703,7 @@ AtlasLoot_Data["AtlasLootSetItems"] = {
 	},
 	WorldEpics2 = {
 		{ 0, "", "", "" },
+		{ 14550, "inv_bracer_09", "=q4=Bladebane Armguards", "=ds=#s8#, #a2#", "" },
 		{ 3075, "INV_Helmet_44", "=q4=Eye of Flame", "=ds=#s1#, #a1#", "" },
 		{ 1315, "INV_Misc_Flower_01", "=q4=Lei of Lilies", "=ds=#s2#", "" },
 		{ 940, "INV_Chest_Cloth_26", "=q4=Robes of Insight", "=ds=#s5#, #a1#", "" },
@@ -1745,7 +1746,6 @@ AtlasLoot_Data["AtlasLootSetItems"] = {
 		{ 833, "INV_Ore_TrueSilver_01", "=q4=Lifestone", "=ds=#s14#", "" },
 		{ 18665, "Spell_Shadow_UnholyFrenzy", "=q4=The Eye of Shadow", "=ds=#s14#", "" },
 		{ 14557, "INV_Misc_Horn_03", "=q4=The Lion Horn of Stormwind", "=ds=#s14#", "" },
-		{ 0,"","","" },
 		{ 0,"","","" },
 		{ 0,"","","" },
 		{ 0,"","","" },

@@ -77,7 +77,7 @@ local BIS = AceLibrary("Babble-ItemSet-2.2")
 --Establish version number and compatible version of Atlas
 local VERSION_MAJOR = "4"
 local VERSION_MINOR = "10"
-local VERSION_BOSSES = "03"
+local VERSION_BOSSES = "04"
 ATLASLOOT_VERSION = "|cffFF8400AtlasLoot TW Edition v"..VERSION_MAJOR.."."..VERSION_MINOR.."."..VERSION_BOSSES.."|r"
 
 --Compatibility with old EquipCompare/EQCompare
@@ -164,7 +164,7 @@ AtlasLoot_MenuList = {
 	"ABRepMenu",
 	"AVRepMenu",
 	"WSGRepMenu",
-"BRRepMenu",
+	"BRRepMenu",
 	"PVPSET",
 	"SETMENU",
 	"AQ20SET",
@@ -189,7 +189,8 @@ AtlasLoot_MenuList = {
 	"MININGMENU",
 	"TAILORINGMENU",
 	"CRAFTSET",
-	"COOKINGMENU"
+	"COOKINGMENU",
+	"SURVIVALMENU",
 }
 
 --entrance maps to instance maps NOT NEEDED FOR ATLAS 1.12
@@ -341,8 +342,10 @@ function AtlasLoot_OnVariablesLoaded()
 		--We also create a helper table here which store IDs that need to search for
 		local idsToSearch = {}
 		for i = 1, table.getn(AtlasLootCharDB["WishList"]) do
-			if AtlasLootCharDB["WishList"][i][1] > 0 and not AtlasLootCharDB["WishList"][i][5] then
-				tinsert(idsToSearch, i, AtlasLootCharDB["WishList"][i][1])
+			if (type(AtlasLootCharDB["WishList"][i][1]) == "number") then
+				if (AtlasLootCharDB["WishList"][i][1] > 0 and not AtlasLootCharDB["WishList"][i][5]) then
+					tinsert(idsToSearch, i, AtlasLootCharDB["WishList"][i][1]);
+				end
 			end
 		end
 		if table.getn(idsToSearch) > 0 then
@@ -466,8 +469,8 @@ end
 	Sets default options on a fresh start.
 ]]
 function AtlasLootOptions_Fresh()
-	AtlasLootCharDB.SafeLinks = true
-	AtlasLootCharDB.AllLinks = false
+	AtlasLootCharDB.SafeLinks = false
+	AtlasLootCharDB.AllLinks = true
 	AtlasLootCharDB.DefaultTT = true
 	AtlasLootCharDB.LootlinkTT = false
 	AtlasLootCharDB.ItemSyncTT = false
@@ -1176,6 +1179,8 @@ function AtlasLoot_ShowItemsFrame(dataID, dataSource, boss, pFrame)
 		AtlasLoot_TailoringMenu()
 	elseif dataID=="COOKINGMENU" then
 		AtlasLoot_CookingMenu()
+	elseif(dataID=="SURVIVALMENU") then
+		AtlasLoot_SurvivalMenu()
 	else
 		--Iterate through each item object and set its properties
 		for i = 1, 30, 1 do
@@ -2176,17 +2181,14 @@ AtlasLoot_DewDropDown = {
 			},
 			[7] = { 
 				{ BZ["Gnomeregan"], "Gnomeregan", "Submenu" },
-			},
-			[8] = { 
-				{ "HateforgeQuarry", "HateforgeQuarry", "Submenu" },
 			},			
-			[9] = { 
+			[8] = { 
 				{ BZ["Razorfen Kraul"], "RazorfenKraul", "Submenu" },
 			},
-			[10] = { 
+			[9] = { 
 				{ L["The Crescent Grove"], "TheCrescentGrove", "Submenu" },
 			},
-			[11] = {
+			[10] = {
 				[BZ["Scarlet Monastery"]] = {
 					{ BZ["Scarlet Monastery"].." "..L["Graveyard"], "SMGraveyard", "Submenu" },
 					{ BZ["Scarlet Monastery"].." "..L["Library"], "SMLibrary", "Submenu" },
@@ -2194,11 +2196,14 @@ AtlasLoot_DewDropDown = {
 					{ BZ["Scarlet Monastery"].." "..L["Cathedral"], "SMCathedral", "Submenu" },
 				},
 			},
-			[12] = { 
+			[11] = { 
 				{ BZ["Razorfen Downs"], "RazorfenDowns", "Submenu" },
 			},
-			[13] = { 
+			[12] = { 
 				{ BZ["Uldaman"], "Uldaman", "Submenu" },
+			},
+			[13] = {
+				{ L["Gilneas City"], "GilneasCity", "Submenu" },
 			},
 			[14] = { 
 				{ BZ["Maraudon"], "Maraudon", "Submenu" },
@@ -2210,55 +2215,64 @@ AtlasLoot_DewDropDown = {
 				{ L["The Sunken Temple"], "SunkenTemple", "Submenu" },
 			},
 			[17] = { 
-				{ BZ["Blackrock Depths"], "BlackrockDepths", "Submenu" },
+				{ "HateforgeQuarry", "HateforgeQuarry", "Submenu" },
 			},
 			[18] = { 
+				{ BZ["Blackrock Depths"], "BlackrockDepths", "Submenu" },
+			},
+			[19] = { 
 				[BZ["Dire Maul"]] = {
 					{ BZ["Dire Maul"].." "..L["East"], "DireMaulEast", "Submenu" },
 					{ BZ["Dire Maul"].." "..L["West"], "DireMaulWest", "Submenu" },
 					{ BZ["Dire Maul"].." "..L["North"], "DireMaulNorth", "Submenu" },
 				}, 
 			},
-			[19] = { 
+			[20] = { 
 				{ BZ["Scholomance"], "Scholomance", "Submenu" },
 			},
-			[20] = { 
+			[21] = { 
 				{ BZ["Stratholme"], "Stratholme", "Submenu" },
 			},
-			[21] = { 
+			[22] = { 
 				{ BZ["Lower Blackrock Spire"], "LowerBlackrock", "Submenu" },
 			},
-			[22] = { 
+			[23] = { 
 				{ BZ["Upper Blackrock Spire"], "UpperBlackrock", "Submenu" },
 			},
-			[23] = { 
+			[24] = { 
 				{ L["Karazhan Crypt"], "KarazhanCrypt", "Submenu" },
 			},
-			[24] = { 
+			[25] = { 
 				{ L["Caverns of Time: Black Morass"], "CavernsOfTimeBlackMorass", "Submenu" },
 			},
-			[25] = { 
+			[26] = { 
 				{ L["Stormwind Vault"], "StormwindVault", "Submenu" },
 			},
-			[26] = { 
+			[27] = { 
 				{ BZ["Zul'Gurub"], "ZulGurub", "Submenu" },
 			},
-			[27] = { 
+			[28] = { 
 				{ BZ["Ruins of Ahn'Qiraj"], "RuinsofAQ", "Submenu" },
 			},
-			[28] = { 
+			[29] = { 
 				{ BZ["Molten Core"], "MoltenCore", "Submenu" },
 			},
-			[29] = { 
+			[30] = { 
 				{ BZ["Onyxia's Lair"], "Onyxia", "Submenu" },
 			},
-			[30] = { 
-				{ BZ["Blackwing Lair"], "BlackwingLair", "Submenu" },
-			},
-			[31] = { 
-				{ BZ["Temple of Ahn'Qiraj"], "TempleofAQ", "Submenu" },
+			[31] = {
+				{ L["Lower Karazhan Halls"], "LowerKara", "Submenu" },
 			},
 			[32] = { 
+				{ BZ["Blackwing Lair"], "BlackwingLair", "Submenu" },
+			},
+			[33] = {
+				{ L["Emerald Sanctum"], "EmeraldSanctum", "Submenu" },
+			},
+			[34] = { 
+				{ BZ["Temple of Ahn'Qiraj"], "TempleofAQ", "Submenu" },
+			},
+			[35] = { 
 				{ BZ["Naxxramas"], "Naxxramas", "Submenu" },
 			},
 		},
@@ -2408,7 +2422,7 @@ AtlasLoot_DewDropDown = {
 			[8] = { { (BS["Tailoring"]), "Tailoring", "Submenu" }, },
 			[9] = { { (BS["Cooking"]), "Cooking", "Submenu" }, },
 			[10] = { { (BS["First Aid"]), "FirstAid1", "Table" }, },
-			[11] = { { ("Survival"), "Survival1", "Table" }, },
+			[11] = { { (L["Survival"]), "Survival1", "Table" }, },
 			[12] = { { (BS["Poisons"]), "Poisons1", "Table" }, },
 			[13] = { 
 				[L["Crafted Sets"]] = {
@@ -2507,9 +2521,14 @@ AtlasLoot_DewDropDown_SubTables = {
 	["CavernsOfTimeBlackMorass"] = {
 		{ L["Chronar"], "COTBMChronar" },
 		{ L["Harbinger Aph'ygth"], "COTBMHarbingerAphygth" },
+		{ L["Epidamu"], "COTBMEpidamu" },
+		{ L["Drifting Avatar of Time"], "COTBMDriftingAvatar" },
 		{ L["Time-Lord Epochronos"], "COTBMTimeLordEpochronos" },
+		{ L["Mossheart"], "COTBMMossheart" },
+		{ L["Rotmaw"], "COTBMRotmaw" },
 		{ L["Antnormi"], "COTBMAntnormi" },
-		{ L["Infinite Chromie"], "COTBMInfiniteChromie" },
+		{ L["Trash Mobs"], "COTTrash" },
+		--{ L["Infinite Chromie"], "COTBMInfiniteChromie" },
 	},
 	["StormwindVault"] = {
 		{ L["Aszosh Grimflame"], "SWVAszoshGrimflame" },
@@ -2517,8 +2536,8 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ L["Black Bride"], "SWVBlackBride" },
 		{ L["Damian"], "SWVDamian" },
 		{ L["Volkan Cruelblade"], "SWVVolkanCruelblade" },
-		{ L["Arc'tiras"], "SWVArctiras" },
-		{ L["Vault Armory Equipment"], "SWVVaultArmoryEquipment" },
+		{ L["Arc'tiras / Vault Armory Equipment"], "SWVVaultArmoryEquipment" },
+		{ L["Trash Mobs"], "SWVTrash" },
 	},
 	["BlackwingLair"] = {
 		{ BB["Razorgore the Untamed"], "BWLRazorgore" },
@@ -2713,6 +2732,17 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ BB["Archaedas"], "UldArchaedas" },
 		{ L["Trash Mobs"], "UldTrash" },
 	},
+	["GilneasCity"] = {
+		{ L["Matthias Holtz"], "GCMatthiasHoltz" },
+		{ L["Packmaster Ragetooth"], "GCPackmasterRagetooth" },
+		{ L["Judge Sutherland"], "GCJudgeSutherland" },
+		{ L["Dustivan Blackcowl"], "GCDustivanBlackcowl" },
+		{ L["Marshal Magnus Greystone"], "GCMarshalMagnusGreystone" },
+		{ L["Horsemaster Levvin"], "GCHorsemasterLevvin" },
+		{ L["Harlow Family Chest"], "GCHarlowFamilyChest" },
+		{ L["Genn Greymane"], "GCGennGreymane" },
+		{ L["Trash Mobs"], "GCTrash" },
+	},
 	["ZulGurub"] = {
 		{ BB["High Priestess Jeklik"], "ZGJeklik" },
 		{ BB["High Priest Venoxis"], "ZGVenoxis" },
@@ -2747,10 +2777,11 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ BB["Hydrospawn"], "DMEHydro" },
 		{ BB["Lethtendris"], "DMELethtendris" },
 		{ BB["Pimgib"], "DMEPimgib" },
-		{ BB["Isalien"], "DMEIsalien" },
 		{ BB["Alzzin the Wildshaper"], "DMEAlzzin" },
+		{ BB["Isalien"], "DMEIsalien" },
+		{ L["Felvine Shard"], "DMEShard" },
+		{ L["A Dusty Tome"], "DMTome" },
 		{ L["Trash Mobs"], "DMETrash" },
-		{ L["Dire Maul Books"], "DMBooks" },
 	},
 	["DireMaulWest"] = {
 		{ BB["Tendris Warpwood"], "DMWTendrisWarpwood" },
@@ -2787,13 +2818,14 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ BB["Tinkerer Gizlock"], "MaraTinkererGizlock" },
 		{ BB["Rotgrip"], "MaraRotgrip" },
 		{ BB["Princess Theradras"], "MaraPrincessTheradras" },
+		{ L["Trash Mobs"], "MaraTrash" },
 	},
 	["Onyxia"] = {
 		{ BB["Onyxia"], "Onyxia" },
 	},
 	["RagefireChasm"] = {
-		{ BB["Oggleflint"], "RFCOggleflint" },
 		{ BB["Taragaman the Hungerer"], "RFCTaragaman" },
+		{ BB["Oggleflint"], "RFCOggleflint" },
 		{ BB["Jergosh the Invoker"], "RFCJergosh" },
 		{ BB["Bazzalan"], "RFCBazzalan" },
 	},
@@ -2867,6 +2899,23 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ BB["Chief Ukorz Sandscalp"], "ZFChiefUkorzSandscalp" },
 		{ L["Trash Mobs"], "ZFTrash" },
 	},
+	["EmeraldSanctum"] = {
+		{ L["Erennius"], "ESErennius" },
+		{ L["Solnius the Awakener"], "ESSolnius1" },
+		{ L["Solnius the Awakener (Page 2)"], "ESSolnius2" },
+		{ L["Favor of Erennius (ES Hard Mode)"], "ESHardMode" },
+		{ L["Trash Mobs"], "ESTrash" },
+	},
+	["LowerKara"] = {
+		{ L["Master Blacksmith Rolfen"], "LKHRolfen" },
+		{ L["Brood Queen Araxxna"], "LKHBroodQueenAraxxna" },
+		{ L["Grizikil"], "LKHGrizikil" },
+		{ L["Clawlord Howlfang"], "LKHClawlordHowlfang" },
+		{ L["Lord Blackwald II"], "LKHLordBlackwaldII" },
+		{ L["Moroes"], "LKHMoroes" },
+		{ L["Trash Mobs"], "LKHTrash" },
+		{ L["LKH Enchants"], "LKHEnchants" },
+	},
 	["WorldBosses"] = {
 		{ BB["Azuregos"], "AAzuregos" },
 		{ BB["Emeriss"], "DEmeriss" },
@@ -2914,7 +2963,7 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ BF["Wintersaber Trainers"], "Wintersaber1" },
 		{ BF["Zandalar Tribe"], "Zandalar1" },
 		{ "Silvermoon Remnant", "Helf" },
-
+		{ L["Wildhammer Clan"], "Wildhammer" },
 		{ "Wardens of Time", "Warderns1" },
 		{ "Ironforge", "Ironforge" },
 		{ "Darnassus", "Darnassus" },
@@ -2926,6 +2975,8 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ "Orgrimmar", "Orgrimmar" },
 		{ "Thunder Bluff", "ThunderBluff" },
 		{ "Dalaran", "Dalaran" },
+		{ L["Darkmoon Faire"], "Darkmoon" },
+		{ L["Revantusk Trolls"], "Revantusk" },
 	},
 	["BoEWorldEpics"] = {
 		{ AtlasLoot_TableNames["WorldEpics3"][1], "WorldEpics3" },
@@ -3099,18 +3150,19 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ L["Friendly Reputation Rewards"], "BRRepFriendly" },
 	},
 	["ABRewards"] = {
+		{ "Arathi Basin Menu", "ABRepMenu" },
 		{ L["Exalted Reputation Rewards"], "ABRepExalted" },
 		{ L["Revered Reputation Rewards"], "ABRepRevered5059" },
 		{ L["Honored Reputation Rewards"], "ABRepHonored5059" },
 		{ L["Friendly Reputation Rewards"], "ABRepFriendly5059" },
 	},
 	["AVRewards"] = {
-		{ L["Ivus the Forest Lord"], "AVIvus" },
-		{ L["Lokholar the Ice Lord"], "AVLokholar" },
 		{ L["Exalted Reputation Rewards"], "AVRepExalted" },
 		{ L["Revered Reputation Rewards"], "AVRepRevered" },
 		{ L["Honored Reputation Rewards"], "AVRepHonored" },
 		{ L["Friendly Reputation Rewards"], "AVRepFriendly" },
+		{ L["Korrak the Bloodrager"], "AVKorrak" },
+		{ L["Ivus & Lokholar"], "AVLokholarIvus" },
 	},
 	["PvPArmorSets"] = {
 		{ BC["Priest"], "PVPPriest" },
@@ -3124,6 +3176,7 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ BC["Warrior"], "PVPWarrior" },
 	},
 	["WSGRewards"] = {
+		{ "Warsong Gulch Menu", "WSGRepMenu" },
 		{ L["Exalted Reputation Rewards"], "WSGRepExalted60" },
 		{ L["Revered Reputation Rewards"], "WSGRepRevered5059" },
 		{ L["Honored Reputation Rewards"], "WSGRepHonored5059" },
@@ -3184,6 +3237,10 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ AtlasLoot_TableNames["TailoringJourneyman1"][1], "TailoringJourneyman1" },
 		{ AtlasLoot_TableNames["TailoringExpert1"][1], "TailoringExpert1" },
 		{ AtlasLoot_TableNames["TailoringArtisan1"][1], "TailoringArtisan1" },
+	},
+	["Survival"] = {
+		{ AtlasLoot_TableNames["Survival1"][1], "Survival1" },
+		{ AtlasLoot_TableNames["Survival2"][1], "Survival2" },
 	},
 }
 

@@ -50,6 +50,12 @@ function AtlasLootRepMenu()
 	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\INV_Ingot_Mithril")
 	AtlasLootMenuItem_6.lootpage="Thorium1"
 	AtlasLootMenuItem_6:Show()
+	--Wildhammer Clan
+	AtlasLootMenuItem_7_Name:SetText(L["Wildhammer Clan"])
+	AtlasLootMenuItem_7_Extra:SetText("|cff2773ff"..BF["Alliance"])
+	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\INV_Misc_Rune_06")
+	AtlasLootMenuItem_7.lootpage="Wildhammer"
+	AtlasLootMenuItem_7:Show()
     	--Stormwind
 	AtlasLootMenuItem_8_Name:SetText(BF["Stormwind"])
 	AtlasLootMenuItem_8_Extra:SetText("|cff2773ff"..BF["Alliance"])
