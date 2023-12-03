@@ -317,17 +317,21 @@ function AtlasLoot_FixText(text)
     text = gsub(text, "#j18#", L["Dark Keeper"])
 
 	-- Blacksmithing Crafted Sets
-    text = gsub(text, "#craftbp1#", BIS["Imperial Plate"])
-    text = gsub(text, "#craftbp2#", BIS["The Darksoul"])
-    text = gsub(text, "#craftbm1#", BIS["Bloodsoul Embrace"])
-    text = gsub(text, "#craftbp3#", "Steel Plate")
+	text = gsub(text, "#craftbp1#", BIS["Imperial Plate"])
+	text = gsub(text, "#craftbp2#", BIS["The Darksoul"])
+	text = gsub(text, "#craftbm1#", BIS["Bloodsoul Embrace"])
+	text = gsub(text, "#craftbp3#", "Steel Plate")
+	text = gsub(text, "#craftbp4#", "Dreamsteel Armor")
 
-    -- Tailoring Crafted Sets
-    	text = gsub(text, "#craftt1#", "Augerer's Attire")
+	-- Tailoring Crafted Sets
+	text = gsub(text, "#craftt1#", "Augerer's Attire")
 	text = gsub(text, "#craftt2#", "Shadoweave")
 	text = gsub(text, "#craftt3#", "Diviner's Garments")
 	text = gsub(text, "#craftt4#", "Pillager's Garb")
+	text = gsub(text, "#craftt7#", "Mooncloth Regalia")
 	text = gsub(text, "#craftt5#", BIS["Bloodvine Garb"])
+	text = gsub(text, "#craftt8#", "Flarecore Regalia")
+	text = gsub(text, "#craftt6#", "Dreamthread Regalia")
 
     -- Leatherworking Crafted Sets
     text = gsub(text, "#craftlwl1#", BIS["Volcanic Armor"])
@@ -338,6 +342,7 @@ function AtlasLoot_FixText(text)
     text = gsub(text, "#craftlwl6#", BIS["Primal Batskin"])
     text = gsub(text, "#craftlwl7#", "Grifter's Armor")
     text = gsub(text, "#craftlwl8#", "Primalist's Trappings")
+    text = gsub(text, "#craftlwl9#", "Dreamhide Battlegarb")
     text = gsub(text, "#craftlwm1#", BIS["Green Dragon Mail"])
     text = gsub(text, "#craftlwm2#", BIS["Blue Dragon Mail"])
     text = gsub(text, "#craftlwm3#", BIS["Black Dragon Mail"])

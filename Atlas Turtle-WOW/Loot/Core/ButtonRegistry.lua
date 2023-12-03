@@ -2679,8 +2679,6 @@ AtlasLoot_ButtonRegistry = {
 		Prev_Title = AL["Trash Mobs"],
 	},
 
-
-
 	-- World Bosses
 	["AAzuregos"] = {
 		Title = "Azuregos",
@@ -3790,6 +3788,11 @@ AtlasLoot_ButtonRegistry = {
 		Back_Page = "CRAFTSET",
 		Back_Title = AL["Crafted Sets"]
 	},
+	["DreamsteelArmor"] = {
+		Title = "Dreamsteel Armor",
+		Back_Page = "CRAFTSET",
+		Back_Title = AL["Crafted Sets"]
+	},
 	["AugerersAttire"] = {
 			Title = "Augerer's Attire",
 			Back_Page = "CRAFTSET",
@@ -3810,8 +3813,23 @@ AtlasLoot_ButtonRegistry = {
 			Back_Page = "CRAFTSET",
 			Back_Title = AL["Crafted Sets"],
 	},
+	["MoonclothRegalia"] = {
+		Title = "Mooncloth Regalia",
+		Back_Page = "CRAFTSET",
+		Back_Title = AL["Crafted Sets"]
+	},
 	["BloodvineG"] = {
 		Title = BIS["Bloodvine Garb"],
+		Back_Page = "CRAFTSET",
+		Back_Title = AL["Crafted Sets"]
+	},
+	["FlarecoreRegalia"] = {
+		Title = "Flarecore Regalia",
+		Back_Page = "CRAFTSET",
+		Back_Title = AL["Crafted Sets"]
+	},
+	["DreamthreadRegalia"] = {
+		Title = "Dreamthread Regalia",
 		Back_Page = "CRAFTSET",
 		Back_Title = AL["Crafted Sets"]
 	},
@@ -3852,6 +3870,11 @@ AtlasLoot_ButtonRegistry = {
 	},
 	["PrimalBatskin"] = {
 		Title = BIS["Primal Batskin"],
+		Back_Page = "CRAFTSET",
+		Back_Title = AL["Crafted Sets"]
+	},
+	["DreamhideBattlegarb"] = {
+		Title = "Dreamhide Battlegarb",
 		Back_Page = "CRAFTSET",
 		Back_Title = AL["Crafted Sets"]
 	},
@@ -4412,8 +4435,8 @@ AtlasLoot_ButtonRegistry = {
 		Back_Title = BS["Blacksmithing"],
 		Prev_Page = "SmithingExpert1",
 		Prev_Title = BS["Blacksmithing"]..": "..AL["Expert"],
-		Next_Page = "SmithingArtisan1",
-		Next_Title = BS["Blacksmithing"]..": "..AL["Artisan"]
+		Next_Page = "SmithingExpert3",
+		Next_Title = BS["Blacksmithing"]..": "..AL["Expert"]
 	},
 	["SmithingExpert3"] = {
 		Title = AL["Blacksmithing"] .. ": " .. AL["Expert"],
@@ -4440,7 +4463,7 @@ AtlasLoot_ButtonRegistry = {
 		Prev_Page = "SmithingArtisan1",
 		Prev_Title = BS["Blacksmithing"]..": "..AL["Artisan"],
 		Next_Page = "SmithingArtisan3",
-		Next_Title = BS["Blacksmithing"]
+		Next_Title = BS["Blacksmithing"]..": "..AL["Artisan"],
 	},
 	["SmithingArtisan3"] = {
 		Title = BS["Blacksmithing"]..": "..AL["Artisan"],
@@ -4448,8 +4471,8 @@ AtlasLoot_ButtonRegistry = {
 		Back_Title = BS["Blacksmithing"],
 		Prev_Page = "SmithingArtisan2",
 		Prev_Title = BS["Blacksmithing"]..": "..AL["Artisan"],
-		Next_Page = "Armorsmith1",
-		Next_Title = BS["Armorsmith"]
+		Next_Page = "SmithingArtisan4",
+		Next_Title = BS["Blacksmithing"]..": "..AL["Artisan"],
 	},
 	["SmithingArtisan4"] = {
 		Title = AL["Blacksmithing"] .. ": " .. AL["Artisan"],

@@ -6673,7 +6673,7 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 0, "", "", "" },
 		{ 0, "", "", "" },
 		{ 0, "", "", "" },
-		{ 17962,"INV_Misc_Bag_10_Blue","=q2=Blue Sack of Gems","=ds=#m23# =q2=#e33#", "100%" },
+		{ 17962,"INV_Misc_Bag_10_Blue","=q2=Blue Sack of Gems","=ds=#m23# =q2=#e25#", "100%" },
 	};
 	ESHardMode = {
 		{ 61524, "INV_Chest_Plate07", "=q4=Naturecaller's Tunic", "=ds=#s5#, #a2#", "17%" },

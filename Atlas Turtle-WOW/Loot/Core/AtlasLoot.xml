@@ -508,7 +508,7 @@
 						</Anchor>
 					</Anchors>
 				</Texture>
-				<FontString inherits="GameFontNormal" text="ATLASLOOT_VERSION">
+				<FontString inherits="GameFontNormal" text="ATLASLOOT_VERSION_FULL">
 					<Anchors>
 						<Anchor point="TOP">
 							<Offset>
@@ -899,7 +899,7 @@
 		</Frames>
 		<Layers>
 			<Layer level="OVERLAY">
-				<FontString name="$parent_Text1" inherits="GameFontNormalSmall" text="ATLASLOOT_VERSION" justifyH="LEFT">
+				<FontString name="$parent_Text1" inherits="GameFontNormalSmall" text="ATLASLOOT_VERSION_FULL" justifyH="LEFT">
 					<Size>
 						<AbsDimension x="180" y="10"/>
 					</Size>

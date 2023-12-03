@@ -66,12 +66,13 @@ local AQMAXQUESTS = "19"
 
 -- Set title for AtlasQuest side panel
 ATLASQUEST_VERSION = GetAddOnMetadata("Atlas Turtle-WOW", "Version-AtlasQuest")
+ATLASQUEST_VERSION_FULL = "|cffFF8400AtlasQuest TW Edition v"..ATLASQUEST_VERSION.."|r"
 
 AQ_ShownSide = "Left"
 AQAtlasAuto = 1
 AQNOColourCheck = nil
 AtlasQuestHelp = {}
-AtlasQuestHelp[1] = "[/aq + available command: help, left/right, show/hide, autoshow\ndownload adress:\nhttp://ui.worldofwar.net/ui.php?id=3069, http://www.curse-gaming.com/de/wow/addons-4714-1-atlasquest.html]"
+AtlasQuestHelp[1] = "[/aq + available command: help, left/right, show/hide, autoshow\n]"
 
 local AtlasQuest_Defaults = {
 	["Version"] = ATLASQUEST_VERSION,

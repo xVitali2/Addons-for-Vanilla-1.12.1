@@ -7366,7 +7366,7 @@ GetSpellInfoVanillaDB = {
 			["craftQuantityMax"] = "",
 			["reagents"] = {
 				[1] = {3818, 4},
-				[2] = {3369, 4},
+				[2] = {3369, 2},
 				[3] = {3372},
 			},
 		},
@@ -18860,6 +18860,22 @@ GetSpellInfoVanillaDB = {
 				[2] = {15412, 30},
 				[3] = {15407},
 				[4] = {14341, 2},
+			},
+		},
+		[54001] = {
+			["name"] = "Leatherworking: Blue Dragonscale Boots",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 60,
+			["text"] = "",
+			["craftItem"] = 65015,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {8170, 24},
+				[2] = {15415, 25},
+				[3] = {15407},
+				[4] = {14341},
 			},
 		},
 		[19077] = {

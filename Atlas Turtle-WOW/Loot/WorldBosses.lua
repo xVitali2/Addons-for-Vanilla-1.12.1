@@ -68,7 +68,7 @@ AtlasLoot_Data["AtlasLootWBItems"] = {
 		{ 0,"","","" },
 		{ 0,"","","" },
 		{ 83235, "inv_misc_pocketwatch_03", "=q4=Ancient Locking Mechanism", "", "100%" },
-		{ 17962, "INV_Misc_Bag_10_Blue","=q2=Blue Sack of Gems","=ds=#m23# =q2=#e33#", "100%" },
+		{ 17962, "INV_Misc_Bag_10_Blue","=q2=Blue Sack of Gems","=ds=#m23# =q2=#e25#", "100%" },
 	},
 	Concavius = {
 		{ 83233, "inv_archaeology_70_highborne_inertleystonecharm", "=q4=Charm of Dark Domination", "=ds=#s2#", "17%" },

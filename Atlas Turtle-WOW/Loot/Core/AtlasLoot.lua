@@ -1,65 +1,3 @@
---[[
-	Atlasloot Enhanced
-	Author Daviesh
-	Loot browser associating loot with instance bosses
-	Can be integrated with Atlas (http://www.atlasmod.com)
-	
-	Functions:
-	AtlasLoot_OnEvent(event)
-	AtlasLoot_OnVariablesLoaded()
-	AtlasLoot_OnLoad()
-	AtlasLoot_SlashCommand(msg)
-	AtlasLoot_SetupForAtlas()
-	AtlasLoot_SetItemInfoFrame()
-	AtlasLoot_ShowMenu()
-	AtlasLootBoss_OnClick(name)
-	AtlasLootDefaultFrame_OnShow()
-	AtlasLootDefaultFrame_OnHide()
-	AtlasLootOptions_OnLoad()
-	AtlasLootOptions_Init()
-	AtlasLootOptions_Fresh()
-	AtlasLootOptions_Toggle()
-	AtlasLootOptions_SafeLinksToggle()
-	AtlasLootOptions_AllLinksToggle()
-	AtlasLootOptions_DefaultTTToggle()
-	AtlasLootOptions_LootlinkTTToggle()
-	AtlasLootOptions_ItemSyncTTToggle()
-	AtlasLootOptions_EquipCompareToggle()
-	AtlasLootOptions_OpaqueToggle()
-	AtlasLootOptions_ItemIDToggle()
-	AtlasLootOptions_ItemSpam()
-	AtlasLoot_ShowItemsFrame()
-	AtlasLoot_DewDropClick(tablename, text, tabletype)
-	AtlasLoot_DewDropSubMenuClick(tablename, text)
-	AtlasLoot_DewdropSubMenuRegister(loottable)
-	AtlasLoot_DewdropRegister()
-	AtlasLootItemsFrame_OnCloseButton()
-	AtlasLoot_Toggle()
-	AtlasLootMenuItem_OnClick()
-	AtlasLoot_NavButton_OnClick()
-	AtlasLoot_IsLootTableAvailable(dataID)
-	AtlasLoot_GetLODModule(dataSource)
-	AtlasLoot_ShowQuickLooks(button)
-	AtlasLoot_RefreshQuickLookButtons()
-	AtlasLoot_Atlas_OnShow()
-	AtlasLoot_Refresh()
-	AtlasLoot_AtlasScrollBar_Update()
-	AtlasLoot_ShowBossLoot()
-	AtlasLootMinimapButton_OnClick()
-	AtlasLootMinimapButton_Init()
-	AtlasLootMinimapButton_OnEnter()
-	AtlasLootMinimapButton_UpdatePosition()
-	AtlasLootMinimapButton_BeingDragged()
-	AtlasLootMinimapButton_SetPosition()
-	AtlasLootItem_OnEnter()
-	AtlasLootItem_OnLeave()
-	AtlasLootItem_OnClick()
-	AtlasLoot_QueryLootPage()
-	
-	strsplit
-	strtrim
-	
-]]
 
 AtlasLoot = AceLibrary("AceAddon-2.0"):new("AceDB-2.0")
 
@@ -74,11 +12,8 @@ local BB = AceLibrary("Babble-Boss-2.2")
 local BF = AceLibrary("Babble-Faction-2.2")
 local BIS = AceLibrary("Babble-ItemSet-2.2")
 
---Establish version number and compatible version of Atlas
-local VERSION_MAJOR = "4"
-local VERSION_MINOR = "10"
-local VERSION_BOSSES = "04"
-ATLASLOOT_VERSION = "|cffFF8400AtlasLoot TW Edition v"..VERSION_MAJOR.."."..VERSION_MINOR.."."..VERSION_BOSSES.."|r"
+ATLASLOOT_VERSION = GetAddOnMetadata("Atlas Turtle-WOW", "Version-AtlasLoot")
+ATLASLOOT_VERSION_FULL = "|cffFF8400AtlasLoot TW Edition v"..ATLASLOOT_VERSION.."|r"
 
 --Compatibility with old EquipCompare/EQCompare
 ATLASLOOT_OPTIONS_EQUIPCOMPARE = L["Use EquipCompare"]
@@ -105,7 +40,7 @@ local ORANGE = "|cffFF8400"
 local DEFAULT = "|cffFFd200"
 
 --Establish number of boss lines in the Atlas frame for scrolling
-local ATLAS_LOOT_BOSS_LINES	= 24
+local ATLAS_LOOT_BOSS_LINES = 24
 
 --Flag so that error messages do not spam
 local ATLASLOOT_POPUPSHOWN = false
@@ -124,7 +59,7 @@ AtlasLoot:RegisterDB("AtlasLootDB")
 
 --Popup Box for first time users
 StaticPopupDialogs["ATLASLOOT_SETUP"] = {
-	text = L["Welcome to Atlasloot TW Edition. Please take a moment to set your preferences."].."\n\n"..L["New feature in 4.06.02: All professions are now included in the AtlasLoot_Crafting module."].."\n\n"..L["New feature in 4.05.00: Advanced searching functionality is now available. You can type in a partial item name, for example typing 'elixir' gives all items in the database with 'elixir' in the name. Big thanks to Kurax for his help."].."\n",
+	text = "Welcome to Atlas TW Edition. Please take a moment to set your preferences.",
 	button1 = L["Setup"],
 	OnAccept = function()
 		AtlasLootOptions_Toggle()
@@ -154,7 +89,7 @@ local DefaultAtlasLootOptions = {
 	HidePanel = false,
 	LastBoss = "RFCTaragaman",
 	LastBossText = BB["Taragaman the Hungerer"],
-	AtlasLootVersion = VERSION_MAJOR..VERSION_MINOR..VERSION_BOSSES,
+	AtlasLootVersion = ATLASLOOT_VERSION,
 	AutoQuery = false,
 	PartialMatching = true,
 }
@@ -327,7 +262,7 @@ function AtlasLoot_OnVariablesLoaded()
 		if AtlasLootCharDB.FirstTime == nil and tonumber(AtlasLootCharDB.AtlasLootVersion) < 40500 then
 			AtlasLootCharDB.SafeLinks = true
 			AtlasLootCharDB.AllLinks = false
-			AtlasLootCharDB.AtlasLootVersion = VERSION_MAJOR..VERSION_MINOR..VERSION_BOSSES
+			AtlasLootCharDB.AtlasLootVersion = ATLASLOOT_VERSION
 			StaticPopup_Show ("ATLASLOOT_SETUP")
 			AtlasLootCharDB.FirstTime = false
 		end
@@ -335,62 +270,6 @@ function AtlasLoot_OnVariablesLoaded()
 	else
 		--If we are not using Atlas, keep the items frame out of the way
 		AtlasLootItemsFrame:Hide()
-	end
-	--Check and migrate old WishList entry format to the newer one
-	if tonumber(AtlasLootCharDB.AtlasLootVersion) < 40301 then
-		--Check if we really need to do a migration since it will load all modules
-		--We also create a helper table here which store IDs that need to search for
-		local idsToSearch = {}
-		for i = 1, table.getn(AtlasLootCharDB["WishList"]) do
-			if (type(AtlasLootCharDB["WishList"][i][1]) == "number") then
-				if (AtlasLootCharDB["WishList"][i][1] > 0 and not AtlasLootCharDB["WishList"][i][5]) then
-					tinsert(idsToSearch, i, AtlasLootCharDB["WishList"][i][1]);
-				end
-			end
-		end
-		if table.getn(idsToSearch) > 0 then
-			--Let's do this
-			for _, dataSource in ipairs(AtlasLoot_SearchTables) do
-				if AtlasLoot_Data[dataSource] then
-					for dataID, lootTable in pairs(AtlasLoot_Data[dataSource]) do
-						for _, entry in ipairs(lootTable) do
-							for k, v in pairs(idsToSearch) do
-								if (entry[1] == v)then
-									AtlasLootCharDB["WishList"][k][5] = dataID.."|"..dataSource
-									break
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-		AtlasLootCharDB.AtlasLootVersion = VERSION_MAJOR..VERSION_MINOR..VERSION_BOSSES
-		AtlasLootCharDB.AutoQuery = false
-		AtlasLootOptions_Init()
-	end
-	--Adds an AtlasLoot button to the Feature Frame in Cosmos
-	if EarthFeature_AddButton then
-		EarthFeature_AddButton(
-			{
-				id = string.sub(ATLASLOOT_VERSION, 11, 28),
-				name = string.sub(ATLASLOOT_VERSION, 11, 28),
-				subtext = string.sub(ATLASLOOT_VERSION, 30, 39),
-				tooltip = "",
-				icon = "Interface\\Icons\\INV_Box_01",
-				callback = AtlasLoot_ShowMenu,
-				test = nil
-			}
-		)
-		--Adds AtlasLoot to old style Cosmos installations
-	elseif Cosmos_RegisterButton then
-		Cosmos_RegisterButton(
-			string.sub(ATLASLOOT_VERSION, 11, 28),
-			string.sub(ATLASLOOT_VERSION, 11, 28),
-			"",
-			"Interface\\Icons\\INV_Box_01",
-			AtlasLoot_ShowMenu
-		)
 	end
 	--Set up the menu in the loot browser
 	AtlasLoot_DewdropRegister()
@@ -485,7 +364,7 @@ function AtlasLootOptions_Fresh()
 	AtlasLootCharDB.HidePanel = false
 	AtlasLootCharDB.LastBoss = "RFCTaragaman"
 	AtlasLootCharDB.LastBossText = BB["Taragaman the Hungerer"]
-	AtlasLootCharDB.AtlasLootVersion = VERSION_MAJOR..VERSION_MINOR..VERSION_BOSSES
+	AtlasLootCharDB.AtlasLootVersion = ATLASLOOT_VERSION
 	AtlasLootCharDB.AutoQuery = false
 	AtlasLootCharDB.PartialMatching = true
 end
@@ -2082,7 +1961,7 @@ function AtlasLootOptions_DefaultSettings()
 	AtlasLootCharDB.ItemSpam = true
 	AtlasLootCharDB.MinimapButton = true
 	AtlasLootCharDB.HidePanel = false
-	AtlasLootCharDB.AtlasLootVersion = VERSION_MAJOR..VERSION_MINOR..VERSION_BOSSES
+	AtlasLootCharDB.AtlasLootVersion = ATLASLOOT_VERSION
 	AtlasLootCharDB.AutoQuery = false
 	AtlasLootCharDB.PartialMatching = true
 	AtlasLootCharDB.LastBoss = "RFCTaragaman"
@@ -2422,13 +2301,13 @@ AtlasLoot_DewDropDown = {
 			[8] = { { (BS["Tailoring"]), "Tailoring", "Submenu" }, },
 			[9] = { { (BS["Cooking"]), "Cooking", "Submenu" }, },
 			[10] = { { (BS["First Aid"]), "FirstAid1", "Table" }, },
-			[11] = { { (L["Survival"]), "Survival1", "Table" }, },
+			[11] = { { (L["Survival"]), "SURVIVALMENU", "Table" }, },
 			[12] = { { (BS["Poisons"]), "Poisons1", "Table" }, },
 			[13] = { 
 				[L["Crafted Sets"]] = {
 					{ (BS["Blacksmithing"]), "CraftSetBlacksmith", "Submenu" },
 					{ (BS["Leatherworking"]), "CraftSetLeatherwork", "Submenu" },
-					{ (BS["Tailoring"]), "BloodvineG", "Table" },
+					{ (BS["Tailoring"]), "CraftSetTailoring", "Submenu" },
 				}, 
 			},
 			[14] = { { L["Crafted Epic Weapons"], "CraftedWeapons1", "Table" }, },
@@ -3014,14 +2893,16 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ AtlasLoot_TableNames["WorldBluesShields"][1], "WorldBluesShields" },
 	},
 	["CraftSetBlacksmith"] = {
-                { "Steel Plate", "SteelPlate" },
+		{ "Steel Plate", "SteelPlate" },
 		{ BIS["Imperial Plate"], "ImperialPlate" },
 		{ BIS["The Darksoul"], "TheDarksoul" },
 		{ BIS["Bloodsoul Embrace"], "BloodsoulEmbrace" },
+		{ "Dreamsteel Armor", "DreamsteelArmor" },
 	},
 	["CraftSetLeatherwork"] = {
 		{ "Grifter's Armor", "GriftersArmor" },
 		{ "Primalist's Trappings", "PrimalistsTrappings" },
+		{ "Dreamhide Battlegarb", "DreamhideBattlegarb" },
 		{ BIS["Volcanic Armor"], "VolcanicArmor" },
 		{ BIS["Ironfeather Armor"], "IronfeatherArmor" },
 		{ BIS["Stormshroud Armor"], "StormshroudArmor" },
@@ -3038,7 +2919,10 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ "Shadoweave", "ShadoweaveSet" },
 		{ "Diviner's Garments", "DivinersGarments" },
 		{ "Pillager's Garb", "PillagersGarb" },
+		{ "Mooncloth Regalia", "MoonclothRegalia" },
 		{ "Bloodvine Garb", "BloodvineG" },
+		{ "Flarecore Regalia", "FlarecoreRegalia" },
+		{ "Dreamthread Regalia", "DreamthreadRegalia" },
 	},
 	["DungeonSets12"] = {
 		{ "|cffffffff"..BC["Priest"], "T0Priest" },

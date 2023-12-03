@@ -552,12 +552,16 @@ AtlasLoot_TableNames = {
 	["ImperialPlate"] = { BIS["Imperial Plate"], "AtlasLootCrafting" },
 	["TheDarksoul"] = { BIS["The Darksoul"], "AtlasLootCrafting" },
 	["BloodsoulEmbrace"] = { BIS["Bloodsoul Embrace"], "AtlasLootCrafting" },
+	["DreamsteelArmor"] = { "Dreamsteel Armor", "AtlasLootCrafting" },
 	--Crafted Sets - Tailoring
 	["AugerersAttire"] = { "Augerer's Attire", "AtlasLootCrafting" },
 	["ShadoweaveSet"] = { "Shadoweave", "AtlasLootCrafting" },
 	["DivinersGarments"] = { "Diviner's Garments", "AtlasLootCrafting" },
 	["PillagersGarb"] = { "Pillager's Garb", "AtlasLootCrafting" },
+	["MoonclothRegalia"] = { "Mooncloth Regalia", "AtlasLootCrafting" },
 	["BloodvineG"] = { BIS["Bloodvine Garb"], "AtlasLootCrafting" },
+	["FlarecoreRegalia"] = { "Flarecore Regalia", "AtlasLootCrafting" },
+	["DreamthreadRegalia"] = { "Dreamthread Regalia", "AtlasLootCrafting" },
 	--Crafted Sets - Leatherworking
 	["GriftersArmor"] = { "Grifter's Armor", "AtlasLootCrafting" },
 	["PrimalistsTrappings"] = { "Primalist's Trappings", "AtlasLootCrafting" },
@@ -571,6 +575,7 @@ AtlasLoot_TableNames = {
 	["GreenDragonM"] = { BIS["Green Dragon Mail"], "AtlasLootCrafting" },
 	["BlueDragonM"] = { BIS["Blue Dragon Mail"], "AtlasLootCrafting" },
 	["BlackDragonM"] = { BIS["Black Dragon Mail"], "AtlasLootCrafting" },
+	["DreamhideBattlegarb"] = { "Dreamhide Battlegarb", "AtlasLootCrafting" },
 	--ZG Sets
 	["ZGDruid"] = { BC["Druid"].." - "..L["ZG Class Sets"], "AtlasLootSetItems" },
 	["ZGHunter"] = { BC["Hunter"].." - "..L["ZG Class Sets"], "AtlasLootSetItems" },
