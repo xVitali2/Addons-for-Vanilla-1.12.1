@@ -2631,27 +2631,27 @@ AtlasLoot_ButtonRegistry = {
 	},
 	["LKHBroodQueenAraxxna"] = {
 		Title = AL["Brood Queen Araxxna"],
-		Next_Page = "LKHGrizikil",
-		Next_Title = AL["Grizikil"],
+		Next_Page = "LKHLordBlackwaldII",
+		Next_Title = AL["Lord Blackwald II"],
 		Prev_Page = "LKHRolfen",
 		Prev_Title = AL["Master Blacksmith Rolfen"],
 	},
-	["LKHGrizikil"] = {
-		Title = AL["Grizikil"],
-		Next_Page = "LKHClawlordHowlfang",
-		Next_Title = AL["Clawlord Howlfang"],
+	["LKHLordBlackwaldII"] = {
+		Title = AL["Lord Blackwald II"],
 		Prev_Page = "LKHBroodQueenAraxxna",
 		Prev_Title = AL["Brood Queen Araxxna"],
+		Next_Page = "LKHClawlordHowlfang",
+		Next_Title = AL["Clawlord Howlfang"],
 	},
 	["LKHClawlordHowlfang"] = {
 		Title = AL["Clawlord Howlfang"],
-		Next_Page = "LKHLordBlackwaldII",
-		Next_Title = AL["Lord Blackwald II"],
-		Prev_Page = "LKHGrizikil",
-		Prev_Title = AL["Grizikil"],
+		Next_Page = "LKHGrizikil",
+		Next_Title = AL["Grizikil"],
+		Prev_Page = "LKHLordBlackwaldII",
+		Prev_Title = AL["Lord Blackwald II"],
 	},
-	["LKHLordBlackwaldII"] = {
-		Title = AL["Lord Blackwald II"],
+	["LKHGrizikil"] = {
+		Title = AL["Grizikil"],
 		Next_Page = "LKHMoroes",
 		Next_Title = AL["Moroes"],
 		Prev_Page = "LKHClawlordHowlfang",
@@ -2661,8 +2661,8 @@ AtlasLoot_ButtonRegistry = {
 		Title = AL["Moroes"],
 		Next_Page = "LKHTrash",
 		Next_Title = AL["Trash Mobs"],
-		Prev_Page = "LKHLordBlackwaldII",
-		Prev_Title = AL["Lord Blackwald II"],
+		Prev_Page = "LKHGrizikil",
+		Prev_Title = AL["Grizikil"],
 	},
 	["LKHTrash"] = {
 		Title = AL["Trash Mobs"],
@@ -3698,6 +3698,16 @@ AtlasLoot_ButtonRegistry = {
 		Back_Page = "PRE60SET",
 		Back_Title = AL["Pre 60 Sets"]
 	},
+	["GreymaneArmor"] = {
+		Title = "Greymane Armor",
+		Back_Page = "PRE60SET",
+		Back_Title = AL["Pre 60 Sets"]
+	},
+	["IncendosaurSkinArmor"] = {
+		Title = "Incendosaur Skin Armor",
+		Back_Page = "PRE60SET",
+		Back_Title = AL["Pre 60 Sets"]
+	},
 	["IRONWEAVE"] = {
 		Title = BIS["Ironweave Battlesuit"],
 		Back_Page = "PRE60SET",
@@ -3770,27 +3780,42 @@ AtlasLoot_ButtonRegistry = {
 	},
 	["SteelPlate"] = {
 		Title = "Steel Plate",
-		Back_Page = "CRAFTSET",
+		Back_Page = "CRAFTSET2",
 		Back_Title = AL["Crafted Sets"],
 	},
 	["ImperialPlate"] = {
 		Title = BIS["Imperial Plate"],
-		Back_Page = "CRAFTSET",
+		Back_Page = "CRAFTSET2",
+		Back_Title = AL["Crafted Sets"]
+	},
+	["RuneEtchedArmor"] = {
+		Title = "Rune-Etched Armor",
+		Back_Page = "CRAFTSET2",
 		Back_Title = AL["Crafted Sets"]
 	},
 	["TheDarksoul"] = {
 		Title = BIS["The Darksoul"],
-		Back_Page = "CRAFTSET",
+		Back_Page = "CRAFTSET2",
 		Back_Title = AL["Crafted Sets"]
 	},
 	["BloodsoulEmbrace"] = {
 		Title = BIS["Bloodsoul Embrace"],
-		Back_Page = "CRAFTSET",
+		Back_Page = "CRAFTSET2",
+		Back_Title = AL["Crafted Sets"]
+	},
+	["HateforgeArmor"] = {
+		Title = "Hateforge Armor",
+		Back_Page = "CRAFTSET2",
+		Back_Title = AL["Crafted Sets"]
+	},
+	["TowerforgeBattlegear"] = {
+		Title = "Towerforge Battlegear",
+		Back_Page = "CRAFTSET2",
 		Back_Title = AL["Crafted Sets"]
 	},
 	["DreamsteelArmor"] = {
 		Title = "Dreamsteel Armor",
-		Back_Page = "CRAFTSET",
+		Back_Page = "CRAFTSET2",
 		Back_Title = AL["Crafted Sets"]
 	},
 	["AugerersAttire"] = {
@@ -3873,6 +3898,11 @@ AtlasLoot_ButtonRegistry = {
 		Back_Page = "CRAFTSET",
 		Back_Title = AL["Crafted Sets"]
 	},
+	["ConvergenceoftheElements"] = {
+		Title = "Convergence of the Elements",
+		Back_Page = "CRAFTSET",
+		Back_Title = AL["Crafted Sets"]
+	},
 	["DreamhideBattlegarb"] = {
 		Title = "Dreamhide Battlegarb",
 		Back_Page = "CRAFTSET",
@@ -3880,22 +3910,22 @@ AtlasLoot_ButtonRegistry = {
 	},
 	["RedDragonM"] = {
 		Title = "Red Dragon Mail",
-		Back_Page = "CRAFTSET",
+		Back_Page = "CRAFTSET2",
 		Back_Title = AL["Crafted Sets"],
 	},
 	["GreenDragonM"] = {
 		Title = BIS["Green Dragon Mail"],
-		Back_Page = "CRAFTSET",
+		Back_Page = "CRAFTSET2",
 		Back_Title = AL["Crafted Sets"]
 	},
 	["BlueDragonM"] = {
 		Title = BIS["Blue Dragon Mail"],
-		Back_Page = "CRAFTSET",
+		Back_Page = "CRAFTSET2",
 		Back_Title = AL["Crafted Sets"]
 	},
 	["BlackDragonM"] = {
 		Title = BIS["Black Dragon Mail"],
-		Back_Page = "CRAFTSET",
+		Back_Page = "CRAFTSET2",
 		Back_Title = AL["Crafted Sets"]
 	},
 	["CraftedWeapons1"] = {

@@ -497,7 +497,6 @@ L:RegisterTranslations("enUS", function() return {
 	["Warlord's Battlegear"] = true,
 	["Set: Embrace of the Viper"] = true,
 	["Set: Defias Leather"] = true,
-	["Set: The Gladiator"] = true,
 	["Set: Chain of the Scarlet Crusade"] = true,
 	["Set: The Postmaster"] = true,
 	["Set: Necropile Raiment"] = true,

@@ -197,7 +197,7 @@ function AtlasQuest_Instanzenchecken()
 		AQINSTANCE = 59
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\AdmiralBareanWestwind" then
 		AQINSTANCE = 60
-	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\GilneasCity" then
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\GilneasCity" or AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\GilneasCityEnt" then
 		AQINSTANCE = 61
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\LowerKara" then
 		AQINSTANCE = 62
@@ -399,4 +399,7 @@ end
 -- 38 = Warsong Gulch (WSG)
 -- 39 = The Crescent Grove (TCG)
 -- 40 = Concavius (Concavius)
+-- 45 = Caverns Of Time: Black Morass
+-- 61 = Gilneas City
+-- 63 = Emerald Sanctum
 -- 99 = default "rest"

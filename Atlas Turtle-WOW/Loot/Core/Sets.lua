@@ -384,54 +384,66 @@ function AtlasLootPRE60SetMenu()
 	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\INV_Gauntlets_19")
 	AtlasLootMenuItem_4.lootpage="SCARLET"
 	AtlasLootMenuItem_4:Show()
-	--Blackrock Depths - The Gladiator
-	AtlasLootMenuItem_5_Name:SetText(BIS["The Gladiator"])
-	AtlasLootMenuItem_5_Extra:SetText(ORANGE..BZ["Blackrock Depths"])
-	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\INV_Helmet_01")
-	AtlasLootMenuItem_5.lootpage="BLACKROCKD"
+	--Greymane City - Greymane Armor
+	AtlasLootMenuItem_5_Name:SetText("Greymane Armor")
+	AtlasLootMenuItem_5_Extra:SetText(ORANGE.."Greymane City")
+	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\inv_helmet_02")
+	AtlasLootMenuItem_5.lootpage="GreymaneArmor"
 	AtlasLootMenuItem_5:Show()
-	--Ironweave Battlesuit
-	AtlasLootMenuItem_6_Name:SetText(BIS["Ironweave Battlesuit"])
-	AtlasLootMenuItem_6_Extra:SetText(ORANGE..L["Various Locations"])
-	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\INV_Boots_Cloth_05")
-	AtlasLootMenuItem_6.lootpage="IRONWEAVE"
+	--Hateforge Quarry - Incendosaur Skin Armor
+	AtlasLootMenuItem_6_Name:SetText("Incendosaur Skin Armor")
+	AtlasLootMenuItem_6_Extra:SetText(ORANGE.."Hateforge Quarry")
+	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\INV_Shoulder_23")
+	AtlasLootMenuItem_6.lootpage="IncendosaurSkinArmor"
 	AtlasLootMenuItem_6:Show()
-	--Stratholme - The Postmaster
-	AtlasLootMenuItem_7_Name:SetText(BIS["The Postmaster"])
-	AtlasLootMenuItem_7_Extra:SetText(ORANGE..BZ["Stratholme"])
-	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\INV_Boots_02")
-	AtlasLootMenuItem_7.lootpage="STRAT"
+	--Blackrock Depths - The Gladiator
+	AtlasLootMenuItem_7_Name:SetText(BIS["The Gladiator"])
+	AtlasLootMenuItem_7_Extra:SetText(ORANGE..BZ["Blackrock Depths"])
+	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\INV_Helmet_01")
+	AtlasLootMenuItem_7.lootpage="BLACKROCKD"
 	AtlasLootMenuItem_7:Show()
-	--Scholomance - Cloth - Necropile Raiment
-	AtlasLootMenuItem_8_Name:SetText(BIS["Necropile Raiment"])
-	AtlasLootMenuItem_8_Extra:SetText(ORANGE..BZ["Scholomance"])
-	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\INV_Shoulder_02")
-	AtlasLootMenuItem_8.lootpage="ScholoCloth"
+	--Ironweave Battlesuit
+	AtlasLootMenuItem_8_Name:SetText(BIS["Ironweave Battlesuit"])
+	AtlasLootMenuItem_8_Extra:SetText(ORANGE..L["Various Locations"])
+	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\INV_Boots_Cloth_05")
+	AtlasLootMenuItem_8.lootpage="IRONWEAVE"
 	AtlasLootMenuItem_8:Show()
-	--Scholomance - Leather - Cadaverous Garb
-	AtlasLootMenuItem_9_Name:SetText(BIS["Cadaverous Garb"])
-	AtlasLootMenuItem_9_Extra:SetText(ORANGE..BZ["Scholomance"])
-	AtlasLootMenuItem_9_Icon:SetTexture("Interface\\Icons\\INV_Belt_16")
-	AtlasLootMenuItem_9.lootpage="ScholoLeather"
+	--Stratholme - The Postmaster
+	AtlasLootMenuItem_9_Name:SetText(BIS["The Postmaster"])
+	AtlasLootMenuItem_9_Extra:SetText(ORANGE..BZ["Stratholme"])
+	AtlasLootMenuItem_9_Icon:SetTexture("Interface\\Icons\\INV_Boots_02")
+	AtlasLootMenuItem_9.lootpage="STRAT"
 	AtlasLootMenuItem_9:Show()
-	--Scholomance - Mail - Bloodmail Regalia
-	AtlasLootMenuItem_10_Name:SetText(BIS["Bloodmail Regalia"])
+	--Scholomance - Cloth - Necropile Raiment
+	AtlasLootMenuItem_10_Name:SetText(BIS["Necropile Raiment"])
 	AtlasLootMenuItem_10_Extra:SetText(ORANGE..BZ["Scholomance"])
-	AtlasLootMenuItem_10_Icon:SetTexture("Interface\\Icons\\INV_Gauntlets_26")
-	AtlasLootMenuItem_10.lootpage="ScholoMail"
+	AtlasLootMenuItem_10_Icon:SetTexture("Interface\\Icons\\INV_Shoulder_02")
+	AtlasLootMenuItem_10.lootpage="ScholoCloth"
 	AtlasLootMenuItem_10:Show()
-	--Scholomance - Plate - Deathbone Guardian
-	AtlasLootMenuItem_11_Name:SetText(BIS["Deathbone Guardian"])
+	--Scholomance - Leather - Cadaverous Garb
+	AtlasLootMenuItem_11_Name:SetText(BIS["Cadaverous Garb"])
 	AtlasLootMenuItem_11_Extra:SetText(ORANGE..BZ["Scholomance"])
-	AtlasLootMenuItem_11_Icon:SetTexture("Interface\\Icons\\INV_Belt_12")
-	AtlasLootMenuItem_11.lootpage="ScholoPlate"
+	AtlasLootMenuItem_11_Icon:SetTexture("Interface\\Icons\\INV_Belt_16")
+	AtlasLootMenuItem_11.lootpage="ScholoLeather"
 	AtlasLootMenuItem_11:Show()
-	--Scourge Invasion
-	AtlasLootMenuItem_12_Name:SetText(L["Scourge Invasion"])
-	AtlasLootMenuItem_12_Extra:SetText(ORANGE..L["Various Locations"])
-	AtlasLootMenuItem_12_Icon:SetTexture("Interface\\Icons\\INV_Jewelry_Talisman_13")
-	AtlasLootMenuItem_12.lootpage="ScourgeInvasion"
+	--Scholomance - Mail - Bloodmail Regalia
+	AtlasLootMenuItem_12_Name:SetText(BIS["Bloodmail Regalia"])
+	AtlasLootMenuItem_12_Extra:SetText(ORANGE..BZ["Scholomance"])
+	AtlasLootMenuItem_12_Icon:SetTexture("Interface\\Icons\\INV_Gauntlets_26")
+	AtlasLootMenuItem_12.lootpage="ScholoMail"
 	AtlasLootMenuItem_12:Show()
+	--Scholomance - Plate - Deathbone Guardian
+	AtlasLootMenuItem_13_Name:SetText(BIS["Deathbone Guardian"])
+	AtlasLootMenuItem_13_Extra:SetText(ORANGE..BZ["Scholomance"])
+	AtlasLootMenuItem_13_Icon:SetTexture("Interface\\Icons\\INV_Belt_12")
+	AtlasLootMenuItem_13.lootpage="ScholoPlate"
+	AtlasLootMenuItem_13:Show()
+	--Scourge Invasion
+	AtlasLootMenuItem_14_Name:SetText(L["Scourge Invasion"])
+	AtlasLootMenuItem_14_Extra:SetText(ORANGE..L["Various Locations"])
+	AtlasLootMenuItem_14_Icon:SetTexture("Interface\\Icons\\INV_Jewelry_Talisman_13")
+	AtlasLootMenuItem_14.lootpage="ScourgeInvasion"
+	AtlasLootMenuItem_14:Show()
 	--Spider's Kiss
 	AtlasLootMenuItem_17_Name:SetText(BIS["Spider's Kiss"])
 	AtlasLootMenuItem_17_Extra:SetText(ORANGE..BZ["Lower Blackrock Spire"])

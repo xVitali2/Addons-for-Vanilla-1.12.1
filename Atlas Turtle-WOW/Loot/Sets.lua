@@ -201,6 +201,25 @@ AtlasLoot_Data["AtlasLootSetItems"] = {
 		{ 13218, "INV_Weapon_ShortBlade_16", "=q3=Fang of the Crystal Spider", "=ds=#h1#, #w4#", "15.46%" },
 		{ 13183, "INV_Wand_10", "=q3=Venomspitter", "=ds=#h1#, #w6#", "13.07%" }
 	},
+	GreymaneArmor = {
+		{ 0, "", "", "" },
+		{ 0,"INV_Box_01","=q6=#oth_s25#","" },
+		{ 0, "", "", "" },
+		{ 61313, "inv_helmet_02", "=q3=Greymane Helmet", "=ds=#s1#, #a4#", "25%" },
+		{ 61324, "inv_shoulder_12", "=q3=Greymane Shoulders", "=ds=#s3#, #a4#", "15%" },
+		{ 61376, "inv_gauntlets_22", "=q2=Greymane Gauntlets", "=ds=#s9#, #a4#", "0.08%" },
+		{ 61378, "inv_pants_04", "=q2=Greymane Legplates", "=ds=#s11#, #a4#", "0.08%" },
+		{ 61377, "inv_boots_plate_01", "=q2=Greymane Sabatons", "=ds=#s12#, #a4#", "0.08%" },
+		{ 61379, "INV_Bracer_14", "=q2=Greymane Vambraces", "=ds=#s8#, #a4#", "0.08%" },
+	},
+	IncendosaurSkinArmor = {
+		{ 0, "", "", "" },
+		{ 0,"INV_Box_01","=q6=#oth_s26#","" },
+		{ 0, "", "", "" },
+		{ 60572, "INV_Shoulder_23", "=q3=Incendosaur Skin Pauldrons", "=ds=#s3#, #a2#", "0.1%" },
+		{ 60568, "INV_Boots_01", "=q3=Incendosaur Skin Boots", "=ds=#s12#, #a2#", "20%" },
+		{ 60582, "INV_Gauntlets_05", "=q3=Incendosaur Skin Gloves", "=ds=#s9#, #a2#", "0.005%" },
+	},
 	T3Mage = {
 		{ 0, "", "", "" },
 		{ 0, "Spell_Frost_IceStorm", "=q10=#t3s3#", ""},

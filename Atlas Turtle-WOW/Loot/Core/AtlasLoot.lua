@@ -124,6 +124,7 @@ AtlasLoot_MenuList = {
 	"MININGMENU",
 	"TAILORINGMENU",
 	"CRAFTSET",
+	"CRAFTSET2",
 	"COOKINGMENU",
 	"SURVIVALMENU",
 }
@@ -138,6 +139,7 @@ local EntToInstMatches = {
 	["TheSunkenTempleEnt"] =		{"TheSunkenTemple"},
 	["UldamanEnt"] =				{"Uldaman"},
 	["WailingCavernsEnt"] =			{"WailingCaverns"},
+	["GilneasCityEnt"] =			{"GilneasCity"},
 	["DireMaulEnt"] =				{"DireMaulEast","DireMaulNorth","DireMaulWest"},
 	["SMEnt"] =						{"SMArmory","SMLibrary","SMCathedral","SMGraveyard"}
 }
@@ -156,6 +158,7 @@ local InstToEntMatches = {
 	["TheSunkenTemple"] =			{"TheSunkenTempleEnt"},
 	["Uldaman"] =					{"UldamanEnt"},
 	["WailingCaverns"] =			{"WailingCavernsEnt"},
+	["GilneasCity"] =				{"GilneasCityEnt"},
 	["DireMaulEast"] =				{"DireMaulEnt"},
 	["DireMaulNorth"] =				{"DireMaulEnt"},
 	["DireMaulWest"] =				{"DireMaulEnt"},
@@ -1042,6 +1045,8 @@ function AtlasLoot_ShowItemsFrame(dataID, dataSource, boss, pFrame)
 		AtlasLoot_CraftingMenu()
 	elseif dataID=="CRAFTSET" then
 		AtlasLootCraftedSetMenu()
+	elseif dataID=="CRAFTSET2" then
+		AtlasLootCraftedSet2Menu()
 	elseif dataID=="ALCHEMYMENU" then
 		AtlasLoot_AlchemyMenu()
 	elseif dataID=="SMITHINGMENU" then
@@ -2159,7 +2164,6 @@ AtlasLoot_DewDropDown = {
 	[2] = {
 		{ L["World Bosses"], "WorldBosses", "Submenu" },
 	},
-
 	[3] = {
 		{ L["Rare Mobs"], "Raremobs", "Submenu" },
 	},
@@ -2305,9 +2309,11 @@ AtlasLoot_DewDropDown = {
 			[12] = { { (BS["Poisons"]), "Poisons1", "Table" }, },
 			[13] = { 
 				[L["Crafted Sets"]] = {
-					{ (BS["Blacksmithing"]), "CraftSetBlacksmith", "Submenu" },
-					{ (BS["Leatherworking"]), "CraftSetLeatherwork", "Submenu" },
-					{ (BS["Tailoring"]), "CraftSetTailoring", "Submenu" },
+					 { (BS["Tailoring"]), "CraftSetTailoringC", "Submenu" },
+					 { (BS["Leatherworking"].." Leather"), "CraftSetLeatherworkL", "Submenu" },
+					 { (BS["Leatherworking"].." Mail"), "CraftSetLeatherworkM", "Submenu" },
+					 { (BS["Blacksmithing"].." Mail"), "CraftSetBlacksmithM", "Submenu" },
+					 { (BS["Blacksmithing"].." Plate"), "CraftSetBlacksmithP", "Submenu" },
 				}, 
 			},
 			[14] = { { L["Crafted Epic Weapons"], "CraftedWeapons1", "Table" }, },
@@ -2788,9 +2794,9 @@ AtlasLoot_DewDropDown_SubTables = {
 	["LowerKara"] = {
 		{ L["Master Blacksmith Rolfen"], "LKHRolfen" },
 		{ L["Brood Queen Araxxna"], "LKHBroodQueenAraxxna" },
-		{ L["Grizikil"], "LKHGrizikil" },
-		{ L["Clawlord Howlfang"], "LKHClawlordHowlfang" },
 		{ L["Lord Blackwald II"], "LKHLordBlackwaldII" },
+		{ L["Clawlord Howlfang"], "LKHClawlordHowlfang" },
+		{ L["Grizikil"], "LKHGrizikil" },
 		{ L["Moroes"], "LKHMoroes" },
 		{ L["Trash Mobs"], "LKHTrash" },
 		{ L["LKH Enchants"], "LKHEnchants" },
@@ -2892,29 +2898,37 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ AtlasLoot_TableNames["WorldBluesGuns"][1], "WorldBluesGuns" },
 		{ AtlasLoot_TableNames["WorldBluesShields"][1], "WorldBluesShields" },
 	},
-	["CraftSetBlacksmith"] = {
+	["CraftSetBlacksmithM"] = {
+		{ BIS["Bloodsoul Embrace"], "BloodsoulEmbrace" },
+		{ "Hateforge Armor", "HateforgeArmor" },
+		{ "Towerforge Battlegear", "TowerforgeBattlegear" },
+	},
+	["CraftSetBlacksmithP"] = {
 		{ "Steel Plate", "SteelPlate" },
 		{ BIS["Imperial Plate"], "ImperialPlate" },
+		{ "Rune-Etched Armor", "RuneEtchedArmor" },
 		{ BIS["The Darksoul"], "TheDarksoul" },
-		{ BIS["Bloodsoul Embrace"], "BloodsoulEmbrace" },
 		{ "Dreamsteel Armor", "DreamsteelArmor" },
 	},
-	["CraftSetLeatherwork"] = {
+	["CraftSetLeatherworkL"] = {
 		{ "Grifter's Armor", "GriftersArmor" },
 		{ "Primalist's Trappings", "PrimalistsTrappings" },
-		{ "Dreamhide Battlegarb", "DreamhideBattlegarb" },
 		{ BIS["Volcanic Armor"], "VolcanicArmor" },
 		{ BIS["Ironfeather Armor"], "IronfeatherArmor" },
 		{ BIS["Stormshroud Armor"], "StormshroudArmor" },
 		{ BIS["Devilsaur Armor"], "DevilsaurArmor" },
 		{ BIS["Blood Tiger Harness"], "BloodTigerH" },
 		{ BIS["Primal Batskin"], "PrimalBatskin" },
+		{ "Convergence of the Elements", "ConvergenceoftheElements" },
+		{ "Dreamhide Battlegarb", "DreamhideBattlegarb" },
+	},
+	["CraftSetLeatherworkM"] = {
 		{ "Red Dragon Mail", "RedDragonM" },
 		{ BIS["Green Dragon Mail"], "GreenDragonM" },
 		{ BIS["Blue Dragon Mail"], "BlueDragonM" },
 		{ BIS["Black Dragon Mail"], "BlackDragonM" },
 	},
-	["CraftSetTailoring"] = {
+	["CraftSetTailoringC"] = {
 		{ "Augerer's Attire", "AugerersAttire" },
 		{ "Shadoweave", "ShadoweaveSet" },
 		{ "Diviner's Garments", "DivinersGarments" },
@@ -3007,6 +3021,8 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ BIS["Chain of the Scarlet Crusade"], "SCARLET" },
 		{ BIS["Dal'Rend's Arms"], "DalRend" },
 		{ BIS["Deathbone Guardian"], "ScholoPlate" },
+		{ "Greymane Armor", "GreymaneArmor" },
+		{ "Incendosaur Skin Armor", "IncendosaurSkinArmor" },
 		{ BIS["Defias Leather"], "DEADMINES" },
 		{ BIS["Embrace of the Viper"], "WAILING" },
 		{ BIS["Ironweave Battlesuit"], "IRONWEAVE" },

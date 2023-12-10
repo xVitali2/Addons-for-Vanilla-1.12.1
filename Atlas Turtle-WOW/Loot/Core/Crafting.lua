@@ -93,24 +93,29 @@ function AtlasLoot_CraftingMenu()
 	AtlasLootMenuItem_15.lootpage="Poisons1"
 	AtlasLootMenuItem_15:Show()
 	--Crafted Armor Sets
-	AtlasLootMenuItem_17_Name:SetText(L["Crafted Sets"])
+	AtlasLootMenuItem_17_Name:SetText("Crafted Sets (Cloth, Leather)")
 	AtlasLootMenuItem_17_Extra:SetText("")
 	AtlasLootMenuItem_17_Icon:SetTexture("Interface\\Icons\\INV_Box_01")
 	AtlasLootMenuItem_17.lootpage="CRAFTSET"
 	AtlasLootMenuItem_17:Show()
-	--Crafted Epic Weapons
-	AtlasLootMenuItem_18_Name:SetText(L["Crafted Epic Weapons"])
+	--Crafted Armor Sets2
+	AtlasLootMenuItem_18_Name:SetText("Crafted Sets (Mail, Plate)")
 	AtlasLootMenuItem_18_Extra:SetText("")
-	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\INV_Hammer_Unique_Sulfuras")
-	AtlasLootMenuItem_18.lootpage="CraftedWeapons1"
+	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\INV_Box_02")
+	AtlasLootMenuItem_18.lootpage="CRAFTSET2"
 	AtlasLootMenuItem_18:Show()
+	--Crafted Epic Weapons
+	AtlasLootMenuItem_20_Name:SetText(L["Crafted Epic Weapons"])
+	AtlasLootMenuItem_20_Extra:SetText("")
+	AtlasLootMenuItem_20_Icon:SetTexture("Interface\\Icons\\INV_Hammer_Unique_Sulfuras")
+	AtlasLootMenuItem_20.lootpage="CraftedWeapons1"
+	AtlasLootMenuItem_20:Show()
 	for i = 1, 30, 1 do
 		_G["AtlasLootMenuItem_"..i.."_Extra"]:Show()
 	end
 	AtlasLoot_BossName:SetText("|cffFFFFFF"..L["Crafting"])
 	AtlasLoot_SetItemInfoFrame(AtlasLoot_AnchorFrame)
 end
-
 function AtlasLootCraftedSetMenu()
 	for i = 1, 30, 1 do
 		_G["AtlasLootItem_"..i]:Hide()
@@ -121,8 +126,10 @@ function AtlasLootCraftedSetMenu()
 	end
 	_G["AtlasLootItemsFrame_BACK"]:Show()
 	_G["AtlasLootItemsFrame_BACK"].lootpage = "CRAFTINGMENU"
-	_G["AtlasLootItemsFrame_NEXT"]:Hide()
-	_G["AtlasLootItemsFrame_PREV"]:Hide()
+	_G["AtlasLootItemsFrame_NEXT"]:Show()
+	_G["AtlasLootItemsFrame_NEXT"].lootpage = "CRAFTSET2"
+	_G["AtlasLootItemsFrame_PREV"]:Show()
+	_G["AtlasLootItemsFrame_PREV"].lootpage = "CRAFTSET2"
 	_G["AtlasLootServerQueryButton"]:Hide()
 	--Tailoring Header
 	AtlasLootMenuItem_1_Name:SetText(RED..BS["Tailoring"])
@@ -131,186 +138,239 @@ function AtlasLootCraftedSetMenu()
 	AtlasLootMenuItem_1.isheader = true
 	AtlasLootMenuItem_1:Show()
 	--Augerer's Attire
-	AtlasLootMenuItem_2_Name:SetText("Augerer's Attire")
-	AtlasLootMenuItem_2_Extra:SetText("")
-	AtlasLootMenuItem_2_Icon:SetTexture("Interface\\Icons\\INV_Helmet_11")
-	AtlasLootMenuItem_2.lootpage="AugerersAttire"
-	AtlasLootMenuItem_2:Show()
-	--Shadoweave
-	AtlasLootMenuItem_3_Name:SetText("Shadoweave")
+	AtlasLootMenuItem_3_Name:SetText("Augerer's Attire")
 	AtlasLootMenuItem_3_Extra:SetText("")
-	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\INV_Helmet_27")
-	AtlasLootMenuItem_3.lootpage="ShadoweaveSet"
+	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\INV_Helmet_11")
+	AtlasLootMenuItem_3.lootpage="AugerersAttire"
 	AtlasLootMenuItem_3:Show()
-	--Diviner's Garments
-	AtlasLootMenuItem_4_Name:SetText("Diviner's Garments")
+	--Shadoweave
+	AtlasLootMenuItem_4_Name:SetText("Shadoweave")
 	AtlasLootMenuItem_4_Extra:SetText("")
-	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\INV_Helmet_33")
-	AtlasLootMenuItem_4.lootpage="DivinersGarments"
+	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\INV_Helmet_27")
+	AtlasLootMenuItem_4.lootpage="ShadoweaveSet"
 	AtlasLootMenuItem_4:Show()
-	--Pillager's Garb
-	AtlasLootMenuItem_5_Name:SetText("Pillager's Garb")
+	--Diviner's Garments
+	AtlasLootMenuItem_5_Name:SetText("Diviner's Garments")
 	AtlasLootMenuItem_5_Extra:SetText("")
-	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\INV_Helmet_28")
-	AtlasLootMenuItem_5.lootpage="PillagersGarb"
+	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\INV_Helmet_33")
+	AtlasLootMenuItem_5.lootpage="DivinersGarments"
 	AtlasLootMenuItem_5:Show()
-	--Mooncloth Regalia
-	AtlasLootMenuItem_6_Name:SetText("Mooncloth Regalia")
+	--Pillager's Garb
+	AtlasLootMenuItem_6_Name:SetText("Pillager's Garb")
 	AtlasLootMenuItem_6_Extra:SetText("")
-	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\inv_misc_bandana_01")
-	AtlasLootMenuItem_6.lootpage="MoonclothRegalia"
+	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\INV_Helmet_28")
+	AtlasLootMenuItem_6.lootpage="PillagersGarb"
 	AtlasLootMenuItem_6:Show()
-	--Bloodvine Garb
-	AtlasLootMenuItem_7_Name:SetText(BIS["Bloodvine Garb"])
+	--Mooncloth Regalia
+	AtlasLootMenuItem_7_Name:SetText("Mooncloth Regalia")
 	AtlasLootMenuItem_7_Extra:SetText("")
-	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\INV_Pants_Cloth_14")
-	AtlasLootMenuItem_7.lootpage="BloodvineG"
-	AtlasLootMenuItem_7:Show();
-	--Flarecore Regalia
-	AtlasLootMenuItem_8_Name:SetText("Flarecore Regalia")
+	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\inv_misc_bandana_01")
+	AtlasLootMenuItem_7.lootpage="MoonclothRegalia"
+	AtlasLootMenuItem_7:Show()
+	--Bloodvine Garb
+	AtlasLootMenuItem_8_Name:SetText(BIS["Bloodvine Garb"])
 	AtlasLootMenuItem_8_Extra:SetText("")
-	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\inv_chest_cloth_18")
-	AtlasLootMenuItem_8.lootpage="FlarecoreRegalia"
-	AtlasLootMenuItem_8:Show();
-	--Dreamthread Regalia
-	AtlasLootMenuItem_9_Name:SetText("Dreamthread Regalia")
+	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\INV_Pants_Cloth_14")
+	AtlasLootMenuItem_8.lootpage="BloodvineG"
+	AtlasLootMenuItem_8:Show()
+	--Flarecore Regalia
+	AtlasLootMenuItem_9_Name:SetText("Flarecore Regalia")
 	AtlasLootMenuItem_9_Extra:SetText("")
-	AtlasLootMenuItem_9_Icon:SetTexture("Interface\\Icons\\INV_Gauntlets_23")
-	AtlasLootMenuItem_9.lootpage="DreamthreadRegalia"
-	AtlasLootMenuItem_9:Show();
-
-	--Leatherworking Leather Header
-	AtlasLootMenuItem_10_Name:SetText(RED..BS["Leatherworking"])
-	AtlasLootMenuItem_10_Extra:SetText(WHITE..L["Leather"])
-	AtlasLootMenuItem_10_Icon:SetTexture("Interface\\Icons\\INV_Chest_Leather_04")
-	AtlasLootMenuItem_10.isheader = true
+	AtlasLootMenuItem_9_Icon:SetTexture("Interface\\Icons\\inv_chest_cloth_18")
+	AtlasLootMenuItem_9.lootpage="FlarecoreRegalia"
+	AtlasLootMenuItem_9:Show()
+	--Dreamthread Regalia
+	AtlasLootMenuItem_10_Name:SetText("Dreamthread Regalia")
+	AtlasLootMenuItem_10_Extra:SetText("")
+	AtlasLootMenuItem_10_Icon:SetTexture("Interface\\Icons\\INV_Gauntlets_23")
+	AtlasLootMenuItem_10.lootpage="DreamthreadRegalia"
 	AtlasLootMenuItem_10:Show()
-	--Grifter's Armor
-	AtlasLootMenuItem_11_Name:SetText("Grifter's Armor")
-	AtlasLootMenuItem_11_Extra:SetText("")
-	AtlasLootMenuItem_11_Icon:SetTexture("Interface\\Icons\\INV_Helmet_33")
-	AtlasLootMenuItem_11.lootpage="GriftersArmor"
-	AtlasLootMenuItem_11:Show()
-	--Primalist's Trappings
-	AtlasLootMenuItem_12_Name:SetText("Primalist's Trappings")
-	AtlasLootMenuItem_12_Extra:SetText("")
-	AtlasLootMenuItem_12_Icon:SetTexture("Interface\\Icons\\Inv_Chest_Plate06")
-	AtlasLootMenuItem_12.lootpage="PrimalistsTrappings"
-	AtlasLootMenuItem_12:Show()
-	--Volcanic Armor
-	AtlasLootMenuItem_13_Name:SetText(BIS["Volcanic Armor"])
-	AtlasLootMenuItem_13_Extra:SetText(ORANGE..L["Fire Resistance Gear"])
-	AtlasLootMenuItem_13_Icon:SetTexture("Interface\\Icons\\INV_Pants_06")
-	AtlasLootMenuItem_13.lootpage="VolcanicArmor"
-	AtlasLootMenuItem_13:Show()
-	--Ironfeather Armor
-	AtlasLootMenuItem_14_Name:SetText(BIS["Ironfeather Armor"])
-	AtlasLootMenuItem_14_Extra:SetText("")
-	AtlasLootMenuItem_14_Icon:SetTexture("Interface\\Icons\\INV_Chest_Leather_06")
-	AtlasLootMenuItem_14.lootpage="IronfeatherArmor"
-	AtlasLootMenuItem_14:Show()
-	--Stormshroud Armor
-	AtlasLootMenuItem_15_Name:SetText(BIS["Stormshroud Armor"])
-	AtlasLootMenuItem_15_Extra:SetText("")
-	AtlasLootMenuItem_15_Icon:SetTexture("Interface\\Icons\\INV_Chest_Leather_08")
-	AtlasLootMenuItem_15.lootpage="StormshroudArmor"
-	AtlasLootMenuItem_15:Show()
-	--Devilsaur Armor
-	AtlasLootMenuItem_16_Name:SetText(BIS["Devilsaur Armor"])
-	AtlasLootMenuItem_16_Extra:SetText("")
-	AtlasLootMenuItem_16_Icon:SetTexture("Interface\\Icons\\INV_Pants_Wolf")
-	AtlasLootMenuItem_16.lootpage="DevilsaurArmor"
+	--Leatherworking Leather Header
+	AtlasLootMenuItem_16_Name:SetText(RED..BS["Leatherworking"])
+	AtlasLootMenuItem_16_Extra:SetText(WHITE..L["Leather"])
+	AtlasLootMenuItem_16_Icon:SetTexture("Interface\\Icons\\INV_Chest_Leather_04")
+	AtlasLootMenuItem_16.isheader = true
 	AtlasLootMenuItem_16:Show()
-	--Blood Tiger Harness
-	AtlasLootMenuItem_17_Name:SetText(BIS["Blood Tiger Harness"])
-	AtlasLootMenuItem_17_Extra:SetText("")
-	AtlasLootMenuItem_17_Icon:SetTexture("Interface\\Icons\\INV_Shoulder_23")
-	AtlasLootMenuItem_17.lootpage="BloodTigerH"
-	AtlasLootMenuItem_17:Show()
-	--Primal Batskin
-	AtlasLootMenuItem_18_Name:SetText(BIS["Primal Batskin"])
+	--Grifter's Armor
+	AtlasLootMenuItem_18_Name:SetText("Grifter's Armor")
 	AtlasLootMenuItem_18_Extra:SetText("")
-	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\INV_Chest_Leather_03")
-	AtlasLootMenuItem_18.lootpage="PrimalBatskin"
+	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\INV_Helmet_33")
+	AtlasLootMenuItem_18.lootpage="GriftersArmor"
 	AtlasLootMenuItem_18:Show()
-	--Dreamhide Battlegarb
-	AtlasLootMenuItem_19_Name:SetText("Dreamhide Battlegarb")
+	--Primalist's Trappings
+	AtlasLootMenuItem_19_Name:SetText("Primalist's Trappings")
 	AtlasLootMenuItem_19_Extra:SetText("")
-	AtlasLootMenuItem_19_Icon:SetTexture("Interface\\Icons\\inv_shoulder_18")
-	AtlasLootMenuItem_19.lootpage="DreamhideBattlegarb"
+	AtlasLootMenuItem_19_Icon:SetTexture("Interface\\Icons\\Inv_Chest_Plate06")
+	AtlasLootMenuItem_19.lootpage="PrimalistsTrappings"
 	AtlasLootMenuItem_19:Show()
-	--Leatherworking Mail Header
-	AtlasLootMenuItem_20_Name:SetText(RED..BS["Leatherworking"])
-	AtlasLootMenuItem_20_Extra:SetText(WHITE..L["Mail"])
-	AtlasLootMenuItem_20_Icon:SetTexture("Interface\\Icons\\INV_Chest_Chain_12")
-	AtlasLootMenuItem_20.isheader = true
+	--Volcanic Armor
+	AtlasLootMenuItem_20_Name:SetText(BIS["Volcanic Armor"])
+	AtlasLootMenuItem_20_Extra:SetText(ORANGE..L["Fire Resistance Gear"])
+	AtlasLootMenuItem_20_Icon:SetTexture("Interface\\Icons\\INV_Pants_06")
+	AtlasLootMenuItem_20.lootpage="VolcanicArmor"
 	AtlasLootMenuItem_20:Show()
-	--Red Dragon Mail
-	AtlasLootMenuItem_21_Name:SetText("Red Dragon Mail")
-	AtlasLootMenuItem_21_Extra:SetText(ORANGE..L["Fire Resistance Gear"])
-	AtlasLootMenuItem_21_Icon:SetTexture("Interface\\Icons\\inv_chest_chain_06")
-	AtlasLootMenuItem_21.lootpage="RedDragonM"
+	--Ironfeather Armor
+	AtlasLootMenuItem_21_Name:SetText(BIS["Ironfeather Armor"])
+	AtlasLootMenuItem_21_Extra:SetText("")
+	AtlasLootMenuItem_21_Icon:SetTexture("Interface\\Icons\\INV_Chest_Leather_06")
+	AtlasLootMenuItem_21.lootpage="IronfeatherArmor"
 	AtlasLootMenuItem_21:Show()
-	--Green Dragon Mail
-	AtlasLootMenuItem_22_Name:SetText(BIS["Green Dragon Mail"])
-	AtlasLootMenuItem_22_Extra:SetText(ORANGE..L["Nature Resistance Gear"])
-	AtlasLootMenuItem_22_Icon:SetTexture("Interface\\Icons\\INV_Pants_05")
-	AtlasLootMenuItem_22.lootpage="GreenDragonM"
+	--Stormshroud Armor
+	AtlasLootMenuItem_22_Name:SetText(BIS["Stormshroud Armor"])
+	AtlasLootMenuItem_22_Extra:SetText("")
+	AtlasLootMenuItem_22_Icon:SetTexture("Interface\\Icons\\INV_Chest_Leather_08")
+	AtlasLootMenuItem_22.lootpage="StormshroudArmor"
 	AtlasLootMenuItem_22:Show()
-	--Blue Dragon Mail
-	AtlasLootMenuItem_23_Name:SetText(BIS["Blue Dragon Mail"])
-	AtlasLootMenuItem_23_Extra:SetText(ORANGE..L["Arcane Resistance Gear"])
-	AtlasLootMenuItem_23_Icon:SetTexture("Interface\\Icons\\INV_Chest_Chain_04")
-	AtlasLootMenuItem_23.lootpage="BlueDragonM"
+	--Devilsaur Armor
+	AtlasLootMenuItem_23_Name:SetText(BIS["Devilsaur Armor"])
+	AtlasLootMenuItem_23_Extra:SetText("")
+	AtlasLootMenuItem_23_Icon:SetTexture("Interface\\Icons\\INV_Pants_Wolf")
+	AtlasLootMenuItem_23.lootpage="DevilsaurArmor"
 	AtlasLootMenuItem_23:Show()
-	--Black Dragon Mail
-	AtlasLootMenuItem_24_Name:SetText(BIS["Black Dragon Mail"])
-	AtlasLootMenuItem_24_Extra:SetText(ORANGE..L["Fire Resistance Gear"])
-	AtlasLootMenuItem_24_Icon:SetTexture("Interface\\Icons\\INV_Pants_03")
-	AtlasLootMenuItem_24.lootpage="BlackDragonM"
+	--Blood Tiger Harness
+	AtlasLootMenuItem_24_Name:SetText(BIS["Blood Tiger Harness"])
+	AtlasLootMenuItem_24_Extra:SetText("")
+	AtlasLootMenuItem_24_Icon:SetTexture("Interface\\Icons\\INV_Shoulder_23")
+	AtlasLootMenuItem_24.lootpage="BloodTigerH"
 	AtlasLootMenuItem_24:Show()
-	
-	--Mail Blacksmithing Header
-	AtlasLootMenuItem_25_Name:SetText(RED..BS["Blacksmithing"]);
-	AtlasLootMenuItem_25_Extra:SetText("");
-	AtlasLootMenuItem_25_Icon:SetTexture("Interface\\Icons\\INV_Chest_Chain_04");
-	AtlasLootMenuItem_25.isheader = true;
-	AtlasLootMenuItem_25:Show();
-	--Bloodsoul Embrace
-	AtlasLootMenuItem_26_Name:SetText(BIS["Bloodsoul Embrace"]);
-	AtlasLootMenuItem_26_Extra:SetText(WHITE.."Mail");
-	AtlasLootMenuItem_26_Icon:SetTexture("Interface\\Icons\\INV_Shoulder_15");
-	AtlasLootMenuItem_26.lootpage="BloodsoulEmbrace";
-	AtlasLootMenuItem_26:Show();
-	--Steel Plate
-	AtlasLootMenuItem_27_Name:SetText("Steel Plate");
-	AtlasLootMenuItem_27_Extra:SetText(WHITE.."Plate");
-	AtlasLootMenuItem_27_Icon:SetTexture("Interface\\Icons\\INV_Helmet_25");
-	AtlasLootMenuItem_27.lootpage="SteelPlate";
-	AtlasLootMenuItem_27:Show();
-	--Imperial Plate
-	AtlasLootMenuItem_28_Name:SetText(BIS["Imperial Plate"]);
-	AtlasLootMenuItem_28_Extra:SetText(WHITE.."Plate");
-	AtlasLootMenuItem_28_Icon:SetTexture("Interface\\Icons\\INV_Belt_01");
-	AtlasLootMenuItem_28.lootpage="ImperialPlate";
-	AtlasLootMenuItem_28:Show();
-	--The Darksoul
-	AtlasLootMenuItem_29_Name:SetText(BIS["The Darksoul"]);
-	AtlasLootMenuItem_29_Extra:SetText(WHITE.."Plate");
-	AtlasLootMenuItem_29_Icon:SetTexture("Interface\\Icons\\INV_Shoulder_01");
-	AtlasLootMenuItem_29.lootpage="TheDarksoul";
-	AtlasLootMenuItem_29:Show();
-	--Dreamsteel Armor
-	AtlasLootMenuItem_30_Name:SetText("Dreamsteel Armor");
-	AtlasLootMenuItem_30_Extra:SetText(WHITE.."Plate");
-	AtlasLootMenuItem_30_Icon:SetTexture("Interface\\Icons\\INV_Bracer_03");
-	AtlasLootMenuItem_30.lootpage="DreamsteelArmor";
-	AtlasLootMenuItem_30:Show();
+	--Primal Batskin
+	AtlasLootMenuItem_25_Name:SetText(BIS["Primal Batskin"])
+	AtlasLootMenuItem_25_Extra:SetText("")
+	AtlasLootMenuItem_25_Icon:SetTexture("Interface\\Icons\\INV_Chest_Leather_03")
+	AtlasLootMenuItem_25.lootpage="PrimalBatskin"
+	AtlasLootMenuItem_25:Show()
+	--Convergence of the Elements
+	AtlasLootMenuItem_26_Name:SetText("Convergence of the Elements")
+	AtlasLootMenuItem_26_Extra:SetText("")
+	AtlasLootMenuItem_26_Icon:SetTexture("Interface\\Icons\\INV_Helmet_13")
+	AtlasLootMenuItem_26.lootpage="ConvergenceoftheElements"
+	AtlasLootMenuItem_26:Show()
+	--Dreamhide Battlegarb
+	AtlasLootMenuItem_27_Name:SetText("Dreamhide Battlegarb")
+	AtlasLootMenuItem_27_Extra:SetText("")
+	AtlasLootMenuItem_27_Icon:SetTexture("Interface\\Icons\\inv_shoulder_18")
+	AtlasLootMenuItem_27.lootpage="DreamhideBattlegarb"
+	AtlasLootMenuItem_27:Show()
 
 	for i = 1, 30, 1 do
 		_G["AtlasLootMenuItem_"..i.."_Extra"]:Show()
 	end
 	AtlasLoot_BossName:SetText("|cffFFFFFF"..L["Crafted Sets"])
+	AtlasLoot_SetItemInfoFrame(AtlasLoot_AnchorFrame)
+end
+
+function AtlasLootCraftedSet2Menu()
+	for i = 1, 30, 1 do
+		_G["AtlasLootItem_"..i]:Hide()
+	end
+	for i = 1, 30, 1 do
+		_G["AtlasLootMenuItem_"..i]:Hide()
+		_G["AtlasLootMenuItem_"..i].isheader = false
+	end
+	_G["AtlasLootItemsFrame_BACK"]:Show()
+	_G["AtlasLootItemsFrame_BACK"].lootpage = "CRAFTINGMENU"
+	_G["AtlasLootItemsFrame_NEXT"]:Show()
+	_G["AtlasLootItemsFrame_NEXT"].lootpage = "CRAFTSET"
+	_G["AtlasLootItemsFrame_PREV"]:Show()
+	_G["AtlasLootItemsFrame_PREV"].lootpage = "CRAFTSET"
+	--Leatherworking Mail Header
+	AtlasLootMenuItem_1_Name:SetText(RED..BS["Leatherworking"])
+	AtlasLootMenuItem_1_Extra:SetText(WHITE..L["Mail"])
+	AtlasLootMenuItem_1_Icon:SetTexture("Interface\\Icons\\INV_Chest_Chain_12")
+	AtlasLootMenuItem_1.isheader = true
+	AtlasLootMenuItem_1:Show()
+	--Red Dragon Mail
+	AtlasLootMenuItem_3_Name:SetText("Red Dragon Mail")
+	AtlasLootMenuItem_3_Extra:SetText(ORANGE..L["Fire Resistance Gear"])
+	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\inv_chest_chain_06")
+	AtlasLootMenuItem_3.lootpage="RedDragonM"
+	AtlasLootMenuItem_3:Show()
+	--Green Dragon Mail
+	AtlasLootMenuItem_4_Name:SetText(BIS["Green Dragon Mail"])
+	AtlasLootMenuItem_4_Extra:SetText(ORANGE..L["Nature Resistance Gear"])
+	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\INV_Pants_05")
+	AtlasLootMenuItem_4.lootpage="GreenDragonM"
+	AtlasLootMenuItem_4:Show()
+	--Blue Dragon Mail
+	AtlasLootMenuItem_5_Name:SetText(BIS["Blue Dragon Mail"])
+	AtlasLootMenuItem_5_Extra:SetText(ORANGE..L["Arcane Resistance Gear"])
+	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\INV_Chest_Chain_04")
+	AtlasLootMenuItem_5.lootpage="BlueDragonM"
+	AtlasLootMenuItem_5:Show()
+	--Black Dragon Mail
+	AtlasLootMenuItem_6_Name:SetText(BIS["Black Dragon Mail"])
+	AtlasLootMenuItem_6_Extra:SetText(ORANGE..L["Fire Resistance Gear"])
+	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\INV_Pants_03")
+	AtlasLootMenuItem_6.lootpage="BlackDragonM"
+	AtlasLootMenuItem_6:Show()
+	
+	--Mail Blacksmithing Header
+	AtlasLootMenuItem_8_Name:SetText(RED..BS["Blacksmithing"]);
+	AtlasLootMenuItem_8_Extra:SetText(WHITE..L["Mail"]);
+	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\INV_Chest_Chain_04");
+	AtlasLootMenuItem_8.isheader = true;
+	AtlasLootMenuItem_8:Show();
+	--Bloodsoul Embrace
+	AtlasLootMenuItem_9_Name:SetText(BIS["Bloodsoul Embrace"])
+	AtlasLootMenuItem_9_Extra:SetText("")
+	AtlasLootMenuItem_9_Icon:SetTexture("Interface\\Icons\\INV_Shoulder_15")
+	AtlasLootMenuItem_9.lootpage="BloodsoulEmbrace"
+	AtlasLootMenuItem_9:Show()
+	--Hateforge Armor
+	AtlasLootMenuItem_10_Name:SetText("Hateforge Armor")
+	AtlasLootMenuItem_10_Extra:SetText("")
+	AtlasLootMenuItem_10_Icon:SetTexture("Interface\\Icons\\INV_Helmet_10")
+	AtlasLootMenuItem_10.lootpage="HateforgeArmor"
+	AtlasLootMenuItem_10:Show()
+	--Towerforge Battlegear
+	AtlasLootMenuItem_11_Name:SetText("Towerforge Battlegear")
+	AtlasLootMenuItem_11_Extra:SetText("")
+	AtlasLootMenuItem_11_Icon:SetTexture("Interface\\Icons\\INV_Helmet_37")
+	AtlasLootMenuItem_11.lootpage="TowerforgeBattlegear"
+	AtlasLootMenuItem_11:Show()
+
+
+	--Mail Blacksmithing Header
+	AtlasLootMenuItem_16_Name:SetText(RED..BS["Blacksmithing"]);
+	AtlasLootMenuItem_16_Extra:SetText(WHITE..L["Plate"]);
+	AtlasLootMenuItem_16_Icon:SetTexture("Interface\\Icons\\INV_Chest_Chain_04");
+	AtlasLootMenuItem_16.isheader = true;
+	AtlasLootMenuItem_16:Show();
+	--Steel Plate
+	AtlasLootMenuItem_18_Name:SetText("Steel Plate");
+	AtlasLootMenuItem_18_Extra:SetText("");
+	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\INV_Helmet_25");
+	AtlasLootMenuItem_18.lootpage="SteelPlate";
+	AtlasLootMenuItem_18:Show();
+	--Imperial Plate
+	AtlasLootMenuItem_19_Name:SetText(BIS["Imperial Plate"]);
+	AtlasLootMenuItem_19_Extra:SetText("");
+	AtlasLootMenuItem_19_Icon:SetTexture("Interface\\Icons\\INV_Belt_01");
+	AtlasLootMenuItem_19.lootpage="ImperialPlate";
+	AtlasLootMenuItem_19:Show();
+	--Rune-Etched Armor
+	AtlasLootMenuItem_20_Name:SetText("Rune-Etched Armor");
+	AtlasLootMenuItem_20_Extra:SetText("");
+	AtlasLootMenuItem_20_Icon:SetTexture("Interface\\Icons\\inv_helmet_06");
+	AtlasLootMenuItem_20.lootpage="RuneEtchedArmor";
+	AtlasLootMenuItem_20:Show();
+	--The Darksoul
+	AtlasLootMenuItem_21_Name:SetText(BIS["The Darksoul"]);
+	AtlasLootMenuItem_21_Extra:SetText("");
+	AtlasLootMenuItem_21_Icon:SetTexture("Interface\\Icons\\INV_Shoulder_01");
+	AtlasLootMenuItem_21.lootpage="TheDarksoul";
+	AtlasLootMenuItem_21:Show();
+	--Dreamsteel Armor
+	AtlasLootMenuItem_22_Name:SetText("Dreamsteel Armor");
+	AtlasLootMenuItem_22_Extra:SetText("");
+	AtlasLootMenuItem_22_Icon:SetTexture("Interface\\Icons\\INV_Bracer_03");
+	AtlasLootMenuItem_22.lootpage="DreamsteelArmor";
+	AtlasLootMenuItem_22:Show();
+
+	for i = 1, 30, 1 do
+		_G["AtlasLootMenuItem_"..i.."_Extra"]:Show()
+	end
+	AtlasLoot_BossName:SetText("|cffFFFFFF".."Crafted Sets 2")
 	AtlasLoot_SetItemInfoFrame(AtlasLoot_AnchorFrame)
 end
 
@@ -713,6 +773,7 @@ function AtlasLoot_MiningMenu()
 	AtlasLoot_BossName:SetText("|cffFFFFFF"..BS["Mining"])
 	AtlasLoot_SetItemInfoFrame(AtlasLoot_AnchorFrame)
 end
+
 function AtlasLoot_SurvivalMenu()
 	for i = 1, 30, 1 do
 		getglobal("AtlasLootItem_"..i):Hide();
