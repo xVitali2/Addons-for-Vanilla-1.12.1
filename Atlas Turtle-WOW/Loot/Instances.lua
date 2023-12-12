@@ -3241,7 +3241,7 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 60423, "INV_bracer_07", "=q3=Bracers of Lost Souls", "=ds=#s8#, #a2#", "20%" },
 		{ 60427, "INV_misc_bone_elfskull_01", "=q3=Skullrattler", "=ds=#w12#", "20%" },
 		{ 60433, "INV_shoulder_24", "=q3=Pauldrons of the Elite Guard", "=ds=#s3#, #a4#", "20%" },
-		{ 60500, "INV_misc_cape_11", "=q3=Cloak of Atonement", "=ds=#s4#, #a1#", "20%" },
+		{ 60500, "INV_misc_cape_11", "=q3=Cloak of Atonement", "=ds=#s4#", "20%" },
 		{ 0, "", "", "" },
 		{ 60422, "INV_sword_31", "=q4=The Ripper", "=ds=#h1#, #w4#", "1%" },
 		{ 0, "", "", "" },
