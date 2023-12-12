@@ -942,7 +942,6 @@ AtlasLootBossButtons = {
 	LowerKara = {
 		"",
 		"",
-		"",
 		"LKHRolfen";
 		"LKHBroodQueenAraxxna";
 		"LKHLordBlackwaldII";
@@ -950,6 +949,10 @@ AtlasLootBossButtons = {
 		"LKHGrizikil";
 		"LKHMoroes";
 		"LKHTrash";
+		"",
+		"",
+		"",
+		"",
 		"LKHEnchants";
 	},
 	EmeraldSanctum = {

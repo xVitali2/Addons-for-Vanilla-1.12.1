@@ -1444,7 +1444,6 @@ AtlasMaps = {
 		{ "" };
 		--{ ORNG..AL["Damage: "]..AL["Physical"] };
 	},
-	--by CFM
 	CowKing = {
 		ZoneName = { "There Is No Cow Level", NPC, 91799 };
 		Acronym = "CowKing";
@@ -1549,8 +1548,8 @@ AtlasMaps = {
 		MinLevel = "60";
 		PlayerLimit = "5";
 		Continent = BZ["Kalimdor"];
-		{ "" };
-		{ "" };
+		{ BLUE.."A) "..L["Entrance"] },
+		{ BLUE.."B-B) ".."Connections" },
 		{ GREY.."1) ".."Chronar", NPC, 65113 };
 		{ GREY.."2) ".."Harbinger Aph'ygth", NPC, 65114 };
 		{ GREY.."3) ".."Epidamu", NPC, 61575 };
@@ -1617,7 +1616,7 @@ AtlasMaps = {
 		PlayerLimit = "5";
 		Continent = BZ["Eastern Kingdoms"];
 		{ ORNG..L["Key"]..": Karazhan Crypt Key", ITEM, 51356 },
-		{ "" },
+		{ BLUE.."A) "..L["Entrance"] },
 		{ GREY.."1) ".."Marrowspike", NPC, 91920 },
 		{ GREY.."2) ".."Hivaxxis", NPC, 91929 },
 		{ GREY.."3) ".."Corpsemuncher", NPC, 91917 },
@@ -1695,29 +1694,18 @@ AtlasMaps = {
 		Continent = BZ["Eastern Kingdoms"],
 		{ BLUE.."A) "..L["Entrance"] },
 		{ "" },
-		{ GREY.."1) ".."Lord Ebonlocke", NPC, 0 },
-		{ GREY.."".."Master Blacksmith Rolfen", NPC, 0 },
+		{ GREY.."1) ".."Master Blacksmith Rolfen", NPC, 0 },
 		{ GREY.."2) ".."Brood Queen Araxxna", NPC, 0 },
 		{ GREY.."3) ".."Lord Blackwald II", NPC, 0 },
 		{ GREY.."4) ".."Clawlord Howlfang", NPC, 0 },
 		{ GREY.."5) ".."Grizikil", NPC, 0 },
 		{ GREY.."6) ".."Moroes", NPC, 0 },
 		{ GREY..INDENT..L["Trash Mobs"] },
+		{ GREEN.."a) "..GREY.."Doorman Montigue", NPC, 61571 },
+		{ GREEN.."b) "..GREY.."Lord Ebonlocke, The Cook", NPC, 61328 },
+		{ GREEN.."c) "..GREY.."Duke Rothlen", NPC, 61320 },
+		{ GREEN.."d) "..GREY.."Councilman Kyleson", NPC, 61322 },
 		{ GREY..INDENT.."LKH Enchants" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
 	},
 	EmeraldSanctum = {
 		ZoneName = { "Emerald Sanctum", 3339 },
@@ -1761,7 +1749,7 @@ AtlasMaps = {
 		MinLevel = "45",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
-		{ "" },
+		{ BLUE.."A) "..L["Entrance"] },
 		{ GREY.."1) ".."High Foreman Bargul Blackhammer", NPC, 60735 },
 		{ GREY.."2) ".."Engineer Figgles ",NPC, 60736 },
 		{ GREY.."3) ".."Corrosis", NPC, 60829 },
@@ -1793,7 +1781,7 @@ AtlasMaps = {
 		MinLevel = "58",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
-		{ "" },
+		{ BLUE.."A) "..L["Entrance"] },
 		{ "" },
 		{ GREY.."1) ".."Aszosh Grimflame", NPC, 80853 },
 		{ GREY.."2) ".."Tham'Grarr",NPC, 80852 },
@@ -2159,7 +2147,6 @@ AtlasMaps = {
 		{ "" },
 		{ "" }
 	},
-	--by CFM end
 	AlteracValleyNorth = {
 		ZoneName = { BZ["Alterac Valley"].." ("..L["North"]..")", 2597 },
 		Acronym = "AV",

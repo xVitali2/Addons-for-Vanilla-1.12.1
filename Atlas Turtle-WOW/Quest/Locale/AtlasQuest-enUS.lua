@@ -5134,11 +5134,19 @@ Inst28Quest17_Level = "53"
 Inst28Quest17_Attain = "47"
 Inst28Quest17_Aim = "Travel to the Sunken Temple, and find the Dragonkin Hazzas, slay him, and return the Heart of Hazzas to Niremius Darkwind."
 Inst28Quest17_Location = "Niremius Darkwind (Felwood; "..YELLOW.."40,30"..WHITE..")"
-Inst28Quest17_Note = "Drop from 7 boss. Reward from the next quest."
+Inst28Quest17_Note = "Drop from [7] boss. Reward from the next quest."
 Inst28Quest17_Prequest = "By Any Means Necessary I -> By Any Means Necessary II -> By Any Means Necessary III" -- 40399
 Inst28Quest17_Folgequest = "By Any Means Necessary V" --40401
-
 Inst28Quest17name1 = "Darkwind Glaive"
+--Quest 18 Alliance
+Inst28Quest18 = "18. Into the Dream III" -- 40959
+Inst28Quest18_Level = "60"
+Inst28Quest18_Attain = "58"
+Inst28Quest18_Aim = "Gather a Binding Fragment from Cliff Breakers in Azshara, Overloaded Arcane Prism from Arcane Torrents in the Western wing of Dire Maul, Slumberer's Shard from Weaver in the Sunken Temple and an Arcanite Rod. Report to Itharius in the Swamp of Sorrows with the collected items."
+Inst28Quest18_Location = "Ralathius (Hyjal - Nordanaar; "..YELLOW.."85,30"..WHITE..")"
+Inst28Quest18_Note = "Slumberer's Shard drop from [6] boss. Overloaded Arcane Prism drop from Arcane Torrent (near Immol'thar Dire Maul - West)."
+Inst28Quest18_Prequest = "Into the Dream I -> Into the Dream II"
+Inst28Quest18_Folgequest = "Into the Dream IV"
 
 --Quest 1 Horde
 Inst28Quest1_HORDE = "1. The Temple of Atal'Hakkar" -- 1445
@@ -5359,6 +5367,15 @@ Inst28Quest17_HORDE_Prequest = Inst28Quest17_Prequest
 Inst28Quest17_HORDE_Folgequest = Inst28Quest17_Folgequest
 -- No Rewards for this quest
 Inst28Quest17name1_HORDE = Inst28Quest17name1
+--Quest 18 Horde (same as Quest 18 Alliance)
+Inst28Quest18_HORDE = Inst28Quest18
+Inst28Quest18_HORDE_Level = Inst28Quest18_Level
+Inst28Quest18_HORDE_Attain = Inst28Quest18_Attain
+Inst28Quest18_HORDE_Aim = Inst28Quest18_Aim
+Inst28Quest18_HORDE_Location = Inst28Quest18_Location
+Inst28Quest18_HORDE_Note = Inst28Quest18_Note
+Inst28Quest18_HORDE_Prequest = Inst28Quest18_Prequest
+Inst28Quest18_HORDE_Folgequest = Inst28Quest18_Folgequest
 
 --------------- INST29 - The Temple of Ahn'Qiraj (AQ40) ---------------
 Inst29Story = "At the heart of Ahn'Qiraj lies an ancient temple complex. Built in the time before recorded history, it is both a monument to unspeakable gods and a massive breeding ground for the qiraji army. Since the War of the Shifting Sands ended a thousand years ago, the Twin Emperors of the qiraji empire have been trapped inside their temple, barely contained behind the magical barrier erected by the bronze dragon Anachronos and the night elves. Now that the Scepter of the Shifting Sands has been reassembled and the seal has been broken, the way into the inner sanctum of Ahn'Qiraj is open. Beyond the crawling madness of the hives, beneath the Temple of Ahn'Qiraj, legions of qiraji prepare for invasion. They must be stopped at all costs before they can unleash their voracious insectoid armies on Kalimdor once again, and a second War of the Shifting Sands breaks loose!"
@@ -6952,15 +6969,15 @@ Inst61Quest2name3_HORDE = "Dark Footpad Belt"
 --------------- INST62 - Lower Karazhan Halls (LKH) ---------------
 Inst62Story = ""
 Inst62Caption = "Lower Karazhan Halls"
-Inst62QAA = "8 Quest"
-Inst62QAH = "8 Quest"
+Inst62QAA = "12 Quest"
+Inst62QAH = "12 Quest"
 --Quest 1 Alliance
 Inst62Quest1 = "1. Scythe of the Goddess" -- 41062
 Inst62Quest1_Level = "60"
 Inst62Quest1_Attain = "60"
 Inst62Quest1_Aim = "Slay Clawlord Howlfang and report to Lord Ebonlocke."
 Inst62Quest1_Location = "The Scythe of Elune [3]"
-Inst62Quest1_Note = "Priest, Mage, Warlock or Druid only. Lord Ebonlocke is at (Karazhan "..YELLOW.."0,0"..WHITE..") You need to kill [4]."
+Inst62Quest1_Note = "Priest, Mage, Warlock or Druid only. Lord Ebonlocke is at (Karazhan "..GREEN.."[b]"..WHITE..") You need to kill [4]."
 Inst62Quest1_Prequest = "No"
 Inst62Quest1_Folgequest = "Scythe of the Goddess [6 quests]."
 --Quest 2 Alliance
@@ -6968,7 +6985,7 @@ Inst62Quest2 = "2. The Key to Karazhan II" -- 40818
 Inst62Quest2_Level = "60"
 Inst62Quest2_Attain = "58"
 Inst62Quest2_Aim = "Kill Moroes and retrieve the Key to the Upper Chambers. Moroes resides in Lower Karazhan Halls. Bring back the key to Lord Ebonlocke."
-Inst62Quest2_Location = "Lord Ebonlocke (Karazhan "..YELLOW.."0,0"..WHITE..")"
+Inst62Quest2_Location = "Lord Ebonlocke (Karazhan "..GREEN.."[b]"..WHITE..")"
 Inst62Quest2_Note = "Drop from [6].\n\nRewards listed are for the followup."
 Inst62Quest2_Prequest = "The Key to Karazhan I"
 Inst62Quest2_Folgequest = "The Key to Karazhan III ->> The Key to Karazhan X"
@@ -6978,8 +6995,8 @@ Inst62Quest3 = "3. Scribbled Cooking Notes" -- 40998
 Inst62Quest3_Level = "60"
 Inst62Quest3_Attain = "55"
 Inst62Quest3_Aim = "Find someone that may be know something about the Scribbled Cooking Notes."
-Inst62Quest3_Location = "Duke Rothlen (Karazhan "..YELLOW.."0,0"..WHITE..")"
-Inst62Quest3_Note = ""
+Inst62Quest3_Location = "Drop from Phantom Cook, Phantom Servant and Shadowbane mobs (Karazhan)."
+Inst62Quest3_Note = "Duke Rothlen (Karazhan "..GREEN.."[c]"..WHITE..")"
 Inst62Quest3_Prequest = "No"
 Inst62Quest3_Folgequest = "Lost and Found"
 --Quest 4 Alliance
@@ -6987,7 +7004,7 @@ Inst62Quest4 = "4. Lost and Found" -- 40999
 Inst62Quest4_Level = "60"
 Inst62Quest4_Attain = "55"
 Inst62Quest4_Aim = "Recover the Engraved Golden Bracelet for Duke Rothlen in Karazhan."
-Inst62Quest4_Location = "Duke Rothlen (Lower Karazhan Halls "..YELLOW.."0,0"..WHITE..")"
+Inst62Quest4_Location = "Duke Rothlen (Lower Karazhan Halls "..GREEN.."[c]"..WHITE..")"
 Inst62Quest4_Note = "Engraved Golden Bracelet drop from Lost and Found Box (Karazhan)."
 Inst62Quest4_Prequest = "Scribbled Cooking Notes"
 Inst62Quest4_Folgequest = "Rothlen Family Brooch (Strat)"
@@ -6996,8 +7013,8 @@ Inst62Quest5 = "5. The Secret Recipe" -- 41001
 Inst62Quest5_Level = "60"
 Inst62Quest5_Attain = "55"
 Inst62Quest5_Aim = "Speak with 'The Cook' in Karazhan."
-Inst62Quest5_Location = "Duke Rothlen (Lower Karazhan Halls "..YELLOW.."0,0"..WHITE..")"
-Inst62Quest5_Note = "The Cook."
+Inst62Quest5_Location = "Duke Rothlen (Lower Karazhan Halls "..GREEN.."[c]"..WHITE..")"
+Inst62Quest5_Note = "The Cook"..GREEN.."[b]"..WHITE
 Inst62Quest5_Prequest = "Rothlen Family Brooch (Strat)"
 Inst62Quest5_Folgequest = "The Doorman of Karazhan"
 --Quest 6 Alliance
@@ -7005,8 +7022,8 @@ Inst62Quest6 = "6. The Doorman of Karazhan" -- 41002
 Inst62Quest6_Level = "60"
 Inst62Quest6_Attain = "55"
 Inst62Quest6_Aim = "Speak with Doorman Montigue in Karazhan."
-Inst62Quest6_Location = "The Cook (Lower Karazhan Halls "..YELLOW.."0,0"..WHITE..")"
-Inst62Quest6_Note = "Doorman Montigue."
+Inst62Quest6_Location = "The Cook (Lower Karazhan Halls "..GREEN.."[b]"..WHITE..")"
+Inst62Quest6_Note = "Doorman Montigue"..GREEN.."[a]"..WHITE
 Inst62Quest6_Prequest = "The Secret Recipe"
 Inst62Quest6_Folgequest = "Charge of Karazhan"
 --Quest 7 Alliance
@@ -7014,7 +7031,7 @@ Inst62Quest7 = "7. Charge of Karazhan" -- 41003
 Inst62Quest7_Level = "60"
 Inst62Quest7_Attain = "55"
 Inst62Quest7_Aim = "Bring 10 Essence of Death, 10 Essence of Life, and 25 Gold to Doorman Montique in Karazhan."
-Inst62Quest7_Location = "Doorman Montigue (Lower Karazhan Halls "..YELLOW.."0,0"..WHITE..")"
+Inst62Quest7_Location = "Doorman Montigue (Lower Karazhan Halls "..GREEN.."[a]"..WHITE..")"
 Inst62Quest7_Note = "You need 10 Essence of Death, 10 Essence of Life, and 25 Gold."
 Inst62Quest7_Prequest = "The Doorman of Karazhan"
 Inst62Quest7_Folgequest = "Le Fishe Au Chocolat"
@@ -7023,11 +7040,47 @@ Inst62Quest8 = "8. Le Fishe Au Chocolat" -- 41004
 Inst62Quest8_Level = "60"
 Inst62Quest8_Attain = "55"
 Inst62Quest8_Aim = "Bring the Charge of Karazhan to The Cook in Karazhan."
-Inst62Quest8_Location = "Doorman Montigue (Lower Karazhan Halls "..YELLOW.."0,0"..WHITE..")"
-Inst62Quest8_Note = "The Cook"
+Inst62Quest8_Location = "Doorman Montigue (Lower Karazhan Halls "..GREEN.."[a]"..WHITE..")"
+Inst62Quest8_Note = "The Cook"..GREEN.."[b]"..WHITE
 Inst62Quest8_Prequest = "Charge of Karazhan"
 Inst62Quest8_Folgequest = "No"
 Inst62Quest8name1 = "Recipe: Le Fishe Au Chocolat"
+--Quest 9 Alliance
+Inst62Quest9 = "9. Suitable Accomodations" -- 41083
+Inst62Quest9_Level = "60"
+Inst62Quest9_Attain = "55"
+Inst62Quest9_Aim = "Find a Comfortable Pillow for Councilman Kyleson in Karazhan."
+Inst62Quest9_Location = "Councilman Kyleson (Lower Karazhan Halls "..GREEN.."[d]"..WHITE..")"
+Inst62Quest9_Note = "Way to [2]."
+Inst62Quest9_Prequest = "No"
+Inst62Quest9_Folgequest = "A Drink to Sleep"
+--Quest 10 Alliance
+Inst62Quest10 = "10. A Drink to Sleep" -- 41084
+Inst62Quest10_Level = "60"
+Inst62Quest10_Attain = "55"
+Inst62Quest10_Aim = "Speak with someone who may know how to acquire wine for Councilman Kyleson."
+Inst62Quest10_Location = "Councilman Kyleson (Lower Karazhan Halls "..GREEN.."[d]"..WHITE..")"
+Inst62Quest10_Note = "The Cook (Lower Karazhan Halls "..GREEN.."[b]"..WHITE..")."
+Inst62Quest10_Prequest = "Suitable Accomodations"
+Inst62Quest10_Folgequest = "Spectral Wine"
+--Quest 11 Alliance
+Inst62Quest11 = "11. Spectral Wine" -- 41085
+Inst62Quest11_Level = "60"
+Inst62Quest11_Attain = "55"
+Inst62Quest11_Aim = "Gather 3 Essence of Undeath, 5 Flask of Port, and a Ghost Mushroom for The Cook in Karazhan."
+Inst62Quest11_Location = "The Cook (Lower Karazhan Halls "..GREEN.."[b]"..WHITE..")"
+Inst62Quest11_Note = "Prequest from Councilman Kyleson (Lower Karazhan Halls "..GREEN.."[d]"..WHITE..")."
+Inst62Quest11_Prequest = "A Drink to Sleep"
+Inst62Quest11_Folgequest = "Wine for Kyleson"
+--Quest 12 Alliance
+Inst62Quest12 = "12. Wine for Kyleson" -- 41086
+Inst62Quest12_Level = "60"
+Inst62Quest12_Attain = "55"
+Inst62Quest12_Aim = "Deliver the Spectral Wine to Councilman Kyleson in Karazhan."
+Inst62Quest12_Location = "The Cook (Lower Karazhan Halls "..GREEN.."[b]"..WHITE..")"
+Inst62Quest12_Note = "Prequest from Councilman Kyleson (Lower Karazhan Halls "..GREEN.."[d]"..WHITE..")."
+Inst62Quest12_Prequest = "Spectral Wine"
+Inst62Quest12_Folgequest = "No"
 
 --Quest 1 Horde (same as Quest 1 Alliance)
 Inst62Quest1_HORDE = Inst62Quest1
@@ -7103,6 +7156,43 @@ Inst62Quest8_HORDE_Note = Inst62Quest8_Note
 Inst62Quest8_HORDE_Prequest = Inst62Quest8_Prequest
 Inst62Quest8_HORDE_Folgequest = Inst62Quest8_Folgequest
 Inst62Quest8name1_HORDE = Inst62Quest8name1
+--Quest 9 Horde (same as Quest 9 Alliance)
+Inst62Quest9_HORDE = Inst62Quest9
+Inst62Quest9_HORDE_Level = Inst62Quest9_Level
+Inst62Quest9_HORDE_Attain = Inst62Quest9_Attain
+Inst62Quest9_HORDE_Aim = Inst62Quest9_Aim
+Inst62Quest9_HORDE_Location = Inst62Quest9_Location
+Inst62Quest9_HORDE_Note = Inst62Quest9_Note
+Inst62Quest9_HORDE_Prequest = Inst62Quest9_Prequest
+Inst62Quest9_HORDE_Folgequest = Inst62Quest9_Folgequest
+Inst62Quest9name1_HORDE = Inst62Quest9name1
+--Quest 10 Horde (same as Quest 10 Alliance)
+Inst62Quest10_HORDE = Inst62Quest10
+Inst62Quest10_HORDE_Level = Inst62Quest10_Level
+Inst62Quest10_HORDE_Attain = Inst62Quest10_Attain
+Inst62Quest10_HORDE_Aim = Inst62Quest10_Aim
+Inst62Quest10_HORDE_Location = Inst62Quest10_Location
+Inst62Quest10_HORDE_Note = Inst62Quest10_Note
+Inst62Quest10_HORDE_Prequest = Inst62Quest10_Prequest
+Inst62Quest10_HORDE_Folgequest = Inst62Quest10_Folgequest
+--Quest 11 Horde (same as Quest 11 Alliance)
+Inst62Quest11_HORDE = Inst62Quest11
+Inst62Quest11_HORDE_Level = Inst62Quest11_Level
+Inst62Quest11_HORDE_Attain = Inst62Quest11_Attain
+Inst62Quest11_HORDE_Aim = Inst62Quest11_Aim
+Inst62Quest11_HORDE_Location = Inst62Quest11_Location
+Inst62Quest11_HORDE_Note = Inst62Quest11_Note
+Inst62Quest11_HORDE_Prequest = Inst62Quest11_Prequest
+Inst62Quest11_HORDE_Folgequest = Inst62Quest11_Folgequest
+--Quest 12 Horde (same as Quest 12 Alliance)
+Inst62Quest12_HORDE = Inst62Quest12
+Inst62Quest12_HORDE_Level = Inst62Quest12_Level
+Inst62Quest12_HORDE_Attain = Inst62Quest12_Attain
+Inst62Quest12_HORDE_Aim = Inst62Quest12_Aim
+Inst62Quest12_HORDE_Location = Inst62Quest12_Location
+Inst62Quest12_HORDE_Note = Inst62Quest12_Note
+Inst62Quest12_HORDE_Prequest = Inst62Quest12_Prequest
+Inst62Quest12_HORDE_Folgequest = Inst62Quest12_Folgequest
 
 --------------- INST63 - Emerald Sanctum (ES) ---------------
 Inst63Story = ""
