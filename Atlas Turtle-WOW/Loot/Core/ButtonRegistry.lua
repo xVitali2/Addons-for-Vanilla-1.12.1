@@ -4837,6 +4837,15 @@ AtlasLoot_ButtonRegistry = {
 		Title = BS["Tailoring"]..": "..AL["Apprentice"],
 		Back_Page = "TAILORINGMENU",
 		Back_Title = BS["Tailoring"],
+		Next_Page = "TailoringApprentice2",
+		Next_Title = BS["Tailoring"]..": "..AL["Journeyman"]
+	},
+	["TailoringApprentice2"] = {
+		Title = BS["Tailoring"]..": "..AL["Apprentice"],
+		Back_Page = "TAILORINGMENU",
+		Back_Title = BS["Tailoring"],
+		Prev_Page = "TailoringApprentice1",
+		Prev_Title = BS["Tailoring"]..": "..AL["Apprentice"],
 		Next_Page = "TailoringJourneyman1",
 		Next_Title = BS["Tailoring"]..": "..AL["Journeyman"]
 	},
@@ -4844,7 +4853,7 @@ AtlasLoot_ButtonRegistry = {
 		Title = BS["Tailoring"]..": "..AL["Journeyman"],
 		Back_Page = "TAILORINGMENU",
 		Back_Title = BS["Tailoring"],
-		Prev_Page = "TailoringApprentice1",
+		Prev_Page = "TailoringApprentice2",
 		Prev_Title = BS["Tailoring"]..": "..AL["Apprentice"],
 		Next_Page = "TailoringJourneyman2",
 		Next_Title = BS["Tailoring"]..": "..AL["Journeyman"]

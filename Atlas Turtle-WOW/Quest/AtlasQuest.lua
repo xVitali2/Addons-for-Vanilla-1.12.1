@@ -62,7 +62,7 @@ AQINSTATM = "" -- variable to check whether AQINSTANCE has changed (see function
 
 -- Sets the max number of instances and quests to check for. 
 local AQMAXINSTANCES = "68"
-local AQMAXQUESTS = "19"
+local AQMAXQUESTS = "23"
 
 -- Set title for AtlasQuest side panel
 ATLASQUEST_VERSION = GetAddOnMetadata("Atlas Turtle-WOW", "Version-AtlasQuest")
@@ -333,19 +333,27 @@ function atlasquest_command(param)
 		ChatFrame1:AddMessage("Wailing Caverns: 2")
 		ChatFrame1:AddMessage("Zul Farrak: 27")
 		ChatFrame1:AddMessage("Zul Gurub: 28")
+     ChatFrame1:AddMessage("The Crescent Grove: 30"); -- TurtleWOW
+     ChatFrame1:AddMessage("Hateforge Quarry: 31"); -- TurtleWOW
+     ChatFrame1:AddMessage("Stormwind Vault: 32"); -- TurtleWOW
+     ChatFrame1:AddMessage("Black Morass: 33"); -- TurtleWOW
+     ChatFrame1:AddMessage("Karazhan Crypt: 34"); -- TurtleWOW
+     ChatFrame1:AddMessage("Gilneas City: 35"); -- TurtleWOW 1.17.0
+     ChatFrame1:AddMessage("Lower Karazhan Halls: 36"); -- TurtleWOW 1.17.0
+     ChatFrame1:AddMessage("Emerald Sanctum: 37"); -- TurtleWOW 1.17.0
 		
 		--List of Alliance Quests
 	elseif param == "inst a" then
 		ChatFrame1:AddMessage(RED.._G["Inst"..AQINSTANCE.."Caption"])
 		ChatFrame1:AddMessage(GREY.._G["Inst"..AQINSTANCE.."QAA"])
-		for q=1,20 do
+		for q=1,23 do
 			ChatFrame1:AddMessage(Orange.._G["Inst"..AQINSTANCE.."Quest"..q])
 		end
 		--List of Horde Quests
 	elseif param == "inst h" then
 		ChatFrame1:AddMessage(RED.._G["Inst"..AQINSTANCE.."Caption"])
 		ChatFrame1:AddMessage(GREY.._G["Inst"..AQINSTANCE.."QAH"])
-		for q=1,20 do
+		for q=1,23 do
 			ChatFrame1:AddMessage(Orange.._G["Inst"..AQINSTANCE.."Quest"..q.."_HORDE"])
 		end
 		

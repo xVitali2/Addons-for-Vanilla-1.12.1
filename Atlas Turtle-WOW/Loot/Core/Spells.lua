@@ -3,6 +3,10 @@ local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot");
 
 GetSpellInfoVanillaDB = {
 	["enchants"] = {
+		[15000] = {
+			["name"] = "Enchant 2H Weapon - Minor Intellect",
+			["icon"] = "Interface\\Icons\\Spell_Holy_GreaterHeal",
+		},
 		[7418] = {
 			["name"] = "Enchant Bracer - Minor Health",
 			["icon"] = "Interface\\Icons\\Spell_Holy_GreaterHeal",
@@ -687,6 +691,78 @@ GetSpellInfoVanillaDB = {
 		},
 	},
 	["craftspells"] = {
+		[15001] = {
+			["name"] = "Leatherworking: Lynxstep Boots",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 8,
+			["text"] = "",
+			["craftItem"] = 51284,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+			},
+		},
+		[15002] = {
+			["name"] = "Engineering: Unstable Mining Dynamite",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 8,
+			["text"] = "",
+			["craftItem"] = 51268,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+			},
+		},
+		[15003] = {
+			["name"] = "Alchemy: Volatile Concoction",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 8,
+			["text"] = "",
+			["craftItem"] = 51262,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+			},
+		},
+		[15004] = {
+			["name"] = "Blacksmithing: Blast Shield",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 8,
+			["text"] = "",
+			["craftItem"] = 51264,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+			},
+		},
+		[15005] = {
+			["name"] = "Tailoring: Gloves of Manathirst",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 8,
+			["text"] = "",
+			["craftItem"] = 51256,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+			},
+		},
+		[15006] = {
+			["name"] = "Cooking: Maritime Gumbo",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 6,
+			["text"] = "",
+			["craftItem"] = 30818,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+			},
+		},
 		[6510] = {
 			["name"] = "Poisons: Blinding Powder",
 			["requires"] = "",

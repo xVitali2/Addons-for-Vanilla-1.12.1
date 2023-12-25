@@ -908,6 +908,7 @@ AtlasLoot_TableNames = {
 	["Herbalism2"] = { BS["Herbalism"], "AtlasLootCrafting" },
 	--Tailoring
 	["TailoringApprentice1"] = { BS["Tailoring"]..": "..L["Apprentice"], "AtlasLootCrafting" },
+	["TailoringApprentice2"] = { BS["Tailoring"]..": "..L["Apprentice"], "AtlasLootCrafting" },
 	["TailoringJourneyman1"] = { BS["Tailoring"]..": "..L["Journeyman"], "AtlasLootCrafting" },
 	["TailoringJourneyman2"] = { BS["Tailoring"]..": "..L["Journeyman"], "AtlasLootCrafting" },
 	["TailoringExpert1"] = { BS["Tailoring"]..": "..L["Expert"], "AtlasLootCrafting" },
@@ -1968,6 +1969,7 @@ AtlasLoot_TableNamesBoss = {
 		["Herbalism2"] = { BS["Herbalism"], "AtlasLootCrafting" },
 		--Tailoring
 		["TailoringApprentice1"] = { BS["Tailoring"]..": "..L["Apprentice"], "AtlasLootCrafting" },
+		["TailoringApprentice2"] = { BS["Tailoring"]..": "..L["Apprentice"], "AtlasLootCrafting" },
 		["TailoringJourneyman1"] = { BS["Tailoring"]..": "..L["Journeyman"], "AtlasLootCrafting" },
 		["TailoringJourneyman2"] = { BS["Tailoring"]..": "..L["Journeyman"], "AtlasLootCrafting" },
 		["TailoringExpert1"] = { BS["Tailoring"]..": "..L["Expert"], "AtlasLootCrafting" },

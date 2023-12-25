@@ -6652,7 +6652,7 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 61214, "inv_shoulder_13", "=q4=Mantle of the Wakener", "=ds=#s3#, #a2#", "6%" },
 		{ 61207, "INV_Helmet_02", "=q4=Jadestone Helmet", "=ds=#s1#, #a4#", "6%" },
 		{ 0, "", "", "" },
-		{ 0, "", "", "" },
+		{ 41076, "INV_Mace_09", "=q4=Aspect of Seradane", "=ds=#h2#, #w6#", "17%" },
 		{ 61448, "INV_Weapon_Halberd_05", "=q4=Axe of Dormant Slumber", "=ds=#h1#, #w1#", "6%" },
 		{ 61208, "INV_Staff_49", "=q4=Staff of the Dreamer", "=ds=#h2#, #w9#", "6%" },
 		{ 0, "", "", "" },

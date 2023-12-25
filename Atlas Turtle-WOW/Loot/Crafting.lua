@@ -374,6 +374,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s2337", "inv_potion_50", "=q1=Lesser Healing Potion", "=ds=#sr# =so1=55 =so2=85 =so3=105 =so4=125" },
 		{ "s6617", "inv_potion_24", "=q1=Rage Potion", "=ds=#sr# =so1=60 =so2=90 =so3=110 =so4=130" },
 		{ "s2335", "inv_potion_95", "=q1=Swiftness Potion", "=ds=#sr# =so1=60 =so2=90 =so3=110 =so4=130" },
+		{ "s15003", "INV_Drink_17", "=q1=Volatile Concoction", "=ds=#sr# =so1=75 =so2=110 =so3=125 =so4=140" },
 	},
 
 	AlchemyJourneyman1 = {
@@ -511,6 +512,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "e7748", "Spell_Holy_GreaterHeal", "=ds=Enchant Chest - Lesser Health", "=ds=#sr# =so1=60 =so2=105 =so3=125 =so4=145" },
 		{ "e7771", "Spell_Holy_GreaterHeal", "=ds=Enchant Cloak - Minor Protection", "=ds=#sr# =so1=70 =so2=110 =so3=130 =so4=150" },
 		{ "e14807", "INV_Staff_07", "=q2=Greater Magic Wand", "=ds=#sr# =so1=70 =so2=110 =so3=130 =so4=150" },
+		{ "e15000", "Spell_Holy_GreaterHeal", "=q2=Enchant 2H Weapon - Minor Intellect", "=ds=#sr# =so1=75 =so2=115 =so3=135 =so4=155" }, --???
 	},
 
 	EnchantingJourneyman1 = {
@@ -714,6 +716,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s2666", "inv_belt_03", "=q1=Runed Copper Belt", "=ds=#sr# =so1=70 =so2=110 =so3=130 =so4=150" },
 		{ "s3294", "inv_throwingaxe_01", "=q2=Thick War Axe", "=ds=#sr# =so1=70 =so2=110 =so3=130 =so4=150" },
 		{ "s3326", "inv_stone_grindingstone_02", "=q1=Coarse Grinding Stone", "=ds=#sr# =so1=75 =so2=75 =so3=87 =so4=100" },
+		{ "s15004", "INV_Shield_09", "=q2=Blast Shield", "=ds=#sr# =so1=75 =so2=90 =so3=110 =so4=130" }, --???
 	},
 
 	SmithingJourneyman1 = {
@@ -1025,8 +1028,8 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 --------------------
 
 	LeatherApprentice1 = {
-	    { "s2881", "inv_misc_leatherscrap_03", "=q1=Light Leather", "=ds=#sr# =so1=1 =so2=20 =so3=30 =so4=40" },
-	    { "s2152", "inv_misc_armorkit_17", "=q1=Light Armor Kit", "=ds=#sr# =so1=1 =so2=30 =so3=45 =so4=60" },
+		{ "s2881", "inv_misc_leatherscrap_03", "=q1=Light Leather", "=ds=#sr# =so1=1 =so2=20 =so3=30 =so4=40" },
+		{ "s2152", "inv_misc_armorkit_17", "=q1=Light Armor Kit", "=ds=#sr# =so1=1 =so2=30 =so3=45 =so4=60" },
 		{ "s2149", "inv_boots_04", "=q1=Handstitched Leather Boots", "=ds=#sr# =so1=1 =so2=40 =so3=55 =so4=70" },
 		{ "s9059", "inv_bracer_08", "=q1=Handstitched Leather Bracers", "=ds=#sr# =so1=1 =so2=40 =so3=55 =so4=70" },
 		{ "s9058", "inv_helmet_48", "=q1=Handstitched Leather Cloak", "=ds=#sr# =so1=1 =so2=40 =so3=55 =so4=70" },
@@ -1046,6 +1049,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s9065", "inv_bracer_04", "=q1=Light Leather Bracers", "=ds=#sr# =so1=70 =so2=100 =so3=115 =so4=130" },
 		{ "s3759", "inv_pants_02", "=q2=Embossed Leather Pants", "=ds=#sr# =so1=75 =so2=105 =so3=120 =so4=135" },
 		{ "s2164", "inv_gauntlets_05", "=q2=Fine Leather Gloves", "=ds=#sr# =so1=75 =so2=105 =so3=120 =so4=135" },
+		{ "s15001", "INV_Boots_06", "=q2=Lynxstep Boots", "=ds=#sr# =so1=75 =so2=105 =so3=120 =so4=135" }, --???
 	},
 
 	LeatherJourneyman1 = {
@@ -1331,7 +1335,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 
 	TailoringApprentice1 = {
 		{ "s2963", "inv_fabric_linen_02", "=q1=Bolt of Linen Cloth", "=ds=#sr# =so1=1 =so2=25 =so3=37 =so4=50" },
-	    { "s3915", "inv_shirt_02", "=q1=Brown Linen Shirt", "=ds=#sr# =so1=1 =so2=35 =so3=47 =so4=60" },
+		{ "s3915", "inv_shirt_02", "=q1=Brown Linen Shirt", "=ds=#sr# =so1=1 =so2=35 =so3=47 =so4=60" },
 		{ "s2387", "inv_misc_cape_14", "=q1=Linen Cloak", "=ds=#sr# =so1=1 =so2=35 =so3=47 =so4=60" },
 		{ "s12044", "inv_pants_11", "=q1=Simple Linen Pants", "=ds=#sr# =so1=1 =so2=35 =so3=47 =so4=60" },
 		{ "s2393", "inv_shirt_white_01", "=q1=White Linen Shirt", "=ds=#sr# =so1=1 =so2=35 =so3=47 =so4=60" },
@@ -1360,6 +1364,9 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s2964", "inv_fabric_wool_03", "=q1=Bolt of Woolen Cloth", "=ds=#sr# =so1=75 =so2=90 =so3=97 =so4=105" },
 		{ "s12046", "inv_pants_11", "=q1=Simple Kilt", "=ds=#sr# =so1=75 =so2=100 =so3=117 =so4=135" },
 		{ "s2402", "inv_misc_cape_10", "=q1=Woolen Cape", "=ds=#sr# =so1=75 =so2=100 =so3=117 =so4=135" },
+	},
+	TailoringApprentice2 = {
+		{ "s15005", "INV_Gauntlets_19", "=q2=Gloves of Manathirst", "=ds=#sr# =so1=75 =so2=100 =so3=117 =so4=135" },
 	},
 
 	TailoringJourneyman1 = {
@@ -1632,6 +1639,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s3930", "inv_ammo_bullet_02", "=q1=Crafted Heavy Shot", "=ds=#sr# =so1=75 =so2=85 =so3=90 =so4=95" },
 		{ "s3931", "inv_misc_bomb_06", "=q1=Coarse Dynamite", "=ds=#sr# =so1=75 =so2=90 =so3=97 =so4=105" },
 		{ "s3928", "inv_crate_01", "=q1=Mechanical Squirrel", "=ds=#sr# =so1=75 =so2=105 =so3=120 =so4=135" },
+		{ "s15002", "INV_Misc_Bomb_06", "=q1=Unstable Mining Dynamite", "=ds=#sr# =so1=75 =so2=105 =so3=120 =so4=135" }, --???
 	},
 
 	EngineeringJourneyman1 = {
@@ -1946,6 +1954,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s2795", "inv_misc_food_48", "=q1=Beer Basted Boar Ribs", "=ds=#sr# =so1=25 =so2=60 =so3=80 =so4=100" },
 		{ "s21144", "inv_drink_04", "=q1=Egg Nog", "=ds=#sr# =so1=35 =so2=75 =so3=95 =so4=115" },
 		{ "s6414", "inv_misc_food_60", "=q1=Roasted Kodo Meat", "=ds=#sr# =so1=35 =so2=75 =so3=95 =so4=115" },
+		{ "s15006", "INV_Drink_04", "=q1=Maritime Gumbo", "=ds=#sr# =so1=35 =so2=75 =so3=95 =so4=115" }, --???
 		{ "s8607", "inv_misc_food_13", "=q1=Smoked Bear Meat", "=ds=#sr# =so1=40 =so2=80 =so3=100 =so4=120" },
 		{ "s6499", "inv_misc_shell_02", "=q1=Boiled Clams", "=ds=#sr# =so1=50 =so2=90 =so3=110 =so4=130" },
 		{ "s2541", "inv_misc_food_65", "=q1=Coyote Steak", "=ds=#sr# =so1=50 =so2=90 =so3=110 =so4=130" },
