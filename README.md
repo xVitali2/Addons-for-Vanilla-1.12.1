@@ -1,5 +1,5 @@
 # Addons-for-Vanilla-1.12.1-CFM
-#<a href="https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases/latest">Скачать</a>
+#<a href="https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases/latest">Download</a>
 
 **AdvancedTradeSkillWindow**
 Улучшенное окно профессий.
