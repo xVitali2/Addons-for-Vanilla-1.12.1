@@ -1183,6 +1183,12 @@ Inst8Quest14ITC2_HORDE = Itemc4
 Inst8Quest14description2_HORDE = AQITEM_HANDS..AQITEM_PLATE
 Inst8Quest14ID2_HORDE = "12631"
 
+--Quest 18 Horde
+Inst8Quest18Rewardtext_HORDE = AQDiscription_REWARD..WHITE.."1"
+--ITEM1
+Inst8Quest18ITC1_HORDE = Itemc4
+Inst8Quest18description1_HORDE = AQITEM_RING
+Inst8Quest18ID1_HORDE = "60739"
 
 
 --------------- INST9 - Upper Blackrock Spire (UBRS) ---------------
