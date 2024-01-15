@@ -155,7 +155,6 @@ function module:OnEnable()
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF", "CheckForLocustCast")
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE", "CheckForLocustCast")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
-	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE", "CheckForEnrage")
 
 	self:ThrottleSync(10, syncName.locustCast)
 	self:ThrottleSync(10, syncName.locustGain)
@@ -176,11 +175,6 @@ end
 function module:OnDisengage()
 end
 
-function module:CheckForEnrage(msg)
-	if msg == L["etrigger"] then
-		self:Message(L["enragewarn"], "Important", nil, "Alarm")
-	end
-end
 
 ------------------------------
 --      Event Handlers	    --
@@ -189,6 +183,8 @@ end
 function module:CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS(msg)
 	if msg == L["gaintrigger"] then
 		self:Sync(syncName.locustGain)
+	elseif msg == L["etrigger"] then
+		self:Message(L["enragewarn"], "Important", nil, "Alarm")
 	end
 end
 

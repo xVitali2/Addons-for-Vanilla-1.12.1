@@ -154,8 +154,8 @@ module.toggleoptions = {"spray", "poison", "cocoon", "enrage", "bosskill"}
 
 -- locals
 local timer = {
-	poison = {5, 10},
-	firstPoison = 15,
+	poison = {10, 25},
+	firstPoison = 10,
 	cocoon = 20,
 	spider = 30,
 	webspray = 40,
@@ -204,7 +204,8 @@ end
 -- called after boss is engaged
 function module:OnEngage()
 	self:KTM_SetTarget(self:ToString())
-	self:Bar(L["poisonbar"], timer.firstPoison, icon.poison)
+    self:Message(L["poisonwarn"], "Important")
+    self:IntervalBar(L["poisonbar"], timer.poison[1], timer.poison[2], icon.poison)
 	self:Webspray()
 end
 

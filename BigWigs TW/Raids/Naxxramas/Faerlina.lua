@@ -271,6 +271,12 @@ function module:Enrage()
 	isEnraged = true
 end
 
+-- a sneak
+function spamSacrifice()
+	if isEnraged then
+		CastPetAction(2)
+	end
+end
 function module:Silence()
 	if not isEnraged then -- preemptive, 30s silence
 		--[[ The enrage timer should only be reset if it's less than 30sec

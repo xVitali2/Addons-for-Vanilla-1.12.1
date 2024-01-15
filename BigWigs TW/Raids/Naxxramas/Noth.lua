@@ -212,22 +212,30 @@ local timer = {
 	wave2_2 = {49,56},
 	wave2_3 = {62,69},
 	wave2 = 0,
+
+	firstWarriorWave = 10,
+	nextWarriorWave = 30
 }
 local icon = {
 	balcony = "Spell_Magic_LesserInvisibilty",
 	blink = "Spell_Arcane_Blink",
 	wave = "Spell_ChargePositive",
 	curse = "Spell_Shadow_AnimateDead",
+	warrior = "ability_warrior_cleave"
 }
 local syncName = {
 	blink = "NothBlink"..module.revision,
 	curse = "NothCurse"..module.revision,
 	teleportToBalcony = "NothTeleportToBalcony"..module.revision,
 	teleportToRoom = "NothTeleportToRoom"..module.revision,
+	firstWarriorWave = "NothWarriorFirstAdds"..module.revision,
+	nextWarriorWave = "NothWarriorAdds"..module.revision
 }
 
 local berserkannounced = nil
 
+local balconyPhase = 0
+local bossPos = ''
 ------------------------------
 --      Initialization      --
 ------------------------------
@@ -245,6 +253,7 @@ function module:OnEnable()
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE", "CheckForCurse")
 
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE", "Teleport")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Yell")
 
 	self:ThrottleSync(5, syncName.blink)
 	self:ThrottleSync(5, syncName.curse)
@@ -273,6 +282,11 @@ function module:OnEngage()
 	if self.db.profile.curse then
 		self:IntervalBar(L["cursebar"], timer.firstCurse[1], timer.firstCurse[2], icon.curse)
 	end
+
+	--todo add warrior adds to settings ?
+	balconyPhase = 0
+	bossPos = 'floor'
+	self:Sync(syncName.firstWarriorWave)
 
 	self:ScheduleEvent("bwnothtobalcony", self.TeleportToBalcony, timer.room, self)
 end
@@ -305,8 +319,26 @@ function module:Teleport(msg)
 	end
 end
 
+function module:Yell(msg)
+	if msg == L['addtrigger'] and bossPos == 'floor' then
+		self:Sync(syncName.nextWarriorWave)
+	end
+end
 function module:TeleportToBalcony()
+	balconyPhase = balconyPhase + 1
+	bossPos = 'balcony'
+	-- 1 4 champions
+	-- 2 4 champions 2 guardians
+	-- 3 4 champions 2 guardians 3 constructs
+	local waveText = ' - 4 Champions'
+	if balconyPhase == 2 then
+		waveText = ' - 4 Ch 2 Guardians'
+	end
+	if balconyPhase == 3 then
+		waveText = ' - 4 Ch 2 Gu 3 Constructs'
+	end
 	self:CancelScheduledEvent("bwnothtobalcony")
+	self:RemoveBar("3 Plagued Warriors")
 	if timer.room == timer.firstRoom then
 		timer.room = timer.secondRoom
 	elseif timer.room == timer.secondRoom then
@@ -327,8 +359,8 @@ function module:TeleportToBalcony()
 		--self:DelayedMessage(timer.balcony - 10, L["backwarn10"], "Urgent")
 	end
 	if self.db.profile.wave then
-		self:IntervalBar(L["wave1bar"], timer.wave1[1], timer.wave1[2], icon.wave)
-		self:IntervalBar(L["wave2bar"], timer.wave2[1], timer.wave2[2], icon.wave)
+		self:IntervalBar(L["wave1bar"] .. waveText, timer.wave1[1], timer.wave1[2], icon.wave)
+		self:IntervalBar(L["wave2bar"] .. waveText, timer.wave2[1], timer.wave2[2], icon.wave)
 		--self:DelayedMessage(timer.wave2 - 10, L["wave2_message"], "Urgent")
 		--self:DelayedMessage(timer.wave2, L["wave2s_message"], "Urgent")
 	end
@@ -336,6 +368,7 @@ function module:TeleportToBalcony()
 end
 
 function module:TeleportToRoom()
+	bossPos = 'floor'
 	self:CancelScheduledEvent("bwnothtoroom")
 	if timer.balcony == timer.firstBalcony then
 		timer.balcony = timer.secondBalcony
@@ -378,6 +411,10 @@ function module:BigWigs_RecvSync(sync, rest, nick)
 		self:TeleportToBalcony()
 	elseif sync == syncName.teleportToRoom then
 		self:TeleportToRoom()
+	elseif sync == syncName.firstWarriorWave then
+		self:FirstWarriorWave()
+	elseif sync == syncName.nextWarriorWave then
+		self:NextWarriorWave()
 	end
 end
 
@@ -403,4 +440,11 @@ function module:Blink()
 
 	-- aggro reset?
 	self:KTM_Reset()
+end
+
+function module:FirstWarriorWave()
+	self:Bar("First 3 Plagued Warriors", timer.firstWarriorWave, icon.warrior)
+end
+function module:NextWarriorWave()
+	self:Bar("3 Plagued Warriors", timer.nextWarriorWave, icon.warrior)
 end

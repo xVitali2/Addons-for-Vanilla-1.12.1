@@ -339,6 +339,7 @@ function module:OnEngage()
 		self:DelayedMessage(timer.softEnrage - 10, string.format(L["doomtimerwarn"], 10), "Urgent")
 		self:DelayedMessage(timer.softEnrage - 5, string.format(L["doomtimerwarn"], 5), "Important")
 		self:DelayedMessage(timer.softEnrage, L["doomtimerwarnnow"], "Important")
+		self:Bar("Corrupted Mind", 5, "spell_shadow_curseoftounges")
 
 		-- soft enrage after 5min: Doom every 15s instead of every 30s
 		--self:ScheduleEvent("bwloathebdoomtimerreduce", function() module.doomTime = 15 end, 300)

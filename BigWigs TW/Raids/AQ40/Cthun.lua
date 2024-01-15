@@ -555,6 +555,10 @@ function module:CThunStart()
 		self:Message(L["startwarn"], "Attention", false, false)
 		self:Sound("Shakira")
 		self:Bar(L["barStartRandomBeams"], timer.p1RandomEyeBeams, icon.giantEye)
+		--self:Bar("Claw Tentacle", 8, icon.giantClaw)
+
+
+		self:P1ClawTentacle()
 
 		if self.db.profile.tentacle then
 			self:Bar(self.db.profile.rape and L["barTentacle"] or L["barNoRape"], timer.p1TentacleStart, icon.eyeTentacles)
@@ -601,6 +605,8 @@ function module:CThunP2Start()
 		self:CancelDelayedMessage(self.db.profile.rape and L["tentacle"] or L["norape"])
 		self:CancelDelayedSync(syncName.tentacleSpawn)
 
+		-- cancel p1 claw tentacle
+		self:RemoveBar("Claw Tentacle")
 		-- cancel dark glare group warning
 		self:CancelScheduledEvent("bwcthuntarget") -- ok
 
@@ -643,7 +649,7 @@ function module:CThunWeakened()
 		self:Message(L["weakened"], "Positive" )
 		self:Sound("Murloc")
 		self:Bar(L["barWeakened"], timer.weakened, icon.weaken)
-		self:Message(timer.weakened - 5, L["invulnerable2"], "Urgent")
+		self:DelayedMessage(timer.weakened - 5, L["invulnerable2"], "Urgent")
 	end
 
 	-- cancel tentacle timers
@@ -700,6 +706,13 @@ function module:DelayedEyeBeamCheck()
 		self:Icon(name)
 		if name == UnitName("player") then
 			self:WarningSign(icon.eyeBeamSelf, 2 - 0.1)
+			SendChatMessage("Eye Beam On Me !", "SAY")
+		else
+			for i = 1, GetNumRaidMembers(), 1 do
+				if name == UnitName('Raid' .. i) and CheckInteractDistance("Raid" .. i, 3) then
+					self:Message("Eye Beam on " .. name .. " ! Move away !", "Important" )
+				end
+			end
 		end
 	end
 	self:Bar(string.format(L["eyebeam"], name), timer.eyeBeam - 0.1, icon.giantEye, true, "green")
@@ -721,11 +734,11 @@ end
 function module:CheckTentacleHP()
 	local health
 	if UnitName("playertarget") == fleshtentacle then
-		health = UnitHealth("playertarget")
+		health = math.floor(UnitHealth("playertarget")/UnitHealthMax("playertarget")*100)
 	else
 		for i = 1, GetNumRaidMembers(), 1 do
 			if UnitName("Raid"..i.."target") == fleshtentacle then
-				health = UnitHealth("Raid"..i.."target")
+				health = math.floor(UnitHealth("Raid"..i.."target")/UnitHealthMax("Raid"..i.."target")*100)
 				break;
 			end
 		end
@@ -778,6 +791,15 @@ function module:CheckTarget()
 end
 
 -- P1
+function module:P1ClawTentacle()
+
+	if phase2started then
+		self:CancelScheduledEvent("bwcthunp1claw")
+	else
+		self:ScheduleEvent("bwcthunp1claw", self.P1ClawTentacle, 8, self )
+		self:Bar("Claw Tentacle", 8, icon.giantClaw)
+	end
+end
 function module:DarkGlare()
 	if self.db.profile.glare then
 		if firstGlare then
