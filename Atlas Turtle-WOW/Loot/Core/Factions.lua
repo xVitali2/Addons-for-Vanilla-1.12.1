@@ -44,11 +44,11 @@ function AtlasLootRepMenu()
 	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\Spell_Frost_FrostArmor")
 	AtlasLootMenuItem_5.lootpage="WaterLords1"
 	AtlasLootMenuItem_5:Show()
-	--Thorium Brotherhood
-	AtlasLootMenuItem_6_Name:SetText(BF["Thorium Brotherhood"])
-	AtlasLootMenuItem_6_Extra:SetText("")
-	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\INV_Ingot_Mithril")
-	AtlasLootMenuItem_6.lootpage="Thorium1"
+	--Dalaran
+	AtlasLootMenuItem_6_Name:SetText("Dalaran")
+	AtlasLootMenuItem_6_Extra:SetText("|cff2773ff"..BF["Alliance"])
+	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
+	AtlasLootMenuItem_6.lootpage="Dalaran"
 	AtlasLootMenuItem_6:Show()
 	--Wildhammer Clan
 	AtlasLootMenuItem_7_Name:SetText(L["Wildhammer Clan"])
@@ -56,13 +56,13 @@ function AtlasLootRepMenu()
 	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\INV_Misc_Rune_06")
 	AtlasLootMenuItem_7.lootpage="Wildhammer"
 	AtlasLootMenuItem_7:Show()
-    	--Stormwind
+	--Stormwind
 	AtlasLootMenuItem_8_Name:SetText(BF["Stormwind"])
 	AtlasLootMenuItem_8_Extra:SetText("|cff2773ff"..BF["Alliance"])
 	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
 	AtlasLootMenuItem_8.lootpage="Stormwind"
 	AtlasLootMenuItem_8:Show()
-    	--Gnomeregan Exiles
+	--Gnomeregan Exiles
 	AtlasLootMenuItem_9_Name:SetText(BF["Gnomeregan Exiles"])
 	AtlasLootMenuItem_9_Extra:SetText("|cff2773ff"..BF["Alliance"])
 	AtlasLootMenuItem_9_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
@@ -80,13 +80,13 @@ function AtlasLootRepMenu()
 	AtlasLootMenuItem_11_Icon:SetTexture("Interface\\Icons\\INV_Jewelry_StormPikeTrinket_01")
 	AtlasLootMenuItem_11.lootpage="Stormpike1"
 	AtlasLootMenuItem_11:Show()
-    	--Darnassus
+	--Darnassus
 	AtlasLootMenuItem_12_Name:SetText(BF["Darnassus"])
 	AtlasLootMenuItem_12_Extra:SetText("|cff2773ff"..BF["Alliance"])
 	AtlasLootMenuItem_12_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
 	AtlasLootMenuItem_12.lootpage="Darnassus"
 	AtlasLootMenuItem_12:Show()
-	--helf
+	--Silvermoon
 	AtlasLootMenuItem_13_Name:SetText("Silvermoon Remnant")
 	AtlasLootMenuItem_13_Extra:SetText("|cff2773ff"..BF["Alliance"])
 	AtlasLootMenuItem_13_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
@@ -134,48 +134,54 @@ function AtlasLootRepMenu()
 	AtlasLootMenuItem_20_Icon:SetTexture("Interface\\Icons\\INV_Misc_Head_Centaur_01")
 	AtlasLootMenuItem_20.lootpage="MagramClan1"
 	AtlasLootMenuItem_20:Show()
-    --Dalaran
-	AtlasLootMenuItem_21_Name:SetText("Dalaran")
+	--Thorium Brotherhood
+	AtlasLootMenuItem_21_Name:SetText(BF["Thorium Brotherhood"])
 	AtlasLootMenuItem_21_Extra:SetText("")
-	AtlasLootMenuItem_21_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
-	AtlasLootMenuItem_21.lootpage="Dalaran"
+	AtlasLootMenuItem_21_Icon:SetTexture("Interface\\Icons\\INV_Ingot_Mithril")
+	AtlasLootMenuItem_21.lootpage="Thorium1"
 	AtlasLootMenuItem_21:Show()
-    --Orgrimmar
-	AtlasLootMenuItem_23_Name:SetText(BF["Orgrimmar"])
-	AtlasLootMenuItem_23_Extra:SetText("|cffFF0000"..BF["Horde"])
-	AtlasLootMenuItem_23_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
-	AtlasLootMenuItem_23.lootpage="Orgrimmar"
-	AtlasLootMenuItem_23:Show()
-    --Undercity
-	AtlasLootMenuItem_24_Name:SetText(BF["Undercity"])
+	--Warderns
+	AtlasLootMenuItem_22_Name:SetText("Warderns of Time")
+	AtlasLootMenuItem_22_Extra:SetText("")
+	AtlasLootMenuItem_22_Icon:SetTexture("Interface\\Icons\\inv_weapon_hand_06")
+	AtlasLootMenuItem_22.lootpage="Warderns1"
+	AtlasLootMenuItem_22:Show()
+	--Orgrimmar
+	AtlasLootMenuItem_24_Name:SetText(BF["Orgrimmar"])
 	AtlasLootMenuItem_24_Extra:SetText("|cffFF0000"..BF["Horde"])
 	AtlasLootMenuItem_24_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
-	AtlasLootMenuItem_24.lootpage="Undercity"
+	AtlasLootMenuItem_24.lootpage="Orgrimmar"
 	AtlasLootMenuItem_24:Show()
-    --Thunder Bluff
+	--Thunder Bluff
 	AtlasLootMenuItem_25_Name:SetText(BF["Thunder Bluff"])
 	AtlasLootMenuItem_25_Extra:SetText("|cffFF0000"..BF["Horde"])
 	AtlasLootMenuItem_25_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
 	AtlasLootMenuItem_25.lootpage="ThunderBluff"
 	AtlasLootMenuItem_25:Show()
-    --Durotar Labor Union
+	--Durotar Labor Union
 	AtlasLootMenuItem_26_Name:SetText("Durotar Labor Union")
 	AtlasLootMenuItem_26_Extra:SetText("|cffFF0000"..BF["Horde"])
 	AtlasLootMenuItem_26_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
 	AtlasLootMenuItem_26.lootpage="DurotarLaborUnion"
 	AtlasLootMenuItem_26:Show()
-	--The Defilers
-	AtlasLootMenuItem_27_Name:SetText(BF["The Defilers"])
+	--Undercity
+	AtlasLootMenuItem_27_Name:SetText(BF["Undercity"])
 	AtlasLootMenuItem_27_Extra:SetText("|cffFF0000"..BF["Horde"])
-	AtlasLootMenuItem_27_Icon:SetTexture("Interface\\Icons\\INV_Jewelry_Amulet_07")
-	AtlasLootMenuItem_27.lootpage="Defilers"
+	AtlasLootMenuItem_27_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
+	AtlasLootMenuItem_27.lootpage="Undercity"
 	AtlasLootMenuItem_27:Show()
-	--raventusk
+	--Raventusk
 	AtlasLootMenuItem_28_Name:SetText("Revantusk Trolls")
 	AtlasLootMenuItem_28_Extra:SetText("|cffFF0000"..BF["Horde"])
 	AtlasLootMenuItem_28_Icon:SetTexture("Interface\\Icons\\INV_Misc_Head_Troll_01")
 	AtlasLootMenuItem_28.lootpage="Revantusk"
 	AtlasLootMenuItem_28:Show()
+	--The Defilers
+	AtlasLootMenuItem_29_Name:SetText(BF["The Defilers"])
+	AtlasLootMenuItem_29_Extra:SetText("|cffFF0000"..BF["Horde"])
+	AtlasLootMenuItem_29_Icon:SetTexture("Interface\\Icons\\INV_Jewelry_Amulet_07")
+	AtlasLootMenuItem_29.lootpage="Defilers"
+	AtlasLootMenuItem_29:Show()
 	--Frostwolf Clan
 	AtlasLootMenuItem_30_Name:SetText(BF["Frostwolf Clan"])
 	AtlasLootMenuItem_30_Extra:SetText("|cffFF0000"..BF["Horde"])

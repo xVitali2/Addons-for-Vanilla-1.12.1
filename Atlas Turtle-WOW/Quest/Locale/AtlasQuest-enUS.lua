@@ -159,7 +159,7 @@ AQITEM_ENCHANT = "Enchant"
 Inst1Story = "Once the greatest gold production center in the human lands, the Dead Mines were abandoned when the Horde razed Stormwind city during the First War. Now the Defias Brotherhood has taken up residence and turned the dark tunnels into their private sanctum. It is rumored that the thieves have conscripted the clever goblins to help them build something terrible at the bottom of the mines - but what that may be is still uncertain. Rumor has it that the way into the Deadmines lies through the quiet, unassuming village of Moonbrook."
 Inst1Caption = "The Deadmines"
 Inst1QAA = "9 Quests" -- how many quests for alliance
-Inst1QAH = "2 Quests" -- for horde
+Inst1QAH = "3 Quests" -- for horde
 
 --Quest 1 Alliance
 Inst1Quest1 = "1. Red Silk Bandanas" -- 214
@@ -283,7 +283,7 @@ Inst1Quest1_HORDE_Level = "18"
 Inst1Quest1_HORDE_Attain = "16"
 Inst1Quest1_HORDE_Aim = "Bring the Prototype Shredder X0-1 Schematic to Wrix Ozzlenut."
 Inst1Quest1_HORDE_Location = "Wrix Ozzlenut (Durotar - Sparkwater Port; "..YELLOW.."58.3,25.7"..WHITE..")"
-Inst1Quest1_HORDE_Note = ""..RED.."!!! FOR NOW QUEST IS BUGGED. Sometimes quest item doesnt drop at all."..WHITE.."\nSneed or Van Clif drops the Prototype Shredder X0-1 Schematic "..YELLOW.."[3]"..WHITE.." or "..YELLOW.."[6]"..WHITE..".\nCan confirm that Sneed drops the quest item but not 100% drop chance."
+Inst1Quest1_HORDE_Note = "\nSneed drops the Prototype Shredder X0-1 Schematic "..YELLOW.."[3]"..WHITE.."."
 Inst1Quest1_HORDE_Prequest = "No"
 Inst1Quest1_HORDE_Folgequest = "No"
 --
@@ -302,11 +302,23 @@ Inst1Quest2_HORDE_Folgequest = "No"
 --
 Inst1Quest2name1_HORDE = "Grayson’s Hat"
 
+--Quest 3 Horde
+Inst1Quest3_HORDE = "3. Horde Defender's Axe" -- 39998
+Inst1Quest3_HORDE_Level = "18"
+Inst1Quest3_HORDE_Attain = "15"
+Inst1Quest3_HORDE_Aim = "Bring a Stolen Tombstone to Nargal Deatheye at the Crossroads"
+Inst1Quest3_HORDE_Location = "Birgitte Cranston <Portal Trainer> (Thunder Bluff"..YELLOW.."34.4,20.3"..WHITE..")"
+Inst1Quest3_HORDE_Note = "You start this Questline at Nargal Deatheye (Crossroads "..YELLOW.."51.2,29.1"..WHITE..").\nThis quest "..RED.."JUST TELEPORTS you to WESTFALL"..WHITE..". You can either finish this quest and get the reward after completing questline or use it as westfall teleport retaking the quest."
+Inst1Quest3_HORDE_Prequest = "Horde Defender's Axe" -- 39994, 39995, 39996, 39997
+Inst1Quest3_HORDE_Folgequest = "Horde Defender's Axe" -- 39999
+--
+Inst1Quest3name1_HORDE = "Horde Defender's Axe" -- 40065
+
 --------------- INST2 - Wailing Caverns (WC) ---------------
 Inst2Story = "Recently, a night elf druid named Naralex discovered a network of underground caverns within the heart of the Barrens. Dubbed the 'Wailing Caverns', these natural caves were filled with steam fissures which produced long, mournful wails as they vented. Naralex believed he could use the caverns' underground springs to restore lushness and fertility to the Barrens - but to do so would require siphoning the energies of the fabled Emerald Dream. Once connected to the Dream however, the druid's vision somehow became a nightmare. Soon the Wailing Caverns began to change - the waters turned foul and the once-docile creatures inside metamorphosed into vicious, deadly predators. It is said that Naralex himself still resides somewhere inside the heart of the labyrinth, trapped beyond the edges of the Emerald Dream. Even his former acolytes have been corrupted by their master's waking nightmare - transformed into the wicked Druids of the Fang."
 Inst2Caption = "Wailing Caverns"
 Inst2QAA = "7 Quests"
-Inst2QAH = "7 Quests"
+Inst2QAH = "8 Quests"
 
 --Quest 1 Alliance
 Inst2Quest1 = "1. Deviate Hides" --1486
@@ -484,6 +496,18 @@ Inst2Quest7_HORDE_Folgequest = Inst2Quest5_Folgequest -- 3369
 Inst2Quest7name1_HORDE = Inst2Quest5name1
 Inst2Quest7name2_HORDE = Inst2Quest5name2
 
+--Quest 8 Horde
+Inst2Quest8_HORDE = "8. Arcane Arms" -- 80312
+Inst2Quest8_HORDE_Level = "18"
+Inst2Quest8_HORDE_Attain = "14"
+Inst2Quest8_HORDE_Aim = "Bring Chok'Garok 5 pieces of Moontouched Wood"..YELLOW.."trash"..WHITE..", a Crystal of the Serpent, and an Everchanging Essence from Wailing Caverns."
+Inst2Quest8_HORDE_Location = "Chok'Garok <Stonemaul Clan> (on a bank of Southfury River in the Barrens; "..YELLOW.."62.4,10.8"..WHITE..")"
+Inst2Quest8_HORDE_Note = ""..YELLOW.."Mage ONLY."..WHITE.." The Questline starts at Ureda <Mage Trainer> (Orgrimar) with quest 'Mastering the Arcane'.\nMoontouched Wood you get from "..YELLOW.."trash"..WHITE..", a Crystal of the Serpent from Lord Serpentis <Fanglord>"..YELLOW.."[7]"..WHITE..", and an Everchanging Essence from Lord Pythas <Fanglord> "..YELLOW.."[5]"..WHITE.."."
+Inst2Quest8_HORDE_Prequest = "Mastering the Arcane" -- 80311
+Inst2Quest8_HORDE_Folgequest = "No"
+--
+Inst2Quest8name1_HORDE = "Staff of the Arcane Path" -- 80860
+Inst2Quest8name2_HORDE = "Spellweaving Dagger" -- 80861
 
 
 --------------- INST3 - Ragefire Chasm (RFC) ---------------
@@ -1066,7 +1090,7 @@ Inst5Quest13_Aim = "Travel to Blackrock Depths and find Kharan Mighthammer.\nThe
 Inst5Quest13_Location = "King Magni Bronzebeard (Ironforge; "..YELLOW.."39,55"..WHITE..")"
 Inst5Quest13_Note = "The prequest starts at Royal Historian Archesonus (Ironforge; "..YELLOW.."38,55"..WHITE.."). Kharan Mighthammer is at "..YELLOW.."[2]"..WHITE.."."
 Inst5Quest13_Prequest = "The Smoldering Ruins of Thaurissan" -- 3701
-Inst5Quest13_Folgequest = "The Bearer of Bad News" -- 4361
+Inst5Quest13_Folgequest = "Kharan's Tale" -- 4342
 -- No Rewards for this quest
 
 --Quest 14 Alliance
@@ -1099,7 +1123,7 @@ Inst5Quest16_Level = "60"
 Inst5Quest16_Attain = "58"
 Inst5Quest16_Aim = "Travel to the Ring of the Law in Blackrock Depths and place the Banner of Provocation in its center as you are sentenced by High Justice Grimstone. Slay Theldren and his gladiators and return to Anthion Harmon in the Eastern Plaguelands with the first piece of Lord Valthalak's amulet."
 Inst5Quest16_Location = "Falrin Treeshaper (Dire Maul West; "..YELLOW.."[1] Library"..WHITE..")"
-Inst5Quest16_Note = "Followup quest is different for each class."
+Inst5Quest16_Note = "Followup quest is different for each class. Entire questline starts with quest 'An Earnest Proposition' from Deliana Ironforge Kings room behid The Bank"
 Inst5Quest16_Prequest = "The Instigator's Enchantment" -- 8950
 Inst5Quest16_Folgequest = "(Class Quests)"
 -- No Rewards for this quest
@@ -1127,7 +1151,6 @@ Inst5Quest18_Folgequest = "Operation Help Jabbey 2 - > Operation Return to Screw
 --
 Inst5Quest18name1 = "Bixxle's Necklace of Control"
 Inst5Quest18name2 = "Bixxle's Necklace of Mastery"
-Inst5Quest18name3 = "Dark Iron Desecrator"
 --Quest 19 Alliance
 Inst5Quest19 = "19. The Dark Iron Desecrator" -- 40762
 Inst5Quest19_Level = "60"
@@ -1135,7 +1158,7 @@ Inst5Quest19_Attain = "55"
 Inst5Quest19_Aim = "I need a Magma Condensor from within Blackrock Depths, you can find it near the Golem Laboratory"..YELLOW.."[25]"..WHITE.."."
 Inst5Quest19_Location = "Bixxle Screwfuse (Tel'Abim Island east from Tanaris)"
 Inst5Quest19_Note = "This quest requires to collect 4 items.\n1) Magma Condensor (Blackrock Depths in Magma Condensor Crate) \n2) Intricate Arcanite Barrel (Blackrock Spire in Intricate Arcanite Barrels container)\n3) Molten Fragment (Molten Core from Molten Destroyer).\n4) Dark Iron Rifle (crafted by Engineers).\nTo finish the construction, I will also need Fiery Core(x3) found in Molten Core, and Enchanted Thorium Bars(x10)."
-Inst5Quest19_Prequest = "Secrets of the Dark Iron Desecrator" --40761
+Inst5Quest19_Prequest = "Operation Help Jabbey -> Secrets of the Dark Iron Desecrator" --40761
 Inst5Quest19_Folgequest = "No"
 --
 Inst5Quest19name1 = "Dark Iron Desecrator"
@@ -1414,7 +1437,6 @@ Inst5Quest18_HORDE_Folgequest = Inst5Quest18_Folgequest
 --
 Inst5Quest18name1_HORDE = Inst5Quest18name1
 Inst5Quest18name2_HORDE = Inst5Quest18name2
-Inst5Quest18name3_HORDE = Inst5Quest18name3
 
 --Quest 19 Horde (same as Quest 19 Alliance)
 Inst5Quest19_HORDE = Inst5Quest19
@@ -1546,9 +1568,12 @@ Inst6Quest5_Level = "60"
 Inst6Quest5_Attain = "58"
 Inst6Quest5_Aim = "Find 'Treatise on Magical Locks and Keys' and bring it back to Vandol. It is rumored to be kept in Blackwing Lair."
 Inst6Quest5_Location = "Dolvan Bracewind (Dustwallow Marsh - Westhaven Hollow  "..YELLOW.."71,73"..WHITE..")"
-Inst6Quest5_Note = "Prequest - Lord Ebonlocke (Lower Karazhan Halls). Book 'Treatise on Magical Locks and Keys' is in the last boss room "..YELLOW.."[9]"..WHITE..", next to the throne."
+Inst6Quest5_Note = "Prequest - Lord Ebonlocke (Lower Karazhan Halls). Book 'Treatise on Magical Locks and Keys' is in the last boss room "..YELLOW.."[9]"..WHITE..", next to the throne. Reward from the next quest."
 Inst6Quest5_Prequest = "The Key to Karazhan VIII (DMW)"
 Inst6Quest5_Folgequest = "The Key to Karazhan X"
+
+Inst6Quest5name1 = "Upper Karazhan Tower Key"
+
 --Quest 6 Alliance
 Inst6Quest6 = "6. Scythe of the Goddess" -- 41067
 Inst6Quest6_Level = "60"
@@ -1612,7 +1637,8 @@ Inst6Quest5_HORDE_Location = Inst6Quest5_Location
 Inst6Quest5_HORDE_Note = Inst6Quest5_Note
 Inst6Quest5_HORDE_Prequest = Inst6Quest5_Prequest
 Inst6Quest5_HORDE_Folgequest = Inst6Quest5_Folgequest
--- No Rewards for this quest
+
+Inst6Quest5name1_HORDE = Inst6Quest5name1
 
 --Quest 6 Horde (same as Quest 6 Alliance)
 Inst6Quest6_HORDE = Inst6Quest6
@@ -2160,7 +2186,7 @@ Inst8Quest16_HORDE = "16. Forest Troll Scum" -- 40495
 Inst8Quest16_HORDE_Level = "60"
 Inst8Quest16_HORDE_Attain = "48"
 Inst8Quest16_HORDE_Aim = "Kill War Master Voone "..YELLOW.."[9]"..WHITE.." in Lower Blackrock Spire and bring his tusks back to Taskmaster Ok'gog at Karfang Hold in Burning Steppes."
-Inst8Quest16_HORDE_Location = "Taskmaster Ok'gog (Burning Steppes - Karfang Hold; "..YELLOW.."dont have any clue where it is, turtle wow database shows north-east corner of Burning Steppes 95.1,22.8"..WHITE..")"
+Inst8Quest16_HORDE_Location = "Taskmaster Ok'gog (Burning Steppes - Karfang Hold; "..YELLOW.."95.1,22.8"..WHITE..")"
 Inst8Quest16_HORDE_Note = ""
 Inst8Quest16_HORDE_Prequest = "The Firegut Task" --40494
 Inst8Quest16_HORDE_Folgequest = "No"
@@ -2172,7 +2198,7 @@ Inst8Quest17_HORDE = "17. Raider's Raid" -- 40498
 Inst8Quest17_HORDE_Level = "58"
 Inst8Quest17_HORDE_Attain = "50"
 Inst8Quest17_HORDE_Aim = "Slay Gizrul the Slavener "..YELLOW.."[17]"..WHITE.." in Blackrock Spire, then report to Raider Fargosh in Karfang Hold."
-Inst8Quest17_HORDE_Location = "Raider Fargosh (Burning Steppes - Karfang Hold; "..YELLOW.."dont have any clue where it is, turtle wow database shows north-east corner of Burning Steppes 95.1,22.8"..WHITE..")"
+Inst8Quest17_HORDE_Location = "Raider Fargosh (Burning Steppes - Karfang Hold; "..YELLOW.."93.6,23.2"..WHITE..")"
 Inst8Quest17_HORDE_Note = "Gizrul the Slavener appears after you kill boss Halycon "..YELLOW.."[17]"..WHITE.."."
 Inst8Quest17_HORDE_Prequest = "Raider's Revenge -> Raider's New Mount" --40496, 40497
 Inst8Quest17_HORDE_Folgequest = "No"
@@ -2186,7 +2212,7 @@ Inst8Quest18_HORDE = "18. The Final Crack" -- 40498
 Inst8Quest18_HORDE_Level = "59"
 Inst8Quest18_HORDE_Attain = "50"
 Inst8Quest18_HORDE_Aim = "Slay Quartermaster Zigris "..YELLOW.."[16]"..WHITE.." deep in the Blackrock Spire for Karfang at Karfang Hold in Burning Steppes."
-Inst8Quest18_HORDE_Location = "Karfang (Burning Steppes - Karfang Hold; "..YELLOW.."dont have any clue where it is, turtle wow database shows north-east corner of Burning Steppes 95.1,22.8"..WHITE..")"
+Inst8Quest18_HORDE_Location = "Karfang (Burning Steppes - Karfang Hold; "..YELLOW.."95.1,22.8"..WHITE..")"
 Inst8Quest18_HORDE_Note = ""
 Inst8Quest18_HORDE_Prequest = "Protecting Fresh Blood -> Report to Molk -> Destroy All Traces... -> Take No Chances" --40505, 40506, 40507, 40508
 Inst8Quest18_HORDE_Folgequest = "No"

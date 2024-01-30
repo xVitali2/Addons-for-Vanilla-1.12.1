@@ -803,7 +803,7 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 	Undercity = {
 		{ 0, "inv_misc_head_undead_02", "=q6=#r5#", "" },
 		{ 81244, "Ability_Mount_Undeadhorse", "=q4=Armored Ebon Deathcharger", "=ds=#e7#" },
-		{ 81245, "Ability_Mount_Undeadhorse", "=q4=Armored Crimson Deathcharger", "=ds#e7#" },
+		{ 81245, "Ability_Mount_Undeadhorse", "=q4=Armored Crimson Deathcharger", "=ds=#e7#" },
 		{ 81246, "Ability_Mount_Undeadhorse", "=q4=Armored Emerald Deathcharger", "=ds=#e7#" },
 		{ 81247, "Ability_Mount_Undeadhorse", "=q4=Armored Ivory Deathcharger", "=ds=#e7#" },
 		{ 80309, "inv_misc_tournaments_tabard_scourge", "=q1=Undercity Tabard", "=ds=#s7#" },
