@@ -6,7 +6,7 @@ local info = require 'aux.util.info'
 local scan_util = require 'aux.util.scan'
 local scan = require 'aux.core.scan'
 
-local tab = aux.tab(BIDS) --byLICHERY
+local tab = aux.tab 'Bids'
 
 auction_records = {}
 
@@ -26,7 +26,7 @@ end
 function M.scan_bids()
 
     status_bar:update_status(0, 0)
-    status_bar:set_text(SCANNING_AUCTIONS) --byLICHERY
+    status_bar:set_text('Scanning auctions...')
 
     T.wipe(auction_records)
     update_listing()
@@ -35,19 +35,19 @@ function M.scan_bids()
         queries = T.list(T.map('blizzard_query', T.acquire())),
         on_page_loaded = function(page, total_pages)
             status_bar:update_status(page / total_pages, 0)
-            status_bar:set_text(format(SCANNING, page, total_pages)) --byLICHERY
+            status_bar:set_text(format('Scanning (Page %d / %d)', page, total_pages))
         end,
         on_auction = function(auction_record)
             tinsert(auction_records, auction_record)
         end,
         on_complete = function()
             status_bar:update_status(1, 1)
-            status_bar:set_text(SCAN_COMPLETE) --byLICHERY
+            status_bar:set_text('Scan complete')
             update_listing()
         end,
         on_abort = function()
             status_bar:update_status(1, 1)
-            status_bar:set_text(SCAN_ABORTED) --byLICHERY
+            status_bar:set_text('Scan aborted')
         end,
     }
 end

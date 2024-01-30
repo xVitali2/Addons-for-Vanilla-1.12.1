@@ -8,6 +8,9 @@ local history = require 'aux.core.history'
 local search_tab = require 'aux.tabs.search'
 
 function aux.handle.LOAD()
+    if not aux.account_data.crafting_cost then
+        return
+    end
     aux.event_listener('ADDON_LOADED', function()
         if arg1 == 'Blizzard_CraftUI' then
             craft_ui_loaded()
@@ -19,7 +22,7 @@ end
 
 do
     local function cost_label(cost)
-        local label = LIGHTYELLOW_FONT_COLOR_CODE .. TOTALCOST .. FONT_COLOR_CODE_CLOSE --byCFM
+        local label = LIGHTYELLOW_FONT_COLOR_CODE .. '(Total Cost: ' .. FONT_COLOR_CODE_CLOSE
         label = label .. (cost and money.to_string2(cost, nil, LIGHTYELLOW_FONT_COLOR_CODE) or GRAY_FONT_COLOR_CODE .. '?' .. FONT_COLOR_CODE_CLOSE)
         label = label .. LIGHTYELLOW_FONT_COLOR_CODE .. ')' .. FONT_COLOR_CODE_CLOSE
         return label
@@ -29,22 +32,7 @@ do
             if arg1 == 'RightButton' then
                 if aux.get_tab() then
                     aux.set_tab(1)
-					local itemname=_G[this:GetName() .. 'Name']:GetText() --byCFM
-					if GetLocale()=="ruRU" then --byCFM
-						local s,ss,sss=nil,nil,nil --byCFM
-						ss = string.find(itemname,"крошшера") --byCFM
-						sss = string.find(itemname,"Тернистой долины:") --byCFM
-						if ss then --byCFM
-							s=string.sub(itemname,56,84) --byCFM
-						elseif sss then --byCFM
-							s=string.sub(itemname,27,69) --byCFM
-						else --byCFM
-							s=string.sub(itemname,0,63) --byCFM
-						end --byCFM
-						search_tab.set_filter(s) --byCFM
-					else --byCFM
-						search_tab.set_filter(itemname .. '/exact') --byCFM
-					end --byCFM
+                    search_tab.set_filter(_G[this:GetName() .. 'Name']:GetText() .. '/exact')
                     search_tab.execute(nil, false)
                 end
             end
@@ -101,7 +89,10 @@ do
                     total_cost = total_cost + value * count
                 end
             end
-            TradeSkillReagentLabel:SetText(SPELL_REAGENTS .. ' ' .. cost_label(total_cost))
+			TradeSkillReagentLabel:SetText(SPELL_REAGENTS .. ' ' .. cost_label(total_cost))
+			if ATSWReagentLabel then
+				ATSWReagentLabel:SetText(SPELL_REAGENTS .. ' ' .. cost_label(total_cost))
+			end
             return unpack(ret)
         end)
         for i = 1, 8 do

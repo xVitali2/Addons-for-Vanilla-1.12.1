@@ -38,7 +38,7 @@ M.filters = {
             return default_filter(str).validator()
         end,
     },
-
+	
     ['item'] = {
         input_type = 'string',
         validator = function(name)
@@ -49,7 +49,7 @@ M.filters = {
     },
 
     ['left'] = {
-        input_type = T.list(SHORT, MEDIUM, LONG, VARY_LONG), --by Lichery
+        input_type = T.list('30m', '2h', '8h', '24h'),
         validator = function(index)
             return function(auction_record)
                 return auction_record.duration == index
@@ -110,6 +110,16 @@ M.filters = {
             end
         end
     },
+	
+	['bid-disenchant-percent'] = {
+        input_type = 'number',
+        validator = function(pct)
+            return function(auction_record)
+                return disenchant.value(auction_record.slot, auction_record.quality, auction_record.level, auction_record.item_id)
+				and auction_record.unit_bid_price / disenchant.value(auction_record.slot, auction_record.quality, auction_record.level, auction_record.item_id) * 100 <= pct
+            end
+        end
+    },
 
     ['percent'] = {
         input_type = 'number',
@@ -118,6 +128,17 @@ M.filters = {
                 return auction_record.unit_buyout_price > 0
                         and history.value(auction_record.item_key)
                         and auction_record.unit_buyout_price / history.value(auction_record.item_key) * 100 <= pct
+            end
+        end
+    },
+				
+	['disenchant-percent'] = {
+        input_type = 'number',
+        validator = function(pct)
+            return function(auction_record)
+                return auction_record.unit_buyout_price > 0
+                        and disenchant.value(auction_record.slot, auction_record.quality, auction_record.level, auction_record.item_id)
+                        and auction_record.unit_buyout_price / disenchant.value(auction_record.slot, auction_record.quality, auction_record.level, auction_record.item_id) * 100 <= pct
             end
         end
     },
@@ -144,8 +165,8 @@ M.filters = {
         input_type = 'money',
         validator = function(amount)
             return function(auction_record)
-                local disenchant_value = disenchant.value(auction_record.slot, auction_record.quality, auction_record.level)
-                return disenchant_value and disenchant_value - auction_record.bid_price >= amount
+                local disenchant_value = disenchant.value(auction_record.slot, auction_record.quality, auction_record.level, auction_record.item_id)
+				return disenchant_value and disenchant_value - auction_record.bid_price >= amount
             end
         end
     },
@@ -154,8 +175,8 @@ M.filters = {
         input_type = 'money',
         validator = function(amount)
             return function(auction_record)
-                local disenchant_value = disenchant.value(auction_record.slot, auction_record.quality, auction_record.level)
-                return auction_record.buyout_price > 0 and disenchant_value and disenchant_value - auction_record.buyout_price >= amount
+                local disenchant_value = disenchant.value(auction_record.slot, auction_record.quality, auction_record.level, auction_record.item_id)
+				return auction_record.buyout_price > 0 and disenchant_value and disenchant_value - auction_record.buyout_price >= amount
             end
         end
     },
@@ -165,6 +186,16 @@ M.filters = {
         validator = function(amount)
             return function(auction_record)
                 local vendor_price = info.merchant_info(auction_record.item_id)
+				if not vendor_price and ShaguTweaks then 
+				    vendor_price = ShaguTweaks.SellValueDB[auction_record.item_id]
+					if vendor_price then 
+						local charges = 1
+						if info.max_item_charges(auction_record.item_id) ~= nil then 
+							info.charges=info.max_item_charges(auction_record.item_id) 
+						end
+						vendor_price= vendor_price/ charges 
+					 end
+				end
                 return vendor_price and vendor_price * auction_record.aux_quantity - auction_record.bid_price >= amount
             end
         end
@@ -175,10 +206,39 @@ M.filters = {
         validator = function(amount)
             return function(auction_record)
                 local vendor_price = info.merchant_info(auction_record.item_id)
+				if not vendor_price and ShaguTweaks then 
+				    vendor_price = ShaguTweaks.SellValueDB[auction_record.item_id]
+					if vendor_price then 
+						local charges = 1
+						if info.max_item_charges(auction_record.item_id) ~= nil then 
+							info.charges=info.max_item_charges(auction_record.item_id) 
+						end
+						vendor_price= vendor_price/ charges 
+					 end
+				end
                 return auction_record.buyout_price > 0 and vendor_price and vendor_price * auction_record.aux_quantity - auction_record.buyout_price >= amount
             end
         end
     },
+
+    ['seller'] = {
+        input_type = 'string',
+        validator = function(name)
+            return function(auction_record)
+                return auction_record.owner and strupper(name) == strupper(auction_record.owner)
+            end
+        end
+    },
+	
+	['isgear'] = {
+		input_type = '',
+        validator = function()
+            return function(auction_record)
+                return not(info.item(auction_record.item_id).slot == '')
+            end
+        end,
+	    },
+	
 }
 
 function operator(str)
@@ -273,11 +333,11 @@ function M.parse_filter_string(str)
             if input_type ~= '' then
                 if not parts[i + 1] or not parse_parameter(input_type, parts[i + 1]) then
                     if parts[i] == 'item' then
-                        return nil, INVALID_ITEM_NAME, aux_auctionable_items  --by Lichery
+                        return nil, 'Invalid item name', aux.account_data.auctionable_items
                     elseif type(input_type) == 'table' then
-                        return nil, INVALID_CHOICE .. parts[i], input_type  --by Lichery
+                        return nil, 'Invalid choice for ' .. parts[i], input_type
                     else
-                        return nil, INVALID_INPUT .. parts[i] .. EXPECTING .. input_type  --by Lichery
+                        return nil, 'Invalid input for ' .. parts[i] .. '. Expecting: ' .. input_type
                     end
                 end
                 tinsert(post_filter, T.list('filter', parts[i], parts[i + 1]))
@@ -294,7 +354,7 @@ function M.parse_filter_string(str)
 		        tinsert(post_filter, T.list('filter', 'tooltip', parts[i]))
 		        tinsert(filter, post_filter[getn(post_filter)])
 	        else
-	            return nil, EMPTY_MODIFIER --by Lichery
+	            return nil, 'Empty modifier'
 	        end
         end
         i = i + 1
@@ -328,7 +388,7 @@ function M.query(filter_string)
         tinsert(suggestions, 'and')
         tinsert(suggestions, 'or')
         tinsert(suggestions, 'not')
-        return nil, suggestions, MALFORMED_EXPRESSION --by Lichery
+        return nil, suggestions, 'Malformed expression'
     end
 
     return {
@@ -390,7 +450,7 @@ function suggestions(filter)
 
     -- item names
     if getn(filter.components) == 0 then
-	    for _, name in ipairs(aux_auctionable_items) do
+	    for _, name in ipairs(aux.account_data.auctionable_items) do
             tinsert(suggestions, name .. '/exact')
         end
     end
@@ -470,15 +530,12 @@ end
 function blizzard_query(filter)
     local filters = filter.blizzard
     local query = T.map('name', filters.name)
-    local item_info, class_index, subclass_index, slot_index
     local item_id = filters.name and info.item_id(filters.name)
-    item_info = item_id and info.item(item_id)
+    local item_info = item_id and info.item(item_id)
     if filters.exact and item_info then
-        class_index = info.item_class_index(item_info.class)
-        subclass_index = info.item_subclass_index(class_index or 0, item_info.subclass)
-        slot_index = info.item_slot_index(class_index or 0, subclass_index or 0, item_info.slot)
-    end
-    if item_info then
+        local class_index = info.item_class_index(item_info.class)
+        local subclass_index = info.item_subclass_index(class_index or 0, item_info.subclass)
+        local slot_index = info.item_slot_index(class_index or 0, subclass_index or 0, item_info.slot)
         query.min_level = item_info.level
         query.max_level = item_info.level
         query.usable = item_info.usable

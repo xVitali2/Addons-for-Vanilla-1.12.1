@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="Aux Post"  header="AUX">
+		post_auctions_bind()
+	</Binding>
+</Bindings>

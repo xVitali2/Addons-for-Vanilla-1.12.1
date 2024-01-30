@@ -14,23 +14,24 @@ local item_listing = require 'aux.gui.item_listing'
 local al = require 'aux.gui.auction_listing'
 local gui = require 'aux.gui'
 
-local tab = aux.tab(POST) --byLICHERY
+local tab = aux.tab 'Post'
 
-local DURATION_4, DURATION_8, DURATION_24 = 120, 480, 1440
 local settings_schema = {'tuple', '#', {duration='number'}, {start_price='number'}, {buyout_price='number'}, {hidden='boolean'}}
 
 local scan_id, inventory_records, bid_records, buyout_records = 0, {}, {}, {}
+
+M.DURATION_2, M.DURATION_8, M.DURATION_24 = 120, 480, 1440
 
 refresh = true
 
 selected_item = nil
 
 function get_default_settings()
-	return T.map('duration', DURATION_8, 'start_price', 0, 'buyout_price', 0, 'hidden', false)
+	return T.map('duration', aux.account_data.post_duration, 'start_price', 0, 'buyout_price', 0, 'hidden', false)
 end
 
 function aux.handle.LOAD2()
-	data = aux.faction_data'post'
+	data = aux.faction_data.post
 end
 
 function read_settings(item_key)
@@ -206,7 +207,59 @@ function post_auctions()
 		local key = selected_item.key
 
         local duration_code
-		if duration == DURATION_4 then
+		if duration == DURATION_2 then
+            duration_code = 2
+		elseif duration == DURATION_8 then
+            duration_code = 3
+		elseif duration == DURATION_24 then
+            duration_code = 4
+		end
+
+		post.start(
+			key,
+			stack_size,
+			duration,
+            unit_start_price,
+            unit_buyout_price,
+			stack_count,
+			function(posted)
+				if not frame:IsShown() then
+					return
+				end
+				for i = 1, posted do
+                    record_auction(key, stack_size, unit_start_price * stack_size, unit_buyout_price, duration_code, UnitName'player')
+                end
+                update_inventory_records()
+				local same
+                for _, record in inventory_records do
+                    if record.key == key then
+	                    same = record
+	                    break
+                    end
+                end
+                if same then
+	                update_item(same)
+                else
+                    selected_item = nil
+                end
+                refresh = true
+			end
+		)
+	end
+end
+
+function M.post_auctions_bind()
+	if selected_item then
+        local unit_start_price = get_unit_start_price()
+        local unit_buyout_price = get_unit_buyout_price()
+        local stack_size = stack_size_slider:GetValue()
+        local stack_count
+        stack_count = stack_count_slider:GetValue()
+        local duration = UIDropDownMenu_GetSelectedValue(duration_dropdown)
+		local key = selected_item.key
+
+        local duration_code
+		if duration == DURATION_2 then
             duration_code = 2
 		elseif duration == DURATION_8 then
             duration_code = 3
@@ -257,7 +310,7 @@ function validate_parameters()
         return
     end
     if get_unit_start_price() == 0 then
-        post_button:Disable()
+        post_button:Enable()
         return
     end
     if stack_count_slider:GetValue() == 0 then
@@ -274,7 +327,7 @@ function update_item_configuration()
         item.texture:SetTexture(nil)
         item.count:SetText()
         item.name:SetTextColor(aux.color.label.enabled())
-        item.name:SetText(NO_ITEM_SELECTED) --byLICHERY
+        item.name:SetText('No item selected')
 
         unit_start_price_input:Hide()
         unit_buyout_price_input:Hide()
@@ -312,7 +365,7 @@ function update_item_configuration()
             local duration_factor = UIDropDownMenu_GetSelectedValue(duration_dropdown) / 120
             local stack_size, stack_count = selected_item.max_charges and 1 or stack_size_slider:GetValue(), stack_count_slider:GetValue()
             local amount = floor(selected_item.unit_vendor_price * deposit_factor * stack_size) * stack_count * duration_factor
-            deposit:SetText(DEPOSIT .. money.to_string(amount, nil, nil, aux.color.text.enabled)) --byLICHERY
+            deposit:SetText('Deposit: ' .. money.to_string(amount, nil, nil, aux.color.text.enabled))
         end
 
         refresh_button:Enable()
@@ -378,18 +431,28 @@ function update_item(item)
     UIDropDownMenu_SetSelectedValue(duration_dropdown, settings.duration)
 
     hide_checkbox:SetChecked(settings.hidden)
-
-    if selected_item.max_charges then
-	    for i = selected_item.max_charges, 1, -1 do
+	
+	local ii = 1
+	if selected_item.max_charges then
+		for i = selected_item.max_charges, 1, -1 do
 			if selected_item.availability[i] > 0 then
 				stack_size_slider:SetMinMaxValues(1, i)
+				ii=i
 				break
 			end
-	    end
-    else
-	    stack_size_slider:SetMinMaxValues(1, min(selected_item.max_stack, selected_item.aux_quantity))
-    end
-    stack_size_slider:SetValue(aux.huge)
+		end
+	else
+		ii = min(selected_item.max_stack, selected_item.aux_quantity)
+		stack_size_slider:SetMinMaxValues(1, min(selected_item.max_stack, selected_item.aux_quantity))
+	end
+		
+	if not aux.account_data.post_stack then	
+		stack_size_slider:SetValue(math.random(1,ii))
+	else
+		stack_size_slider:SetValue(aux.huge)
+		--stack_size_slider:SetValue(1)
+	end
+
     quantity_update(true)
 
     unit_start_price_input:SetText(money.to_string(settings.start_price, true, nil, nil, true))
@@ -452,7 +515,7 @@ function refresh_entries()
         bid_records[item_key], buyout_records[item_key] = nil, nil
         local query = scan_util.item_query(selected_item.item_id)
         status_bar:update_status(0, 0)
-        status_bar:set_text(SCANNING_AUCTIONS) --byLICHERY
+        status_bar:set_text('Scanning auctions...')
 
 		scan_id = scan.start{
             type = 'list',
@@ -460,7 +523,7 @@ function refresh_entries()
 			queries = T.list(query),
 			on_page_loaded = function(page, total_pages)
                 status_bar:update_status(page / total_pages, 0) -- TODO
-                status_bar:set_text(format(SCANNING, page, total_pages)) --byLICHERY
+                status_bar:set_text(format('Scanning Page %d / %d', page, total_pages))
 			end,
 			on_auction = function(auction_record)
 				if auction_record.item_key == item_key then
@@ -477,14 +540,14 @@ function refresh_entries()
 			on_abort = function()
 				bid_records[item_key], buyout_records[item_key] = nil, nil
                 status_bar:update_status(1, 1)
-                status_bar:set_text(SCAN_ABORTED) --byLICHERY
+                status_bar:set_text('Scan aborted')
 			end,
 			on_complete = function()
-				bid_records[item_key] = bid_records[item_key] or T
+				bid_records[item_key] = bid_records[item_key] or T.acquire()
 				buyout_records[item_key] = buyout_records[item_key] or T.acquire()
                 refresh = true
                 status_bar:update_status(1, 1)
-                status_bar:set_text(SCAN_COMPLETE) --byLICHERY
+                status_bar:set_text('Scan complete')
             end,
 		}
 	end
@@ -542,17 +605,17 @@ function initialize_duration_dropdown()
         refresh = true
     end
     UIDropDownMenu_AddButton{
-        text = HOURS_2, --byLICHERY
-        value = DURATION_4,
+        text = '2 Hours',
+        value = DURATION_2,
         func = on_click,
     }
     UIDropDownMenu_AddButton{
-        text = HOURS_8, --byLICHERY
+        text = '8 Hours',
         value = DURATION_8,
         func = on_click,
     }
     UIDropDownMenu_AddButton{
-        text = HOURS_24, --byLICHERY
+        text = '24 Hours',
         value = DURATION_24,
         func = on_click,
     }

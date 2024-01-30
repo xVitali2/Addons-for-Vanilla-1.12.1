@@ -1,5 +1,18 @@
 module 'aux.core.history'
 
+
+--not using acecomm anymore
+--[[AuxAddon = AceLibrary("AceAddon-2.0"):new("AceComm-2.0")   --im unsure this is done correctly but seems to work lol
+
+local commPrefix = "AuxAddon";
+AuxAddon:SetCommPrefix(commPrefix)
+
+function AuxAddon:OnEnable()
+	--self:RegisterComm(commPrefix, "GROUP", "OnCommReceive"); --for testing purposes, not really useful in real world I think
+	self:RegisterComm(commPrefix, "GUILD", "OnCommReceive");
+	--self:RegisterComm(commPrefix, "ZONE", "OnCommReceive");
+end ]]--
+
 local T = require 'T'
 local aux = require 'aux'
 
@@ -10,7 +23,7 @@ local history_schema = {'tuple', '#', {next_push='number'}, {daily_min_buyout='n
 local value_cache = {}
 
 function aux.handle.LOAD2()
-	data = aux.faction_data'history'
+	data = aux.faction_data.history
 end
 
 do
@@ -46,14 +59,74 @@ function write_record(item_key, record)
 	end
 end
 
-function M.process_auction(auction_record)
+--pfUI.api.strsplit
+local function AuxAddon_strsplit(delimiter, subject)
+	if not subject then return nil end
+	local delimiter, fields = delimiter or ":", {}
+	local pattern = string.format("([^%s]+)", delimiter)
+	string.gsub(subject, pattern, function(c) fields[table.getn(fields)+1] = c end)
+	return unpack(fields)
+  end
+
+--taken from Atlasloot Update announcing code
+
+AUX_data_sharer = CreateFrame("Frame")
+AUX_data_sharer:RegisterEvent("CHAT_MSG_CHANNEL")
+AUXplayerName = UnitName("player")
+
+
+AUX_data_sharer:SetScript("OnEvent", function()
+	if event == "CHAT_MSG_CHANNEL" and aux.account_data.sharing == true then
+		local _,_,source = string.find(arg4,"(%d+)%.")
+		if source then
+			_,name = GetChannelName(source)
+		end
+		if name == "LFT" then
+			local msg, item_key, munit_buyout_price = AuxAddon_strsplit(",", arg1) --using , as a seperator because item_key contains a :
+			if msg == "AuxData" then
+				if arg2 ~= AUXplayerName then
+					local unit_buyout_price = tonumber (munit_buyout_price)
+					--print("received data:" .. msg .. "," .. item_key .. "," .. unit_buyout_price); --for testing (print comes from PFUI)
+					local item_record = read_record(item_key)
+					if unit_buyout_price > 0 and unit_buyout_price < (item_record.daily_min_buyout or aux.huge) then
+						item_record.daily_min_buyout = unit_buyout_price
+						write_record(item_key, item_record)
+						--print("wrote data"); --for testing (print comes from PFUI)
+					end
+				end
+			end
+		end
+	end
+  end)
+
+function M.process_auction(auction_record, pages)
 	local item_record = read_record(auction_record.item_key)
 	local unit_buyout_price = ceil(auction_record.buyout_price / auction_record.aux_quantity)
+	local item_key = auction_record.item_key
 	if unit_buyout_price > 0 and unit_buyout_price < (item_record.daily_min_buyout or aux.huge) then
 		item_record.daily_min_buyout = unit_buyout_price
 		write_record(auction_record.item_key, item_record)
+		--AuxAddon:SendCommMessage("GUILD", item_key, unit_buyout_price) relies on acecomm
+		if aux.account_data.sharing == true then
+			if pages < 15 then --to avoid sharing data when people do searches without a keyword "full scans"
+				if GetChannelName("LFT") ~= 0 then
+					ChatThrottleLib:SendChatMessage("BULK", nil, "AuxData," .. item_key .."," .. unit_buyout_price , "CHANNEL", nil, GetChannelName("LFT")) --ChatThrottleLib fixed for turtle by Candor https://github.com/trumpetx/ChatLootBidder/blob/master/ChatThrottleLib.lua
+				  	--print("sent")
+				end
+		 	end
+		end
 	end
 end
+
+--[[ function AuxAddon:OnCommReceive(prefix, sender, distribution, item_key, unit_buyout_price) --copied code from process_auction. <- code for when using acecomm
+	print("received data"); --for testing (print comes from PFUI)
+	local item_record = read_record(item_key)
+	if unit_buyout_price > 0 and unit_buyout_price < (item_record.daily_min_buyout or aux.huge) then
+		item_record.daily_min_buyout = unit_buyout_price
+		write_record(item_key, item_record)
+		--print("wrote data"); --for testing (print comes from PFUI)
+	end
+end ]]--
 
 function M.data_points(item_key)
 	return read_record(item_key).data_points

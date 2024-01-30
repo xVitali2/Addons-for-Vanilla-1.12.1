@@ -127,11 +127,13 @@ end
 
 function scan_page(i)
 	i = i or 1
+	local pages
 
 	if i > PAGE_SIZE then
 		do (get_state().params.on_page_scanned or pass)() end
 		if get_query().blizzard_query and get_state().page < last_page(get_state().total_auctions) then
 			get_state().page = get_state().page + 1
+			
 			return submit_query()
 		else
 			return scan()
@@ -139,18 +141,25 @@ function scan_page(i)
 	end
 
 	local auction_info = info.auction(i, get_state().params.type)
-	if auction_info and (auction_info.owner or get_state().params.ignore_owner or aux_ignore_owner) then
+	if auction_info and (auction_info.owner or get_state().params.ignore_owner or aux.account_data.ignore_owner) then
 		auction_info.index = i
 		auction_info.page = get_state().page
 		auction_info.blizzard_query = get_query().blizzard_query
 		auction_info.query_type = get_state().params.type
-
-		history.process_auction(auction_info)
-
-		if (get_state().params.auto_buy_validator or pass)(auction_info) then
+		if get_query().blizzard_query and get_state().page then
+			pages = last_page(get_state().total_auctions)
+		end
+		
+		history.process_auction(auction_info, pages)
+		
+		if (get_state().params.auto_buy_validator or pass)(auction_info) and auction_info.buyout_price >0 and auction_info.owner ~= UnitName("player") then
 			local send_signal, signal_received = aux.signal()
 			aux.when(signal_received, scan_page, i)
 			return aux.place_bid(auction_info.query_type, auction_info.index, auction_info.buyout_price, send_signal)
+		elseif (get_state().params.auto_bid_validator or pass)(auction_info) and auction_info.owner ~= UnitName("player") and auction_info.high_bidder == nil then
+			local send_signal, signal_received = aux.signal()
+			aux.when(signal_received, scan_page, i)
+			return aux.place_bid(auction_info.query_type, auction_info.index, auction_info.bid_price, send_signal)
 		elseif not get_query().validator or get_query().validator(auction_info) then
 			do (get_state().params.on_auction or pass)(auction_info) end
 		end
@@ -198,7 +207,7 @@ function wait_for_list_results()
         updated = true
     end)
     local timeout = aux.later(5, get_state().last_list_query)
-    local ignore_owner = get_state().params.ignore_owner or aux_ignore_owner
+    local ignore_owner = get_state().params.ignore_owner or aux.account_data.ignore_owner
 	return aux.when(function()
 		if not last_update and timeout() then
 			return true

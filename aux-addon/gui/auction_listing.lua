@@ -15,10 +15,10 @@ local HEAD_HEIGHT = 27
 local HEAD_SPACE = 2
 
 local TIME_LEFT_STRINGS = {
-	aux.color.red(SHORT), -- Short --byLichery
-	aux.color.orange(MEDIUM), -- Medium  --byLichery
-	aux.color.yellow(LONG), -- Long  --byLichery
-	aux.color.blue(VARY_LONG), -- Very Long  --byLichery
+	aux.color.red'30m', -- Short
+	aux.color.orange'2h', -- Medium
+	aux.color.yellow'8h', -- Long
+	aux.color.blue'24h', -- Very Long
 }
 
 function item_column_init(rt, cell)
@@ -65,7 +65,7 @@ end
 
 M.search_columns = {
     {
-        title = ITEM, --byLichery
+        title = 'Item',
         width = .35,
         init = item_column_init,
         fill = item_column_fill,
@@ -74,7 +74,7 @@ M.search_columns = {
         end,
     },
     {
-        title = LVL, --byLichery
+        title = 'Lvl',
         width = .035,
         align = 'CENTER',
         fill = function(cell, record)
@@ -87,7 +87,7 @@ M.search_columns = {
         end,
     },
     {
-        title = AUCTIONS_1, --byLichery
+        title = 'Auctions',
         width = .06,
         align = 'CENTER',
         fill = function(cell, record, count, own, expandable)
@@ -111,7 +111,7 @@ M.search_columns = {
         end,
     },
     {
-        title = STACK_SIZE, --byLichery
+        title = 'Stack\nSize',
         width = .055,
         align = 'CENTER',
         fill = function(cell, record)
@@ -122,7 +122,7 @@ M.search_columns = {
         end,
     },
     {
-        title = TIME_LEFT, --byLichery
+        title = 'Time\nLeft',
         width = .04,
         align = 'CENTER',
         fill = function(cell, record)
@@ -133,7 +133,7 @@ M.search_columns = {
         end,
     },
     {
-        title = SELLER, --byLichery
+        title = 'Seller',
         width = .13,
         align = 'CENTER',
         fill = function(cell, record)
@@ -152,7 +152,7 @@ M.search_columns = {
         end,
     },
     {
-        title = {AUCTION_BID, AUCTION_BID_1}, --byLichery
+        title = {'Auction Bid\n(per item)', 'Auction Bid\n(per stack)'},
         width = .125,
         align = 'RIGHT',
         isPrice = true,
@@ -200,7 +200,7 @@ M.search_columns = {
         end,
     },
     {
-        title = {AUCTION_BUYOUT, AUCTION_BUYOUT_1}, --byLichery
+        title = {'Auction Buyout\n(per item)', 'Auction Buyout\n(per stack)'},
         width = .125,
         align = 'RIGHT',
         isPrice = true,
@@ -218,7 +218,7 @@ M.search_columns = {
         end,
     },
     {
-        title = HIST_VALUE, --byLichery
+        title = '% Hist.\nValue',
         width = .08,
         align = 'CENTER',
         fill = function(cell, record)
@@ -235,7 +235,7 @@ M.search_columns = {
 
 M.auctions_columns = {
     {
-        title = ITEM, --byLichery
+        title = 'Item',
         width = .35,
         init = item_column_init,
         fill = item_column_fill,
@@ -244,7 +244,7 @@ M.auctions_columns = {
         end,
     },
     {
-        title = LVL, --byLichery
+        title = 'Lvl',
         width = .035,
         align = 'CENTER',
         fill = function(cell, record)
@@ -257,7 +257,7 @@ M.auctions_columns = {
         end,
     },
     {
-        title = AUCTIONS_1, --byLichery
+        title = 'Auctions',
         width = .06,
         align = 'CENTER',
         fill = function(cell, record, count, own, expandable)
@@ -278,7 +278,7 @@ M.auctions_columns = {
         end,
     },
     {
-        title = STACK_SIZE, --byLichery
+        title = 'Stack\nSize',
         width = .055,
         align = 'CENTER',
         fill = function(cell, record)
@@ -289,7 +289,7 @@ M.auctions_columns = {
         end,
     },
     {
-        title = TIME_LEFT, --byLichery
+        title = 'Time\nLeft',
         width = .04,
         align = 'CENTER',
         fill = function(cell, record)
@@ -300,7 +300,7 @@ M.auctions_columns = {
         end,
     },
     {
-        title = {AUCTION_BID, AUCTION_BID_1}, --byLichery
+        title = {'Auction Bid\n(per item)', 'Auction Bid\n(per stack)'},
         width = .125,
         align = 'RIGHT',
         isPrice = true,
@@ -330,7 +330,7 @@ M.auctions_columns = {
         end,
     },
     {
-        title = {AUCTION_BUYOUT, AUCTION_BUYOUT_1}, --byLichery
+        title = {'Auction Buyout\n(per item)', 'Auction Buyout\n(per stack)'},
         width = .125,
         align = 'RIGHT',
         isPrice = true,
@@ -348,11 +348,11 @@ M.auctions_columns = {
         end,
     },
     {
-        title = HIGH_BIDDER, --byLichery
+        title = 'High Bidder',
         width = .21,
         align = 'CENTER',
         fill = function(cell, record)
-            cell.text:SetText(record.high_bidder or aux.color.red (NO_BIDS)) --byLichery
+            cell.text:SetText(record.high_bidder or aux.color.red 'No Bids')
         end,
         cmp = function(record_a, record_b, desc)
             if not record_a.high_bidder and not record_b.high_bidder then
@@ -370,7 +370,7 @@ M.auctions_columns = {
 
 M.bids_columns = {
     {
-        title = ITEM, --byLichery
+        title = 'Item',
         width = .35,
         init = item_column_init,
         fill = item_column_fill,
@@ -379,7 +379,7 @@ M.bids_columns = {
         end,
     },
     {
-        title = AUCTIONS_1, --byLichery
+        title = 'Auctions',
         width = .06,
         align = 'CENTER',
         fill = function(cell, record, count, own, expandable)
@@ -400,7 +400,7 @@ M.bids_columns = {
         end,
     },
     {
-        title = STACK_SIZE, --byLichery
+        title = 'Stack\nSize',
         width = .055,
         align = 'CENTER',
         fill = function(cell, record)
@@ -411,7 +411,7 @@ M.bids_columns = {
         end,
     },
     {
-        title = TIME_LEFT, --byLichery
+        title = 'Time\nLeft',
         width = .04,
         align = 'CENTER',
         fill = function(cell, record)
@@ -422,7 +422,7 @@ M.bids_columns = {
         end,
     },
     {
-        title = SELLER, --byLichery
+        title = 'Seller',
         width = .13,
         align = 'CENTER',
         fill = function(cell, record)
@@ -441,7 +441,7 @@ M.bids_columns = {
         end,
     },
     {
-        title = {AUCTION_BID, AUCTION_BID_1}, --byLichery
+        title = {'Auction Bid\n(per item)', 'Auction Bid\n(per stack)'},
         width = .125,
         align = 'RIGHT',
         isPrice = true,
@@ -471,7 +471,7 @@ M.bids_columns = {
         end,
     },
     {
-        title = {AUCTION_BUYOUT, AUCTION_BUYOUT_1}, --byLichery
+        title = {'Auction Buyout\n(per item)', 'Auction Buyout\n(per stack)'},
         width = .125,
         align = 'RIGHT',
         isPrice = true,
@@ -489,15 +489,15 @@ M.bids_columns = {
         end,
     },
     {
-        title = STATUS, --byLichery
+        title = 'Status',
         width = .115,
         align = 'CENTER',
         fill = function(cell, record)
             local status
             if record.high_bidder then
-                status = aux.color.yellow(HIGH_BIDDER) --byLichery
+                status = aux.color.yellow'High Bidder'
             else
-                status = aux.color.red(OUTBID) --byLichery
+                status = aux.color.red'Outbid'
             end
             cell.text:SetText(status)
         end,
@@ -569,13 +569,8 @@ local methods = {
 	        GameTooltip:SetOwner(this, 'ANCHOR_RIGHT')
             info.load_tooltip(GameTooltip, row.record.tooltip)
 	        tooltip.extend_tooltip(GameTooltip, row.record.link, row.record.aux_quantity)
-			if EnhTooltip then --byCFM
-				EnhTooltip.TooltipCall(GameTooltip,row.record.name,row.record.link,row.record.quality,row.record.aux_quantity) --byCFM
-			end --byCFM
-			if not EQUIPCOMPARE_VERSIONID then --byCFM
-				info.set_shopping_tooltip(row.record.slot)
-		    end
-        end --byCFM
+            info.set_shopping_tooltip(row.record.slot)
+        end
     end,
 
     OnIconLeave = function()
@@ -586,11 +581,11 @@ local methods = {
         local rt = this.rt
         if rt.expanded[this.expandKey] then
             GameTooltip_SetDefaultAnchor(GameTooltip, UIParent)
-            GameTooltip:AddLine(MSG_1, 1, 1, 1, true) --byLichery
+            GameTooltip:AddLine('Double-click to collapse this item and show only the cheapest auction.', 1, 1, 1, true)
             GameTooltip:Show()
         elseif this.expandable then
             GameTooltip_SetDefaultAnchor(GameTooltip, UIParent)
-            GameTooltip:AddLine(MSG_2, 1, 1, 1, true) --byLichery
+            GameTooltip:AddLine('Double-click to expand this item and show all the auctions.', 1, 1, 1, true)
             GameTooltip:Show()
         end
 
@@ -610,7 +605,7 @@ local methods = {
             DressUpItemLink(this.record.link)
         elseif IsShiftKeyDown() and ChatFrameEditBox:IsVisible() then
             ChatFrameEditBox:Insert(this.record.link)
-       else
+        else
             local selection = this.rt:GetSelection()
             if not selection or selection.record ~= this.record then
                 this.rt:SetSelectedRecord(this.record)

@@ -24,28 +24,13 @@ listing:SetHandler('OnClick', function(row, button)
 		if listing:GetSelection().record == row.record then
 			if button == 'LeftButton' then
 				buyout_button:Click()
-        elseif button == 'RightButton' then
-            bid_button:Click()
+			elseif button == 'RightButton' then
+				bid_button:Click()
 			end
 		end
 	elseif button == 'RightButton' then
 		aux.set_tab(1)
-		local itemname=info.item(this.record.item_id).name --byCFM
-		if GetLocale()=="ruRU" then --byCFM
-			local s,ss,sss=nil,nil,nil --byCFM
-			ss = string.find(itemname,"крошшера") --byCFM
-			sss = string.find(itemname,"Тернистой долины:") --byCFM
-			if ss then --byCFM
-				s=string.sub(itemname,56,84) --byCFM
-			elseif sss then
-				s=string.sub(itemname,27,69) --byCFM
-			else --byCFM
-				s=string.sub(itemname,0,63) --byCFM
-			end --byCFM
-			search_tab.set_filter(s) --byCFM
-		else --byCFM
-			search_tab.set_filter(strlower(itemname) .. '/exact') --byCFM
-		end --byCFM
+		search_tab.set_filter(strlower(info.item(this.record.item_id).name) .. '/exact')
 		search_tab.execute(nil, false)
 	end
 end)
@@ -56,7 +41,7 @@ end)
 
 do
 	status_bar = gui.status_bar(frame)
-    status_bar:SetWidth(280) --byLICHERY
+    status_bar:SetWidth(265)
     status_bar:SetHeight(25)
     status_bar:SetPoint('TOPLEFT', aux.frame.content, 'BOTTOMLEFT', 0, -6)
     status_bar:update_status(1, 0)
@@ -65,22 +50,21 @@ end
 do
     local btn = gui.button(frame)
     btn:SetPoint('TOPLEFT', status_bar, 'TOPRIGHT', 5, 0)
-    btn:SetText(BID) --byLICHERY
+    btn:SetText('Bid')
     btn:Disable()
     bid_button = btn
 end
 do
     local btn = gui.button(frame)
     btn:SetPoint('TOPLEFT', bid_button, 'TOPRIGHT', 5, 0)
-    btn:SetText(BUYOUT) --byLICHERY
+    btn:SetText('Buyout')
     btn:Disable()
     buyout_button = btn
 end
 do
     local btn = gui.button(frame)
     btn:SetPoint('TOPLEFT', buyout_button, 'TOPRIGHT', 5, 0)
-    btn:SetText(REFRESH) --byLICHERY
-	btn:SetWidth(100) --byLICHERY
+    btn:SetText('Refresh')
     btn:SetScript('OnClick', function()
         scan_bids()
     end)

@@ -40,7 +40,7 @@ function M.find(auction_record, status_bar, on_abort, on_failure, on_success)
         queries = queries,
         on_scan_start = function()
             status_bar:update_status(0, 0)
-            status_bar:set_text(SEARCHING_AUCTIONS) --by Lichery
+            status_bar:set_text('Searching auction...')
         end,
         on_start_query = function(query_index)
             status_bar:update_status((query_index - 1) / getn(queries), 0)
@@ -50,21 +50,21 @@ function M.find(auction_record, status_bar, on_abort, on_failure, on_success)
                 found = true
                 scan.stop()
                 status_bar:update_status(1, 1)
-                status_bar:set_text(AUCTION_FOUND) --by Lichery
+                status_bar:set_text('Auction found')
                 return on_success(record.index)
             end
         end,
         on_abort = function()
             if not found then
                 status_bar:update_status(1, 1)
-                status_bar:set_text(AUCTION_NOT_FOUND) --by Lichery
+                status_bar:set_text('Auction not found')
                 return on_abort()
             end
         end,
         on_complete = function()
 	        if not found then
 	            status_bar:update_status(1, 1)
-	            status_bar:set_text(AUCTION_NOT_FOUND) --by Lichery
+	            status_bar:set_text('Auction not found')
 	            return on_failure()
 	        end
         end,
@@ -74,20 +74,7 @@ end
 function M.item_query(item_id, first_page, last_page)
 	local item_info = info.item(item_id)
     if item_info then
-		local s=nil --byCFM
-		if GetLocale()=="ruRU" then --byCFM
-			local ss,sss = string.find(item_info.name,"крошшера"),string.find(item_info.name,"Тернистой долины:") --byCFM
-			if ss then--byCFM
-				s=string.sub(item_info.name,56,84)--byCFM
-			elseif sss then--byCFM
-				s=string.sub(item_info.name,27,69) --byCFM
-			else--byCFM
-				s=string.sub(item_info.name,0,63)--byCFM
-			end --byCFM
-		else --byCFM
-			s=item_info.name..'/exact' --byCFM
-		end --byCFM
-        local query = filter_util.query(s)  --by CFM
+        local query = filter_util.query(item_info.name .. '/exact')
         query.blizzard_query.first_page = first_page
         query.blizzard_query.last_page = last_page
         return T.map('validator', query.validator, 'blizzard_query', query.blizzard_query)

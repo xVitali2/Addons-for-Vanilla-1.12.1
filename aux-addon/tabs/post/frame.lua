@@ -46,7 +46,7 @@ do
     end)
     local label = gui.label(checkbox, gui.font_size.small)
     label:SetPoint('LEFT', checkbox, 'RIGHT', 4, 1)
-    label:SetText(HIDDEN_ITEMS) --byLICHERY
+    label:SetText('Show hidden items')
     show_hidden_checkbox = checkbox
 end
 
@@ -62,38 +62,46 @@ do
 	        if arg1 == 'LeftButton' then
 	            update_item(this.item_record)
 				if Informant then --byCFM
-					local id =this.item_record.item_id--byCFM
-					local itdata = Informant.GetItem(id)--byCFM
-					local str=nil--byCFM
-					local gold,silver,copper=nil,nil,nil--byCFM
-					if (itdata and itdata['buy'] and itdata['buy'] ~= 0) then str=itdata['sell'] end --byCFM
-					if str then --byCFM
-						gold,silver,copper=money.to_gsc(str) --byCFM
-						str = gold.."|cffffd70ag.|r"..silver.."|cffc7c7cfs.|r"..copper.."|cffeda55fc|r" --byCFM
-					end --byCFM
-					if LABELFORITEM==nil then LABELFORITEM=gui.label(f, gui.font_size.small) end --byCFM
-					LABELFORITEM:SetPoint('TOP', f, 'LEFT', 120, 200) --byCFM
-					if str==nil then str="?" end --byCFM
-					LABELFORITEM:SetText(PRICEFROMVENDOR..str) --byCFM
+					local id =this.item_record.item_id
+					local itdata = Informant.GetItem(id)
+					local str=nil
+					if (itdata and itdata['buy'] and itdata['buy'] ~= 0) then str=itdata['sell'] end
+					if str then
+						local gold,silver,copper=money.to_gsc(str)
+						str = gold.."|cffffd70ag.|r"..silver.."|cffc7c7cfs.|r"..copper.."|cffeda55fc|r"
+					end
+					if LABELFORITEM==nil then LABELFORITEM=gui.label(f, gui.font_size.small) end
+					LABELFORITEM:SetPoint('TOP', f, 'LEFT', 120, 200)
+					if str==nil then str="?" end
+					LABELFORITEM:SetText("Vendor price:"..str)
+
+				elseif ShaguTweaks and ShaguTweaks.SellValueDB[this.item_record.item_id] ~= nil then
+					local str=nil
+					local itdata = ShaguTweaks.SellValueDB[this.item_record.item_id]
+					if itdata then
+						local gold,silver,copper=money.to_gsc(itdata)
+						str = gold.."|cffffd70ag.|r"..silver.."|cffc7c7cfs.|r"..copper.."|cffeda55fc|r"
+					end
+					if LABELFORITEM==nil then LABELFORITEM=gui.label(f, gui.font_size.small) end
+					LABELFORITEM:SetPoint('TOP', f, 'LEFT', 120, 200)
+					if str==nil then str="?" end
+					LABELFORITEM:SetText("Vendor price:"..str)
+				elseif pfUI and pfSellData[this.item_record.item_id] then
+					local str=nil
+					local _, _, itdata = strfind(pfSellData[this.item_record.item_id], "(.*),(.*)")
+					if itdata then
+						itdata = tonumber(itdata)
+						local gold,silver,copper=money.to_gsc(itdata)
+						str = gold.."|cffffd70ag.|r"..silver.."|cffc7c7cfs.|r"..copper.."|cffeda55fc|r"
+					end
+					if LABELFORITEM==nil then LABELFORITEM=gui.label(f, gui.font_size.small) end
+					LABELFORITEM:SetPoint('TOP', f, 'LEFT', 120, 200)
+					if str==nil then str="?" end
+					LABELFORITEM:SetText("Vendor price:"..str)
 				end --byCFM
 	        elseif arg1 == 'RightButton' then
 	            aux.set_tab(1)
-				local itemname=info.item(this.item_record.item_id).name --byCFM
-				if GetLocale()=="ruRU" then --byCFM
-					local s,ss,sss=nil,nil,nil --byCFM
-					ss = string.find(itemname,"крошшера") --byCFM
-					sss = string.find(itemname,"Тернистой долины:") --byCFM
-					if ss then --byCFM
-						s=string.sub(itemname,56,84) --byCFM
-					elseif sss then --byCFM
-						s=string.sub(itemname,27,69) --byCFM
-					else --byCFM
-						s=string.sub(itemname,0,63) --byCFM
-					end --byCFM
-					search_tab.set_filter(s) --byCFM
-				else --byCFM
-					search_tab.set_filter(strlower(itemname) .. '/exact') --byCFM
-				end --byCFM
+	            search_tab.set_filter(strlower(info.item(this.item_record.item_id).name) .. '/exact')
 	            search_tab.execute(nil, false)
 	        end
 	    end,
@@ -105,17 +113,17 @@ end
 
 bid_listing = listing.new(frame.bid_listing)
 bid_listing:SetColInfo{
-    {name=AUCTIONS_1, width=.16, align='CENTER'}, --byLICHERY
-    {name=TIME_LEFT, width=.10, align='CENTER'}, --byLICHERY
-    {name=STACK_SIZE, width=.16, align='CENTER'}, --byLICHERY
-    {name=AUCTION_BID, width=.4, align='RIGHT'}, --byLICHERY
-    {name=HIST_VALUE, width=.18, align='CENTER'}, --byLICHERY
+    {name='Auctions', width=.17, align='CENTER'},
+    {name='Time\nLeft', width=.11, align='CENTER'},
+    {name='Stack\nSize', width=.11, align='CENTER'},
+    {name='Auction Bid\n(per item)', width=.4, align='RIGHT'},
+    {name='% Hist.\nValue', width=.21, align='CENTER'},
 }
 bid_listing:SetSelection(function(data)
 	return data.record == get_bid_selection() or data.record.historical_value and get_bid_selection() and get_bid_selection().historical_value
 end)
 bid_listing:SetHandler('OnClick', function(table, row_data, column, button)
-	if row_data.record == get_bid_selection() or row_data.record.historical_value and get_bid_selection() and get_bid_selection().historical_value then
+	if button == 'RightButton' and row_data.record == get_bid_selection() or row_data.record.historical_value and get_bid_selection() and get_bid_selection().historical_value then
 		set_bid_selection()
 	else
 		set_bid_selection(row_data.record)
@@ -129,17 +137,17 @@ end)
 
 buyout_listing = listing.new(frame.buyout_listing)
 buyout_listing:SetColInfo{
-	{name=AUCTIONS_1, width=.16, align='CENTER'}, --byLICHERY
-	{name=TIME_LEFT, width=.10, align='CENTER'}, --byLICHERY
-	{name=STACK_SIZE, width=.16, align='CENTER'}, --byLICHERY
-	{name=AUCTION_BUYOUT, width=.4, align='RIGHT'}, --byLICHERY
-	{name=HIST_VALUE, width=.18, align='CENTER'}, --byLICHERY
+	{name='Auctions', width=.17, align='CENTER'},
+	{name='Time\nLeft', width=.11, align='CENTER'},
+	{name='Stack\nSize', width=.12, align='CENTER'},
+	{name='Auction Buyout\n(per item)', width=.4, align='RIGHT'},
+	{name='% Hist.\nValue', width=.20, align='CENTER'},
 }
 buyout_listing:SetSelection(function(data)
 	return data.record == get_buyout_selection() or data.record.historical_value and get_buyout_selection() and get_buyout_selection().historical_value
 end)
 buyout_listing:SetHandler('OnClick', function(table, row_data, column, button)
-	if row_data.record == get_buyout_selection() or row_data.record.historical_value and get_buyout_selection() and get_buyout_selection().historical_value then
+	if button == 'RightButton' and row_data.record == get_buyout_selection() or row_data.record.historical_value and get_buyout_selection() and get_buyout_selection().historical_value then
 		set_buyout_selection()
 	else
 		set_buyout_selection(row_data.record)
@@ -153,7 +161,7 @@ end)
 
 do
 	status_bar = gui.status_bar(frame)
-    status_bar:SetWidth(280) --byLICHERY
+    status_bar:SetWidth(265)
     status_bar:SetHeight(25)
     status_bar:SetPoint('TOPLEFT', aux.frame.content, 'BOTTOMLEFT', 0, -6)
     status_bar:update_status(1, 1)
@@ -162,15 +170,14 @@ end
 do
     local btn = gui.button(frame.parameters)
     btn:SetPoint('TOPLEFT', status_bar, 'TOPRIGHT', 5, 0)
-    btn:SetText(POST) --byLICHERY
+    btn:SetText('Post')
     btn:SetScript('OnClick', post_auctions)
     post_button = btn
 end
 do
     local btn = gui.button(frame.parameters)
     btn:SetPoint('TOPLEFT', post_button, 'TOPRIGHT', 5, 0)
-    btn:SetText(REFRESH) --byLICHERY
-	btn:SetWidth(100) --byLICHERY
+    btn:SetText('Refresh')
     btn:SetScript('OnClick', refresh_button_click)
     refresh_button = btn
 end
@@ -213,7 +220,7 @@ do
     end)
     slider.editbox:SetNumeric(true)
     slider.editbox:SetMaxLetters(3)
-    slider.label:SetText(STACK_SIZE_2) --byLICHERY
+    slider.label:SetText('Stack Size')
     stack_size_slider = slider
 end
 do
@@ -236,16 +243,16 @@ do
         end
     end)
     slider.editbox:SetNumeric(true)
-    slider.label:SetText(STACK_COUNT) --byLICHERY
+    slider.label:SetText('Stack Count')
     stack_count_slider = slider
 end
 do
     local dropdown = gui.dropdown(frame.parameters)
-    dropdown:SetPoint('TOPLEFT', stack_count_slider, 'BOTTOMLEFT', 0, -21) --byLICHERY
+    dropdown:SetPoint('TOPLEFT', stack_count_slider, 'BOTTOMLEFT', 0, -22)
     dropdown:SetWidth(90)
     local label = gui.label(dropdown, gui.font_size.small)
     label:SetPoint('BOTTOMLEFT', dropdown, 'TOPLEFT', -2, -3)
-    label:SetText(DURATION) --byLICHERY
+    label:SetText('Duration')
     UIDropDownMenu_Initialize(dropdown, initialize_duration_dropdown)
     dropdown:SetScript('OnShow', function()
         UIDropDownMenu_Initialize(this, initialize_duration_dropdown)
@@ -254,7 +261,7 @@ do
 end
 do
     local checkbox = gui.checkbox(frame.parameters)
-    checkbox:SetPoint('TOPRIGHT', -100, -6)
+    checkbox:SetPoint('TOPRIGHT', -83, -6)
     checkbox:SetScript('OnClick', function()
         local settings = read_settings()
         settings.hidden = this:GetChecked()
@@ -262,8 +269,8 @@ do
         refresh = true
     end)
     local label = gui.label(checkbox, gui.font_size.small)
-    label:SetPoint('LEFT', checkbox, 'RIGHT', 2, 1)
-    label:SetText(HIDE_THIS_ITEM) --byLICHERY
+    label:SetPoint('LEFT', checkbox, 'RIGHT', 4, 1)
+    label:SetText('Hide this item')
     hide_checkbox = checkbox
 end
 do
@@ -290,7 +297,7 @@ do
     do
         local label = gui.label(editbox, gui.font_size.small)
         label:SetPoint('BOTTOMLEFT', editbox, 'TOPLEFT', -2, 1)
-        label:SetText(UNIT_STARTING_SIZE) --byLICHERY
+        label:SetText('Unit Starting Price')
     end
     do
         local label = gui.label(editbox, 14)
@@ -325,7 +332,7 @@ do
     do
         local label = gui.label(editbox, gui.font_size.small)
         label:SetPoint('BOTTOMLEFT', editbox, 'TOPLEFT', -2, 1)
-        label:SetText(UNIT_BUYOUT_SIZE) --byLICHERY
+        label:SetText('Unit Buyout Price')
     end
     do
         local label = gui.label(editbox, 14)
@@ -343,15 +350,15 @@ do
 end
 
 function aux.handle.LOAD()
-	if not aux_post_bid then
+	if not aux.account_data.post_bid then
 		frame.bid_listing:Hide()
 		frame.buyout_listing:SetPoint('BOTTOMLEFT', frame.inventory, 'BOTTOMRIGHT', 2.5, 0)
 		buyout_listing:SetColInfo{
-			{name=AUCTIONS_1, width=.15, align='CENTER'}, --byLICHERY
-			{name=TIME_LEFT, width=.15, align='CENTER'}, --byLICHERY
-			{name=STACK_SIZE, width=.15, align='CENTER'}, --byLICHERY
-			{name=AUCTION_BUYOUT, width=.4, align='RIGHT'}, --byLICHERY
-			{name=HIST_VALUE, width=.15, align='CENTER'}, --byLICHERY
+			{name='Auctions', width=.15, align='CENTER'},
+			{name='Time Left', width=.15, align='CENTER'},
+			{name='Stack Size', width=.15, align='CENTER'},
+			{name='Auction Buyout (per item)', width=.4, align='RIGHT'},
+			{name='% Hist. Value', width=.15, align='CENTER'},
 		}
 	end
 end

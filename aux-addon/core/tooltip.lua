@@ -13,14 +13,14 @@ local UNKNOWN = GRAY_FONT_COLOR_CODE .. '?' .. FONT_COLOR_CODE_CLOSE
 local game_tooltip_hooks, game_tooltip_money = {}, 0
 
 function aux.handle.LOAD()
-	settings = aux.character_data('tooltip', {value=true})
+	settings = aux.character_data.tooltip
 	do
 		local inside_hook = false
 	    for name, f in game_tooltip_hooks do
 	        local name, f = name, f
 	        aux.hook(name, GameTooltip, T.vararg-function(arg)
                 game_tooltip_money = 0
-	            inside_hook = true
+                inside_hook = true
 	            local tmp = T.list(aux.orig[GameTooltip][name](unpack(arg)))
 	            inside_hook = false
 	            f(unpack(arg))
@@ -29,11 +29,11 @@ function aux.handle.LOAD()
 	    end
         SetTooltipMoney = SetTooltipMoney
         _G.SetTooltipMoney = T.vararg-function(arg)
-		    if inside_hook then
+            if inside_hook then
                 game_tooltip_money = arg[2]
-		    else
+            else
                 return SetTooltipMoney(unpack(arg))
-		    end
+            end
         end
     end
     local orig = SetItemRef
@@ -54,31 +54,38 @@ function M.extend_tooltip(tooltip, link, quantity)
     quantity = IsShiftKeyDown() and quantity or 1
     local item_info = T.temp-info.item(item_id)
     if item_info then
-        local distribution = disenchant.distribution(item_info.slot, item_info.quality, item_info.level)
+        local distribution = disenchant.distribution(item_info.slot, item_info.quality, item_info.level, item_id)
         if getn(distribution) > 0 then
             if settings.disenchant_distribution then
-                tooltip:AddLine(DISENCHANT_INFO, aux.color.tooltip.disenchant.distribution()) --byLICHERY
+                tooltip:AddLine('Disenchants into:', aux.color.tooltip.disenchant.distribution())
                 sort(distribution, function(a,b) return a.probability > b.probability end)
                 for _, event in ipairs(distribution) do
                     tooltip:AddLine(format('  %s%% %s (%s-%s)', event.probability * 100, info.display_name(event.item_id, true) or 'item:' .. event.item_id, event.min_quantity, event.max_quantity), aux.color.tooltip.disenchant.distribution())
                 end
             end
             if settings.disenchant_value then
-                local disenchant_value = disenchant.value(item_info.slot, item_info.quality, item_info.level)
-                tooltip:AddLine(DISENCHANT .. (disenchant_value and money.to_string2(disenchant_value) or UNKNOWN), aux.color.tooltip.disenchant.value()) --byLICHERY
+                local disenchant_value = disenchant.value(item_info.slot, item_info.quality, item_info.level, item_id)
+                tooltip:AddLine('Disenchant: ' .. (disenchant_value and money.to_string2(disenchant_value) or UNKNOWN), aux.color.tooltip.disenchant.value())
             end
         end
     end
     if settings.merchant_buy then
         local _, price, limited = info.merchant_info(item_id)
         if price then
-            tooltip:AddLine(VENDOR_BUY .. (limited and LIMITED or ': ') .. money.to_string2(price * quantity), aux.color.tooltip.merchant()) --byLICHERY
+            tooltip:AddLine('Vendor Buy ' .. (limited and '(limited): ' or ': ') .. money.to_string2(price * quantity), aux.color.tooltip.merchant())
         end
     end
     if settings.merchant_sell then
         local price = info.merchant_info(item_id)
+		if price == nil and ShaguTweaks and ShaguTweaks.SellValueDB[item_id] ~= nil then
+			local charges = 1
+			if info.max_item_charges(item_id) ~= nil then 
+				charges=info.max_item_charges(item_id) 
+			end
+			price = ShaguTweaks.SellValueDB[item_id] / charges
+		end
         if price ~= 0 then
-            tooltip:AddLine(VENDOR .. (price and money.to_string2(price * quantity) or UNKNOWN), aux.color.tooltip.merchant()) --byLICHERY
+            tooltip:AddLine('Vendor: ' .. (price and money.to_string2(price * quantity) or UNKNOWN), aux.color.tooltip.merchant())
         end
     end
     local auctionable = not item_info or info.auctionable(T.temp-info.tooltip('link', item_info.itemstring), item_info.quality)
@@ -86,11 +93,11 @@ function M.extend_tooltip(tooltip, link, quantity)
     local value = history.value(item_key)
     if auctionable then
         if settings.value then
-            tooltip:AddLine(VALUE .. (value and money.to_string2(value * quantity) or UNKNOWN), aux.color.tooltip.value()) --byLICHERY
+            tooltip:AddLine('Value: ' .. (value and money.to_string2(value * quantity) or UNKNOWN), aux.color.tooltip.value())
         end
         if settings.daily  then
             local market_value = history.market_value(item_key)
-            tooltip:AddLine(TODAY .. (market_value and money.to_string2(market_value * quantity) .. ' (' .. gui.percentage_historical(aux.round(market_value / value * 100)) .. ')' or UNKNOWN), aux.color.tooltip.value()) --byLICHERY
+            tooltip:AddLine('Today: ' .. (market_value and money.to_string2(market_value * quantity) .. ' (' .. gui.percentage_historical(aux.round(market_value / value * 100)) .. ')' or UNKNOWN), aux.color.tooltip.value())
         end
     end
 
@@ -105,9 +112,6 @@ function game_tooltip_hooks:SetHyperlink(itemstring)
     if name then
         local hex = aux.select(4, GetItemQualityColor(quality))
         local link = hex ..  '|H' .. itemstring .. '|h[' .. name .. ']|h' .. FONT_COLOR_CODE_CLOSE
-		if EnhTooltip then --byCFM
-			EnhTooltip.TooltipCall(GameTooltip,name,link,quality,1)--byCFM
-		end--byCFM
         extend_tooltip(GameTooltip, link, 1)
     end
 end
@@ -151,10 +155,12 @@ function game_tooltip_hooks:SetInboxItem(index)
     local name, _, quantity = GetInboxItem(index)
     local id = name and info.item_id(name)
     if id then
-        local _, itemstring, quality = GetItemInfo(id)
-        local hex = aux.select(4, GetItemQualityColor(tonumber(quality)))
-        local link = hex ..  '|H' .. itemstring .. '|h[' .. name .. ']|h' .. FONT_COLOR_CODE_CLOSE
-        extend_tooltip(GameTooltip, link, quantity)
+        local _, itemstring, quality =  (id)
+		if quality and itemstring then
+			local hex = aux.select(4, GetItemQualityColor(tonumber(quality)))
+			local link = hex ..  '|H' .. itemstring .. '|h[' .. name .. ']|h' .. FONT_COLOR_CODE_CLOSE
+			extend_tooltip(GameTooltip, link, quantity)
+		end
     end
 end
 

@@ -1,15 +1,14 @@
 ## Interface: 11200
-## Author: shirsig (CFM MoD)
+## Author: shirsig
+## OptionalDeps: ShaguTweaks, Informant, pfUI
 ## Title: aux
 ## Notes: Auction House replacement
-## Notes-ruRU: Замена интерфейса аукциона
-## Version: 19.08.2018
-## OptionalDeps: Informant
-## SavedVariables: aux, aux_scale, aux_post_bid, aux_ignore_owner, aux_items, aux_item_ids, aux_auctionable_items, aux_merchant_buy, aux_merchant_sell
+## SavedVariables: aux
 
-localization.lua
 libs\package.lua
 libs\T.lua
+libs\ChatThrottleLib.lua
+
 aux-addon.lua
 util.lua
 control.lua
@@ -53,3 +52,7 @@ tabs\bids\core.lua
 tabs\bids\frame.lua
 
 core\crafting.lua
+
+localization.lua
+
+

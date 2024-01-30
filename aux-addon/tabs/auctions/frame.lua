@@ -28,22 +28,7 @@ listing:SetHandler('OnClick', function(row, button)
 		end
 	elseif button == 'RightButton' then
 		aux.set_tab(1)
-		local itemname=info.item(this.record.item_id).name --byCFM
-		if GetLocale()=="ruRU" then --byCFM
-			local s,ss,sss=nil,nil,nil --byCFM
-			ss = string.find(itemname,"крошшера") --byCFM
-			sss = string.find(itemname,"Тернистой долины:") --byCFM
-			if ss then --byCFM
-				s=string.sub(itemname,56,84) --byCFM
-			elseif sss then --byCFM
-				s=string.sub(itemname,27,69) --byCFM
-			else --byCFM
-				s=string.sub(itemname,0,63) --byCFM
-			end --byCFM
-			search_tab.set_filter(s) --byCFM
-		else --byCFM
-			search_tab.set_filter(strlower(itemname) .. '/exact') --byCFM
-		end --byCFM
+		search_tab.set_filter(strlower(info.item(this.record.item_id).name) .. '/exact')
 		search_tab.execute(nil, false)
 	end
 end)
@@ -63,15 +48,14 @@ end
 do
     local btn = gui.button(frame)
     btn:SetPoint('TOPLEFT', status_bar, 'TOPRIGHT', 5, 0)
-    btn:SetText(CANCEL) --byLICHERY
+    btn:SetText('Cancel')
     btn:Disable()
     cancel_button = btn
 end
 do
     local btn = gui.button(frame)
     btn:SetPoint('TOPLEFT', cancel_button, 'TOPRIGHT', 5, 0)
-    btn:SetText(REFRESH) --byLICHERY
-	btn:SetWidth(100) --byLICHERY
+    btn:SetText('Refresh')
     btn:SetScript('OnClick', function()
         scan_auctions()
     end)
