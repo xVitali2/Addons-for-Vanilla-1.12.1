@@ -74,9 +74,9 @@ do
 					LABELFORITEM:SetPoint('TOP', f, 'LEFT', 120, 200)
 					if str==nil then str="?" end
 					LABELFORITEM:SetText("Vendor price:"..str)
-
 				elseif ShaguTweaks and ShaguTweaks.SellValueDB[this.item_record.item_id] ~= nil then
 					local str=nil
+					local itdata=nil
 					local itdata = ShaguTweaks.SellValueDB[this.item_record.item_id]
 					if itdata then
 						local gold,silver,copper=money.to_gsc(itdata)
@@ -88,6 +88,7 @@ do
 					LABELFORITEM:SetText("Vendor price:"..str)
 				elseif pfUI and pfSellData[this.item_record.item_id] then
 					local str=nil
+					local itdata=nil
 					local _, _, itdata = strfind(pfSellData[this.item_record.item_id], "(.*),(.*)")
 					if itdata then
 						itdata = tonumber(itdata)
