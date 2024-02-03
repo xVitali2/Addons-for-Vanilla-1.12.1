@@ -2262,7 +2262,7 @@ AtlasLoot_DewDropDown = {
 				{ L["Elemental Invasion"], "ElementalInvasion", "Table" },
 			},
 			[4] = { 
-				{ L["Feast of Winter Veil"], "Winterviel1", "Table" },
+				{ L["Feast of Winter Veil"], "Winterviel", "Submenu" },
 			},
 			[5] = { 
 				{ L["Gurubashi Arena Booty Run"], "GurubashiArena", "Table" },
@@ -2832,6 +2832,10 @@ AtlasLoot_DewDropDown_SubTables = {
 		{ L["Abyssal Council"].." - "..L["Templars"], "AbyssalTemplars" },
 		{ L["Abyssal Council"].." - "..L["Dukes"], "AbyssalDukes" },
 		{ L["Abyssal Council"].." - "..L["High Council"], "AbyssalLords" },
+	},
+	["Winterviel"] = {
+		{ L["Feast of Winter Veil"], "Winterviel1", "Table" },
+		{ "Snowball", "WintervielSnowball", "Table" },
 	},
 	["Factions"] = {
 		{ BF["Argent Dawn"], "Argent1" },

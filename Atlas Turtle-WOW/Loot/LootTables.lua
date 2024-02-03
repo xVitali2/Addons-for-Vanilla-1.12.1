@@ -772,6 +772,7 @@ AtlasLoot_TableNames = {
 	["Valentineday"] = { L["Love is in the Air"], "AtlasLootWorldEvents" },
 	["Winterviel1"] = { L["Feast of Winter Veil"], "AtlasLootWorldEvents" },
 	["Winterviel2"] = { L["Feast of Winter Veil"], "AtlasLootWorldEvents" },
+	["WintervielSnowball"] = { "Snowball", "AtlasLootWorldEvents" },
 	--Other
 	["ElementalInvasion"] = { L["Elemental Invasion"], "AtlasLootWorldEvents" },
 	["FishingExtravaganza"] = { L["Stranglethorn Fishing Extravaganza"], "AtlasLootWorldEvents" },
@@ -966,7 +967,7 @@ AtlasLoot_TableNames = {
  	--Warsong Gulch
 	["WSGRepFriendly2029"] = { BZ["Warsong Gulch"] .. " 20-29 " .. L["Friendly Rewards"], "AtlasLootBGItems" },
 	["WSGRepFriendly3039"] = { BZ["Warsong Gulch"] .. " 30-39 " .. L["Friendly Rewards"], "AtlasLootBGItems" },
-	["WSGRepFriendly3039"] = { BZ["Warsong Gulch"] .. " 40-49 " .. L["Friendly Rewards"], "AtlasLootBGItems" },
+	["WSGRepFriendly4049"] = { BZ["Warsong Gulch"] .. " 40-49 " .. L["Friendly Rewards"], "AtlasLootBGItems" },
 	["WSGRepHonored1019"] = { BZ["Warsong Gulch"].." 10-19 "..L["Honored Rewards"], "AtlasLootBGItems" },
 	["WSGRepHonored2029"] = { BZ["Warsong Gulch"].." 20-29 "..L["Honored Rewards"], "AtlasLootBGItems" },
 	["WSGRepHonored3039"] = { BZ["Warsong Gulch"].." 30-39 "..L["Honored Rewards"], "AtlasLootBGItems" },
@@ -1833,6 +1834,7 @@ AtlasLoot_TableNamesBoss = {
 		["Valentineday"] = { L["Love is in the Air"], "AtlasLootWorldEvents" },
 		["Winterviel1"] = { L["Feast of Winter Veil"], "AtlasLootWorldEvents" },
 		["Winterviel2"] = { L["Feast of Winter Veil"], "AtlasLootWorldEvents" },
+		["WintervielSnowball"] = { "Snowball", "AtlasLootWorldEvents" },
 		--Other
 		["ElementalInvasion"] = { L["Elemental Invasion"], "AtlasLootWorldEvents" },
 		["FishingExtravaganza"] = { L["Stranglethorn Fishing Extravaganza"], "AtlasLootWorldEvents" },
