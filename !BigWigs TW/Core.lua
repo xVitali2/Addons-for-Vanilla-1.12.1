@@ -9,12 +9,12 @@ local L = AceLibrary("AceLocale-2.2"):new("BigWigs")
 
 local surface = AceLibrary("Surface-1.0")
 
-surface:Register("Armory", "Interface\\AddOns\\BigWigs TW\\Textures\\Armory")
-surface:Register("Otravi", "Interface\\AddOns\\BigWigs TW\\Textures\\otravi")
-surface:Register("Smooth", "Interface\\AddOns\\BigWigs TW\\Textures\\smooth")
-surface:Register("Glaze", "Interface\\AddOns\\BigWigs TW\\Textures\\glaze")
-surface:Register("Charcoal", "Interface\\AddOns\\BigWigs TW\\Textures\\Charcoal")
-surface:Register("BantoBar", "Interface\\AddOns\\BigWigs TW\\Textures\\default")
+surface:Register("Armory", "Interface\\AddOns\\!BigWigs TW\\Textures\\Armory")
+surface:Register("Otravi", "Interface\\AddOns\\!BigWigs TW\\Textures\\otravi")
+surface:Register("Smooth", "Interface\\AddOns\\!BigWigs TW\\Textures\\smooth")
+surface:Register("Glaze", "Interface\\AddOns\\!BigWigs TW\\Textures\\glaze")
+surface:Register("Charcoal", "Interface\\AddOns\\!BigWigs TW\\Textures\\Charcoal")
+surface:Register("BantoBar", "Interface\\AddOns\\!BigWigs TW\\Textures\\default")
 
 ----------------------------
 --    Raid Class Colors   --

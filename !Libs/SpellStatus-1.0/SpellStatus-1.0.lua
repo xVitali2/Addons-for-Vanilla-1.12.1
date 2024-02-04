@@ -1,16 +1,16 @@
 --[[
-	Name: SpellStatus-1.0
-	Revision: $Rev: 14589 $
-	Author(s): Nightdew (denzsolnightdew@gmail.com)
-	Website: http://www.wowace.com/index.php/SpellStatus-1.0
-	Documentation: http://www.wowace.com/index.php/SpellStatus-1.0
-	SVN: http://svn.wowace.com/root/trunk/SpellStatusLib/SpellStatus-1.0
-	Description: Status library that simplifies retrieving spell status information from the player
-	Dependencies: AceLibrary, AceDebug-2.0, AceEvent-2.0, AceHook-2.1, Deformat-2.0, Gratuity-2.0, SpellCache-1.0, (optional) SpellStatus-AimedShot-1.0
+Name: SpellStatus-1.0
+Revision: $Rev: 15000 $
+Author(s): Nightdew (denzsolnightdew@gmail.com) improved by Balake
+Website: http://www.wowace.com/index.php/SpellStatus-1.0
+Documentation: http://www.wowace.com/index.php/SpellStatus-1.0
+SVN: http://svn.wowace.com/root/trunk/SpellStatusLib/SpellStatus-1.0
+Description: Status library that simplifies retrieving spell status information from the player
+Dependencies: AceLibrary, AceDebug-2.0, AceEvent-2.0, AceHook-2.1, Deformat-2.0, Gratuity-2.0, SpellCache-1.0, (optional) SpellStatus-AimedShot-1.0
 ]]
 
 local MAJOR_VERSION = "SpellStatus-1.0"
-local MINOR_VERSION = "$Revision: 14589 $"
+local MINOR_VERSION = "$Revision: 15000 $"
 
 if (not AceLibrary) then 
 	error(MAJOR_VERSION .. " requires AceLibrary.") 
@@ -45,7 +45,7 @@ local spellcache = AceLibrary("SpellCache-1.0")
 
 --Create Library Object
 local SpellStatus = {}
-
+ 
 --Embed all needed mixins into the Library Object SpellStatus
 AceLibrary("AceDebug-2.0"):embed(SpellStatus)
 AceLibrary("AceEvent-2.0"):embed(SpellStatus)
@@ -54,6 +54,17 @@ AceLibrary("AceHook-2.1"):embed(SpellStatus)
 --
 -- Local functions not to be called from outside
 --
+
+SpellstatusIndexToIcon = {
+	[1] = "|cFFF7EF52[✦]|r", --u+2726
+	[2] = "|cFFE76100[●]|r", --u+25CF
+	[3] = "|cFFDE55E7[♦]|r", --u+2666
+	[4] = "|cFF2BD923[▼]|r", --u+25BC
+	[5] = "|cFF8FB9D0[☽]|r", --u+263D
+	[6] = "|cFF00B9F3[■]|r", --u+25A0
+	[7] = "|cFFB20A05[✖]|r", --u+2716
+	[8] = "|cFFF1EFE4[☻]|r", --u+263B
+}
 
 local function InitializeHooks(self)
 	self:Hook("CastSpell")
@@ -78,24 +89,24 @@ local function InitializeEventRegisters(self)
 	self:RegisterEvent("UI_ERROR_MESSAGE")
 	self:RegisterEvent("CHAT_MSG_SPELL_FAILED_LOCALPLAYER")
 	self:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_SELF")
-	
+
 	self:RegisterEvent("CHAT_MSG_COMBAT_SELF_HITS")
 	self:RegisterEvent("CHAT_MSG_COMBAT_SELF_MISSES")
 	
 	self:RegisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE")
-	
+	 
 	--SPELLLOGSELFOTHER
-	
+
 	--Used to determine if we are wanding.
 	self:RegisterEvent("START_AUTOREPEAT_SPELL")
 	self:RegisterEvent("STOP_AUTOREPEAT_SPELL")
 	
 	self:RegisterEvent("PLAYER_ENTER_COMBAT")
 	self:RegisterEvent("PLAYER_LEAVE_COMBAT")
-	
+
 	self:RegisterEvent("PLAYER_REGEN_DISABLED")
 	self:RegisterEvent("PLAYER_REGEN_ENABLED")
-	
+
 	self:RegisterEvent("SpellCache_Updated")
 end
 
@@ -109,11 +120,12 @@ local function ResetActiveVariables(self)
 	self.vars.ActiveCastStartTime = nil
 	self.vars.ActiveCastStopTime = nil
 	self.vars.ActiveCastDuration = nil
-	
+	self.vars.ActiveTarget = nil
+
 	--Casting
 	self.vars.ActiveCastDelay = nil
 	self.vars.ActiveCastDelayTotal = nil
-	
+
 	--Channeling
 	self.vars.ActiveAction = nil
 	self.vars.ActiveCastDisruption = nil
@@ -128,15 +140,15 @@ end
 
 local function ResetVariables(self)
 	self:LevelDebug(2, "ResetVariables")
-	
+
 	--Spell Attempted to cast
 	self.vars.AttemptId = nil
 	self.vars.AttemptName = nil
 	self.vars.AttemptRank = nil
 	self.vars.AttemptFullName = nil
-	
+
 	ResetActiveVariables(self)
-	
+
 	--UI_ERROR_MESSAGE
 	self.vars.UIEM_Message = nil
 	--CHATMSGSPELLFAILEDLOCALPLAYER
@@ -147,9 +159,9 @@ end
 
 local function InitializeVariables(self)
 	self:LevelDebug(2, "InitializeVariables")
-	
+
 	self.vars = {}
-	
+
 	--True while data is assigned until fail or stop or start and no SpellId
 	self.vars.Using = false
 	--True while data is assigned until fail or stop or start and SpellId
@@ -169,7 +181,7 @@ local function InitializeVariables(self)
 	self.vars.Combating = false
 	
 	self.vars.Targeting = false
-	
+
 	--True when hooked into ToggleGameMenu
 	self.vars.CancelTargeting = false
 	self.vars.CancelCasting = false
@@ -185,7 +197,7 @@ end
 local function activate(self, oldLib, oldDeactivate)
 	--self:SetDebugging(true)
 	--self:SetDebugLevel(3)
-	
+
 	self:LevelDebug(2, "SpellStatus - activate")
 	
 	if (oldLib) then
@@ -197,7 +209,7 @@ local function activate(self, oldLib, oldDeactivate)
 	if (oldDeactivate) then
 		oldDeactivate(oldLib)
 	end
-	
+
 	InitializeVariables(self)
 	InitializeHooks(self)
 	InitializeEventRegisters(self)
@@ -267,8 +279,8 @@ end
 
 function SpellStatus:GetActiveSpellData()
 	return self.vars.ActiveId, self.vars.ActiveName, self.vars.ActiveRank, self.vars.ActiveFullName,
-	self.vars.ActiveCastStartTime, self.vars.ActiveCastStopTime, self.vars.ActiveCastDuration,
-	self.vars.ActiveAction
+					self.vars.ActiveCastStartTime, self.vars.ActiveCastStopTime, self.vars.ActiveCastDuration,
+					self.vars.ActiveAction
 end
 
 function SpellStatus:GetActiveSpellName()
@@ -291,14 +303,14 @@ local function AssignNextMeleeSpellData(self, spellId, spellName, spellRank, spe
 	if (not spellId) then
 		return false
 	end
-	
+		
 	gratuity:SetSpell(spellId, BOOKTYPE_SPELL)
 	if (gratuity:Find(SPELL_ON_NEXT_SWING, 2, 3, false, true, true) == nil) then
 		return false
 	end
 	
 	self:LevelDebug(1, "AssignNextMeleeSpellData", spellId, spellName, spellRank, spellFullName)
-	
+
 	self.vars.NextMeleeing = true
 	
 	self.vars.NextMeleeId = spellId
@@ -309,35 +321,36 @@ local function AssignNextMeleeSpellData(self, spellId, spellName, spellRank, spe
 end
 
 
-local function AssignSpellData(self, spellId, spellName, spellRank, spellFullName)
+local function AssignSpellData(self, spellId, spellName, spellRank, spellFullName, spellTarget)
 	--self:LevelDebug(1, "AssignSpellData", spellId, spellName, spellRank, spellFullName)
-	
+
 	--If Next Melee spell stop dont continue
 	if (AssignNextMeleeSpellData(self, spellId, spellName, spellRank, spellFullName)) then
 		return
 	end
-	
+
 	if (self.vars.Preparing or self.vars.Casting or self.vars.Channeling) then
 		return
 	end
-	
+
 	if (self.vars.Using and (spellName == self.vars.ActiveName)) then
 		return
 	end
 	
 	
 	self:LevelDebug(1, "AssignSpellData", spellId, spellName, spellRank, spellFullName)
-	
+
 	ResetVariables(self)
-	
+
 	self.vars.ActiveId = spellId
 	self.vars.ActiveName = spellName
 	self.vars.ActiveRank = spellRank
 	self.vars.ActiveFullName = spellFullName
-	
+	self.vars.ActiveTarget = spellTarget
+
 	self.vars.Preparing = spellId ~= nil
 	self.vars.Using = not self.vars.Preparing
-	
+
 	--Only preparing if you have a spellId
 	if (self.vars.Preparing) then
 		local aimedShot = AceLibrary:HasInstance("SpellStatus-AimedShot-1.0") and AceLibrary("SpellStatus-AimedShot-1.0") or nil
@@ -353,17 +366,17 @@ end
 local function TriggerFailureEvent(self, overrideHasMessage)
 	overrideHasMessage = overrideHasMessage == true
 	--self:LevelDebug(2, "TriggerFailureEvent", overrideHasMessage)
-	
+
 	local hasMessage = self.vars.UIEM_Message or self.vars.CMSFLP_Message
-	
+
 	self:LevelDebug(2, "TriggerFailureEvent", hasMessage, overrideHasMessage)
-	
+
 	if (not (hasMessage or overrideHasMessage)) then
 		return false
 	end
 	
 	self:LevelDebug(2, "TriggerFailureEvent", overrideHasMessage)
-	
+
 	local isActiveSpell = false
 	local sId, sName, sRank, sFullName
 	
@@ -378,14 +391,14 @@ local function TriggerFailureEvent(self, overrideHasMessage)
 		self.vars.NextMeleeing = false
 		--Necessary because the error might happen through multiple paths
 		self.vars.AttemptCastFailure = true
-		elseif (self.vars.CMSFLP_SpellName and (self.vars.CMSFLP_SpellName == self.vars.NextMeleeName)) then
+	elseif (self.vars.CMSFLP_SpellName and (self.vars.CMSFLP_SpellName == self.vars.NextMeleeName)) then
 		sId = self.vars.NextMeleeId
 		sName = self.vars.NextMeleeName
 		sRank = self.vars.NextMeleeRank
 		sFullName = self.vars.NextMeleeFullName
 		self:LevelDebug(2, "TriggerFailureEvent NextMelee", sId, sName, sRank, sFullName)
 		self.vars.NextMeleeing = false
-		elseif (overrideHasMessage or (self.vars.CMSFLP_SpellName and (self.vars.CMSFLP_SpellName == self.vars.ActiveName))) then
+	elseif (overrideHasMessage or (self.vars.CMSFLP_SpellName and (self.vars.CMSFLP_SpellName == self.vars.ActiveName))) then
 		isActiveSpell = true
 		sId = self.vars.ActiveId
 		sName = self.vars.ActiveName
@@ -396,7 +409,7 @@ local function TriggerFailureEvent(self, overrideHasMessage)
 		self.vars.Preparing = false
 		self.vars.Casting = false
 		self.vars.Channeling = false
-		else --must have been unrelated
+	else --must have been unrelated
 		return false
 	end
 	
@@ -423,54 +436,60 @@ function ResetCastOriginal(self, sId, sName, sRank, sFullName)
 	self.vars.UIEM_Message = nil
 	self.vars.CMSFLP_SpellName = nil
 	self.vars.CMSFLP_Message = nil
-	
+
 	self.vars.AttemptCastFailure = false
 end
 
 function CastOriginal(self, methodName, param1, param2, param3, sId, sName, sRank, sFullName)
 	self:LevelDebug(1, ">>>> CastOriginal", 
 		methodName, param1, param2, param3, 
-	sId, sName, sRank, sFullName)
-	
-	ResetCastOriginal(self, sId, sName, sRank, sFullName)	
-	
+		sId, sName, sRank, sFullName)
+		
+	local spellTarget = UnitName("target")
+	if spellTarget and GetRaidTargetIndex("target") then spellTarget = spellTarget.." "..SpellstatusIndexToIcon[GetRaidTargetIndex("target")] end
+	if methodName == "CastSpellByName" and param2 == true then spellTarget = UnitName("player") end
+	if methodName == "UseAction" and param3 == true then spellTarget = UnitName("player") end
+	if spellTarget == nil then spellTarget = "none" end
+		
+	ResetCastOriginal(self, sId, sName, sRank, sFullName)
+
 	self:LevelDebug(3, "-> CastOriginal")
 	self.hooks[methodName](param1, param2, param3)
 	self:LevelDebug(3, "<- CastOriginal")
-	
+
 	TriggerFailureEvent(self)
 	if (not self.vars.AttemptCastFailure) then
-		AssignSpellData(self, sId, sName, sRank, sFullName)
+		AssignSpellData(self, sId, sName, sRank, sFullName, spellTarget)
 	end
 	
 	ResetCastOriginal(self, nil, nil, nil, nil)	
-	
+
 	self:LevelDebug(1, "<<<< CastOriginal", 
 		methodName, param1, param2, param3, 
-	sId, sName, sRank, sFullName)
+		sId, sName, sRank, sFullName)
 end
 
 function SpellStatus:CastSpellByName(spellName, onSelf)
 	self:LevelDebug(2, ">>>> CastSpellByName", spellName, onSelf)
-	
+
 	local sName, sId, sRank, sFullName
 	sName, sRank, sId, sFullName = spellcache:GetSpellData(spellName)
-	
+
 	CastOriginal(self, "CastSpellByName", spellName, onSelf, nil, sId, sName, sRank, sFullName)
-	
+
 	self:LevelDebug(2, "<<<< CastSpellByName2", spellName, onSelf)
 end
 
 function SpellStatus:CastSpell(spellId, spellbookType)
 	self:LevelDebug(2, ">>>> CastSpell", spellId, spellbookType)
-	
+
 	local sId, sName, sRank, sFullName
 	if (spellbookType == BOOKTYPE_SPELL) then
 		sName, sRank, sId, sFullName = spellcache:GetSpellData(spellId)
 	end
 	
 	CastOriginal(self, "CastSpell", spellId, spellbookType, nil, sId, sName, sRank, sFullName)
-	
+
 	self:LevelDebug(2, "<<<< CastSpell", spellId, spellbookType)
 end
 
@@ -487,41 +506,41 @@ local function GetGratuitySpellData(self, slotId)
 	local sName, sRank, sId, sFullName = spellcache:GetSpellData(spellName, spellRank)
 	if (sName) then
 		return sId, sName, sRank, sFullName
-		else
+	else
 		return nil, spellName, nil, nil
 	end
 end
 
 function SpellStatus:UseAction(slotId, checkCursor, onSelf)
 	self:LevelDebug(1, ">>>> UseAction", slotId, checkCursor, onSelf)
-	
+
 	local actionText = GetActionText(slotId)
 	local isMacro = actionText ~= nil
 	--self:LevelDebug(2, "UseAction", actionText, tostring(isMacro))
 	
 	if (isMacro) then
 		self.hooks["UseAction"](slotId, checkCursor, onSelf)
-		else
+	else
 		gratuity:SetAction(slotId)
 		local sId, sName, sRank, sFullName = GetGratuitySpellData(self, slotId)
 		if (sName) then
 			CastOriginal(self, "UseAction", slotId, checkCursor, onSelf, sId, sName, sRank, sFullName)
-			else
+		else
 			self.hooks["UseAction"](slotId, checkCursor, onSelf)
 		end
 	end
-	
+
 	self:LevelDebug(1, "<<<< UseAction", slotId, checkCursor, onSelf)
 end
 
 function SpellStatus:CastShapeshiftForm(index)
 	self:LevelDebug(2, ">>>> CastShapeshiftForm", index)
-	
+
 	gratuity:SetShapeshift(index)
 	local sId, sName, sRank, sFullName = GetGratuitySpellData(self, slotId)
 	if (sName) then
 		CastOriginal(self, "CastShapeshiftForm", index, nil, nil, sId, sName, sRank, sFullName)
-		else
+	else
 		self.hooks["CastShapeshiftForm"](index)
 	end
 	
@@ -530,13 +549,13 @@ end
 
 local function GetItemLinkData(slotId, bagId)
 	local itemLink = nil
-	
+
 	if (bagId == nil) then
 		itemLink = GetInventoryItemLink("player", slotId)
-		else
+	else
 		itemLink = GetContainerItemLink(bagId, slotId)
 	end
-	
+
 	if (itemLink) then
 		local _, _, itemName = string.find(itemLink, "^.*%[(.*)%].*$")
 		return itemName, itemLink
@@ -550,7 +569,7 @@ function SpellStatus:UseInventoryItem(slotId)
 	
 	if (itemLink) then
 		CastOriginal(self, "UseInventoryItem", slotId, nil, nil, nil, itemName, nil, itemLink)
-		else
+	else
 		self.hooks["UseInventoryItem"](slotId)
 	end
 	
@@ -564,7 +583,7 @@ function SpellStatus:UseContainerItem(bagId, slotId)
 	
 	if (itemLink) then
 		CastOriginal(self, "UseContainerItem", bagId, slotId, nil, nil, itemName, nil, itemLink)
-		else
+	else
 		self.hooks["UseContainerItem"](bagId, slotId)
 	end
 	
@@ -573,18 +592,18 @@ end
 
 function SpellStatus:ToggleGameMenu()
 	--self:LevelDebug(3, "ToggleGameMenu1", SpellIsTargeting())
-	
+
 	--If these hook is called and targeting, targeting will always be killed first
 	self.vars.CancelTargeting = SpellIsTargeting()
 	self.vars.CancelCasting = self.vars.Casting
 	self.vars.CancelChanneling = self.vars.Channeling
-	
+
 	self.hooks["ToggleGameMenu"]()
-	
+
 	self.vars.CancelTargeting = false
 	self.vars.CancelCasting = false
 	self.vars.CancelChanneling = false
-	
+
 	--self:LevelDebug(3, "ToggleGameMenu2", SpellIsTargeting())
 end
 
@@ -599,26 +618,26 @@ end
 
 function SpellStatus:SPELLCAST_START(spellName, duration)
 	self:LevelDebug(1, "SPELLCAST_START", spellName, duration)
-	
+
 	self.vars.SpellStopCastingActiveName = nil
 	self.vars.Using = false
 	self.vars.Preparing = false
 	self.vars.Casting = true
-	
+
 	if (self.vars.ActiveName ~= spellName) then
 		ResetActiveVariables(self)
 		self.vars.ActiveName = spellName
 		self.vars.ActiveFullName = spellName
 	end
-	
-	
+			
+
 	self.vars.ActiveCastStartTime = GetTime()
 	self.vars.ActiveCastDuration = duration
 	self.vars.ActiveCastStopTime = self.vars.ActiveCastStartTime + (self.vars.ActiveCastDuration/1000)
-	
+
 	self.vars.ActiveCastDelay = nil
 	self.vars.ActiveCastDelayTotal = nil
-	
+
 	self:TriggerEvent(
 		"SpellStatus_SpellCastCastingStart", 
 		self.vars.ActiveId,
@@ -627,21 +646,22 @@ function SpellStatus:SPELLCAST_START(spellName, duration)
 		self.vars.ActiveFullName,
 		self.vars.ActiveCastStartTime,
 		self.vars.ActiveCastStopTime,
-		self.vars.ActiveCastDuration
+		self.vars.ActiveCastDuration,
+		self.vars.ActiveTarget
 	)
 end
 
 function SpellStatus:SPELLCAST_DELAYED(delay)
 	self:LevelDebug(1, "SPELLCAST_DELAYED", delay)
-	
+
 	if (self.vars.ActiveCastStopTime == nil) then
 		return
 	end
-	
+
 	self.vars.ActiveCastDelay = delay/1000
 	self.vars.ActiveCastDelayTotal = (self.vars.ActiveCastDelayTotal or 0) + self.vars.ActiveCastDelay
 	self.vars.ActiveCastStopTime = self.vars.ActiveCastStopTime + self.vars.ActiveCastDelay
-	
+
 	self:TriggerEvent(
 		"SpellStatus_SpellCastCastingChange", 
 		self.vars.ActiveId,
@@ -658,12 +678,12 @@ end
 
 function SpellStatus:SPELLCAST_STOP()
 	self:LevelDebug(1, "SPELLCAST_STOP")
-	
+
 	--If canceling targeting.. ignore stop!
 	if (self.vars.CancelTargeting or self.vars.CancelCasting or self.vars.CancelChanneling) then
 		return
 	end
-	
+
 	--if (self.vars.ActiveId == nil) then
 	if (self.vars.ActiveName == nil) then
 		return
@@ -671,11 +691,11 @@ function SpellStatus:SPELLCAST_STOP()
 	
 	--Player probably moved initiating a client and server side SPELLCAST_STOP
 	if (not(	self.vars.Using or 
-		self.vars.Preparing or 
-		self.vars.Casting or 
-		self.vars.Channeling or
-	self.vars.AutoRepeating )) then
-	return
+				self.vars.Preparing or 
+				self.vars.Casting or 
+				self.vars.Channeling or
+				self.vars.AutoRepeating )) then
+		return
 	end
 	
 	if (TriggerFailureEvent(self)) then
@@ -684,22 +704,22 @@ function SpellStatus:SPELLCAST_STOP()
 	
 	self.vars.Using = false
 	self.vars.Preparing = false
-	
+
 	--Second SPELLCAST_STOP received from server after SpellStopCasting was called
 	if ((not self.vars.Casting) and 
 		self.vars.SpellStopCastingActiveName and 
-	(self.vars.ActiveName == self.vars.SpellStopCastingActiveName)) then
-	self.vars.SpellStopCastingActiveName = nil
-	return
+		(self.vars.ActiveName == self.vars.SpellStopCastingActiveName)) then
+		self.vars.SpellStopCastingActiveName = nil
+		return
 	end
-	
+
 	local castingInstant = (not self.vars.Casting) and (not self.vars.Channeling)
 	self.vars.Casting = false
-	
+
 	--Generate Finish Event if not channeling
 	if (not self.vars.Channeling) then
 		local sD = castingInstant and self or self.vars.ActiveCastingData
-		
+
 		self.vars.ActiveCastStartTime = self.vars.ActiveCastStartTime or GetTime()
 		self.vars.ActiveCastStopTime = GetTime()
 		
@@ -712,7 +732,8 @@ function SpellStatus:SPELLCAST_STOP()
 			self.vars.ActiveCastStartTime,
 			self.vars.ActiveCastStopTime,
 			self.vars.ActiveCastDuration,
-			self.vars.ActiveCastDelayTotal
+			self.vars.ActiveCastDelayTotal,
+			self.vars.ActiveTarget
 		)
 		--We cant reset because maybe we have a failure!!!
 		--ResetActiveVariables(self)
@@ -721,19 +742,19 @@ end
 
 function SpellStatus:SPELLCAST_CHANNEL_START(duration, action)
 	self:LevelDebug(2, "SPELLCAST_CHANNEL_START", duration, action)
-	
+
 	self.vars.SpellStopCastingActiveName = nil
 	self.vars.Using = false
 	self.vars.Preparing = false
 	self.vars.Channeling = true
 	
 	local sD = self.vars.ActiveChannelingData
-	
+
 	self.vars.ActiveCastStartTime = GetTime()
 	self.vars.ActiveCastDuration = duration / 1000
 	self.vars.ActiveCastStopTime = self.vars.ActiveCastStartTime + self.vars.ActiveCastDuration
 	self.vars.ActiveAction = action
-	
+
 	self.vars.ActiveId = self.vars.ActiveId
 	self.vars.ActiveName = self.vars.ActiveName
 	self.vars.ActiveRank = self.vars.ActiveRank
@@ -741,7 +762,7 @@ function SpellStatus:SPELLCAST_CHANNEL_START(duration, action)
 	
 	self.vars.ActiveCastDisruption = nil
 	self.vars.ActiveCastDisruptionTotal = nil
-	
+
 	self:TriggerEvent(
 		"SpellStatus_SpellCastChannelingStart", 
 		self.vars.ActiveId,
@@ -758,9 +779,9 @@ end
 --Any changes while channeling will come through this event
 function SpellStatus:SPELLCAST_CHANNEL_UPDATE(duration)
 	self:LevelDebug(2, "SPELLCAST_CHANNEL_UPDATE", duration)
-	
+
 	local sD = self.vars.ActiveChannelingData
-	
+
 	local timeStamp = GetTime()
 	
 	--New Duration
@@ -775,7 +796,7 @@ function SpellStatus:SPELLCAST_CHANNEL_UPDATE(duration)
 	self.vars.ActiveCastDisruption = self.vars.ActiveCastDuration - spellCastDuration - spellCastTimePassed
 	self.vars.ActiveCastDisruptionTotal = (self.vars.ActiveCastDisruptionTotal or 0) + self.vars.ActiveCastDisruption
 	self.vars.ActiveCastStopTime = timeStamp + spellCastDuration
-	
+
 	self:TriggerEvent(
 		"SpellStatus_SpellCastChannelingChange", 
 		self.vars.ActiveId,
@@ -793,13 +814,13 @@ end
 
 function SpellStatus:SPELLCAST_CHANNEL_STOP()
 	self:LevelDebug(2, "SPELLCAST_CHANNEL_STOP")
-	
+
 	self.vars.Using = false
 	self.vars.Preparing = false
 	self.vars.Channeling = false
-	
+
 	self.vars.ActiveCastStopTime = GetTime()
-	
+
 	self:TriggerEvent(
 		"SpellStatus_SpellCastChannelingFinish", 
 		self.vars.ActiveId,
@@ -817,7 +838,7 @@ end
 --Always thrown before CHAT_MSG_SPELL_FAILED_LOCALPLAYER which might be thrown
 function SpellStatus:UI_ERROR_MESSAGE(message)
 	self:LevelDebug(2, "UI_ERROR_MESSAGE", message)
-	
+
 	self.vars.UIEM_Message = message
 end
 
@@ -828,7 +849,7 @@ local FAILUREMESSAGE = {
 
 function SpellStatus:CHAT_MSG_SPELL_FAILED_LOCALPLAYER(message)
 	self:LevelDebug(2, "CHAT_MSG_SPELL_FAILED_LOCALPLAYER", message)
-	
+
 	table.foreach(FAILUREMESSAGE, 
 		function(key, value)
 			local spellName, spellFailureMessage = deformat:Deformat(message, value)
@@ -883,7 +904,7 @@ function ParseCHAT_MSG_SPELL_SELF_DAMAGE(self, message, damageMessage, damageMes
 	--self:LevelDebug(2, "ParseCHAT_MSG_SPELL_SELF_DAMAGE", self.vars.NextMeleeing, self.vars.NextMeleeName, spellName)
 	if (spellName and (spellName == self.vars.NextMeleeName)) then
 		self.vars.NextMeleeing = false
-		
+
 		self:TriggerEvent(
 			"SpellStatus_SpellCastInstant", 
 			self.vars.NextMeleeId,
@@ -896,11 +917,11 @@ end
 
 function SpellStatus:CHAT_MSG_SPELL_SELF_DAMAGE(message)
 	self:LevelDebug(2, "CHAT_MSG_SPELL_SELF_DAMAGE", message)
-	
+
 	if (not self.vars.NextMeleeing) then
 		return
 	end
-	
+
 	table.foreach(
 		CHAT_MSG_SPELL_SELF_DAMAGEMESSAGES, 
 		function(_, damageMessage)
@@ -922,16 +943,16 @@ end
 
 function SpellStatus:CHAT_MSG_SPELL_AURA_GONE_SELF(message)
 	self:LevelDebug(2, "CHAT_MSG_SPELL_AURA_GONE_SELF", message)
-	
+
 	if (not(self.vars.Using or self.vars.Preparing or self.vars.Casting or self.vars.Channeling)) then
 		return
 	end
-	
+
 	local spellName = deformat:Deformat(message, AURAREMOVEDSELF)
 	if ((not spellName) or (spellName ~= self.vars.ActiveName)) then
 		return
 	end
-	
+
 	self.vars.Using = false
 	self.vars.Preparing = false
 	self.vars.Casting = false
@@ -947,49 +968,49 @@ end
 --Failed is called only when it was semi possible to cast the spell
 function SpellStatus:SPELLCAST_INTERRUPTED()
 	self:LevelDebug(2, "SPELLCAST_INTERRUPTED")
-	
+
 	TriggerFailureEvent(self, true) 
 end
 
 function SpellStatus:SPELLCAST_FAILED()
 	self:LevelDebug(2, "SPELLCAST_FAILED")
-	
+
 	TriggerFailureEvent(self, true) 
 end
 
 function SpellStatus:START_AUTOREPEAT_SPELL()
 	self:LevelDebug(2, "START_AUTOREPEAT_SPELL")
-	
+
 	self.vars.AutoRepeating = true
 end
 
 function SpellStatus:STOP_AUTOREPEAT_SPELL()
 	self:LevelDebug(2, "STOP_AUTOREPEAT_SPELL")
-	
+
 	self.vars.AutoRepeating = false
 end
 
 function SpellStatus:PLAYER_ENTER_COMBAT()
 	self:LevelDebug(2, "PLAYER_ENTER_COMBAT")
-	
+
 	self.vars.Attacking = true
 end
 
 function SpellStatus:PLAYER_LEAVE_COMBAT()
 	self:LevelDebug(2, "PLAYER_LEAVE_COMBAT")
-	
+
 	self.vars.Attacking = false
 end
 
 function SpellStatus:PLAYER_REGEN_DISABLED()
 	self:LevelDebug(2, "PLAYER_REGEN_DISABLED")
-	
+
 	self.vars.Combating = true
 end
 
 function SpellStatus:PLAYER_REGEN_ENABLED()
 	self:LevelDebug(2, "PLAYER_REGEN_ENABLED")
-	
+
 	self.vars.Combating = false
 end
 
@@ -1007,3 +1028,5 @@ end
 --
 AceLibrary:Register(SpellStatus, MAJOR_VERSION, MINOR_VERSION, activate)
 SpellStatus = AceLibrary(MAJOR_VERSION)
+
+

@@ -81,11 +81,11 @@ L:RegisterTranslations("enUS", function() return {
 	shadowpotandbandage = "-- Drink Shadow Protection Potion and Bandage ! --",
 	noconsumable = "-- No Consumable at this time ! --",
 
-	soundshadowpot = "Interface\\Addons\\BigWigs TW\\Sounds\\potion.wav",
-	soundbandage = "Interface\\Addons\\BigWigs TW\\Sounds\\bandage.wav",
-	soundwrtorhs = "Interface\\Addons\\BigWigs TW\\Sounds\\healthstone.wav",
-	soundshadowpotandbandage = "Interface\\Addons\\BigWigs TW\\Sounds\\potionandbandage.wav",
-	soundgoforbuff = "Interface\\Addons\\BigWigs TW\\Sounds\\goforbuff.wav",
+	soundshadowpot = "Interface\\Addons\\!BigWigs TW\\Sounds\\potion.wav",
+	soundbandage = "Interface\\Addons\\!BigWigs TW\\Sounds\\bandage.wav",
+	soundwrtorhs = "Interface\\Addons\\!BigWigs TW\\Sounds\\healthstone.wav",
+	soundshadowpotandbandage = "Interface\\Addons\\!BigWigs TW\\Sounds\\potionandbandage.wav",
+	soundgoforbuff = "Interface\\Addons\\!BigWigs TW\\Sounds\\goforbuff.wav",
 } end )
 
 L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
@@ -145,11 +145,11 @@ L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
 	shadowpotandbandage = "-- Выпей Зелье защиты от темной магии и Бинт ! --",
 	noconsumable = "-- Без Расходников сейчас ! --",
 
-	soundshadowpot = "Interface\\Addons\\BigWigs TW\\Sounds\\potion.wav",
-	soundbandage = "Interface\\Addons\\BigWigs TW\\Sounds\\bandage.wav",
-	soundwrtorhs = "Interface\\Addons\\BigWigs TW\\Sounds\\healthstone.wav",
-	soundshadowpotandbandage = "Interface\\Addons\\BigWigs TW\\Sounds\\potionandbandage.wav",
-	soundgoforbuff = "Interface\\Addons\\BigWigs TW\\Sounds\\goforbuff.wav",
+	soundshadowpot = "Interface\\Addons\\!BigWigs TW\\Sounds\\potion.wav",
+	soundbandage = "Interface\\Addons\\!BigWigs TW\\Sounds\\bandage.wav",
+	soundwrtorhs = "Interface\\Addons\\!BigWigs TW\\Sounds\\healthstone.wav",
+	soundshadowpotandbandage = "Interface\\Addons\\!BigWigs TW\\Sounds\\potionandbandage.wav",
+	soundgoforbuff = "Interface\\Addons\\!BigWigs TW\\Sounds\\goforbuff.wav",
 } end )
 
 L:RegisterTranslations("esES", function() return {
@@ -257,7 +257,7 @@ local icon = {
 	softEnrage = "Spell_Shadow_UnholyFrenzy",
 	doom = "Spell_Shadow_NightOfTheDead",
 	spore = "Ability_TheBlackArrow",
-	sieni = "Interface\\AddOns\\\BigWigs TW\\Textures\\sieni",
+	sieni = "Interface\\AddOns\\\!BigWigs TW\\Textures\\sieni",
 	curse = "Spell_Holy_RemoveCurse",
 }
 local syncName = {

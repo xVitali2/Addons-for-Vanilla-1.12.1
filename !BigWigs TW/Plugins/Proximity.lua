@@ -480,7 +480,7 @@ function BigWigsProximity:SetupFrames()
 
 	frame:SetBackdrop({
 		bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16,
-		edgeFile = "Interface\\AddOns\\BigWigs TW\\Textures\\otravi-semi-full-border", edgeSize = 32,
+		edgeFile = "Interface\\AddOns\\!BigWigs TW\\Textures\\otravi-semi-full-border", edgeSize = 32,
 		--edgeFile = "", edgeSize = 32,
 		insets = {left = 1, right = 1, top = 20, bottom = 1},
 	})
@@ -534,7 +534,7 @@ function BigWigsProximity:SetupFrames()
 	text2:SetFont(L["font"], 12)
 	frame.text2 = text2
 	local close = frame:CreateTexture(nil, "ARTWORK")
-	close:SetTexture("Interface\\AddOns\\BigWigs TW\\Textures\\otravi-close")
+	close:SetTexture("Interface\\AddOns\\!BigWigs TW\\Textures\\otravi-close")
 	close:SetTexCoord(0, .625, 0, .9333)
 
 	close:SetWidth(20)

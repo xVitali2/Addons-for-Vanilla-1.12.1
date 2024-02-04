@@ -802,9 +802,9 @@ function CthunMapUnitIcon(i)
 		cthunmap.map.unit[i]:SetHeight(32)
 		
 		if BigWigsProximity:PlayerCanChain() then
-			cthunmap.map.unit[i].texture:SetTexture("Interface\\Addons\\BigWigs TW\\Textures\\PlayerMapIconRed")
+			cthunmap.map.unit[i].texture:SetTexture("Interface\\Addons\\!BigWigs TW\\Textures\\PlayerMapIconRed")
 		else
-			cthunmap.map.unit[i].texture:SetTexture("Interface\\Addons\\BigWigs TW\\Textures\\PlayerMapIconGreen")
+			cthunmap.map.unit[i].texture:SetTexture("Interface\\Addons\\!BigWigs TW\\Textures\\PlayerMapIconGreen")
 		end
 	else
 		cthunmap.map.unit[i]:SetWidth(16)
@@ -821,7 +821,7 @@ function module:SetupMap()
 
 	cthunmap:SetBackdrop({
 		-- bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16,
-		edgeFile = "Interface\\Addons\\BigWigs TW\\Textures\\otravi-semi-full-border", edgeSize = 32,
+		edgeFile = "Interface\\Addons\\!BigWigs TW\\Textures\\otravi-semi-full-border", edgeSize = 32,
 		--edgeFile = "", edgeSize = 32,
 		insets = {left = 1, right = 1, top = 20, bottom = 1},
 	})
@@ -857,18 +857,18 @@ function module:SetupMap()
 	cthunmap.closebutton = CreateFrame("Button", nil, cthunmap)
 	cthunmap.closebutton:SetWidth(20)
 	cthunmap.closebutton:SetHeight(14)
-	cthunmap.closebutton:SetHighlightTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-close")
-	cthunmap.closebutton:SetNormalTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-close")
-	cthunmap.closebutton:SetPushedTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-close")
+	cthunmap.closebutton:SetHighlightTexture("Interface\\Addons\\!BigWigs TW\\Textures\\otravi-close")
+	cthunmap.closebutton:SetNormalTexture("Interface\\Addons\\!BigWigs TW\\Textures\\otravi-close")
+	cthunmap.closebutton:SetPushedTexture("Interface\\Addons\\!BigWigs TW\\Textures\\otravi-close")
 	cthunmap.closebutton:SetPoint("TOPRIGHT", cthunmap, "TOPRIGHT", -7, -15)
 	cthunmap.closebutton:SetScript( "OnClick", function() cthunmap:Hide() end )
 	
 	cthunmap.alphabutton = CreateFrame("Button", nil, cthunmap)
 	cthunmap.alphabutton:SetWidth(20)
 	cthunmap.alphabutton:SetHeight(14)
-	cthunmap.alphabutton:SetHighlightTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-alpha")
-	cthunmap.alphabutton:SetNormalTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-alpha")
-	cthunmap.alphabutton:SetPushedTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-alpha")
+	cthunmap.alphabutton:SetHighlightTexture("Interface\\Addons\\!BigWigs TW\\Textures\\otravi-alpha")
+	cthunmap.alphabutton:SetNormalTexture("Interface\\Addons\\!BigWigs TW\\Textures\\otravi-alpha")
+	cthunmap.alphabutton:SetPushedTexture("Interface\\Addons\\!BigWigs TW\\Textures\\otravi-alpha")
 	cthunmap.alphabutton:SetPoint("TOPRIGHT", cthunmap, "TOPRIGHT", -27, -15)
 	cthunmap.alphabutton:SetScript( "OnClick", function()
 	if not self.db.profile.mapAlpha or (self.db.profile.mapAlpha < 0.3) then self.db.profile.mapAlpha = 1.0
@@ -879,9 +879,9 @@ function module:SetupMap()
 	cthunmap.scalebutton = CreateFrame("Button", nil, cthunmap)
 	cthunmap.scalebutton:SetWidth(20)
 	cthunmap.scalebutton:SetHeight(14)
-	cthunmap.scalebutton:SetHighlightTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-scale")
-	cthunmap.scalebutton:SetNormalTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-scale")
-	cthunmap.scalebutton:SetPushedTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-scale")
+	cthunmap.scalebutton:SetHighlightTexture("Interface\\Addons\\!BigWigs TW\\Textures\\otravi-scale")
+	cthunmap.scalebutton:SetNormalTexture("Interface\\Addons\\!BigWigs TW\\Textures\\otravi-scale")
+	cthunmap.scalebutton:SetPushedTexture("Interface\\Addons\\!BigWigs TW\\Textures\\otravi-scale")
 	cthunmap.scalebutton:SetPoint("TOPRIGHT", cthunmap, "TOPRIGHT", -47, -15)
 	cthunmap.scalebutton:SetScript( "OnClick", function()
 	local oldScale = (self.db.profile.mapScale or 1.0)
@@ -901,7 +901,7 @@ function module:SetupMap()
 	cthunmap.map:SetHeight(200)
 	cthunmap.map.texture = cthunmap.map:CreateTexture(nil, "BACKGROUND")
 	cthunmap.map.texture:SetAllPoints(cthunmap.map)
-	cthunmap.map.texture:SetTexture("Interface\\Addons\\BigWigs TW\\Textures\\cthunmaptexture")
+	cthunmap.map.texture:SetTexture("Interface\\Addons\\!BigWigs TW\\Textures\\cthunmaptexture")
 	
 	cthunmap.map.unit = {}
 	for i = 1, 40 do

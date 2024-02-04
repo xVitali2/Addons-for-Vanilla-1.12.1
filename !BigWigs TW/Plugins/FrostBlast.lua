@@ -412,7 +412,7 @@ function BigWigsFrostBlast:SetupFrames()
 
 	frame:SetBackdrop({
 		-- bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16,
-		edgeFile = "Interface\\Addons\\BigWigs TW\\Textures\\otravi-semi-full-border", edgeSize = 32,
+		edgeFile = "Interface\\Addons\\!BigWigs TW\\Textures\\otravi-semi-full-border", edgeSize = 32,
 		--edgeFile = "", edgeSize = 32,
 		insets = {left = 1, right = 1, top = 20, bottom = 1},
 	})
@@ -467,7 +467,7 @@ function BigWigsFrostBlast:SetupFrames()
 		bar.status = CreateFrame("StatusBar",nil, bar)
 		bar.status:ClearAllPoints()
 		bar.status:SetPoint("CENTER", bar)
-		bar.status:SetStatusBarTexture("Interface\\Addons\\BigWigs TW\\textures\\smooth")
+		bar.status:SetStatusBarTexture("Interface\\Addons\\!BigWigs TW\\textures\\smooth")
 		bar.status:SetMinMaxValues(0, 100)
 		bar.status:SetValue(100)
 		bar.status:SetWidth(196)
@@ -515,14 +515,14 @@ function BigWigsFrostBlast:SetupFrames()
 		bar.healcomm:SetAlpha(0.4)
 		bar.healcomm.texture = bar.healcomm:CreateTexture(nil, "BACKGROUND")
 		bar.healcomm.texture:SetAllPoints(bar.healcomm)
-		bar.healcomm.texture:SetTexture("Interface\\Addons\\BigWigs TW\\textures\\smoothhealcomm")
+		bar.healcomm.texture:SetTexture("Interface\\Addons\\!BigWigs TW\\textures\\smoothhealcomm")
 
 		frame.bar[i] = bar
 		frame.bar[i]:Hide()
 	end
 
 	local close = frame:CreateTexture(nil, "ARTWORK")
-	close:SetTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-close")
+	close:SetTexture("Interface\\Addons\\!BigWigs TW\\Textures\\otravi-close")
 	close:SetTexCoord(0, .625, 0, .9333)
 	close:SetWidth(20)
 	close:SetHeight(14)

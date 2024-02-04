@@ -11,7 +11,7 @@
 ]]
 
 local MAJOR_VERSION = "AceOO-2.0"
-local MINOR_VERSION = "$Revision: 17638 $"
+local MINOR_VERSION = "$Revision: 17639 $"
 
 -- This ensures the code is only executed if the libary doesn't already exist, or is a newer version
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary.") end
@@ -731,7 +731,9 @@ do
 			target[self] = true
 		end
 		if not autoEmbed and type(self.OnManualEmbed) == "function" then
+			if not target.modules then
 			self:OnManualEmbed(target)
+		end
 		end
 		setmetatable(target, mt)
 	end

@@ -133,6 +133,11 @@ OneStorage-2.0\OneStorage-2.0.lua
 Surface-1.0\Surface-1.0.lua
 Quixote-1.0\Quixote-1.0.lua
 FiveSecLib-1.0\FiveSecLib-1.0.lua
+ItemBonusLib-1.0\Locales\enUS.lua
+ItemBonusLib-1.0\Locales\frFR.lua
+ItemBonusLib-1.0\Locales\deDE.lua
+ItemBonusLib-1.0\Locales\ruRU.lua
+ItemBonusLib-1.0\ItemBonusLib-1.0.lua
 HealComm-1.0\HealComm-1.0.lua
 DruidManaLib-1.0\DruidManaLib-1.0.lua
 CastLib-1.0\CastLib-1.0.lua
