@@ -101,7 +101,6 @@ PT2\PeriodicTable-Core-2.0\PeriodicTable-Core-2.0.lua
 PT2\PeriodicTable-Misc-2.0\PeriodicTable-Misc-2.0.lua
 
 Dewdrop-2.0\Dewdrop-2.0.lua
-GraphLib\Graph-1.0\Graph-1.0.lua
 
 Tablet-2.0\Tablet-2.0.lua
 FuBarPlugin-2.0\FuBarPlugin-2.0.lua
@@ -115,6 +114,7 @@ Tourist-2.0\Tourist-2.0.lua
 Glory-2.0\Glory-2.0.lua
 PaintChips-2.0\PaintChips-2.0.lua
 CandyBar-2.0\CandyBar-2.0.lua
+CandyBar-2.1\CandyBar-2.1.lua
 TipLib-1.0\TipLib-1.0.lua
 SpellCache-1.0\SpellCache-1.0.lua
 SpellStatus-1.0\SpellStatus-1.0.lua
