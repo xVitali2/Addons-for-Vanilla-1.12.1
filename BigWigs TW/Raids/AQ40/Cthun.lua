@@ -18,18 +18,19 @@ L:RegisterTranslations("enUS", function() return {
 
 	eye_beam_trigger = "Giant Eye Tentacle begins to cast Eye Beam.",
 	eye_beam_trigger_cthun = "Eye of C'Thun begins to cast Eye Beam.",
+	giant_eye_birth_trigger = "Giant Eye Tentacle begins to cast Birth",
 	eyebeam		= "Eye Beam on %s",
 	Unknown = "Unknown", -- Eye Beam on Unknown
 
 	tentacle_cmd = "tentacle",
 	tentacle_name = "Tentacle Alert",
 	tentacle_desc = "Warn for Tentacles",
-	rape_cmd = "rape",
-	rape_name = "Rape jokes are funny",
-	rape_desc = "Some people like hentai jokes.",
-	tentacle	= "Tentacle Rape Party - 5 sec",
+	map_cmd = "map",
+	map_name = "Positions Map",
+	map_desc = "Show live cthun positions map",
+	tentacle	= "Tentacle Party - 5 sec",
 	norape		= "Tentacles in 5sec!",
-	barTentacle	= "Tentacle rape party!",
+	barTentacle	= "Tentacle party!",
 	barNoRape	= "Tentacle party!",
 
 	glare_cmd = "glare",
@@ -92,6 +93,10 @@ L:RegisterTranslations("enUS", function() return {
 	stomach_cmd = "stomach",
 	stomach_name = "Players in Stomach",
 	stomach_desc = "Show players in stomach instead of too close players",
+
+	autotarget_cmd = "autotarget",
+	autotarget_name = "Autotarget giant eye",
+	autotarget_desc = "Automatically target the giant eye instantly when it spawns",
 
 } end )
 
@@ -262,9 +267,9 @@ L:RegisterTranslations("deDE", function() return {
 	--rape_cmd = "rape",
 	rape_name = "Rape jokes are funny",
 	rape_desc = "Some people like hentai jokes.",
-	tentacle	= "Tentakel Rape Party - 5 sec", --"Tentacle Rape Party - 5 sec",
+	tentacle	= "Tentakel Party - 5 sec", --"Tentacle Party - 5 sec",
 	norape		=  "Tentakel in 5sec!", --"Tentacles in 5sec!",
-	barTentacle	= "Tentakel Rape Party!", -- "Tentacle rape party!",
+	barTentacle	= "Tentakel Party!", -- "Tentacle party!",
 	barNoRape	= "Tentakel Party", --"Tentacle party!",
 
 	--glare_cmd = "glare",
@@ -328,8 +333,14 @@ local eyeofcthun = AceLibrary("Babble-Boss-2.2")["Eye of C'Thun"]
 local cthun = AceLibrary("Babble-Boss-2.2")["C'Thun"]
 module.enabletrigger = {eyeofcthun, cthun} -- string or table {boss, add1, add2}
 --module.wipemobs = { L["add_name"] } -- adds which will be considered in CheckForEngage
-module.toggleoptions = {"rape", -1, "tentacle", "glare", "group", -1, "giant", "acid", "weakened", -1, "proximity", "stomach", "bosskill"}
+module.toggleoptions = {"tentacle", "glare", "group", -1, "giant", "acid", "autotarget","weakened", -1, "map", "proximity", "stomach", "bosskill"}
 
+module.defaultDB = {
+	mapX = 600,
+	mapY = -400,
+	mapAlpha = 1,
+	mapScale = 1,
+}
 -- Proximity Plugin
 module.proximityCheck = function(unit) return CheckInteractDistance(unit, 2) end
 module.proximitySilent = false
@@ -412,7 +423,7 @@ function module:OnEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE", "Emote")
 
 	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE", "CheckEyeBeam")
-
+	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF", "CheckEyeBeam")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE", "CheckDigestiveAcid")
 
 	self:ThrottleSync(20, syncName.p2Start)
@@ -423,6 +434,8 @@ function module:OnEnable()
 	self:ThrottleSync(25, syncName.giantClawSpawn)
 	self:ThrottleSync(25, syncName.giantEyeSpawn)
 	self:ThrottleSync(25, syncName.tentacleSpawn)
+	
+	self:SetupMap()
 end
 
 -- called after module is enabled and after each wipe
@@ -453,6 +466,7 @@ end
 
 -- called after boss is disengaged (wipe(retreat) or victory)
 function module:OnDisengage()
+	cthunmap:Hide()
 	self:RemoveProximity()
 	self:TriggerEvent("BigWigs_StopDebuffTrack")
 end
@@ -496,6 +510,10 @@ function module:CheckEyeBeam(msg)
 		self:Sync(syncName.eyeBeam)
 		if not cthunstarted then
 			self:SendEngageSync()
+		end
+	elseif string.find(msg, L["giant_eye_birth_trigger"]) then
+		if self.db.profile.autotarget then
+			TargetByName("Giant Eye Tentacle", true);
 		end
 	end
 end
@@ -549,16 +567,20 @@ end
 function module:CThunStart()
 	self:DebugMessage("CThunStart: ")
 	if not cthunstarted then
+		if self.db.profile.map then
+			cthunmap:Show()
+		end
 		cthunstarted = true
 		doCheckForWipe = true
 
 		self:Message(L["startwarn"], "Attention", false, false)
-		self:Sound("Shakira")
+		--self:Sound("Shakira")
 		self:Bar(L["barStartRandomBeams"], timer.p1RandomEyeBeams, icon.giantEye)
 		--self:Bar("Claw Tentacle", 8, icon.giantClaw)
 
 
 		self:P1ClawTentacle()
+
 
 		if self.db.profile.tentacle then
 			self:Bar(self.db.profile.rape and L["barTentacle"] or L["barNoRape"], timer.p1TentacleStart, icon.eyeTentacles)
@@ -589,6 +611,9 @@ function module:CThunP2Start()
 
 		self:Message(L["phase2starting"], "Bosskill")
 
+		-- cancel C'thun map
+		self:ScheduleEvent("hideCthunMap", cthunmap:Hide(), 8, self )
+		
 		-- cancel dark glare
 		self:RemoveBar(L["barGlare"] )
 		self:RemoveBar(L["barGlareCasting"] )
@@ -607,6 +632,7 @@ function module:CThunP2Start()
 
 		-- cancel p1 claw tentacle
 		self:RemoveBar("Claw Tentacle")
+
 		-- cancel dark glare group warning
 		self:CancelScheduledEvent("bwcthuntarget") -- ok
 
@@ -731,6 +757,164 @@ end
 -----------------------
 -- Utility Functions --
 -----------------------
+
+function GetCthunCoords(unit)
+	local posX, posY = GetPlayerMapPosition(unit)
+	posX = (18.25 * posX - 5.55) * cthunmap.map:GetWidth()
+	posY = (-12.2229333333 * posY + 5.543764799)* cthunmap.map:GetHeight()
+	return posX, posY
+end
+
+function UpdateCthunMap()
+	if not cthunmap.map then return end
+	local tooltipText = ""
+	local tooltipAnchor
+	for i=1, 40 do
+		local coordX, coordY = GetCthunCoords("raid"..i)
+		if coordX == 0 and coordY == 0 then
+			cthunmap.map.unit[i]:Hide()
+		else
+			cthunmap.map.unit[i]:Show()
+			cthunmap.map.unit[i]:SetPoint("CENTER", cthunmap.map, "TOPLEFT", coordX, coordY)
+			CthunMapUnitIcon(i)
+			if MouseIsOver(cthunmap.map.unit[i]) and GetRaidRosterInfo(i) ~= UnitName("player") then
+				if GetRaidTargetIndex("raid"..i) then
+					tooltipText = tooltipText .. GetRaidRosterInfo(i) .. SpellstatusIndexToIcon[GetRaidTargetIndex("raid"..i)] .."\n"
+				else
+					tooltipText = tooltipText .. GetRaidRosterInfo(i) .."\n"
+				end
+				tooltipAnchor = cthunmap.map.unit[i]
+			end
+		end
+	end
+	if tooltipText ~= "" then
+		cthunmap.tooltip:Show()
+		cthunmap.tooltip:SetOwner(tooltipAnchor, "ANCHOR_RIGHT");
+		cthunmap.tooltip:SetText(tooltipText)
+	else
+		cthunmap.tooltip:Hide()
+	end
+end
+
+function CthunMapUnitIcon(i)
+	if GetRaidRosterInfo(i) == UnitName("player") then
+		cthunmap.map.unit[i]:SetWidth(32)
+		cthunmap.map.unit[i]:SetHeight(32)
+		
+		if BigWigsProximity:PlayerCanChain() then
+			cthunmap.map.unit[i].texture:SetTexture("Interface\\Addons\\BigWigs TW\\Textures\\PlayerMapIconRed")
+		else
+			cthunmap.map.unit[i].texture:SetTexture("Interface\\Addons\\BigWigs TW\\Textures\\PlayerMapIconGreen")
+		end
+	else
+		cthunmap.map.unit[i]:SetWidth(16)
+		cthunmap.map.unit[i]:SetHeight(16)
+		cthunmap.map.unit[i].texture:SetTexture("Interface\\WorldMap\\WorldMapPartyIcon")
+	end
+end
+
+function module:SetupMap()
+	if cthunmap then return end
+	cthunmap = CreateFrame("Frame", "BigWigsCThunMap", UIParent)
+	cthunmap:SetWidth(200)
+	cthunmap:SetHeight(32)
+
+	cthunmap:SetBackdrop({
+		-- bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16,
+		edgeFile = "Interface\\Addons\\BigWigs TW\\Textures\\otravi-semi-full-border", edgeSize = 32,
+		--edgeFile = "", edgeSize = 32,
+		insets = {left = 1, right = 1, top = 20, bottom = 1},
+	})
+	cthunmap:SetBackdropBorderColor(1.0,1.0,1.0)
+	cthunmap:SetBackdropColor(24/255, 24/255, 24/255)
+	cthunmap:ClearAllPoints()
+	cthunmap:SetPoint("TOPLEFT", nil, "TOPLEFT", self.db.profile.mapX, self.db.profile.mapY)
+	cthunmap:EnableMouse(true)
+	cthunmap:SetClampedToScreen(true)
+	cthunmap:RegisterForDrag("LeftButton")
+	cthunmap:SetMovable(true)
+	cthunmap:SetFrameStrata("LOW")
+	cthunmap:SetAlpha(self.db.profile.mapAlpha or 1.0)
+	cthunmap:SetScale(self.db.profile.mapScale or 1.0)
+	cthunmap:SetScript("OnDragStart", function() cthunmap:StartMoving() end)
+	cthunmap:SetScript("OnDragStop", function() cthunmap:StopMovingOrSizing(); self.db.profile.mapX = cthunmap:GetLeft(); self.db.profile.mapY = cthunmap:GetTop() end)
+	cthunmap:SetScript("OnUpdate", UpdateCthunMap)
+	cthunmap:Hide()
+	
+	cthunmap.tooltip = CreateFrame("GameTooltip", "CthunMapTooltip", cthunmap, "GameTooltipTemplate")
+	
+	cthunmap.cheader = cthunmap:CreateFontString(nil, "OVERLAY")
+	cthunmap.cheader:ClearAllPoints()
+	cthunmap.cheader:SetWidth(190)
+	cthunmap.cheader:SetHeight(15)
+	cthunmap.cheader:SetPoint("TOP", cthunmap, "TOP", 0, -14)
+	cthunmap.cheader:SetFont("Fonts\\FRIZQT__.TTF", 12)
+	cthunmap.cheader:SetJustifyH("LEFT")
+	cthunmap.cheader:SetText("C'thun Map")
+	cthunmap.cheader:SetShadowOffset(.8, -.8)
+	cthunmap.cheader:SetShadowColor(0, 0, 0, 1)
+	
+	cthunmap.closebutton = CreateFrame("Button", nil, cthunmap)
+	cthunmap.closebutton:SetWidth(20)
+	cthunmap.closebutton:SetHeight(14)
+	cthunmap.closebutton:SetHighlightTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-close")
+	cthunmap.closebutton:SetNormalTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-close")
+	cthunmap.closebutton:SetPushedTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-close")
+	cthunmap.closebutton:SetPoint("TOPRIGHT", cthunmap, "TOPRIGHT", -7, -15)
+	cthunmap.closebutton:SetScript( "OnClick", function() cthunmap:Hide() end )
+	
+	cthunmap.alphabutton = CreateFrame("Button", nil, cthunmap)
+	cthunmap.alphabutton:SetWidth(20)
+	cthunmap.alphabutton:SetHeight(14)
+	cthunmap.alphabutton:SetHighlightTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-alpha")
+	cthunmap.alphabutton:SetNormalTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-alpha")
+	cthunmap.alphabutton:SetPushedTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-alpha")
+	cthunmap.alphabutton:SetPoint("TOPRIGHT", cthunmap, "TOPRIGHT", -27, -15)
+	cthunmap.alphabutton:SetScript( "OnClick", function()
+	if not self.db.profile.mapAlpha or (self.db.profile.mapAlpha < 0.3) then self.db.profile.mapAlpha = 1.0
+	else self.db.profile.mapAlpha = self.db.profile.mapAlpha - 0.2 end
+	cthunmap:SetAlpha(self.db.profile.mapAlpha)
+	end )
+	
+	cthunmap.scalebutton = CreateFrame("Button", nil, cthunmap)
+	cthunmap.scalebutton:SetWidth(20)
+	cthunmap.scalebutton:SetHeight(14)
+	cthunmap.scalebutton:SetHighlightTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-scale")
+	cthunmap.scalebutton:SetNormalTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-scale")
+	cthunmap.scalebutton:SetPushedTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-scale")
+	cthunmap.scalebutton:SetPoint("TOPRIGHT", cthunmap, "TOPRIGHT", -47, -15)
+	cthunmap.scalebutton:SetScript( "OnClick", function()
+	local oldScale = (self.db.profile.mapScale or 1.0)
+	if not self.db.profile.mapScale then self.db.profile.mapScale = 1.0 
+	elseif (self.db.profile.mapScale > 2.0) then self.db.profile.mapScale = 0.75
+	else self.db.profile.mapScale = self.db.profile.mapScale + 0.25 end
+	cthunmap:SetScale(self.db.profile.mapScale)
+	self.db.profile.mapX = self.db.profile.mapX * oldScale / self.db.profile.mapScale
+	self.db.profile.mapY = self.db.profile.mapY * oldScale / self.db.profile.mapScale
+	cthunmap:ClearAllPoints()
+	cthunmap:SetPoint("TOPLEFT", nil, "TOPLEFT", self.db.profile.mapX, self.db.profile.mapY)
+	end )
+	
+	cthunmap.map = CreateFrame("Frame", "CthunMapAnchor", cthunmap)
+	cthunmap.map:SetPoint("TOPLEFT", cthunmap, "BOTTOMLEFT", 0, 0)
+	cthunmap.map:SetWidth(cthunmap:GetWidth())
+	cthunmap.map:SetHeight(200)
+	cthunmap.map.texture = cthunmap.map:CreateTexture(nil, "BACKGROUND")
+	cthunmap.map.texture:SetAllPoints(cthunmap.map)
+	cthunmap.map.texture:SetTexture("Interface\\Addons\\BigWigs TW\\Textures\\cthunmaptexture")
+	
+	cthunmap.map.unit = {}
+	for i = 1, 40 do
+		cthunmap.map.unit[i] = CreateFrame("Frame", "CthunMapUnit"..i, cthunmap.map)
+--		cthunmap.map.unit[i]:EnableMouse(true)
+--		cthunmap.map.unit[i]: SetPoint("TOPLEFT", cthunmap.map, "TOPLEFT")
+		cthunmap.map.unit[i].texture = cthunmap.map.unit[i]:CreateTexture(nil, "OVERLAY")
+		cthunmap.map.unit[i].texture:SetAllPoints(cthunmap.map.unit[i])
+--		cthunmap.map.unit[i]:SetScript("OnLeave", function() GameTooltip:Hide(); DEFAULT_CHAT_FRAME:AddMessage("leave hover") end )
+		CthunMapUnitIcon(i)
+	end
+end
+
 function module:CheckTentacleHP()
 	local health
 	if UnitName("playertarget") == fleshtentacle then
@@ -791,6 +975,7 @@ function module:CheckTarget()
 end
 
 -- P1
+
 function module:P1ClawTentacle()
 
 	if phase2started then
@@ -800,6 +985,7 @@ function module:P1ClawTentacle()
 		self:Bar("Claw Tentacle", 8, icon.giantClaw)
 	end
 end
+
 function module:DarkGlare()
 	if self.db.profile.glare then
 		if firstGlare then
@@ -833,8 +1019,6 @@ end
 function module:GCTentacleRape()
 	doCheckForWipe = true
 	self:DelayedSync(timer.p2GiantClaw, syncName.giantClawSpawn)
-	self:KTM_Reset()
-	self:KTM_SetTarget("Giant Claw Tentacle")
 	if self.db.profile.giant then
 		self:Bar(L["barGiantC"], timer.p2GiantClaw, icon.giantClaw)
 	end

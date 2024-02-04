@@ -328,7 +328,7 @@ local timer = {
 	breathCast = 2,
 	frenzy = 8,
 	nextFrenzy = 15,
-	vulnerability = 45,
+	vulnerability = 20,
 }
 local icon = {
 	unknown = "INV_Misc_QuestionMark",

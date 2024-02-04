@@ -32,7 +32,18 @@ local sounds = {
 	Murloc = "Sound\\Creature\\Murloc\\mMurlocAggroOld.wav",
 	Pain = "Sound\\Creature\\Thaddius\\THAD_NAXX_ELECT.wav",
 	Shakira = "Interface\\AddOns\\BigWigs TW\\Sounds\\Shakira.mp3",
-	BikeHorn = "Interface\\AddOns\\BigWigs TW\\Sounds\\BikeHorn.ogg",
+
+	BikeHorn = "Interface\\Addons\\BigWigs TW\\Sounds\\BikeHorn.ogg",
+	AirHorn = "Interface\\Addons\\BigWigs TW\\Sounds\\AirHorn.ogg",
+
+	ShackleBroke = "Interface\\Addons\\BigWigs TW\\Sounds\\ShackleBroke.mp3",
+	ShackleOne = "Interface\\Addons\\BigWigs TW\\Sounds\\ShackleOne.mp3",
+	ShackleTwo = "Interface\\Addons\\BigWigs TW\\Sounds\\ShackleTwo.mp3",
+	ShackleThree = "Interface\\Addons\\BigWigs TW\\Sounds\\ShackleThree.mp3",
+
+	MarkOne = "Interface\\Addons\\BigWigs TW\\Sounds\\MarkOne.mp3",
+	MarkTwo = "Interface\\Addons\\BigWigs TW\\Sounds\\MarkTwo.mp3",
+	MarkThree = "Interface\\Addons\\BigWigs TW\\Sounds\\MarkThree.mp3",
 }
 
 
@@ -100,7 +111,7 @@ L:RegisterTranslations("deDE", function() return {
 ----------------------------------
 
 BigWigsSound = BigWigs:NewModule(L["Sounds"])
-BigWigsSound.defaults = {
+BigWigsSound.defaultDB = {
 	defaultonly = false,
 	sound = true,
 }

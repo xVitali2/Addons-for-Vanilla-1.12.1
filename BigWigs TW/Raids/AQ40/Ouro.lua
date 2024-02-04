@@ -217,7 +217,7 @@ L:RegisterTranslations("deDE", function() return {
 ---------------------------------
 
 -- module variables
-module.revision = 20009 -- To be overridden by the module!
+module.revision = 20010 -- To be overridden by the module!
 module.enabletrigger = module.translatedName -- string or table {boss, add1, add2}
 --module.wipemobs = { L["add_name"] } -- adds which will be considered in CheckForEngage
 module.toggleoptions = {"sweep", "sandblast", -1, "emerge", "submerge", -1, "berserk", "bosskill"}
@@ -225,7 +225,7 @@ module.toggleoptions = {"sweep", "sandblast", -1, "emerge", "submerge", -1, "ber
 
 -- locals
 local timer = {
-	nextSubmerge = 59,
+	nextSubmerge = 89,
 	sweep = 1.5,
 	earliestFirstSweep = 30,
 	latestFirstSweep = 40,
@@ -233,8 +233,8 @@ local timer = {
 	sandblast = 2,
 	earliestFirstSandblast = 30,
 	latestFirstSandblast = 45,
-	latestSandblastInterval = 12,
-	earliestSandblastInterval = 17,
+	earliestSandblastInterval = 12,
+	latestSandblastInterval = 17,
 	nextEmerge = 27,
 }
 local icon = {

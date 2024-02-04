@@ -41,7 +41,7 @@ local syncName = {
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	disabletrigger = "Impossible! Stay your attack, mortals", --fix for LH by CFM
+	disabletrigger = "My flame! Please don",
 	engage_trigger = "Reckless mortals, none may challenge the sons of the living flame!",
 
 	magic_trigger = "gains Magic Reflection",

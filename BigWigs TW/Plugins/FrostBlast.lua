@@ -1,6 +1,8 @@
 
 assert( BigWigs, "BigWigs not found!")
 
+local FrostBlastHealcomm = AceLibrary("HealComm-1.0")
+
 -----------------------------------------------------------------------
 --      Are you local?
 -----------------------------------------------------------------------
@@ -52,6 +54,9 @@ L:RegisterTranslations("enUS", function() return {
 	["Color Bars"] = true,
 	["Class colored bars."] = true,
 
+	["Healcomm"] = true,
+	["Enable Healcomm predictive heals on healthbars."] = true,
+
 	["Test"] = true,
 	["Perform a Frost Blast test."] = true,
 
@@ -86,7 +91,6 @@ L:RegisterTranslations("ruRU", function() return { --by CFM
 	["Offline"] = "Вышел",
 	["Dead"] = "Мертв",
 } end)
-
 L:RegisterTranslations("esES", function() return {
 	["FrostBlast"] = "FrostBlast",
 	["Frost Blast"] = "Explosión de Escarcha",
@@ -103,6 +107,9 @@ L:RegisterTranslations("esES", function() return {
 	["Class colored names."] = "Nombres de clases coloreadas",
 	["Color Bars"] = "Barras de Color",
 	["Class colored bars."] = "Barras de clases coloreadas",
+
+	["Healcomm"] = "Healcomm",
+	["Enable Healcomm predictive heals on healthbars."] = "Enable Healcomm predictive heals on healthbars.",
 
 	["Test"] = "Probar",
 	["Perform a Frost Blast test."] = "Prueba de Explosión de Escarcha",
@@ -125,6 +132,7 @@ BigWigsFrostBlast.defaultDB = {
 	lock = false,
 	disabled = false,
 	names = false,
+	enablehealcomm = true,
 	bars = true,
 }
 BigWigsFrostBlast.external = true
@@ -171,6 +179,14 @@ BigWigsFrostBlast.consoleOptions = {
 					BigWigsFrostBlast:FBClose()
 				end
 			end,
+		},
+		enablehealcomm = {
+			type = "toggle",
+			name = L["Healcomm"],
+			desc = L["Enable Healcomm predictive heals on healthbars."],
+			order = 102,
+			get = function() return BigWigsFrostBlast.db.profile.enablehealcomm end,
+			set = function(v) BigWigsFrostBlast.db.profile.enablehealcomm = v end,
 		},
 		spacer = {
 			type = "header",
@@ -272,7 +288,7 @@ end
 function BigWigsFrostBlast:TestFBFrame()
 	if not anchor then self:SetupFrames() end
 	anchor:Show()
-	for i=1,5 do
+	for i=1,10 do
 		anchor.bar[i].unit="player"
 		anchor.bar[i].status:SetScript("OnUpdate", self.OnUpdate)
 		anchor.bar[i]:Show()
@@ -318,7 +334,7 @@ function BigWigsFrostBlast:FrostBlastUpdate()
 	if not BigWigsFrostBlast.db.profile.disabled then
 		if not anchor then self:SetupFrames() anchor:Show() end
 		local numEntries = getn(FrostblastTargets)
-		for i=1,5 do
+		for i=1,10 do
 			if i<=numEntries then
 				anchor.bar[i].unit=FrostblastTargets[i];
 				anchor.bar[i].status:SetScript("OnUpdate", self.OnUpdate)
@@ -334,7 +350,7 @@ end
 
 function BigWigsFrostBlast:StopFrostBlastUpdate()
 	if anchor then
-		for i=1,5 do
+		for i=1,10 do
 			anchor.bar[i].unit=nil;
 			anchor.bar[i].status:SetScript("OnUpdate", nil)
 			anchor.bar[i]:Hide()
@@ -345,23 +361,32 @@ end
 
 function BigWigsFrostBlast:OnUpdate()
 	local unit = this:GetParent().unit
+	local thisbar = this:GetParent()
 	if unit then
 		if not UnitIsConnected(unit) then
 			this:SetValue(0)
-			this:GetParent().textVal:SetText(L["Offline"])
+			thisbar.textVal:SetText(L["Offline"])
 		elseif UnitIsDeadOrGhost(unit) then
 			this:SetValue(0)
-			this:GetParent().textVal:SetText(L["Dead"])
+			thisbar.textVal:SetText(L["Dead"])
 		else
 			local percent = UnitHealth(unit) / UnitHealthMax(unit) * 100
 			percent = math.floor(percent + 0.5)
 			this:SetValue(percent)
-			this:GetParent().textVal:SetText(percent)
+			thisbar.textVal:SetText(percent)
+
+			if BigWigsFrostBlast.db.profile.enablehealcomm then
+				local healcommPoint = thisbar:GetWidth() * percent/100
+				local healvalue = this:GetWidth() * FrostBlastHealcomm:getHeal(UnitName(unit)) / UnitHealthMax(unit)
+				thisbar.healcomm:ClearAllPoints()
+				thisbar.healcomm:SetPoint("TOPLEFT", thisbar, "TOPLEFT", healcommPoint, 0)
+				thisbar.healcomm:SetWidth(healvalue)
+			end
 		end
 		if BigWigsFrostBlast.db.profile.names then
-			this:GetParent().text:SetText(tostring(coloredNames[unit]))
+			thisbar.text:SetText(tostring(coloredNames[unit]))
 		else
-			this:GetParent().text:SetText(UnitName(unit))
+			thisbar.text:SetText(UnitName(unit))
 		end
 		local _,class = UnitClass(unit)
 		if BigWigsFrostBlast.db.profile.bars then
@@ -383,11 +408,11 @@ function BigWigsFrostBlast:SetupFrames()
 	frame:Hide()
 
 	frame:SetWidth(200)
-	frame:SetHeight(120)
+	frame:SetHeight(32)
 
 	frame:SetBackdrop({
-		bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16,
-		edgeFile = "Interface\\AddOns\\BigWigs TW\\Textures\\otravi-semi-full-border", edgeSize = 32,
+		-- bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", tile = true, tileSize = 16,
+		edgeFile = "Interface\\Addons\\BigWigs TW\\Textures\\otravi-semi-full-border", edgeSize = 32,
 		--edgeFile = "", edgeSize = 32,
 		insets = {left = 1, right = 1, top = 20, bottom = 1},
 	})
@@ -424,7 +449,7 @@ function BigWigsFrostBlast:SetupFrames()
 
 	--Bar1
 	frame.bar = {}
-	for i=1, 5 do
+	for i=1, 10 do
 		local bar = CreateFrame("Button", "FBTargetBar_"..i, UIParent)
 		bar:ClearAllPoints()
 		if i==1 then
@@ -442,7 +467,7 @@ function BigWigsFrostBlast:SetupFrames()
 		bar.status = CreateFrame("StatusBar",nil, bar)
 		bar.status:ClearAllPoints()
 		bar.status:SetPoint("CENTER", bar)
-		bar.status:SetStatusBarTexture("Interface\\AddOns\\BigWigs TW\\textures\\smooth")
+		bar.status:SetStatusBarTexture("Interface\\Addons\\BigWigs TW\\textures\\smooth")
 		bar.status:SetMinMaxValues(0, 100)
 		bar.status:SetValue(100)
 		bar.status:SetWidth(196)
@@ -482,13 +507,22 @@ function BigWigsFrostBlast:SetupFrames()
 		bar.bg:SetBackdropBorderColor(0.9, 0.9, 0.9, 0.6)
 		bar.bg:SetBackdropColor(0.3, 0.3, 0.3, 0.6)
 
+		bar.healcomm = CreateFrame("Frame",nil, bar)
+		bar.healcomm:ClearAllPoints()
+		bar.healcomm:SetPoint("TOPLEFT", bar, "TOPRIGHT", 0, 0)
+		bar.healcomm:SetWidth(0)
+		bar.healcomm:SetHeight(20)
+		bar.healcomm:SetAlpha(0.4)
+		bar.healcomm.texture = bar.healcomm:CreateTexture(nil, "BACKGROUND")
+		bar.healcomm.texture:SetAllPoints(bar.healcomm)
+		bar.healcomm.texture:SetTexture("Interface\\Addons\\BigWigs TW\\textures\\smoothhealcomm")
 
 		frame.bar[i] = bar
 		frame.bar[i]:Hide()
 	end
 
 	local close = frame:CreateTexture(nil, "ARTWORK")
-	close:SetTexture("Interface\\AddOns\\BigWigs TW\\Textures\\otravi-close")
+	close:SetTexture("Interface\\Addons\\BigWigs TW\\Textures\\otravi-close")
 	close:SetTexCoord(0, .625, 0, .9333)
 	close:SetWidth(20)
 	close:SetHeight(14)

@@ -51,6 +51,10 @@ L:RegisterTranslations("enUS", function() return {
 	guardians_name = "Guardian Spawns",
 	guardians_desc = "Warn for incoming Icecrown Guardians in phase 3.",
 
+	shackles_cmd = "shackles",
+	shackles_name = "Shackle announces",
+	shackles_desc = "Warn when shackles are applied or broke",
+
 	fbvolley_cmd = "fbvolley",
 	fbvolley_name = "Possible volley",
 	fbvolley_desc = "Timer for possible Frostbolt volley/multiple",
@@ -58,6 +62,18 @@ L:RegisterTranslations("enUS", function() return {
 	addcount_cmd = "addcount",
 	addcount_name = "P1 Add counter",
 	addcount_desc = "Counts number of killed adds in P1",
+	
+	abomwarn_cmd = "abomwarn",
+	abomwarn_name = "P1 Aboms alert",
+	abomwarn_desc = "Play sound when Abom spawns",
+	
+	abomwarn_text = "Spawned Abomination ",
+	
+	weaverwarn_cmd = "weaverarn",
+	weaverwarn_name = "P1 Weavers alert",
+	weaverwarn_desc = "Play sound when Weaver spawns",
+	
+	weaverwarn_text = "Spawned Soulweaver ",
 
 	mc_trigger1 = "Your soul, is bound to me now!",
 	mc_trigger2 = "There will be no escape!",
@@ -98,7 +114,7 @@ L:RegisterTranslations("enUS", function() return {
 
 	guardians_bar = "Guardian %d",
 
-	fissure_trigger = "cast Shadow Fissure.",
+	fissure_trigger = "casts Shadow Fissure.",
 	fissure_warning = "Shadow Fissure!",
 
 	frostbolt_trigger = "Kel'Thuzad begins to cast Frostbolt.",
@@ -126,6 +142,10 @@ L:RegisterTranslations("enUS", function() return {
 	detonate_bar = "Detonate Mana - %s",
 	detonate_possible_bar = "Detonate Mana",
 	detonate_warning = "%s has Detonate Mana!",
+
+	shackle_trigger = "Guardian of Icecrown is afflicted by Shackle Undead",
+	shacklefade_trigger = "Shackle Undead fades from Guardian of Icecrown",
+	shackle_warning = "%s/3",
 
 	you = "You",
 	are = "are",
@@ -375,7 +395,6 @@ L:RegisterTranslations("esES", function() return {
 	--proximity_cmd = "proximity",
 	proximity_name = "Alerta de Proximidad",
 	proximity_desc = "Muestra marco de alerta de proximidad",
-	
 	["Soul Weaver"] = "Прядильщица душ", --??
 	["Unstoppable Abomination"] = "Неудержимое поганище", --??
 	["Kel'Thuzad"] = "Кел'Тузад", --??
@@ -388,7 +407,7 @@ L:RegisterTranslations("esES", function() return {
 module.revision = 20004 -- To be overridden by the module!
 module.enabletrigger = module.translatedName -- string or table {boss, add1, add2}
 --module.wipemobs = { L["add_name"] } -- adds which will be considered in CheckForEngage
-module.toggleoptions = {"frostbolt", "frostboltbar", -1, "frostblast", "proximity", "fissure", "mc", -1, "fbvolley", -1, "detonate", "detonateicon", -1 ,"guardians", -1, "addcount", "phase", "bosskill"}
+module.toggleoptions = {"frostbolt", "frostboltbar", -1, "frostblast", "proximity", "fissure", "mc", -1, "fbvolley", -1, "detonate", "detonateicon", "shackles",-1, "abomwarn", "weaverwarn","guardians", -1, "addcount", "phase", "bosskill"}
 
 -- Proximity Plugin
 module.proximityCheck = function(unit) return CheckInteractDistance(unit, 2) end
@@ -413,16 +432,17 @@ local timer = {
 	guardians = 7,
 }
 local icon = {
-	abomination = "",
-	soulWeaver = "",
+	abomination = "Spell_Shadow_CallOfBone",
+	soulWeaver = "Spell_Shadow_Possession",
 	frostboltVolley = "Spell_Frost_FrostWard",
 	mindcontrol = "Inv_Belt_18",
-	phase1 = "",
-	phase2 = "",
-	guardians = "",
+	phase1 = "Spell_Shadow_Raisedead",
+	phase2 = "Spell_Shadow_Raisedead",
+	guardians = "Spell_Shadow_Raisedead",
 	frostblast = "Spell_Frost_FreezingBreath",
 	detonate = "Spell_Nature_WispSplode",
 	frostbolt = "Spell_Frost_FrostBolt02",
+	shackleundead = "Spell_Nature_Slow",
 }
 local syncName = {
 	detonate = "KelDetonate"..module.revision,
@@ -442,6 +462,7 @@ local numFrostboltVolleyHits = 0	-- counts the number of people hit by frostbolt
 local numAbominations = 0	-- counter for Unstoppable Abomination's
 local numWeavers = 0 	-- counter for Soul Weaver's
 local timePhase1Start = 0    -- time of p1 start, used for tracking add count
+local shacklecount = 0 -- Counter for shackles up
 
 
 ------------------------------
@@ -475,6 +496,9 @@ function module:OnEnable()
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE", "Affliction")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE", "Affliction")
 	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE", "Affliction")
+	
+	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_DAMAGE", "ShackleCheck")
+	self:RegisterEvent("CHAT_MSG_SPELL_AURA_GONE_OTHER", "ShackleCheck")
 
 	self:ThrottleSync(5, syncName.detonate)
 	self:ThrottleSync(0, syncName.frostblast)
@@ -499,6 +523,57 @@ end
 -- called after boss is engaged
 function module:OnEngage()
 	self.lastFrostBlast=0
+	self:Message(L["start_warning"], "Attention")
+	self:Bar(L["start_bar"], timer.phase1, icon.phase1)
+	self:DelayedMessage(timer.phase1 - 20, L["phase1_warn"], "Important")
+
+	if self.db.profile.addcount then
+		timePhase1Start = GetTime() 	-- start of p1, used for tracking add counts
+		numAbominations = 0
+		numWeavers = 0
+		self:Bar(string.format(L["add_bar"], numAbominations, "Unstoppable Abomination"), timer.phase1, icon.abomination)
+		self:Bar(string.format(L["add_bar"], numWeavers, "Soul Weaver"), timer.phase1, icon.soulWeaver)
+	end
+
+	self:ScheduleEvent("abom1", self.AbominationSpawns, 44, self, "1")
+	self:ScheduleEvent("abom2", self.AbominationSpawns, 72, self, "2")
+	self:ScheduleEvent("abom3", self.AbominationSpawns, 100, self, "3")
+	self:ScheduleEvent("abom4", self.AbominationSpawns, 130, self, "4")
+	self:ScheduleEvent("abom5", self.AbominationSpawns, 153, self, "5")
+	self:ScheduleEvent("abom6", self.AbominationSpawns, 176, self, "6")
+	self:ScheduleEvent("abom7", self.AbominationSpawns, 193, self, "7")
+	self:ScheduleEvent("abom8", self.AbominationSpawns, 212, self, "8")
+	self:ScheduleEvent("abom9", self.AbominationSpawns, 232, self, "9")
+	self:ScheduleEvent("abom10", self.AbominationSpawns, 252, self, "10")
+	self:ScheduleEvent("abom11", self.AbominationSpawns, 268, self, "11")
+	self:ScheduleEvent("abom12", self.AbominationSpawns, 285, self, "12")
+	self:ScheduleEvent("abom13", self.AbominationSpawns, 300, self, "13")
+	self:ScheduleEvent("abom14", self.AbominationSpawns, 318, self, "14")
+	
+	self:ScheduleEvent("weaver1", self.WeaverSpawns, 44, self, "1")
+	self:ScheduleEvent("weaver2", self.WeaverSpawns, 68, self, "2")
+	self:ScheduleEvent("weaver3", self.WeaverSpawns, 97, self, "3")
+	self:ScheduleEvent("weaver4", self.WeaverSpawns, 130, self, "4")
+	self:ScheduleEvent("weaver5", self.WeaverSpawns, 155, self, "5")
+	self:ScheduleEvent("weaver6", self.WeaverSpawns, 170, self, "6")
+	self:ScheduleEvent("weaver7", self.WeaverSpawns, 190, self, "7")
+	self:ScheduleEvent("weaver8", self.WeaverSpawns, 213, self, "8")
+	self:ScheduleEvent("weaver9", self.WeaverSpawns, 235, self, "9")
+	self:ScheduleEvent("weaver10", self.WeaverSpawns, 256, self, "10")
+	self:ScheduleEvent("weaver11", self.WeaverSpawns, 271, self, "11")
+	self:ScheduleEvent("weaver12", self.WeaverSpawns, 285, self, "12")
+	self:ScheduleEvent("weaver13", self.WeaverSpawns, 294, self, "13")
+	self:ScheduleEvent("weaver14", self.WeaverSpawns, 300, self, "14")
+
+	-- Set combat range to max to make sure players don't miss any events.
+	SetCVar("CombatDeathLogRange", 200)
+	SetCVar("CombatLogRangeParty", 200)
+	SetCVar("CombatLogRangePartyPet", 200)
+	SetCVar("CombatLogRangeFriendlyPlayers", 200)
+	SetCVar("CombatLogRangeFriendlyPlayersPets", 200)
+	SetCVar("CombatLogRangeHostilePlayers", 200)
+	SetCVar("CombatLogRangeHostilePlayersPets", 200)
+	SetCVar("CombatLogRangeCreature", 200)
 end
 
 -- called after boss is disengaged (wipe(retreat) or victory)
@@ -537,20 +612,7 @@ function module:UNIT_HEALTH(msg)
 end
 
 function module:CHAT_MSG_MONSTER_YELL(msg)
-	if ((msg == L["start_trigger"]) or (msg == L["start_trigger1"])) then
-		self.core:EnableModule(module.translatedName)
-		self:Message(L["start_warning"], "Attention")
-		self:Bar(L["start_bar"], timer.phase1, icon.phase1)
-		self:DelayedMessage(timer.phase1 - 20, L["phase1_warn"], "Important")
-		if self.db.profile.addcount then
-			timePhase1Start = GetTime() 	-- start of p1, used for tracking add counts
-			numAbominations = 0
-			numWeavers = 0
-			self:Bar(string.format(L["add_bar"], numAbominations, L["Unstoppable Abomination"]), timer.phase1, icon.abomination)
-			self:Bar(string.format(L["add_bar"], numWeavers, L["Soul Weaver"]), timer.phase1, icon.soulWeaver)
-		end
-		self:KTM_SetTarget(L["Unstoppable Abomination"])
-	elseif ((msg == L["phase2_trigger1"]) or (msg == L["phase2_trigger2"]) or (msg == L["phase2_trigger3"])) then
+	if ((msg == L["phase2_trigger1"]) or (msg == L["phase2_trigger2"]) or (msg == L["phase2_trigger3"])) then
 		self:Sync(syncName.phase2)
 	elseif string.find(msg, L["phase3_trigger"]) then
 		self:Sync(syncName.phase3)
@@ -631,6 +693,22 @@ function module:Affliction(msg)
 	end
 end
 
+function module:ShackleCheck(msg)
+	if string.find(msg, L["shackle_trigger"]) then
+		shacklecount = shacklecount + 1
+		self:WarningSign(icon.shackleundead, 120, true, string.format(L["shackle_warning"], shacklecount))
+		if shacklecount < 2 then self:Sound("ShackleOne") end
+		if shacklecount == 2 then self:Sound("ShackleTwo") end
+		if shacklecount > 2 then self:Sound("ShackleThree") end
+	end
+	if string.find(msg, L["shacklefade_trigger"]) then
+		shacklecount = shacklecount - 1
+		if shacklecount < 0 then shacklecount = 0 end
+		self:WarningSign(icon.shackleundead, 120, true, string.format(L["shackle_warning"], shacklecount))
+		self:Sound("ShackleBroke")
+	end
+end
+
 function module:Event(msg)
 	-- shadow fissure
 	if string.find(msg, L["fissure_trigger"]) then
@@ -648,6 +726,8 @@ function module:Event(msg)
 			or string.find(msg, L["pummel_trigger1"]) or string.find(msg, L["pummel_trigger2"]) or string.find(msg, L["pummel_trigger3"]) -- pummeled
 			or string.find(msg, L["shieldbash_trigger1"]) or string.find(msg, L["shieldbash_trigger2"]) or string.find(msg, L["shieldbash_trigger3"]) -- shield bashed
 			or string.find(msg, L["earthshock_trigger1"]) or string.find(msg, L["earthshock_trigger2"]) then -- earth shocked
+
+			--SendChatMessage(UnitName('player') .. " Interrupted !", "SAY")
 
 			self:RemoveBar(L["frostbolt_bar"])
 			frostbolttime = 0
@@ -693,6 +773,7 @@ end
 ------------------------------
 
 function module:Phase2()
+	shacklecount = 0
 	self:Bar(L["phase2_bar"], timer.phase2, icon.phase2)
 	self:DelayedMessage(timer.phase2, L["phase2_warning"], "Important")
 	if self.db.profile.mc then
@@ -732,6 +813,7 @@ function module:Phase2()
 end
 
 function module:Phase3()
+	shacklecount = 0
 	if self.db.profile.phase then
 		self:Message(L["phase3_warning"], "Attention", nil, "Beware")
 	end
@@ -797,7 +879,7 @@ end
 
 function module:Fissure()
 	if self.db.profile.fissure then
-		self:Message(L["fissure_warning"], "Urgent", true, "Alarm")
+		self:Message(L["fissure_warning"], "Urgent", true, "Beware")
 		-- add bar?
 	end
 end
@@ -822,3 +904,16 @@ function module:WeaverDies(name)
 		end
 	end
 end
+
+function module:AbominationSpawns(count)
+	if count and self.db.profile.abomwarn then
+		self:Message(L["abomwarn_text"]..count.."/14", "Personal", nil, "AirHorn", nil)
+	end
+end
+
+function module:WeaverSpawns(count)
+	if count and self.db.profile.weaverwarn then
+		self:Message(L["weaverwarn_text"]..count.."/14", "Personal", nil, "AirHorn", nil)
+	end
+end
+

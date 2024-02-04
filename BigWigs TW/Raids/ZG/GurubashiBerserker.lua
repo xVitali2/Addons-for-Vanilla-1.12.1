@@ -8,6 +8,7 @@ local module, L = BigWigs:ModuleDeclaration("Gurubashi Berserker", "Zul'Gurub")
 module.revision = 20001
 module.enabletrigger = module.translatedName
 module.toggleoptions = {"bars"--[[, "bosskill"]]}
+module.trashMod = true
 
 ------------------------------
 --      Locals 			    --

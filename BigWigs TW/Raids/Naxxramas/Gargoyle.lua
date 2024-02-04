@@ -49,7 +49,8 @@ L:RegisterTranslations("deDE", function() return {
 module.revision = 20004 -- To be overridden by the module!
 module.enabletrigger = { "Stoneskin Gargoyle", "Plagued Gargoyle" }
 --module.wipemobs = { L["add_name"] } -- adds which will be considered in CheckForEngage
---module.toggleoptions = {"plagueyou", "plagueother", "icon", -1, "thunderclap", "explode", "enrage"--[[, "bosskill"]]}
+module.toggleoptions = {"stoneskin"}
+module.trashMod = true
 
 module.defaultDB = {
 	bosskill = nil,

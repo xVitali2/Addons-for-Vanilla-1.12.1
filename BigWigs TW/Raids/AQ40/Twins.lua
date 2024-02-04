@@ -49,7 +49,7 @@ L:RegisterTranslations("enUS", function() return {
 	bartext = "Teleport",
 	explodebugtrigger = "gains Explode Bug",
 	explodebugwarn = "Bug exploding nearby!",
-	enragetrigger = "gains Berserk.", --by CFM
+	enragetrigger = "becomes enraged.",
 	--trigger = "Blizzard",
 	enragewarn = "Twins are enraged",
 	healtrigger1 = "'s Heal Brother heals",

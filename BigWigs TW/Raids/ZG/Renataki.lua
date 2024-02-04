@@ -164,7 +164,7 @@ end
 function module:UNIT_HEALTH(arg1)
 	if UnitName(arg1) == module.translatedName then
 		local health = UnitHealth(arg1)
-		if health > 25 and health <= 31 and not enrageannounced then
+		if health > 25 and health <= 30 and not enrageannounced then
 			self:Sync(syncName.enrageSoon)
 			enrageannounced = true
 		elseif health > 30 and enrageannounced then

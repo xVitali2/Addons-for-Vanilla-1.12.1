@@ -1,4 +1,3 @@
-
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
@@ -14,59 +13,119 @@ local blaumeux = AceLibrary("Babble-Boss-2.2")["Lady Blaumeux"]
 --      Localization      --
 ----------------------------
 
-L:RegisterTranslations("enUS", function() return {
-	cmd = "Horsemen",
+L:RegisterTranslations("enUS", function()
+    return {
+        cmd = "Horsemen",
 
-	mark_cmd = "mark",
-	mark_name = "Mark Alerts",
-	mark_desc = "Warn for marks",
+        mark_cmd = "mark",
+        mark_name = "Mark Alerts",
+        mark_desc = "Warn for marks",
 
-	shieldwall_cmd  = "shieldwall",
-	shieldwall_name = "Shieldwall Alerts",
-	shieldwall_desc = "Warn for shieldwall",
+        shieldwall_cmd = "shieldwall",
+        shieldwall_name = "Shieldwall Alerts",
+        shieldwall_desc = "Warn for shieldwall",
 
-	void_cmd = "void",
-	void_name = "Void Zone Alerts",
-	void_desc = "Warn on Lady Blaumeux casting Void Zone.",
+        void_cmd = "void",
+        void_name = "Void Zone Alerts",
+        void_desc = "Warn on Lady Blaumeux casting Void Zone.",
 
-	meteor_cmd = "meteor",
-	meteor_name = "Meteor Alerts",
-	meteor_desc = "Warn on Thane casting Meteor.",
+        meteor_cmd = "meteor",
+        meteor_name = "Meteor Alerts",
+        meteor_desc = "Warn on Thane casting Meteor.",
 
-	wrath_cmd = "wrath",
-	wrath_name = "Holy Wrath Alerts",
-	wrath_desc = "Warn on Zeliek casting Wrath.",
+        wrath_cmd = "wrath",
+        wrath_name = "Holy Wrath Alerts",
+        wrath_desc = "Warn on Zeliek casting Wrath.",
 
-	markbar = "Mark %d",
-	mark_warn = "Mark %d!",
-	mark_warn_5 = "Mark %d in 5 sec",
-	marktrigger1 = "afflicted by Mark of Zeliek",
-	marktrigger2 = "afflicted by Mark of Korth'azz",
-	marktrigger3 = "afflicted by Mark of Blaumeux",
-	marktrigger4 = "afflicted by Mark of Mograine",
+        markbar = "Mark %d",
+        mark_warn = "Mark %d!",
+        mark_warn_5 = "Mark %d in 5 sec",
+        marktrigger1 = "afflicted by Mark of Zeliek",
+        marktrigger2 = "afflicted by Mark of Korth'azz",
+        marktrigger3 = "afflicted by Mark of Blaumeux",
+        marktrigger4 = "afflicted by Mark of Mograine",
 
-	voidtrigger = "Your life is mine!",
-	voidwarn = "Void Zone Incoming",
-	voidbar = "Void Zone",
+        voidtrigger = "Your life is mine!",
+        voidwarn = "Void Zone Incoming",
+        voidbar = "Void Zone",
 
-	meteortrigger = "Thane Korth'azz 's Meteor hits ",
+        meteortrigger = "Thane Korth'azz's Meteor hits ",
         meteortrigger2 = "I like my meat extra crispy!",
-	meteorwarn = "Meteor!",
-	meteorbar = "Meteor",
+        meteorwarn = "Meteor!",
+        meteorbar = "Meteor",
 
-	wrathtrigger = "Sir Zeliek's Holy Wrath hits ",
+        wrathtrigger = "Sir Zeliek's Holy Wrath hits ",
         wrathtrigger2 = "I have no choice but to obey!",
-	wrathwarn = "Holy Wrath!",
-	wrathbar = "Holy Wrath",
+        wrathwarn = "Holy Wrath!",
+        wrathbar = "Holy Wrath",
 
-	startwarn = "The Four Horsemen Engaged! Mark in 20 sec",
+        startwarn = "The Four Horsemen Engaged! Mark in 20 sec",
 
-	shieldwallbar = "%s - Shield Wall",
-	shieldwalltrigger = "(.*) gains Shield Wall.",
-	shieldwall_warn = "%s - Shield Wall for 20 sec",
-	shieldwall_warn_over = "%s - Shield Wall GONE!",
-} end )
+        shieldwallbar = "%s - Shield Wall",
+        shieldwalltrigger = "(.*) gains Shield Wall.",
+        shieldwall_warn = "%s - Shield Wall for 20 sec",
+        shieldwall_warn_over = "%s - Shield Wall GONE!",
+		
+		proximity_cmd = "proximity",
+		proximity_name = "Proximity Warning",
+		proximity_desc = "Show Proximity Warning Frame",
+    }
+end)
 
+L:RegisterTranslations("esES", function()
+    return {
+        --cmd = "Horsemen",
+
+        --mark_cmd = "mark",
+        mark_name = "Alerta de Marcas",
+        mark_desc = "Avisa para Marcas",
+
+        --shieldwall_cmd  = "shieldwall",
+        shieldwall_name = "Alerta de Muro de escudo",
+        shieldwall_desc = "Avisa para Muro de escudo",
+
+        --void_cmd = "void",
+        void_name = "Alerta de Zona de vacío",
+        void_desc = "Avisa cuando Lady Blaumeux lance Zona de vacío.",
+
+        --meteor_cmd = "meteor",
+        meteor_name = "Alerta de Meteoro",
+        meteor_desc = "Avisa cuando Thane lance Meteoro.",
+
+        --wrath_cmd = "wrath",
+        wrath_name = "Alerta de Cólera sagrada",
+        wrath_desc = "Avisa cuando Zeliek lance Cólera sagrada.",
+
+        markbar = "Marca de %d",
+        mark_warn = "¡Marca de %d!",
+        mark_warn_5 = "Marca de %d en 5 segundos",
+        marktrigger1 = "sufre de Marca de Zeliek",
+        marktrigger2 = "sufre de Marca de Korth'azz",
+        marktrigger3 = "sufre de Marca de Blaumeux",
+        marktrigger4 = "sufre de Marca de Mograine",
+
+        voidtrigger = "Lady Blaumeux lanza Zona de vacío.",
+        voidwarn = "Zona de vacío entrante",
+        voidbar = "Zona de vacío",
+
+        meteortrigger = "Meteoro de Thane Korth'azz golpea ",
+        meteortrigger2 = "I like my meat extra crispy!",
+        meteorwarn = "¡Meteoro!",
+        meteorbar = "Meteoro",
+
+        wrathtrigger = "Cólera sagrada de Sir Zeliek impacta ",
+        wrathtrigger2 = "I have no choice but to obey!",
+        wrathwarn = "¡Cólera sagrada!",
+        wrathbar = "Cólera sagrada",
+
+        startwarn = "Entrando en combate con Los Cuatro Caballoshombre! Marca en ~17 segundos",
+
+        shieldwallbar = "%s - Muro de escudo",
+        shieldwalltrigger = "(.*) gana Muro de escudo.",
+        shieldwall_warn = "%s - Muro de escudo por 20 segundos",
+        shieldwall_warn_over = "¡%s - Muro de escudo DESAPARECE!",
+    }
+end)
 L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
 	mark_name = "Оповещение о Метке",
 	mark_desc = "Предупреждает о Метках.",
@@ -110,95 +169,46 @@ L:RegisterTranslations("ruRU", function() return { -- by CFM=KasVital
 	shieldwall_warn = "%s - Глухая оборона на 20 сек",
 	shieldwall_warn_over = "%s - Глухая оборона закончилась!",
 } end )
-
-L:RegisterTranslations("esES", function() return {
-	--cmd = "Horsemen",
-
-	--mark_cmd = "mark",
-	mark_name = "Alerta de Marcas",
-	mark_desc = "Avisa para Marcas",
-
-	--shieldwall_cmd  = "shieldwall",
-	shieldwall_name = "Alerta de Muro de escudo",
-	shieldwall_desc = "Avisa para Muro de escudo",
-
-	--void_cmd = "void",
-	void_name = "Alerta de Zona de vacío",
-	void_desc = "Avisa cuando Lady Blaumeux lance Zona de vacío.",
-
-	--meteor_cmd = "meteor",
-	meteor_name = "Alerta de Meteoro",
-	meteor_desc = "Avisa cuando Thane lance Meteoro.",
-
-	--wrath_cmd = "wrath",
-	wrath_name = "Alerta de Cólera sagrada",
-	wrath_desc = "Avisa cuando Zeliek lance Cólera sagrada.",
-
-	markbar = "Marca de %d",
-	mark_warn = "¡Marca de %d!",
-	mark_warn_5 = "Marca de %d en 5 segundos",
-	marktrigger1 = "sufre de Marca de Zeliek",
-	marktrigger2 = "sufre de Marca de Korth'azz",
-	marktrigger3 = "sufre de Marca de Blaumeux",
-	marktrigger4 = "sufre de Marca de Mograine",
-
-	voidtrigger = "Lady Blaumeux lanza Zona de vacío.",
-	voidwarn = "Zona de vacío entrante",
-	voidbar = "Zona de vacío",
-
-	meteortrigger = "Meteoro de Thane Korth'azz golpea ",
-        meteortrigger2 = "I like my meat extra crispy!",
-	meteorwarn = "¡Meteoro!",
-	meteorbar = "Meteoro",
-
-	wrathtrigger = "Cólera sagrada de Sir Zeliek impacta ",
-        wrathtrigger2 = "I have no choice but to obey!",
-	wrathwarn = "¡Cólera sagrada!",
-	wrathbar = "Cólera sagrada",
-
-	startwarn = "Entrando en combate con Los Cuatro Caballoshombre! Marca en ~17 segundos",
-
-	shieldwallbar = "%s - Muro de escudo",
-	shieldwalltrigger = "(.*) gana Muro de escudo.",
-	shieldwall_warn = "%s - Muro de escudo por 20 segundos",
-	shieldwall_warn_over = "¡%s - Muro de escudo DESAPARECE!",
-} end )
 ---------------------------------
 --      	Variables 		   --
 ---------------------------------
 
 -- module variables
-module.revision = 20006 -- To be overridden by the module!
-module.enabletrigger = {thane, mograine, zeliek, blaumeux} -- string or table {boss, add1, add2}
-module.toggleoptions = {"mark", "shieldwall", -1, "meteor", "void", "wrath", "bosskill"}
+module.revision = 20007 -- To be overridden by the module!
+module.enabletrigger = { thane, mograine, zeliek, blaumeux } -- string or table {boss, add1, add2}
+module.toggleoptions = { "mark", "shieldwall", -1, "meteor", "void", "wrath", "proximity", "bosskill" }
 
+-- Proximity Plugin
+module.proximityCheck = function(unit) return CheckInteractDistance(unit, 2) end
+module.proximitySilent = true
 
 -- locals
 local timer = {
-	firstMark = 20,
-	mark = 12,
-	firstMeteor = 20,
-	meteor = {12, 15},
-	firstWrath = 20,
-	wrath = {10, 14},
-	firstVoid = 15,
-	void = {12, 15},
-	shieldwall = 20,
+    firstMark = 20,
+    mark = 12,
+    firstMeteor = 20,
+    meteor = { 12, 15 },
+    firstWrath = 20,
+    wrath = { 10, 14 },
+    firstVoid = 15,
+    void = { 12, 15 },
+    shieldwall = 20,
 }
 local icon = {
-	mark = "Spell_Shadow_CurseOfAchimonde",
-	meteor = "Spell_Fire_Fireball02",
-	wrath = "Spell_Holy_Excorcism",
-	void = "spell_shadow_antishadow",
-	shieldwall = "Ability_Warrior_ShieldWall",
+    mark = "Spell_Shadow_CurseOfAchimonde",
+    meteor = "Spell_Fire_Fireball02",
+    wrath = "Spell_Holy_Excorcism",
+    void = "spell_shadow_antishadow",
+    shieldwall = "Ability_Warrior_ShieldWall",
 }
 local syncName = {
-	shieldwall = "HorsemenShieldWall"..module.revision,
-	mark = "HorsemenMark"..module.revision,
+    shieldwall = "HorsemenShieldWall" .. module.revision,
+    mark = "HorsemenMark" .. module.revision,
     DelayedVoidZone = "HorsemenDelayedVoidZone" .. module.revision,
-	wrath = "HorsemenWrath"..module.revision,
-	meteor = "HorsemenMeteor"..module.revision,
+    wrath = "HorsemenWrath" .. module.revision,
+    meteor = "HorsemenMeteor" .. module.revision,
 }
+
 local void_trigger = "Lady Blaumeux casts Void Zone"
 
 local times = nil
@@ -215,30 +225,29 @@ local MOVE_MOGRAINE = "MOVE TO |cffb2422eMOGRAINE"
 
 -- called after module is enabled
 function module:OnEnable()
-	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
-	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
-	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE", "SkillEvent")
-	self:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_PARTY_DAMAGE", "SkillEvent")
-	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE", "MarkEvent")
-	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE", "MarkEvent")
-	self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE", "MarkEvent")
+    self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_CREATURE_BUFFS")
+    self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+    self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE", "MarkEvent")
+    self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_FRIENDLYPLAYER_DAMAGE", "MarkEvent")
+    self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_PARTY_DAMAGE", "MarkEvent")
 
-	self:ThrottleSync(3, syncName.shieldwall)
-	self:ThrottleSync(8, syncName.mark)
+    self:ThrottleSync(3, syncName.shieldwall)
+    self:ThrottleSync(8, syncName.mark)
     self:ThrottleSync(5, syncName.DelayedVoidZone)
-	self:ThrottleSync(5, syncName.wrath)
-	self:ThrottleSync(5, syncName.meteor)
+    self:ThrottleSync(5, syncName.wrath)
+    self:ThrottleSync(5, syncName.meteor)
 end
 
 -- called after module is enabled and after each wipe
 function module:OnSetup()
-	self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH")
+    self:RegisterEvent("CHAT_MSG_COMBAT_HOSTILE_DEATH")
 
-	self.marks = 0
-	self.deaths = 0
+    self.marks = 0
+    self.deaths = 0
 
     globalMarks = 0
-	times = {}
+
+    times = {}
 end
 
 local fhAlert = CreateFrame("Frame", "fhAlert");
@@ -274,7 +283,7 @@ fhAlert:SetScript("OnEvent", function()
                 for healerIndex = 1, 3 do
                     if string.find(d, '[' .. healerIndex .. ']' .. UnitName('player'), 1, true) then
                         fhAlert.healerIndex = healerIndex
-                        DEFAULT_CHAT_FRAME:AddMessage("Healer index set to " .. healerIndex)
+                        DEFAULT_CHAT_FRAME:AddMessage("4HM Healer index set to " .. healerIndex)
                         break
                     end
                 end
@@ -282,24 +291,31 @@ fhAlert:SetScript("OnEvent", function()
         end
     end
 end)
+-- /script SendAddonMessage("TWABW", "[1]healername [2]healername [3]healername [1]healername [2]healername [3]healername [1]healername [2]healername [3]healername [1]healername [2]healername [3]healername", "RAID")
+
 
 -- called after boss is engaged
 function module:OnEngage()
-	self.marks = 0
+    self.marks = 0
+
     globalMarks = 0
-	if self.db.profile.mark then
-		self:Message(L["startwarn"], "Attention")
-		self:Bar(string.format( L["markbar"], self.marks + 1), timer.firstMark, icon.mark)
-		self:DelayedMessage(timer.firstMark - 5, string.format( L["mark_warn_5"], self.marks + 1), "Urgent")
-	end
-	if self.db.profile.meteor then
-		self:Bar(L["meteorbar"], timer.firstMeteor, icon.meteor)
-	end
-	if self.db.profile.wrath then
-		self:Bar(L["wrathbar"], timer.firstWrath, icon.wrath)
-	end
-	if self.db.profile.void then
-		self:Bar(L["voidbar"], timer.firstVoid, icon.void)
+
+    if self.db.profile.mark then
+        self:Message(L["startwarn"], "Attention")
+        self:Bar(string.format(L["markbar"], self.marks + 1), timer.firstMark, icon.mark)
+        self:DelayedMessage(timer.firstMark - 5, string.format(L["mark_warn_5"], self.marks + 1), "Urgent")
+    end
+    if self.db.profile.meteor then
+        self:Bar(L["meteorbar"], timer.firstMeteor, icon.meteor)
+    end
+    if self.db.profile.wrath then
+        self:Bar(L["wrathbar"], timer.firstWrath, icon.wrath)
+    end
+    if self.db.profile.void then
+        self:Bar(L["voidbar"], timer.firstVoid, icon.void)
+    end
+	if  self.db.profile.proximity then
+		self:Proximity()
 	end
 
     for i = 0, GetNumRaidMembers() do
@@ -311,7 +327,7 @@ function module:OnEngage()
         end
     end
 
-    if playerGroup > 0 then
+    if playerGroup > 0 and fhAlert.healerIndex == 0 then
         if playerGroup == 3 then
             fh_alert_marks(MOVE_THANE)
         end
@@ -347,6 +363,7 @@ end)
 
 -- called after boss is disengaged (wipe(retreat) or victory)
 function module:OnDisengage()
+	self:RemoveProximity()
 end
 
 
@@ -355,9 +372,9 @@ end
 ------------------------------
 
 function module:MarkEvent(msg)
-	if string.find(msg, L["marktrigger1"]) or string.find(msg, L["marktrigger2"]) or string.find(msg, L["marktrigger3"]) or string.find(msg, L["marktrigger4"]) then
-		self:Sync(syncName.mark)
-	end
+    if string.find(msg, L["marktrigger1"]) or string.find(msg, L["marktrigger2"]) or string.find(msg, L["marktrigger3"]) or string.find(msg, L["marktrigger4"]) then
+        self:Sync(syncName.mark)
+    end
 end
 
 function module:DelayedVoidZone(msg)
@@ -378,11 +395,11 @@ function module:DelayedVoidZoneEvent()
     if target then
         self:Icon(target, 3)
         if target == UnitName("player") then
-            self:Message("Void Zone on YOU !!!", "Important")
+            self:Message("Void Zone on YOU !!!", "Important", nil, false)
             self:TriggerEvent("BigWigs_Sound", "AirHorn")
             SendChatMessage("Void Zone On Me !", "SAY")
         else
-            self:Message("Void Zone on " .. target .. " !!!", "Important")
+            self:Message("Void Zone on " .. target .. " !!!", "Important", nil, false)
         end
     end
 end
@@ -419,16 +436,16 @@ function module:CHAT_MSG_MONSTER_SAY(msg)
 end
 
 function module:CHAT_MSG_COMBAT_HOSTILE_DEATH(msg)
-	if msg == string.format(UNITDIESOTHER, thane) or
-		msg == string.format(UNITDIESOTHER, zeliek) or
-		msg == string.format(UNITDIESOTHER, mograine) or
-		msg == string.format(UNITDIESOTHER, blaumeux) then
+    if msg == string.format(UNITDIESOTHER, thane) or
+            msg == string.format(UNITDIESOTHER, zeliek) or
+            msg == string.format(UNITDIESOTHER, mograine) or
+            msg == string.format(UNITDIESOTHER, blaumeux) then
 
-		self.deaths = self.deaths + 1
-		if self.deaths == 4 then
-			self:SendBossDeathSync()
-		end
-	end
+        self.deaths = self.deaths + 1
+        if self.deaths == 4 then
+            self:SendBossDeathSync()
+        end
+    end
 end
 
 ------------------------------
@@ -436,18 +453,18 @@ end
 ------------------------------
 
 function module:BigWigs_RecvSync(sync, rest, nick)
-	--Print("sync= "..sync.." rest= "..rest.." nick= "..nick)
-	if sync == syncName.mark then
-		self:Mark()
-	elseif sync == syncName.meteor then
-		self:Meteor()
-	elseif sync == syncName.wrath then
-		self:Wrath()
+    --Print("sync= "..sync.." rest= "..rest.." nick= "..nick)
+    if sync == syncName.mark then
+        self:Mark()
+    elseif sync == syncName.meteor then
+        self:Meteor()
+    elseif sync == syncName.wrath then
+        self:Wrath()
     elseif sync == syncName.DelayedVoidZone then
         self:VoidZoneEvent()
-	elseif sync == syncName.shieldwall and rest then
-		self:Shieldwall(rest)
-	end
+    elseif sync == syncName.shieldwall and rest then
+        self:Shieldwall(rest)
+    end
 end
 
 function horsemenIsRL()
@@ -465,13 +482,15 @@ function horsemenIsRL()
     return false
 end
 
+
+
 ------------------------------
 --      Sync Handlers	    --
 ------------------------------
 
 function module:Mark()
-	self:RemoveBar(string.format(L["markbar"], self.marks))
-	self.marks = self.marks + 1
+    self:RemoveBar(string.format(L["markbar"], self.marks))
+    self.marks = self.marks + 1
 
     globalMarks = globalMarks + 1
 
@@ -490,7 +509,7 @@ function module:Mark()
         globalMarks = 0
     end
 
-    if playerGroup > 0 then
+    if playerGroup > 0 and fhAlert.healerIndex == 0 then
 
         if self.marks == 0 or self.marks == 12 or self.marks == 24 or self.marks == 36 then
             if playerGroup == 3 then
@@ -553,33 +572,36 @@ function module:Mark()
         end
     end
 
-	if self.db.profile.mark then
-		self:Message(string.format(L["mark_warn"], self.marks), "Important")
-		self:Bar(string.format(L["markbar"], self.marks + 1), timer.mark, icon.mark)
-		self:DelayedMessage(timer.mark - 5, string.format( L["mark_warn_5"], self.marks + 1), "Urgent")
-	end
+    if self.db.profile.mark then
+        self:Message(string.format(L["mark_warn"], self.marks), "Important")
+        self:Bar(string.format(L["markbar"], self.marks + 1), timer.mark, icon.mark)
+        self:DelayedMessage(timer.mark - 5, string.format(L["mark_warn_5"], self.marks + 1), "Urgent", nil, false)
+        if globalMarks == 1 then self:Sound("MarkOne") end
+        if globalMarks == 2 then self:Sound("MarkTwo") end
+        if globalMarks == 0 then self:Sound("MarkThree") end
+    end
 end
 
 function module:Meteor()
-	if self.db.profile.meteor then
-		self:Message(L["meteorwarn"], "Important")
-		self:IntervalBar(L["meteorbar"], timer.meteor[1], timer.meteor[2], icon.meteor)
-	end
+    if self.db.profile.meteor then
+        self:Message(L["meteorwarn"], "Important", nil, false)
+        self:IntervalBar(L["meteorbar"], timer.meteor[1], timer.meteor[2], icon.meteor)
+    end
 end
 
 function module:Wrath()
-	if self.db.profile.wrath then
-		self:Message(L["wrathwarn"], "Important")
-		self:IntervalBar(L["wrathbar"], timer.wrath[1], timer.wrath[2], icon.wrath)
-	end
+    if self.db.profile.wrath then
+        self:Message(L["wrathwarn"], "Important", nil, false)
+        self:IntervalBar(L["wrathbar"], timer.wrath[1], timer.wrath[2], icon.wrath)
+    end
 end
 
 function module:Shieldwall(mob)
-	if mob and self.db.profile.shieldwall then
-		self:Message(string.format(L["shieldwall_warn"], mob), "Attention")
-		self:Bar(string.format(L["shieldwallbar"], mob), timer.shieldwall, icon.shieldwall)
-		self:DelayedMessage(timer.shieldwall, string.format(L["shieldwall_warn_over"], mob), "Positive")
-	end
+    if mob and self.db.profile.shieldwall then
+        self:Message(string.format(L["shieldwall_warn"], mob), "Attention")
+        self:Bar(string.format(L["shieldwallbar"], mob), timer.shieldwall, icon.shieldwall)
+        self:DelayedMessage(timer.shieldwall, string.format(L["shieldwall_warn_over"], mob), "Positive")
+    end
 end
 
 function string:split(delimiter)

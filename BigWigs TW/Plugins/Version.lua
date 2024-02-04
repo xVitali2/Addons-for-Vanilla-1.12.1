@@ -128,7 +128,7 @@ L:RegisterTranslations("esES", function() return {
 	["People with outdated BigWigs:"] = "Personas con BigWigs anticuado:",
 	["Notify old versions"] = "Notificar de versiones anticuadas",
 	["List people with old versions to raid chat."] = "Enumera las personas con versiones anticuadas al chat de la banda",
-	["Download newest version from https://github.com/Hosq/BigWigs"] = "Descarga la última versión en https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases",
+	["Download newest version from https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases"] = "Descarga la última versión en https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases",
 
 	["Show popup"] = "Mostrar Ventana Emergente",
 	["Show popup warning on out of date version"] = "Muesta la ventana emergente para versiones anticuadas",

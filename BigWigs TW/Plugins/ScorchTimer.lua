@@ -11,7 +11,7 @@ local name = "Scorch Timer"
 local L = AceLibrary("AceLocale-2.2"):new("BigWigs"..name)
 local paint = AceLibrary("PaintChips-2.0")
 local minscale, maxscale = 0.25, 2
-local candybar = AceLibrary("CandyBar-2.0")
+local candybar = AceLibrary("CandyBar-2.1")
 local surface = AceLibrary("Surface-1.0")
 
 

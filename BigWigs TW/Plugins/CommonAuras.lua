@@ -47,7 +47,6 @@ L:RegisterTranslations("enUS", function() return {
 	["Common Auras"] = true,
 	["commonauras"] = true,
 } end )
-
 L:RegisterTranslations("ruRU", function() return { --by CFM
 	fw_cast = "%s защитил от страха %s.",
 	fw_bar = "Защита от страха через: %s",
@@ -86,7 +85,7 @@ L:RegisterTranslations("esES", function() return {
 
 	["Gives timer bars and raid messages about common buffs and debuffs."] = "Muestra las barras temporizadoras y los mensajes de la banda sobre buffs y debuffs comunes",
 	["Common Auras"] = "Auras Comunes",
-	--["commonauras"] = "aurascomunes",
+--["commonauras"] = "aurascomunes",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -159,7 +158,8 @@ BigWigsCommonAuras.defaultDB = {
 	lifegivinggem = true,
 	challengingshout = true,
 	challengingroar = true,
-	portal = true,
+	distract = true,
+	portal = false,
 	broadcast = false,
 }
 
@@ -211,6 +211,13 @@ BigWigsCommonAuras.consoleOptions = {
 			get = function() return BigWigsCommonAuras.db.profile.challengingroar end,
 			set = function(v) BigWigsCommonAuras.db.profile.challengingroar = v end,
 		},
+		["distract"] = {
+			type = "toggle",
+			name = BS["Distract"],
+			desc = string.format(L["Toggle %s display."], BS["Distract"]),
+			get = function() return BigWigsCommonAuras.db.profile.distract end,
+			set = function(v) BigWigsCommonAuras.db.profile.distract = v end,
+		},
 		["portal"] = {
 			type = "toggle",
 			name = L["Portal"],
@@ -243,19 +250,14 @@ function BigWigsCommonAuras:OnEnable()
 		self:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS")
 	elseif class == "PRIEST" and race == "Dwarf" then
 		self:RegisterEvent("SpellStatus_SpellCastInstant")
-		--[[self:Hook("CastSpell")
-		self:Hook("CastSpellByName")
-		self:Hook("SpellTargetUnit")
-		self:Hook("SpellStopTargeting")
-		self:Hook("TargetUnit")
-		self:Hook("UseAction")
-		self:HookScript(WorldFrame,"OnMouseDown","BigWigsCommonAurasOnMouseDown")]]
 	elseif class == "MAGE" then
 		if not spellStatus then spellStatus = AceLibrary("SpellStatus-1.0") end
 		self:RegisterEvent("SpellStatus_SpellCastCastingFinish")
 		self:RegisterEvent("SpellStatus_SpellCastFailure")
 	end
-
+	
+	self:RegisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE", "CheckCasts")
+	
 	self:RegisterEvent("BigWigs_RecvSync")
 
 	-- XXX Lets have a low throttle because you'll get 2 syncs from yourself, so
@@ -266,6 +268,7 @@ function BigWigsCommonAuras:OnEnable()
 	self:TriggerEvent("BigWigs_ThrottleSync", "BWCALG", .4) -- Last Stand
 	self:TriggerEvent("BigWigs_ThrottleSync", "BWCACS", .4) -- Challenging Shout
 	self:TriggerEvent("BigWigs_ThrottleSync", "BWCACR", .4) -- Challenging Roar
+	self:TriggerEvent("BigWigs_ThrottleSync", "BWCADT", .4) -- Distract
 	self:TriggerEvent("BigWigs_ThrottleSync", "BWCAP", .4) -- Portal
 end
 
@@ -278,6 +281,7 @@ function BigWigsCommonAuras:BigWigs_RecvSync( sync, rest, nick )
 	if self.db.profile.fearward and sync == "BWCAFW" and rest then
 		self:TriggerEvent("BigWigs_Message", string.format(L["fw_cast"], nick, rest), "Blue", not self.db.profile.broadcast, false)
 		self:TriggerEvent("BigWigs_StartBar", self, string.format(L["fw_bar"], nick), 30, BS:GetSpellIcon("Fear Ward"), "Blue")
+		
 	elseif self.db.profile.shieldwall and sync == "BWCASW" then
 		local swTime = tonumber(rest)
 		if not swTime then swTime = 10 end -- If the tank uses an old BWCA, just assume 10 seconds.
@@ -285,36 +289,47 @@ function BigWigsCommonAuras:BigWigs_RecvSync( sync, rest, nick )
 		self:TriggerEvent("BigWigs_Message", string.format(L["used_cast"], nick, spell), "Yellow", not self.db.profile.broadcast, false)
 		self:TriggerEvent("BigWigs_StartBar", self, string.format(L["used_bar"], spell, nick), swTime, BS:GetSpellIcon(spell), "Yellow")
 		self:SetCandyBarOnClick("BigWigsBar "..string.format(L["used_bar"], spell, nick), function(name, button, extra) TargetByName(extra, true) end, nick )
+		
 	elseif self.db.profile.laststand and sync == "BWCALS" then
 		local spell = BS["Last Stand"]
 		self:TriggerEvent("BigWigs_Message", string.format(L["used_cast"], nick, spell), "Yellow", not self.db.profile.broadcast, false)
 		self:TriggerEvent("BigWigs_StartBar", self, string.format(L["used_bar"], spell, nick), 20, BS:GetSpellIcon(spell), "Yellow")
 		self:SetCandyBarOnClick("BigWigsBar "..string.format(L["used_bar"], spell, nick), function(name, button, extra) TargetByName(extra, true) end, nick )
+		
 	elseif self.db.profile.lifegivinggem and sync == "BWCALG" then
 		local spell = BS["Gift of Life"]
 		self:TriggerEvent("BigWigs_Message", string.format(L["used_cast"], nick, BS["Lifegiving Gem"]), "Yellow", not self.db.profile.broadcast, false)
 		self:TriggerEvent("BigWigs_StartBar", self, string.format(L["used_bar"], BS["Lifegiving Gem"], nick), 20, BS:GetSpellIcon(spell), "Yellow")
 		self:SetCandyBarOnClick("BigWigsBar "..string.format(L["used_bar"], BS["Lifegiving Gem"], nick), function(name, button, extra) TargetByName(extra, true) end, nick )
+		
 	elseif self.db.profile.challengingshout and sync == "BWCACS" then
 		local spell = BS["Challenging Shout"]
 		self:TriggerEvent("BigWigs_Message", string.format(L["used_cast"], nick, spell), "Yellow", not self.db.profile.broadcast, false)
 		self:TriggerEvent("BigWigs_StartBar", self, string.format(L["used_bar"], spell, nick), 6, BS:GetSpellIcon(spell), "Yellow")
 		self:SetCandyBarOnClick("BigWigsBar "..string.format(L["used_bar"], spell, nick), function(name, button, extra) TargetByName(extra, true) end, nick )
 		lastTank = nick
+		
 	elseif self.db.profile.challengingroar and sync == "BWCACR" then
 		local spell = BS["Challenging Roar"]
 		self:TriggerEvent("BigWigs_Message", string.format(L["used_cast"], nick, spell), "Yellow", not self.db.profile.broadcast, false)
 		self:TriggerEvent("BigWigs_StartBar", self, string.format(L["used_bar"], spell, nick), 6, BS:GetSpellIcon(spell), "Yellow")
 		self:SetCandyBarOnClick("BigWigsBar "..string.format(L["used_bar"], spell, nick), function(name, button, extra) TargetByName(extra, true) end, nick )
 		lastTank = nick
+		
+	elseif self.db.profile.distract and sync == "BWCADT" then
+		local spell = BS["Distract"]
+		self:TriggerEvent("BigWigs_Message", string.format(L["used_cast"], nick, spell), "Yellow", not self.db.profile.broadcast, false)
+		self:TriggerEvent("BigWigs_StartBar", self, string.format(L["used_bar"], spell, nick), 10, BS:GetSpellIcon(spell), "Yellow")
+	
 	elseif self.db.profile.portal and sync == "BWCAP" and rest then
 		rest = BS:HasTranslation(rest) and BS:GetTranslation(rest) or rest
 		local _, _, zone = string.find(rest, L["portal_regexp"])
 		if zone then
 			self:TriggerEvent("BigWigs_Message", string.format(L["portal_cast"], nick, zone), "Blue", not self.db.profile.broadcast, false)
 			self:TriggerEvent("BigWigs_StartBar", self, rest, 60, BS:GetSpellIcon(rest), "Blue")
-			--self:SetCandyBarOnClick("BigWigsBar "..string.format(L["portal_cast"], spell, nick), function(name, button, extra) TargetByName(extra, true) end, nick )
 		end
+		
+	
 	end
 end
 
@@ -356,6 +371,12 @@ end
 function BigWigsCommonAuras:CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS(msg)
 	if string.find(msg, BS["Gift of Life"]) then
 		self:TriggerEvent("BigWigs_SendSync", "BWCALG")
+	end
+end
+
+function BigWigsCommonAuras:CheckCasts(msg)
+	if string.find(msg, BS["Distract"]) then
+		self:TriggerEvent("BigWigs_SendSync", "BWCADT")
 	end
 end
 

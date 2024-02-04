@@ -25,6 +25,7 @@ local activeModule = nil -- The module we're currently tracking proximity for.
 local anchor = nil
 local lastplayed = 0 -- When we last played an alarm sound for proximity.
 local tooClose = {} -- List of players who are too close.
+local tooClose2 = {} -- List of players who are too close over 5
 local hasDebuff = {} -- List of players who have the debuff.
 local debuffTexture = nil
 
@@ -376,8 +377,9 @@ function BigWigsProximity:OpenProximity(module)
 	self:SetupFrames()
 
 	for k in pairs(tooClose) do tooClose[k] = nil end
+	for k in pairs(tooClose2) do tooClose2[k] = nil end
 	anchor.text:SetText(L["|cff777777Nobody|r"])
-
+	anchor.text2:SetText("")
 	anchor.cheader:SetText(L["Close Players"])
 	anchor:Show()
 	if not self:IsEventScheduled("bwproximityupdate") then
@@ -399,6 +401,11 @@ local function tablelength(T)
 	for _ in pairs(T) do count = count + 1 end
 	return count
 end
+function BigWigsProximity:PlayerCanChain()
+	if tooClose and tablelength(tooClose) > 0 then
+		return true
+	end
+end
 local function proximityCheck(unit)
 	return CheckInteractDistance(unit, 3)
 end
@@ -408,7 +415,9 @@ function BigWigsProximity:UpdateProximity()
 	if not active then return end
 
 	for k in pairs(tooClose) do tooClose[k] = nil end
+	for k in pairs(tooClose2) do tooClose2[k] = nil end
 	tooClose = {}
+	tooClose2 = {}
 
 	local num = GetNumRaidMembers()
 	local func = function(unit) return CheckInteractDistance(unit, 2) end -- 1=10(?) yards; 2=11.11 yards; 3=9.9 yards; 4=28 yards
@@ -417,25 +426,29 @@ function BigWigsProximity:UpdateProximity()
 	end
 
 	for i = 1, num do
-		local name = GetRaidRosterInfo(i)
+		local name, _, subgroup = GetRaidRosterInfo(i)
 		local unit = "raid"..i
 		if UnitExists(unit) and not UnitIsDeadOrGhost(unit) and not UnitIsUnit(unit, "player") then
 			--if CheckInteractDistance(unit, 2) then -- 1=28 yards; 2=11.11 yards; 3=9.9 yards
 			if func(unit) then
-				table.insert(tooClose, tostring(coloredNames[unit]))
+				if tablelength(tooClose) < 5 then
+					table.insert(tooClose, string.sub(tostring(coloredNames[unit]), 1, 20).."|r G"..subgroup)
+				elseif tablelength(tooClose2) < 5 then
+					table.insert(tooClose2, string.sub(tostring(coloredNames[unit]), 1, 20).."|r G"..subgroup)
+				end
 			end
 		end
-		if tablelength(tooClose) > 4 then break end
 	end
 
 	if tablelength(tooClose) == 0 then
 		anchor:SetBackdropBorderColor(0.0,1.0,0.0) --- green
 		anchor.text:SetText(L["|cff777777Nobody|r"])
+		anchor.text2:SetText("")
 	else
 		anchor:SetBackdropBorderColor(1.0,0.0,0.0) --- red
 		local test = table.concat(tooClose, "\n");
 		anchor.text:SetText(table.concat(tooClose, "\n"))
-		--for k in pairs(tooClose) do tooClose[k] = nil end
+		anchor.text2:SetText(table.concat(tooClose2, "\n"))
 		local t = time()
 		if t > lastplayed + 1 then
 			lastplayed = t
@@ -506,11 +519,20 @@ function BigWigsProximity:SetupFrames()
 	text:SetWidth( 190 )
 	text:SetHeight( 80 )
 	text:SetPoint( "TOP", frame, "TOP", 0, -35 )
-	text:SetJustifyH("CENTER")
+	text:SetJustifyH("LEFT")
 	text:SetJustifyV("TOP")
 	text:SetFont(L["font"], 12)
 	frame.text = text
 
+	local text2 = frame:CreateFontString(nil, "OVERLAY")
+	text2:ClearAllPoints()
+	text2:SetWidth( 95 )
+	text2:SetHeight( 80 )
+	text2:SetPoint( "TOPRIGHT", frame, "TOPRIGHT", 0, -35 )
+	text2:SetJustifyH("LEFT")
+	text2:SetJustifyV("TOP")
+	text2:SetFont(L["font"], 12)
+	frame.text2 = text2
 	local close = frame:CreateTexture(nil, "ARTWORK")
 	close:SetTexture("Interface\\AddOns\\BigWigs TW\\Textures\\otravi-close")
 	close:SetTexCoord(0, .625, 0, .9333)
@@ -582,6 +604,7 @@ function BigWigsProximity:StartDebuffTrack(module, debuff, title)
 
 	for k in pairs(hasDebuff) do hasDebuff[k] = nil end
 	anchor.text:SetText(L["|cff777777Nobody|r"])
+	anchor.text2:SetText("")
 
 	anchor.cheader:SetText(title)
 	anchor:SetBackdropBorderColor(1.0,1.0,1.0)
@@ -607,13 +630,13 @@ function BigWigsProximity:UpdateDebuff()
 	for i = 1, num do
 		local name = GetRaidRosterInfo(i)
 		local unit = "raid"..i
-		if UnitExists(unit) and not UnitIsDeadOrGhost(unit) and not UnitIsUnit(unit, "player") then
+		if UnitExists(unit) and not UnitIsDeadOrGhost(unit) then
 			for a=1,16 do
 				local t,c = UnitDebuff(unit,a);
 				if(t == nil) then break; end;
 				if(t == debuffTexture)
 				then
-					table.insert(hasDebuff, tostring(coloredNames[unit]))
+					table.insert(hasDebuff, tostring(coloredNames[unit]).."|r ("..c.." stacks)")
 					break;
 				end
 			end

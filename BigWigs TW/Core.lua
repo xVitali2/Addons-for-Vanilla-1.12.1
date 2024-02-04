@@ -17,6 +17,36 @@ surface:Register("Charcoal", "Interface\\AddOns\\BigWigs TW\\Textures\\Charcoal"
 surface:Register("BantoBar", "Interface\\AddOns\\BigWigs TW\\Textures\\default")
 
 ----------------------------
+--    Raid Class Colors   --
+----------------------------
+
+RAID_CLASS_COLORS = {
+	["HUNTER"] = { r = 0.67, g = 0.83, b = 0.45, colorStr = "ffabd473" },
+	["WARLOCK"] = { r = 0.53, g = 0.53, b = 0.93, colorStr = "ff8788ee" },
+	["PRIEST"] = { r = 1.0, g = 1.0, b = 1.0, colorStr = "ffffffff" },
+	["PALADIN"] = { r = 0.96, g = 0.55, b = 0.73, colorStr = "fff58cba" },
+	["MAGE"] = { r = 0.25, g = 0.78, b = 0.92, colorStr = "ff3fc7eb" },
+	["ROGUE"] = { r = 1.0, g = 0.96, b = 0.41, colorStr = "fffff569" },
+	["DRUID"] = { r = 1.0, g = 0.49, b = 0.04, colorStr = "ffff7d0a" },
+	["SHAMAN"] = { r = 0.0, g = 0.44, b = 0.87, colorStr = "ff0070de" },
+	["WARRIOR"] = { r = 0.78, g = 0.61, b = 0.43, colorStr = "ffc79c6e" },
+}
+-- AceConsole zone commands
+BIGWIGS_ZONE_NAMES = {
+	["Karazhan"] = "1.Kara",
+	["Zul'Gurub"] = "2.ZG",
+	["Ruins of Ahn'Qiraj"] = "3.AQ20",
+	["Molten Core"] = "4.MC",
+	["Blackwing Lair"] = "5.BWL",
+	["Emerald Sanctum"] = "6.ES",
+	["Ahn'Qiraj"] = "7.AQ40",
+	["Naxxramas"] = "8.Naxxramas",
+	["Onyxia's Lair"] = "Onyxia",
+	["Silithus"] = "Silithus",
+	["Outdoor Raid Bosses"] = "Outdoor",
+	["Outdoor Raid Bosses Zone"] = "Outdoor",
+}
+----------------------------
 --      Localization      --
 ----------------------------
 
@@ -63,12 +93,14 @@ L:RegisterTranslations("enUS", function() return {
 	["Load all %s modules."] = true,
 
 	-- AceConsole zone commands
+	["Karazhan"] = "Kara",
 	["Zul'Gurub"] = "ZG",
 	["Molten Core"] = "MC",
 	["Blackwing Lair"] = "BWL",
 	["Ahn'Qiraj"] = "AQ40",
 	["Ruins of Ahn'Qiraj"] = "AQ20",
 	["Onyxia's Lair"] = "Onyxia",
+	["Emerald Sanctum"] = "ES",
 	["Naxxramas"] = "Naxxramas",
 	["Silithus"] = true,
 	["Outdoor Raid Bosses"] = "Outdoor",
@@ -261,7 +293,7 @@ L:RegisterTranslations("deDE", function() return {
 ---------------------------------
 
 BigWigs = AceLibrary("AceAddon-2.0"):new("AceEvent-2.0", "AceDebug-2.0", "AceModuleCore-2.0", "AceConsole-2.0", "AceDB-2.0", "AceHook-2.1")
-BigWigs:SetModuleMixins("AceDebug-2.0", "AceEvent-2.0", "CandyBar-2.0")
+BigWigs:SetModuleMixins("AceDebug-2.0", "AceEvent-2.0", "CandyBar-2.1")
 BigWigs:RegisterDB("BigWigsDB", "BigWigsDBPerChar")
 BigWigs.cmdtable = {type = "group", handler = BigWigs, args = {
 	[L["boss"]] = {
@@ -288,7 +320,7 @@ BigWigs.cmdtable = {type = "group", handler = BigWigs, args = {
 }}
 BigWigs:RegisterChatCommand({"/bw", "/BigWigs"}, BigWigs.cmdtable)
 BigWigs.debugFrame = ChatFrame1
-BigWigs.revision = 20033
+BigWigs.revision = 20034
 
 
 function BigWigs:DebugMessage(msg, module)
@@ -607,19 +639,28 @@ function BigWigs:CheckForWipe(module)
 				return true
 			end
 
-			local num = GetNumRaidMembers()
-			for i = 1, num do
+			for i = 1, GetNumRaidMembers() do
 				local raidUnit = string.format("raid%s", i)
 				if UnitExists(raidUnit) and UnitAffectingCombat(raidUnit) then
 					return true
 				end
 			end
-
 			return false
 		end
-
-		local inCombat = RaidMemberInCombat()
-		if not inCombat then
+		local function RaidMemberAlive()
+			if not UnitIsDeadOrGhost("player") then
+				return true
+			end
+			
+			for i = 1, GetNumRaidMembers() do
+				local raidUnit= string.format("raid%s", i)
+				if UnitExists(raidUnit) and not UnitIsDeadOrGhost(raidUnit) then
+					return true
+				end
+			end
+			return false
+		end
+		if not RaidMemberAlive() or not RaidMemberInCombat() then
 			module:DebugMessage("Wipe detected for module ["..module:ToString().."].")
 			module:CancelScheduledEvent(module:ToString().."_CheckWipe")
 			self:TriggerEvent("BigWigs_RebootModule", module:ToString())
@@ -724,8 +765,8 @@ function BigWigs.modulePrototype:RemoveIcon()
 	self:TriggerEvent("BigWigs_RemoveRaidIcon")
 end
 
-function BigWigs.modulePrototype:WarningSign(icon, duration, force)
-	self:TriggerEvent("BigWigs_ShowWarningSign", "Interface\\Icons\\" .. icon, duration, force)
+function BigWigs.modulePrototype:WarningSign(icon, duration, force, text)
+	self:TriggerEvent("BigWigs_ShowWarningSign", "Interface\\Icons\\" .. icon, duration, force, text)
 end
 function BigWigs.modulePrototype:RemoveWarningSign(icon, forceHide)
 	self:TriggerEvent("BigWigs_HideWarningSign", "Interface\\Icons\\" .. icon, forceHide)
@@ -875,7 +916,7 @@ function BigWigs:ADDON_LOADED(addon)
 end
 
 function BigWigs:ModuleDeclaration(bossName, zoneName)
-	translatedName = AceLibrary("Babble-Boss-2.2")[bossName]
+	translatedName = BB:HasTranslation(bossName) and BB[bossName] or bossName
 	local module = BigWigs:NewModule(translatedName)
 	local L = AceLibrary("AceLocale-2.2"):new("BigWigs" .. translatedName)
 	module.translatedName = translatedName
@@ -883,17 +924,13 @@ function BigWigs:ModuleDeclaration(bossName, zoneName)
 	local name = string.gsub(bossName, "%s", "") -- untranslated, unique string
 	module.bossSync = bossName
 
-	--local name = string.gsub(bossName, "%s", "") -- untranslated, unique string
-	--local module = BigWigs:NewModule(name)
-	--local L = AceLibrary("AceLocale-2.2"):new("BigWigs" .. name)
-	--module.translatedName = AceLibrary("Babble-Boss-2.2")[bossName]
 
 	-- zone
-	local raidZones = {"Blackwing Lair", "Ruins of Ahn'Qiraj", "Ahn'Qiraj", "Molten Core", "Naxxramas", "Zul'Gurub"}
+	local raidZones = {"Blackwing Lair", "Ruins of Ahn'Qiraj", "Ahn'Qiraj", "Molten Core", "Naxxramas", "Emerald Sanctum", "Karazhan", "Zul'Gurub"}
 	local isOutdoorraid = true
 	for i, value in ipairs(raidZones) do
 		if value == zoneName then
-			module.zonename = AceLibrary("Babble-Zone-2.2")[zoneName]
+			module.zonename = BZ:HasTranslation(zoneName) and BZ[zoneName] or zoneName
 			isOutdoorraid = false
 			break
 		end
@@ -901,7 +938,7 @@ function BigWigs:ModuleDeclaration(bossName, zoneName)
 	if isOutdoorraid then
 		module.zonename = {
 			AceLibrary("AceLocale-2.2"):new("BigWigs")["Outdoor Raid Bosses Zone"],
-			AceLibrary("Babble-Zone-2.2")[zoneName]
+			BZ:HasTranslation(zoneName) and BZ[zoneName] or zoneName
 		}
 	end
 
@@ -920,7 +957,12 @@ function BigWigs:RegisterModule(name, module)
 	local opts
 	if module:IsBossModule() and module.toggleoptions then
 		opts = {}
-		for _,v in pairs(module.toggleoptions) do if v ~= -1 then opts[v] = true end end
+		for _,v in pairs(module.toggleoptions) do
+			if v ~= -1 then opts[v] = true end
+			if module.defaultDB and module.defaultDB[v] ~= nil then
+				opts[v] = module.defaultDB[v]
+			end
+		end
 	end
 
 	if module.db and module.RegisterDefaults and type(module.RegisterDefaults) == "function" then
@@ -1031,13 +1073,23 @@ function BigWigs:RegisterModule(name, module)
 			if not self.cmdtable.args[L["boss"]].args[zone] then
 				self.cmdtable.args[L["boss"]].args[zone] = {
 					type = "group",
-					name = zonename,
+					name = BIGWIGS_ZONE_NAMES[zonename],
 					desc = string.format(L["Options for bosses in %s."], zonename),
-					args = {},
+					args = {
+						trash = {
+							type = "group",
+							name = "Trash",
+							order = -1,
+							desc = string.format("Options for trash in %s.", zonename),
+							args = {},
+						},
+					},
 				}
 			end
 			if module.external then
 				self.cmdtable.args[L["extra"]].args[L2["cmd"]] = cons or module.consoleOptions
+			elseif module.trashMod then
+				self.cmdtable.args[L["boss"]].args[zone].args["trash"].args[L2["cmd"]] = cons or module.consoleOptions
 			else
 				self.cmdtable.args[L["boss"]].args[zone].args[L2["cmd"]] = cons or module.consoleOptions
 			end
@@ -1062,12 +1114,10 @@ function BigWigs:RegisterModule(name, module)
 end
 
 function BigWigs:EnableModule(moduleName, nosync)
-	--local name = BB:HasTranslation(moduleName) and BB[moduleName] or moduleName
 	local m = self:GetModule(moduleName)
 	if m and not self:IsModuleActive(moduleName) then
 		self:ToggleModuleActive(moduleName, true)
 		if m:IsBossModule() then
-			--m.bossSync = m:ToString()
 			if not m.translatedName then
 				m.translatedName = m:ToString()
 				self:DebugMessage("translatedName for module " .. m:ToString() .. " missing")
@@ -1075,8 +1125,10 @@ function BigWigs:EnableModule(moduleName, nosync)
 			self:TriggerEvent("BigWigs_Message", string.format(L["%s mod enabled"], m.translatedName or "??"), "Core", true)
 		end
 
-		--if not nosync then self:TriggerEvent("BigWigs_SendSync", (m.external and "EnableExternal " or "EnableModule ") .. m.bossSync or (BB:GetReverseTranslation(moduleName))) end
-		if not nosync then self:TriggerEvent("BigWigs_SendSync", (m.external and "EnableExternal " or "EnableModule ") .. (m.synctoken or BB:GetReverseTranslation(moduleName))) end
+		if not nosync then
+			local syncToken = m.synctoken or BB:HasReverseTranslation(moduleName) and BB:GetReverseTranslation(moduleName) or moduleName
+			self:TriggerEvent("BigWigs_SendSync", (m.external and "EnableExternal " or "EnableModule ") .. syncToken)
+		end
 
 		self:SetupModule(moduleName)
 	end
@@ -1084,13 +1136,8 @@ end
 
 -- registers generic events
 function BigWigs:SetupModule(moduleName)
-	--local name = BB:HasTranslation(moduleName) and BB[moduleName] or moduleName
 	local m = self:GetModule(moduleName)
 	if m and m:IsBossModule() then
-		--m.bossSync = m:ToString()
-		--m.bossSync = BB:GetReverseTranslation(moduleName) -- untranslated string
-		--self:Print("bossSync: " .. string.gsub(BB:GetReverseTranslation(moduleName), "%s", ""))
-		--m.bossSync = string.gsub(BB:GetReverseTranslation(moduleName), "%s", "") -- untranslated, unique string without spaces
 
 		m:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage") -- addition
 		m:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
@@ -1106,7 +1153,6 @@ function BigWigs:SetupModule(moduleName)
 end
 
 function BigWigs:DisableModule(moduleName)
-	--local name = BB:HasTranslation(moduleName) and BB[moduleName] or moduleName
 	local m = self:GetModule(moduleName)
 	if m then
 		if m:IsBossModule() then
@@ -1276,45 +1322,21 @@ function BigWigs:AddLoDMenu( zonename )
 			zone = L[zonename]
 		end
 
-
-
 		if not self.cmdtable.args[L["boss"]].args[zone] then
 			self.cmdtable.args[L["boss"]].args[zone] = {
 				type = "group",
-				name = zonename,
+				name = BIGWIGS_ZONE_NAMES[zonename],
 				desc = string.format(L["Options for bosses in %s."], zonename),
-				args = {}
+				args = {
+					trash = {
+						type = "group",
+						name = "Trash",
+						order = -1,
+						desc = string.format("Options for trash in %s.", zonename),
+						args = {},
+					},
+				},
 			}
 		end
-		-- if zone == L["Other"] then
-		-- local zones = BigWigsLoD:GetZones()
-		-- zones = zones[L["Other"]]
-		-- self.cmdtable.args[L["boss"]].args[zone].args[L["Load"]] = {
-		-- type = "execute",
-		-- name = L["Load All"],
-		-- desc = string.format( L["Load all %s modules."], zonename ),
-		-- order = 1,
-		-- func = function()
-		-- for z, v in pairs( zones ) do
-		-- BigWigsLoD:LoadZone( z )
-		-- if self.cmdtable.args[L["boss"]].args[z] and self.cmdtable.args[L["boss"]].args[z].args[L["Load"]] then
-		-- self.cmdtable.args[L["boss"]].args[z].args[L["Load"]] = nil
-		-- end
-		-- end
-		-- self.cmdtable.args[L["boss"]].args[zone] = nil
-		-- end
-		-- }
-		-- else
-		-- self.cmdtable.args[L["boss"]].args[zone].args[L["Load"]] = {
-		-- type = "execute",
-		-- name = L["Load All"],
-		-- desc = string.format( L["Load all %s modules."], zonename ),
-		-- order = 1,
-		-- func = function()
-		-- BigWigsLoD:LoadZone( zonename )
-		-- self.cmdtable.args[L["boss"]].args[zone].args[L["Load"]] = nil
-		-- end
-		-- }
-		-- end
 	end
 end

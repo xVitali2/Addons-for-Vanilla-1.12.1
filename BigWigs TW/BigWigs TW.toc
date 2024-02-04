@@ -6,8 +6,8 @@
 ## Notes-esES: Módulos para Jefes con barras temporizadoras.
 ## Notes-zhCN: 团队首领战信息提示插件，带有计时条。
 ## Notes-zhTW: 團隊首領戰訊息提示插件，帶有計時條。
-## Author: Tekkub Stoutwrithe, Ammo, Shyva, Rabbit, LYQ, Dorann, Hosq, CosminPOP, ruRUbyCFM & Others
-## Version: 2.0.7
+## Author: Tekkub Stoutwrithe, Ammo, Shyva, Rabbit, LYQ, Dorann, Hosq, CosminPOP, balakethelock, ruRUbyCFM & Others
+## Version: 2.0.8
 ## X-Website: https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases
 ## X-Category: Raid
 ## X-RelSite-WoWI: 5086
@@ -17,7 +17,7 @@
 
 ## RequiredDeps:!Libs
 ## SavedVariables: BigWigsDB, BigWigsFubarDB, BigWigsCommonAurasDB, BigWigsZombieFoodDB, BigWigsRespawnTimersDB, BigWigsContributeFlag
-## SavedVariablesPerCharacter: BigWigsDBPerChar
+## SavedVariablesPerCharacter: BigWigsDBPerChar, BigWigsBarClick
 
 LoadOnDemand.lua
 Core.lua
@@ -52,6 +52,7 @@ Plugins\FRBuffMacro.lua
 Plugins\Farclip.lua
 Plugins\FrostBlast.lua
 Plugins\Pulltimer.lua
+Plugins\CombatAnnouncement.lua
 
 Raids\ZG\Arlokk.lua
 Raids\ZG\Jeklik.lua
@@ -120,6 +121,9 @@ Raids\Other\Nerubian.lua
 
 Raids\Onyxia\Onyxia.lua
 
+Raids\Naxxramas\LivingMonstrosity.lua
+Raids\Naxxramas\Golem.lua
+Raids\Naxxramas\Spiders.lua
 Raids\Naxxramas\Gargoyle.lua
 Raids\Naxxramas\Anubrekhan.lua
 Raids\Naxxramas\Gluth.lua
@@ -137,5 +141,20 @@ Raids\Naxxramas\Horsemen.lua
 Raids\Naxxramas\Sapphiron.lua
 Raids\Naxxramas\Kelthuzad.lua
 
+Raids\EmeraldSanctum\Erennius.lua
+Raids\EmeraldSanctum\Solnius.lua
+Raids\EmeraldSanctum\SanctumDragonkin.lua
+Raids\EmeraldSanctum\SanctumDreamer.lua
+Raids\EmeraldSanctum\SanctumSupressor.lua
+Raids\EmeraldSanctum\SanctumWyrmkin.lua
+Raids\EmeraldSanctum\SanctumWyrm.lua
+
+Raids\Karazhan\LordBlackwaldII.lua
+Raids\Karazhan\BroodQueenAraxxna.lua
+Raids\Karazhan\Grizikil.lua
+Raids\Karazhan\ClawlordHowlfang.lua
+Raids\Karazhan\Moroes.lua
+Raids\Karazhan\PhantomServant.lua
+Raids\Karazhan\DarkRiderChampion.lua
 Battlegrounds\AlteracValley.lua
 Battlegrounds\ArathiBasin.lua

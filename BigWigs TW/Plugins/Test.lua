@@ -152,7 +152,7 @@ function BigWigsTest:BigWigs_Test()
 	self:Bar(L["Test Bar 3"], 5, "Spell_Nature_ResistNature", true, "red")
 	self:Bar(L["Test Bar 2"], 16, "Inv_Hammer_Unique_Sulfuras")
 	self:Bar(L["Test Bar"], 20, "Spell_Nature_ResistNature")
-	self:WarningSign("Inv_Hammer_Unique_Sulfuras", 10)
+	self:WarningSign("Inv_Hammer_Unique_Sulfuras", 10, true, "Test text")
 
 	self:DelayedMessage(5, L["OMG Bear!"], "Important", true, "Alert")
 	self:DelayedMessage(10, L["*RAWR*"], "Urgent", true, "Alarm")
