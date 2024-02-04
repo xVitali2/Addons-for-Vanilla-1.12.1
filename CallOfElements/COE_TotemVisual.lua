@@ -958,6 +958,8 @@ function COE_Totem:OnTotemButtonLoad()
 	this.Flashtime = 0;
 	this.ElementFrame = this:GetParent();
 
+	getglobal(this:GetName() .."TickCooldown"):SetFrameLevel(getglobal(this:GetName() .."TickCooldown"):GetFrameLevel()-1)
+
 	-- register for drag
 	-- ------------------
 	this:RegisterForDrag( "LeftButton" );
@@ -1041,6 +1043,7 @@ function COE_Totem:OnTotemButtonEvent( event )
 			this.totem and this.totem == COE.TotemPending.Totem ) then
 				COE_Totem:ActivatePendingTotem( this.totem );
 		end
+			
 	end
 	
 end
@@ -1558,6 +1561,12 @@ function COE_Totem:MakeAnchorTotem( button )
 
 end
 
+function COE_Totem_StartTotemTicks(name,ticktimer,Tick)
+	
+	CooldownFrame_SetTimer(getglobal(ticktimer),GetTime(),Tick,1);
+	
+	Chronos.scheduleByName(name,Tick,COE_Totem_StartTotemTicks,name,ticktimer,Tick)
+end;
 
 --[[ ----------------------------------------------------------------
 	METHOD: COE_Totem:SetTimerText
@@ -1573,6 +1582,7 @@ function COE_Totem:SetTimerText()
 	
 	local timertext = getglobal( this:GetName() .. "Text" );
 	local overlaytex = getglobal( this:GetName().. "OverlayTex" );  
+	local ticktimer = getglobal(this:GetName() .. "TickCooldown");
 
 	-- show timers only in timerframe and this is a bar button?
 	-- ---------------------------------------------------------
@@ -1612,6 +1622,20 @@ function COE_Totem:SetTimerText()
 			timertext:Show();
 			overlaytex:Show();
 			
+			
+			-- activate ticks
+			-- --------------
+			
+			if ( this.totem.ticks == false and this.totem.Tick) then
+				
+				this.totem.ticks = true
+				if not ticktimer:IsVisible() then ticktimer:Show(); end
+				
+				COE_Totem_StartTotemTicks(this:GetName() .. "TickTimer",this:GetName() .. "TickCooldown",this.totem.Tick)
+				
+			end
+
+			
 		elseif( this.totem.CurCooldown > 0 ) then
 		
 			-- format text
@@ -1641,12 +1665,20 @@ function COE_Totem:SetTimerText()
 			timertext:Show();
 			overlaytex:Show();
 			
+			Chronos.unscheduleByName(this:GetName() .. "TickTimer");
+			ticktimer:Hide();
+			this.totem.ticks = false;
+			
 		else
 			-- if timer has just expired, deactivate it
 			-- if it isn't active anyway, the call doesn't hurt
 			-- -------------------------------------------------
 			COE_Totem:DeactivateTimer( this.totem );
 
+			Chronos.unscheduleByName(this:GetName() .. "TickTimer");
+			ticktimer:Hide();
+			if this.totem then this.totem.ticks = false end;
+			
 			timertext:Hide();
 			overlaytex:Hide();
 		end

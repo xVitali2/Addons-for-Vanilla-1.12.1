@@ -34,7 +34,7 @@ COESTR_HEALOOM = "Out of mana!";
 
 -- String patterns
 -- ----------------
-COESTR_SCANTOTEMS = "Totem";
+COESTR_SCANTOTEMS = " Totem";
 COESTR_TOTEMTOOLS = "Tools: (.*) Totem";
 COESTR_TOTEMMANA = "(%d*) Mana";
 COESTR_TOTEMRANK = "Rank (%d)";
@@ -50,7 +50,7 @@ COESTR_LESSERWAVE = "Lesser Healing Wave";
 COESTR_MINAMOUNT = "(%d*) to";
 COESTR_MAXAMOUNT = "to (%d*)";
 COESTR_TRINKET = "^.*%[Enamored Water Spirit%].*$"; 
-
+COESTR_TOTEMICRECALL = "Totemic Recall"
 
 -- Totem Advisor
 -- --------------
@@ -67,6 +67,14 @@ COESTR_TREMOR = {
 	"Howl of Terror", "Intimidating Growl", "Crystalline Slumber", "Druid's Slumber"
 }
 
+-- Totems
+-- -------------
+COESTR_TOTEMEARTHBIND = "Earthbind Totem";
+COESTR_TOTEMFLAMETONGUE = "Flametongue Totem"; 
+COESTR_TOTEMMAGMA = "Magma Totem";
+COESTR_TOTEMMANA_TIDE = "Mana Tide Totem";
+COESTR_TOTEMSTONECLAW = "Stoneclaw Totem"; 
+COESTR_TOTEMWINDFURY = "Windfury Totem";
 
 -- Tools
 -- ---------

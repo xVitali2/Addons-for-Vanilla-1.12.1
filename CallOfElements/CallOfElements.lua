@@ -4,6 +4,7 @@
 	The All-In-One Shaman Addon
 	
 	by Wyverex (2006)
+        by laytya (2018-2022)
 
 ]]
 
@@ -284,4 +285,20 @@ function COE:FixSavedVariables()
 	COE:Fix_CastOrderLocalization2();
 
 	COE_Config:SetOption( COEOPT_VERSION, 2.1 );
+    
+	-- Cosmos support
+	if(EarthFeature_AddButton) then 
+		
+		EarthFeature_AddButton(
+			{ id = BINDING_HEADER_CALLOFELEMENTS;
+			name = BINDING_HEADER_CALLOFELEMENTS;
+			subtext = "Version: " .. COE_VERSION; 
+			tooltip = "";      
+			icon = "Interface\\Icons\\INV_Misc_Idol_03";
+			callback = COE.ToggleConfigFrame;
+			test = nil;
+			} )
+	elseif (Cosmos_RegisterButton) then 
+		Cosmos_RegisterButton(BINDING_HEADER_CALLOFELEMENTS, BINDING_HEADER_CALLOFELEMENTS, COE_VERSION, "Interface\\Icons\\INV_Misc_Idol_03", COE_ToggleConfigFrame);
+	end        
 end

@@ -87,6 +87,21 @@ COE["NoTotem"] = { SpellName = "", Element = "", Texture = "Interface\\Icons\\IN
 	ToolPresent = false, Ranks = { SpellID = 0, Mana = 0, Duration = 0, Health = 0, Cooldown = 0 },
 	MaxRank = 1, isActive = false, CurDuration = 0, CurHealth = 0, CurCooldown = 0 };
 
+--[[ ----------------------------------------------------------------
+	COE.TotemTicks is a ticks data (sec)
+-------------------------------------------------------------------]]
+COE.TotemTicks = {}
+COE.TotemTicks[COESTR_TOTEMDISEASE] =  5;
+COE.TotemTicks[COESTR_TOTEMEARTHBIND] = 3;
+COE.TotemTicks[COESTR_TOTEMFLAMETONGUE] = 5;
+COE.TotemTicks[COESTR_TOTEMMAGMA] = 2;
+COE.TotemTicks[COESTR_TOTEMMANA_TIDE] = 3;
+COE.TotemTicks[COESTR_TOTEMPOISON] = 5;
+COE.TotemTicks[COESTR_TOTEMSTONECLAW] = 1.5;
+COE.TotemTicks[COESTR_TOTEMTREMOR] = 4;
+COE.TotemTicks[COESTR_TOTEMWINDFURY] = 10;
+
+	
 
 --[[ ----------------------------------------------------------------
 	METHOD: COE:CreateTotem
@@ -97,7 +112,7 @@ function COE:CreateTotem()
 	return { SpellName = "", Element = "", Texture = "", 
 		ToolPresent = false, Ranks = {}, MaxRank = 0, isActive = false,
 		CurDuration = 0, CurHealth = 0, CurCooldown = 0,
-		isTrinket = false, TrinketSlot = nil };
+		isTrinket = false, TrinketSlot = nil, Tick = nil, ticks = false };
 end
 
 
@@ -184,7 +199,7 @@ function COE:ScanTotems()
 		
 		-- is this a totem?
 		-- -----------------
-		if( string.find( SpellName, COESTR_SCANTOTEMS ) ~= nil and string.find( SpellName, "Totemic Recall" ) == nil ) then
+		if ( SpellName ~= COESTR_TOTEMICRECALL and string.find( SpellName, COESTR_SCANTOTEMS ) ~= nil ) then
 		
 			local newtotem = true;
 			local totem = nil;
@@ -256,6 +271,10 @@ function COE:ScanTotems()
 							COE:Message( COESTR_INVALIDELEMENT .. SpellName );
 						end										
 					end
+				end
+				
+				if COE.TotemTicks[SpellName] ~= nil then
+					totem.Tick = COE.TotemTicks[SpellName]
 				end
 				
 				-- get totem texture
@@ -577,7 +596,7 @@ function COE:ReorderNewTotems()
 	for k = 1, COE.TotemCount do
 		
 		local totem = COE.TotemData[k];
-		if( COE_DisplayedTotems[totem.SpellName] ~= nil ) then
+		if( COE_DisplayedTotems[totem.SpellName] ~= nil and totem.Element ~= "") then
 			if( COE_DisplayedTotems[totem.SpellName].Order == 0 ) then
 
 				-- this totem has just been added				
@@ -597,6 +616,8 @@ function COE:ReorderNewTotems()
 			else
 				bError = true;
 			end		
+		elseif totem.Element == "" then
+			Chronos.scheduleByName("COERescan", 3, COE_Totem.Rescan);
 		end
 	end
 	

@@ -55,7 +55,7 @@ COESTR_LESSERWAVE = "次级治疗波";
 COESTR_MINAMOUNT = "(%d*)到";
 COESTR_MAXAMOUNT = "到(%d*)";
 COESTR_TRINKET = "^.*%[被迷惑的水之魂%].*$"; 
-
+COESTR_TOTEMICRECALL = "图腾召唤" -- Need translation
 
 -- Totem Advisor
 -- --------------

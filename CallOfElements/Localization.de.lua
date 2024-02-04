@@ -35,7 +35,7 @@ COESTR_HEALOOM = "Kein Mana mehr!";
 
 -- String patterns
 -- ----------------
-COESTR_SCANTOTEMS = "Totem";
+COESTR_SCANTOTEMS = " Totem";
 COESTR_TOTEMTOOLS = "Werkzeuge: (.*)totem";
 COESTR_TOTEMMANA = "(%d*) Mana";
 COESTR_TOTEMRANK = "Rang (%d)";
@@ -52,7 +52,7 @@ COESTR_LESSERWAVE = "Geringe Welle der Heilung";
 COESTR_MINAMOUNT = "(%d*) bis";
 COESTR_MAXAMOUNT = "bis (%d*)";
 COESTR_TRINKET = "^.*%[Entz\195\188ckter Wassergeist%].*$"; 
-
+COESTR_TOTEMICRECALL = "Ruf der Totems" -- Need translation
 
 -- Totem Advisor
 -- --------------
@@ -135,7 +135,7 @@ COE_ConfigTotemTab = "Zeigt die Totemoptionen an";
 COE_ConfigHealingTab = "Zeigt die Heilungs-Optionen an";
 COE_ConfigDebuffTab = "Zeigt die Debuff-Optionen an";
 COE_OptionEnableTotemBar = "Aktiviert die Totemleiste,\ndie alle verf\195\188gbaren Totems\nzur schnellen Benutzung anzeigt";
-COE_OptionHideBackdrop = "Verbirgt den Hintergrund wenn sich\ndie Maus nicht über der Totemleiste befindet";
+COE_OptionHideBackdrop = "Verbirgt den Hintergrund wenn sich\ndie Maus nicht Ã¼ber der Totemleiste befindet";
 COE_OptionEnableTimers = "Aktiviert die Anzeige der noch\nverbleibenden Totemzeit in den Totembuttons";
 COE_OptionEnableTimerNotifications = "Zeigt Warnungen an, wenn ein Totem\nabl\195\164uft oder zerst\195\182rt wird";
 COE_OptionAdvisor = "Benachrichtigt Euch wenn Ihr oder ein Mitglied\nEurer Gruppe einen Debuff hat,\nder mit einem eurer Totems heilbar ist";
@@ -233,10 +233,10 @@ COESHELL_NEXTSET = "'/coe nexset' - Wechselt zum n\195\164chsten Benutzerset ode
 COESHELL_PRIORSET = "'/coe priorset' - Wechselt zum vorherigen Benutzerset oder zum Standardset";
 COESHELL_SET = "'/coe set <name>' - Wechselt zum Set mit dem angegebenen Namen. Gro\195\159-/Kleinschreibung ist wichtig";
 COESHELL_RESTARTSET = "'/coe restartset' - Totems werden neu geworfen, wenn das aktive Set das n\195\164chste Mal geworfen wird";
-COESHELL_RESET = "'/coe reset' - Setzt alle Timer und das aktive Set zurück";
-COESHELL_RESETFRAMES = "'/coe resetframes' - Alle Leisten kehren zur Mitte des Bildschirms zurück";
-COESHELL_RESETORDERING = "'/coe resetordering' - Setzt die Reihenfolgen der Totems zurück";
-COESHELL_RELOAD = "'/coe reload' - Lädt alle Totems und Sets neu";
+COESHELL_RESET = "'/coe reset' - Setzt alle Timer und das aktive Set zurÃ¼ck";
+COESHELL_RESETFRAMES = "'/coe resetframes' - Alle Leisten kehren zur Mitte des Bildschirms zurÃ¼ck";
+COESHELL_RESETORDERING = "'/coe resetordering' - Setzt die Reihenfolgen der Totems zurÃ¼ck";
+COESHELL_RELOAD = "'/coe reload' - LÃ¤dt alle Totems und Sets neu";
 COESHELL_MACRONOTE = "Die folgenden Befehle funktionieren nur als Makros auf einem Action Button:";
 COESHELL_THROWSET = "'/coe throwset' - Wirft den n\195\164chsten Totem des aktiven Totemsets";
 COESHELL_ADVISED = "'/coe advised' - Wirft den n\195\164chsten vorgeschlagenen Totem";

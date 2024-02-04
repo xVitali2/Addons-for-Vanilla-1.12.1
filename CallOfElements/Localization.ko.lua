@@ -52,7 +52,7 @@ COESTR_LESSERWAVE = "하급 치유의 물결";
 COESTR_MINAMOUNT = "(%d*)~";
 COESTR_MAXAMOUNT = "~(%d*)";
 COESTR_TRINKET = "^.*%[사로잡힌 물의 정령%].*$"; 
-
+COESTR_TOTEMICRECALL = "토템의 부름" -- Need translation
 
 
 -- Totem Advisor

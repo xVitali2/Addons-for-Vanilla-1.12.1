@@ -1,6 +1,6 @@
 CALL OF ELEMENTS v2.8
 by Wyverex
-
+supported by laytya @ git
 
 This is an All-In-One Shaman class addon for World Of Warcraft.
 Currently, it features a complete totem module to simplify totem usage

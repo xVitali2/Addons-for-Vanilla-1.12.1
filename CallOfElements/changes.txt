@@ -1,6 +1,12 @@
+v2.8u
+ - some fixes in logic
+
+v2.8t
+ - Fix for "Totemic Recall" spell in TWOW
+
 v2.8
-ADDITIONS:
--support Totemic Recall from Turtle WOW
+
+-some fixes
 
 v2.7
 ADDITIONS:

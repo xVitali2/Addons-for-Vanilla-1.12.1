@@ -25,7 +25,7 @@ COESTR_UDATEDSAVED = "Param\195\168tres sauvegard\195\169s actualis\195\169s pou
 COESTR_FIXEDDISPLAY = "Corrig\195\169 les erreurs dans les param\195\168tres.";
 COESTR_TOTEMSRELOADED = "Totems relanc\195\169";
 COESTR_RESTARTINGSET = "Modifi\195\169 le set actif ";
-COESTR_RESET = "Timers remis à z\195\169ro";
+COESTR_RESET = "Timers remis \195\160 z\195\169ro";
 COESTR_HEALCOOLDOWN = " n'est pas encore pr\195\170t!";
 COESTR_NOHEALING = "Pas besoin de soins";
 COESTR_HEALING = "Soigne %s avec %s (Rang %d)";
@@ -35,7 +35,7 @@ COESTR_HEALOOM = "Pas assez de mana!";
 
 -- String patterns
 -- ----------------
-COESTR_SCANTOTEMS = "Totem";
+COESTR_SCANTOTEMS = " Totem";
 COESTR_TOTEMTOOLS = "Outils..:.Totem.(.*)";
 COESTR_TOTEMMANA = "Mana.:.(%d*)";
 COESTR_TOTEMRANK = "Rang (%d)";
@@ -51,7 +51,7 @@ COESTR_LESSERWAVE = "Vague de soins inf\195\169rieurs";
 COESTR_MINAMOUNT = "(%d*).\195\160";
 COESTR_MAXAMOUNT = "\195\160.(%d*)";
 COESTR_TRINKET = "^.*%[Esprit de l\039eau amoureux%].*$"; 
-
+COESTR_TOTEMICRECALL = "Appel tot\195\169mique" -- Need translation
 
 -- Totem Advisor
 -- --------------
@@ -241,21 +241,21 @@ COESHELL_ADVISED = "'/coe advised' - lance le totem propos\195\169";
 
 
 end
--- ß  \195\159
--- ö  \195\182
--- é  \195\169
--- â  \195\162
--- ä  \195\164
--- à  \195\160
--- ç  \195\167
--- ê  \195\170
--- ë  \195\171
--- è  \195\168
--- ï  \195\175
--- î  \195\174
--- ô  \195\180
--- ö  \195\182
--- ù  \195\185
--- ß  \195\159
+-- ÃŸ  \195\159
+-- Ã¶  \195\182
+-- Ã©  \195\169
+-- Ã¢  \195\162
+-- Ã¤  \195\164
+-- Ã   \195\160
+-- Ã§  \195\167
+-- Ãª  \195\170
+-- Ã«  \195\171
+-- Ã¨  \195\168
+-- Ã¯  \195\175
+-- Ã®  \195\174
+-- Ã´  \195\180
+-- Ã¶  \195\182
+-- Ã¹  \195\185
+-- ÃŸ  \195\159
 -- DEFAULT_CHAT_FRAME:AddMessage(element);
 -- COE:DebugMessage( "mcaoua:"..);	

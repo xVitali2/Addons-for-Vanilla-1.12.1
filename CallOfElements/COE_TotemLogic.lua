@@ -983,10 +983,7 @@ function COE_Totem:SetupTimerHooks()
 
 	COE_Totem.TimerHooks["UseAction"] = UseAction;
 	UseAction = function( id, book, onself ) 
-		COE_Totem:HookUseAction( id, book );
-		if ( GetActionTexture(id) == "Interface\\Icons\\Spell_Shaman_TotemRecall" ) then -- by CFM for Turtle WOW Totemic Recall
-		  COE_Totem:ResetTimers();
-		end
+		COE_Totem:HookUseAction( id, book ); 
 		COE_Totem.TimerHooks["UseAction"]( id, book, onself ); 
 	end;
 
@@ -1008,6 +1005,16 @@ function COE_Totem:SetupTimerHooks()
 		COE_Totem.TimerHooks["UseInventoryItem"]( slotid );
 	end;
 
+end
+
+local function isTotemicRecall(text)
+	if type(text) == "number" then
+		text = GetSpellName(text, "spell")
+	end
+	if text == COESTR_TOTEMICRECALL then
+		COE_Totem:ResetTimers()
+		return true
+	end
 end
 
 
@@ -1034,43 +1041,46 @@ function COE_Totem:HookUseAction( id, book )
 	local text = COETotemTTTextLeft1:GetText();
 	local i, rank, ranktext, trinket;
 
-	-- check if this triggered the trinket
-	-- ------------------------------------
-	trinket = text == COESTR_TRINKET_TOOLTIP;
+	-- Check for Totemic Recall
+	if not isTotemicRecall(text) then
+	
+		-- check if this triggered the trinket
+		-- ------------------------------------
+		trinket = text == COESTR_TRINKET_TOOLTIP;
 
-	for i = 1, COE.TotemCount do
-		if( (trinket and COE.TotemData[i].isTrinket) or COE.TotemData[i].SpellName == text ) then
-			
-			if( COE.TotemData[i].isTrinket ) then
-				rank = 0;
-			
-			else
-				-- get rank information
-				-- Since WOW doesn't seem to clear the rank information
-				-- when setting a tooltip for an action that doesn't
-				-- have such, we need to test if the rank info is 
-				-- actually shown first
-				-- -----------------------------------------------------
-				if( COETotemTTTextRight1:IsShown() ) then 
-					ranktext = COETotemTTTextRight1:GetText();
-				end
-				if( ranktext ) then
-					_,_,rank = string.find( ranktext, COESTR_TOTEMRANK );
-					rank = tonumber( rank );
+		for i = 1, COE.TotemCount do
+			if( (trinket and COE.TotemData[i].isTrinket) or COE.TotemData[i].SpellName == text ) then
+				
+				if( COE.TotemData[i].isTrinket ) then
+					rank = 0;
+				
 				else
-					rank = COE.TotemData[i].MaxRank;
-				end
-			end 
-		
-			-- set pending totem
-			-- ------------------
-			COE_Totem:SetPendingTotem( COE.TotemData[i], rank );
+					-- get rank information
+					-- Since WOW doesn't seem to clear the rank information
+					-- when setting a tooltip for an action that doesn't
+					-- have such, we need to test if the rank info is 
+					-- actually shown first
+					-- -----------------------------------------------------
+					if( COETotemTTTextRight1:IsShown() ) then 
+						ranktext = COETotemTTTextRight1:GetText();
+					end
+					if( ranktext ) then
+						_,_,rank = string.find( ranktext, COESTR_TOTEMRANK );
+						rank = tonumber( rank );
+					else
+						rank = COE.TotemData[i].MaxRank;
+					end
+				end 
 			
-			return;
+				-- set pending totem
+				-- ------------------
+				COE_Totem:SetPendingTotem( COE.TotemData[i], rank );
+				
+				return;
+			end
+		
 		end
-	
 	end
-	
 
 	-- no totem spell. remove pending totem if set
 	-- --------------------------------------------
@@ -1092,18 +1102,21 @@ function COE_Totem:HookCastSpell( id, book )
 	if( COE_Config:GetSaved( COEOPT_ENABLETIMERS ) == 0 ) then
 		return;
 	end
-	
-	-- get the associated totem object
-	-- --------------------------------
-	local i, k, totem;
-	for i = 1, COE.TotemCount do
-		for k = 1, COE.TotemData[i].MaxRank do
-			if( COE.TotemData[i].Ranks[k].SpellID == id ) then
-				-- totem found. mark it as pending
-				-- --------------------------------
-				COE_Totem:SetPendingTotem( COE.TotemData[i], k );
-				
-				return;
+
+	-- Check for Totemic Recall
+	if not isTotemicRecall(id) then
+		-- get the associated totem object
+		-- --------------------------------
+		local i, k, totem;
+		for i = 1, COE.TotemCount do
+			for k = 1, COE.TotemData[i].MaxRank do
+				if( COE.TotemData[i].Ranks[k].SpellID == id ) then
+					-- totem found. mark it as pending
+					-- --------------------------------
+					COE_Totem:SetPendingTotem( COE.TotemData[i], k );
+					
+					return;
+				end
 			end
 		end
 	end
@@ -1134,25 +1147,27 @@ function COE_Totem:HookCastSpellByName( SpellName )
 	local _,_,rank = string.find( SpellName, COESTR_CASTBYNAME );
 	local spell = string.gsub( SpellName, COESTR_CASTBYNAME, "" );
 	
-	-- get the associated totem object
-	-- --------------------------------
-	local i, k, totem;
-	for i = 1, COE.TotemCount do
-		if( COE.TotemData[i].SpellName == spell ) then
-			if( rank ) then
-				rank = tonumber( rank );
-			else
-				rank = COE.TotemData[i].MaxRank;
+	-- Check for Totemic Recall
+	if not isTotemicRecall(text) then
+		-- get the associated totem object
+		-- --------------------------------
+		local i, k, totem;
+		for i = 1, COE.TotemCount do
+			if( COE.TotemData[i].SpellName == spell ) then
+				if( rank ) then
+					rank = tonumber( rank );
+				else
+					rank = COE.TotemData[i].MaxRank;
+				end
+				
+				-- totem found. mark it as pending
+				-- --------------------------------
+				COE_Totem:SetPendingTotem( COE.TotemData[i], rank );
+				
+				return;
 			end
-			
-			-- totem found. mark it as pending
-			-- --------------------------------
-			COE_Totem:SetPendingTotem( COE.TotemData[i], rank );
-			
-			return;
 		end
 	end
-
 	-- no totem spell. remove pending totem if set
 	-- --------------------------------------------
 	COE_Totem:SetPendingTotem( nil );
@@ -1202,4 +1217,5 @@ function COE_Totem:HookUseInventoryItem( slotid )
 	COE_Totem:SetPendingTotem( nil );
 	
 end
+ 
 
