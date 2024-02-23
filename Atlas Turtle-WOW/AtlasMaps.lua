@@ -1551,7 +1551,7 @@ AtlasMaps = {
 		{ BLUE.."A) "..L["Entrance"] },
 		{ BLUE.."B-B) ".."Connections" },
 		{ GREY.."1) ".."Chronar", NPC, 65113 };
-		{ GREY.."2) ".."Harbinger Aph'ygth", NPC, 65114 };
+		{ GREY.."2) ".."deleted - Harbinger Aph'ygth", NPC, 65114 };
 		{ GREY.."3) ".."Epidamu", NPC, 61575 };
 		{ GREY.."4) ".."Drifting Avatar of Time", NPC, 61316 };
 		{ GREY.."5) ".."Time-Lord Epochronos", NPC, 65116 };
@@ -1580,7 +1580,7 @@ AtlasMaps = {
 		Acronym = "TCG",
 		Location = { BZ["Ashenvale"], 331 },
 		LevelRange = "32-38",
-		MinLevel = "26",
+		MinLevel = "32",
 		PlayerLimit = "5",
 		Continent = BZ["Kalimdor"],
 		{ BLUE.."A) "..L["Entrance"] },
