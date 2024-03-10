@@ -1059,7 +1059,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s9065", "inv_bracer_04", "=q1=Light Leather Bracers", "=ds=#sr# =so1=70 =so2=100 =so3=115 =so4=130" },
 		{ "s3759", "inv_pants_02", "=q2=Embossed Leather Pants", "=ds=#sr# =so1=75 =so2=105 =so3=120 =so4=135" },
 		{ "s2164", "inv_gauntlets_05", "=q2=Fine Leather Gloves", "=ds=#sr# =so1=75 =so2=105 =so3=120 =so4=135" },
-		{ "s15001", "INV_Boots_06", "=q2=Lynxstep Boots", "=ds=#sr# =so1=75 =so2=105 =so3=120 =so4=135" }, --???
+		{ "s45069", "INV_Boots_06", "=q2=Lynxstep Boots", "=ds=#sr# =so1=75 =so2=105 =so3=120 =so4=135" },
 	},
 
 	LeatherJourneyman1 = {
@@ -1198,6 +1198,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s19049", "inv_gauntlets_31", "=q2=Wicked Leather Gauntlets", "=ds=#sr# =so1=260 =so2=280 =so3=290 =so4=300" },
 		{ "s19051", "inv_chest_chain_15", "=q2=Heavy Scorpid Vest", "=ds=#sr# =so1=265 =so2=285 =so3=295 =so4=305" },
 		{ "s19052", "inv_bracer_07", "=q2=Wicked Leather Bracers", "=ds=#sr# =so1=265 =so2=285 =so3=295 =so4=305" },
+		{ "s57008", "inv_chest_leather_07", "=q3=Breastplate of the Earth", "=ds=#sr# =so1=265 =so2=? =so3=? =so4=?" },
 		{ "s19055", "inv_gauntlets_31", "=q2=Runic Leather Gauntlets", "=ds=#sr# =so1=270 =so2=290 =so3=300 =so4=310" },
 		{ "s47015", "inv_gauntlets_09", "=q2=Primalist's Gloves ", "=ds=#sr# =so1=270 =so2=285 =so3=290 =so4=295" },
 		{ "s47017", "inv_helmet_04", "=q2=Primalist's Headdress", "=ds=#sr# =so1=270 =so2=290 =so3=291 =so4=295" },
@@ -1205,12 +1206,12 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s22815", "inv_chest_chain_14", "=q2=Gordok Ogre Suit", "=ds=#sr# =so1=275 =so2=285 =so3=290 =so4=295" },
 		{ "s19064", "inv_gauntlets_24", "=q2=Heavy Scorpid Gauntlets", "=ds=#sr# =so1=275 =so2=295 =so3=305 =so4=315" },
 		{ "s19065", "inv_bracer_11", "=q2=Runic Leather Bracers", "=ds=#sr# =so1=275 =so2=295 =so3=305 =so4=315" },
-		{ "s47018", "inv_pants_04", "=q2=Primalist's Pants", "=ds=#sr# =so1=280 =so2=290 =so3=291 =so4=295" },
-		{ "s47016", "inv_shoulder_09", "=q2=Primalist's Shoulders", "=ds=#sr# =so1=280 =so2=285 =so3=290 =so4=295" },
-		{ "s19070", "inv_belt_03", "=q2=Heavy Scorpid Belt", "=ds=#sr# =so1=280 =so2=300 =so3=310 =so4=320" },
 	},
 
 	LeatherArtisan2 = {
+		{ "s47018", "inv_pants_04", "=q2=Primalist's Pants", "=ds=#sr# =so1=280 =so2=290 =so3=291 =so4=295" },
+		{ "s47016", "inv_shoulder_09", "=q2=Primalist's Shoulders", "=ds=#sr# =so1=280 =so2=285 =so3=290 =so4=295" },
+		{ "s19070", "inv_belt_03", "=q2=Heavy Scorpid Belt", "=ds=#sr# =so1=280 =so2=300 =so3=310 =so4=320" },
 		{ "s19072", "inv_belt_03", "=q2=Runic Leather Belt", "=ds=#sr# =so1=280 =so2=300 =so3=310 =so4=320" },
 		{ "s19071", "inv_misc_bandage_13", "=q2=Wicked Leather Headband", "=ds=#sr# =so1=280 =so2=300 =so3=310 =so4=320" },
 		{ "s47019", "inv_chest_plate08", "=q3=Primalist's Vest", "=ds=#sr# =so1=285 =so2=290 =so3=291 =so4=295" },
@@ -1238,12 +1239,12 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s19093", "inv_misc_cape_05", "=q3=Onyxia Scale Cloak", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s24123", "inv_bracer_07", "=q3=Primal Batskin Bracers", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s24122", "inv_gauntlets_31", "=q3=Primal Batskin Gloves", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-		{ "s24121", "inv_chest_leather_03", "=q3=Primal Batskin Jerkin", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-		{ "s24849", "inv_bracer_12", "=q3=Sandstalker Bracers", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-		{ "s24851", "inv_chest_plate07", "=q3=Sandstalker Breastplate", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 	},
 
 	LeatherArtisan3 = {
+		{ "s24121", "inv_chest_leather_03", "=q3=Primal Batskin Jerkin", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s24849", "inv_bracer_12", "=q3=Sandstalker Bracers", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s24851", "inv_chest_plate07", "=q3=Sandstalker Breastplate", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s57022", "inv_chest_leather_04", "=q3=Centaur Battle Harness", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s24850", "inv_gauntlets_11", "=q3=Sandstalker Gauntlets", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s24846", "inv_bracer_05", "=q3=Spitfire Bracers", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },

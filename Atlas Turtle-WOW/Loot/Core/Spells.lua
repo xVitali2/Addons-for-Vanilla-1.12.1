@@ -691,7 +691,23 @@ GetSpellInfoVanillaDB = {
 		},
 	},
 	["craftspells"] = {
-		[15001] = {
+		[57008] = {
+			["name"] = "Leatherworking: Breastplate of the Earth",
+			["requires"] = "",
+			["tools"] = "",
+			["castTime"] = 60,
+			["text"] = "",
+			["craftItem"] = 65022,
+			["craftQuantityMin"] = "",
+			["craftQuantityMax"] = "",
+			["reagents"] = {
+				[1] = {4304, 40},
+				[2] = {7075, 12},
+				[3] = {8172, 3},
+				[4] = {8343, 4},
+			},
+		},
+		[45069] = {
 			["name"] = "Leatherworking: Lynxstep Boots",
 			["requires"] = "",
 			["tools"] = "",
@@ -701,6 +717,10 @@ GetSpellInfoVanillaDB = {
 			["craftQuantityMin"] = "",
 			["craftQuantityMax"] = "",
 			["reagents"] = {
+				[1] = {2318, 8},
+				[2] = {2321, 2},
+				[3] = {4231},
+				[4] = {818},
 			},
 		},
 		[15002] = {
@@ -2084,7 +2104,7 @@ GetSpellInfoVanillaDB = {
 			["craftQuantityMin"] = "",
 			["craftQuantityMax"] = "",
 			["reagents"] = {
-				[1] = {12360, 8},
+				[1] = {12360, 2},
 				[2] = {7071},
 				[3] = {12644, 2},
 				[4] = {11754},

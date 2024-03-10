@@ -5723,7 +5723,7 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 0, "", "", "", "" },
 		{ 14548, "INV_Shoulder_11", "=q3=Royal Cap Spaulders", "=ds=#s3#, #a3#", "10.06%" },
 		{ 18689, "INV_Misc_Cape_20", "=q3=Phantasmal Cloak", "=ds=#s4#", "7.52%" },
-		{ 14543, "INV_Gauntlets_15", "=q3=Darkshade Gloves", "=ds=#s9#, #a1#", "0.26%" },
+		--{ 14543, "INV_Gauntlets_15", "=q3=Darkshade Gloves", "=ds=#s9#, #a1#", "0.26%" },
 		{ 14545, "INV_Pants_11", "=q3=Ghostloom Leggings", "=ds=#s11#, #a2#", "8.81%" },
 		{ 18690, "INV_Pants_04", "=q3=Wraithplate Leggings", "=ds=#s11#, #a4#", "8.59%" },
 		{ 14541, "INV_Sword_03", "=q3=Barovian Family Sword", "=ds=#h2#, #w10#", "8.27%" },
