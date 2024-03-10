@@ -100,18 +100,18 @@ function BigWigsFarclip:OnEnable()
 end
 
 function BigWigsFarclip:ZONE_CHANGED_NEW_AREA()
-	self:DebugMessage(1)
-	if self.db.profile.active then
-		self:DebugMessage(2)
-		if AceLibrary("Babble-Zone-2.2")["Naxxramas"] == GetRealZoneText() then
-			--self.db.profile.defaultFarclip = GetCVar("farclip")
-			SetCVar("farclip", minFarclip) -- http://wowwiki.wikia.com/wiki/CVar_farclip
-		else
-			self:DebugMessage(3)
-			if tonumber(GetCVar("farclip")) == minFarclip then
-				self:DebugMessage(4)
-				SetCVar("farclip", self.db.profile.defaultFarclip)
-			end
-		end
-	end
+--	self:DebugMessage(1)
+--	if self.db.profile.active then
+--		self:DebugMessage(2)
+--		if AceLibrary("Babble-Zone-2.2")["Naxxramas"] == GetRealZoneText() then
+--			--self.db.profile.defaultFarclip = GetCVar("farclip")
+--			SetCVar("farclip", minFarclip) -- http://wowwiki.wikia.com/wiki/CVar_farclip
+--		else
+--			self:DebugMessage(3)
+--			if tonumber(GetCVar("farclip")) == minFarclip then
+--				self:DebugMessage(4)
+--				SetCVar("farclip", self.db.profile.defaultFarclip)
+--			end
+--		end
+--	end
 end
