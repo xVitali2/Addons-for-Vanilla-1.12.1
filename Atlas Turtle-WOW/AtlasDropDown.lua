@@ -37,7 +37,8 @@ Atlas_DropDownLayouts_Order = {
 		[5] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
 		[6] = GREEN..ATLAS_DDL_BGS,
 		[7] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
-		[8] = GREEN..ATLAS_DDL_FLIGHT_PATHS
+		[8] = GREEN..ATLAS_DDL_FLIGHT_PATHS,
+		[9] = GREEN..ATLAS_DDL_TRANSPORT_ROUTES,
 	},
 	[ATLAS_DDL_PARTYSIZE] = {
 		[1] = ATLAS_DDL_PARTYSIZE_5,
@@ -49,7 +50,8 @@ Atlas_DropDownLayouts_Order = {
 		[7] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
 		[8] = GREEN..ATLAS_DDL_BGS,
 		[9] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
-		[10] = GREEN..ATLAS_DDL_FLIGHT_PATHS
+		[10] = GREEN..ATLAS_DDL_FLIGHT_PATHS,
+		[11] = GREEN..ATLAS_DDL_TRANSPORT_ROUTES,
 	},
 	[ATLAS_DDL_LEVEL] = {
 		[1] = ATLAS_DDL_LEVEL_10TO20,
@@ -63,7 +65,8 @@ Atlas_DropDownLayouts_Order = {
 		[9] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
 		[10] = GREEN..ATLAS_DDL_BGS,
 		[11] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
-		[12] = GREEN..ATLAS_DDL_FLIGHT_PATHS
+		[12] = GREEN..ATLAS_DDL_FLIGHT_PATHS,
+		[13] = GREEN..ATLAS_DDL_TRANSPORT_ROUTES,
 	},
 	[ATLAS_DDL_TYPE] = {
 		[1] = ATLAS_DDL_TYPE_DUNGEONS,
@@ -73,7 +76,8 @@ Atlas_DropDownLayouts_Order = {
 		[5] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
 		[6] = GREEN..ATLAS_DDL_BGS,
 		[7] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
-		[8] = GREEN..ATLAS_DDL_FLIGHT_PATHS
+		[8] = GREEN..ATLAS_DDL_FLIGHT_PATHS,
+		[9] = GREEN..ATLAS_DDL_TRANSPORT_ROUTES,
 	},
 	[ATLAS_DDL_ALL] = {
 		[1] = ATLAS_DDL_ALL_MENU1,
@@ -83,7 +87,8 @@ Atlas_DropDownLayouts_Order = {
 		[5] = GREEN..ATLAS_DDL_TYPE_ENTRANCE,
 		[6] = GREEN..ATLAS_DDL_BGS,
 		[7] = GREEN..ATLAS_DDL_DUNGEON_LOCATIONS,
-		[8] = GREEN..ATLAS_DDL_FLIGHT_PATHS
+		[8] = GREEN..ATLAS_DDL_FLIGHT_PATHS,
+		[9] = GREEN..ATLAS_DDL_TRANSPORT_ROUTES,
 	}
 }
 
@@ -98,6 +103,7 @@ Atlas_DropDownLayouts = {
 			"Gnomeregan",
 			"HateforgeQuarry",
 			"KarazhanCrypt",
+			"Kara40",
 			"LowerKara",
 			"MoltenCore",
 			"Naxxramas",
@@ -155,7 +161,8 @@ Atlas_DropDownLayouts = {
 			"Reaver",
 			"Ostarius",
 			"Concavius",
-			"CowKing"
+			"CowKing",
+			"Clackora",
 		},
 		[GREEN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
@@ -168,23 +175,26 @@ Atlas_DropDownLayouts = {
 			"TheDeadminesEnt",
 			"TheSunkenTempleEnt",
 			"UldamanEnt",
-			"WailingCavernsEnt"
+			"WailingCavernsEnt",
 		},
 		[GREEN..ATLAS_DDL_BGS] = {
 			"AlteracValleyNorth",
 			"AlteracValleySouth",
 			"ArathiBasin",
-			"WarsongGulch"
+			"WarsongGulch",
 		},
 		[GREEN..ATLAS_DDL_DUNGEON_LOCATIONS] = {
 			"DLEast",
-			"DLWest"
+			"DLWest",
 		},
 		[GREEN..ATLAS_DDL_FLIGHT_PATHS] = {
 			"FPAllianceEast",
 			"FPAllianceWest",
 			"FPHordeEast",
-			"FPHordeWest"
+			"FPHordeWest",
+		},
+		[GREEN..ATLAS_DDL_TRANSPORT_ROUTES] = {
+			"TransportRoutes"
 		},
 	},
 	[ATLAS_DDL_PARTYSIZE] = {
@@ -231,6 +241,7 @@ Atlas_DropDownLayouts = {
 		[ATLAS_DDL_PARTYSIZE_40] = {
 			"BlackwingLair",
 			"EmeraldSanctum",
+			"Kara40",
 			"MoltenCore",
 			"Naxxramas",
 			"OnyxiasLair",
@@ -259,6 +270,7 @@ Atlas_DropDownLayouts = {
 			"Ostarius",
 			"Concavius",
 			"CowKing",
+			"Clackora",
 		},
 		[GREEN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
@@ -288,6 +300,9 @@ Atlas_DropDownLayouts = {
 			"FPAllianceWest",
 			"FPHordeEast",
 			"FPHordeWest",
+		},
+		[GREEN..ATLAS_DDL_TRANSPORT_ROUTES] = {
+			"TransportRoutes"
 		},
 	},
 	[ATLAS_DDL_LEVEL] = {
@@ -336,12 +351,14 @@ Atlas_DropDownLayouts = {
 		[ATLAS_DDL_LEVEL_60] = {
 			"BlackwingLair",
 			"EmeraldSanctum",
+			"Kara40",
 			"MoltenCore",
 			"Naxxramas",
 			"OnyxiasLair",
 			"TheRuinsofAhnQiraj",
 			"TheTempleofAhnQiraj",
 			"ZulGurub",
+			
 		},
 		[ATLAS_DDL_RAREMOBS] = {
 			"Grugthok",
@@ -366,6 +383,7 @@ Atlas_DropDownLayouts = {
 			"Ostarius",
 			"Concavius",
 			"CowKing",
+			"Clackora",
 		},
 		[GREEN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
@@ -395,6 +413,9 @@ Atlas_DropDownLayouts = {
 			"FPAllianceWest",
 			"FPHordeEast",
 			"FPHordeWest",
+		},
+		[GREEN..ATLAS_DDL_TRANSPORT_ROUTES] = {
+			"TransportRoutes"
 		},
 	},	
 	[ATLAS_DDL_TYPE] = {
@@ -435,6 +456,7 @@ Atlas_DropDownLayouts = {
 		[ATLAS_DDL_TYPE_RAIDS] = {
 			"BlackwingLair",
 			"EmeraldSanctum",
+			"Kara40",
 			"MoltenCore",
 			"Naxxramas",
 			"OnyxiasLair",
@@ -465,6 +487,7 @@ Atlas_DropDownLayouts = {
 			"Ostarius",
 			"Concavius",
 			"CowKing",
+			"Clackora",
 		},
 		[GREEN..ATLAS_DDL_TYPE_ENTRANCE] = {
 			"BlackfathomDeepsEnt",
@@ -494,6 +517,9 @@ Atlas_DropDownLayouts = {
 			"FPAllianceWest",
 			"FPHordeEast",
 			"FPHordeWest"
+		},
+		[GREEN..ATLAS_DDL_TRANSPORT_ROUTES] = {
+			"TransportRoutes"
 		},
 	},
 	[ATLAS_DDL_ALL] = {
@@ -540,6 +566,7 @@ Atlas_DropDownLayouts = {
 			"TheTempleofAhnQiraj",
 			"EmeraldSanctum",
 			"Naxxramas",
+			"Kara40",
 		},
 		[ATLAS_DDL_RAREMOBS] = {
 			"Grugthok",
@@ -592,6 +619,9 @@ Atlas_DropDownLayouts = {
 			"FPAllianceWest",
 			"FPHordeEast",
 			"FPHordeWest"
-		}
+		},
+		[GREEN..ATLAS_DDL_TRANSPORT_ROUTES] = {
+			"TransportRoutes"
+		},
 	}
 }

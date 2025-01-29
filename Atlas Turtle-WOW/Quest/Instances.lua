@@ -43,7 +43,7 @@ function AtlasQuest_Instanzenchecken()
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Uldaman" or AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\UldamanEnt" then
 		AQINSTANCE = 4
 		
-	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\BlackrockDepths" then
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\BlackrockDepths" or AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\BlackrockMountainEnt" then
 		AQINSTANCE = 5
 		
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\BlackwingLair" then
@@ -58,7 +58,7 @@ function AtlasQuest_Instanzenchecken()
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\BlackrockSpireUpper" then
 		AQINSTANCE = 9
 		
-	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\DireMaulEast" then
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\DireMaulEast" or AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\DireMaulEnt" then
 		AQINSTANCE = 10
 		
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\DireMaulNorth" then
@@ -94,7 +94,7 @@ function AtlasQuest_Instanzenchecken()
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\SMCathedral" then
 		AQINSTANCE = 21
 		
-	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\SMGraveyard" then
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\SMGraveyard" or AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\SMEnt" then
 		AQINSTANCE = 22
 		
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Scholomance" then
@@ -203,154 +203,28 @@ function AtlasQuest_Instanzenchecken()
 		AQINSTANCE = 62
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\EmeraldSanctum" then
 		AQINSTANCE = 63
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Clackora" then
+		AQINSTANCE = 64
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Kara40" then
+		AQINSTANCE = 65
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\TransportRoutes" then
+		AQINSTANCE = 66
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\DLEast" then
+		AQINSTANCE = 67
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\DLWest" then
+		AQINSTANCE = 68
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\FPAllianceEast" then
+		AQINSTANCE = 69
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\FPAllianceWest" then
+		AQINSTANCE = 70
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\FPHordeEast" then
+		AQINSTANCE = 71
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\FPHordeWest" then
+		AQINSTANCE = 72
 		-- Default
 		
 	else --added for newer atlas version until i update atlasquest and for the flight pass maps
 		AQINSTANCE = 99
-	end
-end
-
-
------------------------------------------------------------------------------
--- Alpha Map Support 
------------------------------------------------------------------------------
-
-function AtlasQuest_InstanzencheckAM()
-	AQALPHAMAP = AlphaMapAlphaMapTexture:GetTexture()
-	
-	
-	-- Original Instances
-	
-	if AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\TheDeadmines" or AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Exteriors\\Maps\\TheDeadminesExt" then
-		AQINSTANCE = 1
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\WailingCaverns" or AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Exteriors\\Maps\\WailingCavernsExt" then
-		AQINSTANCE = 2
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\RagefireChasm" then
-		AQINSTANCE = 3
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\Uldaman" or AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Exteriors\\Maps\\UldamanExt" then
-		AQINSTANCE = 4
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\BlackrockDepths" then
-		AQINSTANCE = 5
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\BlackwingLair" then
-		AQINSTANCE = 6
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\BlackfathomDeeps" or AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Exteriors\\Maps\\BlackfathomDeepsExt" then
-		AQINSTANCE = 7
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\LBRS" then
-		AQINSTANCE = 8
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\UBRS" then
-		AQINSTANCE = 9
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\DMEast" then
-		AQINSTANCE = 10
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\DMNorth" then
-		AQINSTANCE = 11
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\DMWest" then
-		AQINSTANCE = 12
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\Maraudon" or AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Exteriors\\Maps\\MaraudonExt" then
-		AQINSTANCE = 13
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\MoltenCore" then
-		AQINSTANCE = 14
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\Naxxramas" then
-		AQINSTANCE = 15
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\OnyxiasLair" then
-		AQINSTANCE = 16
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\RazorfenDowns" then
-		AQINSTANCE = 17
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\RazorfenKraul" then
-		AQINSTANCE = 18
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\ScarletMonastery" then
-		AQINSTANCE = 19
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\Scholomance" then
-		AQINSTANCE = 23
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\ShadowfangKeep" then
-		AQINSTANCE = 24
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\Stratholme" then
-		AQINSTANCE = 25
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\RuinsofAhnQiraj" then
-		AQINSTANCE = 26
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\TheStockade" then
-		AQINSTANCE = 27
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\TheSunkenTemple" or AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Exteriors\\Maps\\SunkenTempleExt" then
-		AQINSTANCE = 28
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\TempleofAhnQiraj" then
-		AQINSTANCE = 29
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\ZulFarrak" then
-		AQINSTANCE = 30
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\ZulGurub" then
-		AQINSTANCE = 31
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Instances\\Maps\\Gnomeregan" or AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Exteriors\\Maps\\GnomereganExt" then
-		AQINSTANCE = 32
-		
-		
-		-- Battlegrounds
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Battlegrounds\\Maps\\AlteracValley" then
-		AQINSTANCE = 36
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Battlegrounds\\Maps\\ArathiBasin" then
-		AQINSTANCE = 37
-		
-	elseif AQALPHAMAP == "Interface\\AddOns\\AlphaMap_Battlegrounds\\Maps\\WarsongGulch" then
-		AQINSTANCE = 38
-		
-		
-		-- Default
-		
-	else
-		AQINSTANCE = 99
-	end
-	
-	-----------------------------------------------------------------------------
-	-- function to work with outdoor boss @ alphamap
-	-----------------------------------------------------------------------------
-	
-	if AlphaMapAlphaMapFrame:IsVisible() then
-		if GamAlphaMapMap ~= nil then -- check to prevent errors (post ui.worldofwar dunno why error ocour)
-			if GamAlphaMapMap.type == AM_TYP_WORLDBOSSES then
-				if GamAlphaMapMap.filename == "AM_Kazzak_Map" then
-					AQINSTANCE = 35
-				elseif GamAlphaMapMap.filename == "AM_Azuregos_Map" then
-					AQINSTANCE = 34
-				elseif GamAlphaMapMap.filename == "AM_Dragon_Duskwood_Map" then
-					AQINSTANCE = 33
-				elseif GamAlphaMapMap.filename == "AM_Dragon_Hinterlands_Map" then
-					AQINSTANCE = 33
-				elseif GamAlphaMapMap.filename == "AM_Dragon_Feralas_Map" then
-					AQINSTANCE = 33
-				elseif GamAlphaMapMap.filename == "AM_Dragon_Ashenvale_Map" then
-					AQINSTANCE = 33
-				else
-					AQINSTANCE = 99
-				end
-			end
-		end
 	end
 end
 
@@ -401,5 +275,8 @@ end
 -- 40 = Concavius (Concavius)
 -- 45 = Caverns Of Time: Black Morass
 -- 61 = Gilneas City
+-- 62 = LowerKara
 -- 63 = Emerald Sanctum
+-- 64 = Clackora
+-- 65 = Kara40
 -- 99 = default "rest"

@@ -6,18 +6,18 @@
 	
 	This file is part of Atlas.
 	
-	Atlas is free software; you can redistribute it and/or modify
+	Atlas is free software, you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation; either version 2 of the License, or
+	the Free Software Foundation, either version 2 of the License, or
 	(at your option) any later version.
 	
 	Atlas is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	but WITHOUT ANY WARRANTY, without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 	GNU General Public License for more details.
 	
 	You should have received a copy of the GNU General Public License
-	along with Atlas; if not, write to the Free Software
+	along with Atlas, if not, write to the Free Software
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 	
 --]]
@@ -62,7 +62,7 @@ AtlasMaps = {
 		ZoneName = { BZ["Ragefire Chasm"], 2437 },
 		Acronym = "RFC",
 		Location = { BZ["Orgrimmar"], 1637 },
-		LevelRange = "13-18";
+		LevelRange = "13-18",
 		MinLevel = "8",
 		PlayerLimit = "5",
 		Continent = BZ["Kalimdor"],
@@ -77,23 +77,25 @@ AtlasMaps = {
 		ZoneName = { BZ["Wailing Caverns"], 718 },
 		Acronym = "WC",
 		Location = { BZ["The Barrens"], 17 },
-		LevelRange = "17-24";
+		LevelRange = "17-24",
 		MinLevel = "10",
 		PlayerLimit = "5",
 		Continent = BZ["Kalimdor"],
 		{ BLUE.."A) "..L["Entrance"] },
 		{ GREY.."1) "..L["Disciple of Naralex"], NPC, 3678 },
-		{ GREY..INDENT..L["Mysterious Wailing Caverns Chest"], OBJECT, 180055 },
+	--	{ GREY..INDENT..L["Mysterious Wailing Caverns Chest"], OBJECT, 180055 },
 		{ GREY.."2) "..BB["Lord Cobrahn"], NPC, 3669 },
 		{ GREY.."3) "..BB["Lady Anacondra"], NPC, 3671 },
 		{ GREY.."4) "..BB["Kresh"], NPC, 3653 },
-		{ GREY.."5) "..BB["Lord Pythas"], NPC, 3670 },
-		{ GREY.."6) "..BB["Skum"], NPC, 3674 },
-		{ GREY.."7) "..BB["Lord Serpentis"].." ("..L["Upper"]..")", NPC, 3673 },
-		{ GREY.."8) "..BB["Verdan the Everliving"].." ("..L["Upper"]..")", NPC, 5775 },
-		{ GREY.."9) "..BB["Mutanus the Devourer"], NPC, 3654 },
+		{ GREY.."5) "..BB["Deviate Faerie Dragon"].." ("..L["Rare"]..")", NPC, 5912 },
+		{ GREY.."6) "..L["Zandara Windhoof"], NPC, -1 },
+		{ GREY.."7) "..BB["Lord Pythas"], NPC, 3670 },
+		{ GREY.."8) "..BB["Skum"], NPC, 3674 },
+		{ GREY.."9) "..L["Vangros"], NPC, -1 },
+		{ GREY.."10) "..BB["Lord Serpentis"].." ("..L["Upper"]..")", NPC, 3673 },
+		{ GREY.."11) "..BB["Verdan the Everliving"].." ("..L["Upper"]..")", NPC, 5775 },
+		{ GREY.."12) "..BB["Mutanus the Devourer"], NPC, 3654 },
 		{ GREY..INDENT..L["Naralex"], NPC, 3679 },
-		{ GREY.."10) "..BB["Deviate Faerie Dragon"].." ("..L["Rare"]..")", NPC, 5912 },
 		{ "" },
 		{ GREY..INDENT..L["Trash Mobs"] },
 		{ GREY..INDENT..L["Set: "]..BIS["Embrace of the Viper"] }
@@ -102,7 +104,7 @@ AtlasMaps = {
 		ZoneName = { BZ["Blackfathom Deeps"], 719 },
 		Acronym = "BFD",
 		Location = { BZ["Ashenvale"], 331 },
-		LevelRange = "24-32";
+		LevelRange = "24-32",
 		MinLevel = "19",
 		PlayerLimit = "5",
 		Continent = BZ["Kalimdor"],
@@ -128,7 +130,7 @@ AtlasMaps = {
 		ZoneName = { BZ["Razorfen Kraul"], 491 },
 		Acronym = "RFK",
 		Location = { BZ["The Barrens"], 17 },
-		LevelRange = "29-38";
+		LevelRange = "29-38",
 		MinLevel = "19",
 		PlayerLimit = "5",
 		Continent = BZ["Kalimdor"],
@@ -151,8 +153,8 @@ AtlasMaps = {
 		ZoneName = { BZ["Razorfen Downs"], 722 },
 		Acronym = "RFD",
 		Location = { BZ["The Barrens"], 17 },
-		LevelRange = "37-46";
-		MinLevel = "25";
+		LevelRange = "37-46",
+		MinLevel = "25",
 		PlayerLimit = "5",
 		Continent = BZ["Kalimdor"],
 		{ BLUE.."A) "..L["Entrance"] },
@@ -173,8 +175,8 @@ AtlasMaps = {
 		ZoneName = { BZ["Zul'Farrak"], 978 },
 		Acronym = "ZF",
 		Location = { BZ["Tanaris"], 440 },
-		LevelRange = "44-54";
-		MinLevel = "30";
+		LevelRange = "44-54",
+		MinLevel = "30",
 		PlayerLimit = "5",
 		Continent = BZ["Kalimdor"],
 		{ ORNG..L["Key"]..": "..L["Mallet of Zul'Farrak"].." ("..BB["Gahz'rilla"]..")", ITEM, 9240 },
@@ -206,8 +208,8 @@ AtlasMaps = {
 		ZoneName = { BZ["Maraudon"], 2100 },
 		Acronym = "Mara",
 		Location = { BZ["Desolace"], 405 },
-		LevelRange = "46-55";
-		MinLevel = "35";
+		LevelRange = "46-55",
+		MinLevel = "35",
 		PlayerLimit = "5",
 		Continent = BZ["Kalimdor"],
 		{ ORNG..L["Key"]..": "..L["Scepter of Celebras"].." ("..L["Portal"]..")", ITEM, 17191 },
@@ -436,7 +438,7 @@ AtlasMaps = {
 		{ "" },
 		{ ORNG..L["Damage: "]..L["Nature"] }
 	},
-	
+
 	--************************************************
 	-- Eastern Kingdoms Instances
 	--************************************************
@@ -445,8 +447,8 @@ AtlasMaps = {
 		ZoneName = { BZ["Blackrock Depths"], 1584 },
 		Acronym = "BRD",
 		Location = { BZ["Blackrock Mountain"], 25 },
-		LevelRange = "52-60";
-		MinLevel = "42";
+		LevelRange = "52-60",
+		MinLevel = "42",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
 		{ ORNG..L["Key"]..": "..L["Shadowforge Key"], ITEM, 11000 },
@@ -599,6 +601,7 @@ AtlasMaps = {
 		{ "" },
 		{ GREY..INDENT..L["Trash Mobs"] },
 		{ GREY..INDENT..L["Set: "]..BIS["Ironweave Battlesuit"] },
+		{ GREY..INDENT..L["Set: "]..BIS["Dal'Rend's Arms"] },
 		{ GREY..INDENT..L["Tier 0/0.5 Sets"] }
 	},
 	BlackwingLair = {
@@ -638,8 +641,8 @@ AtlasMaps = {
 		ZoneName = { BZ["Gnomeregan"], 133 },
 		Acronym = "Gnome",
 		Location = { BZ["Dun Morogh"], 1 },
-		LevelRange = "29-38";
-		MinLevel = "19";
+		LevelRange = "29-38",
+		MinLevel = "19",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
 		{ ORNG..L["Key"]..": "..L["Workshop Key"].." ("..L["Back"]..")", ITEM, 6893 },
@@ -703,7 +706,7 @@ AtlasMaps = {
 		Acronym = "Naxx",
 		Location = { BZ["Eastern Plaguelands"], 139 },
 		LevelRange = "60+",
-		MinLevel = "60";
+		MinLevel = "60",
 		PlayerLimit = "40",
 		Continent = BZ["Eastern Kingdoms"],
 		{ ORNG..L["Attunement Required"] },
@@ -732,8 +735,8 @@ AtlasMaps = {
 		{ _RED..INDENT..INDENT..BB["Lady Blaumeux"], NPC, 16065 },
 		{ _RED..INDENT..INDENT..BB["Highlord Mograine"], NPC, 16062 },
 		{ _RED..INDENT..INDENT..BB["Sir Zeliek"], NPC, 16063 },
-		{ _RED..INDENT.."1') "..BB["Master Craftsman Omarion"], NPC, 16365 };
-		{ _RED..INDENT.."2') "..L["Icebellow Anvil"], OBJECT, 181168 };
+		{ _RED..INDENT.."1') "..BB["Master Craftsman Omarion"], NPC, 16365 },
+		{ _RED..INDENT.."2') "..L["Icebellow Anvil"], OBJECT, 181168 },
 		{ GREEN..L["Frostwyrm Lair"] },
 		{ GREEN..INDENT.."1) "..BB["Sapphiron"], NPC, 15989 },
 		{ GREEN..INDENT.."2) "..BB["Kel'Thuzad"], NPC, 15990 },
@@ -747,14 +750,15 @@ AtlasMaps = {
 		ZoneName = { BZ["Scarlet Monastery"]..": "..L["Library"], 796 },
 		Acronym = "SM Lib",
 		Location = { BZ["Tirisfal Glades"], 85 },
-		LevelRange = "29-39";
-		MinLevel = "21";
+		LevelRange = "29-39",
+		MinLevel = "21",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
 		{ BLUE.."A) "..L["Entrance"] },
 		{ GREY.."1) "..BB["Houndmaster Loksey"], NPC, 3974 },
 		{ GREY.."2) "..BB["Arcanist Doan"], NPC, 6487 },
 		{ GREEN.."1') "..L["Doan's Strongbox"], OBJECT, 103821 },
+		{ GREY.."3) ".."Brother Wystan", NPC, -1  },
 		{ "" },
 		{ GREY..INDENT..L["Trash Mobs"] },
 		{ GREY..INDENT..L["Set: "]..BIS["Chain of the Scarlet Crusade"] }
@@ -770,6 +774,7 @@ AtlasMaps = {
 		{ ORNG..L["Key"]..": "..L["The Scarlet Key"], ITEM, 7146 },
 		{ BLUE.."A) "..L["Entrance"] },
 		{ GREY.."1) "..BB["Herod"], NPC, 3975 },
+		{ GREY.."2) ".."Armory Quartermaster Daghelm", NPC, -1 },
 		{ "" },
 		{ GREY..INDENT..L["Trash Mobs"] },
 		{ GREY..INDENT..L["Set: "]..BIS["Chain of the Scarlet Crusade"] }
@@ -778,8 +783,8 @@ AtlasMaps = {
 		ZoneName = { BZ["Scarlet Monastery"]..": "..L["Cathedral"], 796 },
 		Acronym = "SM Cath",
 		Location = { BZ["Tirisfal Glades"], 85 },
-		LevelRange = "35-45";
-		MinLevel = "25";
+		LevelRange = "35-45",
+		MinLevel = "25",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
 		{ ORNG..L["Key"]..": "..L["The Scarlet Key"], ITEM, 7146 },
@@ -795,7 +800,7 @@ AtlasMaps = {
 		ZoneName = { BZ["Scarlet Monastery"]..": "..L["Graveyard"], 796 },
 		Acronym = "SM GY",
 		Location = { BZ["Tirisfal Glades"], 85 },
-		LevelRange = "26-36";
+		LevelRange = "26-36",
 		MinLevel = "25",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
@@ -807,6 +812,7 @@ AtlasMaps = {
 		{ GREEN.."1') "..BB["Ironspine"].." ("..L["Rare"]..")", NPC, 6489 },
 		{ GREEN..INDENT..BB["Azshir the Sleepless"].." ("..L["Rare"]..")", NPC, 6490 },
 		{ GREEN..INDENT..BB["Fallen Champion"].." ("..L["Rare"]..")", NPC, 6488 },
+		{ GREY.."4) ".."Duke Dreadmoore", NPC, -1 },
 		{ "" },
 		{ GREY..INDENT..L["Trash Mobs"] },
 		{ GREY..INDENT..L["Set: "]..BIS["Chain of the Scarlet Crusade"] }
@@ -866,8 +872,8 @@ AtlasMaps = {
 		ZoneName = { BZ["Shadowfang Keep"], 209 },
 		Acronym = "SFK",
 		Location = { BZ["Silverpine Forest"], 130 },
-		LevelRange = "22-30";
-		MinLevel = "14";
+		LevelRange = "22-30",
+		MinLevel = "14",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
 		{ BLUE.."A) "..L["Entrance"] },
@@ -896,7 +902,7 @@ AtlasMaps = {
 		Acronym = "Strat",
 		Location = { BZ["Eastern Plaguelands"], 139 },
 		LevelRange = "58-60",
-		MinLevel = "45";
+		MinLevel = "45",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
 		{ ORNG..L["Reputation"]..": "..BF["Argent Dawn"], FACTION, 529 },
@@ -950,34 +956,35 @@ AtlasMaps = {
 	},
 	TheDeadmines = {
 		ZoneName = { BZ["The Deadmines"], 1581 },
-		Acronym = "VC";
+		Acronym = "VC",
 		Location = { BZ["Westfall"], 40 },
-		LevelRange = "17-24";
-		MinLevel = "10";
+		LevelRange = "17-24",
+		MinLevel = "10",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
 		{ BLUE.."A) "..L["Entrance"] },
 		{ BLUE.."B) "..L["Exit"] },
-		{ GREY.."1) "..BB["Rhahk'Zor"], NPC, 644 },
-		{ GREY.."2) "..BB["Miner Johnson"].." ("..L["Rare"]..")", NPC, 3586 },
-		{ GREY.."3) "..BB["Sneed"], NPC, 643 },
+		{ GREY.."1) "..L["Jared Voss"], NPC, -1},
+		{ GREY.."2) "..L["Rhahk'Zor"], NPC, 644 },
+		{ GREY.."3) "..L["Miner Johnson"].." ("..L["Rare"]..")", NPC, 3586 },
+		{ GREY.."4) "..L["Sneed"], NPC, 643 },
 		{ GREY..INDENT..L["Sneed's Shredder"], NPC, 642 },
-		{ GREY.."4) "..BB["Gilnid"], NPC, 1763 },
-		{ GREY.."5) "..L["Defias Gunpowder"], OBJECT, 17155 },
-		{ GREY.."6) "..BB["Mr. Smite"], NPC, 646 },
-		{ GREY..INDENT..BB["Cookie"], NPC, 645 },
-		{ GREY..INDENT..BB["Captain Greenskin"], NPC, 647 },
-		{ GREY..INDENT..BB["Edwin VanCleef"], NPC, 639 },
+		{ GREY.."5) "..L["Gilnid"], NPC, 1763 },
+		{ GREY.."6) "..L["Masterpiece Harvester"], NPC, -1},
+		{ GREY.."7) "..L["Mr. Smite"], NPC, 646 },
+		{ GREY.."8) "..L["Cookie"], NPC, 645 },
+		{ GREY.."9) "..L["Captain Greenskin"], NPC, 647 },
+		{ GREY.."10) "..L["Edwin VanCleef"], NPC, 639 },
 		{ "" },
 		{ GREY..INDENT..L["Trash Mobs"] },
-		{ GREY..INDENT..L["Set: "]..BIS["Defias Leather"] }
+		{ GREY..INDENT..L["Set: "]..BIS["Defias Leather"] },
 	},
 	TheStockade = {
 		ZoneName = { BZ["The Stockade"], 717 },
 		Acronym = "Stocks",
 		Location = { BZ["Stormwind City"], 1519 },
-		LevelRange = "24-31";
-		MinLevel = "15";
+		LevelRange = "24-31",
+		MinLevel = "15",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
 		{ BLUE.."A) "..L["Entrance"] },
@@ -994,8 +1001,8 @@ AtlasMaps = {
 		ZoneName = { L["Sunken Temple"], 1417 },
 		Acronym = "ST",
 		Location = { BZ["Swamp of Sorrows"], 8 },
-		LevelRange = "50-60";
-		MinLevel = "35";
+		LevelRange = "50-60",
+		MinLevel = "35",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
 		{ ORNG..L["AKA"]..": "..BZ["The Temple of Atal'Hakkar"] },
@@ -1031,8 +1038,8 @@ AtlasMaps = {
 		ZoneName = { BZ["Uldaman"], 1337 },
 		Acronym = "Ulda",
 		Location = { BZ["Badlands"], 3 },
-		LevelRange = "41-51";
-		MinLevel = "30";
+		LevelRange = "41-51",
+		MinLevel = "30",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
 		{ ORNG..L["Key"]..": "..L["Staff of Prehistoria"].." ("..BB["Ironaya"]..")", ITEM, 7733 },
@@ -1106,7 +1113,7 @@ AtlasMaps = {
 	--************************************************
 	-- Instance Entrance Maps
 	--************************************************
-	
+
 	BlackfathomDeepsEnt = {
 		ZoneName = { BZ["Blackfathom Deeps"].." ("..L["Entrance"]..")", 719 },
 		Location = { BZ["Ashenvale"], 331 },
@@ -1348,273 +1355,163 @@ AtlasMaps = {
 		{ ORNG..L["Damage: "]..L["Shadow"] }
 	},
 	Turtlhu = {
-		ZoneName = { "Turtlhu, the Black Turtle of Doom", NPC, 18728 };
-		Location = { BZ["Feralas"], ZONE, 357 };
-		LevelRange = "60+";
-		MinLevel = "--";
-		PlayerLimit = "--";
-		{ GREY.."1) ".."Turtlhu, the Black Turtle of Doom", NPC, 18728 };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
+		ZoneName = { "Turtlhu, the Black Turtle of Doom", NPC, 18728 },
+		Location = { BZ["Feralas"], ZONE, 357 },
+		LevelRange = "60+",
+		MinLevel = "--",
+		PlayerLimit = "--",
+		{ GREY.."1) ".."Turtlhu, the Black Turtle of Doom", NPC, 18728 },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
 		{ ORNG..L["Damage: "]..L["Shadow"] }
 	},
 	Nerubian = {
-		ZoneName = { "Nerubian Overseer", NPC, 18728 };
-		Acronym = "Spooder";
-		Location = { BZ["Eastern Plaguelands"], ZONE, 28 };
-		LevelRange = "--";
-		MinLevel = "--";
-		PlayerLimit = "--";
-		Continent = BZ["Eastern Kingdoms"];
-		{ GREY.."1) ".."Nerubian Overseer", NPC, 18728 };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
+		ZoneName = { "Nerubian Overseer", NPC, 18728 },
+		Acronym = "Spooder",
+		Location = { BZ["Eastern Plaguelands"], ZONE, 28 },
+		LevelRange = "--",
+		MinLevel = "--",
+		PlayerLimit = "--",
+		Continent = BZ["Eastern Kingdoms"],
+		{ GREY.."1) ".."Nerubian Overseer", NPC, 18728 },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
 		{ ORNG..L["Damage: "]..L["Nature"]..', '..L["Shadow"] }
 	},
 	Reaver = {
-		ZoneName = { "Dark Reaver of Karazhan", NPC, 80936 };
-		Acronym = "Reaver";
-		Location = { BZ["Deadwind Pass"], ZONE, 41 };
-		LevelRange = "--";
-		MinLevel = "--";
-		PlayerLimit = "--";
-		Continent = BZ["Eastern Kingdoms"];
-		{ GREY.."1) ".."Dark Reaver of Karazhan", NPC, 80936 };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		--{ ORNG..AL["Damage: "]..AL["Physical"] };
+		ZoneName = { "Dark Reaver of Karazhan", NPC, 80936 },
+		Acronym = "Reaver",
+		Location = { BZ["Deadwind Pass"], ZONE, 41 },
+		LevelRange = "--",
+		MinLevel = "--",
+		PlayerLimit = "--",
+		Continent = BZ["Eastern Kingdoms"],
+		{ GREY.."1) ".."Dark Reaver of Karazhan", NPC, 80936 },
 	},
 	CowKing = {
-		ZoneName = { "There Is No Cow Level", NPC, 91799 };
-		Acronym = "CowKing";
-		Location = { BZ["Elwynn Forest"], ZONE, 12 };
-		LevelRange = "60+";
-		MinLevel = "--";
-		PlayerLimit = "20+";
-		Continent = BZ["Eastern Kingdoms"];
-		{ GREY.."1) ".."Moo", NPC, 91799 };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
+		ZoneName = { "Moo", NPC, 91799 },
+		Acronym = "CowKing",
+		Location = { L["Moomoo Grove"], ZONE, -1 },
+		LevelRange = "60+",
+		MinLevel = "--",
+		PlayerLimit = "20+",
+		Continent = BZ["Eastern Kingdoms"],
+		{ GREY.."1) ".."Moo", NPC, 91799 },
 	},
 	Concavius = {
-		ZoneName = { "Concavius Voidspawn", NPC, 92213 };
-		Acronym = "Concavius";
-		Location = { BZ["Desolace"], ZONE, 405 };
-		LevelRange = "60+";
-		MinLevel = "--";
-		PlayerLimit = "20+";
-		Continent = BZ["Kalimdor"];
-		{ GREY.."1) ".."Concavius Voidspawn", NPC, 92213 };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
+		ZoneName = { "Concavius Voidspawn", NPC, 92213 },
+		Acronym = "Concavius",
+		Location = { BZ["Desolace"], ZONE, 405 },
+		LevelRange = "60+",
+		MinLevel = "--",
+		PlayerLimit = "20+",
+		Continent = BZ["Kalimdor"],
+		{ GREY.."1) ".."Concavius Voidspawn", NPC, 92213 },
 	},
 	Ostarius = {
-		ZoneName = { "Ostarius", NPC, 80935 };
-		Acronym = "Ostarius";
-		Location = { BZ["Tanaris"], ZONE, 440 };
-		LevelRange = "60+";
-		MinLevel = "--";
-		PlayerLimit = "40+";
-		Continent = BZ["Kalimdor"];
-		{ GREY.."1) ".."Ostarius", NPC, 80935 };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
+		ZoneName = { "Ostarius", NPC, 80935 },
+		Acronym = "Ostarius",
+		Location = { BZ["Tanaris"], ZONE, 440 },
+		LevelRange = "60+",
+		MinLevel = "--",
+		PlayerLimit = "40+",
+		Continent = BZ["Kalimdor"],
+		{ GREY.."1) ".."Ostarius", NPC, 80935 },
+	},
+	Clackora = {
+		ZoneName = { "Cla'ckora", NPC, -1 },
+		Acronym = "Clackora",
+		Location = { BZ["Azshara"], ZONE, 16 },
+		LevelRange = "60+",
+		MinLevel = "--",
+		PlayerLimit = "40+",
+		Continent = BZ["Eastern Kingdoms"],
+		{ GREY.."1) ".."Cla'ckora", NPC, -1 },
 	},
 	CavernsOfTimeBlackMorass = {
-		ZoneName = { "Caverns Of Time: Black Morass", 3335 };
-		Acronym = "BM";
-		Location = { BZ["Tanaris"], ZONE, 440 };
-		LevelRange = "60";
-		MinLevel = "60";
-		PlayerLimit = "5";
-		Continent = BZ["Kalimdor"];
+		ZoneName = { "Caverns Of Time: Black Morass", 3335 },
+		Acronym = "BM",
+		Location = { BZ["Tanaris"], ZONE, 440 },
+		LevelRange = "60",
+		MinLevel = "58",
+		PlayerLimit = "5",
+		Continent = BZ["Kalimdor"],
 		{ BLUE.."A) "..L["Entrance"] },
-		{ BLUE.."B-B) ".."Connections" },
-		{ GREY.."1) ".."Chronar", NPC, 65113 };
-		{ GREY.."2) ".."deleted - Harbinger Aph'ygth", NPC, 65114 };
-		{ GREY.."3) ".."Epidamu", NPC, 61575 };
-		{ GREY.."4) ".."Drifting Avatar of Time", NPC, 61316 };
-		{ GREY.."5) ".."Time-Lord Epochronos", NPC, 65116 };
-		{ GREY.."6) ".."Mossheart", NPC, 65124 };
-		{ GREY.."7) ".."Rotmaw", NPC, 65122 };
-		{ GREY.."8) ".."Antnormi", NPC, 65125 };
-		--{ GREY.."5) ".."Infinite Chromie", NPC, 65121 };
-		{ GREY..INDENT..L["Trash Mobs"] };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
-		{ "" };
+		{ BLUE.."B) "..L["Connection"] },
+		{ GREY.."1) "..L["Chronar"], NPC, 65113 },
+		{ GREY.."2) "..L["Epidamu"], NPC, 61575 },
+		{ GREY.."3) "..L["Drifting Avatar of Sand"], NPC, 61316 },
+		{ GREY.."4) "..L["Time-Lord Epochronos"], NPC, 65116 },
+		{ GREY.."5) "..L["Mossheart"], NPC, 65124 },
+		{ GREY.."6) "..L["Antnormi"], NPC, 65125 },
+		{ GREY.."7) "..L["Rotmaw"], NPC, 65122 },
+		{ GREY..INDENT..L["Trash Mobs"] },
 	},
 	TheCrescentGrove = {
 		ZoneName = { L["The Crescent Grove"], 3333 },
-		Acronym = "TCG",
+		Acronym = "CG",
 		Location = { BZ["Ashenvale"], 331 },
 		LevelRange = "32-38",
 		MinLevel = "32",
 		PlayerLimit = "5",
 		Continent = BZ["Kalimdor"],
 		{ BLUE.."A) "..L["Entrance"] },
+		{ INDENT..GREY.."a) "..L["Kalanar's Strongbox"], OBJECT, 2010860 },
 		{ GREY.."1) "..L["Grovetender Engryss"], NPC, 92107 },
 		{ GREY.."2) "..L["Keeper Ranathos"],NPC, 92109 },
 		{ GREY.."3) "..L["High Priestess A'lathea"], NPC, 92108 },
 		{ GREY.."4) "..L["Fenektis the Deceiver"], NPC, 92109 },
 		{ GREY.."5) "..L["Master Raxxieth"], NPC, 92110 },
 		{ GREY..INDENT..L["Trash Mobs"] },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	KarazhanCrypt = {
-		ZoneName = { "Karazhan Crypt", 3334 };
-		Acronym = "KC";
-		Location = { BZ["Deadwind Pass"], ZONE, 41 };
-		LevelRange = "60";
-		MinLevel = "58";
-		PlayerLimit = "5";
-		Continent = BZ["Eastern Kingdoms"];
+		ZoneName = { "Karazhan Crypt", 3334 },
+		Acronym = "KC",
+		Location = { BZ["Deadwind Pass"], ZONE, 41 },
+		LevelRange = "60",
+		MinLevel = "58",
+		PlayerLimit = "5",
+		Continent = BZ["Eastern Kingdoms"],
 		{ ORNG..L["Key"]..": Karazhan Crypt Key", ITEM, 51356 },
 		{ BLUE.."A) "..L["Entrance"] },
 		{ GREY.."1) ".."Marrowspike", NPC, 91920 },
@@ -1622,60 +1519,32 @@ AtlasMaps = {
 		{ GREY.."3) ".."Corpsemuncher", NPC, 91917 },
 		{ GREY.."4) ".."Guard Captain Gort", NPC, 92935 },
 		{ GREY.."5) ".."Archlich Enkhraz", NPC, 91916 },
-		{ GREY.."6) ".."Commander Anderson", NPC, 91919 },
+		{ GREY.."6) ".."Commander Andreon", NPC, 91919 },
 		{ GREY.."7) ".."Alarus", NPC, 91928 },
 		{ GREY.."8) ".."Half-Buried Treasure Chest", OBJECT, 379545 },
 		{ GREY..INDENT..L["Trash Mobs"] },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	GilneasCity = {
-		ZoneName = { "Gilneas City", 3337 },
+		ZoneName = { L["Gilneas City"],  },
 		Acronym = "GC",
-		Location = { "Gilneas", 3337 },
-		LevelRange = "42-50",
-		MinLevel = "40",
+		Location = { L["Gilneas"], },
+		LevelRange = "43-49",
+		MinLevel = "43",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
 		{ BLUE.."A) "..L["Entrance"] },
-		{ GREY.."1) ".."Matthias Holtz", NPC, 0 },
-		{ GREY.."2) ".."Packmaster Ragetooth", NPC, 0 },
-		{ GREY.."3) ".."Judge Sutherland", NPC, 0 },
-		{ GREY.."4) ".."Dustivan Blackcowl", NPC, 0 },
-		{ GREY.."5) ".."Marshal Magnus Greystone", NPC, 0 },
-		{ GREY.."6) ".."Horsemaster Levvin", NPC, 0 },
-		{ GREY.."7) ".."Harlow Family Chest", OBJECT, 2020027 },
-		{ GREY.."8) ".."Genn Greymane", NPC, 0 },
+		{ GREY.."1) "..L["Matthias Holtz"], NPC, 61419 },
+		{ GREY.."2) "..L["Packmaster Ragetooth"], NPC, 61420 },
+		{ INDENT..GREY.."a) "..L["Dawnstone Plans"]},
+		{ INDENT..GREY.."b) "..L["Manuscript of Hydromancy II"]},
+		{ GREY.."3) "..L["Judge Sutherland"], NPC, 61421 },
+		{ GREY.."4) "..L["Dustivan Blackcowl"], NPC, 61422 },
+		{ GREY.."5) "..L["Marshal Magnus Greystone"], NPC, 61423 },
+		{ GREY.."6) "..L["Horsemaster Levvin"], NPC, 61605 },
+		{ GREY.."7) "..L["Harlow Family Chest"], OBJECT, 2020027 },
+		{ GREY.."8) "..L["Genn Greymane"], NPC, 61418 },
 		{ GREY..INDENT..L["Trash Mobs"] },
-		{ "" },
-		{ GREY..INDENT..L["Set: "].."Greymane Armor" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
+		{ GREY..INDENT..L["Set: "]..L["Greymane Armor"] },
 	},
 	GilneasCityEnt = {
 		ZoneName = { "Gilneas City".." ("..L["Entrance"]..")", 3337 },
@@ -1685,27 +1554,52 @@ AtlasMaps = {
 		{ BLUE.."A) ".."Gilneas City" },
 	},
 	LowerKara = {
-		ZoneName = { "Lower Karazhan Halls", 3338 },
+		ZoneName = { L["Lower Karazhan Halls"],  },
 		Acronym = "LKH",
-		Location = { BZ["Deadwind Pass"], ZONE, 41 },
-		LevelRange = "60",
+		Location = { BZ["Deadwind Pass"], ZONE, 41},
+		LevelRange = "58-60",
 		MinLevel = "58",
 		PlayerLimit = "10",
 		Continent = BZ["Eastern Kingdoms"],
 		{ BLUE.."A) "..L["Entrance"] },
-		{ "" },
-		{ GREY.."1) ".."Master Blacksmith Rolfen", NPC, 0 },
-		{ GREY.."2) ".."Brood Queen Araxxna", NPC, 0 },
-		{ GREY.."3) ".."Lord Blackwald II", NPC, 0 },
-		{ GREY.."4) ".."Clawlord Howlfang", NPC, 0 },
-		{ GREY.."5) ".."Grizikil", NPC, 0 },
-		{ GREY.."6) ".."Moroes", NPC, 0 },
+		{ BLUE.."B) "..L["Connection"] },
+		{ GREY.."1) "..L["Master Blacksmith Rolfen"], NPC, 61319 },
+		{ GREY..INDENT.."a) "..L["Engraved Golden Bracelet"] },
+		{ GREY..INDENT.."b) "..L["Comfortable Pillow"] },
+		{ GREY.."2) "..L["Brood Queen Araxxna"], NPC, 61221 },
+		{ GREY.."3) "..L["Grizikil"], NPC, 61224 },
+		{ GREY..INDENT.."c) "..L["Councilman Kyleson"] },
+		{ GREY.."4) "..L["Clawlord Howlfang"], NPC, 61223 },
+		{ GREY.."5) "..L["Lord Blackwald II"], NPC, 61222 },
+		{ GREY..INDENT.."d) "..L["Lord Ebonlocke"] },
+		{ GREY..INDENT.."e) "..L["Obsidian Rod"] },
+		{ GREY..INDENT.."f) "..L["Duke Rothlen"] },
+		{ GREY.."6) "..L["Moroes"], NPC, 61226 },
 		{ GREY..INDENT..L["Trash Mobs"] },
-		{ GREEN.."a) "..GREY.."Doorman Montigue", NPC, 61571 },
-		{ GREEN.."b) "..GREY.."Lord Ebonlocke, The Cook", NPC, 61328 },
-		{ GREEN.."c) "..GREY.."Duke Rothlen", NPC, 61320 },
-		{ GREEN.."d) "..GREY.."Councilman Kyleson", NPC, 61322 },
-		{ GREY..INDENT.."LKH Enchants" },
+		{ GREY..INDENT..L["LKH Enchants"] },
+	},
+	Kara40 = {
+		ZoneName = { L["Upper Karazhan Halls"], 0 },
+		Acronym = "KARA40",
+		Location = { BZ["Deadwind Pass"], ZONE, 41 },
+		LevelRange = "60+",
+		MinLevel = "60",
+		PlayerLimit = "40",
+		Continent = BZ["Eastern Kingdoms"],
+		{ BLUE.."A) "..L["Entrance"] },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ "" },
+		{ GREY..INDENT..L["Upper Karazhan Sets"] },
 	},
 	EmeraldSanctum = {
 		ZoneName = { "Emerald Sanctum", 3339 },
@@ -1714,64 +1608,31 @@ AtlasMaps = {
 		LevelRange = "60",
 		MinLevel = "58",
 		PlayerLimit = "40",
-		Continent = BZ["Eastern Kingdoms"],
-		{ GREY.."1) ".."Erennius", NPC, 0 },
-		{ GREY.."2) ".."Solnius the Awakener", NPC, 0 },
-		{ GREY.."3) ".."Solnius the Awakener (Page 2)", NPC, 0 },
-		{ GREY.."4) ".."Favor of Erennius (ES Hard Mode)", NPC, 0 },
+		Continent = BZ["Kalimdor"],
+		{ GREY.."1) ".."Erennius", NPC, 60747 },
+		{ GREY.."2) ".."Solnius the Awakener", NPC, 60748 },
+		{ GREY.."3) ".."Solnius the Awakener (Page 2)", NPC, 60748 },
+		{ GREY.."4) ".."Favor of Erennius (ES Hard Mode)", OBJECT, 2020042 },
 		{ GREY..INDENT..L["Trash Mobs"] },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
 	},
 	HateforgeQuarry = {
-		ZoneName = { "Hateforge Quarry", 3335 },
+		ZoneName = { L["Hateforge Quarry"], 3335 },
 		Acronym = "HQ",
-		Location = { BZ["Burning Steppes"], 331 },
-		LevelRange = "50-57",
-		MinLevel = "45",
+		Location = { BZ["Burning Steppes"], 46 },
+		LevelRange = "52-60",
+		MinLevel = "48",
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
 		{ BLUE.."A) "..L["Entrance"] },
-		{ GREY.."1) ".."High Foreman Bargul Blackhammer", NPC, 60735 },
-		{ GREY.."2) ".."Engineer Figgles ",NPC, 60736 },
-		{ GREY.."3) ".."Corrosis", NPC, 60829 },
-		{ GREY.."4) ".."Hatereaver Annihilator", NPC, 60734 },
-		{ GREY.."5) ".."Har'gesh Doomcaller", NPC, 60737 },
+		{ GREY.."1) "..L["High Foreman Bargul Blackhammer"], NPC, 60735 },
+		{ GREY.."2) "..L["Engineer Figgles"], NPC, 60736 },
+		{ INDENT..GREY.."a) "..L["Hateforge Chemistry Documents"] },
+		{ GREY.."3) "..L["Corrosis"], NPC, 60829 },
+		{ GREY.."4) "..L["Hatereaver Annihilator"], NPC, 60734 },
+		{ GREY.."5) "..L["Hargesh Doomcaller"], NPC, 60737 },
 		{ GREY..INDENT..L["Trash Mobs"] },
 		{ "" },
-		{ GREY..INDENT..L["Set: "].."Incendosaur Skin Armor" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
+		{ GREY..INDENT..L["Set: "]..L["Incendosaur Skin Armor"] },
 	},
 	StormwindVault = {
 		ZoneName = { "Stormwind Vault", 3336 },
@@ -1782,29 +1643,14 @@ AtlasMaps = {
 		PlayerLimit = "5",
 		Continent = BZ["Eastern Kingdoms"],
 		{ BLUE.."A) "..L["Entrance"] },
-		{ "" },
 		{ GREY.."1) ".."Aszosh Grimflame", NPC, 80853 },
 		{ GREY.."2) ".."Tham'Grarr",NPC, 80852 },
 		{ GREY.."3) ".."Black Bride", NPC, 80850 },
+		{ GREY..INDENT..L["Tome of Arcane Intricacies and Magical Phenomenon IX"]},
 		{ GREY.."4) ".."Damian", NPC, 80854 },
 		{ GREY.."5) ".."Volkan Cruelblade", NPC, 80851 },
 		{ GREY.."6) ".."Arc'tiras / Vault Armory Equipment", NPC, 93107 },
 		{ GREY..INDENT..L["Trash Mobs"] },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	Xalvic = {
 		ZoneName = { "Xalvic Blackclaw", NPC, 49003	},
@@ -1813,29 +1659,6 @@ AtlasMaps = {
 		Health = "19438",
 		Mana = "10000",
 		{ GREY.."1) ".."Xalvic Blackclaw", NPC, 49003 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	CrusaderLarsarius = {
 		ZoneName = { "Crusader Larsarius", NPC, 49008	},
@@ -1844,29 +1667,6 @@ AtlasMaps = {
 		Health = "28140",
 		Mana = "20000",
 		{ GREY.."1) ".."Crusader Larsarius <The Scarlet Crusade>", NPC, 49008 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	AdmiralBareanWestwind = {
 		ZoneName = { "Admiral Barean Westwind", NPC, 60525	},
@@ -1875,29 +1675,6 @@ AtlasMaps = {
 		Health = "141057",
 		Mana = "12000",
 		{ GREY.."1) ".."Admiral Barean Westwind", NPC, 60525 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	Kargron = {
 		ZoneName = { "Blademaster Kargron", NPC, 49002	},
@@ -1906,29 +1683,6 @@ AtlasMaps = {
 		Health = "28614",
 		Mana = "-",
 		{ GREY.."1) ".."Blademaster Kargron", NPC, 49002 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	Mallon = {
 		ZoneName = { "Mallon The Moontouched", NPC, 49004	},
@@ -1937,29 +1691,6 @@ AtlasMaps = {
 		Health = "27438",
 		Mana = "15000",
 		{ GREY.."1) ".."Mallon The Moontouched", NPC, 49004 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	Zareth = {
 		ZoneName = { "Zareth Terrorblade", NPC, 49009	},
@@ -1968,29 +1699,6 @@ AtlasMaps = {
 		Health = "23198",
 		Mana = "9000",
 		{ GREY.."1) ".."Zareth Terrorblade <Demon Hunter>", NPC, 49009 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	Tarangos = {
 		ZoneName = { "Tarangos", NPC, 49001	},
@@ -1999,29 +1707,6 @@ AtlasMaps = {
 		Health = "23155",
 		Mana = "-",
 		{ GREY.."1) ".."Tarangos <The Dampener>", NPC, 49001 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	WanderingKnight = {
 		ZoneName = { "The Wandering Knight", NPC, 49007	},
@@ -2030,29 +1715,6 @@ AtlasMaps = {
 		Health = "22341",
 		Mana = "-",
 		{ GREY.."1) ".."The Wandering Knight", NPC, 49007 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	Jalakar = {
 		ZoneName = { "Jal'akar", NPC, 49010	},
@@ -2061,29 +1723,6 @@ AtlasMaps = {
 		Health = "18415",
 		Mana = "-",
 		{ GREY.."1) ".."Jal'akar <Dire Troll>", NPC, 49010 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	Ashbeard = {
 		ZoneName = { "Explorer Ashbeard", NPC, 49011	},
@@ -2092,29 +1731,6 @@ AtlasMaps = {
 		Health = "16150",
 		Mana = "-",
 		{ GREY.."1) ".."Explorer Ashbeard", NPC, 49011 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	Grugthok = {
 		ZoneName = { "Grug'thok the Seer", NPC, 49005	},
@@ -2123,29 +1739,6 @@ AtlasMaps = {
 		Health = "15192",
 		Mana = "7500",
 		{ GREY.."1) ".."Grug'thok the Seer", NPC, 49005 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" }
 	},
 	AlteracValleyNorth = {
 		ZoneName = { BZ["Alterac Valley"].." ("..L["North"]..")", 2597 },
@@ -2336,26 +1929,27 @@ AtlasMaps = {
 		Continent = BZ["Eastern Kingdoms"],
 		{ BLUE.."A) "..BZ["Alterac Valley"]..", ".._RED..BZ["Alterac Mountains"].." / "..BZ["Hillsbrad Foothills"], ZONE, 2597, 36, 267 },
 		{ BLUE.."B) "..BZ["Arathi Basin"]..", ".._RED..BZ["Arathi Highlands"], ZONE, 3358, 45 },
+		{ BLUE.."C) ".."Blood Ring Arena"..", ".._RED..BZ["Stranglethorn Vale"], ZONE, 19, 33 },
 		{ GREY.."1) "..BZ["Scarlet Monastery"]..", ".._RED..BZ["Tirisfal Glades"], ZONE, 796, 85 },
 		{ GREY.."2) "..BZ["Stratholme"]..", ".._RED..BZ["Eastern Plaguelands"], ZONE, 2017, 139 },
 		{ GREY.."3) "..BZ["Naxxramas"]..", ".._RED..BZ["Eastern Plaguelands"], ZONE, 3456, 139 },
 		{ GREY.."4) "..BZ["Scholomance"]..", ".._RED..BZ["Western Plaguelands"], ZONE, 2057, 28 },
 		{ GREY.."5) "..BZ["Shadowfang Keep"]..", ".._RED..BZ["Silverpine Forest"], ZONE, 209, 130 },
-		{ GREY.."6) "..BZ["Gnomeregan"]..", ".._RED..BZ["Dun Morogh"], ZONE, 133, 1 },
-		{ GREY.."7) "..BZ["Uldaman"]..", ".._RED..BZ["Badlands"], ZONE, 1337, 3 },
-		{ GREY.."8) "..BZ["Blackwing Lair"]..", ".._RED..BZ["Blackrock Spire"], ZONE, 2677, 1583 },
+		{ GREY.."6) ".."Gilneas City"..", ".._RED.."Gilneas", ZONE, 133, 1 },		
+		{ GREY.."7) "..BZ["Gnomeregan"]..", ".._RED..BZ["Dun Morogh"], ZONE, 133, 1 },
+		{ GREY.."8) "..BZ["Uldaman"]..", ".._RED..BZ["Badlands"], ZONE, 1337, 3 },
+		{ GREY.."9) "..BZ["Blackwing Lair"]..", ".._RED..BZ["Blackrock Spire"], ZONE, 2677, 1583 },
 		{ GREY..INDENT..BZ["Blackrock Depths"]..", ".._RED..BZ["Blackrock Mountain"], ZONE, 1584, 25 },
 		{ GREY..INDENT..BZ["Blackrock Spire"]..", ".._RED..BZ["Blackrock Mountain"], ZONE, 1583, 25 },
 		{ GREY..INDENT..BZ["Molten Core"]..", ".._RED..BZ["Blackrock Depths"], ZONE, 2717, 1584 },
-		{ GREY.."9) "..BZ["The Stockade"]..", ".._RED..BZ["Stormwind City"], ZONE, 717, 1519 },
-		{ GREY.."10) "..BZ["The Deadmines"]..", ".._RED..BZ["Westfall"], ZONE, 1581, 40 },
-		{ GREY.."11) "..L["Sunken Temple"]..", ".._RED..BZ["Swamp of Sorrows"], ZONE, 1417, 8 },
-		{ GREY.."12) "..BZ["Zul'Gurub"]..", ".._RED..BZ["Stranglethorn Vale"], ZONE, 19, 33 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
+		{ GREY.."10) ".."Hateforge Quarry"..", ".._RED..BZ["Burning Steppes"], ZONE, 717, 1519 },
+		{ GREY.."11) "..BZ["The Stockade"]..", ".._RED..BZ["Stormwind City"], ZONE, 717, 1519 },
+		{ GREY..INDENT.."Stormwind Vault"..", ".._RED.."Stormwind City", ZONE, 717, 1519 },
+		{ GREY.."12) "..BZ["The Deadmines"]..", ".._RED..BZ["Westfall"], ZONE, 1581, 40 },
+		{ GREY.."13) ".."Karazhan Crypt"..", ".._RED..BZ["Deadwind Pass"], ZONE, 1581, 40 },
+		{ GREY..INDENT.."Lower Karazhan Halls"..", ".._RED..BZ["Deadwind Pass"], ZONE, 1581, 40 },
+		{ GREY.."14) "..L["Sunken Temple"]..", ".._RED..BZ["Swamp of Sorrows"], ZONE, 1417, 8 },
+		{ GREY.."15) "..BZ["Zul'Gurub"]..", ".._RED..BZ["Stranglethorn Vale"], ZONE, 19, 33 },
 		{ BLUE..L["Blue"]..": "..ORNG..L["Battlegrounds"] },
 		{ GREY..L["White"]..": "..ORNG..L["Instances"] }
 	},
@@ -2364,21 +1958,21 @@ AtlasMaps = {
 		Location = { BZ["Kalimdor"] },
 		Continent = BZ["Kalimdor"],
 		{ BLUE.."A) "..BZ["Warsong Gulch"]..", ".._RED..BZ["The Barrens"].." / "..BZ["Ashenvale"], ZONE, 3277, 17, 331 },
-		{ GREY.."1) "..BZ["Blackfathom Deeps"]..", ".._RED..BZ["Ashenvale"], ZONE, 719, 331 },
-		{ GREY.."2) "..BZ["Ragefire Chasm"]..", ".._RED..BZ["Orgrimmar"], ZONE, 2437, 1637 },
-		{ GREY.."3) "..BZ["Wailing Caverns"]..", ".._RED..BZ["The Barrens"], ZONE, 718, 17 },
-		{ GREY.."4) "..BZ["Maraudon"]..", ".._RED..BZ["Desolace"], ZONE, 2100, 405 },
-		{ GREY.."5) "..BZ["Dire Maul"]..", ".._RED..BZ["Feralas"], ZONE, 2557, 357 },
-		{ GREY.."6) "..BZ["Razorfen Kraul"]..", ".._RED..BZ["The Barrens"], ZONE, 491, 17 },
-		{ GREY.."7) "..BZ["Razorfen Downs"]..", ".._RED..BZ["The Barrens"], ZONE, 722, 17 },
-		{ GREY.."8) "..BZ["Onyxia's Lair"]..", ".._RED..BZ["Dustwallow Marsh"], ZONE, 2159, 15 },
-		{ GREY.."9) "..BZ["Zul'Farrak"]..", ".._RED..BZ["Tanaris"], ZONE, 978, 440 },
-		{ GREY.."10) "..BZ["Ruins of Ahn'Qiraj"]..", ".._RED..BZ["Silithus"], ZONE, 3429, 1377 },
+		{ BLUE.."B) ".."Sunnyglade Valley"..", ".._RED.."Caverns of Time", ZONE, 3277, 17, 331 },
+		{ GREY.."1) ".."Emerald Sanctum"..", ".._RED.."Hyjal", ZONE, 719, 331 },
+		{ GREY.."2) "..BZ["Blackfathom Deeps"]..", ".._RED..BZ["Ashenvale"], ZONE, 719, 331 },
+		{ GREY.."3) ".."The Crescent Grove"..", ".._RED..BZ["Ashenvale"], ZONE, 719, 331 },
+		{ GREY.."4) "..BZ["Ragefire Chasm"]..", ".._RED..BZ["Orgrimmar"], ZONE, 2437, 1637 },
+		{ GREY.."5) "..BZ["Wailing Caverns"]..", ".._RED..BZ["The Barrens"], ZONE, 718, 17 },
+		{ GREY.."6) "..BZ["Maraudon"]..", ".._RED..BZ["Desolace"], ZONE, 2100, 405 },
+		{ GREY.."7) "..BZ["Dire Maul"]..", ".._RED..BZ["Feralas"], ZONE, 2557, 357 },
+		{ GREY.."8) "..BZ["Razorfen Kraul"]..", ".._RED..BZ["The Barrens"], ZONE, 491, 17 },
+		{ GREY.."9) "..BZ["Razorfen Downs"]..", ".._RED..BZ["The Barrens"], ZONE, 722, 17 },
+		{ GREY.."10) "..BZ["Onyxia's Lair"]..", ".._RED..BZ["Dustwallow Marsh"], ZONE, 2159, 15 },
+		{ GREY.."11) "..BZ["Zul'Farrak"]..", ".._RED..BZ["Tanaris"], ZONE, 978, 440 },
+		{ GREY.."12) ".."Black Morass"..", ".._RED.."Caverns of Time", ZONE, 978, 440 },
+		{ GREY.."13) "..BZ["Ruins of Ahn'Qiraj"]..", ".._RED..BZ["Silithus"], ZONE, 3429, 1377 },
 		{ GREY..INDENT..BZ["Temple of Ahn'Qiraj"]..", ".._RED..BZ["Silithus"], ZONE, 3428, 1377 },
-		{ "" },
-		{ "" },
-		{ "" },
-		{ "" },
 		{ "" },
 		{ "" },
 		{ "" },
@@ -2391,22 +1985,27 @@ AtlasMaps = {
 	FPAllianceEast = {
 		ZoneName = { BF["Alliance"].." ("..BZ["Eastern Kingdoms"]..")" },
 		Location = { BZ["Eastern Kingdoms"] },
-		{ GREY.."1) "..L["Light's Hope Chapel"]..", "..BLUE..BZ["Eastern Plaguelands"], ZONE, 139 },
-		{ GREY.."2) "..L["Chillwind Point"]..", "..BLUE..BZ["Western Plaguelands"], ZONE, 28 },
-		{ GREY.."3) "..L["Aerie Peak"]..", "..BLUE..BZ["The Hinterlands"], ZONE, 47 },
-		{ GREY.."4) "..L["Southshore"]..", "..BLUE..BZ["Hillsbrad Foothills"], ZONE, 267 },
-		{ GREY.."5) "..L["Refuge Pointe"]..", "..BLUE..BZ["Arathi Highlands"], ZONE, 45 },
-		{ GREY.."6) "..L["Menethil Harbor"]..", "..BLUE..BZ["Wetlands"], ZONE, 11 },
-		{ GREY.."7) "..BZ["Ironforge"]..", "..BLUE..BZ["Dun Morogh"], ZONE, 1 },
-		{ GREY.."8) "..L["Thelsamar"]..", "..BLUE..BZ["Loch Modan"], ZONE, 38 },
-		{ GREY.."9) "..L["Thorium Point"]..", "..BLUE..BZ["Searing Gorge"], ZONE, 51 },
-		{ GREY.."10) "..L["Morgan's Vigil"]..", "..BLUE..BZ["Burning Steppes"], ZONE, 46 },
-		{ GREY.."11) "..BZ["Stormwind City"]..", "..BLUE..BZ["Elwynn Forest"], ZONE, 12 },
-		{ GREY.."12) "..L["Lakeshire"]..", "..BLUE..BZ["Redridge Mountains"], ZONE, 44 },
-		{ GREY.."13) "..L["Sentinel Hill"]..", "..BLUE..BZ["Westfall"], ZONE, 40 },
-		{ GREY.."14) "..L["Darkshire"]..", "..BLUE..BZ["Duskwood"], ZONE, 10 },
-		{ GREY.."15) "..L["Nethergarde Keep"]..", "..BLUE..BZ["Blasted Lands"], ZONE, 4 },
-		{ GREY.."16) "..L["Booty Bay"]..", "..BLUE..BZ["Stranglethorn Vale"], ZONE, 33 }
+		{ GREY.."1) ".."Alah'Thalas"..", "..BLUE.."Thalassian Highlands", ZONE, 33 },
+		{ GREY.."2) "..L["Light's Hope Chapel"]..", "..BLUE..BZ["Eastern Plaguelands"], ZONE, 139 },
+		{ GREY.."3) "..L["Chillwind Point"]..", "..BLUE..BZ["Western Plaguelands"], ZONE, 28 },
+		{ GREY.."4) "..L["Aerie Peak"]..", "..BLUE..BZ["The Hinterlands"], ZONE, 47 },
+		{ GREY.."5) ".."Ravenshire"..", "..BLUE.."Gilneas", ZONE, 33 },
+		{ GREY.."6) "..L["Southshore"]..", "..BLUE..BZ["Hillsbrad Foothills"], ZONE, 267 },
+		{ GREY.."7) "..L["Refuge Pointe"]..", "..BLUE..BZ["Arathi Highlands"], ZONE, 45 },
+		{ GREY.."8) "..L["Menethil Harbor"]..", "..BLUE..BZ["Wetlands"], ZONE, 11 },
+		{ GREY.."9) ".."Dun Agrath"..", "..BLUE..BZ["Wetlands"], ZONE, 1 },
+		{ GREY.."10) "..BZ["Ironforge"]..", "..BLUE..BZ["Dun Morogh"], ZONE, 1 },
+		{ GREY..INDENT.."Ironforge Airfields"..", "..BLUE..BZ["Dun Morogh"], ZONE, 1 },
+		{ GREY.."11) "..L["Thelsamar"]..", "..BLUE..BZ["Loch Modan"], ZONE, 38 },
+		{ GREY.."12) "..L["Thorium Point"]..", "..BLUE..BZ["Searing Gorge"], ZONE, 51 },
+		{ GREY.."13) "..L["Morgan's Vigil"]..", "..BLUE..BZ["Burning Steppes"], ZONE, 46 },
+		{ GREY.."14) "..BZ["Stormwind City"]..", "..BLUE..BZ["Elwynn Forest"], ZONE, 12 },
+		{ GREY.."15) "..L["Lakeshire"]..", "..BLUE..BZ["Redridge Mountains"], ZONE, 44 },
+		{ GREY.."16) "..L["Sentinel Hill"]..", "..BLUE..BZ["Westfall"], ZONE, 40 },
+		{ GREY.."17) "..L["Darkshire"]..", "..BLUE..BZ["Duskwood"], ZONE, 10 },
+		{ GREY.."18) "..L["Nethergarde Keep"]..", "..BLUE..BZ["Blasted Lands"], ZONE, 4 },
+		{ GREY.."19) "..L["Booty Bay"]..", "..BLUE..BZ["Stranglethorn Vale"], ZONE, 33 },
+		{ GREY.."20) ".."Caelan's Rest"..", "..BLUE.."Lapidis Isle", ZONE, 33 },
 	},
 	FPAllianceWest = {
 		ZoneName = { BF["Alliance"].." ("..BZ["Kalimdor"]..")" },
@@ -2417,17 +2016,20 @@ AtlasMaps = {
 		{ GREY.."3) "..L["Everlook"]..", "..BLUE..BZ["Winterspring"], ZONE, 618 },
 		{ GREY.."4) "..L["Auberdine"]..", "..BLUE..BZ["Darkshore"], ZONE, 148 },
 		{ GREY.."5) "..L["Talonbranch Glade"]..", "..BLUE..BZ["Felwood"], ZONE, 361 },
-		{ GREY.."6) "..L["Stonetalon Peak"]..", "..BLUE..BZ["Stonetalon Mountains"], ZONE, 406 },
-		{ GREY.."7) "..L["Astranaar"]..", "..BLUE..BZ["Ashenvale"], ZONE, 331 },
-		{ GREY.."8) "..L["Talrendis Point"]..", "..BLUE..BZ["Azshara"], ZONE, 16 },
-		{ GREY.."9) "..L["Nijel's Point"]..", "..BLUE..BZ["Desolace"], ZONE, 405 },
-		{ GREY.."10) "..L["Ratchet"]..", "..BLUE..BZ["The Barrens"], ZONE, 17 },
-		{ GREY.."11) "..L["Theramore Isle"]..", "..BLUE..BZ["Dustwallow Marsh"], ZONE, 15 },
-		{ GREY.."12) "..L["Feathermoon Stronghold"]..", "..BLUE..BZ["Feralas"], ZONE, 357 },
-		{ GREY.."13) "..L["Thalanaar"]..", "..BLUE..BZ["Feralas"], ZONE, 357 },
-		{ GREY.."14) "..L["Marshal's Refuge"]..", "..BLUE..BZ["Un'Goro Crater"], ZONE, 490 },
-		{ GREY.."15) "..L["Cenarion Hold"]..", "..BLUE..BZ["Silithus"], ZONE, 1377 },
-		{ GREY.."16) "..L["Gadgetzan"]..", "..BLUE..BZ["Tanaris"], ZONE, 440 }
+		{ GREY.."6) ".."Nordanaar"..", "..BLUE.."Hyjal", ZONE, 440 },
+		{ GREY.."7) "..L["Stonetalon Peak"]..", "..BLUE..BZ["Stonetalon Mountains"], ZONE, 406 },
+		{ GREY.."8) "..L["Astranaar"]..", "..BLUE..BZ["Ashenvale"], ZONE, 331 },
+		{ GREY.."9) "..L["Talrendis Point"]..", "..BLUE..BZ["Azshara"], ZONE, 16 },
+		{ GREY.."10) "..L["Nijel's Point"]..", "..BLUE..BZ["Desolace"], ZONE, 405 },
+		{ GREY.."11) ".."Bael Hardul"..", "..BLUE..BZ["Stonetalon Mountains"], ZONE, 440 },
+		{ GREY.."12) "..L["Ratchet"]..", "..BLUE..BZ["The Barrens"], ZONE, 17 },
+		{ GREY.."13) "..L["Theramore Isle"]..", "..BLUE..BZ["Dustwallow Marsh"], ZONE, 15 },
+		{ GREY.."14) "..L["Feathermoon Stronghold"]..", "..BLUE..BZ["Feralas"], ZONE, 357 },
+		{ GREY.."15) "..L["Thalanaar"]..", "..BLUE..BZ["Feralas"], ZONE, 357 },
+		{ GREY.."16) "..L["Marshal's Refuge"]..", "..BLUE..BZ["Un'Goro Crater"], ZONE, 490 },
+		{ GREY.."17) "..L["Cenarion Hold"]..", "..BLUE..BZ["Silithus"], ZONE, 1377 },
+		{ GREY.."18) "..L["Gadgetzan"]..", "..BLUE..BZ["Tanaris"], ZONE, 440 },
+		{ GREY.."19) ".."Tel Co. Basecamp"..", "..BLUE.."Tel'Abim", ZONE, 440 },
 	},
 	FPHordeEast = {
 		ZoneName = { BF["Horde"].." ("..BZ["Eastern Kingdoms"]..")" },
@@ -2438,12 +2040,14 @@ AtlasMaps = {
 		{ GREY.."4) "..L["Tarren Mill"]..", ".._RED..BZ["Hillsbrad Foothills"], ZONE, 267 },
 		{ GREY.."5) "..L["Revantusk Village"]..", ".._RED..BZ["The Hinterlands"], ZONE, 47 },
 		{ GREY.."6) "..L["Hammerfall"]..", ".._RED..BZ["Arathi Highlands"], ZONE, 45 },
-		{ GREY.."7) "..L["Thorium Point"]..", ".._RED..BZ["Searing Gorge"], ZONE, 51 },
-		{ GREY.."8) "..L["Kargath"]..", ".._RED..BZ["Badlands"], ZONE, 3 },
-		{ GREY.."9) "..L["Flame Crest"]..", ".._RED..BZ["Burning Steppes"], ZONE, 46 },
-		{ GREY.."10) "..L["Stonard"]..", ".._RED..BZ["Swamp of Sorrows"], ZONE, 8 },
-		{ GREY.."11) "..L["Grom'Gol Base Camp"]..", ".._RED..BZ["Stranglethorn Vale"], ZONE, 33 },
-		{ GREY.."12) "..L["Booty Bay"]..", ".._RED..BZ["Stranglethorn Vale"], ZONE, 33 }
+		{ GREY.."7) ".."Stillward Church"..", ".._RED.."Gilneas", ZONE, 33 },
+		{ GREY.."8) "..L["Thorium Point"]..", ".._RED..BZ["Searing Gorge"], ZONE, 51 },
+		{ GREY.."9) "..L["Kargath"]..", ".._RED..BZ["Badlands"], ZONE, 3 },
+		{ GREY.."10) "..L["Flame Crest"]..", ".._RED..BZ["Burning Steppes"], ZONE, 46 },
+		{ GREY.."11) "..L["Stonard"]..", ".._RED..BZ["Swamp of Sorrows"], ZONE, 8 },
+		{ GREY.."12) "..L["Grom'Gol Base Camp"]..", ".._RED..BZ["Stranglethorn Vale"], ZONE, 33 },
+		{ GREY.."13) "..L["Booty Bay"]..", ".._RED..BZ["Stranglethorn Vale"], ZONE, 33 },
+		{ GREY.."14) ".."Maul'ogg Refuge"..", ".._RED.."Gillijim's Isle", ZONE, 33 },
 	},
 	FPHordeWest = {
 		ZoneName = { BF["Horde"].." ("..BZ["Kalimdor"]..")" },
@@ -2451,22 +2055,48 @@ AtlasMaps = {
 		{ GREY.."1) "..GREEN..L["Nighthaven"]..GREY..", ".._RED..BZ["Moonglade"]..GREEN.." ("..L["Druid-only"]..")", ZONE, 493 },
 		{ GREY..INDENT..L["West of the path to Timbermaw Hold"]..", ".._RED..BZ["Moonglade"], ZONE, 493 },
 		{ GREY.."2) "..L["Everlook"]..", ".._RED..BZ["Winterspring"], ZONE, 618 },
-		{ GREY.."3) "..L["Bloodvenom Post"]..", ".._RED..BZ["Felwood"], ZONE, 361 },
-		{ GREY.."4) "..L["Zoram'gar Outpost"]..", ".._RED..BZ["Ashenvale"], ZONE, 331 },
-		{ GREY.."5) "..L["Valormok"]..", ".._RED..BZ["Azshara"], ZONE, 16 },
-		{ GREY.."6) "..L["Splintertree Post"]..", ".._RED..BZ["Ashenvale"], ZONE, 331 },
-		{ GREY.."7) "..BZ["Orgrimmar"]..", ".._RED..BZ["Durotar"], ZONE, 14 },
-		{ GREY.."8) "..L["Sun Rock Retreat"]..", ".._RED..BZ["Stonetalon Mountains"], ZONE, 406 },
-		{ GREY.."9) "..L["Crossroads"]..", ".._RED..BZ["The Barrens"], ZONE, 17 },
-		{ GREY.."10) "..L["Ratchet"]..", ".._RED..BZ["The Barrens"], ZONE, 17 },
-		{ GREY.."11) "..L["Shadowprey Village"]..", ".._RED..BZ["Desolace"], ZONE, 405 },
-		{ GREY.."12) "..BZ["Thunder Bluff"]..", ".._RED..BZ["Mulgore"], ZONE, 215 },
-		{ GREY.."13) "..L["Camp Taurajo"]..", ".._RED..BZ["The Barrens"], ZONE, 17 },
-		{ GREY.."14) "..L["Brackenwall Village"]..", ".._RED..BZ["Dustwallow Marsh"], ZONE, 15 },
-		{ GREY.."15) "..L["Camp Mojache"]..", ".._RED..BZ["Feralas"], ZONE, 357 },
-		{ GREY.."16) "..L["Freewind Post"]..", ".._RED..BZ["Thousand Needles"], ZONE, 400 },
-		{ GREY.."17) "..L["Marshal's Refuge"]..", ".._RED..BZ["Un'Goro Crater"], ZONE, 490 },
-		{ GREY.."18) "..L["Cenarion Hold"]..", ".._RED..BZ["Silithus"], ZONE, 1377 },
-		{ GREY.."19) "..L["Gadgetzan"]..", ".._RED..BZ["Tanaris"], ZONE, 440 }
+		{ GREY.."3) ".."Nordanaar"..", ".._RED.."Hyjal", ZONE, 440 },
+		{ GREY.."4) "..L["Bloodvenom Post"]..", ".._RED..BZ["Felwood"], ZONE, 361 },
+		{ GREY.."5) "..L["Zoram'gar Outpost"]..", ".._RED..BZ["Ashenvale"], ZONE, 331 },
+		{ GREY.."6) "..L["Valormok"]..", ".._RED..BZ["Azshara"], ZONE, 16 },
+		{ GREY.."7) "..L["Splintertree Post"]..", ".._RED..BZ["Ashenvale"], ZONE, 331 },
+		{ GREY.."8) "..BZ["Orgrimmar"]..", ".._RED..BZ["Durotar"], ZONE, 14 },
+		{ GREY.."9) "..L["Sun Rock Retreat"]..", ".._RED..BZ["Stonetalon Mountains"], ZONE, 406 },
+		{ GREY.."10) "..L["Crossroads"]..", ".._RED..BZ["The Barrens"], ZONE, 17 },
+		{ GREY.."11) "..L["Ratchet"]..", ".._RED..BZ["The Barrens"], ZONE, 17 },
+		{ GREY.."12) "..L["Shadowprey Village"]..", ".._RED..BZ["Desolace"], ZONE, 405 },
+		{ GREY.."13) "..BZ["Thunder Bluff"]..", ".._RED..BZ["Mulgore"], ZONE, 215 },
+		{ GREY.."14) "..L["Camp Taurajo"]..", ".._RED..BZ["The Barrens"], ZONE, 17 },
+		{ GREY.."15) "..L["Brackenwall Village"]..", ".._RED..BZ["Dustwallow Marsh"], ZONE, 15 },
+		{ GREY.."16) ".."Mudsprocket"..", ".._RED..BZ["Dustwallow Marsh"], ZONE, 440 },
+		{ GREY.."17) "..L["Camp Mojache"]..", ".._RED..BZ["Feralas"], ZONE, 357 },
+		{ GREY.."18) "..L["Freewind Post"]..", ".._RED..BZ["Thousand Needles"], ZONE, 400 },
+		{ GREY.."19) "..L["Marshal's Refuge"]..", ".._RED..BZ["Un'Goro Crater"], ZONE, 490 },
+		{ GREY.."20) "..L["Cenarion Hold"]..", ".._RED..BZ["Silithus"], ZONE, 1377 },
+		{ GREY.."21) "..L["Gadgetzan"]..", ".._RED..BZ["Tanaris"], ZONE, 440 },
+		{ GREY.."22) ".."Tel Co. Basecamp"..", ".._RED.."Tel'Abim", ZONE, 440 },
+	},
+	TransportRoutes = {
+		ZoneName = { "Transport Routes"},
+		Location = { "Azeroth"},
+		{ GREY.."1) ".."Rut'Theran Village"..", "..BLUE..BZ["Teldrassil"], ZONE, 141 },
+		{ GREY.."2) "..BZ["Auberdine"]..", "..BLUE..BZ["Darkshore"], ZONE, 618 },
+		{ GREY.."7) ".."Feathermoon Stronghold"..", "..BLUE..BZ["Feralas"], ZONE, 331 },
+		{ GREY.."8) "..BZ["Theramore Isle"]..", "..BLUE..BZ["Dustwallow Marsh"], ZONE, 14 },
+		{ GREY.."9) ".."Alah'Thalas"..", "..BLUE.."Thalassian Highlands", ZONE, 406 },
+		{ GREY.."12) ".."Menethil Harbor"..", "..BLUE..BZ["Wetlands"], ZONE, 405 },
+		{ GREY.."13) "..BZ["Ironforge"]..", "..BLUE..BZ["Dun Morogh"], ZONE, 215 },
+		{ GREY.."15) "..BZ["Stormwind City"]..", "..BLUE..BZ["Elwynn Forest"], ZONE, 15 },
+		{ "" },	
+		{ GREY.."3) "..BZ["Orgrimmar"]..", ".._RED..BZ["The Barrens"], ZONE, 440 },
+		{ GREY.."4) ".."Sparkwater Port"..", ".._RED..BZ["The Barrens"], ZONE, 361 },
+		{ GREY.."6) "..BZ["Thunder Bluff"]..", ".._RED..BZ["Mulgore"], ZONE, 16 },
+		{ GREY.."10) "..BZ["Undercity"]..", ".._RED..BZ["Tirisfal Glades"], ZONE, 17 },
+		{ GREY.."11) ".."Revantusk Village"..", ".._RED..BZ["The Hinterlands"], ZONE, 17 },
+		{ GREY.."14) ".."Kargath"..", ".._RED..BZ["Badlands"], ZONE, 17 },
+		{ GREY.."16) ".."Grom'Gol Base Camp"..", ".._RED..BZ["Stranglethorn Vale"], ZONE, 440 },
+		{ "" },	
+		{ GREY.."5) ".."Ratchet"..", "..ORNG..BZ["The Barrens"], ZONE, 331 },
+		{ GREY.."17) "..BZ["Booty Bay"]..", "..ORNG..BZ["Stranglethorn Vale"], ZONE, 357 },
 	},
 }

@@ -5,17 +5,11 @@ local BZ = AceLibrary("Babble-Zone-2.2")
 local ORANGE = "|cffFF8400"
 
 function AtlasLootWorldEventMenu()
-	for i = 1, 30, 1 do
-		_G["AtlasLootItem_"..i]:Hide()
-	end
-	for i = 1, 30, 1 do
-		_G["AtlasLootMenuItem_"..i]:Hide()
-		_G["AtlasLootMenuItem_"..i].isheader = false
-	end
-	_G["AtlasLootItemsFrame_NEXT"]:Hide()
-	_G["AtlasLootItemsFrame_PREV"]:Hide()
-	_G["AtlasLootItemsFrame_BACK"]:Hide()
-	_G["AtlasLootServerQueryButton"]:Hide()
+
+	AtlasLoot_PrepMenu(nil, L["World Events"])
+	AtlasLootCharDB.LastBoss = "WORLDEVENTMENU"
+	AtlasLootCharDB.LastBossText = L["World Events"]
+
 	--Abyssal Council
 	AtlasLootMenuItem_2_Name:SetText(L["Abyssal Council"])
 	AtlasLootMenuItem_2_Extra:SetText(ORANGE..BZ["Silithus"])
@@ -28,8 +22,8 @@ function AtlasLootWorldEventMenu()
 	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\INV_Ammo_FireTar")
 	AtlasLootMenuItem_3.lootpage="ElementalInvasion"
 	AtlasLootMenuItem_3:Show()
-	--Gurubashi Arena Booty Run
-	AtlasLootMenuItem_4_Name:SetText(L["Gurubashi Arena Booty Run"])
+	--Gurubashi Arena
+	AtlasLootMenuItem_4_Name:SetText(L["Gurubashi Arena"])
 	AtlasLootMenuItem_4_Extra:SetText(ORANGE..BZ["Stranglethorn Vale"])
 	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\INV_Box_02")
 	AtlasLootMenuItem_4.lootpage="GurubashiArena"
@@ -94,26 +88,14 @@ function AtlasLootWorldEventMenu()
 	AtlasLootMenuItem_22_Icon:SetTexture("Interface\\Icons\\INV_Jewelry_Talisman_13")
 	AtlasLootMenuItem_22.lootpage="ScourgeInvasionEvent1"
 	AtlasLootMenuItem_22:Show()
-	for i = 1, 30, 1 do
-		_G["AtlasLootMenuItem_"..i.."_Extra"]:Show()
-	end
-	AtlasLoot_BossName:SetText("|cffFFFFFF"..L["World Events"])
-	AtlasLoot_SetItemInfoFrame(AtlasLoot_AnchorFrame)
 end
 
 function AtlasLootAbyssalCouncilMenu()
-	for i = 1, 30, 1 do
-		_G["AtlasLootItem_"..i]:Hide()
-	end
-	for i = 1, 30, 1 do
-		_G["AtlasLootMenuItem_"..i]:Hide()
-		_G["AtlasLootMenuItem_"..i].isheader = false
-	end
-	_G["AtlasLootItemsFrame_BACK"]:Show()
-	_G["AtlasLootItemsFrame_BACK"].lootpage = "WORLDEVENTMENU"
-	_G["AtlasLootItemsFrame_NEXT"]:Hide()
-	_G["AtlasLootItemsFrame_PREV"]:Hide()
-	_G["AtlasLootServerQueryButton"]:Hide()
+
+	AtlasLoot_PrepMenu(WORLDEVENTMENU, L["Abyssal Council"])
+	AtlasLootCharDB.LastBoss = "WORLDEVENTMENU"
+	AtlasLootCharDB.LastBossText = L["Abyssal Council"]
+	
 	--Templars
 	AtlasLootMenuItem_2_Name:SetText(L["Abyssal Council"].." - "..L["Templars"])
 	AtlasLootMenuItem_2_Extra:SetText("")
@@ -132,9 +114,4 @@ function AtlasLootAbyssalCouncilMenu()
 	AtlasLootMenuItem_4_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
 	AtlasLootMenuItem_4.lootpage="AbyssalLords"
 	AtlasLootMenuItem_4:Show()
-	for i = 1, 30, 1 do
-		_G["AtlasLootMenuItem_"..i.."_Extra"]:Show()
-	end
-	AtlasLoot_BossName:SetText("|cffFFFFFF"..L["Abyssal Council"])
-	AtlasLoot_SetItemInfoFrame(AtlasLoot_AnchorFrame)
 end

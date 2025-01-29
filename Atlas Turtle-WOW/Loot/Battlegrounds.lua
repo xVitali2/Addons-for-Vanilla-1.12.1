@@ -11,74 +11,74 @@ The English file also contains the loot tables for the battleground loot tables.
 ------------
 AtlasLootBattlegrounds = {
 	BloodRing = {
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"";
-		"BRRepFriendly1";
-		"BRRepHonored1";
-		"BRRepRevered1";
-		"BRRepExalted1";
-		"BRRepTokens1";
-	};
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"BRRepFriendly1",
+		"BRRepHonored1",
+		"BRRepRevered1",
+		"BRRepExalted1",
+		"BRRepTokens1",
+	},
 	AlteracValleyNorth = {
 		"Stormpike1",
 		"",
@@ -132,7 +132,7 @@ AtlasLootBattlegrounds = {
 		"",
 		"",
 		"",
-		"",
+		"AVKorrak",
 		"",
 		"AVLokholarIvus",
 		"",
@@ -147,7 +147,6 @@ AtlasLootBattlegrounds = {
 		"AVRepHonored",
 		"AVRepRevered",
 		"AVRepExalted",
-		"AVKorrak",
 	},
 	AlteracValleySouth = {
 		"Frostwolf1",
@@ -194,11 +193,11 @@ AtlasLootBattlegrounds = {
 		"",
 		"",
 		"",
+		"",
 		"AVRepFriendly",
 		"AVRepHonored",
 		"AVRepRevered",
 		"AVRepExalted",
-		"AVKorrak",
 	},
 	ArathiBasin = {
 		"",
@@ -239,7 +238,7 @@ AtlasLoot_Data["AtlasLootBGItems"] = {
 		{ 60366, "INV_Jewelry_Ring_39", "=q3=Gore Ring of the Gladiator", "=ds=#s13#" },
 		{ 60368, "INV_Jewelry_Ring_30", "=q3=Loop of Field Medicine", "=ds=#s13#" },
 		{ 60367, "INV_Jewelry_Ring_15", "=q3=Auspicious Ring of the Seer", "=ds=#s13#" },
-	};
+	},
 	BRRepHonored = {
 		{ 83421, "INV_Gauntlets_05", "=q3=Bloody Gladiator's Handwraps", "=ds=#a1#, #s9#" },
 		{ 83420, "INV_Belt_04", "=q3=Bloody Gladiator's Sash", "=ds=#a1#, #s10#" },
@@ -252,7 +251,7 @@ AtlasLoot_Data["AtlasLootBGItems"] = {
 		{ "", "", "", "" },
 		{ 60359, "INV_Gauntlets_31", "=q3=Bloody Gladiator's Gauntlets", "=ds=#a4#, #s9#" },
 		{ 60358, "INV_Belt_12", "=q3=Bloody Gladiator's Girdle", "=ds=#a4#, #s10#" },
-	};
+	},
 	BRRepRevered = {
 		{ 83425, "INV_Bracer_07", "=q3=Bloody Gladiator's Wraps", "=ds=#a1#, #s8#" },
 		{ 83423, "INV_Pants_01", "=q3=Bloody Gladiator's Britches", "=ds=#a1#, #s11#" },
@@ -269,7 +268,7 @@ AtlasLoot_Data["AtlasLootBGItems"] = {
 		{ 60362, "INV_Bracer_07", "=q3=Bloody Gladiator's Bracers", "=ds=#a4#, #s8#" },
 		{ 60360, "INV_Pants_Plate_20", "=q3=Bloody Gladiator's Legguards", "=ds=#a4#, #s11#" },
 		{ 60361, "INV_Boots_Plate_04", "=q3=Bloody Gladiator's Greaves", "=ds=#a4#, #s12#" },
-	};
+	},
 	BRRepExalted = {
 		{ 83428, "INV_Belt_26", "=q4=Bloody Gladiator's Circlet", "=ds=#a1#, #s1#" },
 		{ 83427, "INV_Shoulder_05", "=q4=Bloody Gladiator's Amice", "=ds=#a1#, #s3#" },
@@ -290,13 +289,13 @@ AtlasLoot_Data["AtlasLootBGItems"] = {
 		{ 60004, "INV_Jewelry_Ring_12", "=q4=Loop of Triage", "=ds=#s13#" },
 		{ 60005, "INV_Jewelry_Ring_09", "=q4=Signet of the Battlecaster", "=ds=#s13#" },
 		{ 60006, "INV_Jewelry_Ring_23", "=q4=Ring of Blood", "=ds=#s13#" },
-	};
+	},
 	BRRepTokens = {
 		{ 53017, "INV_Misc_Note_01", "=q3=Formula: Enchant Gloves - Major Strength", "=ds=#p4# #m14#" },
 		{ 61803, "INV_Scroll_05", "=q3=Plans: Bloody Belt Buckle", "=ds=#p2# #m14#" },
 		{ 61799, "INV_Scroll_04", "=q4=Plans: Ornate Bloodstone Dagger", "=ds=#p2# #m14#" },
 		{ 53016, "INV_Scroll_03", "=q3=Recipe: Gurubashi Gumbo", "=ds=#p3# #m14#" },
-	};
+	},
 	AVRepFriendly = {
 		{ 0, "INV_BannerPVP_02", "=q8=#m7#", "=q7=#b1#" },
 		{ 0, "", "", "" },
@@ -453,7 +452,7 @@ AtlasLoot_Data["AtlasLootBGItems"] = {
 		{ 0, "", "", "" },
 		{ 20223, "INV_Misc_Food_09", "=q1=Defiler's Field Ration", "=ds=#e2#" },
 		{ 20235, "INV_Misc_Bandage_02", "=q1=Defiler's Silk Bandage", "=ds=#e4#" },
-	};
+	},
 	ABRepFriendly3039 = {
 		{ 0, "", "", "" },
 		{ 0, "INV_BannerPVP_02", "=q8=#m7#", "=q7=#b5#" },
@@ -479,7 +478,7 @@ AtlasLoot_Data["AtlasLootBGItems"] = {
 		{ 20232, "INV_Misc_Bandage_20", "=q1=Defiler's Mageweave Bandage", "=ds=#e4#" },
 		{ 17349, "INV_Potion_39", "=q1=Superior Healing Draught", "=ds=#e1#" },
 		{ 17352, "INV_Potion_81", "=q1=Superior Mana Draught", "=ds=#e1#" },
-	};
+	},
 	ABRepFriendly4049 = {
 		{ 0, "", "", "" },
 		{ 0, "INV_BannerPVP_02", "=q8=#m7#", "=q7=#b5#" },
@@ -503,7 +502,7 @@ AtlasLoot_Data["AtlasLootBGItems"] = {
 		{ 0, "", "", "" },
 		{ 20222, "INV_Misc_Food_33", "=q1=Defiler's Enriched Ration", "=ds=#e2#" },
 		{ 20234, "INV_Misc_Bandage_12", "=q1=Defiler's Runecloth Bandage", "=ds=#e4#" },
-	};
+	},
 	ABRepFriendly5059 = {
 		{ 0, "", "", "" },
 		{ 0, "INV_BannerPVP_02", "=q8=#m7#", "=q7=#b5#" },

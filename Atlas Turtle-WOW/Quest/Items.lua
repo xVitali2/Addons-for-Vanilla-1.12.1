@@ -2107,6 +2107,13 @@ Inst13Quest9ITC1 = Itemc4;
 Inst13Quest9description1 = AQITEM_TRINKET
 Inst13Quest9ID1 = "61517"
 
+--Quest 10 Alliance
+Inst13Quest10Rewardtext = AQDiscription_REWARD..WHITE.."1"
+--ITEM1
+Inst13Quest10ITC1 = Itemc4;
+Inst13Quest10description1 = AQITEM_POLEARM
+Inst13Quest10ID1 = "40080"
+
 --Quest 1 Horde
 Inst13Quest1Rewardtext_HORDE = AQDiscription_REWARD..WHITE.."1"..AQDiscription_OR..WHITE.."2"
 --ITEM1
@@ -4572,6 +4579,14 @@ Inst46Quest5description3 = AQITEM_ONEHAND..AQITEM_MACE
 Inst46Quest5ID3 = "60696"
 
 
+--Quest 6 Alliance
+Inst46Quest6Rewardtext = AQDiscription_REWARD..WHITE.."1"
+--ITEM1
+Inst46Quest6ITC1 = Itemc4;
+Inst46Quest6description1 = AQITEM_POLEARM
+Inst46Quest6ID1 = "40080"
+
+
 --Quest 1 Horde
 Inst46Quest1Rewardtext_HORDE = AQNoReward
 
@@ -4752,6 +4767,13 @@ Inst61Quest7Rewardtext = AQDiscription_REWARD..WHITE.."1"
 Inst61Quest7ITC1 = Itemc3;
 Inst61Quest7description1 = AQITEM_ITEM
 Inst61Quest7ID1 = "92001"
+
+--Quest 8 Alliance
+Inst61Quest8Rewardtext = AQDiscription_REWARD..WHITE.."1"
+--ITEM1
+Inst61Quest8ITC1 = Itemc2;
+Inst61Quest8description1 = AQITEM_ITEM
+Inst61Quest8ID1 = "70134"
 
 
 --Quest 1 Horde

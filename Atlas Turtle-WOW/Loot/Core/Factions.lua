@@ -3,17 +3,9 @@ local L = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
 local BF = AceLibrary("Babble-Faction-2.2")
 
 function AtlasLootRepMenu()
-	for i = 1, 30, 1 do
-		_G["AtlasLootItem_"..i]:Hide()
-	end
-	for i = 1, 30, 1 do
-		_G["AtlasLootMenuItem_"..i]:Hide()
-		_G["AtlasLootMenuItem_"..i].isheader = false
-	end
-	_G["AtlasLootItemsFrame_NEXT"]:Hide()
-	_G["AtlasLootItemsFrame_PREV"]:Hide()
-	_G["AtlasLootItemsFrame_BACK"]:Hide()
-	_G["AtlasLootServerQueryButton"]:Hide()
+	AtlasLoot_PrepMenu(nil, L["Factions"])
+	AtlasLootCharDB.LastBoss = "REPMENU"
+	AtlasLootCharDB.LastBossText = "Factions"
 	--Argent Dawn
 	AtlasLootMenuItem_1_Name:SetText(BF["Argent Dawn"])
 	AtlasLootMenuItem_1_Extra:SetText("")
@@ -188,9 +180,4 @@ function AtlasLootRepMenu()
 	AtlasLootMenuItem_30_Icon:SetTexture("Interface\\Icons\\INV_Jewelry_FrostwolfTrinket_01")
 	AtlasLootMenuItem_30.lootpage="Frostwolf1"
 	AtlasLootMenuItem_30:Show()
-	for i = 1, 30, 1 do
-		_G["AtlasLootMenuItem_"..i.."_Extra"]:Show()
-	end
-	AtlasLoot_BossName:SetText("|cffFFFFFF"..L["Factions"])
-	AtlasLoot_SetItemInfoFrame(AtlasLoot_AnchorFrame)
 end

@@ -1,17 +1,5 @@
---[[
-File containing functions related to the wish list.
+--File containing functions related to the wish list.
 
-Functions:
-AtlasLoot_ShowWishList()
-AtlasLoot_AddToWishlist(itemID, itemTexture, itemName, lootPage, sourcePage)
-AtlasLoot_DeleteFromWishList(itemID)
-AtlasLoot_WishListSort()
-AtlasLoot_WishListSortCheck(temp1, temp2)
-local RecursiveSearchZoneName(dataTable, zoneID)
-AtlasLoot_GetWishListSubheading(dataID)
-AtlasLoot_CategorizeWishList(wlTable)
-AtlasLoot_GetWishListPage(page)
-]]
 
 local L = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
 
@@ -21,7 +9,11 @@ local currentPage = 1
 -- Colours stored for code readability
 local GREY = "|cff999999"
 local RED = "|cffff0000"
+local WHITE = "|cffFFFFFF"
+local GREEN = "|cff1eff00"
+local PURPLE = "|cff9F3FFF"
 local BLUE = "|cff0070dd"
+local ORANGE = "|cffFF8400"
 
 --[[
 AtlasLoot_ShowWishList()
@@ -32,17 +24,17 @@ function AtlasLoot_ShowWishList()
 end
 
 --[[
-AtlasLoot_AddToWishlist(itemID, itemTexture, itemName, lootPage, sourcePage)
+AtlasLoot_AddToWishlist(itemID, itemTexture, itemName, extraText, sourcePage)
 Looks for an empty slot in the wishlist and slots the item in
 ]]
-function AtlasLoot_AddToWishlist(itemID, itemTexture, itemName, lootPage, sourcePage)
+function AtlasLoot_AddToWishlist(itemID, itemTexture, itemName, extraText, sourcePage)
 	for _, v in ipairs(AtlasLootCharDB["WishList"]) do
 		if v[1] == itemID then
 			DEFAULT_CHAT_FRAME:AddMessage(BLUE.."AtlasLoot"..": "..AtlasLoot_FixText(itemName)..RED..L[" already in the WishList!"])
 			return
 		end
 	end
-	table.insert(AtlasLootCharDB["WishList"], { itemID, itemTexture, itemName, lootPage, sourcePage })
+	table.insert(AtlasLootCharDB["WishList"], { itemID, itemTexture, itemName, extraText, sourcePage })
 	DEFAULT_CHAT_FRAME:AddMessage(BLUE.."AtlasLoot"..": "..AtlasLoot_FixText(itemName)..GREY..L[" added to the WishList."])
 	AtlasLoot_WishList = AtlasLoot_CategorizeWishList(AtlasLootCharDB["WishList"])
 end
@@ -71,10 +63,10 @@ Sorts the Wishlist
 ]]
 function AtlasLoot_WishListSort()
 
-	j=0
-	P=2
-	temp={}
-	check=false
+	local j=0
+	local P=2
+	local temp={}
+	local check=false
 
 	while(P<31) do
 		temp=AtlasLootCharDB["WishList"][P]
@@ -107,8 +99,8 @@ function AtlasLoot_WishListSortCheck(temp1, temp2)
 	elseif temp1[1] == 0 then
 		return true
 	else
-		prefix1=string.lower(string.sub(temp1[3], 1, 10))
-		prefix2=string.lower(string.sub(temp2[3], 1, 10))
+		local prefix1=string.lower(string.sub(temp1[3], 1, 10))
+		local prefix2=string.lower(string.sub(temp2[3], 1, 10))
 		if prefix1 ~= prefix2 then
 			if prefix1 == "|cffff0000" then
 				return false
@@ -151,7 +143,7 @@ end
 
 --[[
 local RecursiveSearchZoneName(dataTable, zoneID):
-A recursive function iterate AtlasLoot_DewDropDown table for the zone name
+A recursive function iterate AtlasLoot_HewdropDown table for the zone name
 ]]
 local function RecursiveSearchZoneName(dataTable, zoneID)
 	if(dataTable[2] == zoneID) then
@@ -170,9 +162,9 @@ AtlasLoot_GetWishListSubheading(dataID):
 Iterating through dropdown data tables to search backward for zone name with specified dataID
 ]]
 function AtlasLoot_GetWishListSubheading(dataID)
-	if not AtlasLoot_DewDropDown or not AtlasLoot_DewDropDown_SubTables then return end
+	if not AtlasLoot_HewdropDown or not AtlasLoot_HewdropDown_SubTables then return end
 	local zoneID
-	for subKey, subTable in pairs(AtlasLoot_DewDropDown_SubTables) do
+	for subKey, subTable in pairs(AtlasLoot_HewdropDown_SubTables) do
 		for _, t in ipairs(subTable) do
 			if t[2] == dataID then
 				zoneID = subKey
@@ -181,11 +173,13 @@ function AtlasLoot_GetWishListSubheading(dataID)
 		end
 		if zoneID then break end
 	end
-	return RecursiveSearchZoneName(AtlasLoot_DewDropDown, zoneID or dataID)
+	return RecursiveSearchZoneName(AtlasLoot_HewdropDown, zoneID or dataID)
 end
 
 function AtlasLoot_GetWishListSubheadingBoss(dataID)
-	if not AtlasLoot_TableNames then return end
+	if not AtlasLoot_TableNamesBoss then
+		return
+	end
 	local zoneID 
 	for i, v in pairs(AtlasLoot_TableNamesBoss) do
 		for j,k in pairs(v) do
@@ -195,12 +189,6 @@ function AtlasLoot_GetWishListSubheadingBoss(dataID)
 			end
 		end
 	end
-	--[[for i, v in pairs(AtlasLoot_TableNames) do
-		if dataID == i then
-			zoneID = v[1]
-			break
-		end
-	end]]
 	return zoneID
 end
 
@@ -225,10 +213,9 @@ wlTable: is AtlasLootCharDB["WishList"], parameterized for flexible
 ]]
 function AtlasLoot_CategorizeWishList(wlTable)
 	local subheadings, categories, result = {}, {}, {}
-
 	for _, v in pairs(wlTable) do
 		if v[5] and v[5] ~= "" then
-			local dataID = strsplit("|", v[5])
+			local dataID = AtlasLoot_Strsplit("|", v[5])
 			-- Build subheading table
 			if not subheadings[dataID] then
 				subheadings[dataID] = AtlasLoot_GetWishListSubheadingBoss(dataID)
@@ -244,7 +231,6 @@ function AtlasLoot_CategorizeWishList(wlTable)
 			table.insert(categories[subheadings[dataID]], v)
 		end
 	end
-
 	-- Sort and flatten categories
 	for k, v in pairs(categories) do
 		-- Add a empty line between categories when in a same column
@@ -252,14 +238,10 @@ function AtlasLoot_CategorizeWishList(wlTable)
 		-- If a subheading is on the last row of a column, push it to next column
 		if ((table.getn(result) + 1) - math.floor((table.getn(result) + 1)/15)*15) == 0 then table.insert(result, { 0, "", "", "" }) end
 		-- Subheading
-		
-		--[[ some debug code that I've used to fix WishList errors before due to people adding drops to AtlasLoot incorrectly.
 		local box = k or "Unknown"
 		local cat = categories[k][1][5] or "Unknown"
-		print("box: "..box.." - cat: "..cat)
-		table.insert(result, { 0, "INV_Box_01", "=q6="..box, "=q0="..GetLootTableParent(strsplit("|", cat)) });]]--
-		
-		table.insert(result, { 0, "INV_Box_01", "=q6="..k, "=q0="..GetLootTableParent(strsplit("|", categories[k][1][5])) });
+		local parent = GetLootTableParent(AtlasLoot_Strsplit("|", cat)) or "Unknown"
+		table.insert(result, { 0, "INV_Box_01", "=q6="..box, "=q0="..parent })
 		-- Sort first then add items
 		table.sort(v, AtlasLoot_WishListSortCheck) -- not works?
 		for i = 1, table.getn(v) do table.insert(result, v[i]) end

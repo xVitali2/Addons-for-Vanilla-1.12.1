@@ -1,3 +1,4 @@
+
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
 
 	<Script file="ButtonRegistry.lua"/>
@@ -11,14 +12,67 @@
 	<Script file="AtlasLoot.lua"/>
 	<Script file="WishList.lua"/>
 	<Script file="Search.lua"/>
+	<Script file="WorldBoss.lua"/>
+	<Script file="Dungeons.lua"/>
+	<Script file="Tooltip.lua"/>
 
+	<Button name="AtlasLootContainerItemTemplate" virtual="true">
+		<Size x="40" y="40"/>
+		<Backdrop name="$parentBackdrop" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="19"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="8"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="0" right="0" top="0" bottom="0"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="4" y="-4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parent_Quantity" font="Fonts\ARIALN.TTF" outline="NORMAL" justifyH="RIGHT" hidden="false">
+					<Size>
+						<AbsDimension x="25" y="0"/>
+					</Size>
+					<FontHeight>
+						<AbsValue val="12"/>
+					</FontHeight>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentIcon" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				AtlasLoot_ContainerItem_OnClick(arg1)
+			</OnClick>
+		</Scripts>
+	</Button>
 	<Button name="AtlasLootDefaultFrameButtonTemplate" inherits="OptionsButtonTemplate" virtual="true">
 		<Size>
 			<AbsDimension x="130" y="20"/>
 		</Size>
 	</Button>
 
-	<Frame name="AtlasLootDefaultFrame" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="UIParent" enableKeyboard="true">
+	<Frame name="AtlasLootDefaultFrame" toplevel="true" frameStrata="HIGH" movable="true" enableMouseClicks="true" hidden="true" parent="UIParent" enableKeyboard="true">
 		<Size>
 			<AbsDimension x="600" y="700"/>
 		</Size>
@@ -69,6 +123,7 @@
 							AtlasLootSearchBox:ClearFocus()
 						end
 						Atlas_Toggle()
+						CloseDropDownMenus()
 					</OnClick>
 					<OnShow>
 						local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
@@ -93,6 +148,7 @@
 				<Scripts>
 					<OnClick>
 						AtlasLootOptions_Toggle()
+						CloseDropDownMenus()
 					</OnClick>
 					<OnShow>
 						local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
@@ -114,10 +170,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						if AtlasLoot_Dewdrop:IsOpen() then
-							AtlasLoot_Dewdrop:Close()
+						if AtlasLoot_Hewdrop:IsOpen() then
+							AtlasLoot_Hewdrop:Close()
 						else
-							AtlasLoot_Dewdrop:Open(this)
+							AtlasLoot_Hewdrop:Open(this)
 						end
 					</OnClick>
 					<OnShow>
@@ -140,10 +196,10 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						if AtlasLoot_DewdropSubMenu:IsOpen() then
-							AtlasLoot_DewdropSubMenu:Close()
+						if AtlasLoot_HewdropSubMenu:IsOpen() then
+							AtlasLoot_HewdropSubMenu:Close()
 						else
-							AtlasLoot_DewdropSubMenu:Open(this)
+							AtlasLoot_HewdropSubMenu:Open(this)
 						end
 					</OnClick>
 					<OnShow>
@@ -399,6 +455,7 @@
 					<OnClick>
 						AtlasLoot:Search(AtlasLootDefaultFrameSearchBox:GetText())
 						AtlasLootDefaultFrameSearchBox:ClearFocus()
+						CloseDropDownMenus()
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -446,6 +503,7 @@
 					<OnClick>
 						AtlasLootDefaultFrameSearchBox:SetText("")
 						AtlasLootDefaultFrameSearchBox:ClearFocus()
+						CloseDropDownMenus()
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -468,6 +526,7 @@
 					</OnShow>
 					<OnClick>
 						AtlasLoot:ShowSearchResult()
+						CloseDropDownMenus()
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -485,12 +544,30 @@
 				<Scripts>
 					<OnClick>
 						AtlasLoot_ShowWishList()
+						CloseDropDownMenus()
+						AtlasLootDefaultFrame_SubMenu:Disable()
+						AtlasLootDefaultFrame_SelectedTable:Hide()
+						AtlasLootQuickLooksButton:Hide()
+						AtlasLoot_QuickLooks:Hide()
 					</OnClick>
 					<OnShow>
 						local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
 						this:SetText(AL["WishList"])
 						this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 1 )
 					</OnShow>
+					<OnEnter>
+						local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
+						if this:IsEnabled() then
+							GameTooltip:ClearLines()
+							GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2), 5)
+							GameTooltip:AddLine("|cffFFFFFF"..AL["WishList"].."|r")
+							GameTooltip:AddLine(AL["ALT+Click on item to add or remove it from WishList"])
+							GameTooltip:Show()
+						end
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide()
+					</OnLeave>
 				</Scripts>
 			</Button>
 		</Frames>
@@ -553,9 +630,10 @@
 				this:RegisterForDrag("LeftButton")
 				this:SetMovable(1)
 				this:SetBackdropColor(0.75, 0, 0.75)
-				local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
-				getglobal("AtlasLootDefaultFrame_Notice"):SetText(AL["This is a loot browser only.\nTo view maps as well, install either Atlas or Alphamap."])
 			</OnLoad>
+			<OnMouseUp>
+				CloseDropDownMenus()
+			</OnMouseUp>
 			<OnShow>
 				AtlasLootDefaultFrame_OnShow()
 			</OnShow>
@@ -647,6 +725,7 @@
 		<Scripts>
 			<OnClick>
 				AtlasLoot_NavButton_OnClick()
+				CloseDropDownMenus()
 			</OnClick>
 			<OnShow>
 				this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 1 )
@@ -813,6 +892,18 @@
 					</Anchors>
 					<Color r="1" g="0" b="0" a="1"/>
 				</Texture>
+				<Texture name="$parentBorder" file="Interface\Buttons\UI-Quickslot-Depress" hidden="true">
+					<Size>
+						<AbsDimension x="29" y="29"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-1" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
 			</Layer>
 		</Layers>
 	</Button>
@@ -830,6 +921,7 @@
 			</OnLeave>
 			<OnClick>
 				AtlasLootItem_OnClick(arg1)
+				CloseDropDownMenus()
 			</OnClick>
 			<OnShow>
 				this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 1 )
@@ -856,7 +948,7 @@
 			<AbsDimension x="128" y="75"/>
 		</Size>
 		<Frames>
-			<Button name="$parentHidePanel" inherits="OptionsButtonTemplate">
+			<Button name="$parentHidePanel" inherits="UIPanelButtonTemplate">
 				<Size>
 					<AbsDimension x="140" y="20"/>
 				</Size>
@@ -872,8 +964,6 @@
 						local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
 						this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 1 )
 						this:SetText("AtlasLoot")
-						getglobal("AtlasLootInfo_Text2"):SetText(AL["ALT+Click to use WishList."])
-						getglobal("AtlasLootInfo_Text2"):SetWidth(350)
 					</OnShow>
 					<OnClick>
 						if AtlasLootCharDB.HidePanel then
@@ -1174,6 +1264,7 @@
 				<Scripts>
 					<OnClick>
 						AtlasLoot_NavButton_OnClick()
+						CloseDropDownMenus()
 					</OnClick>
 					<OnShow>
 						this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 1 )
@@ -1214,6 +1305,7 @@
 					<OnClick>
 						GameTooltip:Hide()
 						AtlasLoot_QueryLootPage()
+						CloseDropDownMenus()
 					</OnClick>
 				</Scripts>
 			</Button>
@@ -1244,9 +1336,6 @@
 					<OnClick>
 						AtlasLoot_ShowQuickLooks(this)
 					</OnClick>
-					<OnHide>
-						AtlasLoot_Dewdrop:Close()
-					</OnHide>
 				</Scripts>
 			</Button>
 			<Button name="$parent_PREV" inherits="AtlasLootPrevButtonTemplate">
@@ -1260,12 +1349,36 @@
 				<Scripts>
 					<OnClick>
 						AtlasLoot_NavButton_OnClick()
+						CloseDropDownMenus()
 					</OnClick>
 					<OnShow>
 						this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
 			</Button>
+			<Frame name="$parentContainer" enableMouse="true" frameStrata="TOOLTIP" hidden="true" toplevel="true" movable="true" clampedToScreen="true">
+                <Size x="40" y="40"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="0" />
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+                    <EdgeSize>
+                        <AbsValue val="16"/>
+                    </EdgeSize>
+                    <TileSize>
+                        <AbsValue val="16"/>
+                    </TileSize>
+                    <BackgroundInsets>
+                        <AbsInset left="4" right="4" top="4" bottom="4"/>
+                    </BackgroundInsets>
+					<Color r="1" g="1" b="1" a="1" />
+					<BorderColor r="1" g="0.82" b="0" a="1" /> 
+                </Backdrop>
+            </Frame>
 		</Frames>
 		<Layers>
 			<Layer level="BACKGROUND">
@@ -1313,6 +1426,13 @@
 			<OnEvent>
 				AtlasLoot_OnEvent(event, arg1, arg2)
 			</OnEvent>
+			<OnMouseWheel>
+				if arg1 == 1 and AtlasLootItemsFrame_NEXT:IsVisible() then
+					AtlasLootItemsFrame_NEXT:Click()
+				elseif arg1 == -1 and AtlasLootItemsFrame_PREV:IsVisible() then
+					AtlasLootItemsFrame_PREV:Click()
+				end
+			</OnMouseWheel>
 		</Scripts>
 	</Frame>
 
@@ -1428,7 +1548,7 @@
 						getglobal(this:GetName().."Text"):SetText(AL["Lootlink Tooltips"])
 					</OnLoad>
 					<OnClick>
-						AtlasLootOptions_LootlinkTTToggle()
+						AtlasLootOptions_DefaultTTToggle()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -1446,7 +1566,25 @@
 						getglobal(this:GetName().."Text"):SetText(AL["ItemSync Tooltips"])
 					</OnLoad>
 					<OnClick>
-						AtlasLootOptions_ItemSyncTTToggle()
+						AtlasLootOptions_DefaultTTToggle()
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentShowSource" inherits="OptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-220"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
+						getglobal(this:GetName().."Text"):SetText(AL["Show Source on Tooltips"])
+					</OnLoad>
+					<OnClick>
+						AtlasLootOptions_ShowSourceToggle()
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -1698,16 +1836,14 @@
 			</OnLoad>
 			<OnDragStart>
 				this:StartMoving()
-				this.isMoving = true
 			</OnDragStart>
 			<OnDragStop>
 				this:StopMovingOrSizing()
-				this.isMoving = false
 			</OnDragStop>
 		</Scripts>
 	</Frame>
 
-	<Frame name="AtlasLootPanel" parent="UIParent" hidden="true">
+	<Frame name="AtlasLootPanel" parent="UIParent" hidden="true" enableMouse="true">
 		<Size>
 			<AbsDimension x="870" y="110"/>
 		</Size>
@@ -1872,6 +2008,19 @@
 						this:SetText(AL["WishList"])
 						this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 1 )
 					</OnShow>
+					<OnEnter>
+						local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
+						if this:IsEnabled() then
+							GameTooltip:ClearLines()
+							GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 2), 5)
+							GameTooltip:AddLine("|cffFFFFFF"..AL["WishList"].."|r")
+							GameTooltip:AddLine(AL["ALT+Click on item to add or remove it from WishList"])
+							GameTooltip:Show()
+						end
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide()
+					</OnLeave>
 				</Scripts>
 			</Button>
 			<Button name="$parent_Options" inherits="AtlasLootPanelButtonTemplate">
@@ -2144,7 +2293,7 @@
 			</EditBox>
 			<Button name="AtlasLootSearchButton" inherits="UIPanelButtonTemplate2" parent="AtlasLootSearchBox">
 				<Size>
-					<AbsDimension x="69" y="32"/> 
+					<AbsDimension x="69" y="32"/>
 				</Size>
 				<Anchors>
 					<Anchor point="LEFT" relativePoint="RIGHT">

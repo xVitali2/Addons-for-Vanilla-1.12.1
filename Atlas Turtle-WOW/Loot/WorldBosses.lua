@@ -37,6 +37,9 @@ AtlasLootWBBossButtons = {
 	CowKing = {
 		"CowKing",
 	},
+	Clackora = {
+		"Clackora",
+	},
 }
 
 AtlasLoot_Data["AtlasLootWBItems"] = {
@@ -205,6 +208,23 @@ AtlasLoot_Data["AtlasLootWBItems"] = {
 		{ 0, "", "", "", "" },
 		{ 51261, "inv_misc_bell_01", "=q1=There Is No Cow Level", "There Is No Cow Level", "100%" },
 	},
+	Clackora = {
+		{ 55494, "inv_misc_birdbeck_02", "=q4=The Abyssal Pincer", "=ds=#h3#, #w13#" },
+		{ 55495, "inv_spear_04", "=q4=Zandalar Predator's Glaive", "=ds=#h2#, #w7#" },
+		{ 55504, "INV_Generic_Anchor", "=q4=Anchor of the Wavecutter", "=ds=#h2#, #w6#" },
+		{ 0, "", "", "", "" },
+		{ 55498, "inv_misc_shell_03", "=q4=Clamshell of the Depths", "=ds=#w8#" },
+		{ 0, "", "", "", "" },
+		{ 55502, "INV_Pants_12", "=q4=Iceplated Leggings", "=ds=#s11#, #a2#" },
+		{ 55499, "INV_Belt_35", "=q4=Primal Murloc Scale Belt", "=ds=#s10#, #a3#" },
+		{ 55500, "INV_Bracer_17", "=q4=Barnacle Vambraces", "=ds=#s8#, #a4#" },
+		{ 0, "", "", "", "" },
+		{ 55496, "INV_Jewelry_Necklace_25", "=q4=Polychromatic Pearl Necklace", "=ds=#s2#" },
+		{ 55503, "INV_Jewelry_Ring_38", "=q4=Loop of Unceasing Frost", "=ds=#s13#" },
+		{ 55501, "INV_Ore_Arcanite_02", "=q4=Sphere of the Endless Gulch", "=ds=#s14#" },
+		{ 0, "", "", "", "" },
+		{ 55497, "INV_QirajIdol_Night", "=q4=Idol of Ebb and Flow", "=ds=#e16# =q13=#c1#" },
+	 },
 	KKazzak = {
 		{ 18546, "INV_Helmet_18", "=q4=Infernal Headcage", "=ds=#s1#, #a3#", "9.39%" },
 		{ 17111, "INV_Jewelry_Talisman_01", "=q4=Blazefury Medallion", "=ds=#s2#", "10.95%" },

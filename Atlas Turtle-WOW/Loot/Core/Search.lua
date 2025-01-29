@@ -1,7 +1,11 @@
 local L = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
-
+local GREY = "|cff999999"
 local RED = "|cffff0000"
 local WHITE = "|cffFFFFFF"
+local GREEN = "|cff1eff00"
+local PURPLE = "|cff9F3FFF"
+local BLUE = "|cff0070dd"
+local ORANGE = "|cffFF8400"
 
 local currentPage = 1
 local SearchResult = nil
@@ -10,98 +14,75 @@ function AtlasLoot:ShowSearchResult()
 	AtlasLoot_ShowItemsFrame("SearchResult", "SearchResultPage"..currentPage, string.format((L["Search Result: %s"]), AtlasLootCharDB.LastSearchedText or ""), pFrame)
 end
 
+local function strtrim(s)
+	return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
+end
 function AtlasLoot:Search(Text)
 	if not Text then return end
 	Text = strtrim(Text)
 	if Text == "" then return end
 	local text = string.lower(Text)
-	local texta = nil
-	if string.find(text, "-") then
-		texta = string.gsub(text, "-", "@")
-	end
 	local search = function(dataSource)
 		if dataSource == "AtlasLootFallback" then return end
 		local partial = AtlasLootCharDB.PartialMatching
 		for dataID, data in pairs(AtlasLoot_Data[dataSource]) do
 			for _, v in ipairs(data) do
-				if type(v[1]) == "number" and v[1] > 0 then
-					local itemName = GetItemInfo(v[1])
-					if not itemName then itemName = gsub(v[3], "=q%d=", "") end
-					local found
-					if partial then
-						if texta then
-							found = string.find(string.lower(string.gsub(itemName, "-", "@")), texta)
-						else
+				if type(v[1]) ~= "table" then
+					-- item
+					if type(v[1]) == "number" and v[1] > 0 then
+						local itemName = GetItemInfo(v[1])
+						if not itemName then itemName = gsub(v[3], "=q%d=", "") end
+						local found
+						if partial then
 							found = string.find(string.lower(itemName), text)
-						end
-					else
-						if texta then
-							found = string.lower(string.gsub(itemName, "-", "@")) == texta
 						else
 							found = string.lower(itemName) == text
 						end
-					end
-					if found then
-						itemName = string.gsub(itemName, "@", "-")
-						local _, _, quality = string.find(v[3], "=q(%d)=")
-						if quality then itemName = "=q"..quality.."="..itemName end
-						table.insert(AtlasLootCharDB["SearchResult"], { v[1], v[2], itemName, v[4], dataID.."|"..dataSource })
-					end
-				elseif (v[1] ~= nil) and (v[1] ~= "") and (string.sub(v[1], 1, 1) == "s") then 
-					local spellName
-					if not spellName then
-						if (string.sub(v[3], 1, 2) == "=d") then  
-							spellName = gsub(v[3], "=ds=", "")
-						else
-							spellName = gsub(v[3], "=q%d=", "") 
+						if found then
+							local _, _, quality = string.find(v[3], "=q(%d)=")
+							if quality then itemName = "=q"..quality.."="..itemName end
+							table.insert(AtlasLootCharDB["SearchResult"], { v[1], v[2], itemName, v[4], dataID.."|"..dataSource })
 						end
-					end
-					local found
-					if partial then
-						if texta then
-							found = string.find(string.lower(string.gsub(spellName, "-", "@")), texta)
-						else
+					-- spell
+					elseif (v[1] ~= nil) and (v[1] ~= "") and (string.sub(v[1], 1, 1) == "s") then 
+						local spellName
+						if not spellName then
+							if (string.sub(v[3], 1, 2) == "=d") then  
+								spellName = gsub(v[3], "=ds=", "")
+							else
+								spellName = gsub(v[3], "=q%d=", "") 
+							end
+						end
+						local found
+						if partial then
 							found = string.find(string.lower(spellName), text)
-						end
-					else
-						if texta then
-							found = string.lower(string.gsub(spellName, "-", "@")) == texta
 						else
 							found = string.lower(spellName) == text
 						end
-					end
-					if found then
-						spellName = string.gsub(spellName, "@", "-")
-						spellName = string.sub(v[3], 1, 4)..spellName
-						table.insert(AtlasLootCharDB["SearchResult"], { v[1], v[2], spellName, v[4], dataID.."|"..dataSource })
-					end
-				elseif (v[1] ~= nil) and (v[1] ~= "") and (string.sub(v[1], 1, 1) == "e") then 
-					local spellName
-					if not spellName then
-						if (string.sub(v[3], 1, 2) == "=d") then  
-							spellName = gsub(v[3], "=ds=", "")
-						else
-							spellName = gsub(v[3], "=q%d=", "") 
+						if found then
+							spellName = string.sub(v[3], 1, 4)..spellName
+							table.insert(AtlasLootCharDB["SearchResult"], { v[1], v[2], spellName, v[4], dataID.."|"..dataSource })
 						end
-					end
-					local found
-					if partial then
-						if texta then
-							found = string.find(string.lower(string.gsub(spellName, "-", "@")), texta)
-						else
+					-- enchant
+					elseif (v[1] ~= nil) and (v[1] ~= "") and (string.sub(v[1], 1, 1) == "e") then 
+						local spellName
+						if not spellName then
+							if (string.sub(v[3], 1, 2) == "=d") then  
+								spellName = gsub(v[3], "=ds=", "")
+							else
+								spellName = gsub(v[3], "=q%d=", "") 
+							end
+						end
+						local found
+						if partial then
 							found = string.find(string.lower(spellName), text)
-						end
-					else
-						if texta then
-							found = string.lower(string.gsub(spellName, "-", "@")) == texta
 						else
 							found = string.lower(spellName) == text
 						end
-					end
-					if found then
-						spellName = string.gsub(spellName, "@", "-")
-						spellName = string.sub(v[3], 1, 4)..spellName
-						table.insert(AtlasLootCharDB["SearchResult"], { v[1], v[2], spellName, v[4], dataID.."|"..dataSource })
+						if found then
+							spellName = string.sub(v[3], 1, 4)..spellName
+							table.insert(AtlasLootCharDB["SearchResult"], { v[1], v[2], spellName, v[4], dataID.."|"..dataSource })
+						end
 					end
 				end
 			end
@@ -123,17 +104,17 @@ function AtlasLoot:Search(Text)
 end
 
 function AtlasLoot:ShowSearchOptions(button)
-	local dewdrop = AceLibrary("Dewdrop-2.0")
-	if dewdrop:IsOpen(button) then
-		dewdrop:Close(1)
+	local Hewdrop = AceLibrary("Hewdrop-2.0")
+	if Hewdrop:IsOpen(button) then
+		Hewdrop:Close(1)
 	else
 		local setOptions = function()
-			dewdrop:AddLine(
+			Hewdrop:AddLine(
 				"text", L["Search options"],
 				"isTitle", true,
 				"notCheckable", true
 			)
-			dewdrop:AddLine(
+			Hewdrop:AddLine(
 				"text", L["Partial matching"],
 				"checked", AtlasLootCharDB.PartialMatching,
 				"tooltipTitle", L["Partial matching"],
@@ -141,7 +122,7 @@ function AtlasLoot:ShowSearchOptions(button)
 				"func", function() AtlasLootCharDB.PartialMatching = not AtlasLootCharDB.PartialMatching end
 			)
 		end
-		dewdrop:Open(button,
+		Hewdrop:Open(button,
 			'point', function(parent)
 				return "BOTTOMLEFT", "BOTTOMRIGHT"
 			end,

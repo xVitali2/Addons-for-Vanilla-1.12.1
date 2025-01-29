@@ -257,7 +257,7 @@ Inst1Quest8_Level = "22"
 Inst1Quest8_Attain = "15"
 Inst1Quest8_Aim = "End Cookie, bring Grayson's Pendant"
 Inst1Quest8_Location = "Captain Grayson (Westfall - Lighthouse; "..YELLOW.."30,86"..WHITE..")"
-Inst1Quest8_Note = "You start this Questline on the northwest island(middle and biggest) Westfall; red book on the ground "..YELLOW.."26.1,16.5"..WHITE..").\n"
+Inst1Quest8_Note = "You start this Questline on the northwest island in Westfall; red book on the ground "..YELLOW.."26.1,16.5"..WHITE..").\n"
 Inst1Quest8_Prequest = "Food for Sailing Thoughts?" -- 40395
 Inst1Quest8_Folgequest = "No"
 --
@@ -296,7 +296,7 @@ Inst1Quest2_HORDE_Level = "22"
 Inst1Quest2_HORDE_Attain = "15"
 Inst1Quest2_HORDE_Aim = "End Cookie, bring Grayson's Pendant"
 Inst1Quest2_HORDE_Location = "Captain Grayson (Westfall - Lighthouse; "..YELLOW.."30,86"..WHITE..")"
-Inst1Quest2_HORDE_Note = "You start this Questline on the northwest island(middle and biggest) Westfall; red book on the ground "..YELLOW.."26.1,16.5"..WHITE..").\n"
+Inst1Quest2_HORDE_Note = "You start this Questline on the northwest island in Westfall; red book on the ground "..YELLOW.."26.1,16.5"..WHITE..").\n"
 Inst1Quest2_HORDE_Prequest = "Food for Sailing Thoughts?" -- 40395
 Inst1Quest2_HORDE_Folgequest = "No"
 --
@@ -1112,7 +1112,7 @@ Inst5Quest15_Level = "60"
 Inst5Quest15_Attain = "55"
 Inst5Quest15_Aim = "Venture to the Molten Core entry portal in Blackrock Depths and recover a Core Fragment. Return to Lothos Riftwaker in Blackrock Mountain when you have recovered the Core Fragment."
 Inst5Quest15_Location = "Lothos Riftwaker (Blackrock Mountain; "..YELLOW.."[2] on Entrance Map"..WHITE..")"
-Inst5Quest15_Note = "After comleting this quest, you can use the stone next to Lothos Riftwaker to enter the Molten Core.\nYou find the Core Fragment near "..YELLOW.."[23]"..WHITE..", very close to the Molten Core portal."
+Inst5Quest15_Note = "After completing this quest, you can use the stone next to Lothos Riftwaker to enter the Molten Core.\nYou find the Core Fragment near "..YELLOW.."[23]"..WHITE..", very close to the Molten Core portal."
 Inst5Quest15_Prequest = "No"
 Inst5Quest15_Folgequest = "No"
 -- No Rewards for this quest
@@ -1145,7 +1145,7 @@ Inst5Quest18_Level = "58"
 Inst5Quest18_Attain = "50"
 Inst5Quest18_Aim = "Venture into Blackrock Depths, and recover the 'Extremely Potent Snuff' from Darneg Darkbeard near the Domicile, for Jabbey at Steamwheedle Port in Tanaris."
 Inst5Quest18_Location = "Jabbey (Tanaris, Steamwheedle Port; "..YELLOW.."67,24"..WHITE..")"
-Inst5Quest18_Note = "The prequest starts at Bixxle Screwfuse (Tel'Abim; "..YELLOW.."52,34"..WHITE.."). Drop from Darneg Darkbeard. Rewards from Operation Final Repairs(Necks) quest and the final quest - The Dark Iron Desecrator(Gun)."
+Inst5Quest18_Note = "Questline starts at Bixxle Screwfuse (Tel'Abim; "..YELLOW.."52,34"..WHITE.."). Drop from Darneg Darkbeard. Rewards from Operation Final Repairs(Necks) quest and the final quest - The Dark Iron Desecrator(Gun)."
 Inst5Quest18_Prequest = "Operation Screwfuse 1000 -> Operation FIX Screwfuse 1000"
 Inst5Quest18_Folgequest = "Operation Help Jabbey 2 - > Operation Return to Screwfuse -> Operation Final Repairs - >Secrets of the Dark Iron Desecrator -> The Dark Iron Desecrator"
 --
@@ -1824,7 +1824,9 @@ Inst8Quest1_Location = "Prospector Ironboot (Tanaris - Steamwheedle Port; "..YEL
 Inst8Quest1_Note = "You find the tablets near "..YELLOW.."[7]"..WHITE.." and "..YELLOW.."[9]"..WHITE..".\nThe Rewards belong to 'Confront Yeh'kinya'. You find Yeh'kinya near Prospector Ironboot."
 Inst8Quest1_Prequest = "The Lost Tablets of Mosh'aru" -- 5065
 Inst8Quest1_Folgequest = "Confront Yeh'kinya" -- 8181
--- No Rewards for this quest
+
+Inst8Quest1name1 = "Faded Hakkari Cloak"
+Inst8Quest1name2 = "Tattered Hakkari Cape"
 
 --Quest 2 Alliance
 Inst8Quest2 = "2. Kibler's Exotic Pets" -- 4729
@@ -2362,7 +2364,7 @@ Inst9Quest12 = "12. The Upper Binding I" -- 41011
 Inst9Quest12_Level = "60"
 Inst9Quest12_Attain = "55"
 Inst9Quest12_Aim = "Gather a Dragonkin Charge from the Black Dragonkin(Solakar Flamewreath) "..YELLOW.."[2]"..WHITE.." within Blackrock Spire for Parnabus in Gilneas."
-Inst9Quest12_Location = "Parnabus <Wandering Wizard> (Gilneas; "..YELLOW.."[22.9,74.4]"..WHITE..", very south of Gilneas City, west of river. inside of a lonely hose)."
+Inst9Quest12_Location = "Parnabus <Wandering Wizard> (Gilneas; "..YELLOW.."[22.9,74.4]"..WHITE..", very south of Gilneas City, west of river. inside of a lonely house)."
 Inst9Quest12_Note = "Highly recommend to take prequest 'The Binding of Xanthar' from Hanvar the Righteous (Deadwind Pass in the small church outside of Karazhan "..YELLOW.."[40.9,79.3]"..WHITE..").\nReward for the last quest of The Upper Binding quest chain will be quest item 'The Upper Binding of Xanthar' for quest 'The Binding of Xanthar'."
 Inst9Quest12_Prequest = "The Binding of Xanthar" --41015
 Inst9Quest12_Folgequest = "The Upper Binding II -> The Upper Binding III "..YELLOW.."[Dire Maul West]"..WHITE.." -> The Upper Binding IV" --41012, 41013, 41014
@@ -2528,8 +2530,8 @@ Inst9Quest13name1_HORDE = Inst9Quest12name1
 --------------- INST10 - Dire Maul East (DM) ---------------
 Inst10Story = "Built twelve thousand years ago by a covert sect of night elf sorcerers, the ancient city of Eldre'Thalas was used to protect Queen Azshara's most prized arcane secrets. Though it was ravaged by the Great Sundering of the world, much of the wondrous city still stands as the imposing Dire Maul. The ruins' three distinct districts have been overrun by all manner of creatures - especially the spectral highborne, foul satyr and brutish ogres. Only the most daring party of adventurers can enter this broken city and face the ancient evils locked within its ancient vaults."
 Inst10Caption = "Dire Maul (East)"
-Inst10QAA = "7 Quests"
-Inst10QAH = "7 Quests"
+Inst10QAA = "8 Quests"
+Inst10QAH = "8 Quests"
 
 --Quest 1 Alliance
 Inst10Quest1 = "1. Pusillin and the Elder Azj'Tordin" -- 7441
@@ -3063,7 +3065,7 @@ Inst12Quest19name1 = "The Upper Binding of Xanthar" -- 61696
 Inst12Quest20 = "20. The Key to Karazhan VIII" -- 40827
 Inst12Quest20_Level = "60"
 Inst12Quest20_Attain = "58"
-Inst12Quest20_Aim = " Slay Immol'thar "..YELLOW.."[6]"..WHITE.." in Dire Maul West, retrieve Arcanized Gems from his skin, and return to Dolvan. "
+Inst12Quest20_Aim = "Slay Immol'thar "..YELLOW.."[6]"..WHITE.." in Dire Maul West, retrieve Arcanized Gems from his skin, and return to Dolvan. "
 Inst12Quest20_Location = "Dolvan Bracewind (Dustwallow Marsh - ; "..YELLOW.."[71.1,73.2]"..WHITE..")"
 Inst12Quest20_Note = "Prequests Lower Karazhan Halls. Arcanized Gems drop from [6]."
 Inst12Quest20_Prequest = "The Key to Karazhan I - VI -> The Key to Karazhan VII "..YELLOW.."[Stratholme]"..WHITE.." " --40817
@@ -3334,7 +3336,7 @@ Inst12Quest21name1_HORDE = Inst12Quest21name1
 --------------- INST13 - Maraudon (Mara) ---------------
 Inst13Story = "Protected by the fierce Maraudine centaur, Maraudon is one of the most sacred sites within Desolace. The great temple/cavern is the burial place of Zaetar, one of two immortal sons born to the demigod, Cenarius. Legend holds that Zaetar and the earth elemental princess, Theradras, sired the misbegotten centaur race. It is said that upon their emergence, the barbaric centaur turned on their father and killed him. Some believe that Theradras, in her grief, trapped Zaetar's spirit within the winding cavern - used its energies for some malign purpose. The subterranean tunnels are populated by the vicious, long-dead ghosts of the Centaur Khans, as well as Theradras' own raging, elemental minions."
 Inst13Caption = "Maraudon"
-Inst13QAA = "9 Quests"
+Inst13QAA = "10 Quests"
 Inst13QAH = "8 Quests"
 
 --Quest 1 Alliance
@@ -3451,6 +3453,18 @@ Inst13Quest9_Prequest = "Cleansing the Roost -> Feeding the Younglings" --41050,
 Inst13Quest9_Folgequest = "No"
 --
 Inst13Quest9name1 = "Chimaera's Eye" -- 61517
+
+--Quest 10 Alliance
+Inst13Quest10 = "10. Why Not Both?" -- 41052
+Inst13Quest10_Level = "50"
+Inst13Quest10_Attain = "40"
+Inst13Quest10_Aim = "Obtain the Heart of Landslide from the depths of Maraudon, and the Essence of Corrosis from Hateforge Quarry for Frig Thunderforge at Aerie Peak"
+Inst13Quest10_Location = "Frig Thunderforge (Hinterlands - Aerie Peak; "..YELLOW.."[10.0, 49.3]"..WHITE..")."
+Inst13Quest10_Note = "Landslide is at "..YELLOW.."[8]"..WHITE.."."
+Inst13Quest10_Prequest = "Proving A Point -> I've Read It In A Book Once"
+Inst13Quest10_Folgequest = "Thunderforge Mastery"
+--
+Inst13Quest10name1 = "Thunderforge Lance" -- 40080
 
 --Quest 1 Horde
 Inst13Quest1_HORDE = "1. Shadowshard Fragments" -- 7068
@@ -5653,7 +5667,8 @@ Inst28Quest7_Level = "55"
 Inst28Quest7_Attain = "48"
 Inst28Quest7_Aim = "Place the Essence of Eranikus in the Essence Font located in this lair in the Sunken Temple."
 Inst28Quest7_Location = "The Essence of Eranikus (drops from Shade of Eranikus; "..YELLOW.."[6]"..WHITE..")"
-Inst28Quest7_Note = "You find the Essence Font next to where Shade of Eranikus is at "..YELLOW.."[6]"..WHITE.."."
+
+Inst28Quest7_Note = "You find the Essence Font next to where Shade of Eranikus is at "..YELLOW.."[6]"..WHITE..".\n"..RED.."Don't"..WHITE.."  sell or throw away reward trinket Chained Essence of Eranikus. You will need it for next quest at Itharius (Swamp and Sorrows - Itharius's Cave "..YELLOW.."[13.6,71.7]"..WHITE..", after talking with him you will get an item that starts the quest."
 Inst28Quest7_Prequest = "No"
 Inst28Quest7_Folgequest = "The Essence of Eranikus" --3374
 --
@@ -7537,7 +7552,7 @@ Inst46Quest4_Level = "54"
 Inst46Quest4_Attain = "45"
 Inst46Quest4_Aim = "Delve into the Hateforge Quarry and recover a Dark Iron Vial, and the Hateforge Chemistry Documents, then return to Varlag Duskbeard at Morgan's Vigil in Burning Steppes."
 Inst46Quest4_Location = "Varlag Duskbeard (Burning Steppes - Morgan's Vigil; "..YELLOW.."85.1,67.6"..WHITE..")."
-Inst46Quest4_Note = "Hateforge Chemist mobs drop Dark Iron Vial for quest, Hateforge Chemistry Documents is in the box at the end of the left side "..YELLOW.."[6]"..WHITE.." when you enter lower part "..YELLOW.."[B]"..WHITE.."."
+Inst46Quest4_Note = "Hateforge Chemist mobs drop Dark Iron Vial for quest, Hateforge Chemistry Documents is in the box"..YELLOW.."[a]"..WHITE.."."
 Inst46Quest4_Prequest = "No"
 Inst46Quest4_Folgequest = "No"
 Inst46Quest4name1 = "Thunder Ale" -- 2686
@@ -7555,6 +7570,18 @@ Inst46Quest5_Folgequest = "No"
 Inst46Quest5name1 = "Crown of Grobi" -- 60694
 Inst46Quest5name2 = "Sigil of Heritage" -- 60695
 Inst46Quest5name3 = "Rubyheart Mallet" -- 60696
+
+--Quest 6 Alliance
+Inst46Quest6 = "6. Why Not Both?" -- 41052
+Inst46Quest6_Level = "50"
+Inst46Quest6_Attain = "40"
+Inst46Quest6_Aim = "Obtain the Heart of Landslide from the depths of Maraudon, and the Essence of Corrosis from Hateforge Quarry for Frig Thunderforge at Aerie Peak"
+Inst46Quest6_Location = "Frig Thunderforge (Hinterlands - Aerie Peak; "..YELLOW.."[10.0, 49.3]"..WHITE..")."
+Inst46Quest6_Note = "Corrosis is at "..YELLOW.."[3]"..WHITE.."."
+Inst46Quest6_Prequest = "Proving A Point -> I've Read It In A Book Once"
+Inst46Quest6_Folgequest = "Thunderforge Mastery"
+--
+Inst46Quest6name1 = "Thunderforge Lance" -- 40080
 
 --Quest 1 Horde
 Inst46Quest1_HORDE = Inst46Quest1 -- 40458
@@ -7799,6 +7826,16 @@ Inst61Quest7_Folgequest = "No"
 --
 Inst61Quest7name1 = "Tome of Teleportation: Theramore" -- 92001
 
+Inst61Quest8 = "8. Left In Bad Faith" -- ?
+Inst61Quest8_Level = "44"
+Inst61Quest8_Attain = "40"
+Inst61Quest8_Aim = "Return with the adventurer's necklace to Talvash del Kissel in Ironforge."
+Inst61Quest8_Location = "Talvash del Kissel (Ironforge - The Mystic Ward; "..YELLOW.."36,3"..WHITE..")."
+Inst61Quest8_Note = RED.."(Jewelcrafter: Goldsmith ONLY)"..WHITE.." Prequest from Mayva Togview (Ironforge - Hall of Explorers; "..YELLOW.."60,24"..WHITE.."). \nDustivan Blackcowl "..YELLOW.."[4]"..WHITE.." drops the Tarnished Citrine Choker"
+Inst61Quest8_Prequest = "" -- 40407
+Inst61Quest8_Folgequest = "The Artificer"
+
+Inst61Quest8name1 = "Plans: Alluring Citrine Choker" -- ?
 
 --Quest 1 Horde (same as Quest 1 Alliance)
 Inst61Quest1_HORDE = Inst61Quest1
@@ -7891,8 +7928,8 @@ Inst62Quest1 = "1. Suitable Accomodations" -- 41083
 Inst62Quest1_Level = "60"
 Inst62Quest1_Attain = "55"
 Inst62Quest1_Aim = "Find a Comfortable Pillow for Councilman Kyleson in Karazhan."
-Inst62Quest1_Location = "Councilman Kyleson ("..YELLOW.."[Karazhan - d]"..WHITE..")"
-Inst62Quest1_Note = "You can find Comfortable Pillow at "..YELLOW.."[2]"..WHITE.." in the boxes."
+Inst62Quest1_Location = "Councilman Kyleson ("..YELLOW.."[Karazhan - c]"..WHITE..")"
+Inst62Quest1_Note = "You can find Comfortable Pillow at "..YELLOW.."(b)"..WHITE.." in the boxes."
 Inst62Quest1_Prequest = "No"
 Inst62Quest1_Folgequest = "A Drink to Sleep" -- 41084
 -- No Rewards for this quest
@@ -7902,8 +7939,8 @@ Inst62Quest2 = "2. A Drink to Sleep" -- 41084
 Inst62Quest2_Level = "60"
 Inst62Quest2_Attain = "55"
 Inst62Quest2_Aim = "Speak with someone who may know how to acquire wine for Councilman Kyleson."
-Inst62Quest2_Location = "Councilman Kyleson ("..YELLOW.."[Karazhan - d]"..WHITE..")"
-Inst62Quest2_Note = "Turn the quest in to The Cook at "..YELLOW.."[Karazhan - b]"..WHITE.."."
+Inst62Quest2_Location = "Councilman Kyleson ("..YELLOW.."[Karazhan - c]"..WHITE..")"
+Inst62Quest2_Note = "Turn the quest in to The Cook near "..YELLOW.."[Karazhan - e]"..WHITE.."."
 Inst62Quest2_Prequest = "Suitable Accomodations" -- 41083
 Inst62Quest2_Folgequest = "Spectral Wine" -- 41085
 -- No Rewards for this quest
@@ -7913,7 +7950,7 @@ Inst62Quest3 = "3. Spectral Wine" -- 41085
 Inst62Quest3_Level = "60"
 Inst62Quest3_Attain = "55"
 Inst62Quest3_Aim = "Gather 3 Essence of Undeath, 5 Flask of Port, and a Ghost Mushroom for The Cook in Karazhan."
-Inst62Quest3_Location = "The Cook ("..YELLOW.."[Karazhan - b]"..WHITE..")"
+Inst62Quest3_Location = "The Cook near ("..YELLOW.."[Karazhan - e]"..WHITE..")"
 Inst62Quest3_Note = "Flask of Port sold by alcohol vendors. All items can be bought from Auction House."
 Inst62Quest3_Prequest = "A Drink to Sleep" -- 41084
 Inst62Quest3_Folgequest = "Wine for Kyleson" -- 41086
@@ -7923,8 +7960,8 @@ Inst62Quest3_Folgequest = "Wine for Kyleson" -- 41086
 Inst62Quest4 = "4. Wine for Kyleson" -- 41086
 Inst62Quest4_Level = "60"
 Inst62Quest4_Attain = "55"
-Inst62Quest4_Aim = " Deliver the Spectral Wine to Councilman Kyleson "..YELLOW.."[Karazhan - d]"..WHITE.." in Karazhan. "
-Inst62Quest4_Location = "The Cook ("..YELLOW.."[Karazhan - b]"..WHITE..")"
+Inst62Quest4_Aim = " Deliver the Spectral Wine to Councilman Kyleson "..YELLOW.."[Karazhan - c]"..WHITE.." in Karazhan. "
+Inst62Quest4_Location = "The Cook ("..YELLOW.."[Karazhan - e]"..WHITE..")"
 Inst62Quest4_Note = ""
 Inst62Quest4_Prequest = "Spectral Wine" -- 41085
 Inst62Quest4_Folgequest = "No"
@@ -7935,7 +7972,7 @@ Inst62Quest5 = "5. The Key to Karazhan I" -- 40817
 Inst62Quest5_Level = "60"
 Inst62Quest5_Attain = "58"
 Inst62Quest5_Aim = "Listen to the story of Lord Ebonlocke."
-Inst62Quest5_Location = "Lord Ebonlocke ("..YELLOW.."[Karazhan - b]"..WHITE..")"
+Inst62Quest5_Location = "Lord Ebonlocke ("..YELLOW.."[Karazhan - d]"..WHITE..")"
 Inst62Quest5_Note = ""
 Inst62Quest5_Prequest = "No"
 Inst62Quest5_Folgequest = "The Key to Karazhan II" -- 40818
@@ -7946,7 +7983,7 @@ Inst62Quest6 = "6. The Key to Karazhan II" -- 40818
 Inst62Quest6_Level = "60"
 Inst62Quest6_Attain = "58"
 Inst62Quest6_Aim = "Kill Moroes "..YELLOW.."[6]"..WHITE.." and retrieve the Key to the Upper Chambers. Moroes resides in Lower Karazhan Halls. Bring back the key to Lord Ebonlocke."
-Inst62Quest6_Location = "Lord Ebonlocke ("..YELLOW.."[Karazhan - b]"..WHITE..")"
+Inst62Quest6_Location = "Lord Ebonlocke ("..YELLOW.."[Karazhan - d]"..WHITE..")"
 Inst62Quest6_Note = ""
 Inst62Quest6_Prequest = "The Key to Karazhan I" -- 40817
 Inst62Quest6_Folgequest = "The Key to Karazhan III" -- 40819
@@ -7957,7 +7994,7 @@ Inst62Quest7 = "7. The Key to Karazhan III" -- 40819
 Inst62Quest7_Level = "60"
 Inst62Quest7_Attain = "58"
 Inst62Quest7_Aim = "Find someone from the Kirin Tor who might know something about Vandol. Dalaran could be a good place to start your search."
-Inst62Quest7_Location = "The Cook ("..YELLOW.."[Karazhan - b]"..WHITE..")"
+Inst62Quest7_Location = "The Cook ("..YELLOW.."[Karazhan - e]"..WHITE..")"
 Inst62Quest7_Note = "Turn in the quest to Archmage Ansirem Runeweaver <Kirin Tor> (Alterac Mountains - Dalaran "..YELLOW.."[18.9,78.5]"..WHITE..")"
 Inst62Quest7_Prequest = "The Key to Karazhan II" -- 40818
 Inst62Quest7_Folgequest = "The Key to Karazhan IV" -- 40820
@@ -7969,7 +8006,7 @@ Inst62Quest8_Level = "60"
 Inst62Quest8_Attain = "55"
 Inst62Quest8_Aim = "Find someone that may be know something about the Scribbled Cooking Notes."
 Inst62Quest8_Location = "Scribbled Cooking Notes"
-Inst62Quest8_Note = "Turn in the quest to Duke Rothlen "..YELLOW.."[Karazhan - c]"..WHITE.." on the balkon next to Clawlord Howlfang "..YELLOW.."[4]"..WHITE.."."
+Inst62Quest8_Note = "Turn in the quest to Duke Rothlen "..YELLOW.."[Karazhan - f]"..WHITE.." on the balkon next to Clawlord Howlfang "..YELLOW.."[4]"..WHITE.."."
 Inst62Quest8_Prequest = "No"
 Inst62Quest8_Folgequest = "Lost and Found" -- 40999
 -- No Rewards for this quest
@@ -7979,7 +8016,7 @@ Inst62Quest9 = "9. Lost and Found" -- 40999
 Inst62Quest9_Level = "60"
 Inst62Quest9_Attain = "55"
 Inst62Quest9_Aim = "Recover the Engraved Golden Bracelet for Duke Rothlen in Karazhan."
-Inst62Quest9_Location = "Duke Rothlen "..YELLOW.."[Karazhan - c]"..WHITE.."."
+Inst62Quest9_Location = "Duke Rothlen "..YELLOW.."[Karazhan - f]"..WHITE.."."
 Inst62Quest9_Note = "You can find 'Engraved Golden Bracelet' in the chest at "..YELLOW.."[Karazhan - a]"..WHITE.."."
 Inst62Quest9_Prequest = "Scribbled Cooking Notes" -- 40998
 Inst62Quest9_Folgequest = "Rothlen Family Brooch" -- 41000
@@ -7990,7 +8027,7 @@ Inst62Quest10 = "10. Rothlen Family Brooch" -- 41000
 Inst62Quest10_Level = "60"
 Inst62Quest10_Attain = "55"
 Inst62Quest10_Aim = "Find someone from the Kirin Tor who might know something about Vandol. Dalaran could be a good place to start your search."
-Inst62Quest10_Location = "Duke Rothlen (Karazhan; "..YELLOW.."[Karazhan - c]"..WHITE..")"
+Inst62Quest10_Location = "Duke Rothlen (Karazhan; "..YELLOW.."[Karazhan - f]"..WHITE..")"
 Inst62Quest10_Note = "Rothlen Family Brooch next to "..YELLOW.."[Stratholme]"..WHITE.." boss The Unforgiven "..YELLOW.."[4]"..WHITE.." in the chest."
 Inst62Quest10_Prequest = "Lost and Found" -- 40999
 Inst62Quest10_Folgequest = "The Secret Recipe" -- 41001
@@ -8000,8 +8037,8 @@ Inst62Quest10_Folgequest = "The Secret Recipe" -- 41001
 Inst62Quest11 = "11. The Secret Recipe" -- 41001
 Inst62Quest11_Level = "60"
 Inst62Quest11_Attain = "55"
-Inst62Quest11_Aim = "Speak with 'The Cook' "..YELLOW.."[Karazhan - b]"..WHITE.." in Karazhan."
-Inst62Quest11_Location = "Duke Rothlen (Karazhan; "..YELLOW.."[Karazhan - c]"..WHITE..")"
+Inst62Quest11_Aim = "Speak with 'The Cook' "..YELLOW.."[Karazhan - e]"..WHITE.." in Karazhan."
+Inst62Quest11_Location = "Duke Rothlen (Karazhan; "..YELLOW.."[Karazhan - f]"..WHITE..")"
 Inst62Quest11_Note = ""
 Inst62Quest11_Prequest = "Rothlen Family Brooch" -- 41000
 Inst62Quest11_Folgequest = "The Doorman of Karazhan" -- 41002
@@ -8012,8 +8049,8 @@ Inst62Quest12 = "12. The Doorman of Karazhan" -- 41002
 Inst62Quest12_Level = "60"
 Inst62Quest12_Attain = "55"
 Inst62Quest12_Aim = "Speak with Doorman Montigue in Karazhan"
-Inst62Quest12_Location = "The Cook ("..YELLOW.."[Karazhan - b]"..WHITE..")"
-Inst62Quest12_Note = "Doorman Montigue "..BLUE.."[A]"..WHITE.." at the beginning of the dungeon in front of the stairs."
+Inst62Quest12_Location = "The Cook near ("..YELLOW.."[Karazhan - e]"..WHITE..")"
+Inst62Quest12_Note = "Doorman Montigue "..BLUE.." "..WHITE.." at the beginning of the dungeon in front of the stairs."
 Inst62Quest12_Prequest = "The Secret Recipe" -- 41001
 Inst62Quest12_Folgequest = "Charge of Karazhan" -- 41003
 -- No Rewards for this quest
@@ -8023,7 +8060,7 @@ Inst62Quest13 = "13. Charge of Karazhan" -- 41003
 Inst62Quest13_Level = "60"
 Inst62Quest13_Attain = "55"
 Inst62Quest13_Aim = "Bring 10 Essence of Undeath, 10 Living Essence, and 25 Gold to Doorman Montique in Karazhan."
-Inst62Quest13_Location = "Doorman Montigue "..BLUE.."[a]"..WHITE.."."
+Inst62Quest13_Location = "Doorman Montigue "..BLUE.." "..WHITE.."."
 Inst62Quest13_Note = "All can be bought from Auction House. livimg 10-15 silver each, undeath - 1-3 gold each."
 Inst62Quest13_Prequest = "The Doorman of Karazhan" -- 41002
 Inst62Quest13_Folgequest = "Le Fishe Au Chocolat" -- 41004
@@ -8033,8 +8070,8 @@ Inst62Quest13_Folgequest = "Le Fishe Au Chocolat" -- 41004
 Inst62Quest14 = "14. Le Fishe Au Chocolat" -- 41004
 Inst62Quest14_Level = "60"
 Inst62Quest14_Attain = "55"
-Inst62Quest14_Aim = "Bring the Charge of Karazhan to The Cook "..YELLOW.."[Karazhan - b]"..WHITE.." in Karazhan."
-Inst62Quest14_Location = "Doorman Montigue "..BLUE.."[a]"..WHITE.."."
+Inst62Quest14_Aim = "Bring the Charge of Karazhan to The Cook near"..YELLOW.."[Karazhan - e]"..WHITE.." in Karazhan."
+Inst62Quest14_Location = "Doorman Montigue "..BLUE.." "..WHITE.."."
 Inst62Quest14_Note = ""
 Inst62Quest14_Prequest = "Charge of Karazhan" -- 41003
 Inst62Quest14_Folgequest = ""
@@ -8046,9 +8083,9 @@ Inst62Quest14name2 = "Le Fishe Au Chocolat" -- 84040
 Inst62Quest15 = "15. Scythe of the Goddess" -- 41062
 Inst62Quest15_Level = "60"
 Inst62Quest15_Attain = "60"
-Inst62Quest15_Aim = "Slay Clawlord Howlfang "..YELLOW.."[4]"..WHITE.." and report to Lord Ebonlocke "..YELLOW.."[Karazhan - b]"..WHITE.."."
-Inst62Quest15_Location = "The Scythe of Elune [3]"
-Inst62Quest15_Note = "Questline starts with legendary item 'The Scythe of Elune' that drops from Lord Blackwald II "..YELLOW.."[4]"..WHITE.." (low chance)."
+Inst62Quest15_Aim = "Slay Clawlord Howlfang "..YELLOW.."[4]"..WHITE.." and report to Lord Ebonlocke "..YELLOW.."[Karazhan - d]"..WHITE.."."
+Inst62Quest15_Location = "The Scythe of Elune [5]"
+Inst62Quest15_Note = "Questline starts with legendary item 'The Scythe of Elune' that drops from Lord Blackwald II "..YELLOW.."[5]"..WHITE.." (low chance)."
 Inst62Quest15_Prequest = "No"
 Inst62Quest15_Folgequest = "Scythe of the Goddess" -- 41063
 -- No Rewards for this quest
@@ -8058,7 +8095,7 @@ Inst62Quest16 = "16. Scythe of the Goddess" -- 41063
 Inst62Quest16_Level = "60"
 Inst62Quest16_Attain = "60"
 Inst62Quest16_Aim = "Find someone in Duskwood who might know more about the Scythe of Elune."
-Inst62Quest16_Location = "Lord Ebonlocke "..YELLOW.."[Karazhan - b]"..WHITE.."."
+Inst62Quest16_Location = "Lord Ebonlocke "..YELLOW.."[Karazhan - d]"..WHITE.."."
 Inst62Quest16_Note = "Turn it in to Jitters (Duskwood - Raven Hill"..YELLOW.."[18.4,56.4]"..WHITE.."."
 Inst62Quest16_Prequest = "Scythe of the Goddess" -- 41062
 Inst62Quest16_Folgequest = "Scythe of the Goddess" -- 41064
@@ -8150,7 +8187,7 @@ Inst62Quest7_HORDE = "7. The Key to Karazhan III" -- 40822
 Inst62Quest7_HORDE_Level = "60"
 Inst62Quest7_HORDE_Attain = "58"
 Inst62Quest7_HORDE_Aim = "Find someone from Kirin Tor who might know something about Vandol. Undercity could be a good place to start your search."
-Inst62Quest7_HORDE_Location = "The Cook ("..YELLOW.."[Karazhan - b]"..WHITE..")"
+Inst62Quest7_HORDE_Location = "The Cook near ("..YELLOW.."[Karazhan - e]"..WHITE..")"
 Inst62Quest7_HORDE_Note = "Turn in the quest to Bethor Iceshard (Undercity - The Magic Quarter"..YELLOW.."[84.1,17.5]"..WHITE..", mage trainer zone.)"
 Inst62Quest7_HORDE_Prequest = "The Key to Karazhan II" -- 40818
 Inst62Quest7_HORDE_Folgequest = "The Key to Karazhan IV" -- 40823
@@ -8395,4 +8432,6 @@ Inst63Quest3name3_HORDE = Inst63Quest3name3
 -- 57 = Stormwind Vault (SV)
 -- 58 = Ostarius (OST)
 -- 61 = Gilneas City (GC)
+-- 62 = Lower Karazhan Hall (LKH)
+-- 63 = Emerald Sanctum (ES)
 -- 99 =  default "rest"
