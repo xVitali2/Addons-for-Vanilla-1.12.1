@@ -447,6 +447,7 @@ BabbleSpell:RegisterTranslations("enUS", function()
 		["Emberstorm"] = true,
 		["Enamored Water Spirit"] = true,
 		["Enchanting"] = true,
+		["Jewelcrafting"] = true,
 		["Endurance Training"] = true,
 		["Endurance"] = true,
 		["Engineering Specialization"] = true,
