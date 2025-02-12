@@ -100,12 +100,12 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 	},
 
 	Timbermaw = {
-		{ 0, "", "", "" },
 		{ 0, "INV_Misc_Horn_01", "=q6=#r2#", "" },
 		{ 13484, "INV_Scroll_03", "=q2=Recipe: Transmute Earth to Water","=ds=#p1# (275)" },
 		{ 20254, "INV_Scroll_03", "=q1=Pattern: Warbear Woolies","=ds=#p7# (285)" },
 		{ 15742, "INV_Scroll_03", "=q1=Pattern: Warbear Harness","=ds=#p7# (275)" },
 		{ 22392, "INV_Misc_Note_01", "=q1=Formula: Enchant 2H Weapon - Agility","=ds=#p4# (290)" },
+		{ 91796, "INV_Scroll_03", "Recipe: Transmute Elemental Earth", "=ds=#p1# (300)" },
 		{ 0, "", "", "" },
 		{ 0, "INV_Misc_Horn_01", "=q6=#r3#", "" },
 		{ 16768, "INV_Misc_Bag_11", "=q2=Furbolg Medicine Pouch", "=ds=#s15#" },
@@ -115,8 +115,6 @@ AtlasLoot_Data["AtlasLootRepItems"] = {
 		{ 19326, "INV_Scroll_03", "=q1=Pattern: Might of the Timbermaw","=ds=#p7# (290)" },
 		{ 19215, "INV_Scroll_03", "=q1=Pattern: Wisdom of the Timbermaw","=ds=#p8# (290)" },
 		{ 19445, "INV_Misc_Note_01", "=q1=Formula: Enchant Weapon - Agility","=ds=#p4# (290)" },
-		{ 0, "", "", "" },
-		{ 0, "", "", "" },
 		{ 0, "INV_Misc_Horn_01", "=q6=#r4#", "" },
 		{ 19218, "INV_Scroll_03", "=q1=Pattern: Mantle of the Timbermaw","=ds=#p8# (300)" },
 		{ 19327, "INV_Scroll_03", "=q1=Pattern: Timbermaw Brawlers","=ds=#p7# (300)" },  

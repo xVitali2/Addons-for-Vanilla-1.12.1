@@ -3052,8 +3052,7 @@ AtlasLoot_HewdropDown_SubTables = {
 	},
 	["EmeraldSanctum"] = {
 		{ L["Erennius"], "ESErennius" },
-		{ L["Solnius the Awakener"], "ESSolnius1" },
-		{ L["Solnius the Awakener (Page 2)"], "ESSolnius2" },
+		{ L["Solnius the Awakener"], "ESSolnius" },
 		{ L["Favor of Erennius (ES Hard Mode)"], "ESHardMode" },
 		{ L["Trash Mobs"], "ESTrash" },
 	},

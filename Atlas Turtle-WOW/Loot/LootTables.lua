@@ -501,8 +501,7 @@ AtlasLoot_TableNames = {
 	["ZGEnchants"] = { BZ["Zul'Gurub"].." - ".."Enchants", "AtlasLootItems" },
 	--Emerald Sanctum
 	["ESErennius"] = { BZ["Emerald Sanctum"].." - "..L["Erennius"], "AtlasLootItems" },
-	["ESSolnius1"] = { BZ["Emerald Sanctum"].." - "..L["Solnius the Awakener"], "AtlasLootItems" },
-	["ESSolnius2"] = { BZ["Emerald Sanctum"].." - "..L["Solnius the Awakener (Page 2)"], "AtlasLootItems" },
+	["ESSolnius"] = { BZ["Emerald Sanctum"].." - "..L["Solnius the Awakener"], "AtlasLootItems" },
 	["ESHardMode"] = { BZ["Emerald Sanctum"].." - "..L["Favor of Erennius (ES Hard Mode)"], "AtlasLootItems" },
 	["ESTrash"] = { L["Trash Mobs"].." ("..BZ["Emerald Sanctum"]..")", "AtlasLootItems" },
 	--Lower Karazhan Halls
@@ -1701,8 +1700,7 @@ AtlasLoot_TableNamesBoss = {
 	},
 	["Emerald Sanctum"] = {
 		["ESErennius"] = { L["Erennius"], "AtlasLootItems" },
-		["ESSolnius1"] = { L["Solnius the Awakener"], "AtlasLootItems" },
-		["ESSolnius2"] = { L["Solnius the Awakener (Page 2)"], "AtlasLootItems" },
+		["ESSolnius"] = { L["Solnius the Awakener"], "AtlasLootItems" },
 		["ESHardMode"] = { L["Favor of Erennius (ES Hard Mode)"], "AtlasLootItems" },
 		["ESTrash"] = { L["Trash Mobs"], "AtlasLootItems" },
 	},

@@ -531,13 +531,14 @@ AtlasLootBossButtons = {
 		"SFKWolfMasterNandos",
 		"SFKArchmageArugal",
 		"",
+		"",--SFKPrelate
 		"SFKTrash",
 	},
 	SMArmory = {
 		"VanillaKeys",
 		"",
 		"SMHerod",
-		"",
+		"",--SMQuartermaster
 		"",
 		"SMATrash",
 		"SCARLET",
@@ -561,7 +562,7 @@ AtlasLootBossButtons = {
 		"SMIronspine",
 		"SMAzshir",
 		"SMFallenChampion",
-		"",
+		"",--SMDukeDreadmoore
 		"",
 		"SMGTrash",
 		"SCARLET",
@@ -571,7 +572,7 @@ AtlasLootBossButtons = {
 		"SMHoundmasterLoksey",
 		"SMDoan",
 		"SMDoansBox",
-		"",
+		"",--SMBrotherWystan
 		"",
 		"SMLTrash",
 		"SCARLET",
@@ -672,6 +673,7 @@ AtlasLootBossButtons = {
 		"SWVDamian",
 		"SWVVolkanCruelblade",
 		"SWVVaultArmoryEquipment",
+		"",
 		"SWVTrash",
 	},
 	HateforgeQuarry = {
@@ -689,7 +691,7 @@ AtlasLootBossButtons = {
 	TheDeadmines = {
 		"",
 		"",
-		"",
+		"",--DMJaredVoss
 		"DMRhahkZor",
 		"DMMinerJohnson",
 		"DMSneed",
@@ -700,7 +702,7 @@ AtlasLootBossButtons = {
 		"DMCookie",
 		"DMCaptainGreenskin",
 		"DMVanCleef",
-		"",
+		"",--DMHarvester
 		"DMTrash",
 		"DEADMINES",
 	},
@@ -879,10 +881,10 @@ AtlasLootBossButtons = {
 		"WCLadyAnacondra",
 		"WCKresh",
 		"WCDeviateFaerieDragon",
-		"",
+		"",--WCZandara
 		"WCLordPythas",
 		"WCSkum",
-		"",
+		"",--WCVangros
 		"WCLordSerpentis",
 		"WCVerdan",
 		"WCMutanus",
@@ -984,8 +986,7 @@ AtlasLootBossButtons = {
 	},
 	EmeraldSanctum = {
 		"ESErennius",
-		"ESSolnius1",
-		"ESSolnius2",
+		"ESSolnius",
 		"ESHardMode",
 		"ESTrash",
 	},
@@ -5107,6 +5108,14 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 0, "INV_Box_01", "=q6=#cb1#", "" },
 		{ 7146, "INV_Misc_Key_01", "=q2=The Scarlet Key", "=ds=#e14#" },
 	},
+	-- SMBrotherWystan = {
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- },
 	SMHerod = {
 		{ 7719, "INV_Helmet_25", "=q3=Raging Berserker's Helm", "=ds=#s1#, #a3#", "30.62%" },
 		{ 7718, "INV_Shoulder_01", "=q3=Herod's Shoulder", "=ds=#s3#, #a3#", "30.82%" },
@@ -5115,6 +5124,14 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 0, "", "", "" },
 		{ 51217, "INV_misc_ribbon_01", "=q2=Fashion Coin", "=ds=#e27#", "1%" },
 	},
+	-- SMQuartermaster = {
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- },
 	SMFairbanks = {
 		{ 19507, "INV_Shoulder_27", "=q2=Inquisitor's Shawl", "=ds=#s3#, #a1#", "15.94%" },
 		{ 19508, "INV_Bracer_11", "=q2=Branded Leather Bracers", "=ds=#s8#, #a2#", "16.17%" },
@@ -5146,6 +5163,14 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 0, "", "", "" },
 		{ 51217, "INV_misc_ribbon_01", "=q2=Fashion Coin", "=ds=#e27#", "1%" },
 	},
+	-- SMDukeDreadmoore = {
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- 	{ 0, "", "", "" },
+	-- },
 	SMIronspine = {
 		{ 7688, "INV_Chest_Plate15", "=q3=Ironspine's Ribcage", "=ds=#s5#, #a3#", "32.91%" },
 		{ 7687, "INV_Hammer_19", "=q3=Ironspine's Fist", "=ds=#h1#, #w6#", "20.34%" },
@@ -7828,7 +7853,7 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 61806, "INV_Scroll_04", "=q4=Plans: Towerforge Pauldrons", "=ds=#p2# #m14#", "1.44%" },	
 		{ 61807, "INV_Scroll_04", "=q4=Plans: Towerforge Breastplate", "=ds=#p2# #m14#", "1.44%" },	
 		{ 61808, "INV_Scroll_04", "=q4=Plans: Towerforge Crown", "=ds=#p2# #m14#", "1.44%" },	
-	};
+	},
 	LKHBroodQueenAraxxna = {
 		{ 61297, "inv_boots_cloth_04", "=q4=Marshtreader Slippers", "=ds=#s12#, #a1#", "20%" },
 		{ 61260, "INV_Helmet_34", "=q4=Flamescorched Hood", "=ds=#s1#, #a2#", "20%" },
@@ -7860,7 +7885,7 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 61177, "INV_Scroll_05", "=q3=Recipe: Potion of Quickness", "=ds=#p1# #m14#", "1.2%" },
 		{ 61192, "INV_Scroll_05", "=q4=Pattern: Inscribed Runic Bracers", "=ds=#p7# #m14#", "1.3%" },
 		{ 61191, "INV_Scroll_05", "=q4=Schematic: Intricate Gyroscope Goggles", "=ds=#p5# #m14#", "0.9%" },	
-	};
+	},
 	LKHGrizikil = {
 		{ 61291, "INV_Helmet_10", "=q4=Darkflame Helm", "=ds=#s1#, #a4#", "20%" },
 		{ 61253, "inv_gauntlets_30", "=q4=Aetherforged Gauntlets", "=ds=#s9#, #a4#", "20%" },
@@ -7892,7 +7917,7 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 61177, "INV_Scroll_05", "=q3=Recipe: Potion of Quickness", "=ds=#p1# #m14#", "1.2%" },
 		{ 61192, "INV_Scroll_05", "=q4=Pattern: Inscribed Runic Bracers", "=ds=#p7# #m14#", "1.3%" },
 		{ 61191, "INV_Scroll_05", "=q4=Schematic: Intricate Gyroscope Goggles", "=ds=#p5# #m14#", "0.9%" },	
-	};
+	},
 	LKHClawlordHowlfang = {
 		{ 61281, "inv_boots_cloth_09", "=q4=Shadeweave Boots", "=ds=#s12#, #a1#", "20%" },
 		{ 61273, "INV_Belt_26", "=q4=Earthbreaker Belt", "=ds=#s10#, #a3#", "20%" },
@@ -7924,7 +7949,7 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 61177, "INV_Scroll_05", "=q3=Recipe: Potion of Quickness", "=ds=#p1# #m14#", "1.2%" },
 		{ 61192, "INV_Scroll_05", "=q4=Pattern: Inscribed Runic Bracers", "=ds=#p7# #m14#", "1.3%" },
 		{ 61191, "INV_Scroll_05", "=q4=Schematic: Intricate Gyroscope Goggles", "=ds=#p5# #m14#", "0.9%" },	
-	};
+	},
 	LKHLordBlackwaldII = {
 		{ 61266, "INV_Gauntlets_11", "=q4=Rune Infused Gauntlets", "=ds=#s9#, #a3#", "20%" },
 		{ 61246, "inv_boots_chain_08", "=q4=Sabatons of the Endless March", "=ds=#s12#, #a4#", "20%" },
@@ -7956,7 +7981,7 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 61177, "INV_Scroll_05", "=q3=Recipe: Potion of Quickness", "=ds=#p1# #m14#", "1.2%" },
 		{ 61192, "INV_Scroll_05", "=q4=Pattern: Inscribed Runic Bracers", "=ds=#p7# #m14#", "1.3%" },
 		{ 61191, "INV_Scroll_05", "=q4=Schematic: Intricate Gyroscope Goggles", "=ds=#p5# #m14#", "0.9%" },	
-	};
+	},
 	LKHMoroes = {
 		{ 61284, "inv_shirt_16", "=q4=Vest of Encroaching Darkness", "=ds=#s5#, #a1#", "10%" },
 		{ 61256, "inv_pants_cloth_06", "=q4=Leggings of the Misty Marsh", "=ds=#s11#, #a1#", "10%" },
@@ -7988,7 +8013,7 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 61177, "INV_Scroll_05", "=q3=Recipe: Potion of Quickness", "=ds=#p1# #m14#", "1.2%" },
 		{ 61192, "INV_Scroll_05", "=q4=Pattern: Inscribed Runic Bracers", "=ds=#p7# #m14#", "2%" },
 		{ 61191, "INV_Scroll_05", "=q4=Schematic: Intricate Gyroscope Goggles", "=ds=#p5# #m14#", "2%" },	
-	};
+	},
 	LKHTrash = {
 		{ 51326, "INV_Misc_Note_03", "=q4=Scribbled Cooking Notes", "=ds=#m2#",  "0.3%, 1%" },
 		{ 61666, "INV_Scroll_04", "=q4=Recipe: Le Fishe Au Chocolat", "=ds=#m4#, #p3# #m14#" },
@@ -8008,13 +8033,13 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 61177, "INV_Scroll_05", "=q3=Recipe: Potion of Quickness", "=ds=#p1# #m14#", "0.03%" },
 		{ 61178, "INV_Scroll_05", "=q3=Plans: Thorium Spurs", "=ds=#p2# #m14#", "0.03%" },
 		{ 61180, "INV_Misc_Note_01", "=q3=Formula: Enchant Cloak - Greater Arcane Resistance", "=ds=#p4# #m14#", "0.03%" },
-	};
+	},
 	LKHEnchants = {
 		{ 92005, "Ability_Creature_Cursed_01", "=q3=Invocation of Shattering", "=ds=#s1#/#s11# #e11#" },
 		{ 92006, "Ability_Creature_Cursed_01", "=q3=Invocation of Greater Protection", "=ds=#s1#/#s11# #e11#" },
 		{ 92007, "Ability_Creature_Cursed_01", "=q3=Invocation of Expansive Mind", "=ds=#s1#/#s11# #e11#" },
 		{ 92008, "Ability_Creature_Cursed_01", "=q3=Invocation of Greater Arcane Fortitude", "=ds=#s1#/#s11# #e11#" },
-	};
+	},
 	ESErennius = {
 		{ 61652, "INV_Misc_MonsterClaw_02", "=q4=Claw of Erennius", "=ds=#m2#", "100%" },
 		{ 61650, "INV_Spear_02", "=q4=Jadestone Skewer", "=ds=#m4#, #w7#" },
@@ -8034,67 +8059,45 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 61198, "INV_Stone_03", "=q2=Small Dream Shard", "2-5", "100%" },
 		{ 61197, "INV_Stone_05", "=q3=Fading Dream Fragment", "", "48%" },
 		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "", "48%" },
-	};
-	ESSolnius1 = {
+	},
+	ESSolnius = {
 		{ 61206, "inv_chest_leather_06", "=q4=Robe of the Dreamways", "=ds=#s5#, #a1#" , "17%" },
 		{ 61211, "INV_Boots_Fabric_01", "=q4=Sandals of Lucidity", "=ds=#s12#, #a1#", "17%" },
 		{ 61213, "INV_Gauntlets_29", "=q4=Talonwind Gauntlets", "=ds=#s9#, #a3#", "17%" },
 		{ 61239, "INV_Pants_03", "=q4=Ancient Jade Leggings", "=ds=#s11#, #a3#", "17%" },
-		{ 0, "", "", "" },
+		{ 61210, "INV_Misc_Cape_01", "=q4=Veil of Nightmare", "=ds=#s4#", "17%" },
+		{ 61212, "INV_Bracer_09", "=q4=Sanctum Bark Wraps", "=ds=#s8#, #a2#", "17%" },
+		{ 61207, "INV_Helmet_02", "=q4=Jadestone Helmet", "=ds=#s1#, #a4#", "17%" },
+		{ 61214, "inv_shoulder_13", "=q4=Mantle of the Wakener", "=ds=#s3#, #a2#", "17%" },
+		{ 61205, "INV_Jewelry_Ring_37", "=q4=Ring of Nature's Duality", "=ds=#s13#", "17%" },
+		{ 61209, "INV_Enchant_EssenceMysticalLarge", "=q4=Shard of Nightmare", "=ds=#s14#", "17%" },
 		{ 41076, "INV_Mace_09", "=q4=Aspect of Seradane", "=ds=#h2#, #w6#", "17%" },
 		{ 61237, "INV_Mace_35", "=q4=Mallet of the Awakening", "=ds=#h3#, #w6#", "17%" },
 		{ 61238, "INV_Shield_23", "=q4=Scaleshield of Emerald Flight", "=ds=#w8#", "17%" },
-		{ 0, "", "", "" },
-		{ 61205, "INV_Jewelry_Ring_37", "=q4=Ring of Nature's Duality", "=ds=#s13#", "17%" },
-		{ 61209, "INV_Enchant_EssenceMysticalLarge", "=q4=Shard of Nightmare", "=ds=#s14#", "17%" },
-		{ 61210, "INV_Misc_Cape_01", "=q4=Veil of Nightmare", "=ds=#s4#", "17%" },
-		{ 0, "", "", "" },
-		{ 0, "", "", "" },
-		{ 0, "", "", "" },
-		{ 61212, "INV_Bracer_09", "=q4=Sanctum Bark Wraps", "=ds=#s8#, #a2#", "17%" },
-		{ 61214, "inv_shoulder_13", "=q4=Mantle of the Wakener", "=ds=#s3#, #a2#", "17%" },
-		{ 61207, "INV_Helmet_02", "=q4=Jadestone Helmet", "=ds=#s1#, #a4#", "17%" },
-		{ 0, "", "", "" },
-		{ 0, "", "", "" },
-		{ 0, "", "", "" },
 		{ 61448, "INV_Weapon_Halberd_05", "=q4=Axe of Dormant Slumber", "=ds=#h1#, #w1#", "17%" },
 		{ 61208, "INV_Staff_49", "=q4=Staff of the Dreamer", "=ds=#h2#, #w9#", "17%" },
-		{ 0, "", "", "" },
 		{ 61455, "Spell_Nature_NatureTouchDecay", "=q4=Idol of the Emerald Rot", "=ds=#s16#, #e16#", "17%" },
 		{ 61203, "INV_Relics_LibramofGrace", "=q4=Libram of the Dreamguard", "=ds=#s16#, #e18#", "17%" },
 		{ 61204, "Spell_Nature_StoneSkinTotem", "=q4=Totem of the Stonebreaker", "=ds=#s16#, #e17#", "17%" },
-	};
-	ESSolnius2 = {
-		{ 61215, "inv_misc_head_dragon_green", "=q4=Head of Solnius", "=ds=#m2#", "100%" },
-		{ 61195, "BTNWoodenRingUPG1", "=q4=Ring of Nordrassil", "=ds=#m4#, #s13#" },
-		{ 61194, "BTNOrbOfDepths", "=q4=The Heart of Dreams", "=ds=#m4#, #s14#" },
-		{ 61193, "BTNEnchantedNecklace", "=q4=Verdant Eye Necklace", "=ds=#m4#, #s2#" },
-		{ 0, "", "", "" },
-		{ 61196, "INV_Misc_Bag_18", "=q3=Bag of the Vast Conscious", "=ds=#e10#", "15%" }, 
-		{ 0, "", "", "" },
-		{ 61733, "INV_Misc_Note_01", "=q5=Formula: Eternal Dreamstone Shard", "=ds=#p4# #m14#", "0.85%" },
+		{ 61215, "inv_misc_head_dragon_green", "=q4=Head of Solnius", "=ds=#m2#", "100%", "", "", "", "", "", "", "", "", "", "", {
+				{{61195,"=ds=#m4#, #s13#"},{61194,"=ds=#m4#, #s14#"},{61193,"=ds=#m4#, #s2#"}},
+			},
+		},
+		{ 61444, "INV_Stone_05", "=q4=Smoldering Dream Essence", "=ds=#m2#, =q13=#c1#, ", "20%", "", "", "", "", "", "", "", "", "", "", {
+				{{61445,"=ds=#m4#, =q13=#c1#"}},
+			},
+		},
+		{ 51361, "INV_Misc_Note_05", "=q3=Glyph of the Dreamkin", "=ds==q13=#c1#", "14%" },
+		{ 61196, "INV_Misc_Bag_18", "=q3=Bag of the Vast Conscious", "=ds=#e10#", "15%" },
+		{ 61733, "INV_Misc_Note_01", "=q5=Formula: Eternal Dreamstone Shard", "=ds=#p4# #m14#", "1%" },
 		{ 61217, "INV_Misc_Note_01", "=q3=Formula: Enchant Chest - Mighty Mana", "=ds=#p4# #m14#", "4%" }, 
 		{ 70000, "INV_Misc_Note_01", "=q3=Formula: Enchant Gloves - Nature Power", "=ds=#p4# #m14#", "4%" },
-		{ 0, "", "", "" },
 		{ 61218, "INV_Scroll_05", "=q3=Recipe: Elixir of Greater Nature Power", "=ds=#p1# #m14#", "4%" },
-		{ 0, "", "", "" },
-		{ 61198, "INV_Stone_03", "=q2=Small Dream Shard", "6-10", "100%" },
-		{ 20381, "INV_Misc_MonsterScales_11", "=q2=Dreamscale", "", "48%" },
-		{ 61444, "INV_Stone_05", "=q4=Smoldering Dream Essence", "=ds=#m2#, =q13=#c1#, ", "20%" },
-		{ 61445, "INV_Enchant_EssenceNetherLarge", "=q4=Purified Emerald Essence", "=ds=#m4#, =q13=#c1#" },
-		{ 0, "", "", "" },
-		{ 0, "", "", "" },
-		{ 0, "", "", "" },
-		{ 51361, "INV_Misc_Note_05", "=q3=Glyph of the Dreamkin", "=ds==q13=#c1#", "14%" },
-		{ 0, "", "", "" },
 		{ 61428, "INV_Scroll_05", "=q4=Pattern: Dreamhide Mantle", "=ds=#p7# #m14#", "4%" },
-		{ 61432, "INV_Scroll_05", "=q4=Pattern: Dreamthread Mantle", "=ds=#p7# #m14#", "4%" },
-		{ 61424, "INV_Scroll_05", "=q4=Plans: Dreamsteel Mantle", "=ds=#p7# #m14#", "4%" },
-		{ 0, "", "", "" },
-		{ 0, "", "", "" },
-		{ 0, "", "", "" },
+		{ 61432, "INV_Scroll_05", "=q4=Pattern: Dreamthread Mantle", "=ds=#p8# #m14#", "4%" },
+		{ 61424, "INV_Scroll_05", "=q4=Plans: Dreamsteel Mantle", "=ds=#p2# #m14#", "4%" },
 		{ 17962,"INV_Misc_Bag_10_Blue","=q2=Blue Sack of Gems","=ds=#m23# =q2=#e25#", "100%" },
-	};
+	},
 	ESHardMode = {
 		{ 61524, "INV_Chest_Plate07", "=q4=Naturecaller's Tunic", "=ds=#s5#, #a2#", "17%" },
 		{ 61522, "INV_Jewelry_Necklace_01", "=q4=Choker of the Emerald Lord", "=ds=#s2#", "17%" },

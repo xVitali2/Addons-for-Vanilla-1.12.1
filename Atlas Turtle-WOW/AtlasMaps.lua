@@ -1611,8 +1611,7 @@ AtlasMaps = {
 		Continent = BZ["Kalimdor"],
 		{ GREY.."1) ".."Erennius", NPC, 60747 },
 		{ GREY.."2) ".."Solnius the Awakener", NPC, 60748 },
-		{ GREY.."3) ".."Solnius the Awakener (Page 2)", NPC, 60748 },
-		{ GREY.."4) ".."Favor of Erennius (ES Hard Mode)", OBJECT, 2020042 },
+		{ GREY.."3) ".."Favor of Erennius (ES Hard Mode)", OBJECT, 2020042 },
 		{ GREY..INDENT..L["Trash Mobs"] },
 	},
 	HateforgeQuarry = {

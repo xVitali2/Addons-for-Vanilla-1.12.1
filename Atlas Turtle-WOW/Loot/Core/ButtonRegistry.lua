@@ -2594,38 +2594,31 @@ AtlasLoot_ButtonRegistry = {
 	-- Emerald Sanctum
 	["ESErennius"] = {
 		Title = L["Erennius"],
-		Next_Page = "ESSolnius1",
+		Next_Page = "ESSolnius",
 		Next_Title = L["Solnius the Awakener"],
 		Prev_Page = "ESTrash",
 		Prev_Title = L["Trash Mobs"],
 	},
-	["ESSolnius1"] = {
+	["ESSolnius"] = {
 		Title = L["Solnius the Awakener"],
-		Next_Page = "ESSolnius2",
-		Next_Title = L["Solnius the Awakener (Page 2)"],
-		Prev_Page = "ESErennius",
-		Prev_Title = L["Erennius"],
-	},
-	["ESSolnius2"] = {
-		Title = L["Solnius the Awakener (Page 2)"],
 		Next_Page = "ESHardMode",
 		Next_Title = L["Favor of Erennius (ES Hard Mode)"],
-		Prev_Page = "ESSolnius1",
-		Prev_Title = L["Solnius the Awakener"],
+		Prev_Page = "ESErennius",
+		Prev_Title = L["Erennius"],
 	},
 	["ESHardMode"] = {
 		Title = L["Favor of Erennius (ES Hard Mode)"],
 		Next_Page = "ESTrash",
 		Next_Title = L["Trash Mobs"],
-		Prev_Page = "ESSolnius2",
+		Prev_Page = "ESSolnius",
 		Prev_Title = L["Solnius the Awakener"],
 	},
 	["ESTrash"] = {
 		Title = L["Trash Mobs"],
 		Next_Page = "ESErennius",
 		Next_Title = L["Erennius"],
-		Prev_Page = "ESSolnius2",
-		Prev_Title = L["Solnius the Awakener (Page 2)"],
+		Prev_Page = "ESHardMode",
+		Prev_Title = L["Favor of Erennius (ES Hard Mode)"],
 	},
 
 	-- Lower Karazhan Halls

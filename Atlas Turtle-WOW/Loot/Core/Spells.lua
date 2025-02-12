@@ -22486,8 +22486,8 @@ GetSpellInfoAtlasLootDB = {
 			["craftQuantityMin"] = "",
 			["craftQuantityMax"] = "",
 			["reagents"] = {
-				[1] = {10620, 5},
-				[2] = {55154, 5},
+				[1] = {10620, 3},
+				[2] = {55154, 3},
 			},
 		},
 		[41087] = {
@@ -22597,8 +22597,8 @@ GetSpellInfoAtlasLootDB = {
 			["craftQuantityMin"] = "",
 			["craftQuantityMax"] = "",
 			["reagents"] = {
-				[1] = {14047, 5},
-				[2] = {12365, 5},
+				[1] = {14047, 3},
+				[2] = {12365, 3},
 			},
 		},
 		[41714] = {
