@@ -5444,15 +5444,28 @@ AtlasLoot_ButtonRegistry = {
 		Title = BS["Mining"],
 		Back_Page = "MININGMENU",
 		Back_Title = L["Crafting"],
+		Prev_Page = "Smelting1",
+		Prev_Title = BS["Smelting"],
+		Next_Page = "Mining2",
+		Next_Title = BS["Mining"],
+	},
+	["Mining2"] = {
+		Title = BS["Mining"],
+		Back_Page = "MININGMENU",
+		Back_Title = L["Crafting"],
+		Prev_Page = "Mining1",
+		Prev_Title = BS["Mining"],
 		Next_Page = "Smelting1",
-		Next_Title = BS["Smelting"]
+		Next_Title = BS["Smelting"],
 	},
 	["Smelting1"] = {
 		Title = BS["Smelting"],
 		Back_Page = "MININGMENU",
 		Back_Title = L["Crafting"],
-		Prev_Page = "Mining1",
-		Prev_Title = BS["Mining"]
+		Prev_Page = "Mining2",
+		Prev_Title = BS["Mining"],
+		Next_Page = "Mining1",
+		Next_Title = BS["Mining"],
 	},
 	["TailoringApprentice1"] = {
 		Title = BS["Tailoring"]..": "..L["Apprentice"],

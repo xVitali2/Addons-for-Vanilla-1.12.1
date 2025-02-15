@@ -1,9 +1,5 @@
 AtlasLoot_Data["AtlasLootCrafting"] = {
 
-----------------------------
---- Crafted Epic Weapons ---
-----------------------------
-
 	CraftedWeapons1 = {
 		{ 0, "", "", "" },
 		{ 0, "Trade_BlackSmithing", "=q6=#p2#", "" },
@@ -27,10 +23,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ 18282, "INV_Weapon_Rifle_05", "=q4=Core Marksman Rifle", "=ds=#w5#" },
 		{ 18168, "Spell_Arcane_PortalDarnassus", "=q4=Force Reactive Disk", "=ds=#w8#" },
 	},
-
---------------------------------
---- Blacksmithing Plate Sets ---
---------------------------------
 
 	SteelPlate = {
 		{ 0, "", "", "" },
@@ -88,10 +80,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ 61367, "INV_Boots_01", "=q4=Dreamsteel Boots", "=ds=#s12#, #a4#" },
 	},
 
--------------------------------
---- Blacksmithing Mail Sets ---
--------------------------------
-
 	BloodsoulEmbrace = {
 		{ 0, "", "", "" },
 		{ 0, "INV_Box_01", "=q6=#craftbm1#", "" },
@@ -122,9 +110,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ 60009, "INV_Shoulder_26", "=q4=Towerforge Pauldrons", "=ds=#s3#, #a3#" },
 		{ 60010, "inv_hammer_19", "=q4=Towerforge Demolisher", "=ds=#h2#, #w6#" },
 	},
-----------------------
---- Tailoring Sets ---
-----------------------
 
 	AugerersAttire = {
 		{ 0, "", "", "" },
@@ -217,10 +202,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ 61362, "INV_Bracer_06","=q4=Dreamthread Bracers", "=ds=#s8#, #a1#" },
 		{ 61363, "inv_gauntlets_23","=q4=Dreamthread Gloves", "=ds=#s9#, #a1#" },
 	},
-
------------------------------------
---- Leatherworking Leather Sets ---
------------------------------------
 
 	GriftersArmor = {
 		{ 0, "", "", "" },
@@ -317,10 +298,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ 65026, "INV_Helmet_13", "=q3=Depthstalker Helm", "=ds=#s1#, #a2#" },
 		{ 65027, "INV_Boots_05", "=q2=Windwalker Boots", "=ds=#s12#, #a2#" },
 	},
-	
---------------------------------
---- Leatherworking Mail Sets ---
---------------------------------
 
 	RedDragonM = {
 		{ 0, "", "", "" },
@@ -361,9 +338,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ 16984, "INV_Boots_Plate_09","=q4=Black Dragonscale Boots", "=ds=#s12#, #a3#" },
 	},
 
----------------
---- Alchemy ---
----------------
 	AlchemyApprentice1 = {
 		{ "s2329", "inv_potion_56", "=q1=Elixir of Lion's Strength", "=ds=#sr# =so1=1 =so2=55 =so3=75 =so4=95" },
 		{ "s7183", "inv_potion_63", "=q1=Elixir of Minor Defense", "=ds=#sr# =so1=1 =so2=55 =so3=75 =so4=95" },
@@ -498,6 +472,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s57111", "inv_potion_08", "=q1=Potion of Quickness", "=ds=#sr# =so1=300 =so2=315 =so3=322 =so4=330" },
 		{ "s17640", "INV_Misc_Orb_02", "=q4=Alchemist's Stone", "=ds=#sr# =so1=300 =so2=315 =so3=322 =so4=330" },
 	},
+
 	AlchemyFlasks1 = {
 		{ "s17638", "inv_potion_48", "=q1=Flask of Chromatic Resistance", "=ds=#sr# =so1=300 =so2=315 =so3=322 =so4=330" },
 		{ "s17634", "inv_potion_26", "=q1=Flask of Petrification", "=ds=#sr# =so1=300 =so2=315 =so3=322 =so4=330" },		
@@ -506,6 +481,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s17635", "inv_potion_62", "=q1=Flask of the Titans", "=ds=#sr# =so1=300 =so2=315 =so3=322 =so4=330" },
 
 	},
+
 	AlchemyProtectionPots1 = {
 		{ "s7255", "inv_potion_09", "=q1=Holy Protection Potion", "=ds=#sr# =so1=100 =so2=130 =so3=150 =so4=170" },
 		{ "s7256", "inv_potion_44", "=q1=Shadow Protection Potion", "=ds=#sr# =so1=135 =so2=160 =so3=180 =so4=200" },
@@ -520,6 +496,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s17578", "inv_potion_23", "=q1=Greater Shadow Protection Potion", "=ds=#sr# =so1=290 =so2=305 =so3=325 =so4=345" },
 		{ "s17579", "inv_potion_09", "=q1=Greater Holy Protection Potion", "=ds=#sr# =so1=290 =so2=305 =so3=325 =so4=345" },
 	},
+
 	AlchemyHealingAndMana1 = {
 		{ "s2330", "inv_potion_49", "=q1=Minor Healing Potion", "=ds=#sr# =so1=1 =so2=55 =so3=75 =so4=95" },
 		{ "s4508", "inv_potion_35", "=q1=Discolored Healing Potion", "=ds=#sr# =so1=50 =so2=80 =so3=100 =so4=120" },
@@ -544,6 +521,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "", "", "", ""},
 		{ "s24365", "inv_potion_45", "=q1=Mageblood Potion", "=ds=#sr# =so1=275 =so2=290 =so3=310 =so4=330" },
 	},
+
 	AlchemyTransmutes1 = {
 		{ "s11479", "inv_ingot_03", "=q2=Transmute: Iron to Gold", "=ds=#sr# =so1=225 =so2=240 =so3=260 =so4=280" },
 		{ "s11480", "inv_ingot_08", "=q2=Transmute: Mithril to Truesilver", "=ds=#sr# =so1=225 =so2=240 =so3=260 =so4=280" },
@@ -560,6 +538,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s57555", "INV_Ore_Iron_01", "=q1=Transmute: Elemental Earth", "=ds=#sr# =so1=300 =so2=315 =so3=322 =so4=330" },
 		{ "s57557", "INV_Potion_03", "=q1=Transmute: Elemental Water", "=ds=#sr# =so1=300 =so2=315 =so3=322 =so4=330" },
 	},
+
 	AlchemyDefensive1 = {
 		{ "s7183", "inv_potion_63", "=q1=Elixir of Minor Defense", "=ds=#sr# =so1=1 =so2=55 =so3=75 =so4=95" },
 		{ "s3177", "inv_potion_64", "=q1=Elixir of Defense", "=ds=#sr# =so1=130 =so2=155 =so3=175 =so4=195" },
@@ -591,6 +570,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "", "", "", ""},
 		{ "s11466", "inv_potion_28", "=q1=Gift of Arthas", "=ds=#sr# =so1=240 =so2=255 =so3=275 =so4=295" },
 	},
+
 	AlchemyOffensive1 = {
 		{ "s2329", "inv_potion_56", "=q1=Elixir of Lion's Strength", "=ds=#sr# =so1=1 =so2=55 =so3=75 =so4=95" },
 		{ "s3188", "inv_potion_57", "=q1=Elixir of Ogre's Strength", "=ds=#sr# =so1=150 =so2=175 =so3=195 =so4=215" },
@@ -623,6 +603,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s11477", "inv_potion_27", "=q1=Elixir of Demonslaying", "=ds=#sr# =so1=250 =so2=265 =so3=285 =so4=305" },
 		{ "s57111", "inv_potion_08", "=q1=Potion of Quickness", "=ds=#sr# =so1=300 =so2=315 =so3=322 =so4=330" },
 	},
+
 	AlchemyOther1 = {
 		{ "s7836", "inv_drink_12", "=q1=Blackmouth Oil", "=ds=#sr# =so1=80 =so2=80 =so3=90 =so4=100" },
 		{ "s7837", "inv_potion_38", "=q1=Fire Oil", "=ds=#sr# =so1=130 =so2=150 =so3=160 =so4=170" },
@@ -654,11 +635,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s24266", "inv_poison_mindnumbing", "=q3=Gurubashi Mojo Madness", "=ds=#sr# =so1=300 =so2=315 =so3=322 =so4=330" },
 		{ "s17640", "INV_Misc_Orb_02", "=q4=Alchemist's Stone", "=ds=#sr# =so1=300 =so2=315 =so3=322 =so4=330" },
 	},
-
-
-----------------
--- Enchanting --
-----------------
 
 	EnchantingApprentice1 = {
 		{ "e7421", "inv_staff_goldfeathered_01", "=q1=Runed Copper Rod", "=ds=#sr# =so1=1 =so2=5 =so3=7 =so4=10" },
@@ -1051,10 +1027,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ 0, "", "", "" },
 		{ "e57518", "inv_misc_gem_pearl_04", "=q5=Eternal Dreamstone Shard", "=ds=#sr# =so1=300 =so2=300 =so3=300 =so4=300" },
 	},
-	
----------------------
---- Blacksmithing ---
----------------------
 
 	SmithingApprentice1 = {
 		{ "s12260", "inv_chest_chain", "=q1=Rough Copper Vest", "=ds=#sr# =so1=1 =so2=15 =so3=35 =so4=55" },
@@ -1120,7 +1092,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s2673", "inv_chest_chain_09", "=q2=Silvered Bronze Breastplate", "=ds=#sr# =so1=130 =so2=160 =so3=175 =so4=190" },
 		{ "s9987", "inv_axe_21", "=q1=Bronze Battle Axe", "=ds=#sr# =so1=135 =so2=165 =so3=180 =so4=195" },
 	},
-
 
 	SmithingJourneyman2 = {
 		{ "s3333", "inv_gauntlets_05", "=q2=Silvered Bronze Gauntlets", "=ds=#sr# =so1=135 =so2=165 =so3=180 =so4=195" },
@@ -1394,6 +1365,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s27832", "inv_sword_51", "=q4=Sageblade", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s46661", "inv_sword_31", "=q4=Dream's Herald", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 	},
+
 	SmithingHelm1 = {
 		{ "s3502", "inv_helmet_03", "=q2=Green Iron Helm", "=ds=#sr# =so1=170 =so2=195 =so3=207 =so4=220" },
 		{ "s9814", "inv_helmet_25", "=q2=Barbaric Iron Helm", "=ds=#sr# =so1=175 =so2=200 =so3=212 =so4=225" },
@@ -1416,6 +1388,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s16729", "inv_helmet_36", "=q4=Lionheart Helm", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s57187", "inv_helmet_37", "=q4=Towerforge Crown", "=ds=#sr# =so1=300 =so2=325 =so3=337 =so4=350" },
 	},
+
 	SmithingShoulders1 = {
 		{ "s3328", "inv_shoulder_05", "=q2=Rough Bronze Shoulders", "=ds=#sr# =so1=110 =so2=140 =so3=155 =so4=170" },
 		{ "s3330", "inv_shoulder_09", "=q2=Silvered Bronze Shoulders", "=ds=#sr# =so1=125 =so2=155 =so3=170 =so4=185" },
@@ -1439,6 +1412,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s57191", "inv_shoulder_26", "=q4=Towerforge Pauldrons", "=ds=#sr# =so1=300 =so2=325 =so3=337 =so4=350" },
 		{ "s45465", "inv_shoulder_13", "=q4=Dreamsteel Mantle", "=ds=#sr# =so1=300 =so2=325 =so3=337 =so4=350" },
 	},
+
 	SmithingChest1 = {
 		{ "s12260", "inv_chest_chain", "=q1=Rough Copper Vest", "=ds=#sr# =so1=1 =so2=15 =so3=35 =so4=55" },
 		{ "s3321", "inv_chest_chain", "=q2=Copper Chain Vest", "=ds=#sr# =so1=35 =so2=75 =so3=95 =so4=115" },
@@ -1471,6 +1445,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s28461", "inv_chest_plate07", "=q3=Ironvine Breastplate", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s47023", "inv_chest_plate08", "=q3=Rune-Etched Breastplate", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 	},
+
 	SmithingChest2 = {
 		{ "s28242", "inv_chest_chain_11", "=q4=Icebane Breastplate", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s27590", "inv_chest_chain_17", "=q4=Obsidian Mail Tunic", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
@@ -1479,6 +1454,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s16746", "inv_chest_chain_07", "=q4=Invulnerable Mail", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s57189", "inv_chest_chain_09", "=q4=Towerforge Breastplate", "=ds=#sr# =so1=300 =so2=325 =so3=337 =so4=350" },
 	},
+
 	SmithingBracers1 = {
 		{ "s2663", "inv_bracer_03", "=q1=Copper Bracers", "=ds=#sr# =so1=1 =so2=20 =so3=40 =so4=60" },
 		{ "s2664", "inv_bracer_03", "=q2=Runed Copper Bracers", "=ds=#sr# =so1=90 =so2=115 =so3=127 =so4=140" },
@@ -1493,6 +1469,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s28244", "inv_bracer_07", "=q4=Icebane Bracers", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s45469", "INV_Bracer_03", "=q4=Dreamsteel Bracers", "=ds=#sr# =so1=300 =so2=325 =so3=337 =so4=350" },
 	},
+
 	SmithingGloves1 = {
 		{ "s3323", "inv_gauntlets_04", "=q2=Runed Copper Gauntlets", "=ds=#sr# =so1=40 =so2=80 =so3=100 =so4=120" },
 		{ "s3325", "inv_gauntlets_05", "=q2=Gemmed Copper Gauntlets", "=ds=#sr# =so1=60 =so2=100 =so3=120 =so4=140" },
@@ -1519,6 +1496,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s23637", "inv_gauntlets_22", "=q4=Dark Iron Gauntlets", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s16741", "inv_gauntlets_30", "=q4=Stronghold Gauntlets", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 	},
+
 	SmithingBelt1 = {
 		{ "s2661", "inv_belt_02", "=q1=Copper Chain Belt", "=ds=#sr# =so1=35 =so2=75 =so3=95 =so4=115" },
 		{ "s2666", "inv_belt_03", "=q2=Runed Copper Belt", "=ds=#sr# =so1=70 =so2=110 =so3=130 =so4=150" },
@@ -1534,6 +1512,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s54003", "inv_belt_21", "=q3=Fury of the Timbermaw", "=ds=#sr# =so1=290 =so2=310 =so3=320 =so4=330" },
 		{ "s20872", "inv_belt_13", "=q4=Fiery Chain Girdle", "=ds=#sr# =so1=295 =so2=315 =so3=325 =so4=335" },
 	},
+
 	SmithingPants1 = {
 		{ "s2662", "inv_pants_03", "=q1=Copper Chain Pants", "=ds=#sr# =so1=1 =so2=50 =so3=70 =so4=90" },
 		{ "s3324", "inv_pants_03", "=q2=Runed Copper Pants", "=ds=#sr# =so1=45 =so2=85 =so3=105 =so4=125" },
@@ -1558,6 +1537,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s20876", "inv_pants_04", "=q4=Dark Iron Leggings", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s27829", "inv_pants_04", "=q4=Titanic Leggings", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 	},
+
 	SmithingBoots1 = {
 		{ "s3319", "inv_boots_01", "=q1=Copper Chain Boots", "=ds=#sr# =so1=20 =so2=60 =so3=80 =so4=100" },
 		{ "s7817", "inv_boots_01", "=q2=Rough Bronze Boots", "=ds=#sr# =so1=95 =so2=125 =so3=140 =so4=155" },
@@ -1579,6 +1559,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s45471", "INV_Boots_01", "=q4=Dreamsteel Boots", "=ds=#sr# =so1=300 =so2=325 =so3=337 =so4=350" },
 		{ "s24399", "inv_boots_chain_08", "=q4=Dark Iron Boots", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 	},
+
 	SmithingAxes1 = {
 		{ "s2738", "inv_axe_23", "=q1=Copper Axe", "=ds=#sr# =so1=20 =so2=60 =so3=80 =so4=100" },
 		{ "s3294", "inv_throwingaxe_01", "=q2=Thick War Axe", "=ds=#sr# =so1=70 =so2=110 =so3=130 =so4=150" },
@@ -1604,6 +1585,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s16994", "inv_axe_09", "=q3=Arcanite Reaper", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s23653", "inv_axe_12", "=q4=Nightfall", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 	},
+
 	SmithingSwords1 = {
 		{ "s2739", "inv_sword_26", "=q1=Copper Shortsword", "=ds=#sr# =so1=25 =so2=65 =so3=85 =so4=105" },
 		{ "s2742", "inv_sword_04", "=q1=Bronze Shortsword", "=ds=#sr# =so1=120 =so2=150 =so3=165 =so4=180" },
@@ -1630,6 +1612,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s16990", "inv_sword_39", "=q3=Arcanite Champion", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s46652", "INV_Sword_17", "=q3=Untempered Runeblade", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 	},
+
 	SmithingMaces1 = {
 		{ "s2737", "inv_mace_01", "=q1=Copper Mace", "=ds=#sr# =so1=15 =so2=55 =so3=75 =so4=95" },
 		{ "s2740", "inv_mace_08", "=q1=Bronze Mace", "=ds=#sr# =so1=110 =so2=140 =so3=155 =so4=170" },
@@ -1657,12 +1640,14 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s45487", "inv_mace_14", "=q4=Dawnstone Hammer", "=ds=#sr# =so1=300 =so2=325 =so3=337 =so4=350" },
 		{ "s21161", "inv_hammer_unique_sulfuras", "=q4=Sulfuron Hammer", "=ds=#sr# =so1=300 =so2=325 =so3=337 =so4=350" },
 	},
+
 	SmithingFist1 = {
 		{ "s46663", "inv_gauntlets_11", "=q1=Copper Knuckles", "=ds=#sr# =so1=30 =so2=60 =so3=62 =so4=65" },
 		{ "s46664", "inv_misc_monsterclaw_01", "=q2=Sharpened Claw", "=ds=#sr# =so1=75 =so2=90 =so3=95 =so4=100" },
 		{ "s46665", "inv_gauntlets_11", "=q2=Bronze Bruiser", "=ds=#sr# =so1=120 =so2=140 =so3=145 =so4=150" },
 		{ "s16986", "inv_weapon_shortblade_27", "=q3=Blood Talon", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 	},
+
 	SmithingDaggers1 = {
 		{ "s8880", "inv_weapon_shortblade_14", "=q1=Copper Dagger", "=ds=#sr# =so1=30 =so2=70 =so3=90 =so4=110" },
 		{ "s3491", "inv_weapon_shortblade_04", "=q2=Big Bronze Knife", "=ds=#sr# =so1=105 =so2=135 =so3=150 =so4=165" },
@@ -1675,6 +1660,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s23638", "inv_weapon_shortblade_12", "=q4=Black Amnesty", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s46657", "inv-sword_53", "=q4=Ornate Bloodstone Dagger", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 	},
+
 	SmithingBuckles1 = {
 		{ "s57163", "INV_Misc_Buckle_01", "=q2=Copper Belt Buckle", "=ds=#sr# =so1=25 =so2=65 =so3=85 =so4=105" },
 		{ "s57166", "INV_Misc_Buckle_02", "=q2=Bronze Belt Buckle", "=ds=#sr# =so1=90 =so2=115 =so3=127 =so4=140" },
@@ -1685,6 +1671,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s57196", "INV_Misc_Buckle_08", "=q3=Bloody Belt Buckle", "=ds=#sr# =so1=300 =so2=325 =so3=337 =so4=350" },
 		{ "s57181", "INV_Misc_Buckle_07", "=q3=Dreamsteel Belt Buckle", "=ds=#sr# =so1=300 =so2=325 =so3=337 =so4=350" },
 	},
+
 	SmithingMisc1 = {
 		{ "s2660", "inv_stone_sharpeningstone_01", "=q1=Rough Sharpening Stone", "=ds=#sr# =so1=1 =so2=15 =so3=35 =so4=55" },
 		{ "s2665", "inv_stone_sharpeningstone_02", "=q1=Coarse Sharpening Stone", "=ds=#sr# =so1=65 =so2=65 =so3=72 =so4=80" },
@@ -1716,6 +1703,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s8768", "inv_misc_armorkit_12", "=q1=Iron Buckle", "=ds=#sr# =so1=150 =so2=150 =so3=152 =so4=155" },
 		{ "s11454", "inv_musket_01", "=q1=Inlaid Mithril Cylinder", "=ds=#sr# =so1=200 =so2=225 =so3=237 =so4=250" },
 	},
+
 	SmithingMisc2 = {
 		{ "s19666", "inv_misc_key_03", "=q2=Silver Skeleton Key", "=ds=#sr# =so1=100 =so2=100 =so3=110 =so4=120" },
 		{ "s19667", "inv_misc_key_13", "=q2=Golden Skeleton Key", "=ds=#sr# =so1=150 =so2=150 =so3=160 =so4=170" },
@@ -1737,10 +1725,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s14380", "inv_staff_11", "=q1=Truesilver Rod", "=ds=#sr# =so1=200 =so2=205 =so3=207 =so4=210" },
 		{ "s20201", "inv_staff_19", "=q1=Arcanite Rod", "=ds=#sr# =so1=275 =so2=275 =so3=280 =so4=285" },
 	},
-
---------------------
--- Leatherworking --
---------------------
 
 	LeatherApprentice1 = {
 		{ "s2881", "inv_misc_leatherscrap_03", "=q1=Light Leather", "=ds=#sr# =so1=1 =so2=20 =so3=30 =so4=40" },
@@ -2045,6 +2029,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s47035", "inv_chest_leather_08", "=q4=Verdant Dreamer's Breastplate", "=ds=#sr# =so1=300 =so2=300 =so3=300 =so4=300" },
 		{ "s54007", "inv_gauntlets_26", "=q4=Corehound Gloves", "=ds=#sr# =so1=300 =so2=300 =so3=300 =so4=300" },
 	},
+	
 	LeatherHelm1 = {
 		{ "s10490", "inv_helmet_15", "=q3=Comfortable Leather Hat", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
 		{ "s46625", "inv_helmet_33", "=q2=Grifter's Cover", "=ds=#sr# =so1=210 =so2=225 =so3=230 =so4=235" },
@@ -2361,10 +2346,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s22727", "inv_misc_armorkit_05", "=q3=Core Armor Kit", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 		{ "s57115", "inv_misc_armorkit_18", "=q3=Enchanted Armor Kit", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
 	},
-
----------------
--- Tailoring --
----------------
 
 	TailoringApprentice1 = {
 		{ "s2963", "inv_fabric_linen_02", "=q1=Bolt of Linen Cloth", "=ds=#sr# =so1=1 =so2=25 =so3=37 =so4=50" },
@@ -2938,10 +2919,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s45453", "INV_Misc_Herb_18", "=q2=Dreamthread", "=ds=#sr# =so1=300 =so2=300 =so3=300 =so4=300"},
 	},
 
------------------
--- Engineering --
------------------
-
 	EngineeringApprentice1 = {
 		{ "s3918", "inv_misc_dust_01", "=q1=Rough Blasting Powder", "=ds=#sr# =so1=1 =so2=20 =so3=30 =so4=40" },
 		{ "s3920", "inv_ammo_bullet_02", "=q1=Crafted Light Shot", "=ds=#sr# =so1=1 =so2=30 =so3=45 =so4=60" },
@@ -3349,44 +3326,60 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s15628", "inv_misc_bomb_04", "=q1=Pet Bombling", "=ds=#sr# =so1=205 =so2=205 =so3=205 =so4=205" },	
 	},
 
-------------
--- Mining --
-------------
-
 	Mining1 = {
 		{ 0, "Trade_Mining", "=q6=#sk1#", "" },
+		{ 0, "", "", "" },
 		{ "s100000", "inv_ore_copper_01", "=ds=Copper Vein", "=ds=#sr# =so1=1 =so2=25 =so3=50 =so4=100" },
+		{ "s100030", "inv_stone_06", "=ds=Rough Stone", "=ds=#sr# =so1=1 =so2=25 =so3=50 =so4=100" },
 		{ "s100001", "inv_ore_thorium_01", "=ds=Incendicite Mineral Vein", "=ds=#sr# =so1=65 =so2=90 =so3=115 =so4=165" },
 		{ "s100002", "inv_ore_tin_01", "=ds=Tin Vein", "=ds=#sr# =so1=65 =so2=90 =so3=115 =so4=165" },
+		{ "s100031", "inv_stone_09", "=ds=Coarse Stone", "=ds=#sr# =so1=65 =so2=90 =so3=115 =so4=165" },
 		{ "s100003", "inv_stone_16", "=ds=Silver Vein", "=ds=#sr# =so1=75 =so2=100 =so3=125 =so4=175" },
 		{ "s100004", "inv_stone_16", "=ds=Ooze Covered Silver Vein", "=ds=#sr# =so1=75 =so2=100 =so3=125 =so4=175" },
 		{ "s100005", "inv_ore_thorium_01", "=ds=Lesser Bloodstone Deposit", "=ds=#sr# =so1=75 =so2=100 =so3=125 =so4=175" },
+		{ 0, "", "", "" },
+		{ 0, "", "", "" },
+		{ 0, "", "", "" },
+		{ 0, "", "", "" },
+		{ 0, "", "", "" },
 		{ 0, "Trade_Mining", "=q6=#sk2#", "" },
+		{ 0, "", "", "" },
 		{ "s100006", "inv_ore_iron_01", "=ds=Iron Deposit", "=ds=#sr# =so1=125 =so2=150 =so3=175 =so4=225" },
+		{ "s100032", "inv_stone_12", "=ds=Heavy Stone", "=ds=#sr# =so1=125 =so2=150 =so3=175 =so4=225" },
 		{ "s100007", "inv_ore_mithril_01", "=ds=Indurium Mineral Vein", "=ds=#sr# =so1=150 =so2=175 =so3=200 =so4=250" },
+		{ 0, "", "", "" },
 		{ 0, "Trade_Mining", "=q6=#sk3#", "" },
+		{ 0, "", "", "" },
 		{ "s100008", "inv_ore_copper_01", "=ds=Gold Vein", "=ds=#sr# =so1=155 =so2=175 =so3=205 =so4=255" },
 		{ "s100009", "inv_ore_copper_01", "=ds=Ooze Covered Gold Vein", "=ds=#sr# =so1=155 =so2=175 =so3=205 =so4=255" },
 		{ "s100010", "inv_ore_mithril_02", "=ds=Mithril Deposit", "=ds=#sr# =so1=175 =so2=200 =so3=225 =so4=275" },
+		{ "s100033", "inv_stone_10", "=ds=Solid Stone", "=ds=#sr# =so1=175 =so2=200 =so3=225 =so4=275" },
 		{ "s100011", "inv_ore_mithril_02", "=ds=Ooze Covered Mithril Deposit", "=ds=#sr# =so1=175 =so2=200 =so3=225 =so4=275" },
+		{ "s100034", "inv_stone_10", "=ds=Solid Stone", "=ds=#sr# =so1=175 =so2=200 =so3=225 =so4=275" },
+	},
+
+	Mining2 = {
 		{ 0, "Trade_Mining", "=q6=#sk4#", "" },
+		{ 0, "", "", "" },
 		{ "s100014", "inv_ore_mithril_01", "=ds=Dark Iron Deposit", "=ds=#sr# =so1=230 =so2=255 =so3=280 =so4=330" },
 		{ "s100012", "inv_ore_truesilver_01", "=ds=Truesilver Deposit", "=ds=#sr# =so1=230 =so2=255 =so3=280 =so4=330" },
 		{ "s100013", "inv_ore_truesilver_01", "=ds=Ooze Covered Truesilver Deposit", "=ds=#sr# =so1=230 =so2=255 =so3=280 =so4=330" },
 		{ "s100015", "inv_ore_thorium_02", "=ds=Small Thorium Vein", "=ds=#sr# =so1=245 =so2=270 =so3=295 =so4=345" },
+		{ "s100035", "inv_misc_stonetablet_07", "=ds=Dense Stone", "=ds=#sr# =so1=245 =so2=270 =so3=295 =so4=345" },
 		{ "s100016", "inv_ore_thorium_02", "=ds=Ooze Covered Thorium Vein", "=ds=#sr# =so1=245 =so2=270 =so3=295 =so4=345" },
+		{ "s100036", "inv_misc_stonetablet_07", "=ds=Dense Stone", "=ds=#sr# =so1=245 =so2=270 =so3=295 =so4=345" },
 		{ "s100017", "inv_ore_thorium_02", "=ds=Rich Thorium Vein", "=ds=#sr# =so1=275 =so2=300 =so3=325 =so4=365" },
+		{ "s100037", "inv_misc_stonetablet_07", "=ds=Dense Stone", "=ds=#sr# =so1=245 =so2=270 =so3=295 =so4=345" },
 		{ "s100018", "inv_ore_thorium_02", "=ds=Ooze Covered Rich Thorium Vein", "=ds=#sr# =so1=275 =so2=300 =so3=325 =so4=365" },
+		{ "s100038", "inv_misc_stonetablet_07", "=ds=Dense Stone", "=ds=#sr# =so1=245 =so2=270 =so3=295 =so4=345" },
 		{ "s100019", "inv_ore_thorium_02", "=ds=Hakkari Thorium Vein", "=ds=#sr# =so1=275 =so2=300 =so3=325 =so4=350" },
-		{ "s100020", "inv_misc_gem_01", "=ds=Hakkari Thorium Vein", "=ds=#sr# =so1=275 =so2=300 =so3=325 =so4=350" },
+		{ "s100039", "inv_misc_stonetablet_07", "=ds=Dense Stone", "=ds=#sr# =so1=245 =so2=270 =so3=295 =so4=345" },
+		{ "s100020", "inv_misc_gem_01", "=ds=Souldarite", "=ds=#sr# =so1=275 =so2=300 =so3=325 =so4=350" },
 		{ "s100021", "inv_misc_stonetablet_01", "=ds=Small Obsidian Chunk", "=ds=#sr# =so1=305 =so2=330 =so3=355 =so4=370" },
 		{ "s100022", "inv_stone_15", "=ds=Small Obsidian Chunk", "=ds=#sr# =so1=305 =so2=330 =so3=355 =so4=370" },
 		{ "s100023", "inv_misc_stonetablet_01", "=ds=Large Obsidian Chunk", "=ds=#sr# =so1=305 =so2=330 =so3=355 =so4=370" },
 		{ "s100024", "inv_stone_15", "=ds=Large Obsidian Chunk", "=ds=#sr# =so1=305 =so2=330 =so3=355 =so4=370" },
-		{ "s100025", "inv_misc_gem_01", "=ds=Gemstone Deposit", "=ds=#sr# =so1=310 =so2=? =so3=? =so4=?" },
-	},
-
-	Mining2 = {
+		{ "s100025", "inv_misc_gem_01", "=ds=Gemstone Deposit", "=ds=#sr# =so1=310 =so2=335 =so3=360 =so4=375" },
 	},
 
 	Smelting1 = {
@@ -3412,10 +3405,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s22967", "inv_ingot_thorium", "=q5=Smelt Elementium", "=ds=#sr# =so1=300 =so2=350 =so3=362 =so4=375" },
 		{ "s45451", "INV_Ingot_DreamSteel", "=q5=Smelt Dreamsteel", "=ds=#sr# =so1=300 =so2=350 =so3=362 =so4=375" },
 	},
-
--------------
--- Herbalism --
--------------
 
 	Herbalism1 = {
 		{ 0, "Trade_Herbalism", "=q6=#sk1#", "" },
@@ -3459,9 +3448,6 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ 13468, "inv_misc_herb_blacklotus", "=q2=Black Lotus", "=ds=#sr# =so1=300 =so2=345 =so3=375 =so4=400" },
 		{ 19726, "inv_misc_herb_09", "=q2=Bloodvine", "=ds=#sr# =so1=-- =so2=-- =so3=-- =so4=--" },
 	},
--------------
--- Cooking --
--------------
 
 	CookingApprentice1 = {
 		{ "s818", "spell_fire_fire", "=ds=Basic Campfire", "" },
@@ -3564,9 +3550,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s46085", "inv_misc_food_64", "=q1=Gurubashi Gumbo", "=ds=#sr# =so1=300 =so2=300 =so3=300 =so4=300" },
 		{ "s45625", "INV_Misc_Fishe_Au_Chocolate", "=q1=Le Fishe Au Chocolat", "=ds=#sr# =so1=300 =so2=300 =so3=300 =so4=300" },
 	},
-		--------------
-		-- FirstAid --
-		--------------
+
 	FirstAid1 = {
 		{ 0, "Spell_Holy_SealOfSacrifice", "=q6=#sk1#", "" },
 		{ "s3275", "inv_misc_bandage_15", "=q1=Linen Bandage", "=ds=#sr# =so1=1 =so2=30 =so3=45 =so4=60" },
@@ -3590,9 +3574,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s18630", "inv_misc_bandage_12", "=q1=Heavy Runecloth Bandage", "=ds=#sr# =so1=290 =so2=290 =so3=320 =so4=350" },
 		{ "s23787", "inv_drink_14", "=q1=Powerful Anti-Venom", "=ds=#sr# =so1=300 =so2=300 =so3=330 =so4=360" },
 	},
-		--------------
-		-- Survival --
-		--------------
+
 	Survival1 = {
 		{ 0, "Trade_Survival", "=q6=#p18#", "" },
 		{ 0, "", "", "" },
@@ -3667,285 +3649,282 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s11343", "ability_poisons", "=q1=Instant Poison VI", "=ds=#lr#=q1= 60 =ds=#sr# =so1=280 =so2=325 =so3=350 =so4=375" },
 		{ "s65032", "spell_nature_nullifypoison", "=q1=Agitating Poison I", "=ds=#lr#=q1= 60 =ds=#sr# =so1=280 =so2=325 =so3=350 =so4=375" },
 	},
--------------------
--- Jewelcrafting --
--------------------
 
-		JewelcraftingApprentice1 = {
-			{ "s29728", "INV_Misc_Bandage_08", "=q1=Rough Gritted Paper", "=ds=#sr# =so1=1 =so2=21 =so3=25 =so4=30" },
-			{ "s29730", "BTNCopperring01", "=q1=Rough Copper Ring", "=ds=#sr# =so1=1 =so2=21 =so3=30 =so4=40" },
-			{ "s29732", "INV_Bracer_03", "=q1=Copper Bangle", "=ds=#sr# =so1=1 =so2=21 =so3=33 =so4=45" },
-			{ "s41001", "INV_Jewelry_Ring_12", "=q2=Bright Copper Ring", "=ds=#sr# =so1=15 =so2=35 =so3=45 =so4=55" },
-			{ "s41003", "INV_Jewelry_Ring_18", "=q2=Malachite Ring", "=ds=#sr# =so1=20 =so2=40 =so3=47 =so4=55" },
-			{ "s41249", "INV_Jewelry_Ring_07", "=q2=Bulky Copper Ring", "=ds=#sr# =so1=25 =so2=25 =so3=45 =so4=65" },
-			{ "s41005", "INV_Jewelry_Ring_13", "=q2=Sturdy Copper Ring", "=ds=#sr# =so1=25 =so2=45 =so3=52 =so4=60" },
-			{ "s41031", "INV_Ore_Tin_01", "=q1=Rough Gemstone Cluster", "=ds=#sr# =so1=35 =so2=45 =so3=50 =so4=55" },
-			{ "s41007", "INV_Jewelry_Ring_06", "=q2=Inlaid Copper Ring", "=ds=#sr# =so1=35 =so2=55 =so3=62 =so4=70" },
-			{ "s41009", "INV_Staff_07", "=q1=Copper Staff", "=ds=#sr# =so1=45 =so2=60 =so3=67 =so4=75" },
-			{ "s41011", "INV_Bracer_09", "=q2=Encrusted Copper Bangle", "=ds=#sr# =so1=50 =so2=70 =so3=75 =so4=80" },
-			{ "s41013", "INV_Jewelry_Ring_19", "=q2=Lesser Fortification Ring", "=ds=#sr# =so1=50 =so2=70 =so3=77 =so4=85" },
-			{ "s41015", "INV_Jewelry_Ring_02", "=q2=Tigercrest Ring", "=ds=#sr# =so1=50 =so2=70 =so3=77 =so4=85" },
-			{ "s41231", "INV_Jewelry_Ring_27", "=q2=Minor Trollblood Ring", "=ds=#sr# =so1=50 =so2=70 =so3=80 =so4=90" },
-			{ "s41017", "INV_Staff_10", "=q2=Small Pearlstone Staff", "=ds=#sr# =so1=55 =so2=75 =so3=82 =so4=90" },
-			{ "s41019", "INV_Jewelry_Ring_03", "=q2=Amber Ring", "=ds=#sr# =so1=60 =so2=80 =so3=87 =so4=95" },
-			{ "s41021", "INV_Jewelry_Ring_07", "=q2=Azure Ring", "=ds=#sr# =so1=60 =so2=80 =so3=87 =so4=95" },
-			{ "s41023", "INV_Jewelry_Necklace_01", "=q2=Bright Copper Necklace", "=ds=#sr# =so1=65 =so2=85 =so3=92 =so4=100" },
-			{ "s41025", "INV_Jewelry_Ring_04", "=q2=Softglow Ring", "=ds=#sr# =so1=65 =so2=85 =so3=92 =so4=100" },
-			{ "s41027", "INV_Jewelry_Ring_33", "=q2=Topaz Studded Ring", "=ds=#sr# =so1=70 =so2=90 =so3=95 =so4=100" },
-			{ "s41029", "INV_Misc_Bandage_10", "=q1=Coarse Gritted Paper", "=ds=#sr# =so1=70 =so2=90 =so3=95 =so4=100" },
-			{ "s41560", "INV_Jewelry_Ring_03", "=q2=Ebon Ring", "=ds=#sr# =so1=75 =so2=95 =so3=105 =so4=115" },
-			{ "s41033", "INV_Jewelry_Necklace_08", "=q2=Lavish Gemmed Necklace", "=ds=#sr# =so1=80 =so2=100 =so3=110 =so4=120" },
-		},
-		
-		JewelcraftingJourneyman1 = {
-			{ "s41321", "INV_Belt_32", "=q2=Gleaming Chain", "=ds=#sr# =so1=80 =so2=100 =so3=110 =so4=120" },
-			{ "s41035", "INV_Jewelry_Necklace_02", "=q2=Amberstone Pendant", "=ds=#sr# =so1=80 =so2=105 =so3=115 =so4=125" },
-			{ "s41587", "INV_Bracer_12", "=q2=Gloomweed Bindings", "=ds=#sr# =so1=80 =so2=160 =so3=170 =so4=180" },
-			{ "s41037", "INV_Jewelry_Necklace_16", "=q2=Deepmist Choker", "=ds=#sr# =so1=85 =so2=105 =so3=115 =so4=125" },
-			{ "s41562", "INV_Jewelry_Ring_05", "=q2=The King's Conviction", "=ds=#sr# =so1=85 =so2=105 =so3=115 =so4=125" },
-			{ "s41732", "INV_Misc_Orb_04", "=q2=Shadowmoon Orb", "=ds=#sr# =so1=85 =so2=105 =so3=115 =so4=125" },
-			{ "s41746", "INV_Misc_ShadowEgg", "=q2=Shadowforged Eye", "=ds=#sr# =so1=85 =so2=105 =so3=115 =so4=125" },
-			{ "s41039", "INV_Jewelry_Ring_26", "=q1=Rough Bronze Ring", "=ds=#sr# =so1=90 =so2=100 =so3=107 =so4=115" },
-			{ "s41041", "INV_Jewelry_Ring_22", "=q2=Shimmering Bronze Ring", "=ds=#sr# =so1=90 =so2=105 =so3=112 =so4=120" },
-			{ "s41043", "INV_Misc_Orb_01", "=q2=Amber Orb", "=ds=#sr# =so1=95 =so2=110 =so3=120 =so4=130" },
-			{ "s41045", "INV_Staff_08", "=q2=Encrusted Bronze Staff", "=ds=#sr# =so1=100 =so2=120 =so3=130 =so4=140" },
-			{ "s41047", "INV_Jewelry_Ring_01", "=q2=Earthrock Loop", "=ds=#sr# =so1=100 =so2=120 =so3=130 =so4=140" },
-			{ "s41564", "INV_Jewelry_Ring_16", "=q2=Shadowfall Jewel", "=ds=#sr# =so1=100 =so2=120 =so3=130 =so4=140" },
-			{ "s41581", "INV_Staff_13", "=q2=Serpent's Coil Staff", "=ds=#sr# =so1=100 =so2=120 =so3=130 =so4=140" },
-			{ "s41323", "INV_Jewelry_Necklace_22", "=q2=Talisman of Stone", "=ds=#sr# =so1=100 =so2=125 =so3=135 =so4=145" },
-			{ "s41049", "INV_Bracer_01", "=q1=Bronze Cuffed Bangles", "=ds=#sr# =so1=105 =so2=120 =so3=132 =so4=145" },
-			{ "s41051", "INV_Belt_29", "=q2=Shadowgem Band", "=ds=#sr# =so1=105 =so2=125 =so3=135 =so4=145" },
-			{ "s41726", "INV_Bracer_19", "=q2=Hydrathorn Bracers", "=ds=#sr# =so1=105 =so2=125 =so3=135 =so4=145" },
-			{ "s41740", "INV_Crown_01", "=q2=Mistwood Tiara", "=ds=#sr# =so1=105 =so2=135 =so3=145 =so4=155" },
-			{ "s41053", "INV_Mace_08", "=q2=Bronze Scepter", "=ds=#sr# =so1=110 =so2=130 =so3=140 =so4=150" },
-			{ "s41325", "INV_Jewelry_Necklace_15", "=q2=Medallion of Flame", "=ds=#sr# =so1=110 =so2=130 =so3=140 =so4=150" },
-			{ "s41566", "INV_Jewelry_Ring_22", "=q2=Ocean's Wrath", "=ds=#sr# =so1=115 =so2=120 =so3=130 =so4=140" },
-			{ "s41337", "INV_Bracer_19", "=q2=Dawnbright Cuffs", "=ds=#sr# =so1=115 =so2=135 =so3=142 =so4=150" },
-			{ "s41734", "INV_Misc_Gem_Pearl_02", "=q3=Fangclaw Relic", "=ds=#sr# =so1=120 =so2=140 =so3=150 =so4=160" },
-			{ "s41055", "BTNBlackPendant", "=q2=Pendant of Midnight", "=ds=#sr# =so1=120 =so2=145 =so3=155 =so4=165" },
-			{ "s41067", "INV_Jewelry_Ring_01", "=q1=Rough Silver Ring", "=ds=#sr# =so1=125 =so2=135 =so3=145 =so4=155" },
-			{ "s41065", "INV_Stone_08", "=q1=Coarse Gemstone Cluster", "=ds=#sr# =so1=125 =so2=140 =so3=142 =so4=145" },
-			{ "s41057", "INV_Crown_01", "=q2=Agatestone Crown", "=ds=#sr# =so1=125 =so2=145 =so3=155 =so4=165" },
-			{ "s41061", "INV_Belt_31", "=q2=Binding Signet", "=ds=#sr# =so1=125 =so2=145 =so3=155 =so4=165" },
-		},
-		
-		JewelcraftingJourneyman2 = {
-			{ "s41063", "INV_Bracer_14", "=q2=Enchanted Bracelets", "=ds=#sr# =so1=125 =so2=145 =so3=155 =so4=165" },
-			{ "s41776", "INV_Jewelry_Ring_24", "=q2=Ring of Midnight", "=ds=#sr# =so1=125 =so2=145 =so3=155 =so4=165" },
-			{ "s41059", "INV_Staff_15", "=q2=Moonlight Staff", "=ds=#sr# =so1=125 =so2=150 =so3=160 =so4=170" },
-			{ "s41568", "INV_Jewelry_Ring_10", "=q2=Dazzling Moonstone Band", "=ds=#sr# =so1=130 =so2=150 =so3=160 =so4=170" },
-			{ "s41760", "INV_Misc_Gem_Emerald_02", "=q2=Graceful Agate Gemstone", "=ds=#sr# =so1=135 =so2=135 =so3=137 =so4=140" },
-			{ "s41069", "INV_Jewelry_Talisman_06", "=q2=Silver Medallion", "=ds=#sr# =so1=135 =so2=150 =so3=160 =so4=170" },
-			{ "s41071", "BTNLancelot_Ring", "=q3=Ring of Purified Silver", "=ds=#sr# =so1=135 =so2=155 =so3=165 =so4=175" },
-			{ "s41327", "INV_Jewelry_Necklace_07", "=q2=Gleaming Silver Necklace", "=ds=#sr# =so1=135 =so2=155 =so3=165 =so4=175" },
-			{ "s41339", "INV_Crown_02", "=q2=Circlet of Dampening", "=ds=#sr# =so1=135 =so2=155 =so3=165 =so4=175" },
-			{ "s41748", "INV_QirajIdol_Life", "=q3=Totem of Self Preservation", "=ds=#sr# =so1=135 =so2=155 =so3=165 =so4=175" },
-			{ "s41583", "INV_Staff_18", "=q3=Farraki Ceremony Totem", "=ds=#sr# =so1=140 =so2=160 =so3=170 =so4=180" },
-			{ "s41728", "INV_Bracer_09", "=q3=Blackrock Ironclamps", "=ds=#sr# =so1=140 =so2=160 =so3=170 =so4=180" },
-			{ "s41570", "INV_Jewelry_Ring_26", "=q2=Harpy Talon Ring", "=ds=#sr# =so1=145 =so2=165 =so3=175 =so4=185" },
-			{ "s41742", "INV_Crown_01", "=q3=Venomspire Diadem", "=ds=#sr# =so1=145 =so2=165 =so3=175 =so4=185" },
-			{ "s41201", "INV_Misc_Bandage_18", "=q1=Heavy Gritted Paper", "=ds=#sr# =so1=150 =so2=150 =so3=155 =so4=160" },
-			{ "s41203", "INV_Stone_13", "=q1=Heavy Gemstone Cluster", "=ds=#sr# =so1=150 =so2=150 =so3=152 =so4=155" },
-			{ "s41627", "INV_Misc_Gem_Diamond_02", "=q2=Pristine Crystal Gemstone", "=ds=#sr# =so1=150 =so2=155 =so3=157 =so4=160" },
-			{ "s41607", "INV_Misc_Gem_Crystal_02", "=q2=Shimmering Aqua Gemstone", "=ds=#sr# =so1=150 =so2=155 =so3=157 =so4=160" },
-			{ "s41081", "INV_Jewelry_Ring_27", "=q1=Rough Iron Ring", "=ds=#sr# =so1=150 =so2=165 =so3=170 =so4=175" },
-			{ "s41083", "INV_Jewelry_Ring_03", "=q1=Rough Gold Ring", "=ds=#sr# =so1=150 =so2=165 =so3=170 =so4=175" },
-		},
-		
-		JewelcraftingExpert1 = {
-			{ "s41205", "INV_Bracer_10", "=q2=Goldfire Crystal Bracelet", "=ds=#sr# =so1=155 =so2=155 =so3=160 =so4=165" },
-			{ "s41207", "INV_Jewelry_Ring_31", "=q2=Quartz Halo", "=ds=#sr# =so1=155 =so2=175 =so3=185 =so4=195" },
-			{ "s41275", "INV_Jewelry_Necklace_06", "=q3=Gemmed Citrine Pendant", "=ds=#sr# =so1=160 =so2=160 =so3=180 =so4=200" },
-			{ "s41572", "INV_Jewelry_Ring_47", "=q2=Centaur Hoof Circlet", "=ds=#sr# =so1=160 =so2=180 =so3=190 =so4=200" },
-			{ "s41331", "INV_Jewelry_Amulet_05", "=q2=Gem Encrusted Choker", "=ds=#sr# =so1=160 =so2=180 =so3=190 =so4=200" },
-			{ "s41736", "INV_Wand_05", "=q2=Netherbane Rod", "=ds=#sr# =so1=160 =so2=180 =so3=190 =so4=200" },
-			{ "s41329", "BTNTurtlePendant", "=q2=Ring of The Turtle", "=ds=#sr# =so1=160 =so2=185 =so3=195 =so4=205" },
-			{ "s41283", "BTNEnchantedNecklace", "=q2=Astral Amulet", "=ds=#sr# =so1=??? =so2=175 =so3=192 =so4=210" },
-			{ "s41209", "INV_Wand_04", "=q2=Staff of Blossomed Jade", "=ds=#sr# =so1=165 =so2=185 =so3=195 =so4=205" },
-			{ "s41333", "INV_Jewelry_Amulet_03", "=q2=Goldcrest Amulet", "=ds=#sr# =so1=170 =so2=180 =so3=190 =so4=200" },
-			{ "s41730", "INV_Bracer_09", "=q2=Monastery Emberbrace", "=ds=#sr# =so1=170 =so2=185 =so3=195 =so4=205" },
-			{ "s41211", "INV_Jewelry_Ring_12", "=q2=Jade Harmony Circlet", "=ds=#sr# =so1=170 =so2=190 =so3=197 =so4=205" },
-			{ "s41585", "INV_Staff_12", "=q2=Sphinx's Wisdom Staff", "=ds=#sr# =so1=170 =so2=190 =so3=200 =so4=210" },
-			{ "s41574", "INV_Jewelry_Ring_32", "=q3=Ogre Bone Band", "=ds=#sr# =so1=170 =so2=200 =so3=210 =so4=220" },
-			{ "s41219", "INV_Jewelry_Ring_12", "=q1=Rough Mithril Ring", "=ds=#sr# =so1=175 =so2=175 =so3=177 =so4=180" },
-			{ "s41629", "INV_Misc_Gem_Stone_01", "=q2=Gleaming Jade Gemstone", "=ds=#sr# =so1=175 =so2=180 =so3=182 =so4=185" },
-			{ "s41623", "INV_Misc_Gem_Crystal_03", "=q2=Pure Shining Moonstone", "=ds=#sr# =so1=175 =so2=180 =so3=182 =so4=185" },
-			{ "s41752", "INV_Misc_Gem_Pearl_01", "=q2=Obsidian Brooch", "=ds=#sr# =so1=175 =so2=190 =so3=197 =so4=205" },
-			{ "s41213", "INV_Helmet_19", "=q2=Goldenshade Quartz Crown", "=ds=#sr# =so1=175 =so2=195 =so3=202 =so4=210" },
-			{ "s41215", "BTNHL_Holy_Grail", "=q2=The Golden Goblet", "=ds=#sr# =so1=175 =so2=195 =so3=202 =so4=210" },
-			{ "s41217", "INV_Jewelry_Necklace_06", "=q3=Powerful Citrine Pendant", "=ds=#sr# =so1=175 =so2=195 =so3=202 =so4=210" },
-			{ "s41556", "INV_Jewelry_Talisman_10", "=q2=Delicate Mithril Amulet", "=ds=#sr# =so1=180 =so2=200 =so3=210 =so4=220" },
-			{ "s41221", "INV_Jewelry_Ring_22", "=q2=Ironsun Citrine Ring", "=ds=#sr# =so1=185 =so2=200 =so3=210 =so4=220" },
-			{ "s41750", "INV_Misc_Gem_Pearl_06", "=q2=Facetted Moonstone Brooch", "=ds=#sr# =so1=185 =so2=200 =so3=207 =so4=215" },
-			{ "s41589", "INV_Jewelry_Ring_07", "=q2=Crystal Earring", "=ds=#sr# =so1=185 =so2=205 =so3=215 =so4=225" },
-			{ "s41263", "INV_Jewelry_Ring_29", "=q2=Ocean's Gaze", "=ds=#sr# =so1=190 =so2=190 =so3=210 =so4=230" },
-			{ "s41223", "INV_Belt_19", "=q2=Shimmering Gold Necklace", "=ds=#sr# =so1=190 =so2=205 =so3=215 =so4=225" },
-			{ "s41225", "INV_Jewelry_Ring_20", "=q2=Ironbloom Ring", "=ds=#sr# =so1=190 =so2=205 =so3=215 =so4=225" },
-			{ "s41541", "INV_Jewelry_Ring_28", "=q2=Dazzling Aquamarine Loop", "=ds=#sr# =so1=190 =so2=210 =so3=220 =so4=230" },
-			{ "s41579", "INV_Jewelry_Ring_12", "=q2=Marine's Demise", "=ds=#sr# =so1=190 =so2=210 =so3=220 =so4=230" },
-		},
-		
-		JewelcraftingExpert2 = {
-			{ "s41285", "INV_Ingot_08", "=q2=Shimmering Moonstone Tablet", "=ds=#sr# =so1=195 =so2=195 =so3=217 =so4=240" },
-			{ "s41229", "INV_Misc_Bandage_17", "=q1=Solid Gritted Paper", "=ds=#sr# =so1=200 =so2=200 =so3=205 =so4=210" },
-			{ "s41233", "INV_Jewelry_Ring_07", "=q1=Rough Truesilver Ring", "=ds=#sr# =so1=200 =so2=200 =so3=205 =so4=210" },
-			{ "s41237", "INV_Stone_07", "=q1=Solid Gemstone Cluster", "=ds=#sr# =so1=200 =so2=200 =so3=205 =so4=210" },
-			{ "s41601", "INV_Misc_Gem_Opal_02", "=q2=Sharpened Citrine Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=207 =so4=210" },
-			{ "s41603", "INV_Misc_Gem_Ruby_01", "=q2=Radiant Ember Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=207 =so4=210" },
-			{ "s41605", "INV_Misc_Gem_Ruby_02", "=q2=Glowing Ruby Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=207 =so4=210" },
-			{ "s41631", "INV_Misc_Gem_Crystal_03", "=q2=Illuminated Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=205 =so4=205" },
-			{ "s41738", "INV_Misc_Orb_01", "=q2=Marine Root", "=ds=#sr# =so1=200 =so2=215 =so3=225 =so4=235" },
-			{ "s41227", "INV_Staff_07", "=q2=Ornate Mithril Scepter", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
-			{ "s41546", "INV_Belt_27", "=q2=Alluring Citrine Choker", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
-			{ "s41548", "INV_Bracer_19", "=q2=Elaborate Golden Bracelets", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
-			{ "s41550", "INV_Wand_05", "=q2=Heart of the Sea", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
-			{ "s41744", "INV_Jewelry_Ring_03", "=q2=Bloodfire Circlet", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
-			{ "s41754", "INV_Misc_Gem_Pearl_04", "=q2=Smoldering Brooch", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
-			{ "s41552", "INV_Staff_11", "=q2=Staff of Gallitrea", "=ds=#sr# =so1=200 =so2=225 =so3=235 =so4=245" },
-			{ "s41558", "INV_Misc_Gem_Sapphire_02", "=q2=Draenethyst Baton", "=ds=#sr# =so1=200 =so2=225 =so3=235 =so4=245" },
-			{ "s41718", "INV_Bracer_14", "=q3=Ornate Mithril Bracelets", "=ds=#sr# =so1=200 =so2=225 =so3=237 =so4=250" },
-			{ "s41756", "INV_Misc_Gem_Sapphire_03", "=q2=Vitriol Brooch", "=ds=#sr# =so1=205 =so2=220 =so3=227 =so4=235" },
-			{ "s41239", "INV_Belt_31", "=q2=Greater Binding Signet", "=ds=#sr# =so1=210 =so2=230 =so3=240 =so4=250" },
-			{ "s41786", "INV_Helmet_06", "=q2=Ornate Mithril Crown", "=ds=#sr# =so1=210 =so2=230 =so3=240 =so4=250" },
-			{ "s41554", "INV_Jewelry_Ring_Emerald", "=q3=Golden Jade Ring", "=ds=#sr# =so1=210 =so2=235 =so3=245 =so4=255" },
-			{ "s41352", "INV_Staff_13", "=q3=Opaline Illuminator", "=ds=#sr# =so1=210 =so2=235 =so3=245 =so4=255" },
-			{ "s41307", "INV_Wand_11", "=q3=Gemkeeper's Folio", "=ds=#sr# =so1=??? =so2=235 =so3=245 =so4=255" },
-			{ "s41235", "INV_Jewelry_Necklace_03", "=q2=Aquamarine Pendant", "=ds=#sr# =so1=215 =so2=215 =so3=225 =so4=235" },
-			{ "s41241", "INV_Staff_32", "=q2=Royal Gemstone Staff", "=ds=#sr# =so1=215 =so2=235 =so3=245 =so4=255" },
-			{ "s41277", "INV_Jewelry_Necklace_07", "=q2=Starforge Amulet", "=ds=#sr# =so1=220 =so2=220 =so3=240 =so4=260" },
-			{ "s41243", "INV_Misc_Orb_05", "=q2=Emberstone Idol", "=ds=#sr# =so1=220 =so2=240 =so3=250 =so4=260" },
-			{ "s41245", "BTNIrongRingUPG2", "=q2=Runed Truesilver Ring", "=ds=#sr# =so1=220 =so2=240 =so3=250 =so4=260" },
-			{ "s41633", "INV_Misc_Gem_Ruby_02", "=q2=Burning Star Gemstone", "=ds=#sr# =so1=225 =so2=225 =so3=227 =so4=230" },
-		},
-		
-		JewelcraftingExpert3 = {
-			{ "s41085", "INV_Jewelry_Ring_25", "=q2=Emberstone Studded Ring", "=ds=#sr# =so1=225 =so2=240 =so3=247 =so4=255" },
-			{ "s41281", "INV_Jewelry_Talisman_05", "=q3=Runebound Amulet", "=ds=#sr# =so1=230 =so2=230 =so3=252 =so4=275" },
-			{ "s41716", "INV_Jewelry_Ring_03", "=q3=Crown of Elegance", "=ds=#sr# =so1=230 =so2=260 =so3=270 =so4=280" },
-			{ "s41784", "INV_Jewelry_Ring_Jade", "=q4=Mana Binding Signet", "=ds=#sr# =so1=230 =so2=260 =so3=275 =so4=290" },
-			{ "s41305", "INV_Wand_09", "=q2=Golden Scepter of Authority", "=ds=#sr# =so1=??? =so2=260 =so3=270 =so4=280" },
-			{ "s41635", "INV_Misc_Gem_Opal_01", "=q2=Brilliant Opal Gemstone", "=ds=#sr# =so1=235 =so2=235 =so3=237 =so4=240" },
-			{ "s41770", "INV_Stone_14", "=q1=Dense Gemstone Cluster", "=ds=#sr# =so1=235 =so2=240 =so3=240 =so4=240" },
-			{ "s41087", "BTNring02", "=q1=Rough Thorium Ring", "=ds=#sr# =so1=235 =so2=245 =so3=250 =so4=255" },
-			{ "s41720", "INV_Staff_32", "=q3=Regal Twilight Staff", "=ds=#sr# =so1=240 =so2=260 =so3=275 =so4=290" },
-			{ "s41724", "Spell_Shadow_GrimWard", "=q3=Ornament of Restraint", "=ds=#sr# =so1=245 =so2=245 =so3=265 =so4=285" },
-			{ "s41089", "BTNEmptyAmulet", "=q2=Mithril Blackstone Necklace", "=ds=#sr# =so1=245 =so2=265 =so3=275 =so4=285" },
-			{ "s41261", "INV_Jewelry_Amulet_05", "=q2=Sunburst Tiara", "=ds=#sr# =so1=250 =so2=250 =so3=270 =so4=290" },
-			{ "s41091", "INV_Misc_LeatherScrap_08", "=q1=Dense Gritted Paper", "=ds=#sr# =so1=250 =so2=260 =so3=265 =so4=270" },
-			{ "s41714", "INV_Bracer_19", "=q3=Opal Guided Bangles", "=ds=#sr# =so1=250 =so2=280 =so3=290 =so4=300" },
-			{ "s41637", "INV_Misc_Gem_Emerald_01", "=q2=Elegant Emerald Gemstone", "=ds=#sr# =so1=??? =so2=250 =so3=252 =so4=255" },
-			{ "s41639", "INV_Misc_Gem_Sapphire_02", "=q2=Shining Sapphire Gemstone", "=ds=#sr# =so1=??? =so2=250 =so3=252 =so4=255" },
-		},
-		
-		JewelcraftingArtisan1 = {
-			{ "s41093", "INV_Jewelry_Ring_10", "=q2=Radiant Thorium Twilight", "=ds=#sr# =so1=255 =so2=270 =so3=277 =so4=285" },
-			{ "s41348", "INV_Bracer_10", "=q2=Crystalfire Armlets", "=ds=#sr# =so1=255 =so2=275 =so3=285 =so4=295" },
-			{ "s41265", "INV_Jewelry_Ring_31", "=q2=Starry Thorium Band", "=ds=#sr# =so1=260 =so2=260 =so3=275 =so4=290" },
-			{ "s41611", "INV_Misc_Gem_01", "=q2=Gloomy Diamond Gemstone", "=ds=#sr# =so1=260 =so2=265 =so3=267 =so4=270" },
-			{ "s41095", "INV_Ore_Arcanite_02", "=q2=Glyph Codex", "=ds=#sr# =so1=260 =so2=280 =so3=287 =so4=295" },
-			{ "s41350", "INV_Jewelry_Ring_19", "=q2=Cinderfall Band", "=ds=#sr# =so1=260 =so2=280 =so3=290 =so4=300" },
-			{ "s41251", "INV_Jewelry_Ring_29", "=q2=Blue Starfire", "=ds=#sr# =so1=265 =so2=265 =so3=285 =so4=305" },
-			{ "s41273", "INV_Jewelry_Necklace_16", "=q2=Prism Amulet", "=ds=#sr# =so1=265 =so2=265 =so3=285 =so4=305" },
-			{ "s41774", "INV_Jewelry_Necklace_07", "=q2=Spellweaver Pendant", "=ds=#sr# =so1=265 =so2=275 =so3=285 =so4=295" },
-			{ "s41097", "INV_Staff_13", "=q2=Spellweaver Rod", "=ds=#sr# =so1=265 =so2=285 =so3=292 =so4=300" },
-			{ "s41099", "INV_Misc_Orb_01", "=q2=Quicksilver Whirl", "=ds=#sr# =so1=265 =so2=285 =so3=292 =so4=300" },
-			{ "s41762", "INV_Misc_Gem_03", "=q2=Dreary Opal Gemstone", "=ds=#sr# =so1=270 =so2=270 =so3=272 =so4=275" },
-			{ "s41311", "INV_Bracer_03", "=q2=Stellar Gemguards", "=ds=#sr# =so1=??? =so2=270 =so3=280 =so4=290" },
-			{ "s41315", "INV_Jewelry_Necklace_11", "=q2=Moonlit Charm", "=ds=#sr# =so1=??? =so2=275 =so3=285 =so4=295" },
-			{ "s41641", "INV_Misc_Gem_Topaz_01", "=q2=Unstable Arcane Gemstone", "=ds=#sr# =so1=??? =so2=275 =so3=277 =so4=280" },
-			{ "s41356", "INV_Misc_Book_09", "=q3=Gemstone Compendium", "=ds=#sr# =so1=275 =so2=275 =so3=297 =so4=320" },
-			{ "s41279", "INV_Jewelry_Necklace_Banshee", "=q2=Voidheart Charm", "=ds=#sr# =so1=280 =so2=280 =so3=300 =so4=320" },
-			{ "s41101", "INV_Bracer_13", "=q2=Crystalweft Bracers", "=ds=#sr# =so1=280 =so2=285 =so3=297 =so4=310" },
-			{ "s41103", "INV_Helmet_53", "=q2=Ethereal Frostspark Crown", "=ds=#sr# =so1=280 =so2=285 =so3=297 =so4=310" },
-			{ "s41105", "INV_Jewelry_Amulet_04", "=q2=Pendant of Arcane Radiance", "=ds=#sr# =so1=280 =so2=300 =so3=305 =so4=310" },
-			{ "s41313", "INV_Wand_07", "=q2=Garnet Guardian Staff", "=ds=#sr# =so1=??? =so2=290 =so3=300 =so4=310" },
-			{ "s41643", "INV_Misc_Gem_Sapphire_02", "=q2=Glittering Sapphire Gemstone", "=ds=#sr# =so1=??? =so2=290 =so3=292 =so4=295" },
-			{ "s41309", "BTNEyeRing", "=q2=Stellar Ruby Ring", "=ds=#sr# =so1=??? =so2=300 =so3=310 =so4=320" },
-			{ "s41287", "INV_Jewelry_Talisman_05", "=q2=Stormcloud Sigil", "=ds=#sr# =so1=290 =so2=310 =so3=325 =so4=340" },
-			{ "s41708", "INV_Jewelry_Ring_21", "=q3=Opalstone Circle", "=ds=#sr# =so1=290 =so2=320 =so3=330 =so4=340" },
-			{ "s41712", "BTNHarbingerRing", "=q3=Dark Iron Signet Ring", "=ds=#sr# =so1=290 =so2=320 =so3=330 =so4=340" },
-			{ "s41722", "INV_Jewelry_Necklace_06", "=q4=Pendant of Instability", "=ds=#sr# =so1=300 =so2=300 =so3=307 =so4=315" },
-			{ "s41253", "INV_Jewelry_Ring_37", "=q2=Emerald Monarch's Glow", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41257", "INV_Staff_28", "=q2=Arcanum Baton", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41700", "INV_Bracer_13", "=q4=Embergem Cuffs", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-		},
-		
-		JewelcraftingArtisan2 = {
-			{ "s41706", "INV_Crown_02", "=q4=Mastercrafted Diamond Crown", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41764", "INV_Misc_Gem_Topaz_02", "=q3=Resurged Topaz Gemstone", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41768", "INV_Misc_Gem_Topaz_03", "=q3=Resilient Arcane Gemstone", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41798", "INV_Misc_Gem_03", "=q3=Guardbreaker Charm", "=ds=#sr# =so1=300 =so2=320 =so3=325 =so4=330" },
-			{ "s41804", "INV_Bracer_13", "=q3=Bindings of Luminance", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41806", "INV_Crown_01", "=q3=Crown of the Illustrious Queen", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41802", "INV_Staff_20", "=q3=Spire of Channeled Power", "=ds=#sr# =so1=300 =so2=325 =so3=335 =so4=345" },
-			{ "s41808", "INV_Bracer_03", "=q4=Mastercrafted Diamond Bangles", "=ds=#sr# =so1=300 =so2=325 =so3=332 =so4=340" },
-			{ "s41778", "INV_Bracer_01", "=q2=Stormcloud Shackles", "=ds=#sr# =so1=??? =so2=310 =so3=320 =so4=330" },
-			{ "s41303", "INV_Jewelry_Ring_08", "=q2=Massive Jewel Circlet", "=ds=#sr# =so1=??? =so2=315 =so3=322 =so4=330" },
-			{ "s41317", "INV_Jewelry_Ring_24", "=q3=Twilight Opal Cascade", "=ds=#sr# =so1=??? =so2=320 =so3=330 =so4=340" },
-			{ "s41271", "INV_Jewelry_Ring_Gold", "=q1=Pure Gold Ring", "=ds=#sr# =so1=??? =so2=325 =so3=335 =so4=345" },
-		},
-		
-		JewelcraftingArtisan3 = {
-		},
-		
-		JewelcraftingGemology1 = {
-			{ "s41621", "INV_Stone_03", "=q2=Enchanted Emerald Gemstone", "=ds=#sr# =so1=250 =so2=255 =so3=257 =so4=260" },
-			{ "s41625", "INV_Misc_Gem_Diamond_01", "=q2=Beautiful Diamond Gemstone", "=ds=#sr# =so1=270 =so2=275 =so3=277 =so4=280" },
-			{ "s41609", "INV_Misc_Gem_Bloodstone_01", "=q3=Azerothian Ruby Gemstone", "=ds=#sr# =so1=275 =so2=280 =so3=282 =so4=285" },
-			{ "s41617", "INV_Stone_01", "=q2=Tempered Azerothian Gemstone", "=ds=#sr# =so1=275 =so2=280 =so3=282 =so4=285" },
-			{ "s41613", "INV_Misc_Gem_02", "=q3=Flawless Black Gemstone", "=ds=#sr# =so1=285 =so2=290 =so3=292 =so4=295" },
-			{ "s41615", "INV_Misc_Gem_Sapphire_01", "=q3=Arcane Emerald Gemstone", "=ds=#sr# =so1=295 =so2=300 =so3=302 =so4=305" },
-			{ "s41619", "INV_Misc_Gem_Topaz_02", "=q3=Stunning Imperial Gemstone", "=ds=#sr# =so1=300 =so2=310 =so3=315 =so4=320" },
-			{ "s41821", "INV_Misc_Gem_Topaz_02", "=q3=Gorgeous Mountain Gemstone", "=ds=#sr# =so1=300 =so2=330 =so3=345 =so4=360" },
-		},
-		
-		JewelcraftingGoldsmithing1 = {
-			{ "s41782", "INV_Jewelry_Ring_Truesight", "=q4=Golden Runed Ring", "=ds=#sr# =so1=285 =so2=310 =so3=320 =so4=330" },
-			{ "s41780", "INV_Jewelry_Ring_Saphire", "=q3=Stormcloud Signet", "=ds=#sr# =so1=290 =so2=310 =so3=320 =so4=330" },
-			{ "s41710", "INV_Jewelry_Ring_DragonPaw", "=q3=Deep Sapphire Circlet", "=ds=#sr# =so1=290 =so2=320 =so3=330 =so4=340" },
-			{ "s41790", "INV_Jewelry_Ring_DragonPaw", "=q4=Ring of Unleashed Potential", "=ds=#sr# =so1=290 =so2=320 =so3=330 =so4=340" },
-			{ "s41255", "INV_Jewelry_Ring_35", "=q3=Sapphire Luminescence", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41696", "INV_Jewelry_Ring_42", "=q4=Shimmering Diamond Band", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41698", "INV_Misc_Gem_Ruby_03", "=q4=Crown of Molten Ascension", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41702", "INV_Belt_29", "=q4=Blackwing Signet of Command", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41704", "INV_Jewelry_Amulet_01", "=q4=Talisman of Hinderance", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41788", "INV_Jewelry_Ring_Gold", "=q4=Blazefury Circlet", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41267", "BTNGoldMysticRing", "=q4=Ruby Ring of Ruin", "=ds=#sr# =so1=300 =so2=330 =so3=350 =so4=370" },
-			{ "s41269", "BTNRingOfInfiniteGems", "=q4=Encrusted Gemstone Ring", "=ds=#sr# =so1=300 =so2=330 =so3=350 =so4=370" },
-			{ "s41792", "INV_Staff_11", "=q4=Empowered Domination Rod", "=ds=#sr# =so1=300 =so2=330 =so3=340 =so4=350" },
-			{ "s41796", "INV_Jewelry_Trinket_VampiricGrail", "=q4=Grail of Forgotten Memories", "=ds=#sr# =so1=300 =so2=330 =so3=340 =so4=350" },
-			{ "s41800", "inv_staff_14", "=q4=Rudeus' Focusing Cane", "=ds=#sr# =so1=300 =so2=330 =so3=340 =so4=350" },
-		},
-		
-		JewelcraftingGemstones1 = {
-			{ "s41760", "INV_Misc_Gem_Emerald_02", "=q2=Graceful Agate Gemstone", "=ds=#sr# =so1=135 =so2=135 =so3=137 =so4=140" },
-			{ "s41627", "INV_Misc_Gem_Diamond_02", "=q2=Pristine Crystal Gemstone", "=ds=#sr# =so1=150 =so2=155 =so3=157 =so4=160" },
-			{ "s41607", "INV_Misc_Gem_Crystal_02", "=q2=Shimmering Aqua Gemstone", "=ds=#sr# =so1=150 =so2=155 =so3=157 =so4=160" },
-			{ "s41629", "INV_Misc_Gem_Stone_01", "=q2=Gleaming Jade Gemstone", "=ds=#sr# =so1=175 =so2=180 =so3=182 =so4=185" },
-			{ "s41601", "INV_Misc_Gem_Opal_02", "=q2=Sharpened Citrine Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=207 =so4=210" },
-			{ "s41603", "INV_Misc_Gem_Ruby_01", "=q2=Radiant Ember Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=207 =so4=210" },
-			{ "s41605", "INV_Misc_Gem_Ruby_02", "=q2=Glowing Ruby Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=207 =so4=210" },
-			{ "s41631", "INV_Misc_Gem_Crystal_03", "=q2=Illuminated Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=205 =so4=205" },
-			{ "s41633", "INV_Misc_Gem_Ruby_02", "=q2=Burning Star Gemstone", "=ds=#sr# =so1=225 =so2=225 =so3=227 =so4=230" },
-			{ "s41635", "INV_Misc_Gem_Opal_01", "=q2=Brilliant Opal Gemstone", "=ds=#sr# =so1=235 =so2=235 =so3=237 =so4=240" },
-			{ "s41637", "INV_Misc_Gem_Emerald_01", "=q2=Elegant Emerald Gemstone", "=ds=#sr# =so1=??? =so2=250 =so3=252 =so4=255" },
-			{ "s41639", "INV_Misc_Gem_Sapphire_02", "=q2=Shining Sapphire Gemstone", "=ds=#sr# =so1=??? =so2=250 =so3=252 =so4=255" },
-			{ "s41611", "INV_Misc_Gem_01", "=q2=Gloomy Diamond Gemstone", "=ds=#sr# =so1=260 =so2=265 =so3=267 =so4=270" },
-			{ "s41762", "INV_Misc_Gem_03", "=q2=Dreary Opal Gemstone", "=ds=#sr# =so1=270 =so2=270 =so3=272 =so4=275" },
-			{ "s41625", "INV_Misc_Gem_Diamond_01", "=q2=Beautiful Diamond Gemstone", "=ds=#sr# =so1=270 =so2=275 =so3=277 =so4=280" },
-			{ "s41641", "INV_Misc_Gem_Topaz_01", "=q2=Unstable Arcane Gemstone", "=ds=#sr# =so1=??? =so2=275 =so3=277 =so4=280" },
-			{ "s41643", "INV_Misc_Gem_Sapphire_02", "=q2=Glittering Sapphire Gemstone", "=ds=#sr# =so1=??? =so2=290 =so3=292 =so4=295" },
-			{ "s41764", "INV_Misc_Gem_Topaz_02", "=q3=Resurged Topaz Gemstone", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41768", "INV_Misc_Gem_Topaz_03", "=q3=Resilient Arcane Gemstone", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
-			{ "s41621", "INV_Stone_03", "=q2=Enchanted Emerald Gemstone", "=ds=#sr# =so1=250 =so2=255 =so3=257 =so4=260" },
-			{ "s41609", "INV_Misc_Gem_Bloodstone_01", "=q3=Azerothian Ruby Gemstone", "=ds=#sr# =so1=275 =so2=280 =so3=282 =so4=285" },
-			{ "s41617", "INV_Stone_01", "=q2=Tempered Azerothian Gemstone", "=ds=#sr# =so1=275 =so2=280 =so3=282 =so4=285" },
-			{ "s41613", "INV_Misc_Gem_02", "=q3=Flawless Black Gemstone", "=ds=#sr# =so1=285 =so2=290 =so3=292 =so4=295" },
-			{ "s41615", "INV_Misc_Gem_Sapphire_01", "=q3=Arcane Emerald Gemstone", "=ds=#sr# =so1=295 =so2=300 =so3=302 =so4=305" },
-			{ "s41619", "INV_Misc_Gem_Topaz_02", "=q3=Stunning Imperial Gemstone", "=ds=#sr# =so1=300 =so2=310 =so3=315 =so4=320" },
-			{ "s41821", "INV_Misc_Gem_Topaz_02", "=q3=Gorgeous Mountain Gemstone", "=ds=#sr# =so1=300 =so2=330 =so3=345 =so4=360" },
-		},
-		
+	JewelcraftingApprentice1 = {
+		{ "s29728", "INV_Misc_Bandage_08", "=q1=Rough Gritted Paper", "=ds=#sr# =so1=1 =so2=21 =so3=25 =so4=30" },
+		{ "s29730", "BTNCopperring01", "=q1=Rough Copper Ring", "=ds=#sr# =so1=1 =so2=21 =so3=30 =so4=40" },
+		{ "s29732", "INV_Bracer_03", "=q1=Copper Bangle", "=ds=#sr# =so1=1 =so2=21 =so3=33 =so4=45" },
+		{ "s41001", "INV_Jewelry_Ring_12", "=q2=Bright Copper Ring", "=ds=#sr# =so1=15 =so2=35 =so3=45 =so4=55" },
+		{ "s41003", "INV_Jewelry_Ring_18", "=q2=Malachite Ring", "=ds=#sr# =so1=20 =so2=40 =so3=47 =so4=55" },
+		{ "s41249", "INV_Jewelry_Ring_07", "=q2=Bulky Copper Ring", "=ds=#sr# =so1=25 =so2=25 =so3=45 =so4=65" },
+		{ "s41005", "INV_Jewelry_Ring_13", "=q2=Sturdy Copper Ring", "=ds=#sr# =so1=25 =so2=45 =so3=52 =so4=60" },
+		{ "s41031", "INV_Ore_Tin_01", "=q1=Rough Gemstone Cluster", "=ds=#sr# =so1=35 =so2=45 =so3=50 =so4=55" },
+		{ "s41007", "INV_Jewelry_Ring_06", "=q2=Inlaid Copper Ring", "=ds=#sr# =so1=35 =so2=55 =so3=62 =so4=70" },
+		{ "s41009", "INV_Staff_07", "=q1=Copper Staff", "=ds=#sr# =so1=45 =so2=60 =so3=67 =so4=75" },
+		{ "s41011", "INV_Bracer_09", "=q2=Encrusted Copper Bangle", "=ds=#sr# =so1=50 =so2=70 =so3=75 =so4=80" },
+		{ "s41013", "INV_Jewelry_Ring_19", "=q2=Lesser Fortification Ring", "=ds=#sr# =so1=50 =so2=70 =so3=77 =so4=85" },
+		{ "s41015", "INV_Jewelry_Ring_02", "=q2=Tigercrest Ring", "=ds=#sr# =so1=50 =so2=70 =so3=77 =so4=85" },
+		{ "s41231", "INV_Jewelry_Ring_27", "=q2=Minor Trollblood Ring", "=ds=#sr# =so1=50 =so2=70 =so3=80 =so4=90" },
+		{ "s41017", "INV_Staff_10", "=q2=Small Pearlstone Staff", "=ds=#sr# =so1=55 =so2=75 =so3=82 =so4=90" },
+		{ "s41019", "INV_Jewelry_Ring_03", "=q2=Amber Ring", "=ds=#sr# =so1=60 =so2=80 =so3=87 =so4=95" },
+		{ "s41021", "INV_Jewelry_Ring_07", "=q2=Azure Ring", "=ds=#sr# =so1=60 =so2=80 =so3=87 =so4=95" },
+		{ "s41023", "INV_Jewelry_Necklace_01", "=q2=Bright Copper Necklace", "=ds=#sr# =so1=65 =so2=85 =so3=92 =so4=100" },
+		{ "s41025", "INV_Jewelry_Ring_04", "=q2=Softglow Ring", "=ds=#sr# =so1=65 =so2=85 =so3=92 =so4=100" },
+		{ "s41027", "INV_Jewelry_Ring_33", "=q2=Topaz Studded Ring", "=ds=#sr# =so1=70 =so2=90 =so3=95 =so4=100" },
+		{ "s41029", "INV_Misc_Bandage_10", "=q1=Coarse Gritted Paper", "=ds=#sr# =so1=70 =so2=90 =so3=95 =so4=100" },
+		{ "s41560", "INV_Jewelry_Ring_03", "=q2=Ebon Ring", "=ds=#sr# =so1=75 =so2=95 =so3=105 =so4=115" },
+		{ "s41033", "INV_Jewelry_Necklace_08", "=q2=Lavish Gemmed Necklace", "=ds=#sr# =so1=80 =so2=100 =so3=110 =so4=120" },
+	},
+	
+	JewelcraftingJourneyman1 = {
+		{ "s41321", "INV_Belt_32", "=q2=Gleaming Chain", "=ds=#sr# =so1=80 =so2=100 =so3=110 =so4=120" },
+		{ "s41035", "INV_Jewelry_Necklace_02", "=q2=Amberstone Pendant", "=ds=#sr# =so1=80 =so2=105 =so3=115 =so4=125" },
+		{ "s41587", "INV_Bracer_12", "=q2=Gloomweed Bindings", "=ds=#sr# =so1=80 =so2=160 =so3=170 =so4=180" },
+		{ "s41037", "INV_Jewelry_Necklace_16", "=q2=Deepmist Choker", "=ds=#sr# =so1=85 =so2=105 =so3=115 =so4=125" },
+		{ "s41562", "INV_Jewelry_Ring_05", "=q2=The King's Conviction", "=ds=#sr# =so1=85 =so2=105 =so3=115 =so4=125" },
+		{ "s41732", "INV_Misc_Orb_04", "=q2=Shadowmoon Orb", "=ds=#sr# =so1=85 =so2=105 =so3=115 =so4=125" },
+		{ "s41746", "INV_Misc_ShadowEgg", "=q2=Shadowforged Eye", "=ds=#sr# =so1=85 =so2=105 =so3=115 =so4=125" },
+		{ "s41039", "INV_Jewelry_Ring_26", "=q1=Rough Bronze Ring", "=ds=#sr# =so1=90 =so2=100 =so3=107 =so4=115" },
+		{ "s41041", "INV_Jewelry_Ring_22", "=q2=Shimmering Bronze Ring", "=ds=#sr# =so1=90 =so2=105 =so3=112 =so4=120" },
+		{ "s41043", "INV_Misc_Orb_01", "=q2=Amber Orb", "=ds=#sr# =so1=95 =so2=110 =so3=120 =so4=130" },
+		{ "s41045", "INV_Staff_08", "=q2=Encrusted Bronze Staff", "=ds=#sr# =so1=100 =so2=120 =so3=130 =so4=140" },
+		{ "s41047", "INV_Jewelry_Ring_01", "=q2=Earthrock Loop", "=ds=#sr# =so1=100 =so2=120 =so3=130 =so4=140" },
+		{ "s41564", "INV_Jewelry_Ring_16", "=q2=Shadowfall Jewel", "=ds=#sr# =so1=100 =so2=120 =so3=130 =so4=140" },
+		{ "s41581", "INV_Staff_13", "=q2=Serpent's Coil Staff", "=ds=#sr# =so1=100 =so2=120 =so3=130 =so4=140" },
+		{ "s41323", "INV_Jewelry_Necklace_22", "=q2=Talisman of Stone", "=ds=#sr# =so1=100 =so2=125 =so3=135 =so4=145" },
+		{ "s41049", "INV_Bracer_01", "=q1=Bronze Cuffed Bangles", "=ds=#sr# =so1=105 =so2=120 =so3=132 =so4=145" },
+		{ "s41051", "INV_Belt_29", "=q2=Shadowgem Band", "=ds=#sr# =so1=105 =so2=125 =so3=135 =so4=145" },
+		{ "s41726", "INV_Bracer_19", "=q2=Hydrathorn Bracers", "=ds=#sr# =so1=105 =so2=125 =so3=135 =so4=145" },
+		{ "s41740", "INV_Crown_01", "=q2=Mistwood Tiara", "=ds=#sr# =so1=105 =so2=135 =so3=145 =so4=155" },
+		{ "s41053", "INV_Mace_08", "=q2=Bronze Scepter", "=ds=#sr# =so1=110 =so2=130 =so3=140 =so4=150" },
+		{ "s41325", "INV_Jewelry_Necklace_15", "=q2=Medallion of Flame", "=ds=#sr# =so1=110 =so2=130 =so3=140 =so4=150" },
+		{ "s41566", "INV_Jewelry_Ring_22", "=q2=Ocean's Wrath", "=ds=#sr# =so1=115 =so2=120 =so3=130 =so4=140" },
+		{ "s41337", "INV_Bracer_19", "=q2=Dawnbright Cuffs", "=ds=#sr# =so1=115 =so2=135 =so3=142 =so4=150" },
+		{ "s41734", "INV_Misc_Gem_Pearl_02", "=q3=Fangclaw Relic", "=ds=#sr# =so1=120 =so2=140 =so3=150 =so4=160" },
+		{ "s41055", "BTNBlackPendant", "=q2=Pendant of Midnight", "=ds=#sr# =so1=120 =so2=145 =so3=155 =so4=165" },
+		{ "s41067", "INV_Jewelry_Ring_01", "=q1=Rough Silver Ring", "=ds=#sr# =so1=125 =so2=135 =so3=145 =so4=155" },
+		{ "s41065", "INV_Stone_08", "=q1=Coarse Gemstone Cluster", "=ds=#sr# =so1=125 =so2=140 =so3=142 =so4=145" },
+		{ "s41057", "INV_Crown_01", "=q2=Agatestone Crown", "=ds=#sr# =so1=125 =so2=145 =so3=155 =so4=165" },
+		{ "s41061", "INV_Belt_31", "=q2=Binding Signet", "=ds=#sr# =so1=125 =so2=145 =so3=155 =so4=165" },
+	},
+	
+	JewelcraftingJourneyman2 = {
+		{ "s41063", "INV_Bracer_14", "=q2=Enchanted Bracelets", "=ds=#sr# =so1=125 =so2=145 =so3=155 =so4=165" },
+		{ "s41776", "INV_Jewelry_Ring_24", "=q2=Ring of Midnight", "=ds=#sr# =so1=125 =so2=145 =so3=155 =so4=165" },
+		{ "s41059", "INV_Staff_15", "=q2=Moonlight Staff", "=ds=#sr# =so1=125 =so2=150 =so3=160 =so4=170" },
+		{ "s41568", "INV_Jewelry_Ring_10", "=q2=Dazzling Moonstone Band", "=ds=#sr# =so1=130 =so2=150 =so3=160 =so4=170" },
+		{ "s41760", "INV_Misc_Gem_Emerald_02", "=q2=Graceful Agate Gemstone", "=ds=#sr# =so1=135 =so2=135 =so3=137 =so4=140" },
+		{ "s41069", "INV_Jewelry_Talisman_06", "=q2=Silver Medallion", "=ds=#sr# =so1=135 =so2=150 =so3=160 =so4=170" },
+		{ "s41071", "BTNLancelot_Ring", "=q3=Ring of Purified Silver", "=ds=#sr# =so1=135 =so2=155 =so3=165 =so4=175" },
+		{ "s41327", "INV_Jewelry_Necklace_07", "=q2=Gleaming Silver Necklace", "=ds=#sr# =so1=135 =so2=155 =so3=165 =so4=175" },
+		{ "s41339", "INV_Crown_02", "=q2=Circlet of Dampening", "=ds=#sr# =so1=135 =so2=155 =so3=165 =so4=175" },
+		{ "s41748", "INV_QirajIdol_Life", "=q3=Totem of Self Preservation", "=ds=#sr# =so1=135 =so2=155 =so3=165 =so4=175" },
+		{ "s41583", "INV_Staff_18", "=q3=Farraki Ceremony Totem", "=ds=#sr# =so1=140 =so2=160 =so3=170 =so4=180" },
+		{ "s41728", "INV_Bracer_09", "=q3=Blackrock Ironclamps", "=ds=#sr# =so1=140 =so2=160 =so3=170 =so4=180" },
+		{ "s41570", "INV_Jewelry_Ring_26", "=q2=Harpy Talon Ring", "=ds=#sr# =so1=145 =so2=165 =so3=175 =so4=185" },
+		{ "s41742", "INV_Crown_01", "=q3=Venomspire Diadem", "=ds=#sr# =so1=145 =so2=165 =so3=175 =so4=185" },
+		{ "s41201", "INV_Misc_Bandage_18", "=q1=Heavy Gritted Paper", "=ds=#sr# =so1=150 =so2=150 =so3=155 =so4=160" },
+		{ "s41203", "INV_Stone_13", "=q1=Heavy Gemstone Cluster", "=ds=#sr# =so1=150 =so2=150 =so3=152 =so4=155" },
+		{ "s41627", "INV_Misc_Gem_Diamond_02", "=q2=Pristine Crystal Gemstone", "=ds=#sr# =so1=150 =so2=155 =so3=157 =so4=160" },
+		{ "s41607", "INV_Misc_Gem_Crystal_02", "=q2=Shimmering Aqua Gemstone", "=ds=#sr# =so1=150 =so2=155 =so3=157 =so4=160" },
+		{ "s41081", "INV_Jewelry_Ring_27", "=q1=Rough Iron Ring", "=ds=#sr# =so1=150 =so2=165 =so3=170 =so4=175" },
+		{ "s41083", "INV_Jewelry_Ring_03", "=q1=Rough Gold Ring", "=ds=#sr# =so1=150 =so2=165 =so3=170 =so4=175" },
+	},
+	
+	JewelcraftingExpert1 = {
+		{ "s41205", "INV_Bracer_10", "=q2=Goldfire Crystal Bracelet", "=ds=#sr# =so1=155 =so2=155 =so3=160 =so4=165" },
+		{ "s41207", "INV_Jewelry_Ring_31", "=q2=Quartz Halo", "=ds=#sr# =so1=155 =so2=175 =so3=185 =so4=195" },
+		{ "s41275", "INV_Jewelry_Necklace_06", "=q3=Gemmed Citrine Pendant", "=ds=#sr# =so1=160 =so2=160 =so3=180 =so4=200" },
+		{ "s41572", "INV_Jewelry_Ring_47", "=q2=Centaur Hoof Circlet", "=ds=#sr# =so1=160 =so2=180 =so3=190 =so4=200" },
+		{ "s41331", "INV_Jewelry_Amulet_05", "=q2=Gem Encrusted Choker", "=ds=#sr# =so1=160 =so2=180 =so3=190 =so4=200" },
+		{ "s41736", "INV_Wand_05", "=q2=Netherbane Rod", "=ds=#sr# =so1=160 =so2=180 =so3=190 =so4=200" },
+		{ "s41329", "BTNTurtlePendant", "=q2=Ring of The Turtle", "=ds=#sr# =so1=160 =so2=185 =so3=195 =so4=205" },
+		{ "s41283", "BTNEnchantedNecklace", "=q2=Astral Amulet", "=ds=#sr# =so1=??? =so2=175 =so3=192 =so4=210" },
+		{ "s41209", "INV_Wand_04", "=q2=Staff of Blossomed Jade", "=ds=#sr# =so1=165 =so2=185 =so3=195 =so4=205" },
+		{ "s41333", "INV_Jewelry_Amulet_03", "=q2=Goldcrest Amulet", "=ds=#sr# =so1=170 =so2=180 =so3=190 =so4=200" },
+		{ "s41730", "INV_Bracer_09", "=q2=Monastery Emberbrace", "=ds=#sr# =so1=170 =so2=185 =so3=195 =so4=205" },
+		{ "s41211", "INV_Jewelry_Ring_12", "=q2=Jade Harmony Circlet", "=ds=#sr# =so1=170 =so2=190 =so3=197 =so4=205" },
+		{ "s41585", "INV_Staff_12", "=q2=Sphinx's Wisdom Staff", "=ds=#sr# =so1=170 =so2=190 =so3=200 =so4=210" },
+		{ "s41574", "INV_Jewelry_Ring_32", "=q3=Ogre Bone Band", "=ds=#sr# =so1=170 =so2=200 =so3=210 =so4=220" },
+		{ "s41219", "INV_Jewelry_Ring_12", "=q1=Rough Mithril Ring", "=ds=#sr# =so1=175 =so2=175 =so3=177 =so4=180" },
+		{ "s41629", "INV_Misc_Gem_Stone_01", "=q2=Gleaming Jade Gemstone", "=ds=#sr# =so1=175 =so2=180 =so3=182 =so4=185" },
+		{ "s41623", "INV_Misc_Gem_Crystal_03", "=q2=Pure Shining Moonstone", "=ds=#sr# =so1=175 =so2=180 =so3=182 =so4=185" },
+		{ "s41752", "INV_Misc_Gem_Pearl_01", "=q2=Obsidian Brooch", "=ds=#sr# =so1=175 =so2=190 =so3=197 =so4=205" },
+		{ "s41213", "INV_Helmet_19", "=q2=Goldenshade Quartz Crown", "=ds=#sr# =so1=175 =so2=195 =so3=202 =so4=210" },
+		{ "s41215", "BTNHL_Holy_Grail", "=q2=The Golden Goblet", "=ds=#sr# =so1=175 =so2=195 =so3=202 =so4=210" },
+		{ "s41217", "INV_Jewelry_Necklace_06", "=q3=Powerful Citrine Pendant", "=ds=#sr# =so1=175 =so2=195 =so3=202 =so4=210" },
+		{ "s41556", "INV_Jewelry_Talisman_10", "=q2=Delicate Mithril Amulet", "=ds=#sr# =so1=180 =so2=200 =so3=210 =so4=220" },
+		{ "s41221", "INV_Jewelry_Ring_22", "=q2=Ironsun Citrine Ring", "=ds=#sr# =so1=185 =so2=200 =so3=210 =so4=220" },
+		{ "s41750", "INV_Misc_Gem_Pearl_06", "=q2=Facetted Moonstone Brooch", "=ds=#sr# =so1=185 =so2=200 =so3=207 =so4=215" },
+		{ "s41589", "INV_Jewelry_Ring_07", "=q2=Crystal Earring", "=ds=#sr# =so1=185 =so2=205 =so3=215 =so4=225" },
+		{ "s41263", "INV_Jewelry_Ring_29", "=q2=Ocean's Gaze", "=ds=#sr# =so1=190 =so2=190 =so3=210 =so4=230" },
+		{ "s41223", "INV_Belt_19", "=q2=Shimmering Gold Necklace", "=ds=#sr# =so1=190 =so2=205 =so3=215 =so4=225" },
+		{ "s41225", "INV_Jewelry_Ring_20", "=q2=Ironbloom Ring", "=ds=#sr# =so1=190 =so2=205 =so3=215 =so4=225" },
+		{ "s41541", "INV_Jewelry_Ring_28", "=q2=Dazzling Aquamarine Loop", "=ds=#sr# =so1=190 =so2=210 =so3=220 =so4=230" },
+		{ "s41579", "INV_Jewelry_Ring_12", "=q2=Marine's Demise", "=ds=#sr# =so1=190 =so2=210 =so3=220 =so4=230" },
+	},
+	
+	JewelcraftingExpert2 = {
+		{ "s41285", "INV_Ingot_08", "=q2=Shimmering Moonstone Tablet", "=ds=#sr# =so1=195 =so2=195 =so3=217 =so4=240" },
+		{ "s41229", "INV_Misc_Bandage_17", "=q1=Solid Gritted Paper", "=ds=#sr# =so1=200 =so2=200 =so3=205 =so4=210" },
+		{ "s41233", "INV_Jewelry_Ring_07", "=q1=Rough Truesilver Ring", "=ds=#sr# =so1=200 =so2=200 =so3=205 =so4=210" },
+		{ "s41237", "INV_Stone_07", "=q1=Solid Gemstone Cluster", "=ds=#sr# =so1=200 =so2=200 =so3=205 =so4=210" },
+		{ "s41601", "INV_Misc_Gem_Opal_02", "=q2=Sharpened Citrine Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=207 =so4=210" },
+		{ "s41603", "INV_Misc_Gem_Ruby_01", "=q2=Radiant Ember Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=207 =so4=210" },
+		{ "s41605", "INV_Misc_Gem_Ruby_02", "=q2=Glowing Ruby Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=207 =so4=210" },
+		{ "s41631", "INV_Misc_Gem_Crystal_03", "=q2=Illuminated Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=205 =so4=205" },
+		{ "s41738", "INV_Misc_Orb_01", "=q2=Marine Root", "=ds=#sr# =so1=200 =so2=215 =so3=225 =so4=235" },
+		{ "s41227", "INV_Staff_07", "=q2=Ornate Mithril Scepter", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
+		{ "s41546", "INV_Belt_27", "=q2=Alluring Citrine Choker", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
+		{ "s41548", "INV_Bracer_19", "=q2=Elaborate Golden Bracelets", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
+		{ "s41550", "INV_Wand_05", "=q2=Heart of the Sea", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
+		{ "s41744", "INV_Jewelry_Ring_03", "=q2=Bloodfire Circlet", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
+		{ "s41754", "INV_Misc_Gem_Pearl_04", "=q2=Smoldering Brooch", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
+		{ "s41552", "INV_Staff_11", "=q2=Staff of Gallitrea", "=ds=#sr# =so1=200 =so2=225 =so3=235 =so4=245" },
+		{ "s41558", "INV_Misc_Gem_Sapphire_02", "=q2=Draenethyst Baton", "=ds=#sr# =so1=200 =so2=225 =so3=235 =so4=245" },
+		{ "s41718", "INV_Bracer_14", "=q3=Ornate Mithril Bracelets", "=ds=#sr# =so1=200 =so2=225 =so3=237 =so4=250" },
+		{ "s41756", "INV_Misc_Gem_Sapphire_03", "=q2=Vitriol Brooch", "=ds=#sr# =so1=205 =so2=220 =so3=227 =so4=235" },
+		{ "s41239", "INV_Belt_31", "=q2=Greater Binding Signet", "=ds=#sr# =so1=210 =so2=230 =so3=240 =so4=250" },
+		{ "s41786", "INV_Helmet_06", "=q2=Ornate Mithril Crown", "=ds=#sr# =so1=210 =so2=230 =so3=240 =so4=250" },
+		{ "s41554", "INV_Jewelry_Ring_Emerald", "=q3=Golden Jade Ring", "=ds=#sr# =so1=210 =so2=235 =so3=245 =so4=255" },
+		{ "s41352", "INV_Staff_13", "=q3=Opaline Illuminator", "=ds=#sr# =so1=210 =so2=235 =so3=245 =so4=255" },
+		{ "s41307", "INV_Wand_11", "=q3=Gemkeeper's Folio", "=ds=#sr# =so1=??? =so2=235 =so3=245 =so4=255" },
+		{ "s41235", "INV_Jewelry_Necklace_03", "=q2=Aquamarine Pendant", "=ds=#sr# =so1=215 =so2=215 =so3=225 =so4=235" },
+		{ "s41241", "INV_Staff_32", "=q2=Royal Gemstone Staff", "=ds=#sr# =so1=215 =so2=235 =so3=245 =so4=255" },
+		{ "s41277", "INV_Jewelry_Necklace_07", "=q2=Starforge Amulet", "=ds=#sr# =so1=220 =so2=220 =so3=240 =so4=260" },
+		{ "s41243", "INV_Misc_Orb_05", "=q2=Emberstone Idol", "=ds=#sr# =so1=220 =so2=240 =so3=250 =so4=260" },
+		{ "s41245", "BTNIrongRingUPG2", "=q2=Runed Truesilver Ring", "=ds=#sr# =so1=220 =so2=240 =so3=250 =so4=260" },
+		{ "s41633", "INV_Misc_Gem_Ruby_02", "=q2=Burning Star Gemstone", "=ds=#sr# =so1=225 =so2=225 =so3=227 =so4=230" },
+	},
+	
+	JewelcraftingExpert3 = {
+		{ "s41085", "INV_Jewelry_Ring_25", "=q2=Emberstone Studded Ring", "=ds=#sr# =so1=225 =so2=240 =so3=247 =so4=255" },
+		{ "s41281", "INV_Jewelry_Talisman_05", "=q3=Runebound Amulet", "=ds=#sr# =so1=230 =so2=230 =so3=252 =so4=275" },
+		{ "s41716", "INV_Jewelry_Ring_03", "=q3=Crown of Elegance", "=ds=#sr# =so1=230 =so2=260 =so3=270 =so4=280" },
+		{ "s41784", "INV_Jewelry_Ring_Jade", "=q4=Mana Binding Signet", "=ds=#sr# =so1=230 =so2=260 =so3=275 =so4=290" },
+		{ "s41305", "INV_Wand_09", "=q2=Golden Scepter of Authority", "=ds=#sr# =so1=??? =so2=260 =so3=270 =so4=280" },
+		{ "s41635", "INV_Misc_Gem_Opal_01", "=q2=Brilliant Opal Gemstone", "=ds=#sr# =so1=235 =so2=235 =so3=237 =so4=240" },
+		{ "s41770", "INV_Stone_14", "=q1=Dense Gemstone Cluster", "=ds=#sr# =so1=235 =so2=240 =so3=240 =so4=240" },
+		{ "s41087", "BTNring02", "=q1=Rough Thorium Ring", "=ds=#sr# =so1=235 =so2=245 =so3=250 =so4=255" },
+		{ "s41720", "INV_Staff_32", "=q3=Regal Twilight Staff", "=ds=#sr# =so1=240 =so2=260 =so3=275 =so4=290" },
+		{ "s41724", "Spell_Shadow_GrimWard", "=q3=Ornament of Restraint", "=ds=#sr# =so1=245 =so2=245 =so3=265 =so4=285" },
+		{ "s41089", "BTNEmptyAmulet", "=q2=Mithril Blackstone Necklace", "=ds=#sr# =so1=245 =so2=265 =so3=275 =so4=285" },
+		{ "s41261", "INV_Jewelry_Amulet_05", "=q2=Sunburst Tiara", "=ds=#sr# =so1=250 =so2=250 =so3=270 =so4=290" },
+		{ "s41091", "INV_Misc_LeatherScrap_08", "=q1=Dense Gritted Paper", "=ds=#sr# =so1=250 =so2=260 =so3=265 =so4=270" },
+		{ "s41714", "INV_Bracer_19", "=q3=Opal Guided Bangles", "=ds=#sr# =so1=250 =so2=280 =so3=290 =so4=300" },
+		{ "s41637", "INV_Misc_Gem_Emerald_01", "=q2=Elegant Emerald Gemstone", "=ds=#sr# =so1=??? =so2=250 =so3=252 =so4=255" },
+		{ "s41639", "INV_Misc_Gem_Sapphire_02", "=q2=Shining Sapphire Gemstone", "=ds=#sr# =so1=??? =so2=250 =so3=252 =so4=255" },
+	},
+	
+	JewelcraftingArtisan1 = {
+		{ "s41093", "INV_Jewelry_Ring_10", "=q2=Radiant Thorium Twilight", "=ds=#sr# =so1=255 =so2=270 =so3=277 =so4=285" },
+		{ "s41348", "INV_Bracer_10", "=q2=Crystalfire Armlets", "=ds=#sr# =so1=255 =so2=275 =so3=285 =so4=295" },
+		{ "s41265", "INV_Jewelry_Ring_31", "=q2=Starry Thorium Band", "=ds=#sr# =so1=260 =so2=260 =so3=275 =so4=290" },
+		{ "s41611", "INV_Misc_Gem_01", "=q2=Gloomy Diamond Gemstone", "=ds=#sr# =so1=260 =so2=265 =so3=267 =so4=270" },
+		{ "s41095", "INV_Ore_Arcanite_02", "=q2=Glyph Codex", "=ds=#sr# =so1=260 =so2=280 =so3=287 =so4=295" },
+		{ "s41350", "INV_Jewelry_Ring_19", "=q2=Cinderfall Band", "=ds=#sr# =so1=260 =so2=280 =so3=290 =so4=300" },
+		{ "s41251", "INV_Jewelry_Ring_29", "=q2=Blue Starfire", "=ds=#sr# =so1=265 =so2=265 =so3=285 =so4=305" },
+		{ "s41273", "INV_Jewelry_Necklace_16", "=q2=Prism Amulet", "=ds=#sr# =so1=265 =so2=265 =so3=285 =so4=305" },
+		{ "s41774", "INV_Jewelry_Necklace_07", "=q2=Spellweaver Pendant", "=ds=#sr# =so1=265 =so2=275 =so3=285 =so4=295" },
+		{ "s41097", "INV_Staff_13", "=q2=Spellweaver Rod", "=ds=#sr# =so1=265 =so2=285 =so3=292 =so4=300" },
+		{ "s41099", "INV_Misc_Orb_01", "=q2=Quicksilver Whirl", "=ds=#sr# =so1=265 =so2=285 =so3=292 =so4=300" },
+		{ "s41762", "INV_Misc_Gem_03", "=q2=Dreary Opal Gemstone", "=ds=#sr# =so1=270 =so2=270 =so3=272 =so4=275" },
+		{ "s41311", "INV_Bracer_03", "=q2=Stellar Gemguards", "=ds=#sr# =so1=??? =so2=270 =so3=280 =so4=290" },
+		{ "s41315", "INV_Jewelry_Necklace_11", "=q2=Moonlit Charm", "=ds=#sr# =so1=??? =so2=275 =so3=285 =so4=295" },
+		{ "s41641", "INV_Misc_Gem_Topaz_01", "=q2=Unstable Arcane Gemstone", "=ds=#sr# =so1=??? =so2=275 =so3=277 =so4=280" },
+		{ "s41356", "INV_Misc_Book_09", "=q3=Gemstone Compendium", "=ds=#sr# =so1=275 =so2=275 =so3=297 =so4=320" },
+		{ "s41279", "INV_Jewelry_Necklace_Banshee", "=q2=Voidheart Charm", "=ds=#sr# =so1=280 =so2=280 =so3=300 =so4=320" },
+		{ "s41101", "INV_Bracer_13", "=q2=Crystalweft Bracers", "=ds=#sr# =so1=280 =so2=285 =so3=297 =so4=310" },
+		{ "s41103", "INV_Helmet_53", "=q2=Ethereal Frostspark Crown", "=ds=#sr# =so1=280 =so2=285 =so3=297 =so4=310" },
+		{ "s41105", "INV_Jewelry_Amulet_04", "=q2=Pendant of Arcane Radiance", "=ds=#sr# =so1=280 =so2=300 =so3=305 =so4=310" },
+		{ "s41313", "INV_Wand_07", "=q2=Garnet Guardian Staff", "=ds=#sr# =so1=??? =so2=290 =so3=300 =so4=310" },
+		{ "s41643", "INV_Misc_Gem_Sapphire_02", "=q2=Glittering Sapphire Gemstone", "=ds=#sr# =so1=??? =so2=290 =so3=292 =so4=295" },
+		{ "s41309", "BTNEyeRing", "=q2=Stellar Ruby Ring", "=ds=#sr# =so1=??? =so2=300 =so3=310 =so4=320" },
+		{ "s41287", "INV_Jewelry_Talisman_05", "=q2=Stormcloud Sigil", "=ds=#sr# =so1=290 =so2=310 =so3=325 =so4=340" },
+		{ "s41708", "INV_Jewelry_Ring_21", "=q3=Opalstone Circle", "=ds=#sr# =so1=290 =so2=320 =so3=330 =so4=340" },
+		{ "s41712", "BTNHarbingerRing", "=q3=Dark Iron Signet Ring", "=ds=#sr# =so1=290 =so2=320 =so3=330 =so4=340" },
+		{ "s41722", "INV_Jewelry_Necklace_06", "=q4=Pendant of Instability", "=ds=#sr# =so1=300 =so2=300 =so3=307 =so4=315" },
+		{ "s41253", "INV_Jewelry_Ring_37", "=q2=Emerald Monarch's Glow", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41257", "INV_Staff_28", "=q2=Arcanum Baton", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41700", "INV_Bracer_13", "=q4=Embergem Cuffs", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+	},
+	
+	JewelcraftingArtisan2 = {
+		{ "s41706", "INV_Crown_02", "=q4=Mastercrafted Diamond Crown", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41764", "INV_Misc_Gem_Topaz_02", "=q3=Resurged Topaz Gemstone", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41768", "INV_Misc_Gem_Topaz_03", "=q3=Resilient Arcane Gemstone", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41798", "INV_Misc_Gem_03", "=q3=Guardbreaker Charm", "=ds=#sr# =so1=300 =so2=320 =so3=325 =so4=330" },
+		{ "s41804", "INV_Bracer_13", "=q3=Bindings of Luminance", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41806", "INV_Crown_01", "=q3=Crown of the Illustrious Queen", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41802", "INV_Staff_20", "=q3=Spire of Channeled Power", "=ds=#sr# =so1=300 =so2=325 =so3=335 =so4=345" },
+		{ "s41808", "INV_Bracer_03", "=q4=Mastercrafted Diamond Bangles", "=ds=#sr# =so1=300 =so2=325 =so3=332 =so4=340" },
+		{ "s41778", "INV_Bracer_01", "=q2=Stormcloud Shackles", "=ds=#sr# =so1=??? =so2=310 =so3=320 =so4=330" },
+		{ "s41303", "INV_Jewelry_Ring_08", "=q2=Massive Jewel Circlet", "=ds=#sr# =so1=??? =so2=315 =so3=322 =so4=330" },
+		{ "s41317", "INV_Jewelry_Ring_24", "=q3=Twilight Opal Cascade", "=ds=#sr# =so1=??? =so2=320 =so3=330 =so4=340" },
+		{ "s41271", "INV_Jewelry_Ring_Gold", "=q1=Pure Gold Ring", "=ds=#sr# =so1=??? =so2=325 =so3=335 =so4=345" },
+	},
+	
+	JewelcraftingArtisan3 = {
+	},
+	
+	JewelcraftingGemology1 = {
+		{ "s41621", "INV_Stone_03", "=q2=Enchanted Emerald Gemstone", "=ds=#sr# =so1=250 =so2=255 =so3=257 =so4=260" },
+		{ "s41625", "INV_Misc_Gem_Diamond_01", "=q2=Beautiful Diamond Gemstone", "=ds=#sr# =so1=270 =so2=275 =so3=277 =so4=280" },
+		{ "s41609", "INV_Misc_Gem_Bloodstone_01", "=q3=Azerothian Ruby Gemstone", "=ds=#sr# =so1=275 =so2=280 =so3=282 =so4=285" },
+		{ "s41617", "INV_Stone_01", "=q2=Tempered Azerothian Gemstone", "=ds=#sr# =so1=275 =so2=280 =so3=282 =so4=285" },
+		{ "s41613", "INV_Misc_Gem_02", "=q3=Flawless Black Gemstone", "=ds=#sr# =so1=285 =so2=290 =so3=292 =so4=295" },
+		{ "s41615", "INV_Misc_Gem_Sapphire_01", "=q3=Arcane Emerald Gemstone", "=ds=#sr# =so1=295 =so2=300 =so3=302 =so4=305" },
+		{ "s41619", "INV_Misc_Gem_Topaz_02", "=q3=Stunning Imperial Gemstone", "=ds=#sr# =so1=300 =so2=310 =so3=315 =so4=320" },
+		{ "s41821", "INV_Misc_Gem_Topaz_02", "=q3=Gorgeous Mountain Gemstone", "=ds=#sr# =so1=300 =so2=330 =so3=345 =so4=360" },
+	},
+	
+	JewelcraftingGoldsmithing1 = {
+		{ "s41782", "INV_Jewelry_Ring_Truesight", "=q4=Golden Runed Ring", "=ds=#sr# =so1=285 =so2=310 =so3=320 =so4=330" },
+		{ "s41780", "INV_Jewelry_Ring_Saphire", "=q3=Stormcloud Signet", "=ds=#sr# =so1=290 =so2=310 =so3=320 =so4=330" },
+		{ "s41710", "INV_Jewelry_Ring_DragonPaw", "=q3=Deep Sapphire Circlet", "=ds=#sr# =so1=290 =so2=320 =so3=330 =so4=340" },
+		{ "s41790", "INV_Jewelry_Ring_DragonPaw", "=q4=Ring of Unleashed Potential", "=ds=#sr# =so1=290 =so2=320 =so3=330 =so4=340" },
+		{ "s41255", "INV_Jewelry_Ring_35", "=q3=Sapphire Luminescence", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41696", "INV_Jewelry_Ring_42", "=q4=Shimmering Diamond Band", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41698", "INV_Misc_Gem_Ruby_03", "=q4=Crown of Molten Ascension", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41702", "INV_Belt_29", "=q4=Blackwing Signet of Command", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41704", "INV_Jewelry_Amulet_01", "=q4=Talisman of Hinderance", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41788", "INV_Jewelry_Ring_Gold", "=q4=Blazefury Circlet", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41267", "BTNGoldMysticRing", "=q4=Ruby Ring of Ruin", "=ds=#sr# =so1=300 =so2=330 =so3=350 =so4=370" },
+		{ "s41269", "BTNRingOfInfiniteGems", "=q4=Encrusted Gemstone Ring", "=ds=#sr# =so1=300 =so2=330 =so3=350 =so4=370" },
+		{ "s41792", "INV_Staff_11", "=q4=Empowered Domination Rod", "=ds=#sr# =so1=300 =so2=330 =so3=340 =so4=350" },
+		{ "s41796", "INV_Jewelry_Trinket_VampiricGrail", "=q4=Grail of Forgotten Memories", "=ds=#sr# =so1=300 =so2=330 =so3=340 =so4=350" },
+		{ "s41800", "inv_staff_14", "=q4=Rudeus' Focusing Cane", "=ds=#sr# =so1=300 =so2=330 =so3=340 =so4=350" },
+	},
+	
+	JewelcraftingGemstones1 = {
+		{ "s41760", "INV_Misc_Gem_Emerald_02", "=q2=Graceful Agate Gemstone", "=ds=#sr# =so1=135 =so2=135 =so3=137 =so4=140" },
+		{ "s41627", "INV_Misc_Gem_Diamond_02", "=q2=Pristine Crystal Gemstone", "=ds=#sr# =so1=150 =so2=155 =so3=157 =so4=160" },
+		{ "s41607", "INV_Misc_Gem_Crystal_02", "=q2=Shimmering Aqua Gemstone", "=ds=#sr# =so1=150 =so2=155 =so3=157 =so4=160" },
+		{ "s41629", "INV_Misc_Gem_Stone_01", "=q2=Gleaming Jade Gemstone", "=ds=#sr# =so1=175 =so2=180 =so3=182 =so4=185" },
+		{ "s41601", "INV_Misc_Gem_Opal_02", "=q2=Sharpened Citrine Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=207 =so4=210" },
+		{ "s41603", "INV_Misc_Gem_Ruby_01", "=q2=Radiant Ember Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=207 =so4=210" },
+		{ "s41605", "INV_Misc_Gem_Ruby_02", "=q2=Glowing Ruby Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=207 =so4=210" },
+		{ "s41631", "INV_Misc_Gem_Crystal_03", "=q2=Illuminated Gemstone", "=ds=#sr# =so1=200 =so2=205 =so3=205 =so4=205" },
+		{ "s41633", "INV_Misc_Gem_Ruby_02", "=q2=Burning Star Gemstone", "=ds=#sr# =so1=225 =so2=225 =so3=227 =so4=230" },
+		{ "s41635", "INV_Misc_Gem_Opal_01", "=q2=Brilliant Opal Gemstone", "=ds=#sr# =so1=235 =so2=235 =so3=237 =so4=240" },
+		{ "s41637", "INV_Misc_Gem_Emerald_01", "=q2=Elegant Emerald Gemstone", "=ds=#sr# =so1=??? =so2=250 =so3=252 =so4=255" },
+		{ "s41639", "INV_Misc_Gem_Sapphire_02", "=q2=Shining Sapphire Gemstone", "=ds=#sr# =so1=??? =so2=250 =so3=252 =so4=255" },
+		{ "s41611", "INV_Misc_Gem_01", "=q2=Gloomy Diamond Gemstone", "=ds=#sr# =so1=260 =so2=265 =so3=267 =so4=270" },
+		{ "s41762", "INV_Misc_Gem_03", "=q2=Dreary Opal Gemstone", "=ds=#sr# =so1=270 =so2=270 =so3=272 =so4=275" },
+		{ "s41625", "INV_Misc_Gem_Diamond_01", "=q2=Beautiful Diamond Gemstone", "=ds=#sr# =so1=270 =so2=275 =so3=277 =so4=280" },
+		{ "s41641", "INV_Misc_Gem_Topaz_01", "=q2=Unstable Arcane Gemstone", "=ds=#sr# =so1=??? =so2=275 =so3=277 =so4=280" },
+		{ "s41643", "INV_Misc_Gem_Sapphire_02", "=q2=Glittering Sapphire Gemstone", "=ds=#sr# =so1=??? =so2=290 =so3=292 =so4=295" },
+		{ "s41764", "INV_Misc_Gem_Topaz_02", "=q3=Resurged Topaz Gemstone", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41768", "INV_Misc_Gem_Topaz_03", "=q3=Resilient Arcane Gemstone", "=ds=#sr# =so1=300 =so2=320 =so3=330 =so4=340" },
+		{ "s41621", "INV_Stone_03", "=q2=Enchanted Emerald Gemstone", "=ds=#sr# =so1=250 =so2=255 =so3=257 =so4=260" },
+		{ "s41609", "INV_Misc_Gem_Bloodstone_01", "=q3=Azerothian Ruby Gemstone", "=ds=#sr# =so1=275 =so2=280 =so3=282 =so4=285" },
+		{ "s41617", "INV_Stone_01", "=q2=Tempered Azerothian Gemstone", "=ds=#sr# =so1=275 =so2=280 =so3=282 =so4=285" },
+		{ "s41613", "INV_Misc_Gem_02", "=q3=Flawless Black Gemstone", "=ds=#sr# =so1=285 =so2=290 =so3=292 =so4=295" },
+		{ "s41615", "INV_Misc_Gem_Sapphire_01", "=q3=Arcane Emerald Gemstone", "=ds=#sr# =so1=295 =so2=300 =so3=302 =so4=305" },
+		{ "s41619", "INV_Misc_Gem_Topaz_02", "=q3=Stunning Imperial Gemstone", "=ds=#sr# =so1=300 =so2=310 =so3=315 =so4=320" },
+		{ "s41821", "INV_Misc_Gem_Topaz_02", "=q3=Gorgeous Mountain Gemstone", "=ds=#sr# =so1=300 =so2=330 =so3=345 =so4=360" },
+	},
+
 	JewelcraftingRings1 = {
 		{ "s41001", "INV_Jewelry_Ring_12", "=q2=Bright Copper Ring", "=ds=#sr# =so1=15 =so2=35 =so3=45 =so4=55" },
 		{ "s41003", "INV_Jewelry_Ring_18", "=q2=Malachite Ring", "=ds=#sr# =so1=20 =so2=40 =so3=47 =so4=55" },
@@ -4098,6 +4077,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ 0, "", "", "" },
 		{ "s41792", "INV_Staff_11", "=q4=Empowered Domination Rod", "=ds=#sr# =so1=300 =so2=330 =so3=340 =so4=350" },
 	},
+	
 	JewelcraftingStaves1 = {
 		{ "s41009", "INV_Staff_07", "=q1=Copper Staff", "=ds=#sr# =so1=45 =so2=60 =so3=67 =so4=75" },
 		{ "s41017", "INV_Staff_10", "=q2=Small Pearlstone Staff", "=ds=#sr# =so1=55 =so2=75 =so3=82 =so4=90" },
