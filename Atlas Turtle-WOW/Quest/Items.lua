@@ -3139,19 +3139,19 @@ Inst25Quest14Rewardtext = AQNoReward
 --Quest 15 Alliance
 Inst25Quest15Rewardtext = AQDiscription_REWARD..WHITE.."1"..AQDiscription_OR..WHITE.."2"..AQDiscription_OR..WHITE.."3"..AQDiscription_OR..WHITE.."4"
 --ITEM1
-Inst25Quest15ITC1 = Itemc1
+Inst25Quest15ITC1 = Itemc5
 Inst25Quest15description1 = AQITEM_STAFF
 Inst25Quest15ID1 = "22589"
 --ITEM2
-Inst25Quest15ITC2 = Itemc1
+Inst25Quest15ITC2 = Itemc5
 Inst25Quest15description2 = AQITEM_STAFF
 Inst25Quest15ID2 = "22630"
 --ITEM3
-Inst25Quest15ITC3 = Itemc1
+Inst25Quest15ITC3 = Itemc5
 Inst25Quest15description3 = AQITEM_STAFF
 Inst25Quest15ID3 = "22631"
 --ITEM4
-Inst25Quest15ITC4 = Itemc1
+Inst25Quest15ITC4 = Itemc5
 Inst25Quest15description4 = AQITEM_STAFF
 Inst25Quest15ID4 = "22632"
 
@@ -3293,19 +3293,19 @@ Inst25Quest14Rewardtext_HORDE = AQNoReward
 --Quest 15 Horde
 Inst25Quest15Rewardtext_HORDE = AQDiscription_REWARD..WHITE.."1"..AQDiscription_OR..WHITE.."2"..AQDiscription_OR..WHITE.."3"..AQDiscription_OR..WHITE.."4"
 --ITEM1
-Inst25Quest15ITC1_HORDE = Itemc6
+Inst25Quest15ITC1_HORDE = Itemc5
 Inst25Quest15description1_HORDE = AQITEM_STAFF
 Inst25Quest15ID1_HORDE = "22589"
 --ITEM2
-Inst25Quest15ITC2_HORDE = Itemc6
+Inst25Quest15ITC2_HORDE = Itemc5
 Inst25Quest15description2_HORDE = AQITEM_STAFF
 Inst25Quest15ID2_HORDE = "22630"
 --ITEM3
-Inst25Quest15ITC3_HORDE = Itemc6
+Inst25Quest15ITC3_HORDE = Itemc5
 Inst25Quest15description3_HORDE = AQITEM_STAFF
 Inst25Quest15ID3_HORDE = "22631"
 --ITEM4
-Inst25Quest15ITC4_HORDE = Itemc6
+Inst25Quest15ITC4_HORDE = Itemc5
 Inst25Quest15description4_HORDE = AQITEM_STAFF
 Inst25Quest15ID4_HORDE = "22632"
 

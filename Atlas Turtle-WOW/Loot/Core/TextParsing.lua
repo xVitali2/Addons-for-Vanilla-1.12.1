@@ -120,6 +120,7 @@ function AtlasLoot_FixText(text)
     text = gsub(text, "#p17#", L["LW"])
     text = gsub(text, "#p18#", "Survival")
     text = gsub(text, "#p19#", L["Garderning"])
+    text = gsub(text, "#p20#", L["Jewelcrafting"])
 
     --Reputation
     text = gsub(text, "#r1#", BF["Neutral"])

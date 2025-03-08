@@ -8124,5 +8124,7 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 61197, "INV_Stone_05", "=q3=Fading Dream Fragment", "", "0.35%" },
 		{ 0, "", "", "" },
 		{ 54001, "INV_Crate_02", "=q2=Dream Frog", "=ds=#e15#", "0.08%" },
+		{ 0, "", "", "" },
+		{ 70212, "INV_Misc_Note_01", "=q4=Plans: Mana Binding Signet", "=ds=#p20# (230)", "2%" },
 	},
 }
