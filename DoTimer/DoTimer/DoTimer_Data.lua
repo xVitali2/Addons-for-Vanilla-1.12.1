@@ -323,6 +323,11 @@ DoTimer_SpellData = { --a list of textures (same in all locales!) and the englis
 			["duration"] = 20,
 			["multiplier"] = 1,
 		},
+		["Interface\\Icons\\Ability_Mount_JungleTiger"] = {
+			["name"] = "Tiger's Fury",
+			["duration"] = 18,
+			["multiplier"] = 1,
+		},
 		["Interface\\Icons\\Ability_Hunter_Pet_Bear"] = {
 			["name"] = "Feral Charge",
 			["duration"] = 4,
@@ -350,7 +355,7 @@ DoTimer_SpellData = { --a list of textures (same in all locales!) and the englis
 		},
 		["Interface\\Icons\\Ability_Druid_SupriseAttack"] = {
 			["name"] = "Pounce",
-			["duration"] = 3,
+			["duration"] = 18,
 			["multiplier"] = 1,
 		},
 		["Interface\\Icons\\INV_Relics_IdolofRejuvenation"] = {
@@ -537,6 +542,7 @@ function DoTimer_DefineSpells(class) --creates the lists of spells to watch for 
 		healspells = {
 			["Abolish Poison"] = 1,
 			["Regrowth"] = 1,
+			["Tiger's Fury"] = 1,
 			["Rejuvenation"] = 1,
 			["Innervate"] = 1,
 		}

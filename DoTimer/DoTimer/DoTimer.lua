@@ -593,7 +593,7 @@ function DoTimer_ReturnTexture(spell) --returns the texture path for the icon of
 		local i = 1
 		while GetSpellName(i,value) do
 			local spellname = GetSpellName(i,value)
-			if spell == spellname then 
+			if spell == spellname then
 				return GetSpellTexture(i,value)
 			end
 			i = i + 1
@@ -689,10 +689,17 @@ end
 
 function DoTimer_PotentialHealTimer()
 	if DoTimer_intable(arg1,healspells) then
+		local finishedheal
 		DoTimer_Debug("heal success: "..arg1)
-		local finishedheal = {
-			spell = arg1, rank = arg2, target = arg5.name, targetsex = arg5.sex, targetlevel = arg5.level, texture = arg4, duration = DoTimer_ReturnDuration(arg1,arg2), targettype = arg5.type, timertype = "heal", english = english
-		}
+		if arg1 == "Tiger's Fury" then
+			finishedheal = {
+				spell = arg1, rank = arg2, target = UnitName("player"), targetsex = UnitSex("player"), targetlevel = UnitLevel("player"), texture = arg4, duration = DoTimer_ReturnDuration(arg1,arg2), targettype = "player", timertype = "heal", english = english
+			}
+		else
+			finishedheal = {
+				spell = arg1, rank = arg2, target = arg5.name, targetsex = arg5.sex, targetlevel = arg5.level, texture = arg4, duration = DoTimer_ReturnDuration(arg1,arg2), targettype = arg5.type, timertype = "heal", english = english
+			}
+		end
 		DoTimer_CreateSpellTimer(finishedheal)
 	end
 end
@@ -715,6 +722,7 @@ function DoTimer_intable(query,checkedtable) --checks a spell to see if it needs
 end
 
 function DoTimer_ReturnDuration(spell,rank) --returns the duration of a spell
+	DoTimer_Debug("DoTimer_ReturnDuration")
 	local tables = {BOOKTYPE_SPELL,BOOKTYPE_PET}
 	for index,value in ipairs(tables) do
 		local i = 1
@@ -744,7 +752,7 @@ function DoTimer_ReturnDuration(spell,rank) --returns the duration of a spell
 						truenumber = value2
 					end
 				end
-				DoTimer_Debug("truenumber!!!!!!!!!!!!!!!!!!!!! "..truenumber)
+				DoTimer_Debug("truenumber! "..truenumber)
 				return truenumber * multiplier
 			end
 			i = i + 1
