@@ -28,6 +28,10 @@ local BabbleBoss = AceLibrary("AceLocale-2.2"):new(MAJOR_VERSION)
 
 BabbleBoss:RegisterTranslations("enUS", function()
 	return {
+		["Jared Voss"] = true,
+		["Zandara Windhoof"] = true,
+		["Vangros"] = true,
+		["Prelate Ironmane"] = true,
 		["Patchwork Golem"] = true,
 		["Carrion Spinner"] = true,
 		["Nerubian Overseer"] = true,
