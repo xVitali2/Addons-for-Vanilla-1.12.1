@@ -318,7 +318,7 @@ Inst1Quest3name1_HORDE = "Horde Defender's Axe" -- 40065
 Inst2Story = "Recently, a night elf druid named Naralex discovered a network of underground caverns within the heart of the Barrens. Dubbed the 'Wailing Caverns', these natural caves were filled with steam fissures which produced long, mournful wails as they vented. Naralex believed he could use the caverns' underground springs to restore lushness and fertility to the Barrens - but to do so would require siphoning the energies of the fabled Emerald Dream. Once connected to the Dream however, the druid's vision somehow became a nightmare. Soon the Wailing Caverns began to change - the waters turned foul and the once-docile creatures inside metamorphosed into vicious, deadly predators. It is said that Naralex himself still resides somewhere inside the heart of the labyrinth, trapped beyond the edges of the Emerald Dream. Even his former acolytes have been corrupted by their master's waking nightmare - transformed into the wicked Druids of the Fang."
 Inst2Caption = "Wailing Caverns"
 Inst2QAA = "7 Quests"
-Inst2QAH = "8 Quests"
+Inst2QAH = "9 Quests"
 
 --Quest 1 Alliance
 Inst2Quest1 = "1. Deviate Hides" --1486
@@ -509,6 +509,17 @@ Inst2Quest8_HORDE_Folgequest = "No"
 Inst2Quest8name1_HORDE = "Staff of the Arcane Path" -- 80860
 Inst2Quest8name2_HORDE = "Spellweaving Dagger" -- 80861
 
+--Quest 9 Horde
+Inst2Quest9_HORDE = "9. Against the Kolkar Dream" -- ???
+Inst2Quest9_HORDE_Level = "23"
+Inst2Quest9_HORDE_Attain = "??"
+Inst2Quest9_HORDE_Aim = "Slay Zandara Windhoof within Wailing Caverns, and bring her back to Nalpak in the Barrens."
+Inst2Quest9_HORDE_Location = "Nalpak (Barrens - Wailing Caverns; "..YELLOW.."47,36"..WHITE..")"
+Inst2Quest9_HORDE_Note = "You need to kill Zandara Windhoof [6] and take her head."
+Inst2Quest9_HORDE_Prequest = "No"
+Inst2Quest9_HORDE_Folgequest = "No"
+
+Inst2Quest9name1_HORDE = "Kolkar Drape" -- 70224
 
 --------------- INST3 - Ragefire Chasm (RFC) ---------------
 Inst3Story = "Ragefire Chasm consists of a network of volcanic caverns that lie below the orcs' new capital city of Orgrimmar. Recently, rumors have spread that a cult loyal to the demonic Shadow Council has taken up residence within the Chasm's fiery depths. This cult, known as the Burning Blade, threatens the very sovereignty of Durotar. Many believe that the orc Warchief, Thrall, is aware of the Blade's existence and has chosen not to destroy it in the hopes that its members might lead him straight to the Shadow Council. Either way, the dark powers emanating from Ragefire Chasm could undo all that the orcs have fought to attain."
@@ -4774,7 +4785,7 @@ Inst23Quest12name1_HORDE = Inst23Quest12name1
 Inst24Story = "During the Third War, the wizards of the Kirin Tor battled against the undead armies of the Scourge. When the wizards of Dalaran died in battle, they would rise soon after - adding their former might to the growing Scourge. Frustrated by their lack of progress (and against the advice of his peers) the Archmage, Arugal elected to summon extra-dimensional entities to bolster Dalaran's diminishing ranks. Arugal's summoning brought the ravenous worgen into the world of Azeroth. The feral wolf-men slaughtered not only the Scourge, but quickly turned on the wizards themselves. The worgen laid siege to the keep of the noble, Baron Silverlaine. Situated above the tiny hamlet of Pyrewood, the keep quickly fell into shadow and ruin. Driven mad with guilt, Arugal adopted the worgen as his children and retreated to the newly dubbed 'Shadowfang Keep'. It's said he still resides there, protected by his massive pet, Fenrus - and haunted by the vengeful ghost of Baron Silverlaine."
 Inst24Caption = "Shadowfang Keep"
 Inst24QAA = "4 Quests"
-Inst24QAH = "5 Quests"
+Inst24QAH = "6 Quests"
 
 --Quest 1 Alliance
 Inst24Quest1 = "1. The Test of Righteousness" -- 1654
@@ -4888,6 +4899,16 @@ Inst24Quest5_HORDE_Folgequest = "Darlthos Legacy" --40282
 Inst24Quest5name1_HORDE = "Sword of Laneron" --60392
 Inst24Quest5name2_HORDE = "Shield of Mathela" --60393
 
+--Quest 6 Horde
+Inst24Quest6_HORDE = "6. Too Late to Prelate" -- ???
+Inst24Quest6_HORDE_Level = "?"
+Inst24Quest6_HORDE_Attain = "?"
+Inst24Quest6_HORDE_Aim = "Kill Prelate Ironmane (13) in SFK."
+Inst24Quest6_HORDE_Location = "Father Brightcopf (Glenshire "..YELLOW.."??"..WHITE..")"
+Inst24Quest6_HORDE_Note = "Kill Prelate Ironmane (13) in SFK."
+Inst24Quest6_HORDE_Prequest = "No"
+Inst24Quest6_HORDE_Folgequest = "No"
+--
 
 --------------- INST25 - Stratholme (Strat) ---------------
 Inst25Story = "Once the jewel of northern Lordaeron, the city of Stratholme is where Prince Arthas turned against his mentor, Uther Lightbringer, and slaughtered hundreds of his own subjects who were believed to have contracted the dreaded plague of undeath. Arthas' downward spiral and ultimate surrender to the Lich King soon followed. The broken city is now inhabited by the undead Scourge - led by the powerful lich, Kel'thuzad. A contingent of Scarlet Crusaders, led by Grand Crusader Dathrohan, also holds a portion of the ravaged city. The two sides are locked in constant, violent combat. Those adventurers brave (or foolish) enough to enter Stratholme will be forced to contend with both factions before long. It is said that the city is guarded by three massive watchtowers, as well as powerful necromancers, banshees and abominations. There have also been reports of a malefic Death Knight riding atop an unholy steed - dispensing indiscriminate wrath on all those who venture within the realm of the Scourge."

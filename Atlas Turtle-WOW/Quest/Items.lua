@@ -307,6 +307,12 @@ Inst2Quest8ITC2_HORDE = Itemc4;
 Inst2Quest8description2_HORDE = AQITEM_ONEHAND..AQITEM_DAGGER
 Inst2Quest8ID2_HORDE = "80861"
 
+--Quest 9 Horde
+Inst2Quest9Rewardtext_HORDE = AQDiscription_REWARD..WHITE.."1"
+--ITEM1
+Inst2Quest9ITC1_HORDE = Itemc4;
+Inst2Quest9description1_HORDE = AQITEM_BACK
+Inst2Quest9ID1_HORDE = "70224"
 
 --------------- INST3 - Ragefire Chasm (RFC) ---------------
 
