@@ -4558,8 +4558,10 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 80706, "INV_Gauntlets_04", "=q2=Ogremight Gauntlets", "=ds=#s9#, #a3#", "50%" },
 	},
 	DMJaredVoss = {
+		{ 55377, "inv_misc_cape_21", "=q1=Chemist's Shawl", "=ds=#s4#", "?%" },
 	},
 	DMHarvester = {
+		{ 55378, "INV_Gauntlets_27", "=q2=Inventor's Mitts", "=ds=#s9#, #a1#", "?%" },
 	},
 	DMMinerJohnson = {
 		{ 5443, "INV_Shield_02", "=q3=Gold-plated Buckler", "=ds=#w8#", "37.21%" },
@@ -5326,8 +5328,8 @@ AtlasLoot_Data["AtlasLootItems"] = {
 	RFKAggem = {
 		{ 6681, "INV_Weapon_ShortBlade_10", "=q1=Thornspike", "=ds=#h1#, #w4#", "86.19%" },
 		{ 0, "", "", "" },
-		{ 80732, "INV_Gauntlets_05", "=q2=Boar Tamer Gloves", ""},
-		{ 80733, "INV_Sword_19", "=q2=Cursed Thornblade", ""},
+		{ 80732, "INV_Gauntlets_05", "=q2=Boar Tamer Gloves", "=ds=#s9#, #a2#"},
+		{ 80733, "INV_Sword_19", "=q2=Cursed Thornblade", "=ds=#h3#, #w10#"},
 	},
 	RFKOverlordRamtusk = {
 		{ 6687, "INV_Weapon_Halbard_01", "=q3=Corpsemaker", "=ds=#h2#, #w1#", "27.79%" },
