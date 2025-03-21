@@ -5739,8 +5739,8 @@ AtlasLoot_Data["AtlasLootItems"] = {
 	SFKRethilgore = {
 		{ 5254, "INV_Shoulder_08", "=q1=Rugged Spaulders", "=ds=#s3#, #a2#", "84.73%" },
 		{ 0, "", "", "" },
-		{ 80713, "INV_Chest_Leather_07", "=q2=Padded Keeper Tunic", ""},
-		{ 80714, "INV_Belt_20", "=q2=Binding Chain", ""},
+		{ 80713, "INV_Chest_Leather_07", "=q2=Padded Keeper Tunic", "=ds=#s5#, #a2#"},
+		{ 80714, "INV_Belt_20", "=q2=Binding Chain", "=ds=#s10#, #a3#"},
 	},
 	SFKRazorclawtheButcher = {
 		{ 1292, "INV_Axe_23", "=q3=Butcher's Cleaver", "=ds=#h1#, #w1#", "8.70%" },
@@ -5753,14 +5753,14 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 0, "", "", "" },
 		{ 6323, "INV_Mace_02", "=q2=Baron's Scepter", "=ds=#h3#, #w6#", "37.93%" },
 		{ 0, "", "", "" },
-		{ 80715, "INV_Gauntlets_25", "=q2=Gloves of the Lifted Cup", ""},
+		{ 80715, "INV_Gauntlets_25", "=q2=Gloves of the Lifted Cup", "=ds=#s9#, #a2#"},
 	},
 	SFKSpringvale = {
 		{ 6320, "INV_Shield_03", "=q3=Commander's Crest", "=ds=#w8#", "27.71%" },
 		{ 0, "", "", "" },
 		{ 3191, "INV_Axe_06", "=q2=Arced War Axe", "=ds=#h2#, #w1#", "31.73%" },
 		{ 0, "", "", "" },
-		{ 80717, "INV_Boots_Chain_02", "=q2=Commander's Greaves", ""},
+		{ 80717, "INV_Boots_Chain_02", "=q2=Commander's Greaves", "=ds=#s12#, #a3#"},
 	},
 	SFKOdotheBlindwatcher = {
 		{ 6318, "INV_Staff_27", "=q3=Odo's Ley Staff", "=ds=#w9#", "29.97%" },
@@ -5776,7 +5776,7 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 0, "", "", "" },
 		{ 6314, "INV_Misc_Cape_10", "=q2=Wolfmaster Cape", "=ds=#s4#", "33.25%" },
 		{ 0, "", "", "" },
-		{ 80716, "INV_Weapon_ShortBlade_27", "=q2=Claw of the Worgen", ""},
+		{ 80716, "INV_Weapon_ShortBlade_27", "=q2=Claw of the Worgen", "=ds=#h3#, #w13#"},
 	},
 	SFKArugalsVoidwalker = {
 		{ 5943, "INV_Bracer_03", "=q2=Rift Bracers", "=ds=#s8#, #a3#", "3%" },
