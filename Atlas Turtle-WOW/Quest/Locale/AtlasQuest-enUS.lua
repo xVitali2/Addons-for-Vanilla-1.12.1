@@ -4901,10 +4901,10 @@ Inst24Quest5name2_HORDE = "Shield of Mathela" --60393
 
 --Quest 6 Horde
 Inst24Quest6_HORDE = "6. Too Late to Prelate" -- ???
-Inst24Quest6_HORDE_Level = "?"
-Inst24Quest6_HORDE_Attain = "?"
-Inst24Quest6_HORDE_Aim = "Kill Prelate Ironmane (13) in SFK."
-Inst24Quest6_HORDE_Location = "Father Brightcopf (Glenshire "..YELLOW.."??"..WHITE..")"
+Inst24Quest6_HORDE_Level = "0"
+Inst24Quest6_HORDE_Attain = "0"
+Inst24Quest6_HORDE_Aim = "Kill Prelate Ironmane."
+Inst24Quest6_HORDE_Location = "Father Brightcopf (Glenshire "..YELLOW.."0"..WHITE..")"
 Inst24Quest6_HORDE_Note = "Kill Prelate Ironmane (13) in SFK."
 Inst24Quest6_HORDE_Prequest = "No"
 Inst24Quest6_HORDE_Folgequest = "No"
