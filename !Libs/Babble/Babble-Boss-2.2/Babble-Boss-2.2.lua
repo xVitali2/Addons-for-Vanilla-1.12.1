@@ -28,6 +28,9 @@ local BabbleBoss = AceLibrary("AceLocale-2.2"):new(MAJOR_VERSION)
 
 BabbleBoss:RegisterTranslations("enUS", function()
 	return {
+		["Duke Dreadmoore"] = true,
+		["Brother Wystan"] = true,
+		["Armory Quartermaster Daghelm"] = true,
 		["Jared Voss"] = true,
 		["Zandara Windhoof"] = true,
 		["Vangros"] = true,

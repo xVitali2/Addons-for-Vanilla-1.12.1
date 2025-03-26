@@ -538,7 +538,7 @@ AtlasLootBossButtons = {
 		"VanillaKeys",
 		"",
 		"SMHerod",
-		"",--SMQuartermaster
+		"SMQuartermasterDaghelm",
 		"",
 		"SMATrash",
 		"SCARLET",
@@ -562,7 +562,7 @@ AtlasLootBossButtons = {
 		"SMIronspine",
 		"SMAzshir",
 		"SMFallenChampion",
-		"",--SMDukeDreadmoore
+		"SMDukeDreadmoore",
 		"",
 		"SMGTrash",
 		"SCARLET",
@@ -572,7 +572,7 @@ AtlasLootBossButtons = {
 		"SMHoundmasterLoksey",
 		"SMDoan",
 		"SMDoansBox",
-		"",--SMBrotherWystan
+		"SMBrotherWystan",
 		"",
 		"SMLTrash",
 		"SCARLET",
@@ -3994,10 +3994,14 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 6632, "INV_Misc_Cape_02", "=q2=Feyscale Cloak", "=ds=#s4#", "37.84%" },
 	},
 	WCZandara = {
-		{ 55370, "", "=q3=Totem of Static Charge", "=ds=#s16#, #e17#", "?%" },
+		{ 55371, "", "=q2=Windborne Sash", "=ds=#s10#, #a1#", "?%" }, --dropped
+		{ 55370, "", "=q3=Totem of Static Charge", "=ds=#s16#, #e17#", "?%" }, --dropped
+		{ 55369, "", "=q3=Kolkar Marauder Gauntlets", "=ds=#s9#, #a3#", "?%" }, --dropped
 	},
 	WCVangros = {
-		{ 55372, "", "=q3=Band of the Claw", "=ds=#s13#", "?%" },
+		{ 55372, "", "=q3=Band of the Claw", "=ds=#s13#", "?%" }, --dropped
+		{ 55373, "", "=q3=Idol of the Apex Predator", "=ds=#s16#, #e16#", "?%" }, --?
+		{ 55374, "INV_Belt_24", "=q2=Enraging Waistwraps", "=ds=#s10#, #a2#", "?%" },--dropped
 	},
 	WCTrash = {
 		{ 10413, "INV_Gauntlets_18", "=q2=Gloves of the Fang", "=ds=#s9#, #a2# =q7=#x4#", "1.20%" },
@@ -4558,10 +4562,15 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 80706, "INV_Gauntlets_04", "=q2=Ogremight Gauntlets", "=ds=#s9#, #a3#", "50%" },
 	},
 	DMJaredVoss = {
-		{ 55377, "inv_misc_cape_21", "=q1=Chemist's Shawl", "=ds=#s4#", "?%" },
+		{ 55377, "inv_misc_cape_21", "=q2=Chemist's Shawl", "=ds=#s4#", "?%" },--dropped
+		{ 55376, "", "=q3=Mixologist", "=ds=#h1#, #w4#", "?%" }, --?
+		{ 55375, "", "=q3=Corrosive Vial", "=ds=#s14#", "?%" }, --?
 	},
 	DMHarvester = {
-		{ 55378, "INV_Gauntlets_27", "=q2=Inventor's Mitts", "=ds=#s9#, #a1#", "?%" },
+	 	{ 55380, "", "=q2=Craftsman's Pants", "=ds=#s11#, #a2#", "?%"}, --?
+	 	{ 55381, "", "=q3=Phytolance", "=ds=#h2#, #w7#", "?%"}, --?
+	 	{ 55379, "", "=q3=Slag Slugger", "=ds=#w5#", "?%"}, --?
+		{ 55378, "INV_Gauntlets_27", "=q2=Inventor's Mitts", "=ds=#s9#, #a1#", "25%" }, --dropped
 	},
 	DMMinerJohnson = {
 		{ 5443, "INV_Shield_02", "=q3=Gold-plated Buckler", "=ds=#w8#", "37.21%" },
@@ -5122,14 +5131,6 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 0, "INV_Box_01", "=q6=#cb1#", "" },
 		{ 7146, "INV_Misc_Key_01", "=q2=The Scarlet Key", "=ds=#e14#" },
 	},
-	-- SMBrotherWystan = {
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- },
 	SMHerod = {
 		{ 7719, "INV_Helmet_25", "=q3=Raging Berserker's Helm", "=ds=#s1#, #a3#", "30.62%" },
 		{ 7718, "INV_Shoulder_01", "=q3=Herod's Shoulder", "=ds=#s3#, #a3#", "30.82%" },
@@ -5138,14 +5139,24 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 0, "", "", "" },
 		{ 51217, "INV_misc_ribbon_01", "=q2=Fashion Coin", "=ds=#e27#", "1%" },
 	},
-	-- SMQuartermaster = {
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- },
+	SMBrotherWystan = {
+		{ 55473, "", "=q3=Pendant of Scarlet Rage", "=ds=#s2#", "25%" },-- dropped
+		{ 55472, "", "=q3=Swiftstrike Kilt", "=ds=#s11#, #a2#", "25?%" },-- ?
+		{ 55471, "", "=q3=Wystan's Steel Fist", "=ds=#h1#, #w13#", "25?%" },-- ?
+		{ 55470, "", "=q3=Libram of Radiance", "=ds=#s16#, #e18#", "25%" },-- dropped
+	},
+	SMQuartermasterDaghelm = {		
+		{ 55477, "", "=q3=Loop of Focused Magic", "=ds=#s13#", "25%" },-- dropped
+		{ 55476, "", "=q3=Treads of Renewal", "=ds=#s12#, #a1#", "25%" }, --dropped
+		{ 55475, "", "=q3=Cuffs of Evocation", "=ds=#s8#, #a1#", "25?%" },-- ?
+		{ 55474, "", "=q3=Balanced Razor Shivs", "=ds=#w11#", "25?%" },-- ?
+	},
+	SMDukeDreadmoore = {
+	 	{ 55388, "", "=q3=Slain Sentry's Ring", "=ds=#s13#", "25%"},-- dropped
+	 	{ 55386, "", "=q3=Harbinger Girdle", "=ds=#s10#, #a3#", "25%" }, -- dropped
+	 	{ 55387, "", "=q3=Introduction to the Dark Arts", "=ds=#s14#", "25?%" },-- ?
+	 	{ 55389, "", "=q3=Ghoulskin Treads", "=ds=#s12#, #a2#", "25%" },-- dropped
+	},
 	SMFairbanks = {
 		{ 19507, "INV_Shoulder_27", "=q2=Inquisitor's Shawl", "=ds=#s3#, #a1#", "15.94%" },
 		{ 19508, "INV_Bracer_11", "=q2=Branded Leather Bracers", "=ds=#s8#, #a2#", "16.17%" },
@@ -5177,14 +5188,6 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 0, "", "", "" },
 		{ 51217, "INV_misc_ribbon_01", "=q2=Fashion Coin", "=ds=#e27#", "1%" },
 	},
-	-- SMDukeDreadmoore = {
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- 	{ 0, "", "", "" },
-	-- },
 	SMIronspine = {
 		{ 7688, "INV_Chest_Plate15", "=q3=Ironspine's Ribcage", "=ds=#s5#, #a3#", "32.91%" },
 		{ 7687, "INV_Hammer_19", "=q3=Ironspine's Fist", "=ds=#h1#, #w6#", "20.34%" },
@@ -5710,14 +5713,14 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 11446, "INV_Misc_Note_05", "=q1=A Crumpled Up Note", "=ds=#m2#" },
 	},
 	RFCOggleflint = {
-		{ 80700, "INV_Misc_Bone_01", "=q3=Tribal Trogg Club", ""},
-		{ 80701, "INV_Pants_02", "=q3=Dusty Leather Pants", ""},
-		{ 80702, "INV_Shirt_05", "=q3=Stitched Cloth Vest", ""},
+		{ 80700, "INV_Misc_Bone_01", "=q3=Tribal Trogg Club", "=ds=#h3#, #w6#"},
+		{ 80701, "INV_Pants_02", "=q3=Dusty Leather Pants", "=ds=#s11#, #a2#"},
+		{ 80702, "INV_Shirt_05", "=q3=Stitched Cloth Vest", "=ds=#s5#, #a1#"},
 	},
 	RFCBazzalan = {
-		{ 80705, "INV_Spear_08", "=q3=Satyr Poker", ""},
-		{ 80704, "INV_Chest_Chain", "=q3=Lavadrenched Chainmail", ""},
-		{ 80703, "INV_Belt_24", "=q3=Heated Leather Belt", ""},
+		{ 80705, "INV_Spear_08", "=q3=Satyr Poker", "=ds=#h2#, #w7#"},
+		{ 80704, "INV_Chest_Chain", "=q3=Lavadrenched Chainmail", "=ds=#s5#, #a3#"},
+		{ 80703, "INV_Belt_24", "=q3=Heated Leather Belt", "=ds=#s10#, #a2#"},
 		{ 0, "", "", "" },
 		{ 51217, "INV_misc_ribbon_01", "=q2=Fashion Coin", "=ds=#e27#", "1%" },
 	},
@@ -5804,7 +5807,10 @@ AtlasLoot_Data["AtlasLootItems"] = {
 		{ 6283, "INV_Misc_Book_08", "=q1=The Book of Ur", "=ds=#m3#" },
 	},
 	SFKPrelate = {
-		
+		{ 55385, "", "=q3=Signet of Faded Sermons", "=ds=#s13#", "?%"}, --?
+	 	{ 55384, "", "=q3=Hilt of Radiance", "=ds=#h1#, #w10#", "25%"}, --dropped
+	 	{ 55383, "", "=q3=Prelate's Sigil", "=ds=#s15#", "?%"}, --?
+	 	{ 55382, "", "=q3=Mitre of the First Light", "=ds=#s1#, #a1#", "?%"}, --?
 	},
 	SFKTrash = {
 		{ 2292, "INV_Chest_Cloth_36", "=q3=Necrology Robes", "=ds=#s5#, #a1#", "0.01%" },

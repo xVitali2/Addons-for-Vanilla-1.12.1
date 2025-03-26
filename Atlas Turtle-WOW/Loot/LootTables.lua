@@ -263,6 +263,7 @@ AtlasLoot_TableNames = {
 	["AQ20SET"] = { L["Ruins of Ahn'Qiraj Sets"], "AtlasLootSetItems"},
 	--Scarlet Monastery - Armory
 	["SMHerod"] = { BZ["Scarlet Monastery (Armory)"].." - "..BB["Herod"], "AtlasLootItems" },
+	["SMQuartermasterDaghelm"] = { BZ["Scarlet Monastery (Armory)"].." - "..BB["Armory Quartermaster Daghelm"], "AtlasLootItems" },
 	["SMATrash"] = { L["Trash Mobs"].." ("..BZ["Scarlet Monastery"].. " "..L["Armory"]..")", "AtlasLootItems" },
 	--Scarlet Monastery - Cathedral
 	["SMFairbanks"] = { BZ["Scarlet Monastery (Cathedral)"].." - "..BB["High Inquisitor Fairbanks"], "AtlasLootItems" },
@@ -276,11 +277,13 @@ AtlasLoot_TableNames = {
 	["SMAzshir"] = { BZ["Scarlet Monastery (Graveyard)"].." - "..BB["Azshir the Sleepless"].." ("..L["Rare"]..")", "AtlasLootItems" },
 	["SMFallenChampion"] = { BZ["Scarlet Monastery (Graveyard)"].." - "..BB["Fallen Champion"].." ("..L["Rare"]..")", "AtlasLootItems" },
 	["SMBloodmageThalnos"] = { BZ["Scarlet Monastery (Graveyard)"].." - "..BB["Bloodmage Thalnos"], "AtlasLootItems" },
+	["SMDukeDreadmoore"] = { BZ["Scarlet Monastery (Graveyard)"].." - "..BB["Duke Dreadmoore"], "AtlasLootItems" },
 	["SMGTrash"] = { L["Trash Mobs"].." ("..BZ["Scarlet Monastery"].. " "..L["Graveyard"]..")", "AtlasLootItems" },
 	--Scarlet Monastery - Library
 	["SMHoundmasterLoksey"] = { BZ["Scarlet Monastery (Library)"].." - "..BB["Houndmaster Loksey"], "AtlasLootItems" },
 	["SMDoan"] = { BZ["Scarlet Monastery (Library)"].." - ".. BB["Arcanist Doan"], "AtlasLootItems" },
 	["SMDoansBox"] = { BZ["Scarlet Monastery (Library)"].." - "..L["Doan's Strongbox"], "AtlasLootItems" },
+	["SMBrotherWystan"] = { BZ["Scarlet Monastery (Library)"].." - "..BB["Brother Wystan"], "AtlasLootItems" },
 	["SMLTrash"] = { L["Trash Mobs"].." ("..BZ["Scarlet Monastery"].. " "..L["Library"]..")", "AtlasLootItems" },
 	--Scholomance
 	["SCHOLOBlood"] = { BZ["Scholomance"].." - "..L["Blood Steward of Kirtonos"], "AtlasLootItems" },
@@ -1488,6 +1491,7 @@ AtlasLoot_TableNamesBoss = {
 	},
 	[BZ["Scarlet Monastery"]..L["Armory"]] = {
 		["SMHerod"] = { BB["Herod"], "AtlasLootItems" },
+		["SMQuartermasterDaghelm"] = { BB["Armory Quartermaster Daghelm"], "AtlasLootItems" },
 		["SMATrash"] = { L["Trash Mobs"].." ("..BZ["Scarlet Monastery"].. " "..L["Armory"]..")", "AtlasLootItems" },
 	},
 	[BZ["Scarlet Monastery"]..L["Cathedral"]] = {
@@ -1503,12 +1507,14 @@ AtlasLoot_TableNamesBoss = {
 		["SMAzshir"] = { BB["Azshir the Sleepless"].." ("..L["Rare"]..")", "AtlasLootItems" },
 		["SMFallenChampion"] = { BB["Fallen Champion"].." ("..L["Rare"]..")", "AtlasLootItems" },
 		["SMBloodmageThalnos"] = { BB["Bloodmage Thalnos"], "AtlasLootItems" },
+		["SMDukeDreadmoore"] = { BB["Duke Dreadmoore"], "AtlasLootItems" },
 		["SMGTrash"] = { L["Trash Mobs"].." ("..BZ["Scarlet Monastery"].. " "..L["Graveyard"]..")", "AtlasLootItems" },
 	},
 	[BZ["Scarlet Monastery"]..L["Library"]] = {
 		["SMHoundmasterLoksey"] = { BB["Houndmaster Loksey"], "AtlasLootItems" },
 		["SMDoan"] = { BB["Arcanist Doan"], "AtlasLootItems" },
 		["SMDoansBox"] = { L["Doan's Strongbox"], "AtlasLootItems" },
+		["SMBrotherWystan"] = { BB["Brother Wystan"], "AtlasLootItems" },
 		["SMLTrash"] = { L["Trash Mobs"].." ("..BZ["Scarlet Monastery"].. " "..L["Library"]..")", "AtlasLootItems" },
 	},
 	[BZ["Scholomance"]] = {

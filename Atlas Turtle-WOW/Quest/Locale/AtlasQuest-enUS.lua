@@ -4904,9 +4904,9 @@ Inst24Quest6_HORDE = "6. Too Late to Prelate" -- ???
 Inst24Quest6_HORDE_Level = "0"
 Inst24Quest6_HORDE_Attain = "0"
 Inst24Quest6_HORDE_Aim = "Kill Prelate Ironmane."
-Inst24Quest6_HORDE_Location = "Father Brightcopf (Glenshire "..YELLOW.."0"..WHITE..")"
+Inst24Quest6_HORDE_Location = "Father Brightcopf (Glenshire "..YELLOW.."20.8, 68.7"..WHITE..")"
 Inst24Quest6_HORDE_Note = "Kill Prelate Ironmane (13) in SFK."
-Inst24Quest6_HORDE_Prequest = "No"
+Inst24Quest6_HORDE_Prequest = ""
 Inst24Quest6_HORDE_Folgequest = "No"
 --
 

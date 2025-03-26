@@ -758,7 +758,7 @@ AtlasMaps = {
 		{ GREY.."1) "..BB["Houndmaster Loksey"], NPC, 3974 },
 		{ GREY.."2) "..BB["Arcanist Doan"], NPC, 6487 },
 		{ GREEN.."1') "..L["Doan's Strongbox"], OBJECT, 103821 },
-		{ GREY.."3) ".."Brother Wystan", NPC, -1  },
+		{ GREY.."3) "..BB["Brother Wystan"], NPC, -1  },
 		{ "" },
 		{ GREY..INDENT..L["Trash Mobs"] },
 		{ GREY..INDENT..L["Set: "]..BIS["Chain of the Scarlet Crusade"] }
@@ -774,7 +774,7 @@ AtlasMaps = {
 		{ ORNG..L["Key"]..": "..L["The Scarlet Key"], ITEM, 7146 },
 		{ BLUE.."A) "..L["Entrance"] },
 		{ GREY.."1) "..BB["Herod"], NPC, 3975 },
-		{ GREY.."2) ".."Armory Quartermaster Daghelm", NPC, -1 },
+		{ GREY.."2) "..BB["Armory Quartermaster Daghelm"], NPC, -1 },
 		{ "" },
 		{ GREY..INDENT..L["Trash Mobs"] },
 		{ GREY..INDENT..L["Set: "]..BIS["Chain of the Scarlet Crusade"] }
@@ -812,7 +812,7 @@ AtlasMaps = {
 		{ GREEN.."1') "..BB["Ironspine"].." ("..L["Rare"]..")", NPC, 6489 },
 		{ GREEN..INDENT..BB["Azshir the Sleepless"].." ("..L["Rare"]..")", NPC, 6490 },
 		{ GREEN..INDENT..BB["Fallen Champion"].." ("..L["Rare"]..")", NPC, 6488 },
-		{ GREY.."4) ".."Duke Dreadmoore", NPC, -1 },
+		{ GREY.."4) "..BB["Duke Dreadmoore"], NPC, -1 },
 		{ "" },
 		{ GREY..INDENT..L["Trash Mobs"] },
 		{ GREY..INDENT..L["Set: "]..BIS["Chain of the Scarlet Crusade"] }
@@ -1670,7 +1670,7 @@ AtlasMaps = {
 	},
 	AdmiralBareanWestwind = {
 		ZoneName = { "Admiral Barean Westwind", NPC, 60525	},
-		Location = { "", ZONE, 0 },
+		Location = { BZ["Eastern Plaguelands"], ZONE, 0 },
 		LevelRange = "60",
 		Health = "141057",
 		Mana = "12000",
