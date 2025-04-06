@@ -207,7 +207,7 @@ function module:TargetChangedCheck()
 			end
 		end
 	end
-	if nameoftarget and nameoftarget ~= lasttarget then
+	if nameoftarget ~= lasttarget then
 		if self.db.profile.puticon then
 			self:Icon(nameoftarget)
 		end

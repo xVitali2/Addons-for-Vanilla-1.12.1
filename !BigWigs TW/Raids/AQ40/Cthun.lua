@@ -612,7 +612,7 @@ function module:CThunP2Start()
 		self:Message(L["phase2starting"], "Bosskill")
 
 		-- cancel C'thun map
-		self:ScheduleEvent("hideCthunMap", function() cthunmap:Hide() end, 8, self )
+		self:ScheduleEvent("hideCthunMap", cthunmap:Hide(), 8, self )
 		
 		-- cancel dark glare
 		self:RemoveBar(L["barGlare"] )
@@ -761,7 +761,7 @@ end
 function GetCthunCoords(unit)
 	local posX, posY = GetPlayerMapPosition(unit)
 	posX = (18.25 * posX - 5.55) * cthunmap.map:GetWidth()
-	posY = (-12.1666666667 * posY + 5.5)* cthunmap.map:GetHeight()
+	posY = (-12.2229333333 * posY + 5.543764799)* cthunmap.map:GetHeight()
 	return posX, posY
 end
 
