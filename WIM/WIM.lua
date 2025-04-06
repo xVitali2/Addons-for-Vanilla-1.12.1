@@ -651,7 +651,7 @@ function WIM_SetWindowProps(theWin)
 	theWin:SetWidth(WIM_Data.winSize.width);
 	theWin:SetScale(WIM_Data.windowSize);
 	theWin:SetAlpha(WIM_Data.windowAlpha);
-	getglobal(theWin:GetName().."ScrollingMessageFrame"):SetFont("Fonts\\FRIZQT__.TTF",WIM_Data.fontSize);
+	getglobal(theWin:GetName().."ScrollingMessageFrame"):SetFont("Fonts\\ARIALN.TTF",WIM_Data.fontSize);
 	getglobal(theWin:GetName().."ScrollingMessageFrame"):SetAlpha(1);
 	getglobal(theWin:GetName().."MsgBox"):SetAlpha(1);
 	getglobal(theWin:GetName().."ShortcutFrame"):SetAlpha(1);
