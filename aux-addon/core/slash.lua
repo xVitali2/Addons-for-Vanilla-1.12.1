@@ -27,9 +27,9 @@ function SlashCmdList.AUX(command)
     elseif arguments[1] == 'post' and arguments[2] == 'bid' then
         aux.account_data.post_bid = not aux.account_data.post_bid
 	    aux.print('post bid ' .. status(aux.account_data.post_bid))
-    elseif arguments[1] == 'post' and arguments[2] == 'duration' and  T.map('6', post.DURATION_2, '24', post.DURATION_8, '72', post.DURATION_24)[arguments[3]] then
-        aux.account_data.post_duration = T.map('6', post.DURATION_2, '24', post.DURATION_8, '72', post.DURATION_24)[arguments[3]]
-        aux.print('post duration ' .. aux.color.blue(aux.account_data.post_duration / 60 * 3 .. 'h'))
+    elseif arguments[1] == 'post' and arguments[2] == 'duration' and  T.map('2', post.DURATION_2, '8', post.DURATION_8, '24', post.DURATION_24)[arguments[3]] then
+        aux.account_data.post_duration = T.map('2', post.DURATION_2, '8', post.DURATION_8, '24', post.DURATION_24)[arguments[3]]
+        aux.print('post duration ' .. aux.color.blue(aux.account_data.post_duration / 60 .. 'h'))
     elseif arguments[1] == 'crafting' and arguments[2] == 'cost' then
 		aux.account_data.crafting_cost = not aux.account_data.crafting_cost
 		aux.print('crafting cost ' .. status(aux.account_data.crafting_cost))
@@ -66,7 +66,7 @@ function SlashCmdList.AUX(command)
 		aux.print('- scale [' .. aux.color.blue(aux.account_data.scale) .. ']')
 		aux.print('- ignore owner [' .. status(aux.account_data.ignore_owner) .. ']')
 		aux.print('- post bid [' .. status(aux.account_data.post_bid) .. ']')
-        aux.print('- post duration [' .. aux.color.blue(aux.account_data.post_duration / 60 * 3 .. 'h') .. ']')
+        aux.print('- post duration [' .. aux.color.blue(aux.account_data.post_duration / 60 .. 'h') .. ']')
 		aux.print('- post stack [' .. status(aux.account_data.post_stack) .. ']')
         aux.print('- crafting cost [' .. status(aux.account_data.crafting_cost) .. ']')
 		aux.print('- tooltip value [' .. status(tooltip_settings.value) .. ']')

@@ -605,17 +605,17 @@ function initialize_duration_dropdown()
         refresh = true
     end
     UIDropDownMenu_AddButton{
-        text = '6 Hours',
+        text = '2 Hours',
         value = DURATION_2,
         func = on_click,
     }
     UIDropDownMenu_AddButton{
-        text = '24 Hours',
+        text = '8 Hours',
         value = DURATION_8,
         func = on_click,
     }
     UIDropDownMenu_AddButton{
-        text = '72 Hours',
+        text = '24 Hours',
         value = DURATION_24,
         func = on_click,
     }
