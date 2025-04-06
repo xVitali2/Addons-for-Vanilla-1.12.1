@@ -129,11 +129,7 @@
 						local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
 						this:SetText("Atlas")
 						this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 1 )
-						if IsAddOnLoaded("Atlas Turtle-WOW") then
-							this:Enable()
-						else
-							this:Disable()
-						end
+						this:Enable()
 					</OnShow>
 				</Scripts>
 			</Button>
@@ -485,7 +481,7 @@
 			</Button>
 			<Button name="AtlasLootDefaultFrameSearchClearButton" inherits="UIPanelButtonTemplate2" parent="AtlasLootDefaultFrameSearchBox">
 				<Size>
-					<AbsDimension x="76" y="32"/>
+					<AbsDimension x="58" y="32"/>
 				</Size>
 				<Anchors>
 					<Anchor point="LEFT" relativeTo="AtlasLootDefaultFrameSearchOptionsButton" relativePoint="RIGHT">
@@ -509,7 +505,7 @@
 			</Button>
 			<Button name="AtlasLootDefaultFrameLastResultButton" inherits="UIPanelButtonTemplate2" parent="AtlasLootDefaultFrameSearchBox">
 				<Size>
-					<AbsDimension x="120" y="32"/>
+					<AbsDimension x="100" y="32"/>
 				</Size>
 				<Anchors>
 					<Anchor point="LEFT" relativeTo="AtlasLootDefaultFrameSearchClearButton" relativePoint="RIGHT">
@@ -630,6 +626,8 @@
 				this:RegisterForDrag("LeftButton")
 				this:SetMovable(1)
 				this:SetBackdropColor(0.75, 0, 0.75)
+				local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot");
+				AtlasLootDefaultFrame_Notice:SetText(AL["NoticeFrame"]);
 			</OnLoad>
 			<OnMouseUp>
 				CloseDropDownMenus()
@@ -642,11 +640,9 @@
 			</OnHide>
 			<OnDragStart>
 				this:StartMoving()
-				this.isMoving = true
 			</OnDragStart>
 			<OnDragStop>
 				this:StopMovingOrSizing()
-				this.isMoving = false
 			</OnDragStop>
 		</Scripts>
 	</Frame>
@@ -948,7 +944,7 @@
 			<AbsDimension x="128" y="75"/>
 		</Size>
 		<Frames>
-			<Button name="$parentHidePanel" inherits="UIPanelButtonTemplate">
+			<Button name="$parentHidePanel" inherits="UIPanelButtonTemplate2">
 				<Size>
 					<AbsDimension x="140" y="20"/>
 				</Size>
@@ -2059,7 +2055,8 @@
 						AtlasLoot_Toggle()
 					</OnClick>
 					<OnShow>
-						this:SetText("AtlasLoot")
+						local AL = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
+						this:SetText(AL["AtlasLoot"])
 						this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 1 )
 					</OnShow>
 				</Scripts>
@@ -2275,7 +2272,7 @@
 				<Anchors>
 					<Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
 						<Offset>
-							<AbsDimension x="-150" y="20"/>
+							<AbsDimension x="-123" y="20"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -2283,6 +2280,7 @@
 					<OnLoad>
 						this:SetAutoFocus(false)
 						this:SetTextInsets(0, 8, 0, 0)
+						this:SetFrameLevel( (this:GetParent()):GetFrameLevel() + 2 )
 					</OnLoad>
 					<OnEnterPressed>
 						AtlasLoot:Search(this:GetText())
@@ -2340,7 +2338,7 @@
 			</Button>
 			<Button name="AtlasLootSearchClearButton" inherits="UIPanelButtonTemplate2" parent="AtlasLootSearchBox">
 				<Size>
-					<AbsDimension x="80" y="32"/>
+					<AbsDimension x="58" y="32"/>
 				</Size>
 				<Anchors>
 					<Anchor point="LEFT" relativeTo="AtlasLootSearchOptionsButton" relativePoint="RIGHT">

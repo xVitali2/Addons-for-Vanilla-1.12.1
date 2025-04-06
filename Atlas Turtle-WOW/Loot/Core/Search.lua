@@ -100,7 +100,6 @@ function AtlasLoot:Search(Text)
 		SearchResult = AtlasLoot_CategorizeWishList(AtlasLootCharDB["SearchResult"])
 		AtlasLoot_ShowItemsFrame("SearchResult", "SearchResultPage1", string.format((L["Search Result: %s"]), AtlasLootCharDB.LastSearchedText or ""), pFrame)
 	end
-	collectgarbage()
 end
 
 function AtlasLoot:ShowSearchOptions(button)

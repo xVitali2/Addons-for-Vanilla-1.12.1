@@ -1,6 +1,7 @@
 local _G = getfenv()
 local L = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
 local BF = AceLibrary("Babble-Faction-2.2")
+local BZ = AceLibrary("Babble-Zone-2.2")
 
 function AtlasLootRepMenu()
 	AtlasLoot_PrepMenu(nil, L["Factions"])
@@ -37,13 +38,13 @@ function AtlasLootRepMenu()
 	AtlasLootMenuItem_5.lootpage="WaterLords1"
 	AtlasLootMenuItem_5:Show()
 	--Dalaran
-	AtlasLootMenuItem_6_Name:SetText("Dalaran")
+	AtlasLootMenuItem_6_Name:SetText(BZ["Dalaran"])
 	AtlasLootMenuItem_6_Extra:SetText("|cff2773ff"..BF["Alliance"])
 	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
 	AtlasLootMenuItem_6.lootpage="Dalaran"
 	AtlasLootMenuItem_6:Show()
 	--Wildhammer Clan
-	AtlasLootMenuItem_7_Name:SetText(L["Wildhammer Clan"])
+	AtlasLootMenuItem_7_Name:SetText(BF["Wildhammer Clan"])
 	AtlasLootMenuItem_7_Extra:SetText("|cff2773ff"..BF["Alliance"])
 	AtlasLootMenuItem_7_Icon:SetTexture("Interface\\Icons\\INV_Misc_Rune_06")
 	AtlasLootMenuItem_7.lootpage="Wildhammer"
@@ -79,7 +80,7 @@ function AtlasLootRepMenu()
 	AtlasLootMenuItem_12.lootpage="Darnassus"
 	AtlasLootMenuItem_12:Show()
 	--Silvermoon
-	AtlasLootMenuItem_13_Name:SetText("Silvermoon Remnant")
+	AtlasLootMenuItem_13_Name:SetText(BF["Silvermoon Remnant"])
 	AtlasLootMenuItem_13_Extra:SetText("|cff2773ff"..BF["Alliance"])
 	AtlasLootMenuItem_13_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
 	AtlasLootMenuItem_13.lootpage="Helf"
@@ -133,7 +134,7 @@ function AtlasLootRepMenu()
 	AtlasLootMenuItem_21.lootpage="Thorium1"
 	AtlasLootMenuItem_21:Show()
 	--Warderns
-	AtlasLootMenuItem_22_Name:SetText("Warderns of Time")
+	AtlasLootMenuItem_22_Name:SetText(BF["Wardens of Time"])
 	AtlasLootMenuItem_22_Extra:SetText("")
 	AtlasLootMenuItem_22_Icon:SetTexture("Interface\\Icons\\inv_weapon_hand_06")
 	AtlasLootMenuItem_22.lootpage="Warderns1"
@@ -151,7 +152,7 @@ function AtlasLootRepMenu()
 	AtlasLootMenuItem_25.lootpage="ThunderBluff"
 	AtlasLootMenuItem_25:Show()
 	--Durotar Labor Union
-	AtlasLootMenuItem_26_Name:SetText("Durotar Labor Union")
+	AtlasLootMenuItem_26_Name:SetText(BF["Durotar Labor Union"])
 	AtlasLootMenuItem_26_Extra:SetText("|cffFF0000"..BF["Horde"])
 	AtlasLootMenuItem_26_Icon:SetTexture("Interface\\Icons\\INV_Staff_13")
 	AtlasLootMenuItem_26.lootpage="DurotarLaborUnion"
@@ -163,7 +164,7 @@ function AtlasLootRepMenu()
 	AtlasLootMenuItem_27.lootpage="Undercity"
 	AtlasLootMenuItem_27:Show()
 	--Raventusk
-	AtlasLootMenuItem_28_Name:SetText("Revantusk Trolls")
+	AtlasLootMenuItem_28_Name:SetText(BF["Revantusk Trolls"])
 	AtlasLootMenuItem_28_Extra:SetText("|cffFF0000"..BF["Horde"])
 	AtlasLootMenuItem_28_Icon:SetTexture("Interface\\Icons\\INV_Misc_Head_Troll_01")
 	AtlasLootMenuItem_28.lootpage="Revantusk"

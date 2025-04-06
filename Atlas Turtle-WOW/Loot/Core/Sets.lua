@@ -85,7 +85,7 @@ function AtlasLootSetMenu()
 	AtlasLootMenuItem_5_Name:SetText("Upper Karazhan Sets")
 	AtlasLootMenuItem_5_Extra:SetText("")
 	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\INV_Staff_Medivh")
-	AtlasLootMenuItem_5.lootpage="UKSET"
+	AtlasLootMenuItem_5.lootpage="K40SET"
 	AtlasLootMenuItem_5:Show()
 	--PriestSets
 	AtlasLootMenuItem_7_Name:SetText("|cffffffff"..L["Priest Sets"])

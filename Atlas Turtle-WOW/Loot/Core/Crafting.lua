@@ -2,6 +2,7 @@ local _G = getfenv()
 local L = AceLibrary("AceLocale-2.2"):new("AtlasLoot")
 local BC = AceLibrary("Babble-Class-2.2")
 local BS = AceLibrary("Babble-Spell-2.2")
+local BZ = AceLibrary("Babble-Zone-2.2")
 local BIS = AceLibrary("Babble-ItemSet-2.2")
 
 local RED = "|cffff0000"
@@ -87,7 +88,7 @@ function AtlasLoot_CraftingMenu()
 	AtlasLootMenuItem_12.lootpage="FirstAid1"
 	AtlasLootMenuItem_12:Show()
 	--Survival
-	AtlasLootMenuItem_13_Name:SetText("Survival")
+	AtlasLootMenuItem_13_Name:SetText(BS["Survival"])
 	AtlasLootMenuItem_13_Extra:SetText("")
 	AtlasLootMenuItem_13_Icon:SetTexture("Interface\\Icons\\Trade_Survival")
 	AtlasLootMenuItem_13.lootpage="SURVIVALMENU"
@@ -1157,13 +1158,13 @@ function AtlasLoot_SurvivalMenu()
 	getglobal("AtlasLootItemsFrame_PREV"):Hide()
 	getglobal("AtlasLootServerQueryButton"):Hide()
 	--Apprentice
-	AtlasLootMenuItem_2_Name:SetText(L["Survival"])
+	AtlasLootMenuItem_2_Name:SetText(BS["Survival"])
 	AtlasLootMenuItem_2_Extra:SetText("")
 	AtlasLootMenuItem_2_Icon:SetTexture("Interface\\Icons\\Trade_Survival")
 	AtlasLootMenuItem_2.lootpage = "Survival1"
 	AtlasLootMenuItem_2:Show()
 	--Journeyman
-	AtlasLootMenuItem_3_Name:SetText(L["Garderning"])
+	AtlasLootMenuItem_3_Name:SetText(BS["Garderning"])
 	AtlasLootMenuItem_3_Extra:SetText("")
 	AtlasLootMenuItem_3_Icon:SetTexture("Interface\\Icons\\trade_herbalism")
 	AtlasLootMenuItem_3.lootpage = "Survival2"
@@ -1261,13 +1262,13 @@ function AtlasLoot_JewelcraftingMenu()
 	AtlasLootMenuItem_15.lootpage="JewelcraftingMisc1"
 	AtlasLootMenuItem_15:Show()
 	--Gemology
-	AtlasLootMenuItem_17_Name:SetText(BS["Jewelcrafting"]..": "..L["Gemology"])
+	AtlasLootMenuItem_17_Name:SetText(BS["Jewelcrafting"]..": "..BS["Gemology"])
 	AtlasLootMenuItem_17_Extra:SetText("")
 	AtlasLootMenuItem_17_Icon:SetTexture("Interface\\Icons\\INV_Jewelry_Necklace_11")
 	AtlasLootMenuItem_17.lootpage="JewelcraftingGemology1"
 	AtlasLootMenuItem_17:Show()
 	--Goldsmithing
-	AtlasLootMenuItem_18_Name:SetText(BS["Jewelcrafting"]..": "..L["Goldsmithing"])
+	AtlasLootMenuItem_18_Name:SetText(BS["Jewelcrafting"]..": "..BS["Goldsmithing"])
 	AtlasLootMenuItem_18_Extra:SetText("")
 	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\INV_Jewelry_Necklace_11")
 	AtlasLootMenuItem_18.lootpage="JewelcraftingGoldsmithing1"

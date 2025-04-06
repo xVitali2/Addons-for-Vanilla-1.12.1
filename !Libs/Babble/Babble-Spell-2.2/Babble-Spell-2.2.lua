@@ -29,6 +29,10 @@ local BabbleSpell = AceLibrary("AceLocale-2.2"):new(MAJOR_VERSION)
 
 BabbleSpell:RegisterTranslations("enUS", function()
     return {
+		["Survival"] = true,
+		["Garderning"] = true,
+		["Gemology"] = true,
+		["Goldsmithing"] = true,
 		["Abolish Disease"] = true,
 		["Abolish Poison Effect"] = true,
 		["Abolish Poison"] = true,

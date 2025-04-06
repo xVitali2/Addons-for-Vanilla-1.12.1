@@ -9,6 +9,80 @@ local BIS = AceLibrary("Babble-ItemSet-2.2")
 
 AtlasLoot_ButtonRegistry = {
 	--WoW Instances
+	-- Upper Karazhan Halls
+	["K40Gnarlmoon"] = {
+		Title = BB["Keeper Gnarlmoon"],
+		Next_Page = "K40Incantagos",
+		Next_Title = BB["Ley-Watcher Incantagos"],
+		Prev_Page = "K40Trash",
+		Prev_Title = L["Trash Mobs"],
+		Back_Page = "DUNGEONSMENU2",
+		Back_Title = L["Dungeons & Raids"],
+	},
+	["K40Incantagos"] = {
+		Title = BB["Ley-Watcher Incantagos"],
+		Next_Page = "K40Anomalus",
+		Next_Title = BB["Anomalus"],
+		Prev_Page = "K40Gnarlmoon",
+		Prev_Title = BB["Keeper Gnarlmoon"],
+		Back_Page = "DUNGEONSMENU2",
+		Back_Title = L["Dungeons & Raids"],
+	},
+	["K40Anomalus"] = {
+		Title = BB["Anomalus"],
+		Next_Page = "K40EchoofMedivh",
+		Next_Title = BB["Echo of Medivh"],
+		Prev_Page = "K40Incantagos",
+		Prev_Title = BB["Ley-Watcher Incantagos"],
+		Back_Page = "DUNGEONSMENU2",
+		Back_Title = L["Dungeons & Raids"],
+	},
+	["K40EchoofMedivh"] = {
+		Title = BB["Echo of Medivh"],
+		Next_Page = "K40King",
+		Next_Title = BB["King"].." (Chess fight)]",
+		Prev_Page = "K40Anomalus",
+		Prev_Title = BB["Anomalus"],
+		Back_Page = "DUNGEONSMENU2",
+		Back_Title = L["Dungeons & Raids"],
+	},
+	["K40King"] = {
+		Title = BB["King"].." (Chess fight)",
+		Next_Page = "K40SanvTasdal",
+		Next_Title = BB["Sanv Tas'dal"],
+		Prev_Page = "K40EchoofMedivh",
+		Prev_Title = BB["Echo of Medivh"],
+		Back_Page = "DUNGEONSMENU2",
+		Back_Title = L["Dungeons & Raids"],
+	},
+	["K40SanvTasdal"] = {
+		Title = BB["Sanv Tas'dal"],
+		Next_Page = "K40Kruul",
+		Next_Title = BB["Kruul"],
+		Prev_Page = "K40King",
+		Prev_Title = BB["King"].." (Chess fight)",
+		Back_Page = "DUNGEONSMENU2",
+		Back_Title = L["Dungeons & Raids"],
+	},
+	["K40Kruul"] = {
+		Title = BB["Kruul"],
+		Next_Page = "K40Trash",
+		Next_Title = L["Trash Mobs"],
+		Prev_Page = "K40SanvTasdal",
+		Prev_Title = BB["Sanv Tas'dal"],
+		Back_Page = "DUNGEONSMENU2",
+		Back_Title = L["Dungeons & Raids"],
+	},
+	["K40Trash"] = {
+		Title = L["Trash Mobs"],
+		Next_Page = "K40Gnarlmoon",
+		Next_Title = BB["Keeper Gnarlmoon"],
+		Prev_Page = "K40Kruul",
+		Prev_Title = BB["Kruul"],
+		Back_Page = "DUNGEONSMENU2",
+		Back_Title = L["Dungeons & Raids"],
+	},
+
 	["HQHighForemanBargulBlackhammer"] = {
 		Title = "High Foreman Bargul Blackhammer",
 		Next_Page = "HQEngineerFiggles",
@@ -490,17 +564,10 @@ AtlasLoot_ButtonRegistry = {
 	},
 	["COTBMChronar"] = {
 		Title = "Chronar",
-		Next_Page = "COTBMHarbingerAphygth",
-		Next_Title = "Harbinger Aph'ygth",
-		Prev_Page = "COTTrash",
-		Prev_Title = L["Trash Mobs"],
-	},
-	["COTBMHarbingerAphygth"] = {
-		Title = "Harbinger Aph'ygth",
 		Next_Page = "COTBMEpidamu",
 		Next_Title = "Epidamu",
-		Prev_Page = "COTBMChronar",
-		Prev_Title = "Chronar",
+		Prev_Page = "COTTrash",
+		Prev_Title = L["Trash Mobs"],
 	},
 	["COTBMEpidamu"] = {
 		Title = "Epidamu",
@@ -1669,56 +1736,56 @@ AtlasLoot_ButtonRegistry = {
 		Prev_Title = "Archaedas",
 	},
 	["GCMatthiasHoltz"] = {
-		Title = L["Matthias Holtz"],
+		Title = BB["Matthias Holtz"],
 		Next_Page = "GCPackmasterRagetooth",
-		Next_Title = L["Packmaster Ragetooth"],
+		Next_Title = BB["Packmaster Ragetooth"],
 		Prev_Page = "GCTrash",
 		Prev_Title = L["Trash Mobs"],
 	},
 	["GCPackmasterRagetooth"] = {
-		Title = L["Packmaster Ragetooth"],
+		Title = BB["Packmaster Ragetooth"],
 		Next_Page = "GCJudgeSutherland",
-		Next_Title = L["Judge Sutherland"],
+		Next_Title = BB["Judge Sutherland"],
 		Prev_Page = "GCMatthiasHoltz",
-		Prev_Title = L["Matthias Holtz"],
+		Prev_Title = BB["Matthias Holtz"],
 	},
 	["GCJudgeSutherland"] = {
-		Title = L["Judge Sutherland"],
+		Title = BB["Judge Sutherland"],
 		Prev_Page = "GCPackmasterRagetooth",
-		Prev_Title = L["Packmaster Ragetooth"],
+		Prev_Title = BB["Packmaster Ragetooth"],
 		Next_Page = "GCDustivanBlackcowl",
-		Next_Title = L["Dustivan Blackcowl"],
+		Next_Title = BB["Dustivan Blackcowl"],
 	},
 	["GCDustivanBlackcowl"] = {
-		Title = L["Dustivan Blackcowl"],
+		Title = BB["Dustivan Blackcowl"],
 		Prev_Page = "GCJudgeSutherland",
-		Prev_Title = L["Judge Sutherland"],
+		Prev_Title = BB["Judge Sutherland"],
 		Next_Page = "GCMarshalMagnusGreystone",
-		Next_Title = L["Marshal Magnus Greystone"],
+		Next_Title = BB["Marshal Magnus Greystone"],
 	},
 	["GCMarshalMagnusGreystone"] = {
-		Title = L["Marshal Magnus Greystone"],
+		Title = BB["Marshal Magnus Greystone"],
 		Prev_Page = "GCDustivanBlackcowl",
-		Prev_Title = L["Dustivan Blackcowl"],
+		Prev_Title = BB["Dustivan Blackcowl"],
 		Next_Page = "GCHorsemasterLevvin",
-		Next_Title = L["Horsemaster Levvin"],
+		Next_Title = BB["Horsemaster Levvin"],
 	},
 	["GCHorsemasterLevvin"] = {
-		Title = L["Horsemaster Levvin"],
+		Title = BB["Horsemaster Levvin"],
 		Prev_Page = "GCMarshalMagnusGreystone",
-		Prev_Title = L["Marshal Magnus Greystone"],
+		Prev_Title = BB["Marshal Magnus Greystone"],
 		Next_Page = "GCHarlowFamilyChest",
 		Next_Title = L["Harlow Family Chest"],
 	},
 	["GCHarlowFamilyChest"] = {
 		Title = L["Harlow Family Chest"],
 		Prev_Page = "GCHorsemasterLevvin",
-		Prev_Title = L["Horsemaster Levvin"],
+		Prev_Title = BB["Horsemaster Levvin"],
 		Next_Page = "GCGennGreymane",
-		Next_Title = L["Genn Greymane"],
+		Next_Title = BB["Genn Greymane"],
 	},
 	["GCGennGreymane"] = {
-		Title = L["Genn Greymane"],
+		Title = BB["Genn Greymane"],
 		Prev_Page = "GCHarlowFamilyChest",
 		Prev_Title = L["Harlow Family Chest"],
 		Next_Page = "GCTrash",
@@ -1727,9 +1794,9 @@ AtlasLoot_ButtonRegistry = {
 	["GCTrash"] = {
 		Title = L["Trash Mobs"],
 		Prev_Page = "GCGennGreymane",
-		Prev_Title = L["Genn Greymane"],
+		Prev_Title = BB["Genn Greymane"],
 		Next_Page = "GCMatthiasHoltz",
-		Next_Title = L["Matthias Holtz"],
+		Next_Title = BB["Matthias Holtz"],
 	},
 	["ZGJeklik"] = {
 		Title = "High Priestess Jeklik",
@@ -2593,88 +2660,88 @@ AtlasLoot_ButtonRegistry = {
 
 	-- Emerald Sanctum
 	["ESErennius"] = {
-		Title = L["Erennius"],
+		Title = BB["Erennius"],
 		Next_Page = "ESSolnius",
-		Next_Title = L["Solnius the Awakener"],
+		Next_Title = BB["Solnius the Awakener"],
 		Prev_Page = "ESTrash",
 		Prev_Title = L["Trash Mobs"],
 	},
 	["ESSolnius"] = {
-		Title = L["Solnius the Awakener"],
+		Title = BB["Solnius the Awakener"],
 		Next_Page = "ESHardMode",
 		Next_Title = L["Favor of Erennius (ES Hard Mode)"],
 		Prev_Page = "ESErennius",
-		Prev_Title = L["Erennius"],
+		Prev_Title = BB["Erennius"],
 	},
 	["ESHardMode"] = {
 		Title = L["Favor of Erennius (ES Hard Mode)"],
 		Next_Page = "ESTrash",
 		Next_Title = L["Trash Mobs"],
 		Prev_Page = "ESSolnius",
-		Prev_Title = L["Solnius the Awakener"],
+		Prev_Title = BB["Solnius the Awakener"],
 	},
 	["ESTrash"] = {
 		Title = L["Trash Mobs"],
 		Next_Page = "ESErennius",
-		Next_Title = L["Erennius"],
+		Next_Title = BB["Erennius"],
 		Prev_Page = "ESHardMode",
 		Prev_Title = L["Favor of Erennius (ES Hard Mode)"],
 	},
 
 	-- Lower Karazhan Halls
 	["LKHRolfen"] = {
-		Title = L["Master Blacksmith Rolfen"],
+		Title = BB["Master Blacksmith Rolfen"],
 		Next_Page = "LKHBroodQueenAraxxna",
-		Next_Title = L["Brood Queen Araxxna"],
+		Next_Title = BB["Brood Queen Araxxna"],
 		Prev_Page = "LKHEnchants",
 		Prev_Title = L["LKH Enchants"],
 	},
 	["LKHBroodQueenAraxxna"] = {
-		Title = L["Brood Queen Araxxna"],
+		Title = BB["Brood Queen Araxxna"],
 		Next_Page = "LKHLordBlackwaldII",
-		Next_Title = L["Lord Blackwald II"],
+		Next_Title = BB["Lord Blackwald II"],
 		Prev_Page = "LKHRolfen",
-		Prev_Title = L["Master Blacksmith Rolfen"],
+		Prev_Title = BB["Master Blacksmith Rolfen"],
 	},
 	["LKHLordBlackwaldII"] = {
-		Title = L["Lord Blackwald II"],
+		Title = BB["Lord Blackwald II"],
 		Prev_Page = "LKHBroodQueenAraxxna",
-		Prev_Title = L["Brood Queen Araxxna"],
+		Prev_Title = BB["Brood Queen Araxxna"],
 		Next_Page = "LKHClawlordHowlfang",
-		Next_Title = L["Clawlord Howlfang"],
+		Next_Title = BB["Clawlord Howlfang"],
 	},
 	["LKHClawlordHowlfang"] = {
-		Title = L["Clawlord Howlfang"],
+		Title = BB["Clawlord Howlfang"],
 		Next_Page = "LKHGrizikil",
-		Next_Title = L["Grizikil"],
+		Next_Title = BB["Grizikil"],
 		Prev_Page = "LKHLordBlackwaldII",
-		Prev_Title = L["Lord Blackwald II"],
+		Prev_Title = BB["Lord Blackwald II"],
 	},
 	["LKHGrizikil"] = {
-		Title = L["Grizikil"],
+		Title = BB["Grizikil"],
 		Next_Page = "LKHMoroes",
-		Next_Title = L["Moroes"],
+		Next_Title = BB["Moroes"],
 		Prev_Page = "LKHClawlordHowlfang",
-		Prev_Title = L["Clawlord Howlfang"],
+		Prev_Title = BB["Clawlord Howlfang"],
 	},
 	["LKHMoroes"] = {
-		Title = L["Moroes"],
+		Title = BB["Moroes"],
 		Next_Page = "LKHTrash",
 		Next_Title = L["Trash Mobs"],
 		Prev_Page = "LKHGrizikil",
-		Prev_Title = L["Grizikil"],
+		Prev_Title = BB["Grizikil"],
 	},
 	["LKHTrash"] = {
 		Title = L["Trash Mobs"],
 		Next_Page = "LKHEnchants",
 		Next_Title = L["LKH Enchants"],
 		Prev_Page = "LKHMoroes",
-		Prev_Title = L["Moroes"],
+		Prev_Title = BB["Moroes"],
 	},
 	["LKHEnchants"] = {
 		Title = L["LKH Enchants"],
 		Next_Page = "LKHRolfen",
-		Next_Title = L["Master Blacksmith Rolfen"],
+		Next_Title = BB["Master Blacksmith Rolfen"],
 		Prev_Page = "LKHTrash",
 		Prev_Title = L["Trash Mobs"],
 	},
@@ -2773,14 +2840,14 @@ AtlasLoot_ButtonRegistry = {
 	["Concavius"] = {
 		Title = "Concavius",
 		Next_Page = "CowKing",
-		Next_Title = L["Moo"],
+		Next_Title = BB["Moo"],
 		Prev_Page = "Ostarius",
 		Prev_Title = "Ostarius",
 		Back_Page = "WORLDBOSSMENU",
 		Back_Title = L["World Bosses"]
 	},
 	["CowKing"] = {
-		Title = L["Moo"],
+		Title = BB["Moo"],
 		Next_Page =	"Clackora",
 		Next_Title = "Clackora",
 		Prev_Page = "Concavius",
@@ -2791,9 +2858,9 @@ AtlasLoot_ButtonRegistry = {
 	["Clackora"] = {
 		Title = "Cla'ckora",
 		Next_Page =	"AAzuregos",
-		Next_Title = L["Azuregos"],
+		Next_Title = BB["Azuregos"],
 		Prev_Page = "CowKing",
-		Prev_Title = L["Moo"],
+		Prev_Title = BB["Moo"],
 		Back_Page = "WORLDBOSSMENU",
 		Back_Title = L["World Bosses"]
 	},
@@ -2827,22 +2894,22 @@ AtlasLoot_ButtonRegistry = {
 		Back_Title = L["Factions"]
 	},
 	["Warderns1"] = {
-		Title = L["Wardens of Time"] .. ": " .. L["Friendly"] .. " & " .. L["Honored"],
+		Title = BF["Wardens of Time"] .. ": " .. L["Friendly"] .. " & " .. L["Honored"],
 		Back_Page = "REPMENU",
 		Back_Title = L["Factions"],
 		Next_Page = "Warderns2",
-		Next_Title = L["Wardens of Time"] .. ": " .. L["Revered"] .. " & " .. L["Exalted"],
+		Next_Title = BF["Wardens of Time"] .. ": " .. L["Revered"] .. " & " .. L["Exalted"],
 		Prev_Page = "Warderns2",
-		Prev_Title = L["Wardens of Time"] .. ": " .. L["Revered"] .. " & " .. L["Exalted"],
+		Prev_Title = BF["Wardens of Time"] .. ": " .. L["Revered"] .. " & " .. L["Exalted"],
 	},
 	["Warderns2"] = {
-		Title = L["Wardens of Time"] .. ": " .. L["Revered"] .. " & " .. L["Exalted"],
+		Title = BF["Wardens of Time"] .. ": " .. L["Revered"] .. " & " .. L["Exalted"],
 		Back_Page = "REPMENU",
 		Back_Title = L["Factions"],
 		Next_Page = "Warderns1",
-		Next_Title = L["Wardens of Time"] .. ": " .. L["Friendly"] .. " & " .. L["Honored"],
+		Next_Title = BF["Wardens of Time"] .. ": " .. L["Friendly"] .. " & " .. L["Honored"],
 		Prev_Page = "Warderns1",
-		Prev_Title = L["Wardens of Time"] .. ": " .. L["Friendly"] .. " & " .. L["Honored"],
+		Prev_Title = BF["Wardens of Time"] .. ": " .. L["Friendly"] .. " & " .. L["Honored"],
 	},
 	["AQBroodRings"] = {
 		Title = BF["Brood of Nozdormu"],
@@ -3578,48 +3645,48 @@ AtlasLoot_ButtonRegistry = {
 	},
 	["T35Druid"] = {
 		Title = BC["Druid"],
-		Back_Page = "UKSET",
-		Back_Title = "Upper Karazhan Sets"
+		Back_Page = "K40SET",
+		Back_Title = L["Upper Karazhan Sets"]
 	},
 	["T35Hunter"] = {
 		Title = BC["Hunter"],
-		Back_Page = "UKSET",
-		Back_Title = "Upper Karazhan Sets"
+		Back_Page = "K40SET",
+		Back_Title = L["Upper Karazhan Sets"]
 	},
 	["T35Mage"] = {
 		Title = BC["Mage"],
-		Back_Page = "UKSET",
-		Back_Title = "Upper Karazhan Sets"
+		Back_Page = "K40SET",
+		Back_Title = L["Upper Karazhan Sets"]
 	},
 	["T35Paladin"] = {
 		Title = BC["Paladin"],
-		Back_Page = "UKSET",
-		Back_Title = "Upper Karazhan Sets"
+		Back_Page = "K40SET",
+		Back_Title = L["Upper Karazhan Sets"]
 	},
 	["T35Priest"] = {
 		Title = BC["Priest"],
-		Back_Page = "UKSET",
-		Back_Title = "Upper Karazhan Sets"
+		Back_Page = "K40SET",
+		Back_Title = L["Upper Karazhan Sets"]
 	},
 	["T35Rogue"] = {
 		Title = BC["Rogue"],
-		Back_Page = "UKSET",
-		Back_Title = "Upper Karazhan Sets"
+		Back_Page = "K40SET",
+		Back_Title = L["Upper Karazhan Sets"]
 	},
 	["T35Shaman"] = {
 		Title = BC["Shaman"],
-		Back_Page = "UKSET",
-		Back_Title = "Upper Karazhan Sets"
+		Back_Page = "K40SET",
+		Back_Title = L["Upper Karazhan Sets"]
 	},
 	["T35Warlock"] = {
 		Title = BC["Warlock"],
-		Back_Page = "UKSET",
-		Back_Title = "Upper Karazhan Sets"
+		Back_Page = "K40SET",
+		Back_Title = L["Upper Karazhan Sets"]
 	},
 	["T35Warrior"] = {
 		Title = BC["Warrior"],
-		Back_Page = "UKSET",
-		Back_Title = "Upper Karazhan Sets"
+		Back_Page = "K40SET",
+		Back_Title = L["Upper Karazhan Sets"]
 	},
 	["AQ40Druid"] = {
 		Title = BC["Druid"],
@@ -4561,16 +4628,16 @@ AtlasLoot_ButtonRegistry = {
 	["AlchemyFlasks1"] = {
 		Title = L["Flasks"],
 		Back_Page = "ALCHEMYMENU",
-		Back_Title = L["Alchemy"],
+		Back_Title = BS["Alchemy"],
 		Next_Page = "AlchemyProtectionPots1",
 		Next_Title = L["Protection Potions"],
 		Prev_Page = "AlchemyArtisan2",
-		Prev_Title = L["Alchemy"] .. ": " .. L["Artisan"],
+		Prev_Title = BS["Alchemy"] .. ": " .. L["Artisan"],
 	},
 	["AlchemyProtectionPots1"] = {
 		Title = L["Protection Potions"],
 		Back_Page = "ALCHEMYMENU",
-		Back_Title = L["Alchemy"],
+		Back_Title = BS["Alchemy"],
 		Next_Page = "AlchemyHealingAndMana1",
 		Next_Title = L["Healing and Mana Potions"],
 		Prev_Page = "AlchemyFlasks1",
@@ -4579,7 +4646,7 @@ AtlasLoot_ButtonRegistry = {
 	["AlchemyHealingAndMana1"] = {
 		Title = L["Healing and Mana Potions"],
 		Back_Page = "ALCHEMYMENU",
-		Back_Title = L["Alchemy"],
+		Back_Title = BS["Alchemy"],
 		Next_Page = "AlchemyTransmutes1",
 		Next_Title = L["Transmutes"],
 		Prev_Page = "AlchemyProtectionPots1",
@@ -4588,7 +4655,7 @@ AtlasLoot_ButtonRegistry = {
 	["AlchemyTransmutes1"] = {
 		Title = L["Transmutes"],
 		Back_Page = "ALCHEMYMENU",
-		Back_Title = L["Alchemy"],
+		Back_Title = BS["Alchemy"],
 		Next_Page = "AlchemyDefensive1",
 		Next_Title = L["Defensive Potions and Elixirs"],
 		Prev_Page = "AlchemyHealingAndMana1",
@@ -4597,7 +4664,7 @@ AtlasLoot_ButtonRegistry = {
 	["AlchemyDefensive1"] = {
 		Title = L["Defensive Potions and Elixirs"],
 		Back_Page = "ALCHEMYMENU",
-		Back_Title = L["Alchemy"],
+		Back_Title = BS["Alchemy"],
 		Next_Page = "AlchemyOffensive1",
 		Next_Title = L["Offensive Potions and Elixirs"],
 		Prev_Page = "AlchemyTransmutes1",
@@ -4606,7 +4673,7 @@ AtlasLoot_ButtonRegistry = {
 	["AlchemyOffensive1"] = {
 		Title = L["Offensive Potions and Elixirs"],
 		Back_Page = "ALCHEMYMENU",
-		Back_Title = L["Alchemy"],
+		Back_Title = BS["Alchemy"],
 		Next_Page = "AlchemyOther1",
 		Next_Title = L["Other"],
 		Prev_Page = "AlchemyDefensive1",
@@ -4615,7 +4682,7 @@ AtlasLoot_ButtonRegistry = {
 	["AlchemyOther1"] = {
 		Title = L["Other"],
 		Back_Page = "ALCHEMYMENU",
-		Back_Title = L["Alchemy"],
+		Back_Title = BS["Alchemy"],
 		Prev_Page = "AlchemyOffensive1",
 		Prev_Title = L["Offensive Potions and Elixirs"],
 	},
@@ -4858,7 +4925,7 @@ AtlasLoot_ButtonRegistry = {
 		Prev_Page = "SmithingMisc1",
 		Prev_Title = BS["Blacksmithing"] .. ": " .. L["Misc"],
 		Next_Page = "Armorsmith1",
-		Next_Title = BS["Blacksmithing"] .. ": " .. L["Armorsmith"],
+		Next_Title = BS["Blacksmithing"] .. ": " .. BS["Armorsmith"],
 	},	
 	["Armorsmith1"] = {
 		Title = BS["Armorsmith"],
@@ -5399,7 +5466,7 @@ AtlasLoot_ButtonRegistry = {
 		Prev_Page = "LeatherBags1",
 		Prev_Title = BS["Leatherworking"] .. ": " .. L["Bags"],
 		Next_Page = "Dragonscale1",
-		Next_Title = BS["Leatherworking"] .. ": " .. L["Dragonscale Leatherworking"],
+		Next_Title = BS["Leatherworking"] .. ": " .. BS["Dragonscale Leatherworking"],
 	},
 	["Dragonscale1"] = {
 		Title = BS["Dragonscale Leatherworking"],
@@ -5839,23 +5906,23 @@ AtlasLoot_ButtonRegistry = {
 		Prev_Page = "JewelcraftingTrinkets1",
 		Prev_Title = BS["Jewelcrafting"] .. ": " .. L["Trinkets"],
 		Next_Page = "JewelcraftingGemology1",
-		Next_Title = BS["Jewelcrafting"] .. ": " .. L["Gemology"],
+		Next_Title = BS["Jewelcrafting"] .. ": " .. BS["Gemology"],
 	},
 	["JewelcraftingGemology1"] = {
-		Title = BS["Jewelcrafting"] .. ": " .. L["Gemology"],
+		Title = BS["Jewelcrafting"] .. ": " .. BS["Gemology"],
 		Back_Page = "JEWELCRAFTMENU",
 		Back_Title = BS["Jewelcrafting"],
 		Prev_Page = "JewelcraftingMisc1",
 		Prev_Title = BS["Jewelcrafting"] .. ": " .. L["Misc"],
 		Next_Page = "JewelcraftingGoldsmithing1",
-		Next_Title = BS["Jewelcrafting"] .. ": " .. L["Goldsmithing"],
+		Next_Title = BS["Jewelcrafting"] .. ": " .. BS["Goldsmithing"],
 	},
 	["JewelcraftingGoldsmithing1"] = {
-		Title = BS["Jewelcrafting"] .. ": " .. L["Goldsmithing"],
+		Title = BS["Jewelcrafting"] .. ": " .. BS["Goldsmithing"],
 		Back_Page = "JEWELCRAFTMENU",
 		Back_Title = BS["Jewelcrafting"],
 		Prev_Page = "JewelcraftingGemology1",
-		Prev_Title = BS["Jewelcrafting"] .. ": " .. L["Gemology"],
+		Prev_Title = BS["Jewelcrafting"] .. ": " .. BS["Gemology"],
 	},
 	["CookingApprentice1"] = {
 		Title = BS["Cooking"]..": "..L["Apprentice"],
@@ -5895,22 +5962,22 @@ AtlasLoot_ButtonRegistry = {
 		Back_Title = L["Crafting"],
 	},
 	["Survival1"] = {
-		Title = L["Survival"],
+		Title = BS["Survival"],
 		Back_Page = "SURVIVALMENU",
-		Back_Title = L["Survival"],
+		Back_Title = BS["Survival"],
 		Prev_Page = "Survival2",
-		Prev_Title = L["Garderning"],
+		Prev_Title = BS["Garderning"],
 		Next_Page = "Survival2",
-		Next_Title = L["Garderning"],
+		Next_Title = BS["Garderning"],
 	},
 	["Survival2"] = {
-		Title = L["Garderning"],
+		Title = BS["Garderning"],
 		Back_Page = "SURVIVALMENU",
-		Back_Title = L["Survival"],
+		Back_Title = BS["Survival"],
 		Prev_Page = "Survival1",
-		Prev_Title = L["Survival"],
+		Prev_Title = BS["Survival"],
 		Next_Page = "Survival1",
-		Next_Title = L["Survival"],
+		Next_Title = BS["Survival"],
 	},
 	["Poisons1"] = {
 		Title = BS["Poisons"],

@@ -28,7 +28,11 @@ local BabbleZone = AceLibrary("AceLocale-2.2"):new(MAJOR_VERSION)
 
 BabbleZone:RegisterTranslations("enUS", function()
 	return {
+		["Upper Karazhan Halls"] = true,
+		["Dalaran"] = true,
+		["Caverns of Time: Black Morass"] = true,
 		["Moomoo Grove"] = true,
+		["Blood Ring"] = true,
 		["Ahn'Qiraj"] = true,
 		["Alterac Mountains"] = true,
 		["Alterac Valley"] = true,
@@ -107,7 +111,6 @@ BabbleZone:RegisterTranslations("enUS", function()
 		["The Crescent Grove"] = true,
 		["Karazhan Crypt"] = true,
 		["Black Morass"] = true,
-		["Caverns of Time: Black Morass"] = true,
 		["Stormwind Vault"] = true,
 		["Gilneas City"] = true,
 		["Emerald Sanctum"] = true,

@@ -205,7 +205,7 @@ function AtlasQuest_Instanzenchecken()
 		AQINSTANCE = 63
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Clackora" then
 		AQINSTANCE = 64
-	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Kara40" then
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\UpperKarazhanHalls" then
 		AQINSTANCE = 65
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\TransportRoutes" then
 		AQINSTANCE = 66
@@ -275,8 +275,8 @@ end
 -- 40 = Concavius (Concavius)
 -- 45 = Caverns Of Time: Black Morass
 -- 61 = Gilneas City
--- 62 = LowerKara
+-- 62 = LowerKarazhan
 -- 63 = Emerald Sanctum
 -- 64 = Clackora
--- 65 = Kara40
+-- 65 = UpperKarazhanHalls
 -- 99 = default "rest"
