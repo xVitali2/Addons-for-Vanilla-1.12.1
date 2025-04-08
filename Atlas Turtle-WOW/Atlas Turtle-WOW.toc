@@ -7,9 +7,9 @@
 ## Notes-zhCN: 副本地图浏览器
 ## Notes-esES: Navegador de Mapas de Mazmorras
 ## Notes-ruRU: Обозреватель подземелий
-## Version: 1.18
-## Version-AtlasLoot: 4.12.00
-## Version-AtlasQuest: 4.4
+## Version: 1.19
+## Version-AtlasLoot: 4.12.01
+## Version-AtlasQuest: 4.5
 ## X-Date: April, 2025
 ## Author: CFM, Dan Gilbert, Daviesh, Thandrenn, Asurn, Loather, Rabidmax, Dazerdude, Lichery, Pompa, Xerron, Gurky, Otari98, pepopo
 ## X-Category: MYADDONS_CATEGORY_MAP

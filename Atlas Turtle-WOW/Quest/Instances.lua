@@ -199,7 +199,7 @@ function AtlasQuest_Instanzenchecken()
 		AQINSTANCE = 60
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\GilneasCity" or AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\GilneasCityEnt" then
 		AQINSTANCE = 61
-	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\LowerKara" then
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\LowerKarazhan" then
 		AQINSTANCE = 62
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\EmeraldSanctum" then
 		AQINSTANCE = 63
