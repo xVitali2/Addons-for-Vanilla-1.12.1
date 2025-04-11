@@ -3037,7 +3037,10 @@ AtlasLoot_HewdropDown_SubTables = {
 		{ BB["Echo of Medivh"], "K40EchoofMedivh" },
 		{ BB["King"], "K40King" },
 		{ BB["Sanv Tas'dal"], "K40SanvTasdal" },
+		{ BB["Rupturan"], "K40Rupturan" },
 		{ BB["Kruul"], "K40Kruul" },
+		{ BB["Mephistroth"], "K40Mephistroth" },
+		--{ BB["Kruul"], "K40Kruul" },
 		{ L["Trash Mobs"], "K40Trash" },
 	},
 	["WailingCaverns"] = {

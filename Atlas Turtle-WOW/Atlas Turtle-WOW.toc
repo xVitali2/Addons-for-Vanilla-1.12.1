@@ -8,7 +8,7 @@
 ## Notes-esES: Navegador de Mapas de Mazmorras
 ## Notes-ruRU: Обозреватель подземелий
 ## Version: 1.19
-## Version-AtlasLoot: 4.12.01
+## Version-AtlasLoot: 4.12.02
 ## Version-AtlasQuest: 4.5
 ## X-Date: April, 2025
 ## Author: CFM, Dan Gilbert, Daviesh, Thandrenn, Asurn, Loather, Rabidmax, Dazerdude, Lichery, Pompa, Xerron, Gurky, Otari98, pepopo

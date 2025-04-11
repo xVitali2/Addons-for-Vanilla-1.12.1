@@ -28,7 +28,9 @@ local BabbleBoss = AceLibrary("AceLocale-2.2"):new(MAJOR_VERSION)
 
 BabbleBoss:RegisterTranslations("enUS", function()
 	return {
+		["Mephistroth"] = true,
 		["Kruul"] = true,
+		["Rupturan"] = true,
 		["Sanv Tas'dal"] = true,
 		["King"] = true,
 		["Echo of Medivh"] = true,
