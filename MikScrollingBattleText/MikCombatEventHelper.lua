@@ -1367,7 +1367,9 @@ function MikCEH.ParseForIncomingSpellHeals(combatMessage)
 
 	  -- Get overheal info.
 	  eventData.Name = playerName
-	  MikCEH.PopulateOverhealData(eventData); -- athenne add
+    if GetLocale() ~= "zhCN" then -- edge case for chinese client (unable to show overheal amount for hot casted on self by other)
+	   MikCEH.PopulateOverhealData(eventData); -- athenne add
+    end
 	  eventData.Name = capturedData.Name
 	  
 	  -- Send the event.
@@ -1442,7 +1444,9 @@ function MikCEH.ParseForIncomingSpellHeals(combatMessage)
 
   -- Get overheal info.
   eventData.Name = UnitName("pet")
-  MikCEH.PopulateOverhealData(eventData); -- athenne add
+  if GetLocale() ~= "zhCN" then -- edge case for chinese client (unable to show overheal amount for hot casted on your pet by other)
+    MikCEH.PopulateOverhealData(eventData); -- athenne add
+  end
   eventData.Name = capturedData.Name
   
   -- Send the event.
@@ -2588,7 +2592,39 @@ function MikCEH.ParseForOutgoingPetHits(combatMessage)
   return true;
  end
 
+  -- Look for a pet elemental hit.
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "COMBATHITSCHOOLOTHEROTHER", {"%c", "%n", "%a", "%t"});
 
+ -- If a match was found.
+ if (capturedData ~= nil) then
+  local eventData = MikCEH.GetDamageEventData(MikCEH.DIRECTIONTYPE_PET_OUTGOING, MikCEH.ACTIONTYPE_HIT, MikCEH.HITTYPE_NORMAL, capturedData.DamageType, capturedData.Amount, nil, capturedData.Name);
+
+  -- Look for any partial actions and populate them into the event data.
+  MikCEH.ParseForPartialActions(combatMessage, eventData);
+
+  -- Send the event.
+  MikCEH.SendEvent(eventData);
+
+  -- Return the parse was successful.
+  return true;
+ end
+ 
+  -- Look for a pet elemental crit.
+ local capturedData = MikCEH.GetCapturedData(combatMessage, "COMBATHITCRITSCHOOLOTHEROTHER", {"%c", "%n", "%a", "%t"});
+
+ -- If a match was found.
+ if (capturedData ~= nil) then
+  local eventData = MikCEH.GetDamageEventData(MikCEH.DIRECTIONTYPE_PET_OUTGOING, MikCEH.ACTIONTYPE_HIT, MikCEH.HITTYPE_CRIT, capturedData.DamageType, capturedData.Amount, nil, capturedData.Name);
+
+  -- Look for any partial actions and populate them into the event data.
+  MikCEH.ParseForPartialActions(combatMessage, eventData);
+  
+  -- Send the event.
+  MikCEH.SendEvent(eventData);
+
+  -- Return the parse was successful.
+  return true;
+ end
  -- Return the parse was NOT successful.
  return false;
 end
@@ -3280,7 +3316,11 @@ function MikCEH.GetGlobalStringInfo(globalStringName)
     -- Check for one of the types that need a string.
     elseif (string.find(currentChar, "[cEefgGiouXxqs]")) then
      -- Replace the format code with lua capture string syntax.
-     searchString = searchString .. "(.+)";
+     if GetLocale() == "zhCN" and globalStringName == "HEALEDSELFOTHER" then -- edge for outgoing heals on others case for zhCN client
+      searchString = searchString .. "([^0-9.]+)"
+     else
+      searchString = searchString .. "(.+)";
+     end
 
      -- Increment the argument number.
      argumentNumber = argumentNumber + 1;
@@ -3634,8 +3674,10 @@ function MikCEH.PopulateOverhealData(eventData)
   -- DEFAULT_CHAT_FRAME:AddMessage("Overheal: "..overhealAmount)
   -- DEFAULT_CHAT_FRAME:AddMessage("Amount: "..eventData.Amount)
 
-  -- Check if any overhealing occured.
-  if (overhealAmount > 0) then
+
+  -- Check if any overhealing occured （note threshold is 100 because heals on non-group members
+  -- will show show max health 100 instead of the proper maximum health of the target)
+  if (overhealAmount > 0 and UnitHealthMax(unitID) ~= 100) then
    eventData.PartialActionType = MikCEH.PARTIALACTIONTYPE_OVERHEAL;
    eventData.PartialAmount = overhealAmount;
   end

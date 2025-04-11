@@ -27,7 +27,7 @@ local TRIGGER_CONFIGURATION_FRAME_NAME = "MSBTTriggerConfigFrame";
 
 -- The min and max font sizes allowed.
 local MIN_FONT_SIZE = 12;
-local MAX_FONT_SIZE = 32;
+local MAX_FONT_SIZE = 64;
 
 -- The min and max animation steps.
 local MIN_ANIMATION_STEP = 1;
@@ -623,6 +623,10 @@ function MikSBTOpt.InitCheckboxes()
   -- Initialize the Low Mana Sound checkbox.
  key = "Tab1FrameLowManaSoundCheckbox";
  MikSBTOpt.SetupCheckbox(OPTIONS_FRAME_NAME .. key, MikSBTOpt.CHECKBOXES[key].Label, MikSBTOpt.CHECKBOXES[key].Tooltip, "LowManaSound");
+
+  -- Initialize the Resist Sound checkbox.
+ key = "Tab1FrameResistSoundCheckbox";
+ MikSBTOpt.SetupCheckbox(OPTIONS_FRAME_NAME .. key, MikSBTOpt.CHECKBOXES[key].Label, MikSBTOpt.CHECKBOXES[key].Tooltip, "ResistSound");
 
  -- Initialize the show scroll area events checkboxes.
  key = "Tab2FrameShowEventsCheckbox";	MikSBTOpt.SetupCheckbox(OPTIONS_FRAME_NAME .. key, MikSBTOpt.CHECKBOXES[key].Label, MikSBTOpt.CHECKBOXES[key].Tooltip, "DisplaySettings.Incoming.Show");
@@ -3675,7 +3679,9 @@ function MikSBTOpt.PopulateProfileOptions()
  
   -- Populate the Low Mana Sound checkbox.
  MikSBTOpt.PopulateCheckbox(OPTIONS_FRAME_NAME .. "Tab1FrameLowManaSoundCheckbox");
-
+ 
+  -- Populate the Resist Sound checkbox.
+  MikSBTOpt.PopulateCheckbox(OPTIONS_FRAME_NAME .. "Tab1FrameResistSoundCheckbox");
  -- Populate the scroll area show events checkboxes to the values in the profile.
  MikSBTOpt.PopulateCheckbox(OPTIONS_FRAME_NAME .. "Tab2FrameShowEventsCheckbox");
  MikSBTOpt.PopulateCheckbox(OPTIONS_FRAME_NAME .. "Tab3FrameShowEventsCheckbox");

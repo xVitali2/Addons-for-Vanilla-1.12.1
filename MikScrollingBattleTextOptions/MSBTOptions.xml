@@ -2664,6 +2664,15 @@
       </Anchors>
      </CheckButton>
 
+     <CheckButton name="$parentResistSoundCheckbox" inherits="MSBTCheckTemplate">
+      <Anchors>
+       <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentLowManaSoundCheckbox">
+        <Offset>
+         <AbsDimension x="80" y="0" />
+        </Offset>
+       </Anchor>
+      </Anchors>
+     </CheckButton>
      <!-- Animation Step Slider -->
      <Slider name="$parentAnimationStepSlider" inherits="MSBTSliderTemplate">
       <Anchors>

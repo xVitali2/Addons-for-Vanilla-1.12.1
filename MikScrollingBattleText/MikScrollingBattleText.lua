@@ -721,96 +721,100 @@ end
 -- Merges like animation events.
 -- **********************************************************************************
 function MikSBT.MergeEvents(mergeData, numEvents)
- -- Hold whether or not the event was merged.
- local eventMerged = false;
-
- -- Don't attempt to merge any more events than were available when the function was called since
- -- more events may get added while the merge is taking place.
- for x = 1, numEvents do
-
-  -- Loop through all of the events in the merged events array.
-  for _, animationEvent in mergeData.MergedEvents do
-   -- Check if the event types match and the effect names are the same.
-   if ((mergeData.UnmergedEvents[x].EventType == animationEvent.EventType) and
-       (mergeData.UnmergedEvents[x].EffectName == animationEvent.EffectName)) then
-
-    -- Check if there is no effect name
-    if (mergeData.UnmergedEvents[x].EffectName == nil) then
-     -- Check if the affected unit name is the same.
-     if ((mergeData.UnmergedEvents[x].Name == animationEvent.Name) and mergeData.UnmergedEvents[x].Name ~= nil) then
+  -- Hold whether or not the event was merged.
+  local eventMerged = false;
+ 
+  -- Don't attempt to merge any more events than were available when the function was called since
+  -- more events may get added while the merge is taking place.
+  for x = 1, numEvents do
+ 
+   -- Loop through all of the events in the merged events array.
+   for _, animationEvent in mergeData.MergedEvents do
+     local unmergedEventMatched = false;
+ 
+     -- Check if the event types match and the effect names are the same.
+    if ((mergeData.UnmergedEvents[x].EventType == animationEvent.EventType) and
+        (mergeData.UnmergedEvents[x].EffectName == animationEvent.EffectName)) then
+ 
+     -- Check if there is no effect name
+     if (mergeData.UnmergedEvents[x].EffectName == nil) then
+      -- Check if the affected unit name is the same.
+      if ((mergeData.UnmergedEvents[x].Name == animationEvent.Name) and mergeData.UnmergedEvents[x].Name ~= nil) then
+       -- Do Merge.
+       eventMerged = true;
+       unmergedEventMatched = true;
+      end -- Same name.
+ 
+     -- There is an effect name.
+     else
+      -- Check if there is a name and replace it with the multiple targets string.
+      if (animationEvent.Name ~= nil) then
+       animationEvent.Name = MikSBT.MSG_MULTIPLE_TARGETS;
+      end
+ 
       -- Do Merge.
       eventMerged = true;
-     end -- Same name.
-
-    -- There is an effect name.
-    else
-     -- Check if there is a name and replace it with the multiple targets string.
-     if (animationEvent.Name ~= nil) then
-      animationEvent.Name = MikSBT.MSG_MULTIPLE_TARGETS;
+      unmergedEventMatched = true;
+     end -- Effect name?
+    end -- Event types match and effect names the same.
+ 
+ 
+    -- Check if the event should be merged.
+    if (unmergedEventMatched) then
+     -- Set the event merged flag for the event being merged.
+     mergeData.UnmergedEvents[x].EventMerged = true;
+ 
+     -- If the events have an amount then total them.
+     if (animationEvent.Amount ~= nil and mergeData.UnmergedEvents[x].Amount ~= nil) then
+    animationEvent.Amount = tonumber(animationEvent.Amount, 10)
+     if animationEvent.Amount and type(animationEvent.Amount) == "number" and mergeData.UnmergedEvents[x].Amount then
+       animationEvent.Amount = animationEvent.Amount + mergeData.UnmergedEvents[x].Amount;
      end
-
-     -- Do Merge.
-     eventMerged = true;
-    end -- Effect name?
-   end -- Event types match and effect names the same.
-
-
-   -- Check if the event should be merged.
-   if (eventMerged) then
-    -- Set the event merged flag for the event being merged.
-    mergeData.UnmergedEvents[x].EventMerged = true;
-
-    -- If the events have an amount then total them.
-    if (animationEvent.Amount ~= nil and mergeData.UnmergedEvents[x].Amount ~= nil) then
-	 animationEvent.Amount = tonumber(animationEvent.Amount, 10)
-		if animationEvent.Amount and type(animationEvent.Amount) == "number" and mergeData.UnmergedEvents[x].Amount then
-			animationEvent.Amount = animationEvent.Amount + mergeData.UnmergedEvents[x].Amount;
-		end
-     -- animationEvent.Amount = animationEvent.Amount + mergeData.UnmergedEvents[x].Amount;
+      -- animationEvent.Amount = animationEvent.Amount + mergeData.UnmergedEvents[x].Amount;
+     end
+ 
+     -- Check if there is an overheal amount and total it.
+     if (mergeData.UnmergedEvents[x].OverhealAmount ~= nil) then
+      animationEvent.OverhealAmount = (animationEvent.OverhealAmount or 0) + mergeData.UnmergedEvents[x].OverhealAmount;
+     end
+ 
+     -- Clear any partial effect text.
+     animationEvent.PartialEffectText = nil;
+ 
+     
+     -- Increment the number of merged events.
+     animationEvent.NumMerged = animationEvent.NumMerged + 1;
+ 
+     -- Check if the event being merged is a crit and increment the number of crits.
+     if (mergeData.UnmergedEvents[x].IsCrit) then
+      animationEvent.NumCrits = animationEvent.NumCrits + 1;
+     end
+ 
+     -- Make sure the merged event is not flagged as a crit.
+     animationEvent.IsCrit = false;
+    end -- Do Merge.
+   end -- Loop through all merged events.
+ 
+ 
+   -- If the event wasn't merged add it to the end of the merged events array.
+   if (not eventMerged) then
+    local animationEvent = mergeData.UnmergedEvents[x];
+    animationEvent.NumMerged = 0;
+ 
+    -- Check if the event is a crit and set the number of crits appropriately.
+    if (animationEvent.IsCrit) then
+     animationEvent.NumCrits = 1;
+    else
+     animationEvent.NumCrits = 0;
     end
-
-    -- Check if there is an overheal amount and total it.
-    if (mergeData.UnmergedEvents[x].OverhealAmount ~= nil) then
-     animationEvent.OverhealAmount = (animationEvent.OverhealAmount or 0) + mergeData.UnmergedEvents[x].OverhealAmount;
-    end
-
-    -- Clear any partial effect text.
-    animationEvent.PartialEffectText = nil;
-
-    
-    -- Increment the number of merged events.
-    animationEvent.NumMerged = animationEvent.NumMerged + 1;
-
-    -- Check if the event being merged is a crit and increment the number of crits.
-    if (mergeData.UnmergedEvents[x].IsCrit) then
-     animationEvent.NumCrits = animationEvent.NumCrits + 1;
-    end
-
-    -- Make sure the merged event is not flagged as a crit.
-    animationEvent.IsCrit = false;
-   end -- Do Merge.
-  end -- Loop through all merged events.
-
-
-  -- If the event wasn't merged add it to the end of the merged events array.
-  if (not eventMerged) then
-   local animationEvent = mergeData.UnmergedEvents[x];
-   animationEvent.NumMerged = 0;
-
-   -- Check if the event is a crit and set the number of crits appropriately.
-   if (animationEvent.IsCrit) then
-    animationEvent.NumCrits = 1;
-   else
-    animationEvent.NumCrits = 0;
+ 
+    -- Add the animation event to the end of the merged events array.
+    table.insert(mergeData.MergedEvents, animationEvent);
    end
-
-   -- Add the animation event to the end of the merged events array.
-   table.insert(mergeData.MergedEvents, animationEvent);
+ 
+   -- Reset the event merged flag.
+   eventMerged = false;
   end
-
-  -- Reset the event merged flag.
-  eventMerged = false;
- end
 
 
  -- Loop through each event in the merged events array.
@@ -1687,12 +1691,25 @@ function MikSBT.AddAnimation(animationEvent)
  animDisplayInfo.AnchorPoint = MikSBT.AVAILABLE_TEXT_ALIGNS[animationEvent.ScrollArea.DisplaySettings.FontSettings.TextAlignIndex].AnchorPoint;
  animDisplayInfo.IsCrit = animationEvent.IsCrit;
  animDisplayInfo.IsSticky = animationEvent.IsSticky;
-
+ 
+ if (animationEvent.EventType == "MSBT_EVENTTYPE_OUTGOING_SPELL_RESIST") then 
+  -- play sound if enabled
+  if MikSBT.CurrentProfile.ResistSound then
+    if animationEvent.EffectName then
+      if (string.find(animationEvent.EffectName, "Cone of Cold") or string.find(animationEvent.EffectName, "Frost Nova")) then
+        PlaySoundFile("Interface\\AddOns\\MikScrollingBattleText\\sounds\\Resist.mp3");
+      end
+    end
+  end
  -- Set the font object properties.
  animDisplayInfo.FontObject:ClearAllPoints();
- animDisplayInfo.FontObject:SetFont(animDisplayInfo.FontPath, animDisplayInfo.FontSize, animDisplayInfo.FontOutline);
+ -- SetTextHeight does NOT apply if the original font size wouldn't be changed by it
+ -- FontSize tops out at 32 and in vanilla doesn't seem to apply at all - every different size I've tried has refused to work
+ -- TextHeight does scale past 32, but expectedly becomes blurry - still better than unreadable numbers on a 4k display
+ animDisplayInfo.FontObject:SetFont(animDisplayInfo.FontPath, animDisplayInfo.FontSize-1, animDisplayInfo.FontOutline);
  animDisplayInfo.FontObject:SetTextColor(animDisplayInfo.ColorR, animDisplayInfo.ColorG, animDisplayInfo.ColorB);
  animDisplayInfo.FontObject:SetText(animationEvent.Text);
+ animDisplayInfo.FontObject:SetTextHeight(animDisplayInfo.FontSize);
  animDisplayInfo.FontObject:SetAlpha(animDisplayInfo.Alpha);
  animDisplayInfo.FontObject:SetPoint(animDisplayInfo.AnchorPoint, animDisplayInfo.PositionX, animDisplayInfo.PositionY);
  
@@ -2746,7 +2763,7 @@ function MikSBT.DisplayMessage(message, displayType, isSticky, colorR, colorG, c
  end
 
  -- Check if the font size is invalid.
- if (fontSize == nil or fontSize < 12 or fontSize > 32) then
+ if (fontSize == nil or fontSize < 12 or fontSize > 64) then
   fontSize = MikSBT.GetFontSize(scrollArea, nil, false);
  end
 
