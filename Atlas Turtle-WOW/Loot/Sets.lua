@@ -3463,7 +3463,7 @@ AtlasLoot_Data["AtlasLootSetItems"] = {
 		{ 1979, "INV_Shield_02", "=q4=Wall of the Dead", "=ds=#w8#", "" },
 	},
 	WorldEpics3 = {
-		{ 0, "", "", "" },
+		{ 60784, "", "=q4=Breastplate of Beast Mastery", "=ds=#s5#, #a3#", "" },
 		{ 2245, "INV_Helmet_05", "=q4=Helm of Narv", "=ds=#s1#, #a3#", "" },
 		{ 1443, "INV_Jewelry_Amulet_01", "=q4=Jeweled Amulet of Cainwyn", "=ds=#s2#", "" },
 		{ 14558, "INV_Jewelry_Necklace_08", "=q4=Lady Maye's Pendant", "=ds=#s2#", "" },

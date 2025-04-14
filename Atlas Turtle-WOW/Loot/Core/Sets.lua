@@ -253,6 +253,7 @@ function AtlasLootWorldEpicsMenu()
 	AtlasLootMenuItem_6_Extra:SetText("")
 	AtlasLootMenuItem_6_Icon:SetTexture("Interface\\Icons\\INV_Sword_19")
 	AtlasLootMenuItem_6.lootpage="WorldEpics3"
+	AtlasLootMenuItem_6:Show()
 end
 	
 function AtlasLootWorldBluesMenu()
