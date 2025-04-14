@@ -1,6 +1,6 @@
 --[[
 	Name: Tablet-2.0
-	Revision: $Rev: 17873 $
+	Revision: $Rev: 17881 $
 	Author(s): ckknight (ckknight@gmail.com)
 	Website: http://ckknight.wowinterface.com/
 	Documentation: http://wiki.wowace.com/index.php/Tablet-2.0
@@ -10,7 +10,7 @@
 ]]
 
 local MAJOR_VERSION = "Tablet-2.0"
-local MINOR_VERSION = "$Revision: 17873 $"
+local MINOR_VERSION = "$Revision: 17881 $"
 
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary") end
 if not AceLibrary:IsNewVersion(MAJOR_VERSION, MINOR_VERSION) then return end
@@ -167,7 +167,7 @@ if DEBUG then
 			end
 		end
 	end
-	
+
 	function GetProfileInfo()
 		return GetTime() - start, times, memories
 	end
@@ -337,7 +337,7 @@ do
 		setmetatable(self, TabletData_mt)
 		return self
 	end
-	
+
 	function TabletData:del()
 		for k, v in ipairs(self.categories) do
 			v:del()
@@ -345,7 +345,7 @@ do
 		del(self.categories)
 		del(self)
 	end
-	
+
 	function TabletData:Display()
 		if self.tablet == tooltip or self.tablet.registration.showTitleWhenDetached then
 			local info = new(
@@ -374,7 +374,7 @@ do
 				)
 			end
 		end
-		
+
 		local tabletData = self.tabletData
 		local width
 		for k, v in ipairs(self.categories) do
@@ -387,7 +387,7 @@ do
 				self.width = width
 			end
 		end
-		
+
 		local good = false
 		local lastTitle = true
 		for k, v in ipairs(self.categories) do
@@ -425,7 +425,7 @@ do
 			self.tablet.tmpHidden = nil
 		end
 	end
-	
+
 	function TabletData:AddCategory(info, index)
 		local made = false
 		if not info then
@@ -443,15 +443,15 @@ do
 		end
 		return cat
 	end
-	
+
 	function TabletData:SetHint(hint)
 		self.hint = hint
 	end
-	
+
 	function TabletData:SetTitle(title)
 		self.title = title or "Title"
 	end
-	
+
 	function TabletData:SetTitleColor(r, g, b)
 		self.titleR = r
 		self.titleG = g
@@ -565,7 +565,7 @@ do
 		end
 		return self
 	end
-	
+
 	function Category:del()
 		local prev = garbageLine
 		for k, v in pairs(self.lines) do
@@ -574,7 +574,7 @@ do
 		del(self.lines)
 		del(self)
 	end
-	
+
 	function Category:AddLine(k1, v1, k2, v2, k3, v3, k4, v4, k5, v5, k6, v6, k7, v7, k8, v8, k9, v9, k10, v10, k11, v11, k12, v12, k13, v13, k14, v14, k15, v15, k16, v16, k17, v17, k18, v18, k19, v19, k20, v20, k21, v21, k22, v22, k23, v23, k24, v24, k25, v25, k26, v26, k27, v27, k28, v28, k29, v29, k30, v30)
 		self.lastWasTitle = nil
 		local line
@@ -586,7 +586,7 @@ do
 			del(info)
 		end
 	end
-	
+
 	function Category:AddCategory(k1, v1, k2, v2, k3, v3, k4, v4, k5, v5, k6, v6, k7, v7, k8, v8, k9, v9, k10, v10, k11, v11, k12, v12, k13, v13, k14, v14, k15, v15, k16, v16, k17, v17, k18, v18, k19, v19, k20, v20, k21, v21, k22, v22, k23, v23, k24, v24, k25, v25, k26, v26, k27, v27, k28, v28, k29, v29, k30, v30)
 		local lastWasTitle = self.lastWasTitle
 		self.lastWasTitle = nil
@@ -603,7 +603,7 @@ do
 		table.insert(self.lines, cat)
 		return cat
 	end
-	
+
 	function Category:HasChildren()
 		local hasChildren = false
 		for k, v in ipairs(self.lines) do
@@ -618,7 +618,7 @@ do
 		end
 		return false
 	end
-	
+
 	local lastWasTitle = false
 	function Category:Display(tablet)
 		if not self.isTitle and not self.showWithoutChildren and not self:HasChildren() then
@@ -853,7 +853,7 @@ do
 		if not self.size6 then
 			_,self.size6 = self.font6:GetFont()
 		end
-		
+
 		local fontSizePercent = category.tabletData.tablet.fontSizePercent
 		local w = 0
 		self.checkWidth = 0
@@ -1008,11 +1008,11 @@ do
 		end
 		return self
 	end
-	
+
 	function Line:del()
 		del(self)
 	end
-	
+
 	function Line:Display(tablet)
 		tablet:AddLine(self)
 		return true
@@ -1171,7 +1171,7 @@ local function AcquireFrame(self, registration, data, detachedData)
 		del(backdrop.insets)
 		del(backdrop)
 		tooltip:SetBackdropColor(0, 0, 0, 1)
-		
+
 		tooltip.numLines = 0
 		tooltip.owner = nil
 		tooltip.fontSizePercent = tooltip.data and tooltip.data.fontSizePercent or 1
@@ -1188,7 +1188,7 @@ local function AcquireFrame(self, registration, data, detachedData)
 		tooltip:SetBackdropColor(0, 0, 0, tooltip.transparency)
 		tooltip:SetBackdropBorderColor(1, 1, 1, tooltip.transparency)
 		tooltip.scroll = 0
-		
+
 		tooltip:SetScript("OnUpdate", function()
 			if not tooltip.updating and not tooltip.enteredFrame then
 				tooltip.scroll = 0
@@ -1197,27 +1197,27 @@ local function AcquireFrame(self, registration, data, detachedData)
 				tooltip.registration = nil
 			end
 		end)
-		
+
 		tooltip:SetScript("OnEnter", function()
 			if tooltip.clickable then
 				tooltip.enteredFrame = true
 			end
 		end)
-		
+
 		tooltip:SetScript("OnLeave", function()
 			if not tooltip.updating then
 				tooltip.enteredFrame = false
 			end
 		end)
-		
+
 		tooltip:SetScript("OnMouseWheel", function()
 			tooltip.updating = true
 			tooltip:Scroll(arg1 < 0)
 			tooltip.updating = false
 		end)
-		
+
 		NewLine(tooltip)
-		
+
 		tooltip.scrollUp = tooltip:CreateFontString(nil, "ARTWORK")
 		tooltip.scrollUp:SetPoint("TOPLEFT", tooltip.buttons[1], "BOTTOMLEFT", 0, -2)
 		tooltip.scrollUp:SetPoint("RIGHT", tooltip, "RIGHT", 0, -10)
@@ -1228,7 +1228,7 @@ local function AcquireFrame(self, registration, data, detachedData)
 		tooltip.scrollUp:SetJustifyH("CENTER")
 		tooltip.scrollUp:SetTextColor(1, 0.823529, 0)
 		tooltip.scrollUp:SetText(" ")
-		
+
 		tooltip.scrollDown = tooltip:CreateFontString(nil, "ARTWORK")
 		tooltip.scrollDown:SetPoint("TOPLEFT", tooltip.buttons[1], "BOTTOMLEFT", 0, -2)
 		tooltip.scrollDown:SetPoint("RIGHT", tooltip, "RIGHT", 0, -10)
@@ -1239,18 +1239,18 @@ local function AcquireFrame(self, registration, data, detachedData)
 		tooltip.scrollDown:SetJustifyH("CENTER")
 		tooltip.scrollDown:SetTextColor(1, 0.823529, 0)
 		tooltip.scrollDown:SetText(" ")
-		
+
 		function tooltip:SetOwner(o)
 			self:Hide(o)
 			self.owner = o
 		end
 		tooltip.SetOwner = wrap(tooltip.SetOwner, "tooltip:SetOwner")
-		
+
 		function tooltip:IsOwned(o)
 			return self.owner == o
 		end
 		tooltip.IsOwned = wrap(tooltip.IsOwned, "tooltip:IsOwned")
-		
+
 		function tooltip:ClearLines(hide)
 			CleanCategoryPool(self)
 			for i = 1, self.numLines do
@@ -1265,11 +1265,11 @@ local function AcquireFrame(self, registration, data, detachedData)
 			self.numLines = 0
 		end
 		tooltip.ClearLines = wrap(tooltip.ClearLines, "tooltip:ClearLines")
-		
+
 		function tooltip:NumLines()
 			return self.numLines
 		end
-		
+
 		local lastWidth
 		local old_tooltip_Hide = tooltip.Hide
 		tooltip.__Hide = old_tooltip_Hide
@@ -1283,7 +1283,7 @@ local function AcquireFrame(self, registration, data, detachedData)
 			self.tmpHidden = nil
 		end
 		tooltip.Hide = wrap(tooltip.Hide, "tooltip:Hide")
-		
+
 		local old_tooltip_Show = tooltip.Show
 		tooltip.__Show = old_tooltip_Show
 		function tooltip:Show(tabletData)
@@ -1293,7 +1293,7 @@ local function AcquireFrame(self, registration, data, detachedData)
 			if not self.tmpHidden then
 				old_tooltip_Show(self)
 			end
-			
+
 			local maxWidth = tabletData and tabletData.width or self:GetWidth() - 20
 			local hasWrap = false
 			local screenWidth = GetScreenWidth()
@@ -1302,7 +1302,7 @@ local function AcquireFrame(self, registration, data, detachedData)
 				scrollMax = GetMaxLinesPerScreen(self) + self.scroll
 			end
 			local numColumns
-			
+
 			local height = 20
 			if scrollMax ~= self.numLines then
 				self.scrollDown:SetWidth(maxWidth)
@@ -1313,7 +1313,7 @@ local function AcquireFrame(self, registration, data, detachedData)
 				height = height + self.scrollUp:GetHeight() + 2
 			end
 			self:SetWidth(maxWidth + 20)
-			
+
 			local tmp = self.scroll + 1
 			if tmp ~= 1 then
 				tmp = tmp + 1
@@ -1361,7 +1361,7 @@ local function AcquireFrame(self, registration, data, detachedData)
 			self:SetHeight(height)
 		end
 		tooltip.Show = wrap(tooltip.Show, "tooltip:Show")
-		
+
 		local lastMouseDown
 		local function button_OnClick()
 			if this.self:HasScript("OnClick") and type(this.self:GetScript("OnClick")) == "function" then
@@ -1435,13 +1435,13 @@ local function AcquireFrame(self, registration, data, detachedData)
 			if info.isTitle then
 				justAddedTitle = true
 			end
-			
+
 			self.numLines = self.numLines + 1
 			NewLine(self)
 			self.lefts[self.numLines]:Show()
 			self.buttons[self.numLines]:Show()
 			num = self.numLines
-			
+
 			local button = self.buttons[num]
 			button.indentation = info.indentation
 			local left = self.lefts[num]
@@ -1570,7 +1570,7 @@ local function AcquireFrame(self, registration, data, detachedData)
 					end
 				end
 			end
-			
+
 			check:SetWidth(info.size)
 			check:SetHeight(info.size)
 			check.width = info.size
@@ -1773,7 +1773,7 @@ local function AcquireFrame(self, registration, data, detachedData)
 			end
 		end
 		tooltip.AddLine = wrap(tooltip.AddLine, "tooltip:AddLine")
-		
+
 		function tooltip:SetFontSizePercent(percent)
 			local data, detachedData = self.data, self.detachedData
 			if detachedData and detachedData.detached then
@@ -1824,11 +1824,11 @@ local function AcquireFrame(self, registration, data, detachedData)
 			end
 		end
 		tooltip.SetFontSizePercent = wrap(tooltip.SetFontSizePercent, "tooltip:SetFontSizePercent")
-		
+
 		function tooltip:GetFontSizePercent()
 			return self.fontSizePercent
 		end
-		
+
 		function tooltip:SetTransparency(alpha)
 			local data, detachedData = self.data, self.detachedData
 			if detachedData and detachedData.detached then
@@ -1842,11 +1842,11 @@ local function AcquireFrame(self, registration, data, detachedData)
 			self:SetBackdropBorderColor(1, 1, 1, alpha)
 		end
 		tooltip.SetTransparency = wrap(tooltip.SetTransparency, "tooltip:SetTransparency")
-		
+
 		function tooltip:GetTransparency()
 			return self.transparency
 		end
-		
+
 		function tooltip:SetColor(r, g, b)
 			local data, detachedData = self.data, self.detachedData
 			if detachedData and detachedData.detached then
@@ -1864,11 +1864,11 @@ local function AcquireFrame(self, registration, data, detachedData)
 			self:SetBackdropBorderColor(1, 1, 1, self.transparency)
 		end
 		tooltip.SetColor = wrap(tooltip.SetColor, "tooltip:SetColor")
-		
+
 		function tooltip:GetColor()
 			return self.r, self.g, self.b
 		end
-		
+
 		function tooltip:Scroll(down)
 			if down then
 				if IsShiftKeyDown() then
@@ -1894,14 +1894,14 @@ local function AcquireFrame(self, registration, data, detachedData)
 			end
 		end
 		tooltip.Scroll = wrap(tooltip.Scroll, "tooltip:Scroll")
-		
+
 		function tooltip.Detach(tooltip)
 			local owner = tooltip.owner
 			tooltip:Hide()
 			self:assert(tooltip.detachedData, "You cannot detach if detachedData is not present")
 			tooltip.detachedData.detached = true
 			local detached = AcquireDetachedFrame(self, tooltip.registration, tooltip.data, tooltip.detachedData)
-			
+
 			detached.menu, tooltip.menu = tooltip.menu, nil
 			detached.children = tooltip.children
 			tooltip.children = nil
@@ -1910,9 +1910,9 @@ local function AcquireFrame(self, registration, data, detachedData)
 			detached:Show()
 		end
 		tooltip.Detach = wrap(tooltip.Detach, "tooltip:Detach")
-		
+
 	end
-	
+
 	tooltip.registration = registration
 	registration.tooltip = tooltip
 	return tooltip
@@ -1981,7 +1981,7 @@ function AcquireDetachedFrame(self, registration, data, detachedData)
 			return detached
 		end
 	end
-	
+
 	if not Dewdrop and AceLibrary:HasInstance("Dewdrop-2.0") then
 		Dewdrop = AceLibrary("Dewdrop-2.0")
 	end
@@ -2011,7 +2011,7 @@ function AcquireDetachedFrame(self, registration, data, detachedData)
 	detached:EnableMouseWheel(true)
 	detached:SetMovable(true)
 	detached:SetPoint(data.anchor or "CENTER", UIParent, data.anchor or "CENTER", data.offsetx or 0, data.offsety or 0)
-	
+
 	detached.numLines = 0
 	detached.owner = nil
 	detached.fontSizePercent = 1
@@ -2045,7 +2045,7 @@ function AcquireDetachedFrame(self, registration, data, detachedData)
 	detached.locked = detachedData.locked
 	detached.scroll = 0
 	detached:EnableMouse(not detached.locked)
-	
+
 	local width = GetScreenWidth()
 	local height = GetScreenHeight()
 	detached:SetScript("OnMouseDown", function()
@@ -2054,7 +2054,7 @@ function AcquireDetachedFrame(self, registration, data, detachedData)
 			detached.moving = true
 		end
 	end)
-	
+
 	detached:SetScript("OnMouseUp", function()
 		if arg1 == "LeftButton" then
 			detached:StopMovingOrSizing()
@@ -2139,7 +2139,7 @@ function AcquireDetachedFrame(self, registration, data, detachedData)
 			detached:Show()
 		end
 	end)
-	
+
 	Dewdrop:Register(detached,
 		'children', function(level, value)
 			if not detached.registration then
@@ -2229,9 +2229,9 @@ function AcquireDetachedFrame(self, registration, data, detachedData)
 			end
 		end
 	)
-	
+
 	NewLine(detached)
-	
+
 	detached.scrollUp = detached:CreateFontString(nil, "ARTWORK")
 	detached.scrollUp:SetPoint("TOPLEFT", detached.buttons[1], "BOTTOMLEFT", 0, -2)
 	detached.scrollUp:SetPoint("RIGHT", detached, "RIGHT", 0, -10)
@@ -2242,7 +2242,7 @@ function AcquireDetachedFrame(self, registration, data, detachedData)
 	detached.scrollUp:SetJustifyH("CENTER")
 	detached.scrollUp:SetTextColor(1, 0.823529, 0)
 	detached.scrollUp:SetText(" ")
-	
+
 	detached.scrollDown = detached:CreateFontString(nil, "ARTWORK")
 	detached.scrollDown:SetPoint("TOPLEFT", detached.buttons[1], "BOTTOMLEFT", 0, -2)
 	detached.scrollDown:SetPoint("RIGHT", detached, "RIGHT", 0, -10)
@@ -2253,11 +2253,11 @@ function AcquireDetachedFrame(self, registration, data, detachedData)
 	detached.scrollDown:SetJustifyH("CENTER")
 	detached.scrollDown:SetTextColor(1, 0.823529, 0)
 	detached.scrollDown:SetText(" ")
-	
+
 	detached:SetScript("OnMouseWheel", function()
 		detached:Scroll(arg1 < 0)
 	end)
-	
+
 	detached.SetTransparency = tooltip.SetTransparency
 	detached.GetTransparency = tooltip.GetTransparency
 	detached.SetColor = tooltip.SetColor
@@ -2291,7 +2291,7 @@ function AcquireDetachedFrame(self, registration, data, detachedData)
 		self.detachedData.locked = self.locked or nil
 		self:children()
 	end
-	
+
 	function detached.Attach(detached)
 		self:assert(detached, "Detached tooltip not given.")
 		self:assert(detached.AddLine, "detached argument not a Tooltip.")
@@ -2300,9 +2300,9 @@ function AcquireDetachedFrame(self, registration, data, detachedData)
 		detached.menu = nil
 		detached.detachedData.detached = nil
 		detached:SetOwner(nil)
-		detached.notInUse = TRUE
+		detached.notInUse = true
 	end
-	
+
 	return AcquireDetachedFrame(self, registration, data, detachedData)
 end
 AcquireDetachedFrame = wrap(AcquireDetachedFrame, "AcquireDetachedFrame")
@@ -2419,7 +2419,7 @@ function Tablet:Open(fakeParent, parent)
 		if MainMenuBar:IsVisible() and frame:GetBottom() < MainMenuBar:GetTop() and offsety < frame:GetBottom() - MainMenuBar:GetTop() then
 			offsety = frame:GetBottom() - MainMenuBar:GetTop()
 		end
-		
+
 		if FuBar then
 			local top = 0
 			if FuBar then
@@ -2456,7 +2456,7 @@ function Tablet:Open(fakeParent, parent)
 	if type(fakeParent) ~= "string" then
 		frame:SetPoint(point, fakeParent, relativePoint, -offsetx, -offsety)
 	end
-	
+
 	if detachedData and (info.cantAttach or detachedData.detached) and frame == tooltip then
 		detachedData.detached = false
 		frame:Detach()
@@ -2762,7 +2762,7 @@ function Tablet:Detach(parent)
 	else
 		info.detachedData.detached = true
 		local detached = AcquireDetachedFrame(self, info, info.data, info.detachedData)
-		
+
 		detached.menu = info.menu
 		local children = info.children
 		function detached:children()
@@ -2902,9 +2902,9 @@ local function activate(self, oldLib, oldDeactivate)
 		self.registry = {}
 		self.onceRegistered = {}
 	end
-	
+
 	tooltip = self.tooltip
-	
+
 	if oldDeactivate then
 		oldDeactivate(oldLib)
 	end

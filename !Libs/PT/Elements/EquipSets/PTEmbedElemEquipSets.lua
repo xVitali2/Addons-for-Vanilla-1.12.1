@@ -9,7 +9,7 @@ if not TekLibStub or not PeriodicTableEmbed or not PeriodicTableEmbed:NeedsUpgra
 
 local mem = gcinfo()
 local t = {
-	
+
 	-----------------------------
 	--      Instance Sets      --
 	-----------------------------
@@ -23,8 +23,8 @@ local t = {
 	chainofthescarletcrusade = "10328 10329 10330 10331 10332 10333", -- iLVL 38 (Scarlet Monestary)
 	embraceoftheviper = "6473 10410 10411 10412 10413", -- iLVL 21 (Wailing Caverns)
 	defiasleather = "10399 10400 10401 10402 10403", -- iLVL 20 (Deadmines)
-	
-	
+
+
 	-------------------------
 	--      Dungeon 1      --
 	--       iLVL 59       --
@@ -39,8 +39,8 @@ local t = {
 	shadowcraftarmor     = "16707 16708 16709 16710 16711 16712 16713 16721", -- Rogue
 	lightforgearmor      = "16722 16723 16724 16725 16726 16727 16728 16729", -- Paladin
 	battlegearofvalor    = "16730 16731 16732 16733 16734 16735 13736 16737", -- Warrior
-	
-	
+
+
 	-------------------------
 	--      Dungeon 2      --
 	--       iLVL 62       --
@@ -55,8 +55,8 @@ local t = {
 	soulforgearmor         = "22086 22087 22088 22089 22090 22091 22092 22093", -- Paladin
 	thefivethunders        = "22095 22096 22097 22098 22099 22100 22101 22102", -- Shaman
 	feralheartraiment      = "22106 22107 22108 22109 22110 22111 22112 22113", -- Druid
-	
-	
+
+
 	------------------------------
 	--      Zandalar Tribe      --
 	--        Zul'Gurub         --
@@ -72,8 +72,8 @@ local t = {
 	predatorsarmor        = "19621 19953 19833 19831 19832", -- Hunter
 	vindicatorsbattlegear = "19951 19577 19824 19822 19823", -- Warrior
 	illusionistsattire    = "20034 19601 19959 19846 19845", -- Mage
-	
-	
+
+
 	---------------------------
 	--      Tier 1 Raid      --
 	--      Molten Core      --
@@ -89,8 +89,8 @@ local t = {
 	vestmentsofprophecy = "16811 16812 16813 16814 16815 16816 16817 16819", -- Priest
 	nightslayerarmor    = "16820 16821 16822 16823 16824 16825 16826 16827", -- Rogue
 	battlegearofmight   = "16861 16862 16863 16864 16865 16866 16867 16868", -- Warrior
-	
-	
+
+
 	----------------------------
 	--      Tier 2 Raid       --
 	--     Blackwing Lair     --
@@ -106,8 +106,8 @@ local t = {
 	thetenstorms            = "16943 16944 16945 16946 16947 16948 16949 16950", -- Shaman
 	judgementarmor          = "16951 16952 16953 16954 16955 16956 16957 16958", -- Paladin
 	battlregearofwrath      = "16959 16960 16961 16962 16963 16964 16965 16966", -- Warrior
-	
-	
+
+
 	----------------------------
 	--      Tier 3 Raid       --
 	--       Naxxramas        --
@@ -123,22 +123,22 @@ local t = {
 	theearthshatterer         = "22464 22465 22466 22467 22468 22469 22470 22471", -- Shaman
 	redemptionarmor           = "22424 22425 22426 22427 22428 22429 22430 22431", -- Paladin
 	dreadnaughtsbattlegear    = "22416 22417 22418 22419 22420 22421 22422 22423", -- Warrior
-	
-	
+
+
 	-------------------------------
 	--      Cenarion Circle      --
 	--       Ahn'Qiraj 20        --
 	--          iLVL 70          --
 	-------------------------------
-	
-	
+
+
 	---------------------------------
 	--      Brood of Nozdormu      --
 	--        Ahn'Qiraj 20         --
 	--           iLVL 81           --
 	---------------------------------
-	
-	
+
+
 	----------------------------
 	--      Crafted Sets      --
 	----------------------------
@@ -155,8 +155,8 @@ local t = {
 	volcanicarmor     = "15053 15054 15055", -- iLVL 57
 	ironfeatherarmor  = "15066 15067", -- iLVL 56
 	greendragonmail   = "15045 15046 20296", --iLVL 54
-	
-	
+
+
 	---------------------------
 	--      Weapon Sets      --
 	---------------------------
@@ -165,8 +165,8 @@ local t = {
 	primalblessing = "19896 19910", -- iLVL 65
 	dalrendsarms = "12940 12939", -- iLVL 63
 	spiderskiss = "13218 13183", -- iLVL 60
-	
-	
+
+
 	-------------------------
 	--      Ring Sets      --
 	-------------------------
@@ -174,8 +174,8 @@ local t = {
 	zanzilsconcentration = "19905 19893", -- iLVL 69
 	overlordsresolution  = "19873 19912", -- iLVL 69
 	majormojoinfusion    = "19898 19925", -- iLVL 69
-	
-	
+
+
 	-------------------------
 	--      Misc sets      --
 	-------------------------

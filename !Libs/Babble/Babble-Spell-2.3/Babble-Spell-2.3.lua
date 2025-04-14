@@ -27,6 +27,7 @@ local BabbleSpell = AceLibrary("AceLocale-2.2"):new(MAJOR_VERSION)
 
 BabbleSpell:RegisterTranslations("enUS", function()
     return {
+		["Hand of Protection"] = true, -- needs to be translated
 		["Goldsmithing"] = true,
 		["Gemology"] = true,
 		["Abolish Disease"] = true,
@@ -585,6 +586,7 @@ BabbleSpell:RegisterTranslations("enUS", function()
 		["Goblin Sapper Charge"] = true,
 		["Gouge"] = true,
 		["Grace of Air Totem"] = true,
+		["Grace of the Sunwell"] = true,
 		["Grasping Vines"] = true,
 		["Great Stamina"] = true,
 		["Greater Blessing of Kings"] = true,
@@ -607,6 +609,7 @@ BabbleSpell:RegisterTranslations("enUS", function()
 		["Hammer of Justice"] = true,
 		["Hammer of Wrath"] = true,
 		["Hamstring"] = true,
+		["Hand of Protection"] = true, -- needs to be translated
 		["Harass"] = true,
 		["Hardiness"] = true,
 		["Haunting Spirits"] = true,
@@ -1252,6 +1255,7 @@ BabbleSpell:RegisterTranslations("enUS", function()
 		["Spellsteal"] = true,
 		["Spirit Bond"] = true,
 		["Spirit Burst"] = true,
+		["Spirit Link"] = true,
 		["Spirit of Redemption"] = true,
 		["Spirit Tap"] = true,
 		["Spiritual Attunement"] = true,
@@ -9435,6 +9439,7 @@ local spellIcons = {
 	["Goblin Sapper Charge"] = "Spell_Fire_SelfDestruct",
 	["Gouge"] = "Ability_Gouge",
 	["Grace of Air Totem"] = "Spell_Nature_InvisibilityTotem",
+	["Grace of the Sunwell"] = true,
 	["Grasping Vines"] = "Spell_Nature_StrangleVines",
 	["Great Stamina"] = "Spell_Nature_UnyeildingStamina",
 	["Greater Blessing of Kings"] = "Spell_Magic_GreaterBlessingofKings",
@@ -9457,6 +9462,7 @@ local spellIcons = {
 	["Hammer of Justice"] = "Spell_Holy_SealOfMight",
 	["Hammer of Wrath"] = "Ability_ThunderClap",
 	["Hamstring"] = "Ability_ShockWave",
+	["Hand of Protection"] = true, -- needs to be translated
 	["Harass"] = "Ability_Hunter_Harass",
 	["Hardiness"] = "INV_Helmet_23",
 	["Haunting Spirits"] = "Spell_Shadow_BlackPlague",
@@ -10067,6 +10073,7 @@ local spellIcons = {
 	["Spell Warding"] = "Spell_Holy_SpellWarding",
 	["Spirit Bond"] = "Ability_Druid_DemoralizingRoar",
 	["Spirit Burst"] = "Spell_Shadow_Teleport",
+	["Spirit Link"] = "Spell_Shaman_SpiritLink",
 	["Spirit of Redemption"] = "INV_Enchant_EssenceEternalLarge",
 	["Spirit Tap"] = "Spell_Shadow_Requiem",
 	["Spiritual Focus"] = "Spell_Arcane_Blink",

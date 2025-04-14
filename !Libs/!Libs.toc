@@ -26,6 +26,7 @@ Ace\AceHook.lua
 Ace\AceModule.lua
 Ace\AceAddon.lua
 
+LibStub\LibStub.lua
 Ace2\AceLibrary\AceLibrary.lua
 Ace2\AceOO-2.0\AceOO-2.0.lua
 

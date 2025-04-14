@@ -1,6 +1,6 @@
 --[[
 	Name: Gratuity-2.0
-	Revision: $Rev: 11053 $
+	Revision: $Rev: 11054 $
 	Author: Tekkub Stoutwrithe (tekkub@gmail.com)
 	Website: http://wiki.wowace.com/index.php/GratuityLib
 	Documentation: http://wiki.wowace.com/index.php/Gratuity-2.0_API_Documentation
@@ -9,7 +9,7 @@
 	Dependencies: AceLibrary, (optional) Compost-2.0, (optional) Deformat-2.0
 ]]
 
-local vmajor, vminor = "Gratuity-2.0", "$Revision: 11053 $"
+local vmajor, vminor = "Gratuity-2.0", "$Revision: 11054 $"
 
 if not AceLibrary then error(vmajor .. " requires AceLibrary.") end
 if not AceLibrary:IsNewVersion(vmajor, vminor) then return end
@@ -32,9 +32,9 @@ local function activate(self, oldLib, oldDeactivate)
 		self.vars = {}
 		self:CreateTooltip()
 	end
-	
+
 	self:CreateSetMethods()
-	
+
 	if oldDeactivate then oldDeactivate(oldLib) end
 end
 
@@ -46,11 +46,11 @@ end
 
 function lib:CreateTooltip()
 	local tt = CreateFrame("GameTooltip")
-	
+
 	self.vars.tooltip = tt
 	tt:SetOwner(tt, "ANCHOR_NONE")
 	--	tooltip:SetParent()
-	
+
 	self.vars.Llines, self.vars.Rlines = {}, {}
 	for i=1,30 do
 		self.vars.Llines[i], self.vars.Rlines[i] = tt:CreateFontString(), tt:CreateFontString()
@@ -107,7 +107,7 @@ function lib:Find(txt, startln, endln, ignoreleft, ignoreright, exact)
 			local txtl = self.vars.Llines[i]:GetText()
 			if (txtl and searchFunction(txtl, txt)) then return string.find(txtl, txt) end
 		end
-		
+
 		if not ignoreright then
 			local txtr = self.vars.Rlines[i]:GetText()
 			if (txtr and searchFunction(txtr, txt)) then return string.find(txtr, txt) end
@@ -139,13 +139,13 @@ function lib:FindDeformat(txt, startln, endln, ignoreleft, ignoreright)
 		self:assert(AceLibrary:HasInstance("Deformat-2.0"), "FindDeformat requires Deformat-2.0 to be available")
 		deformat = AceLibrary("Deformat-2.0")
 	end
-	
+
 	for i=(startln or 1),self:NumLines(endln) do
 		if not ignoreleft then
 			local txtl = self.vars.Llines[i]:GetText()
 			if (txtl and deformat(txtl, txt)) then return deformat(txtl, txt) end
 		end
-		
+
 		if not ignoreright then
 			local txtr = self.vars.Rlines[i]:GetText()
 			if (txtr and deformat(txtr, txt)) then return deformat(txtr, txt) end
@@ -162,7 +162,7 @@ end
 function lib:GetText(startln, endln, ignoreleft, ignoreright)
 	self:InitCompost()
 	local retval
-	
+
 	for i=(startln or 1),(endln or 30) do
 		local txtl, txtr
 		if not ignoreleft then txtl = self.vars.Llines[i]:GetText() end
@@ -173,7 +173,7 @@ function lib:GetText(startln, endln, ignoreleft, ignoreright)
 			table.insert(retval, t)
 		end
 	end
-	
+
 	return retval
 end
 

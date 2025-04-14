@@ -1,6 +1,6 @@
 --[[
 Name: Babble-Boss-2.2
-Revision: $Rev: 20005 $
+Revision: $Rev: 20010 $
 Author(s): ckknight (ckknight@gmail.com)
 Website: http://ckknight.wowinterface.com/
 Documentation: http://wiki.wowace.com/index.php/Babble-Boss-2.2
@@ -28,6 +28,8 @@ local BabbleBoss = AceLibrary("AceLocale-2.2"):new(MAJOR_VERSION)
 
 BabbleBoss:RegisterTranslations("enUS", function()
 	return {
+		["Alterac Valley"] = true,
+		["Arathi Basin"] = true,
 		["Mephistroth"] = true,
 		["Kruul"] = true,
 		["Rupturan"] = true,
@@ -55,6 +57,7 @@ BabbleBoss:RegisterTranslations("enUS", function()
 		["Clawlord Howlfang"] = true,
 		["Grizikil"] = true,
 		["Moroes"] = true,
+		["Blackhand Incarcerator"] = true,
 		["Harbinger Aph'ygth"] = true,
 		["Epidamu"] = true,
 		["Drifting Avatar of Sand"] = true,
@@ -149,6 +152,13 @@ BabbleBoss:RegisterTranslations("enUS", function()
 		["Moo"] = true,
 		["Alarus"] = true,
 		["Chronar"] = true,
+		["Rookery Hatcher"] = true,
+		["Rookery Guardian"] = true,
+		["Sanctum Dragonkin"] = true,
+		["Sanctum Dreamer"] = true,
+		["Sanctum Supressor"] = true,
+		["Sanctum Wyrmkin"] = true,
+		["Sanctum Wyrm"] = true,
 		["Ostarius"] = true,
 		["Cla'ckora"] = true,
 		["Lord Kazzak"] = true,

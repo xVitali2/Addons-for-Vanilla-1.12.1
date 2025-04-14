@@ -1,6 +1,6 @@
 --[[
 	Name: AceOO-2.0
-	Revision: $Rev: 17638 $
+	Revision: $Rev: 17639 $
 	Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
 	Inspired By: Ace 1.x by Turan (turan@gryphon.com)
 	Website: http://www.wowace.com/
@@ -545,7 +545,7 @@ do
 		total[k] = nil
 	end
 	table_setn(total, 0)
-	
+
 	newclass.super = parent
 	
 	newclass.prototype = setmetatable(total, {
@@ -553,7 +553,7 @@ do
 		__tostring = protostring,
 	})
 	total = nil
-	
+
 	newclass.instancemeta = {
 		__index = newclass.prototype,
 		__tostring = classobjectstring,
@@ -568,11 +568,11 @@ do
 		__pow = classobjectpow,
 		__concat = classobjectconcat,
 	}
-	
+
 	setmetatable(newclass, classmeta)
-	
+
 	newclass.new = class_new
-	
+
 	if newclass.mixins then
 		-- Fold in the mixins
 		local err, msg
@@ -597,7 +597,7 @@ do
 			AceOO:error(msg)
 		end
 	end
-	
+
 	newclass.prototype.class = newclass
 	
 	if newclass.interfaces then
@@ -698,19 +698,19 @@ do
 		if field == nil then
 			return
 		end
-		
+
 		if rawget(target, field) or (target[field] and target[field] ~= state[field]) then
 			AceOO:error("Method conflict in attempt to mixin. Field %q", field)
 		end
-		
+
 		target[field] = state[field]
-		
+
 		local ret,msg = pcall(_Embed, state, field, target)
 		if not ret then
 			-- Mix in the next method according to the defined interface.	If that
 			-- fails due to a conflict, re-raise to back out the previous mixed
 			-- methods.
-			
+
 			target[field] = nil
 			AceOO:error(msg)
 		end
@@ -901,68 +901,68 @@ do
 	end
 	local t
 	local function getcomplexuid(sc, m1, m2, m3, m4, m5, m6, m7, m8, m9,
-	m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20)
-	if not t then t = {} end
-	if sc then if sc.uid then table.insert(t, sc.uid) else AceOO:error("%s is not an appropriate class/mixin", ts(sc)) end
+		m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20)
+		if not t then t = {} end
+		if sc then if sc.uid then table.insert(t, sc.uid) else AceOO:error("%s is not an appropriate class/mixin", ts(sc)) end
 		if m1 then if m1.uid then table.insert(t, m1.uid) else AceOO:error("%s is not an appropriate mixin", ts(m1)) end
-			if m2 then if m2.uid then table.insert(t, m2.uid) else AceOO:error("%s is not an appropriate mixin", ts(m2)) end
-				if m3 then if m3.uid then table.insert(t, m3.uid) else AceOO:error("%s is not an appropriate mixin", ts(m3)) end
-					if m4 then if m4.uid then table.insert(t, m4.uid) else AceOO:error("%s is not an appropriate mixin", ts(m4)) end
-						if m5 then if m5.uid then table.insert(t, m5.uid) else AceOO:error("%s is not an appropriate mixin", ts(m5)) end
-							if m6 then if m6.uid then table.insert(t, m6.uid) else AceOO:error("%s is not an appropriate mixin", ts(m6)) end
-								if m7 then if m7.uid then table.insert(t, m7.uid) else AceOO:error("%s is not an appropriate mixin", ts(m7)) end
-									if m8 then if m8.uid then table.insert(t, m8.uid) else AceOO:error("%s is not an appropriate mixin", ts(m8)) end
-										if m9 then if m9.uid then table.insert(t, m9.uid) else AceOO:error("%s is not an appropriate mixin", ts(m9)) end
-											if m10 then if m10.uid then table.insert(t, m10.uid) else AceOO:error("%s is not an appropriate mixin", ts(m10)) end
-												if m11 then if m11.uid then table.insert(t, m11.uid) else AceOO:error("%s is not an appropriate mixin", ts(m11)) end
-													if m12 then if m12.uid then table.insert(t, m12.uid) else AceOO:error("%s is not an appropriate mixin", ts(m12)) end
-														if m13 then if m13.uid then table.insert(t, m13.uid) else AceOO:error("%s is not an appropriate mixin", ts(m13)) end
-															if m14 then if m14.uid then table.insert(t, m14.uid) else AceOO:error("%s is not an appropriate mixin", ts(m14)) end
-																if m15 then if m15.uid then table.insert(t, m15.uid) else AceOO:error("%s is not an appropriate mixin", ts(m15)) end
-																	if m16 then if m16.uid then table.insert(t, m16.uid) else AceOO:error("%s is not an appropriate mixin", ts(m16)) end
-																		if m17 then if m17.uid then table.insert(t, m17.uid) else AceOO:error("%s is not an appropriate mixin", ts(m17)) end
-																			if m18 then if m18.uid then table.insert(t, m18.uid) else AceOO:error("%s is not an appropriate mixin", ts(m18)) end
-																				if m19 then if m19.uid then table.insert(t, m19.uid) else AceOO:error("%s is not an appropriate mixin", ts(m19)) end
-																					if m20 then if m20.uid then table.insert(t, m20.uid) else AceOO:error("%s is not an appropriate mixin", ts(m20)) end
-																					end end end end end end end end end end end end end end end end end end end end end
-																					table.sort(t)
-																					local uid = table.concat(t, '')
-																					for k in pairs(t) do t[k] = nil end
-																					table_setn(t, 0)
-																					return uid
+		if m2 then if m2.uid then table.insert(t, m2.uid) else AceOO:error("%s is not an appropriate mixin", ts(m2)) end
+		if m3 then if m3.uid then table.insert(t, m3.uid) else AceOO:error("%s is not an appropriate mixin", ts(m3)) end
+		if m4 then if m4.uid then table.insert(t, m4.uid) else AceOO:error("%s is not an appropriate mixin", ts(m4)) end
+		if m5 then if m5.uid then table.insert(t, m5.uid) else AceOO:error("%s is not an appropriate mixin", ts(m5)) end
+		if m6 then if m6.uid then table.insert(t, m6.uid) else AceOO:error("%s is not an appropriate mixin", ts(m6)) end
+		if m7 then if m7.uid then table.insert(t, m7.uid) else AceOO:error("%s is not an appropriate mixin", ts(m7)) end
+		if m8 then if m8.uid then table.insert(t, m8.uid) else AceOO:error("%s is not an appropriate mixin", ts(m8)) end
+		if m9 then if m9.uid then table.insert(t, m9.uid) else AceOO:error("%s is not an appropriate mixin", ts(m9)) end
+		if m10 then if m10.uid then table.insert(t, m10.uid) else AceOO:error("%s is not an appropriate mixin", ts(m10)) end
+		if m11 then if m11.uid then table.insert(t, m11.uid) else AceOO:error("%s is not an appropriate mixin", ts(m11)) end
+		if m12 then if m12.uid then table.insert(t, m12.uid) else AceOO:error("%s is not an appropriate mixin", ts(m12)) end
+		if m13 then if m13.uid then table.insert(t, m13.uid) else AceOO:error("%s is not an appropriate mixin", ts(m13)) end
+		if m14 then if m14.uid then table.insert(t, m14.uid) else AceOO:error("%s is not an appropriate mixin", ts(m14)) end
+		if m15 then if m15.uid then table.insert(t, m15.uid) else AceOO:error("%s is not an appropriate mixin", ts(m15)) end
+		if m16 then if m16.uid then table.insert(t, m16.uid) else AceOO:error("%s is not an appropriate mixin", ts(m16)) end
+		if m17 then if m17.uid then table.insert(t, m17.uid) else AceOO:error("%s is not an appropriate mixin", ts(m17)) end
+		if m18 then if m18.uid then table.insert(t, m18.uid) else AceOO:error("%s is not an appropriate mixin", ts(m18)) end
+		if m19 then if m19.uid then table.insert(t, m19.uid) else AceOO:error("%s is not an appropriate mixin", ts(m19)) end
+		if m20 then if m20.uid then table.insert(t, m20.uid) else AceOO:error("%s is not an appropriate mixin", ts(m20)) end
+		end end end end end end end end end end end end end end end end end end end end end
+		table.sort(t)
+		local uid = table.concat(t, '')
+		for k in pairs(t) do t[k] = nil end
+		table_setn(t, 0)
+		return uid
 	end
 	local classmeta
 	function Classpool(sc, m1, m2, m3, m4, m5, m6, m7, m8, m9,
 		m10, m11, m12, m13, m14, m15, m16,
-	m17, m18, m19, m20)
-	local l = getlibrary
-	sc, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20 = l(sc), l(m1), l(m2), l(m3), l(m4), l(m5), l(m6), l(m7), l(m8), l(m9), l(m10), l(m11), l(m12), l(m13), l(m14), l(m15), l(m16), l(m17), l(m18), l(m19), l(m20)
-	if sc and sc.class then
-		sc, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20 = Class, sc, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19
-	end
-	sc = sc or Class
-	local key = getcomplexuid(sc, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20)
-	if not pool[key] then
-		local class = Class(sc, m1, m2, m3, m4, m5, m6, m7, m8, m9,
-			m10, m11, m12, m13, m14, m15, m16, m17,
-		m18, m19, m20)
-		if not classmeta then
-			classmeta = {}
-			local mt = getmetatable(class)
-			for k,v in pairs(mt) do
-				classmeta[k] = v
-			end
-			classmeta.__newindex = newindex
+		m17, m18, m19, m20)
+		local l = getlibrary
+		sc, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20 = l(sc), l(m1), l(m2), l(m3), l(m4), l(m5), l(m6), l(m7), l(m8), l(m9), l(m10), l(m11), l(m12), l(m13), l(m14), l(m15), l(m16), l(m17), l(m18), l(m19), l(m20)
+		if sc and sc.class then
+			sc, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20 = Class, sc, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19
 		end
-		-- Prevent the user from adding methods to this class.
-		-- NOTE: I'm not preventing modifications of existing class members,
-		-- but it's likely that only a truly malicious user will be doing so.
-		class.sealed = true
-		setmetatable(class, classmeta)
-		getmetatable(class.prototype).__newindex = protonewindex
-		pool[key] = class
-	end
-	return pool[key]
+		sc = sc or Class
+		local key = getcomplexuid(sc, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20)
+		if not pool[key] then
+			local class = Class(sc, m1, m2, m3, m4, m5, m6, m7, m8, m9,
+				m10, m11, m12, m13, m14, m15, m16, m17,
+				m18, m19, m20)
+			if not classmeta then
+				classmeta = {}
+				local mt = getmetatable(class)
+				for k,v in pairs(mt) do
+					classmeta[k] = v
+				end
+				classmeta.__newindex = newindex
+			end
+			-- Prevent the user from adding methods to this class.
+			-- NOTE: I'm not preventing modifications of existing class members,
+			-- but it's likely that only a truly malicious user will be doing so.
+			class.sealed = true
+			setmetatable(class, classmeta)
+			getmetatable(class.prototype).__newindex = protonewindex
+			pool[key] = class
+		end
+		return pool[key]
 	end
 end
 

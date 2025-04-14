@@ -1,6 +1,6 @@
 --[[
 	Name: AceHook-2.1
-	Revision: $Rev: 17638 $
+	Revision: $Rev: 17639 $
 	Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
 	Inspired By: Ace 1.x by Turan (turan@gryphon.com)
 	Website: http://www.wowace.com/
@@ -11,7 +11,7 @@
 ]]
 
 local MAJOR_VERSION = "AceHook-2.1"
-local MINOR_VERSION = "$Revision: 17638 $"
+local MINOR_VERSION = "$Revision: 17639 $"
 
 -- This ensures the code is only executed if the libary doesn't already exist, or is a newer version
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary.") end
@@ -239,7 +239,7 @@ local function hookFunction(self, func, handler, secure)
 	if not handler then
 		handler = func
 	end
-	
+
 	if registry[self][func] then
 		local uid = registry[self][func]
 		

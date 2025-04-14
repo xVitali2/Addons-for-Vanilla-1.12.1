@@ -1,6 +1,6 @@
 --[[
 	Name: AceConsole-2.0
-	Revision: $Rev: 17638 $
+	Revision: $Rev: 17639 $
 	Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
 	Inspired By: Ace 1.x by Turan (turan@gryphon.com)
 	Website: http://www.wowace.com/
@@ -13,7 +13,7 @@
 ]]
 
 local MAJOR_VERSION = "AceConsole-2.0"
-local MINOR_VERSION = "$Revision: 17638 $"
+local MINOR_VERSION = "$Revision: 17639 $"
 
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary.") end
 if not AceLibrary:IsNewVersion(MAJOR_VERSION, MINOR_VERSION) then return end
@@ -424,7 +424,7 @@ local function validateOptions(options, position, baseOptions, fromPass)
 			return '"desc" cannot be a 0-length string', position
 		end
 	end
-	
+
 	if options ~= baseOptions or kind == "range" or kind == "text" or kind == "toggle" or kind == "color" then
 		if options.type == "header" and not options.cmdName and not options.name then
 		elseif options.cmdName then
@@ -652,7 +652,7 @@ local function printUsage(self, handler, realOptions, options, path, args, quiet
 				var = handler[options.get](handler)
 			end
 		end
-		
+
 		local usage
 		if type(options.validate) == "table" then
 			if filter then
@@ -715,7 +715,7 @@ local function printUsage(self, handler, realOptions, options, path, args, quiet
 				var = handler[options.get](handler)
 			end
 		end
-		
+
 		local usage
 		local min = options.min or 0
 		local max = options.max or 1
@@ -935,10 +935,10 @@ local function handlerFunc(self, chat, msg, options)
 		msg = string.gsub(msg, "^%s*(.-)%s*$", "%1")
 		msg = string.gsub(msg, "%s+", " ")
 	end
-	
+
 	local realOptions = options
 	local options, path, args, handler, passTable, passValue = findTableLevel(self, options, chat, msg)
-	
+
 	local hidden, disabled = options.cmdHidden or options.hidden, options.disabled
 	if hidden then
 		if type(hidden) == "function" then
@@ -1027,7 +1027,7 @@ local function handlerFunc(self, chat, msg, options)
 					return
 				end
 			end
-			
+
 			local var
 			if passTable then
 				if not passTable.get then
@@ -1050,7 +1050,7 @@ local function handlerFunc(self, chat, msg, options)
 					var = handler[options.get](handler)
 				end
 			end
-			
+
 			if var ~= args[1] then
 				if passTable then
 					if type(passTable.set) == "function" then
@@ -1073,7 +1073,7 @@ local function handlerFunc(self, chat, msg, options)
 				end
 			end
 		end
-		
+
 		if table.getn(args) > 0 then
 			local var
 			if passTable then
@@ -1180,7 +1180,7 @@ local function handlerFunc(self, chat, msg, options)
 				var = handler[options.get](handler)
 			end
 		end
-		
+
 		print(string.format(options.message or IS_NOW_SET_TO, tostring(options.cmdName or options.name), (options.map or MAP_ONOFF)[var and true or false] or NONE), realOptions.cmdName or realOptions.name or self)
 	elseif kind == "range" then
 		local arg
@@ -1189,7 +1189,7 @@ local function handlerFunc(self, chat, msg, options)
 		else
 			arg = table.concat(args, " ")
 		end
-		
+
 		if arg then
 			local min = options.min or 0
 			local max = options.max or 1
@@ -1198,11 +1198,11 @@ local function handlerFunc(self, chat, msg, options)
 				if options.isPercent then
 					arg = arg / 100
 				end
-				
+
 				if arg >= min and arg <= max then
 					good = true
 				end
-				
+
 				if good and type(options.step) == "number" and options.step > 0 then
 					local step = options.step
 					arg = math.floor((arg - min) / step + 0.5) * step + min
@@ -1229,7 +1229,7 @@ local function handlerFunc(self, chat, msg, options)
 				print(string.format("|cffffff7f%s:|r %s %s", USAGE, path, usage))
 				return
 			end
-			
+
 			local var
 			if passTable then
 				if type(passTable.get) == "function" then
@@ -1251,7 +1251,7 @@ local function handlerFunc(self, chat, msg, options)
 					var = handler[options.get](handler)
 				end
 			end
-			
+
 			if var ~= arg then
 				if passTable then
 					if type(passTable.set) == "function" then
@@ -1275,7 +1275,7 @@ local function handlerFunc(self, chat, msg, options)
 				end
 			end
 		end
-		
+
 		if arg then
 			local var
 			if passTable then
@@ -1298,7 +1298,7 @@ local function handlerFunc(self, chat, msg, options)
 					var = handler[options.get](handler)
 				end
 			end
-			
+
 			if var and options.isPercent then
 				var = tostring(var * 100) .. "%"
 			end
@@ -1363,7 +1363,7 @@ local function handlerFunc(self, chat, msg, options)
 					handler[options.set](handler, r,g,b,a)
 				end
 			end
-			
+
 			local r,g,b,a
 			if passTable then
 				if type(passTable.get) == "function" then
@@ -1384,7 +1384,7 @@ local function handlerFunc(self, chat, msg, options)
 					r,g,b,a = handler[options.get](handler)
 				end
 			end
-			
+
 			local s
 			if type(r) == "number" and type(g) == "number" and type(b) == "number" then
 				if options.hasAlpha and type(a) == "number" then
@@ -1417,11 +1417,11 @@ local function handlerFunc(self, chat, msg, options)
 					r,g,b,a = handler[options.get](handler)
 				end
 			end
-			
+
 			if not colorTable then
 				colorTable = {}
 				local t = colorTable
-				
+
 				if ColorPickerOkayButton then
 					local ColorPickerOkayButton_OnClick = ColorPickerOkayButton:GetScript("OnClick")
 					ColorPickerOkayButton:SetScript("OnClick", function()
@@ -1476,7 +1476,7 @@ local function handlerFunc(self, chat, msg, options)
 					colorTable[k] = nil
 				end
 			end
-			
+
 			if type(r) ~= "number" or type(g) ~= "number" or type(b) ~= "number" then
 				r,g,b = 1, 1, 1
 			end
@@ -1499,7 +1499,7 @@ local function handlerFunc(self, chat, msg, options)
 			t.message = options.message or IS_NOW_SET_TO
 			t.passValue = passValue
 			t.active = true
-			
+
 			if not colorFunc then
 				colorFunc = function()
 					local r,g,b = ColorPickerFrame:GetColorRGB()
@@ -1541,7 +1541,7 @@ local function handlerFunc(self, chat, msg, options)
 					end
 				end
 			end
-			
+
 			ColorPickerFrame.func = colorFunc
 			ColorPickerFrame.hasOpacity = options.hasAlpha
 			if options.hasAlpha then
@@ -1549,7 +1549,7 @@ local function handlerFunc(self, chat, msg, options)
 				ColorPickerFrame.opacity = 1 - a
 			end
 			ColorPickerFrame:SetColorRGB(r,g,b)
-			
+
 			if not colorCancelFunc then
 				colorCancelFunc = function()
 					if t.hasAlpha then
@@ -1595,9 +1595,9 @@ local function handlerFunc(self, chat, msg, options)
 					ColorPickerFrame.opacityFunc = nil
 				end
 			end
-			
+
 			ColorPickerFrame.cancelFunc = colorCancelFunc
-			
+
 			ShowUIPanel(ColorPickerFrame)
 		end
 		return
@@ -1642,7 +1642,7 @@ function AceConsole:RegisterChatCommand(slashCommands, options, name)
 		if table.getn(slashCommands) == 0 then
 			AceConsole:error("Argument #2 to `RegisterChatCommand' must include at least one string")
 		end
-		
+
 		for k,v in pairs(slashCommands) do
 			if type(k) ~= "number" then
 				AceConsole:error("All keys in argument #2 to `RegisterChatCommand' must be numbers")
@@ -1654,7 +1654,7 @@ function AceConsole:RegisterChatCommand(slashCommands, options, name)
 			end
 		end
 	end
-	
+
 	if not options then
 		options = {
 			type = 'group',
@@ -1662,7 +1662,7 @@ function AceConsole:RegisterChatCommand(slashCommands, options, name)
 			handler = self
 		}
 	end
-	
+
 	if type(options) == "table" then
 		local err, position = validateOptions(options)
 		if err then
@@ -1672,23 +1672,23 @@ function AceConsole:RegisterChatCommand(slashCommands, options, name)
 				AceConsole:error(err)
 			end
 		end
-		
+
 		if not options.handler then
 			options.handler = self
 		end
-		
+
 		if options.handler == self and string.lower(options.type) == "group" and self.class then
 			AceConsole:InjectAceOptionsTable(self, options)
 		end
 	end
-	
+
 	local chat
 	if slashCommands then
 		chat = slashCommands[1]
 	else
 		chat = _G["SLASH_"..name..1]
 	end
-	
+
 	local handler
 	if type(options) == "function" then
 		handler = options
@@ -1705,17 +1705,17 @@ function AceConsole:RegisterChatCommand(slashCommands, options, name)
 			handlerFunc(self, chat, msg, options)
 		end
 	end
-	
+
 	if not _G.SlashCmdList then
 		_G.SlashCmdList = {}
 	end
-	
+
 	if not name then
 		repeat
 			name = string.char(math.random(26) + string.byte('A') - 1) .. string.char(math.random(26) + string.byte('A') - 1) .. string.char(math.random(26) + string.byte('A') - 1) .. string.char(math.random(26) + string.byte('A') - 1) .. string.char(math.random(26) + string.byte('A') - 1) .. string.char(math.random(26) + string.byte('A') - 1) .. string.char(math.random(26) + string.byte('A') - 1) .. string.char(math.random(26) + string.byte('A') - 1)
 		until not _G.SlashCmdList[name]
 	end
-	
+
 	if slashCommands then
 		if _G.SlashCmdList[name] then
 			local i = 0
@@ -1728,7 +1728,7 @@ function AceConsole:RegisterChatCommand(slashCommands, options, name)
 				end
 			end
 		end
-		
+
 		local i = 0
 		for _,command in ipairs(slashCommands) do
 			i = i + 1
@@ -1743,7 +1743,7 @@ function AceConsole:RegisterChatCommand(slashCommands, options, name)
 	if self ~= AceConsole and self.slashCommand == nil then
 		self.slashCommand = chat
 	end
-	
+
 	if not AceEvent and AceLibrary:HasInstance("AceEvent-2.0") then
 		external(AceConsole, "AceEvent-2.0", AceLibrary("AceEvent-2.0"))
 	end
@@ -1758,7 +1758,7 @@ function AceConsole:RegisterChatCommand(slashCommands, options, name)
 			end
 		end
 	end
-	
+
 	AceConsole.registry[name] = options
 end
 
@@ -1822,9 +1822,9 @@ function AceConsole:PLAYER_LOGIN()
 		end
 		self.nextAddon[addon] = nil
 	end
-	
+
 	self:RegisterChatCommand({ "/reload", "/rl", "/reloadui" }, ReloadUI, "RELOAD")
-	
+
 	local version = GetBuildInfo()
 	if string.find(version, "^2%.") then
 		-- 2.0.0
@@ -1863,14 +1863,14 @@ function external(self, major, instance)
 	if major == "AceEvent-2.0" then
 		if not AceEvent then
 			AceEvent = instance
-			
+
 			AceEvent:embed(self)
 		end
 	elseif major == "AceTab-2.0" then
 		instance:RegisterTabCompletion("AceConsole", "%/.*", function(t, cmdpath, pos)
 			local ac = AceLibrary("AceConsole-2.0")
 			local name, cmd, path = ac:TabCompleteInfo(string.sub(cmdpath, 1, pos))
-			
+
 			if not ac.registry[name] then
 				return false
 			else
@@ -1881,7 +1881,7 @@ function external(self, major, instance)
 					end
 				end
 			end
-			end, function(u, matches, gcs, cmdpath)
+		end, function(u, matches, gcs, cmdpath)
 			local ac = AceLibrary("AceConsole-2.0")
 			local name, cmd, path = ac:TabCompleteInfo(cmdpath)
 			if ac.registry[name] then
@@ -1896,9 +1896,9 @@ end
 
 local function activate(self, oldLib, oldDeactivate)
 	AceConsole = self
-	
+
 	self.super.activate(self, oldLib, oldDeactivate)
-	
+
 	if oldLib then
 		self.registry = oldLib.registry
 		self.nextAddon = oldLib.nextAddon
@@ -1910,7 +1910,7 @@ local function activate(self, oldLib, oldDeactivate)
 			self:RegisterChatCommand(false, options, name)
 		end
 	end
-	
+
 	if oldDeactivate then
 		oldDeactivate(oldLib)
 	end

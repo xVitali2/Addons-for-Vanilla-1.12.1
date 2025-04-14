@@ -28,6 +28,9 @@ local BabbleZone = AceLibrary("AceLocale-2.2"):new(MAJOR_VERSION)
 
 BabbleZone:RegisterTranslations("enUS", function()
 	return {
+		["Battlegrounds"] = true,
+		["Tower of Karazhan"] = true,
+		["The Black Morass"] = true,
 		["Upper Karazhan Halls"] = true,
 		["Dalaran"] = true,
 		["Caverns of Time: Black Morass"] = true,

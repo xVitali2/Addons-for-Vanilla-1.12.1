@@ -1,6 +1,6 @@
 --[[
 	Name: AceDB-2.0
-	Revision: $Rev: 17797 $
+	Revision: $Rev: 17798 $
 	Developed by: The Ace Development Team (http://www.wowace.com/index.php/The_Ace_Development_Team)
 	Inspired By: Ace 1.x by Turan (turan@gryphon.com)
 	Website: http://www.wowace.com/
@@ -12,7 +12,7 @@
 ]]
 
 local MAJOR_VERSION = "AceDB-2.0"
-local MINOR_VERSION = "$Revision: 17797 $"
+local MINOR_VERSION = "$Revision: 17798 $"
 
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary") end
 if not AceLibrary:IsNewVersion(MAJOR_VERSION, MINOR_VERSION) then return end
@@ -44,7 +44,7 @@ if GetLocale() == "deDE" then
 	OTHER_PROFILE_DESC = "W\195\164hle ein anderes Profil."
 	OTHER_PROFILE_GUI = "Anderes"
 	OTHER_PROFILE_USAGE = "<Profilname>"
-	
+
 	CHARACTER = "Charakter: "
 	REALM = "Realm: "
 	CLASS = "Klasse: "
@@ -86,7 +86,7 @@ elseif GetLocale() == "frFR" then
 	OTHER_PROFILE_DESC = "Choisissez un autre profil."
 	OTHER_PROFILE_GUI = "Autre"
 	OTHER_PROFILE_USAGE = "<nom de profil>"
-	
+
 	CHARACTER = "Personnage: "
 	REALM = "Royaume: "
 	CLASS = "Classe: "
@@ -107,7 +107,7 @@ elseif GetLocale() == "koKR" then
 	OTHER_PROFILE_DESC = "다른 프로파일을 선택합니다."
 	OTHER_PROFILE_GUI = "기타"
 	OTHER_PROFILE_USAGE = "<프로파일명>"
-	
+
 	CHARACTER = "캐릭터: "
 	REALM = "서버: "
 	CLASS = "직업: "
@@ -128,7 +128,7 @@ elseif GetLocale() == "zhTW" then
 	OTHER_PROFILE_DESC = "選擇其他記錄檔。"
 	OTHER_PROFILE_GUI = "其他"
 	OTHER_PROFILE_USAGE = "<記錄檔名稱>"
-	
+
 	CHARACTER = "角色："
 	REALM = "伺服器："
 	CLASS = "聯業："
@@ -149,7 +149,7 @@ elseif GetLocale() == "zhCN" then
 	OTHER_PROFILE_DESC = "\233\128\137\230\139\169\229\143\166\228\184\128\228\184\170\233\133\141\231\189\174\230\150\135\228\187\182."
 	OTHER_PROFILE_GUI = "\229\133\182\228\187\150"
 	OTHER_PROFILE_USAGE = "<\233\133\141\231\189\174\230\150\135\228\187\182\229\144\141\229\173\151>"
-	
+
 	CHARACTER = "\229\173\151\231\172\166: "
 	REALM = "\229\159\159: "
 	CLASS = "\233\128\137\228\187\182\231\177\187: "
@@ -170,7 +170,7 @@ elseif GetLocale() == "ruRU" then
 	OTHER_PROFILE_DESC = "Выбрать другой профиль."
 	OTHER_PROFILE_GUI = "Другое"
 	OTHER_PROFILE_USAGE = "<название профиля>"
-	
+
 	CHARACTER = "Персонаж: "
 	REALM = "Сервер: "
 	CLASS = "Класс: "
@@ -191,7 +191,7 @@ else -- enUS
 	OTHER_PROFILE_DESC = "Choose another profile."
 	OTHER_PROFILE_GUI = "Other"
 	OTHER_PROFILE_USAGE = "<profile name>"
-	
+
 	CHARACTER = "Character: "
 	REALM = "Realm: "
 	CLASS = "Class: "
@@ -305,7 +305,7 @@ do
 			return {}
 		end
 	end
-	
+
 	function del(t)
 		setmetatable(t, nil)
 		for k in pairs(t) do
@@ -649,19 +649,19 @@ end }
 
 function AceDB:InitializeDB(addonName)
 	local db = self.db
-	
+
 	if not db then
 		if addonName then
 			AceDB.addonsLoaded[addonName] = true
 		end
 		return
 	end
-	
+
 	if db.raw then
 		-- someone manually initialized
 		return
 	end
-	
+
 	if type(_G[db.name]) ~= "table" then
 		_G[db.name] = {}
 	else
@@ -1408,7 +1408,7 @@ function AceDB:GetAceOptionsDataTable(target)
 		if target.db and target.db.raw then
 			local t = target['acedb-profile-copylist']
 			local db = target.db
-			
+
 			if db.raw.profiles then
 				for k in pairs(db.raw.profiles) do
 					if string.find(k, '^char/') then
@@ -1488,9 +1488,9 @@ end
 local function activate(self, oldLib, oldDeactivate)
 	AceDB = self
 	AceEvent = AceLibrary:HasInstance("AceEvent-2.0") and AceLibrary("AceEvent-2.0")
-	
+
 	self.super.activate(self, oldLib, oldDeactivate)
-	
+
 	for t in pairs(self.embedList) do
 		if t.db then
 			rawset(t.db, 'char', nil)
@@ -1501,7 +1501,7 @@ local function activate(self, oldLib, oldDeactivate)
 			setmetatable(t.db, db_mt)
 		end
 	end
-	
+
 	if oldLib then
 		self.addonsToBeInitialized = oldLib.addonsToBeInitialized
 		self.addonsLoaded = oldLib.addonsLoaded
@@ -1516,7 +1516,7 @@ local function activate(self, oldLib, oldDeactivate)
 	if not self.registry then
 		self.registry = {}
 	end
-	
+
 	if oldLib then
 		oldDeactivate(oldLib)
 	end
@@ -1525,9 +1525,9 @@ end
 local function external(self, major, instance)
 	if major == "AceEvent-2.0" then
 		AceEvent = instance
-		
+
 		AceEvent:embed(self)
-		
+
 		self:RegisterEvent("ADDON_LOADED")
 		self:RegisterEvent("PLAYER_LOGOUT")
 	elseif major == "Dewdrop-2.0" then

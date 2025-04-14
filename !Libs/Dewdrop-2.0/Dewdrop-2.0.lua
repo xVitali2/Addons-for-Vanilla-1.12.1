@@ -1,6 +1,6 @@
 --[[
 	Name: Dewdrop-2.0
-	Revision: $Rev: 17882 $
+	Revision: $Rev: 17883 $
 	Author(s): ckknight (ckknight@gmail.com)
 	Website: http://ckknight.wowinterface.com/
 	Documentation: http://wiki.wowace.com/index.php/Dewdrop-2.0
@@ -10,7 +10,7 @@
 ]]
 
 local MAJOR_VERSION = "Dewdrop-2.0"
-local MINOR_VERSION = "$Revision: 17882 $"
+local MINOR_VERSION = "$Revision: 17883 $"
 
 if not AceLibrary then error(MAJOR_VERSION .. " requires AceLibrary") end
 if not AceLibrary:IsNewVersion(MAJOR_VERSION, MINOR_VERSION) then return end
@@ -1677,13 +1677,13 @@ function OpenSlider(self, parent)
 	if not parent.sliderMin or not parent.sliderMax then
 		return
 	end
-	
+
 	if parent.arrow then
 		--		parent.arrow:SetVertexColor(0.2, 0.6, 0)
 		parent.arrow:SetHeight(24)
 		parent.arrow:SetWidth(24)
 	end
-	
+
 	if not parent.sliderValue then
 		parent.sliderValue = (parent.sliderMin + parent.sliderMax) / 2
 	end
@@ -1805,14 +1805,14 @@ function OpenEditBox(self, parent)
 		editBoxFrame:EnableMouse(true)
 		editBoxFrame:Hide()
 		editBoxFrame:SetPoint("CENTER", UIParent, "CENTER")
-		
+
 		local editBox = CreateFrame("EditBox", nil, editBoxFrame)
 		editBoxFrame.editBox = editBox
 		editBox:SetFontObject(ChatFontNormal)
 		editBox:SetWidth(160)
 		editBox:SetHeight(13)
 		editBox:SetPoint("CENTER", editBoxFrame, "CENTER", 0, 0)
-		
+
 		local left = editBox:CreateTexture(nil, "BACKGROUND")
 		left:SetTexture("Interface\\ChatFrame\\UI-ChatInputBorder-Left")
 		left:SetTexCoord(0, 100 / 256, 0, 1)
@@ -1825,7 +1825,7 @@ function OpenEditBox(self, parent)
 		right:SetWidth(100)
 		right:SetHeight(32)
 		right:SetPoint("RIGHT", editBox, "RIGHT", 10, 0)
-		
+
 		editBox:SetScript("OnEnterPressed", function()
 			if editBoxFrame.parent and editBoxFrame.parent.editBoxValidateFunc then
 				local a1,a2,a3,a4 = editBoxFrame.parent.editBoxValidateArg1, editBoxFrame.parent.editBoxValidateArg2, editBoxFrame.parent.editBoxValidateArg3, editBoxFrame.parent.editBoxValidateArg4
@@ -1876,7 +1876,7 @@ function OpenEditBox(self, parent)
 		end)
 		local changing = false
 		local skipNext = false
-		
+
 		function editBox:SpecialSetText(text)
 			local oldText = editBox:GetText() or ""
 			if not text then
@@ -1889,7 +1889,7 @@ function OpenEditBox(self, parent)
 				skipNext = true
 			end
 		end
-		
+
 		editBox:SetScript("OnTextChanged", function()
 			if skipNext then
 				skipNext = false
@@ -2020,13 +2020,13 @@ function OpenEditBox(self, parent)
 	editBoxFrame.editBox.keybinding = parent.editBoxIsKeybinding
 	editBoxFrame.editBox:EnableKeyboard(not parent.editBoxIsKeybinding)
 	editBoxFrame:EnableKeyboard(parent.editBoxIsKeybinding)
-	
+
 	if parent.arrow then
 		--		parent.arrow:SetVertexColor(0.2, 0.6, 0)
 		parent.arrow:SetHeight(24)
 		parent.arrow:SetWidth(24)
 	end
-	
+
 	local level = parent.level
 	editBoxFrame:Show()
 	editBoxFrame:ClearAllPoints()
@@ -2267,7 +2267,7 @@ function Dewdrop:Register(parent, k1, v1, k2, v2, k3, v3, k4, v4, k5, v5, k6, v6
 	local info = new(k1, v1, k2, v2, k3, v3, k4, v4, k5, v5, k6, v6, k7, v7, k8, v8, k9, v9, k10, v10, k11, v11, k12, v12, k13, v13, k14, v14, k15, v15, k16, v16, k17, v17, k18, v18, k19, v19, k20, v20)
 	if type(info.children) == "table" then
 		local err, position = validateOptions(info.children)
-		
+
 		if err then
 			if position then
 				Dewdrop:error(position .. ": " .. err)
@@ -2639,7 +2639,7 @@ local function activate(self, oldLib, oldDeactivate)
 	else
 		self.registry = {}
 		self.onceRegistered = {}
-		
+
 		local WorldFrame_OnMouseDown = WorldFrame:GetScript("OnMouseDown")
 		local WorldFrame_OnMouseUp = WorldFrame:GetScript("OnMouseUp")
 		local oldX, oldY, clickTime
@@ -2650,7 +2650,7 @@ local function activate(self, oldLib, oldDeactivate)
 				WorldFrame_OnMouseDown()
 			end
 		end)
-		
+
 		WorldFrame:SetScript("OnMouseUp", function()
 			local x,y = GetCursorPosition()
 			if not oldX or not oldY or not x or not y or not clickTime then
@@ -2668,7 +2668,7 @@ local function activate(self, oldLib, oldDeactivate)
 				WorldFrame_OnMouseUp()
 			end
 		end)
-		
+
 		if hooksecurefunc then
 			hooksecurefunc(DropDownList1, "Show", function()
 				if levels[1] and levels[1]:IsVisible() then
@@ -2684,7 +2684,7 @@ local function activate(self, oldLib, oldDeactivate)
 				DropDownList1_Show(DropDownList1)
 			end
 		end
-		
+
 		if hooksecurefunc then
 			hooksecurefunc("HideDropDownMenu", function()
 				if levels[1] and levels[1]:IsVisible() then
@@ -2700,7 +2700,7 @@ local function activate(self, oldLib, oldDeactivate)
 				old_HideDropDownMenu(num)
 			end
 		end
-		
+
 		if hooksecurefunc then
 			hooksecurefunc("CloseDropDownMenus", function()
 				if levels[1] and levels[1]:IsVisible() then
@@ -2719,7 +2719,7 @@ local function activate(self, oldLib, oldDeactivate)
 	end
 	levels = {}
 	buttons = {}
-	
+
 	if oldDeactivate then
 		oldDeactivate(oldLib)
 	end
