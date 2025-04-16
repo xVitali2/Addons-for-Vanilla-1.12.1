@@ -8,8 +8,8 @@
 ## Notes-esES: Navegador de Mapas de Mazmorras
 ## Notes-ruRU: Обозреватель подземелий
 ## Version: 1.19
-## Version-AtlasLoot: 4.12.03
-## Version-AtlasQuest: 4.5
+## Version-AtlasLoot: 4.12.04
+## Version-AtlasQuest: 4.6
 ## X-Date: April, 2025
 ## Author: CFM, Dan Gilbert, Daviesh, Thandrenn, Asurn, Loather, Rabidmax, Dazerdude, Lichery, Pompa, Xerron, Gurky, Otari98, pepopo
 ## X-Category: MYADDONS_CATEGORY_MAP

@@ -235,6 +235,17 @@ Inst2Quest7ITC2 = Itemc4;
 Inst2Quest7description2 = AQITEM_TWOHAND..AQITEM_SWORD
 Inst2Quest7ID2 = "51849"
 
+--Quest 8 Alliance
+Inst2Quest8Rewardtext = AQDiscription_REWARD..WHITE.."1 (x3)"..AQDiscription_OR..WHITE.."2 (x3)"
+--ITEM1
+Inst2Quest8ITC1 = Itemc2;
+Inst2Quest8description1 = AQITEM_POTION
+Inst2Quest8ID1 = "3827"
+--ITEM2
+Inst2Quest8ITC2 = Itemc2;
+Inst2Quest8description2 = AQITEM_POTION
+Inst2Quest8ID2 = "1710"
+
 --Quest 1 Horde
 Inst2Quest1Rewardtext_HORDE = AQDiscription_REWARD..WHITE.."1"..AQDiscription_OR..WHITE.."2"
 --ITEM1

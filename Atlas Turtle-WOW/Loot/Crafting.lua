@@ -1093,7 +1093,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 
 	SmithingJourneyman2 = {
 		{ "s3333", "inv_gauntlets_05", "=q2=Silvered Bronze Gauntlets", "=ds=#sr# =so1=135 =so2=165 =so3=180 =so4=195" },
-		{ "s57169", "INV_Misc_Buckle_03", "=q2=Iron Belt Buckle", "=ds=#sr# =so1=140 =so2=170 =so3=185 =so4=200" },
+		{ "s57169", "INV_Misc_Buckle_03", "=q2=Iron Belt Buckle", "=ds=#sr# =so1=140 =so2=? =so3=? =so4=180" },
 		{ "s6518", "inv_hammer_05", "=q2=Iridescent Hammer", "=ds=#sr# =so1=140 =so2=170 =so3=185 =so4=200" },
 		{ "s3334", "inv_boots_01", "=q2=Green Iron Boots", "=ds=#sr# =so1=145 =so2=175 =so3=190 =so4=205" },
 		{ "s3297", "inv_hammer_04", "=q2=Mighty Iron Hammer", "=ds=#sr# =so1=145 =so2=175 =so3=190 =so4=205" },
@@ -1129,7 +1129,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s9820", "inv_gauntlets_31", "=q2=Barbaric Iron Gloves", "=ds=#sr# =so1=185 =so2=210 =so3=222 =so4=235" },
 		{ "s3498", "inv_throwingaxe_05", "=q2=Massive Iron Axe", "=ds=#sr# =so1=185 =so2=210 =so3=222 =so4=235" },
 		{ "s3513", "inv_boots_01", "=q2=Polished Steel Boots", "=ds=#sr# =so1=185 =so2=210 =so3=222 =so4=235" },
-		{ "s57172", "INV_Misc_Buckle_04", "=q2=Mithril Belt Buckle", "=ds=#sr# =so1=185 =so2=210 =so3=222 =so4=235" },
+		{ "s57172", "INV_Misc_Buckle_04", "=q2=Mithril Belt Buckle", "=ds=#sr# =so1=190 =so2=190 =so3=210 =so4=215" },
 		{ "s7224", "spell_frost_chainsofice", "=q1=Steel Weapon Chain", "=ds=#sr# =so1=190 =so2=215 =so3=227 =so4=240" },
 		{ "s21913", "inv_axe_06", "=q2=Edge of Winter", "=ds=#sr# =so1=190 =so2=215 =so3=227 =so4=240" },
 		{ "s3503", "inv_helmet_36", "=q2=Golden Scale Coif", "=ds=#sr# =so1=190 =so2=215 =so3=227 =so4=240" },
@@ -3978,6 +3978,7 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s41566", "INV_Jewelry_Ring_22", "=q2=Ocean's Wrath", "=ds=#sr# =so1=115 =so2=120 =so3=130 =so4=140" },
 		{ "s41776", "INV_Jewelry_Ring_24", "=q2=Ring of Midnight", "=ds=#sr# =so1=125 =so2=145 =so3=155 =so4=165" },
 		{ "s41568", "INV_Jewelry_Ring_10", "=q2=Dazzling Moonstone Band", "=ds=#sr# =so1=130 =so2=150 =so3=160 =so4=170" },
+		{ "s41071", "BTNLancelot_Ring", "=q3=Ring of Purified Silver", "=ds=#sr# =so1=135 =so2=155 =so3=165 =so4=175" },
 		{ "s41570", "INV_Jewelry_Ring_26", "=q2=Harpy Talon Ring", "=ds=#sr# =so1=145 =so2=165 =so3=175 =so4=185" },
 		{ "s41207", "INV_Jewelry_Ring_31", "=q2=Quartz Halo", "=ds=#sr# =so1=155 =so2=175 =so3=185 =so4=195" },
 		{ "s41572", "INV_Jewelry_Ring_47", "=q2=Centaur Hoof Circlet", "=ds=#sr# =so1=160 =so2=180 =so3=190 =so4=200" },
@@ -3987,10 +3988,10 @@ AtlasLoot_Data["AtlasLootCrafting"] = {
 		{ "s41589", "INV_Jewelry_Ring_07", "=q2=Crystal Earring", "=ds=#sr# =so1=185 =so2=205 =so3=215 =so4=225" },
 		{ "s41263", "INV_Jewelry_Ring_29", "=q2=Ocean's Gaze", "=ds=#sr# =so1=190 =so2=190 =so3=210 =so4=230" },
 		{ "s41225", "INV_Jewelry_Ring_20", "=q2=Ironbloom Ring", "=ds=#sr# =so1=190 =so2=205 =so3=215 =so4=225" },
-		{ "s41541", "INV_Jewelry_Ring_28", "=q2=Dazzling Aquamarine Loop", "=ds=#sr# =so1=190 =so2=210 =so3=220 =so4=230" },
 	},
 	
-	JewelcraftingRings2 = {	
+	JewelcraftingRings2 = {
+		{ "s41541", "INV_Jewelry_Ring_28", "=q2=Dazzling Aquamarine Loop", "=ds=#sr# =so1=190 =so2=210 =so3=220 =so4=230" },
 		{ "s41579", "INV_Jewelry_Ring_12", "=q2=Marine's Demise", "=ds=#sr# =so1=190 =so2=210 =so3=220 =so4=230" },
 		{ "s41744", "INV_Jewelry_Ring_03", "=q2=Bloodfire Circlet", "=ds=#sr# =so1=200 =so2=220 =so3=230 =so4=240" },
 		{ "s41554", "INV_Jewelry_Ring_Emerald", "=q3=Golden Jade Ring", "=ds=#sr# =so1=210 =so2=235 =so3=245 =so4=255" },

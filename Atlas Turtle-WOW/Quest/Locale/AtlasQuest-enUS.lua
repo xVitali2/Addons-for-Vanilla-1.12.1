@@ -317,7 +317,7 @@ Inst1Quest3name1_HORDE = "Horde Defender's Axe" -- 40065
 --------------- INST2 - Wailing Caverns (WC) ---------------
 Inst2Story = "Recently, a night elf druid named Naralex discovered a network of underground caverns within the heart of the Barrens. Dubbed the 'Wailing Caverns', these natural caves were filled with steam fissures which produced long, mournful wails as they vented. Naralex believed he could use the caverns' underground springs to restore lushness and fertility to the Barrens - but to do so would require siphoning the energies of the fabled Emerald Dream. Once connected to the Dream however, the druid's vision somehow became a nightmare. Soon the Wailing Caverns began to change - the waters turned foul and the once-docile creatures inside metamorphosed into vicious, deadly predators. It is said that Naralex himself still resides somewhere inside the heart of the labyrinth, trapped beyond the edges of the Emerald Dream. Even his former acolytes have been corrupted by their master's waking nightmare - transformed into the wicked Druids of the Fang."
 Inst2Caption = "Wailing Caverns"
-Inst2QAA = "7 Quests"
+Inst2QAA = "8 Quests"
 Inst2QAH = "9 Quests"
 
 --Quest 1 Alliance
@@ -408,6 +408,18 @@ Inst2Quest7_Folgequest = "No"
 Inst2Quest7name1 = "Ancient Elven Robes"
 Inst2Quest7name2 = "Thunderhorn"
 
+--Quest 8 Alliance
+Inst2Quest8 = "8. Rampant Weeds" -- ??
+Inst2Quest8_Level = "20"
+Inst2Quest8_Attain = "17?"
+Inst2Quest8_Aim = "Thundris Windweaver in Auberdine needs samples of the Unnatural Overgrowths in the Wailing Caverns."
+Inst2Quest8_Location = "Thundris Windweaver (Auberdine - Darkshore; "..YELLOW.."37.4,40.1"..WHITE..")"
+Inst2Quest8_Note = "You need gatherer Overgrowth Samples.??"
+Inst2Quest8_Prequest = "No"
+Inst2Quest8_Folgequest = "No"
+--
+Inst2Quest8name1 = "Mana Potion" --3
+Inst2Quest8name2 = "Greater Healing Potion" --3
 
 --Quest 1 Horde (same as Quest 1 Alliance)
 Inst2Quest1_HORDE = Inst2Quest1
