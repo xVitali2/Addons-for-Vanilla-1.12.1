@@ -2,21 +2,6 @@
 -- AtlasBossButtons (default english)
 --------------------------------------------------------------------------------
 AtlasLootBossButtons = {
-	UpperKarazhanHalls = {
-		"",
-		"K40Gnarlmoon",
-		"K40Incantagos",
-		"K40Anomalus",
-		"K40EchoofMedivh",
-		"K40King",
-		"K40SanvTasdal",
-		"K40Rupturan",
-		"K40Kruul",
-		"K40Mephistroth",
-		"",
-		"K40Trash",
-		"K40SET",
-	},
 	BlackfathomDeeps = {
 		"",
 		"BFDGhamoora",
@@ -991,6 +976,21 @@ AtlasLootBossButtons = {
 		"ESHardMode",
 		"",
 		"ESTrash",
+	},
+	TowerofKarazhan = {
+		"",
+		"K40Gnarlmoon",
+		"K40Incantagos",
+		"K40Anomalus",
+		"K40EchoofMedivh",
+		"K40King",
+		"K40SanvTasdal",
+		"K40Rupturan",
+		"K40Kruul",
+		"K40Mephistroth",
+		"",
+		"K40Trash",
+		"K40SET",
 	},
 }
 --------------------------------------------------------------------------------

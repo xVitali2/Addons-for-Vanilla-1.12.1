@@ -203,9 +203,9 @@ function AtlasQuest_Instanzenchecken()
 		AQINSTANCE = 62
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\EmeraldSanctum" then
 		AQINSTANCE = 63
-	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Clackora" then
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\TowerofKarazhan" then
 		AQINSTANCE = 64
-	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\UpperKarazhanHalls" then
+	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\Clackora" then
 		AQINSTANCE = 65
 	elseif AQATLASMAP == "Interface\\AddOns\\Atlas Turtle-WOW\\Images\\Maps\\TransportRoutes" then
 		AQINSTANCE = 66
@@ -277,6 +277,6 @@ end
 -- 61 = Gilneas City
 -- 62 = LowerKarazhan
 -- 63 = Emerald Sanctum
--- 64 = Clackora
--- 65 = UpperKarazhanHalls
+-- 64 = TowerofKarazhan
+-- 65 = Clackora
 -- 99 = default "rest"

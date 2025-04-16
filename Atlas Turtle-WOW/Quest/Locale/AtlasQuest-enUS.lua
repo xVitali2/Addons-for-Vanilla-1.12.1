@@ -8416,6 +8416,34 @@ Inst63Quest3_HORDE_Folgequest = Inst63Quest3_Folgequest
 Inst63Quest3name1_HORDE = Inst63Quest3name1
 Inst63Quest3name2_HORDE = Inst63Quest3name2
 Inst63Quest3name3_HORDE = Inst63Quest3name3
+
+--------------- INST64 - Tower of Karazhan (K40) ---------------
+Inst64Story = ""
+Inst64Caption = "Tower of Karazhan"
+Inst64QAA = "1 Quest"
+Inst64QAH = "1 Quest"
+--Quest 1 Alliance
+Inst64Quest1 = "1. The Scepter Rod of Medivh" --???
+Inst64Quest1_Level = "60"
+Inst64Quest1_Attain = "60"
+Inst64Quest1_Aim = "To restore the Scepter Rod of Medivh, Anelace the Clairvoyant at Morgan's Plot  in Deadwind Pass needs a high amount of arcane energy."
+Inst64Quest1_Location = "Anelace the Clairvoyant (Deadwind Pass - Morgan's Plot"..YELLOW.."41.2,79.2"..WHITE..")"
+Inst64Quest1_Note = "Obsidian Rod drop from []. Cosmic Residue drop from [3]."
+Inst64Quest1_Prequest = "The Binding of Xanthar"
+Inst64Quest1_Folgequest = "?"
+Inst64Quest1name1 = "Scepter Rod of Medivh"
+
+--Quest 1 Horde (same as Quest 1 Alliance)
+Inst64Quest1_HORDE = Inst63Quest1
+Inst64Quest1_HORDE_Level = Inst63Quest1_Level
+Inst64Quest1_HORDE_Attain = Inst63Quest1_Attain
+Inst64Quest1_HORDE_Aim = Inst63Quest1_Aim
+Inst64Quest1_HORDE_Location = Inst63Quest1_Location
+Inst64Quest1_HORDE_Note = Inst63Quest1_Note
+Inst64Quest1_HORDE_Prequest = Inst63Quest1_Prequest
+Inst64Quest1_HORDE_Folgequest = Inst63Quest1_Folgequest
+Inst64Quest1name1_HORDE = Inst63Quest1name1
+
 ---------------------------
 --- AQ Instance Numbers ---
 ---------------------------
@@ -8467,4 +8495,5 @@ Inst63Quest3name3_HORDE = Inst63Quest3name3
 -- 61 = Gilneas City (GC)
 -- 62 = Lower Karazhan Hall (LKH)
 -- 63 = Emerald Sanctum (ES)
+-- 64 = Tower of Karazhan (K40)
 -- 99 =  default "rest"

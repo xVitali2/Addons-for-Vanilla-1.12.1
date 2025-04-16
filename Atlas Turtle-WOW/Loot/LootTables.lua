@@ -411,17 +411,17 @@ AtlasLoot_TableNames = {
 	["SWVVolkanCruelblade"] = { BZ["Stormwind Vault"].." - "..BB["Volkan Cruelblade"], "AtlasLootItems" },
 	["SWVVaultArmoryEquipment"] = { BZ["Stormwind Vault"].." - "..L["Arc'tiras / Vault Armory Equipment"], "AtlasLootItems" },
 	["SWVTrash"] = { L["Trash Mobs"].." ("..BZ["Stormwind Vault"]..")", "AtlasLootItems" },
-	--Upper Karazhan Halls
-	["K40Gnarlmoon"] = { BZ["Upper Karazhan Halls"].." - "..BB["Keeper Gnarlmoon"], "AtlasLootItems" },
-	["K40Anomalus"] = { BZ["Upper Karazhan Halls"].." - "..BB["Anomalus"], "AtlasLootItems" },
-	["K40Incantagos"] = { BZ["Upper Karazhan Halls"].." - "..BB["Ley-Watcher Incantagos"], "AtlasLootItems" },
-	["K40EchoofMedivh"] = { BZ["Upper Karazhan Halls"].." - "..BB["Echo of Medivh"], "AtlasLootItems" },
-	["K40King"] = { BZ["Upper Karazhan Halls"].." - "..BB["King"].." (Chess fight)", "AtlasLootItems" },
-	["K40SanvTasdal"] = { BZ["Upper Karazhan Halls"].." - "..BB["Sanv Tas'dal"], "AtlasLootItems" },
-	["K40Rupturan"] = { BZ["Upper Karazhan Halls"].." - "..BB["Rupturan"], "AtlasLootItems" },
-	["K40Kruul"] = { BZ["Upper Karazhan Halls"].." - "..BB["Kruul"], "AtlasLootItems" },
-	["K40Mephistroth"] = { BZ["Upper Karazhan Halls"].." - "..BB["Mephistroth"], "AtlasLootItems" },
-	["K40Trash"] = { BZ["Upper Karazhan Halls"].." - "..L["Trash Mobs"], "AtlasLootItems" },
+	--Tower of Karazhan
+	["K40Gnarlmoon"] = { BZ["Tower of Karazhan"].." - "..BB["Keeper Gnarlmoon"], "AtlasLootItems" },
+	["K40Anomalus"] = { BZ["Tower of Karazhan"].." - "..BB["Anomalus"], "AtlasLootItems" },
+	["K40Incantagos"] = { BZ["Tower of Karazhan"].." - "..BB["Ley-Watcher Incantagos"], "AtlasLootItems" },
+	["K40EchoofMedivh"] = { BZ["Tower of Karazhan"].." - "..BB["Echo of Medivh"], "AtlasLootItems" },
+	["K40King"] = { BZ["Tower of Karazhan"].." - "..BB["King"].." (Chess fight)", "AtlasLootItems" },
+	["K40SanvTasdal"] = { BZ["Tower of Karazhan"].." - "..BB["Sanv Tas'dal"], "AtlasLootItems" },
+	["K40Rupturan"] = { BZ["Tower of Karazhan"].." - "..BB["Rupturan"], "AtlasLootItems" },
+	["K40Kruul"] = { BZ["Tower of Karazhan"].." - "..BB["Kruul"], "AtlasLootItems" },
+	["K40Mephistroth"] = { BZ["Tower of Karazhan"].." - "..BB["Mephistroth"], "AtlasLootItems" },
+	["K40Trash"] = { BZ["Tower of Karazhan"].." - "..L["Trash Mobs"], "AtlasLootItems" },
 	--Temple of Ahn'Qiraj
 	["AQ40Skeram"] = { BZ["Temple of Ahn'Qiraj"].." - "..BB["The Prophet Skeram"], "AtlasLootItems" },
 	["AQ40Trio"] = { BZ["Temple of Ahn'Qiraj"].." - "..BB["The Bug Family"], "AtlasLootItems" },
@@ -1631,7 +1631,7 @@ AtlasLoot_TableNamesBoss = {
 		["AQ40Trash2"] = { L["Trash Mobs"].." (AQ40)", "AtlasLootItems" },
 		["AQOpening"] = { "AQ Opening Quest Line", "AtlasLootItems" },
 	},
-	[BZ["Upper Karazhan Halls"]] = {
+	[BZ["Tower of Karazhan"]] = {
 		["K40Gnarlmoon"] = { BB["Keeper Gnarlmoon"], "AtlasLootItems" },
 		["K40Anomalus"] = { BB["Anomalus"], "AtlasLootItems" },
 		["K40Incantagos"] = { BB["Ley-Watcher Incantagos"], "AtlasLootItems" },

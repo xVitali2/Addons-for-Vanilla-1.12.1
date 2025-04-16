@@ -2257,7 +2257,7 @@ AtlasLoot_HewdropDown = {
 				{ BZ["Naxxramas"], "Naxxramas", "Submenu" },
 			},
 			[36] = {
-				{ BZ["Upper Karazhan Halls"], "UpperKarazhanHalls", "Submenu" },
+				{ BZ["Tower of Karazhan"], "TowerofKarazhan", "Submenu" },
 			},
 		},
 	},
@@ -2361,7 +2361,7 @@ AtlasLoot_HewdropDown = {
 				{ L["Tier 3 Sets"], "T3SET", "Table" },
 			},
 			[18] = {
-				{ L["Upper Karazhan Sets"], "K40SET", "Table" },
+				{ L["Tower of Karazhan Sets"], "K40SET", "Table" },
 			},
 		},
 	},
@@ -3030,7 +3030,7 @@ AtlasLoot_HewdropDown_SubTables = {
 		{ L["AQ Enchants"], "AQEnchants" },
 		{ L["AQ Opening Quest Chain"], "AQOpening" },
 	},
-	["UpperKarazhanHalls"] = {
+	["TowerofKarazhan"] = {
 		{ BB["Keeper Gnarlmoon"], "K40Gnarlmoon" },
 		{ BB["Ley-Watcher Incantagos"], "K40Incantagos" },
 		{ BB["Anomalus"], "K40Anomalus" },
@@ -3040,7 +3040,6 @@ AtlasLoot_HewdropDown_SubTables = {
 		{ BB["Rupturan"], "K40Rupturan" },
 		{ BB["Kruul"], "K40Kruul" },
 		{ BB["Mephistroth"], "K40Mephistroth" },
-		--{ BB["Kruul"], "K40Kruul" },
 		{ L["Trash Mobs"], "K40Trash" },
 	},
 	["WailingCaverns"] = {

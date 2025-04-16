@@ -9,7 +9,7 @@ local BIS = AceLibrary("Babble-ItemSet-2.2")
 
 AtlasLoot_ButtonRegistry = {
 	--WoW Instances
-	-- Upper Karazhan Halls
+	-- Tower of Karazhan
 	["K40Gnarlmoon"] = {
 		Title = BB["Keeper Gnarlmoon"],
 		Next_Page = "K40Incantagos",
@@ -64,12 +64,30 @@ AtlasLoot_ButtonRegistry = {
 		Back_Page = "DUNGEONSMENU2",
 		Back_Title = L["Dungeons & Raids"],
 	},
+	["K40Rupturan"] = {
+		Title = BB["Rupturan"],
+		Next_Page = "K40Kruul",
+		Next_Title = BB["Kruul"],
+		Prev_Page = "K40SanvTasdal",
+		Prev_Title = BB["Sanv Tas'dal"],
+		Back_Page = "DUNGEONSMENU2",
+		Back_Title = L["Dungeons & Raids"],
+	},
 	["K40Kruul"] = {
 		Title = BB["Kruul"],
 		Next_Page = "K40Trash",
 		Next_Title = L["Trash Mobs"],
 		Prev_Page = "K40SanvTasdal",
 		Prev_Title = BB["Sanv Tas'dal"],
+		Back_Page = "DUNGEONSMENU2",
+		Back_Title = L["Dungeons & Raids"],
+	},
+	["K40Mephistroth"] = {
+		Title = BB["Mephistroth"],
+		Next_Page = "K40Trash",
+		Next_Title = L["Trash Mobs"],
+		Prev_Page = "K40Kruul",
+		Prev_Title = BB["Kruul"],
 		Back_Page = "DUNGEONSMENU2",
 		Back_Title = L["Dungeons & Raids"],
 	},
@@ -3646,47 +3664,47 @@ AtlasLoot_ButtonRegistry = {
 	["T35Druid"] = {
 		Title = BC["Druid"],
 		Back_Page = "K40SET",
-		Back_Title = L["Upper Karazhan Sets"]
+		Back_Title = L["Tower of Karazhan Sets"]
 	},
 	["T35Hunter"] = {
 		Title = BC["Hunter"],
 		Back_Page = "K40SET",
-		Back_Title = L["Upper Karazhan Sets"]
+		Back_Title = L["Tower of Karazhan Sets"]
 	},
 	["T35Mage"] = {
 		Title = BC["Mage"],
 		Back_Page = "K40SET",
-		Back_Title = L["Upper Karazhan Sets"]
+		Back_Title = L["Tower of Karazhan Sets"]
 	},
 	["T35Paladin"] = {
 		Title = BC["Paladin"],
 		Back_Page = "K40SET",
-		Back_Title = L["Upper Karazhan Sets"]
+		Back_Title = L["Tower of Karazhan Sets"]
 	},
 	["T35Priest"] = {
 		Title = BC["Priest"],
 		Back_Page = "K40SET",
-		Back_Title = L["Upper Karazhan Sets"]
+		Back_Title = L["Tower of Karazhan Sets"]
 	},
 	["T35Rogue"] = {
 		Title = BC["Rogue"],
 		Back_Page = "K40SET",
-		Back_Title = L["Upper Karazhan Sets"]
+		Back_Title = L["Tower of Karazhan Sets"]
 	},
 	["T35Shaman"] = {
 		Title = BC["Shaman"],
 		Back_Page = "K40SET",
-		Back_Title = L["Upper Karazhan Sets"]
+		Back_Title = L["Tower of Karazhan Sets"]
 	},
 	["T35Warlock"] = {
 		Title = BC["Warlock"],
 		Back_Page = "K40SET",
-		Back_Title = L["Upper Karazhan Sets"]
+		Back_Title = L["Tower of Karazhan Sets"]
 	},
 	["T35Warrior"] = {
 		Title = BC["Warrior"],
 		Back_Page = "K40SET",
-		Back_Title = L["Upper Karazhan Sets"]
+		Back_Title = L["Tower of Karazhan Sets"]
 	},
 	["AQ40Druid"] = {
 		Title = BC["Druid"],

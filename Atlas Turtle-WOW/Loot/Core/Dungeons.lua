@@ -259,7 +259,7 @@ function AtlasLoot_DungeonsMenu2()
 	AtlasLootMenuItem_11.lootpage="NAXPatchwerk";
 	AtlasLootMenuItem_11:Show();
 	--K40
-	AtlasLootMenuItem_12_Name:SetText(AL["[RAID] Upper Karazhan Halls"]);
+	AtlasLootMenuItem_12_Name:SetText(AL["[RAID] Tower of Karazhan"]);
 	AtlasLootMenuItem_12_Extra:SetText(BZ["Deadwind Pass"]);
 	AtlasLootMenuItem_12_Icon:SetTexture("Interface\\Icons\\Spell_Arcane_PortalOrgrimmar");
 	AtlasLootMenuItem_12.lootpage="K40Gnarlmoon";

@@ -7,7 +7,7 @@
 ## Notes-zhCN: 副本地图浏览器
 ## Notes-esES: Navegador de Mapas de Mazmorras
 ## Notes-ruRU: Обозреватель подземелий
-## Version: 1.19
+## Version: 1.20
 ## Version-AtlasLoot: 4.12.04
 ## Version-AtlasQuest: 4.6
 ## X-Date: April, 2025

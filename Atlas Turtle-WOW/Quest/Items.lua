@@ -5088,6 +5088,21 @@ Inst63Quest3ITC3_HORDE = Itemc5
 Inst63Quest3description3_HORDE = AQITEM_MAINHAND..AQITEM_FIST
 Inst63Quest3ID3_HORDE = "61740"
 
+--------------- INST64 - Tower of Karazhan (K40) ---------------
+
+--Quest 1 Alliance
+Inst64Quest1Rewardtext = AQDiscription_REWARD..WHITE.."1"
+--ITEM1
+Inst64Quest1ITC1 = Itemc2
+Inst64Quest1description1 = AQITEM_ITEM
+Inst64Quest1ID1 = "41413"
+
+--Quest 1 Horde
+Inst64Quest1Rewardtext_HORDE = AQDiscription_REWARD..WHITE.."1"
+--ITEM1
+Inst64Quest1ITC1_HORDE = Itemc2
+Inst64Quest1description1_HORDE = AQITEM_ITEM
+Inst64Quest1ID1_HORDE = "41413"
 ---------------------------------------------------
 ---------------- OUTDOOR RAIDS --------------------
 ---------------------------------------------------

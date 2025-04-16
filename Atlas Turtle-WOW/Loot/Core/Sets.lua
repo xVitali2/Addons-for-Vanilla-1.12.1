@@ -82,7 +82,7 @@ function AtlasLootSetMenu()
 	AtlasLootMenuItem_4.lootpage="AQ40SET"
 	AtlasLootMenuItem_4:Show()
 	--Upper Karazhan Set
-	AtlasLootMenuItem_5_Name:SetText("Upper Karazhan Sets")
+	AtlasLootMenuItem_5_Name:SetText("Tower of Karazhan Sets")
 	AtlasLootMenuItem_5_Extra:SetText("")
 	AtlasLootMenuItem_5_Icon:SetTexture("Interface\\Icons\\INV_Staff_Medivh")
 	AtlasLootMenuItem_5.lootpage="K40SET"
@@ -480,7 +480,7 @@ function AtlasLootPriestSetMenu()
 	AtlasLootMenuItem_7.container = data.T3PriestC
 	AtlasLootMenuItem_7:Show()
 	--T35
-	AtlasLootMenuItem_8_Name:SetText("|cffffffff"..L["Upper Karazhan Sets"])
+	AtlasLootMenuItem_8_Name:SetText("|cffffffff"..L["Tower of Karazhan Sets"])
 	AtlasLootMenuItem_8_Extra:SetText("")
 	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\Spell_Holy_PowerWordShield")
 	AtlasLootMenuItem_8.lootpage="T35Priest"
@@ -547,7 +547,7 @@ function AtlasLootMageSetMenu()
 	AtlasLootMenuItem_7.container = data.T3MageC
 	AtlasLootMenuItem_7:Show()
 	--T35
-	AtlasLootMenuItem_8_Name:SetText("|cff68ccef"..L["Upper Karazhan Sets"])
+	AtlasLootMenuItem_8_Name:SetText("|cff68ccef"..L["Tower of Karazhan Sets"])
 	AtlasLootMenuItem_8_Extra:SetText("")
 	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\Spell_Frost_IceStorm")
 	AtlasLootMenuItem_8.lootpage="T35Mage"
@@ -614,7 +614,7 @@ function AtlasLootWarlockSetMenu()
 	AtlasLootMenuItem_7.container = data.T3WarlockC
 	AtlasLootMenuItem_7:Show()
 	--T35
-	AtlasLootMenuItem_8_Name:SetText("|cff9382c9"..L["Upper Karazhan Sets"])
+	AtlasLootMenuItem_8_Name:SetText("|cff9382c9"..L["Tower of Karazhan Sets"])
 	AtlasLootMenuItem_8_Extra:SetText("")
 	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\Spell_Shadow_CurseOfTounges")
 	AtlasLootMenuItem_8.lootpage="T35Warlock"
@@ -681,7 +681,7 @@ function AtlasLootRogueSetMenu()
 	AtlasLootMenuItem_7.container = data.T3RogueC
 	AtlasLootMenuItem_7:Show()
 	--T35
-	AtlasLootMenuItem_8_Name:SetText("|cfffff468"..L["Upper Karazhan Sets"])
+	AtlasLootMenuItem_8_Name:SetText("|cfffff468"..L["Tower of Karazhan Sets"])
 	AtlasLootMenuItem_8_Extra:SetText("")
 	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\Ability_BackStab")
 	AtlasLootMenuItem_8.lootpage="T35Rogue"
@@ -748,7 +748,7 @@ function AtlasLootDruidSetMenu()
 	AtlasLootMenuItem_7.container = data.T3DruidC
 	AtlasLootMenuItem_7:Show()
 	--T35
-	AtlasLootMenuItem_8_Name:SetText("|cffff7c0a"..L["Upper Karazhan Sets"])
+	AtlasLootMenuItem_8_Name:SetText("|cffff7c0a"..L["Tower of Karazhan Sets"])
 	AtlasLootMenuItem_8_Extra:SetText("")
 	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\Spell_Nature_Regeneration")
 	AtlasLootMenuItem_8.lootpage="T35Druid"
@@ -815,7 +815,7 @@ function AtlasLootHunterSetMenu()
 	AtlasLootMenuItem_7.container = data.T3HunterC
 	AtlasLootMenuItem_7:Show()
 	--T35
-	AtlasLootMenuItem_8_Name:SetText("|cffaad372"..L["Upper Karazhan Sets"])
+	AtlasLootMenuItem_8_Name:SetText("|cffaad372"..L["Tower of Karazhan Sets"])
 	AtlasLootMenuItem_8_Extra:SetText("")
 	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\Ability_Hunter_RunningShot")
 	AtlasLootMenuItem_8.lootpage="T35Hunter"
@@ -882,7 +882,7 @@ function AtlasLootShamanSetMenu()
 	AtlasLootMenuItem_7.container = data.T3ShamanC
 	AtlasLootMenuItem_7:Show()
 	--T35
-	AtlasLootMenuItem_8_Name:SetText("|cff2773ff"..L["Upper Karazhan Sets"])
+	AtlasLootMenuItem_8_Name:SetText("|cff2773ff"..L["Tower of Karazhan Sets"])
 	AtlasLootMenuItem_8_Extra:SetText("")
 	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\Spell_FireResistanceTotem_01")
 	AtlasLootMenuItem_8.lootpage="T35Shaman"
@@ -949,7 +949,7 @@ function AtlasLootPaladinSetMenu()
 	AtlasLootMenuItem_7.container = data.T3PaladinC
 	AtlasLootMenuItem_7:Show()
 	--T35
-	AtlasLootMenuItem_8_Name:SetText("|cfff48cba"..L["Upper Karazhan Sets"])
+	AtlasLootMenuItem_8_Name:SetText("|cfff48cba"..L["Tower of Karazhan Sets"])
 	AtlasLootMenuItem_8_Extra:SetText("")
 	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\Spell_Holy_SealOfMight")
 	AtlasLootMenuItem_8.lootpage="T35Paladin"
@@ -1016,7 +1016,7 @@ function AtlasLootWarriorSetMenu()
 	AtlasLootMenuItem_7.container = data.T3WarriorC
 	AtlasLootMenuItem_7:Show()
 	--T35Warrior
-	AtlasLootMenuItem_8_Name:SetText("|cffc69b6d"..L["Upper Karazhan Sets"])
+	AtlasLootMenuItem_8_Name:SetText("|cffc69b6d"..L["Tower of Karazhan Sets"])
 	AtlasLootMenuItem_8_Extra:SetText("")
 	AtlasLootMenuItem_8_Icon:SetTexture("Interface\\Icons\\INV_Shield_05")
 	AtlasLootMenuItem_8.lootpage="T35Warrior"
@@ -1722,7 +1722,7 @@ function AtlasLootT3SetMenu()
 end
 
 function AtlasLootUKSetMenu()
-	AtlasLoot_PrepMenu("SETMENU", "|cffFFFFFF"..L["Upper Karazhan Sets"])
+	AtlasLoot_PrepMenu("SETMENU", "|cffFFFFFF"..L["Tower of Karazhan Sets"])
 	--Priest
 	AtlasLootMenuItem_3_Name:SetText("|cffffffff"..BC["Priest"])
 	AtlasLootMenuItem_3_Extra:SetText("")
