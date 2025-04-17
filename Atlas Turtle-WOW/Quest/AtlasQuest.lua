@@ -66,7 +66,7 @@ local AQMAXQUESTS = "23"
 
 -- Set title for AtlasQuest side panel
 ATLASQUEST_VERSION = GetAddOnMetadata("Atlas Turtle-WOW", "Version-AtlasQuest")
-ATLASQUEST_VERSION_FULL = "|cffFF8400AtlasQuest TW Edition v"..ATLASQUEST_VERSION.."|r"
+ATLASQUEST_VERSION_FULL = "|cffFF8400AtlasQuest TW v"..ATLASQUEST_VERSION.."|r"
 
 AQ_ShownSide = "Left"
 AQAtlasAuto = 1
