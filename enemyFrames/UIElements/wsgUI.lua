@@ -104,7 +104,7 @@
 
 		local now = GetTime()
 		if flagCarriers[f] and fcHealth[f]  then
-			for i = 1, getn(healthWarnings) do
+			for i = 1, tlength(healthWarnings) do
 				if fcHealth[f] < healthWarnings[i]  then
 					if (not sentAnnoucement or healthWarnings[i] < w) and now > nextAnnouncement then
 						nextAnnouncement = now + timeInterval

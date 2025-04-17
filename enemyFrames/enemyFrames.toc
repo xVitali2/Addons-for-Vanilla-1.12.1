@@ -1,7 +1,7 @@
 ## Interface: 11200
 ## Title: BG Enemy Frames
 ## Notes: by kuurtzen
-## Notes-ruRU: Удобные рамки противников на полях боя.
+## Notes-ruRU: Удобные рамки противников на полях боя by CFM
 ## SavedVariablesPerCharacter: ENEMYFRAMESPLAYERDATA
 
 locale\locale.xml

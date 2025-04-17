@@ -3,7 +3,9 @@ _G = getfenv(0)
 
 print = function(m) DEFAULT_CHAT_FRAME:AddMessage(m) end
 
-ENEMYFRAMESVERSION = 1.33
+tlength = function(t)	local i = 0 for k, j in ipairs(t) do i = i + 1 end return i end
+
+ENEMYFRAMESVERSION = 1.36
 ENEMYFRAMESNEWVERSION = ENEMYFRAMESVERSION
 ENEMYFRAMESVERSIONFOUND = false
 
@@ -25,6 +27,7 @@ ENEMYFRAMESPLAYERDATA =
 	['playerPortraitDebuff']	= false,
 	['targetPortraitDebuff']	= false,
 	['targetDebuffTimers']		= false,
+	['playerTargetCounter']		= false,
 	-- bgs
 	['incomingSpells']			= false,
 	['pvpmapblips']				= false,	
@@ -110,7 +113,7 @@ for i = 1, settings.numTabs do
 		settings.tabs[i]:SetPoint('LEFT', settings.tabs[i-1], 'RIGHT', -12, 0)
 	end
 	settings.tabs[i].id = i
-	for j  = 1, getn(tabElements) do
+	for j  = 1, tlength(tabElements) do
 		_G[settings.tabs[i]:GetName()..tabElements[j]]:SetVertexColor(.2, .2, .2)
 	end
 	

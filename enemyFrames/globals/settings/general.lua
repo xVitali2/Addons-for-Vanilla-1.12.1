@@ -94,7 +94,7 @@
 	container.newversion:Hide()
 	
 	container.forumlink:SetScript('OnShow', function()
-        this:SetText'https://github.com/zetone/enemyFrames'
+        this:SetText'https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases'
 		
 		if ENEMYFRAMESVERSIONFOUND then
 			container.newversion:SetText('|cffffff00( '..format(L['!ver %s available!'], ENEMYFRAMESNEWVERSION)..' )')
