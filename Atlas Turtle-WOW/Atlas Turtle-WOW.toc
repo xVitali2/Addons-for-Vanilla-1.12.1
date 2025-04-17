@@ -8,10 +8,10 @@
 ## Notes-esES: Navegador de Mapas de Mazmorras
 ## Notes-ruRU: Обозреватель подземелий
 ## Version: 1.20
-## Version-AtlasLoot: 4.12.04
-## Version-AtlasQuest: 4.6
+## Version-AtlasLoot: 4.12.05
+## Version-AtlasQuest: 4.61
 ## X-Date: April, 2025
-## Author: CFM, Dan Gilbert, Daviesh, Thandrenn, Asurn, Loather, Rabidmax, Dazerdude, Lichery, Pompa, Xerron, Gurky, Otari98, pepopo
+## Author: Otwo, Dan Gilbert, Daviesh, Thandrenn, Asurn, Loather, Rabidmax, Dazerdude, Lichery, Pompa, Xerron, Gurky, Otari98, pepopo
 ## X-Category: MYADDONS_CATEGORY_MAP
 ## X-OptionsFrame: AtlasOptionsFrame
 ## SavedVariables: AtlasOptions
@@ -19,8 +19,7 @@
 ## OptionalDeps: Titan, myAddOns, EarthFeatureFrame, Alphamap, AtlasLoader, LootLink, ItemSync, EquipCompare, EQCompare
 ## RequiredDeps: !Libs
 
-Locale\Atlas-enUS.lua
-Locale\Atlas-ruRU.lua
+Atlas-enUS.lua
 
 AtlasMaps.lua
 AtlasDropDown.lua
@@ -34,8 +33,7 @@ AtlasTitan.lua
 AtlasTitan.xml
 
 
-Loot\Locale\AtlasLoot-enUS.lua
-Loot\Locale\AtlasLoot-ruRU.lua
+Loot\AtlasLoot-enUS.lua
 
 Loot\Sets.lua
 Loot\Crafting.lua
@@ -50,8 +48,7 @@ Loot\LootTables.lua
 Loot\Core\AtlasLoot.xml
 
 
-Quest\Locale\AtlasQuest-enUS.lua
-Quest\Locale\AtlasQuest-ruRU.lua
+Quest\AtlasQuest-enUS.lua
 
 Quest\InsideFrame.xml
 Quest\AtlasQuest.xml

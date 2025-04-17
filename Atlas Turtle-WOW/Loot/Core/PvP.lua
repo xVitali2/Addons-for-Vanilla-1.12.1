@@ -46,7 +46,7 @@ function AtlasLootPvPMenu()
 	AtlasLootMenuItem_17.lootpage="WSGRepMenu"
 	AtlasLootMenuItem_17:Show()
 	-- Blood Ring Rewards
-	AtlasLootMenuItem_18_Name:SetText("Blood Ring")
+	AtlasLootMenuItem_18_Name:SetText(BZ["Blood Ring"])
 	AtlasLootMenuItem_18_Extra:SetText("")
 	AtlasLootMenuItem_18_Icon:SetTexture("Interface\\Icons\\inv_jewelry_ring_04")
 	AtlasLootMenuItem_18.lootpage="BRRepMenu"
@@ -60,7 +60,7 @@ function AtlasLootPvPMenu()
 end
 
 function AtlasLootBRRepMenu()
-	AtlasLoot_PrepMenu("PVPMENU", L["Blood Ring"])
+	AtlasLoot_PrepMenu("PVPMENU", BZ["Blood Ring"])
 	--Friendly
 	AtlasLootMenuItem_2_Name:SetText("Friendly Reputation Rewards")
 	AtlasLootMenuItem_2_Extra:SetText("")
@@ -94,7 +94,7 @@ function AtlasLootBRRepMenu()
 end
 
 function AtlasLootWSGRepMenu()
-	AtlasLoot_PrepMenu("PVPMENU", L["Warsong Gulch"])
+	AtlasLoot_PrepMenu("PVPMENU", BZ["Warsong Gulch"])
 
 	--Friendly Header
 	AtlasLootMenuItem_2_Name:SetText(L["Friendly Reputation Rewards"])
@@ -219,7 +219,7 @@ function AtlasLootWSGRepMenu()
 end
 
 function AtlasLootABRepMenu()
-	AtlasLoot_PrepMenu("PVPMENU", L["Arathi Basin"])
+	AtlasLoot_PrepMenu("PVPMENU", BZ["Arathi Basin"])
 	--Friendly Header
 	AtlasLootMenuItem_2_Name:SetText(L["Friendly Reputation Rewards"])
 	AtlasLootMenuItem_2_Extra:SetText("")
@@ -325,7 +325,7 @@ function AtlasLootABRepMenu()
 end
 
 function AtlasLootAVRepMenu()
-	AtlasLoot_PrepMenu("PVPMENU", L["Alterac Valley"])
+	AtlasLoot_PrepMenu("PVPMENU", BZ["Alterac Valley"])
 	--Friendly
 	AtlasLootMenuItem_2_Name:SetText(L["Friendly Reputation Rewards"])
 	AtlasLootMenuItem_2_Extra:SetText("")

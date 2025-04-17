@@ -8434,15 +8434,15 @@ Inst64Quest1_Folgequest = "?"
 Inst64Quest1name1 = "Scepter Rod of Medivh"
 
 --Quest 1 Horde (same as Quest 1 Alliance)
-Inst64Quest1_HORDE = Inst63Quest1
-Inst64Quest1_HORDE_Level = Inst63Quest1_Level
-Inst64Quest1_HORDE_Attain = Inst63Quest1_Attain
-Inst64Quest1_HORDE_Aim = Inst63Quest1_Aim
-Inst64Quest1_HORDE_Location = Inst63Quest1_Location
-Inst64Quest1_HORDE_Note = Inst63Quest1_Note
-Inst64Quest1_HORDE_Prequest = Inst63Quest1_Prequest
-Inst64Quest1_HORDE_Folgequest = Inst63Quest1_Folgequest
-Inst64Quest1name1_HORDE = Inst63Quest1name1
+Inst64Quest1_HORDE = Inst64Quest1
+Inst64Quest1_HORDE_Level = Inst64Quest1_Level
+Inst64Quest1_HORDE_Attain = Inst64Quest1_Attain
+Inst64Quest1_HORDE_Aim = Inst64Quest1_Aim
+Inst64Quest1_HORDE_Location = Inst64Quest1_Location
+Inst64Quest1_HORDE_Note = Inst64Quest1_Note
+Inst64Quest1_HORDE_Prequest = Inst64Quest1_Prequest
+Inst64Quest1_HORDE_Folgequest = Inst64Quest1_Folgequest
+Inst64Quest1name1_HORDE = Inst64Quest1name1
 
 ---------------------------
 --- AQ Instance Numbers ---
