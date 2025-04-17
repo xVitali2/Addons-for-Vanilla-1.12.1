@@ -261,6 +261,11 @@ DoTimer_SpellData = { --a list of textures (same in all locales!) and the englis
 			["duration"] = 15,
 			["multiplier"] = 1,
 		},
+		["Interface\\Icons\\Spell_Holy_SearingLight"] = {
+			["name"] = "Holy Fire",  
+			["duration"] = 10,
+			["multiplier"] = 1,
+		},
 	},
 	["DRUID"] = {
 		["Interface\\Icons\\Ability_GhoulFrenzy"] = {
@@ -555,6 +560,7 @@ function DoTimer_DefineSpells(class) --creates the lists of spells to watch for 
 			["Shackle Undead"] = 1,
 			["Shadow Word: Pain"] = 1,
 			["Vampiric Embrace"] = 1,
+			["Holy Fire"] = 1,
 		}
 		healspells = {
 			["Abolish Disease"] = 1,
