@@ -1,8 +1,0 @@
-## Interface: 11200
-## Title: |cffabd473TW Threatmeter |cff58ff00v1.2.3
-## Author: Xerron/Er
-## Version: 1.2.3
-## Notes: Turtle WoW's own Threatmeter !
-## SavedVariablesPerCharacter: TWT_CONFIG
-TWThreat.xml
-

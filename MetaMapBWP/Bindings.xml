@@ -1,5 +1,0 @@
-<Bindings>
-	<Binding name="BWP_CLEAR" header="METAMAP_TITLE">
-		BWP_ClearDest();
-	</Binding>
-</Bindings>
