@@ -26,12 +26,26 @@ local BabbleItemSet = AceLibrary("AceLocale-2.2"):new(MAJOR_VERSION)
 BabbleItemSet:RegisterTranslations("enUS", function()
 	return {
 	-- Blacksmithing Crafted Sets
+		["Hateforge Armor"] = true,
+		["Towerforge Battlegear"] = true,
+		["Steel Plate"] = true,
+		["Rune-Etched Armor"] = true,
+		["Dreamsteel Armor"] = true,
 		["Bloodsoul Embrace"] = true,
 		["Imperial Plate"] = true,
 		["The Darksoul"] = true,
     -- Tailoring Crafted Sets
+		["Augerer's Attire"] = true,
+		["Shadoweave"] = true,
+		["Diviner's Garments"] = true,
+		["Pillager's Garb"] = true,
+		["Mooncloth Regalia"] = true,
+		["Dreamthread Regalia"] = true,
+		["Flarecore Regalia"] = true,
 		["Bloodvine Garb"] = true,
     -- Leatherworking Crafted Sets
+		["Grifter's Armor"] = true,
+		["Primalist's Trappings"] = true,
 		["Black Dragon Mail"] = true,
 		["Blood Tiger Harness"] = true,
 		["Blue Dragon Mail"] = true,
@@ -41,6 +55,9 @@ BabbleItemSet:RegisterTranslations("enUS", function()
 		["Primal Batskin"] = true,
 		["Stormshroud Armor"] = true,
 		["Volcanic Armor"] = true,
+		["Convergence of the Elements"] = true,
+		["Dreamhide Battlegarb"] = true,
+		["Red Dragon Mail"] = true,
     --Pre60 Sets
 		["Battlegear of Undead Slaying"] = true,
 		["Bloodmail Regalia"] = true,
