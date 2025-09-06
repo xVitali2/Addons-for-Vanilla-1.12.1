@@ -2,8 +2,8 @@
 #<a href="https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases/latest">Download</a>
 
 
-**Atlas Turtle-WOW**
-Everything for dungeons: shows a map of dungeons, quests for them, drops from bosses and profit from professions TW edition.
+**Atlas**
+Everything for dungeons: shows a map of dungeons, quests for them, drops from bosses and profit from professions.
 <img src="https://cloud.githubusercontent.com/assets/15636669/21586274/2d7f9d58-d0e0-11e6-8730-b65671e5abb3.jpg" alt="atlas ai"/>
 
 **Aux-Addon**
