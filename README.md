@@ -1,6 +1,5 @@
-# Addons-for-Vanilla-1.12.1-CFM
+# Addons-for-Vanilla-1.12.1
 #<a href="https://github.com/KasVital/Addons-for-Vanilla-1.12.1-CFM/releases/latest">Download</a>
-
 
 **Atlas**
 Everything for dungeons: shows a map of dungeons, quests for them, drops from bosses and profit from professions.
