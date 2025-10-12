@@ -1,0 +1,1778 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xsi:schemaLocation="http://www.blizzard.com/wow/ui/"> 
+	<Script file="localization.lua"/>
+	<Script file="MobInfo2_Browser.lua"/> 
+
+	<FontString name="MI2B_GameFontNormalSmaller" inherits="MasterFont" font="Fonts\FRIZQT__.TTF" virtual="true">
+		<FontHeight>
+			<AbsValue val="9"/>
+		</FontHeight>
+		<Color r="1.0" g="0.82" b="0"/>
+	</FontString>
+	<FontString name="MI2B_MapFont" font="Fonts\ARIALN.TTF" virtual="true" outline="NORMAL">
+		<FontHeight>
+			<AbsValue val="10"/>
+		</FontHeight>
+		<Color r="1" g="1" b="1"/>
+	</FontString>
+
+	<FontString name="MI2B_RedX" font="Fonts\ARIALN.TTF" virtual="true" outline="THICK">
+		<FontHeight>
+			<AbsValue val="16"/>
+		</FontHeight>
+		<Color r="1.0" g="0" b="0"/>
+	</FontString>
+
+	<Frame name="MI2B_Frame"> 
+		<Scripts> 
+			<OnLoad> 
+				MobInfo2_Browser_OnLoad(); 
+			</OnLoad> 
+			<OnEvent> 
+				MobInfo2_Browser_OnEvent()
+			</OnEvent> 
+			<OnUpdate>
+				--MobInfo2_Browser_OnUpdate();
+			</OnUpdate>
+		</Scripts> 
+	</Frame> 
+
+	<Button name="MI2B_ListButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="810" y="16"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+				this:SetBackdropColor(0.8, 0.8, 0.8, 0.2);
+			</OnLoad>
+			<OnClick>
+				MI2B_ListButton_OnClick(arg1);
+			</OnClick>
+			<OnEnter>
+				local index = this:GetID() + FauxScrollFrame_GetOffset(MI2B_ListScrollFrame);
+				local mobDataB = MI2BrowseTable[index];
+				MI2B_CreateBrowseTooltip(mobDataB, GameTooltip);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalText name="$parentText" inherits="GameFontNormalSmall" justifyH="LEFT">
+			<Size>
+				<AbsDimension x="160" y="10"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="20" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors> 
+		</NormalText>
+		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
+			<Size>
+				<AbsDimension x="780" y="16"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOP">
+					<Offset>
+						<AbsDimension x="2" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+		<Frames>
+		</Frames>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentTextMT" inherits="GameFontNormalSmall" justifyH="RIGHT">
+					<Size>
+						<AbsDimension x="16" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTextLV" inherits="GameFontNormalSmall" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="33" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="180" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</FontString>
+				<FontString name="$parentTextXP" inherits="GameFontNormalSmall" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="54" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentTextLV" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</FontString>
+				<FontString name="$parentTextKL" inherits="GameFontNormalSmall" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="44" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentTextXP" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</FontString>
+
+				<FontString name="$parentTextHP" inherits="GameFontNormalSmall" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="60" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentTextKL" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</FontString>
+
+				<FontString name="$parentTextMaxD" inherits="GameFontNormalSmall" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="52" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentTextHP" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</FontString>
+				<FontString name="$parentTextDPS" inherits="GameFontNormalSmall" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="49" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentTextMaxD" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</FontString>
+				<FontString name="$parentTextLT" inherits="GameFontNormalSmall" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="40" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentTextDPS" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</FontString>
+				<FontString name="$parentTextCTH" inherits="GameFontNormalSmall" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="40" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentTextLT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</FontString>
+				<FontString name="$parentTextMV" inherits="MI2B_GameFontNormalSmaller" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="64" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentTextCTH" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</FontString>
+				<FontString name="$parentTextRARE" inherits="MI2B_GameFontNormalSmaller" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="86" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentTextMV" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</FontString>
+				<FontString name="$parentTextLoc" inherits="MI2B_GameFontNormalSmaller" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="105" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentTextRARE" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</FontString>
+			</Layer>
+		</Layers>
+
+	</Button>
+
+	<Button name="MI2B_SortButtonTemplate" virtual="true">
+		<NormalText name="$parentText" inherits="GameFontHighlightSmall">
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="4" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalText>
+		<NormalTexture name="$parentArrow" file="Interface\Buttons\UI-SortArrow">
+			<Size>
+				<AbsDimension x="9" y="8"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="$parentText" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="3" y="-2"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<TexCoords left="0" right="0.5625" top="0" bottom="1.0"/>
+		</NormalTexture>
+		<HighlightTexture file="Interface\PaperDollInfoFrame\UI-Character-Tab-Highlight" alphaMode="ADD">
+			<Size>
+				<AbsDimension x="5" y="24"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="RIGHT">
+					<Offset>
+						<AbsDimension x="4" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnLoad>
+				--this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+				--this:SetBackdropColor(0.8, 0.8, 0.8, 0.2);
+			</OnLoad>
+			<OnEnter>
+				if this.tooltiptext then
+					GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+					GameTooltip:SetText(this.tooltiptext);
+					GameTooltip:Show();
+				end
+			</OnEnter>
+			<OnLeave>
+				if this.tooltiptext then GameTooltip:Hide() end
+			</OnLeave>
+		</Scripts>
+	</Button>
+
+	<Button name="MI2B_SortButtonIconTemplate" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon" file="Interface\FriendsFrame\WhoFrame-ColumnTabs">
+					<Size>
+						<AbsDimension x="12" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="4" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture name="$parentArrow" file="Interface\Buttons\UI-SortArrow">
+			<Size>
+				<AbsDimension x="9" y="8"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT" relativeTo="$parentIcon" relativePoint="RIGHT">
+					<Offset>
+						<AbsDimension x="3" y="-2"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<TexCoords left="0" right="0.5625" top="0" bottom="1.0"/>
+		</NormalTexture>
+		<HighlightTexture file="Interface\PaperDollInfoFrame\UI-Character-Tab-Highlight" alphaMode="ADD">
+			<Size>
+				<AbsDimension x="5" y="24"/>
+			</Size>
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+				<Anchor point="RIGHT">
+					<Offset>
+						<AbsDimension x="4" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</HighlightTexture>
+	</Button>
+
+	<Frame name="MI2B_MobLocationIcon" toplevel="true" parent="WorldMapDetailFrame" hidden="true"> 
+		<Size>
+			<AbsDimension x="12" y="12"/>
+		</Size>
+		<Layers>
+<!-- 			<Layer level="OVERLAY">
+				<Texture name="$parentArt" file="Interface\WorldMap\WorldMapPartyIcon">
+					<Size>
+						<AbsDimension x="18" y="18"/>
+					</Size>
+				</Texture>
+			</Layer> -->
+			<Layer level="ARTWORK">
+<!-- 				<Texture name="$parentArt" file="Interface\Minimap\POIIcons" setAllPoints="true">
+					<Size>
+						<AbsDimension x="12" y="12"/>
+					</Size>
+					<TexCoords left="0.875" right="1.0" top="0" bottom="0.125"/>
+				</Texture> -->
+				<FontString name="$parentX" inherits="MI2B_RedX" justifyH="CENTER" text="X">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</FontString>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="MI2B_MapFont" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="256" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="14" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this:RegisterEvent("WORLD_MAP_UPDATE");
+				--getglobal(this:GetName().."Art"):SetVertexColor(1, 0, 0);
+			</OnLoad>
+			<OnEvent>
+				MI2B_MobLocationIcon_OnEvent();
+			</OnEvent>
+			<OnEnter>
+				if (this["info"].nm) then
+					MI2B_CreateBrowseTooltip((this["info"]), WorldMapTooltip);
+				end
+			</OnEnter>
+			<OnLeave>
+				WorldMapTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Frame>
+
+	<Frame name="MI2B_BrowseFrame" frameStrata="DIALOG" toplevel="true" parent="UIParent" movable="true" enableMouse="true" hidden="true">
+		<Size>
+			<AbsDimension x="860" y="447"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="25" y="-104"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="MI2B_ListPortraitTexture" file="Interface\CharacterFrame\TemporaryPortrait-Monster">
+					<Size>
+						<AbsDimension x="58" y="58"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="8" y="-8"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentTitle" inherits="GameFontNormal" text="MI2B_TITLE">
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-18"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentTopLeft" file="Interface\AuctionFrame\UI-AuctionFrame-Bid-TopLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTop" file="Interface\AuctionFrame\UI-AuctionFrame-Bid-Top">
+					<Size>
+						<AbsDimension x="348" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTopRight" file="Interface\AuctionFrame\UI-AuctionFrame-Bid-TopRight">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTop" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBotLeft" file="Interface\AuctionFrame\UI-AuctionFrame-Bid-BotLeft">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-256"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+ 				<Texture name="$parentBot" file="Interface\AuctionFrame\UI-AuctionFrame-Bid-Bot">
+					<Size>
+						<AbsDimension x="348" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="256" y="-256"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBotRight" file="Interface\AuctionFrame\UI-AuctionFrame-Bid-BotRight">
+					<Size>
+						<AbsDimension x="256" y="256"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentBot" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts> 
+			<OnShow>
+				MI2B_Main_OnShow();
+			</OnShow>
+			<OnHide>
+			</OnHide>
+			<OnMouseDown>
+				MI2B_Main_OnMouseDown(arg1);
+			</OnMouseDown>
+			<OnMouseUp>
+				MI2B_Main_OnMouseUp(arg1);
+			</OnMouseUp>
+		</Scripts> 
+		<Frames>
+			<Button name="MI2B_ListCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="3" y="-8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<!-- Browse Tab -->
+			<Frame name="MI2B_ListBrowse">
+				<Size>
+					<AbsDimension x="758" y="447"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="MI2B_BrowseNameText" inherits="GameFontHighlightSmall" text="NAME">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="77" y="-38"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="MI2B_BrowseLevelText" inherits="GameFontHighlightSmall" text="LEVEL_RANGE">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="MI2B_BrowseNameText" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="80" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="MI2B_BrowseXPText" inherits="GameFontHighlightSmall" text="XP">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="MI2B_BrowseLevelText" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="18" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="MI2B_BrowseKillsText" inherits="GameFontHighlightSmall" text="KILLS">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="MI2B_BrowseXPText" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="64" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="MI2B_BrowseMobValueText" inherits="GameFontHighlightSmall" text="MI_TXT_MOB_VALUE">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="MI2B_BrowseKillsText" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="40" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="MI2B_BrowseItemNameText" inherits="GameFontHighlightSmall" text="MI2B_ITEMNAME">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="MI2B_BrowseMobValueText" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="10" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="MI2B_BrowseLocText" inherits="GameFontHighlightSmall" text="MI2B_LOCATION">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="MI2B_BrowseItemNameText" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="50" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<FontString name="MI2B_TotalPlayersText" inherits="GameFontNormalSmall" justifyH="CENTER" text="X ===+=== X">
+							<Size>
+								<AbsDimension x="120" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="34" y="17"/>
+									</Offset>
+								</Anchor>
+							</Anchors> 
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<ScrollFrame name="MI2B_ListScrollFrame" inherits="FauxScrollFrameTemplate">
+						<Size>
+							<AbsDimension x="780" y="322"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="68" y="-88"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnVerticalScroll>
+								FauxScrollFrame_OnVerticalScroll(12, MI2B_ScrollBar_Update); 
+							</OnVerticalScroll>
+							<OnShow>
+								--MI2B_ScrollBar_Update()
+							</OnShow>
+						</Scripts>
+					</ScrollFrame>
+
+					<Button name="MI2B_List1" inherits="MI2B_ListButtonTemplate" id="1" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="21" y="-86"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List2" inherits="MI2B_ListButtonTemplate" id="2" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+						</Backdrop>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List1" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List3" inherits="MI2B_ListButtonTemplate" id="3" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List2" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List4" inherits="MI2B_ListButtonTemplate" id="4" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+						</Backdrop>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List3" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List5" inherits="MI2B_ListButtonTemplate" id="5" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List4" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List6" inherits="MI2B_ListButtonTemplate" id="6" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+						</Backdrop>						
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List5" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List7" inherits="MI2B_ListButtonTemplate" id="7" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List6" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List8" inherits="MI2B_ListButtonTemplate" id="8" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+						</Backdrop>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List7" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List9" inherits="MI2B_ListButtonTemplate" id="9" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List8" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List10" inherits="MI2B_ListButtonTemplate" id="10" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+						</Backdrop>						
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List9" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List11" inherits="MI2B_ListButtonTemplate" id="11" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List10" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List12" inherits="MI2B_ListButtonTemplate" id="12" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+						</Backdrop>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List11" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List13" inherits="MI2B_ListButtonTemplate" id="13" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List12" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List14" inherits="MI2B_ListButtonTemplate" id="14" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+						</Backdrop>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List13" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List15" inherits="MI2B_ListButtonTemplate" id="15" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List14" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List16" inherits="MI2B_ListButtonTemplate" id="16" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+						</Backdrop>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List15" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List17" inherits="MI2B_ListButtonTemplate" id="17" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List16" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List18" inherits="MI2B_ListButtonTemplate" id="18" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+						</Backdrop>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List17" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List19" inherits="MI2B_ListButtonTemplate" id="19" hidden="true">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List18" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MI2B_List20" inherits="MI2B_ListButtonTemplate" id="20" hidden="true">
+						<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+						</Backdrop>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_List19" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					
+					<Button name="MI2B_BrowseCloseButton" inherits="UIPanelButtonTemplate" text="CLOSE">
+						<Size>
+							<AbsDimension x="80" y="22"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="94" y="14"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								HideUIPanel(this:GetParent():GetParent());
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="MI2B_ListRefreshButton" inherits="UIPanelButtonTemplate" text="REFRESH">
+						<Size>
+							<AbsDimension x="80" y="22"/>
+						</Size>
+						<Anchors>
+							<Anchor point="RIGHT" relativeTo="MI2B_BrowseCloseButton" relativePoint="LEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								--MI2B_BrowseFrame:Hide()
+								MI2B_RefreshBrowseList();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Frame name="$parentCoverInfo">
+						<Size>
+							<AbsDimension x="510" y="26"/>
+						</Size>
+						<Anchors>
+							<Anchor point="RIGHT" relativeTo="MI2B_ListRefreshButton" relativePoint="LEFT">
+								<Offset>
+									<AbsDimension x="0" y="-1"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Backdrop bgFile="Interface\CharacterFrame\UI-Party-Background" tile="true">
+							<BackgroundInsets>
+								<AbsInset left="2" right="2" top="2" bottom="2"/>
+							</BackgroundInsets>
+							<TileSize>
+								<AbsValue val="16"/>
+							</TileSize>
+						</Backdrop>
+
+						<Layers>
+							<Layer level="OVERLAY">
+								<FontString name="MI2B_TotalMobsText" inherits="GameFontNormalSmall" text="MI2B_TOTALMOBS">
+									<Anchors>
+										<Anchor point="LEFT">
+											<Offset>
+												<AbsDimension x="32" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="MI2B_TotalMobsTextValue" inherits="GameFontHighlightSmall" text="111">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="MI2B_TotalMobsText" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="8" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+							<Layer level="OVERLAY">
+								<FontString name="MI2B_TotalItemsText" inherits="GameFontNormalSmall" text="MI2B_TOTALITEMS">
+									<Anchors>
+										<Anchor point="LEFT">
+											<Offset>
+												<AbsDimension x="140" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="MI2B_TotalMobTextValue" inherits="GameFontHighlightSmall" text="111">
+									<Anchors>
+										<Anchor point="LEFT" relativeTo="MI2B_TotalItemsText" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="8" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Frames>
+							<CheckButton name="MI2B_CheckButton_1" inherits="OptionsCheckButtonTemplate">
+								<Size>
+									<AbsDimension x="24" y="24"/>
+								</Size>								
+								<Anchors>
+									<Anchor point="LEFT">
+										<Offset>
+											<AbsDimension x="300" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnShow>
+										local text = getglobal(this:GetName().."Text");
+										text:SetText(MI2B_PERCHAR);
+										text:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
+										--local checked = 0;
+										--local save = getglobal(MI2BSave);
+										--if (MI2BSave and MI2BSave.perchar and MI2BSave.perchar == 1)
+										--	checked = 1;
+										--end
+
+										OptionsFrame_EnableCheckBox(this);
+										this:SetChecked(MI2BSave.perchar);
+										this.tooltipText = MI2B_PERCHAR_TOOLTIP;
+									</OnShow>
+									<OnClick>
+										if ( this:GetChecked() ) then
+											PlaySound("igMainMenuOptionCheckBoxOff");
+											MI2BSave.perchar = 1;
+										else
+											PlaySound("igMainMenuOptionCheckBoxOn");
+											MI2BSave.perchar = nil;
+										end
+									</OnClick>
+								</Scripts>
+							</CheckButton>
+						</Frames>
+					</Frame>
+
+
+			<Frame name="MI2B_SortBar"> 
+				<Size> <AbsDimension x="810" y="12" />	</Size>
+				<Anchors>
+					<Anchor	point="TOPLEFT">
+						<Offset> <AbsDimension x="23" y="-74" /> </Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" tile="true">
+					<TileSize> <AbsValue val="16"/> </TileSize>
+				</Backdrop>
+				<Scripts>
+					<OnLoad> this:SetBackdropColor(0.9, 0.9, 0.9, 0.9) </OnLoad>
+				</Scripts>
+				<Frames>
+					<Button name="MI2B_BrowseMobTypeSort" inherits="MI2B_SortButtonTemplate" text="+">
+						<Size>
+							<AbsDimension x="24" y="14"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="MI2B_List1TextMT" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-2" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								MI2B_SortByMobType();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="MI2B_BrowseNameSort" inherits="MI2B_SortButtonTemplate" text="NAME">
+						<Size>
+							<AbsDimension x="80" y="14"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="MI2B_List1Text" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="20" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								MI2B_SortByName();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="MI2B_BrowseLevelSort" inherits="MI2B_SortButtonTemplate" text="LEVEL_ABBR">
+						<Size>
+							<AbsDimension x="32" y="14"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="MI2B_List1TextLV" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-6" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.tooltiptext = MI2B_LEVEL;
+							</OnLoad>
+							<OnClick>
+								MI2B_SortByLevel();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="MI2B_BrowseXPSort" inherits="MI2B_SortButtonTemplate" text="XP">
+						<Size>
+							<AbsDimension x="32" y="14"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="MI2B_List1TextXP" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-4" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.tooltiptext = MI2B_EXPERIENCE;
+							</OnLoad>
+							<OnClick>
+								MI2B_SortByXP();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="MI2B_BrowseKillsSort" inherits="MI2B_SortButtonTemplate" text="     ">
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentIcon" file="Interface\TargetingFrame\UI-TargetingFrame-Skull">
+									<Size>
+										<AbsDimension x="16" y="16"/>
+									</Size>
+									<Anchors>
+										<Anchor point="LEFT">
+											<Offset>
+												<AbsDimension x="8" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Size>
+							<AbsDimension x="32" y="14"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="MI2B_List1TextKL" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-6" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.tooltiptext = KILLS;
+							</OnLoad>
+							<OnClick>
+								MI2B_SortByKills();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="MI2B_BrowseMaxHealthSort" inherits="MI2B_SortButtonTemplate" text="MI2B_HP">
+						<Size>
+							<AbsDimension x="64" y="14"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="MI2B_List1TextHP" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-5" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.tooltiptext = MI_TXT_HEALTH;
+							</OnLoad>
+							<OnClick>
+								MI2B_SortByMaxHP();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="MI2B_BrowseMaxDamageSort" inherits="MI2B_SortButtonTemplate" text="      ">
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentIcon" file="Interface\Cursor\Attack">
+									<Size>
+										<AbsDimension x="14" y="14"/>
+									</Size>
+									<Anchors>
+										<Anchor point="LEFT">
+											<Offset>
+												<AbsDimension x="12" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Size>
+							<AbsDimension x="60" y="14"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="MI2B_List1TextMaxD" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-4" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.tooltiptext = MI2B_MAXDAMAGE;
+							</OnLoad>
+							<OnClick>
+								MI2B_SortByMaxD();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="MI2B_BrowseDPSSort" inherits="MI2B_SortButtonTemplate" text="MI2B_DPS">
+						<Size>
+							<AbsDimension x="38" y="14"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="MI2B_List1TextDPS" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-4" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.tooltiptext = MI2B_DAMAGE_PER_SECOND;
+							</OnLoad>
+							<OnClick>
+								MI2B_SortByDPS();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="MI2B_BrowseLootsSort" inherits="MI2B_SortButtonTemplate" text="    ">
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentIcon" file="Interface\GossipFrame\VendorGossipIcon">
+									<Size>
+										<AbsDimension x="16" y="16"/>
+									</Size>
+									<Anchors>
+										<Anchor point="LEFT">
+											<Offset>
+												<AbsDimension x="4" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Size>
+							<AbsDimension x="32" y="14"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="MI2B_List1TextLT" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-4" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.tooltiptext = MI_TXT_TIMES_LOOTED;
+							</OnLoad>
+							<OnClick>
+								MI2B_SortByLoots();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="MI2B_BrowseClothSort" inherits="MI2B_SortButtonTemplate" text="    ">
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentIcon" file="Interface\HelpFrame\OpenTicketIcon">
+									<Size>
+										<AbsDimension x="16" y="16"/>
+									</Size>
+									<Anchors>
+										<Anchor point="LEFT">
+											<Offset>
+												<AbsDimension x="4" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Size>
+							<AbsDimension x="32" y="14"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="MI2B_List1TextCTH" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="-2" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.tooltiptext = MI_TXT_CLOTH_DROP;
+							</OnLoad>
+							<OnClick>
+								MI2B_SortByCloth();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="MI2B_BrowseMobValueSort" inherits="MI2B_SortButtonTemplate" text="     ">
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentIcon" file="Interface\GossipFrame\BankerGossipIcon">
+									<Size>
+										<AbsDimension x="14" y="14"/>
+									</Size>
+									<Anchors>
+										<Anchor point="LEFT">
+											<Offset>
+												<AbsDimension x="6" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Size>
+							<AbsDimension x="32" y="14"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="MI2B_List1TextMV" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.tooltiptext = MI_TXT_MOB_VALUE;
+							</OnLoad>
+							<OnClick>
+								MI2B_SortByMobValue();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="MI2B_BrowseItemRaritySort" inherits="MI2B_SortButtonTemplate" text="     ">
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentIcon" file="Interface\GossipFrame\TrainerGossipIcon">
+									<Size>
+										<AbsDimension x="16" y="16"/>
+									</Size>
+									<Anchors>
+										<Anchor point="LEFT">
+											<Offset>
+												<AbsDimension x="6" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Size>
+							<AbsDimension x="32" y="14"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="MI2B_List1TextRARE" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.tooltiptext = ITEMS.." "..QUALITY;
+							</OnLoad>
+							<OnClick>
+								MI2B_SortByItemRarity();
+							</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="MI2B_BrowseLocSort" inherits="MI2B_SortButtonTemplate" text="MI2B_LOCATION">
+						<Size>
+							<AbsDimension x="80" y="14"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativeTo="MI2B_List1TextLoc" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="5" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								MI2B_SortByLocation();
+							</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+
+
+					<EditBox name="MI2B_BrowseName" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="102" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_BrowseNameText" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="3" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnTabPressed>
+								if ( IsShiftKeyDown() ) then
+									--MI2B_BrowseMinLevel:SetFocus();
+								else
+									MI2B_BrowseMinLevel:SetFocus();
+								end
+							</OnTabPressed>
+							<OnEnterPressed>
+								MI2B_RefreshBrowseList();
+								--BrowseNoResultsText:SetText(BROWSE_NO_RESULTS);		
+								this:ClearFocus();
+							</OnEnterPressed>
+						</Scripts>
+						<FontString inherits="ChatFontNormal" bytes="64"/>
+					</EditBox>
+					<EditBox name="MI2B_BrowseMinLevel" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="30" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_BrowseLevelText" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="3" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<FontString inherits="GameFontHighlightSmall" text="-">
+									<Anchors>
+										<Anchor point="LEFT" relativePoint="RIGHT">
+											<Offset>
+												<AbsDimension x="-5" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnTabPressed>
+								if ( IsShiftKeyDown() ) then
+									MI2B_BrowseName:SetFocus();
+								else
+									MI2B_BrowseMaxLevel:SetFocus();
+								end
+							</OnTabPressed>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+						</Scripts>
+					</EditBox>
+					<EditBox name="MI2B_BrowseMaxLevel" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="30" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="MI2B_BrowseMinLevel" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="8" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnTabPressed>
+								if ( IsShiftKeyDown() ) then
+									MI2B_BrowseMinLevel:SetFocus();
+								else
+									MI2B_BrowseXP:SetFocus();
+								end
+							</OnTabPressed>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+						</Scripts>
+					</EditBox>
+					<EditBox name="MI2B_BrowseXP" letters="7" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="64" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_BrowseXPText" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="3" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<FontString inherits="GameFontHighlight" text=">">
+									<Anchors>
+										<Anchor point="RIGHT" relativePoint="LEFT">
+											<Offset>
+												<AbsDimension x="-1" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnTabPressed>
+								if ( IsShiftKeyDown() ) then
+									MI2B_BrowseMaxLevel:SetFocus();
+								else
+									MI2B_BrowseKills:SetFocus();
+								end
+							</OnTabPressed>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+						</Scripts>
+					</EditBox>
+					<EditBox name="MI2B_BrowseKills" letters="5" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="50" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_BrowseKillsText" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="3" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<FontString inherits="GameFontHighlight" text=">">
+									<Anchors>
+										<Anchor point="RIGHT" relativePoint="LEFT">
+											<Offset>
+												<AbsDimension x="-1" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnTabPressed>
+								if ( IsShiftKeyDown() ) then
+									MI2B_BrowseXP:SetFocus();
+								else
+									MI2B_BrowseMobValueG:SetFocus();
+								end
+							</OnTabPressed>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+						</Scripts>
+					</EditBox>
+					<EditBox name="MI2B_BrowseMobValueG" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="29" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_BrowseMobValueText" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="3" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<FontString inherits="GameFontHighlight" text=">">
+									<Anchors>
+										<Anchor point="RIGHT" relativePoint="LEFT">
+											<Offset>
+												<AbsDimension x="-1" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+							<Layer level="ARTWORK">
+								<FontString name="$parentold" inherits="GameFontHighlightSmall" text="MI2B_G">
+									<Anchors>
+										<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
+											<Offset>
+												<AbsDimension x="-12" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnLoad>
+								--return mifontWhite..g..mifontYellow..'g '..mifontWhite..s ..mifontSubWhite..'s '..mifontWhite..c..mifontGold..'c'
+								MI2B_BrowseMobValueGold:SetText(mifontYellow..MI2B_G);
+							</OnLoad>
+							<OnTabPressed>
+								if ( IsShiftKeyDown() ) then
+									MI2B_BrowseKills:SetFocus();
+								else
+									MI2B_BrowseMobValueS:SetFocus();
+								end
+							</OnTabPressed>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+						</Scripts>
+					</EditBox>
+					<EditBox name="MI2B_BrowseMobValueS" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="29" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="MI2B_BrowseMobValueG" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="3" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<FontString name="$parentilver" inherits="GameFontHighlightSmall" text="MI2B_S">
+									<Anchors>
+										<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
+											<Offset>
+												<AbsDimension x="-12" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnLoad>
+								--return mifontWhite..g..mifontYellow..'g '..mifontWhite..s ..mifontSubWhite..'s '..mifontWhite..c..mifontGold..'c'
+								MI2B_BrowseMobValueSilver:SetText(mifontSubWhite..MI2B_S);
+							</OnLoad>
+							<OnTabPressed>
+								if ( IsShiftKeyDown() ) then
+									MI2B_BrowseMobValueG:SetFocus();
+								else
+									MI2B_BrowseMobValueC:SetFocus();
+								end
+							</OnTabPressed>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+						</Scripts>
+					</EditBox>
+					<EditBox name="MI2B_BrowseMobValueC" letters="2" numeric="true" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="29" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="MI2B_BrowseMobValueS" relativePoint="RIGHT">
+								<Offset>
+									<AbsDimension x="3" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="ARTWORK">
+								<FontString name="$parentopper" inherits="GameFontHighlightSmall" text="MI2B_C">
+									<Anchors>
+										<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT">
+											<Offset>
+												<AbsDimension x="-12" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnLoad>
+								--return mifontWhite..g..mifontYellow..'g '..mifontWhite..s ..mifontSubWhite..'s '..mifontWhite..c..mifontGold..'c'
+								MI2B_BrowseMobValueCopper:SetText(mifontGold..MI2B_C);
+							</OnLoad>
+							<OnTabPressed>
+								if ( IsShiftKeyDown() ) then
+									MI2B_BrowseMobValueS:SetFocus();
+								else
+									MI2B_BrowseItemName:SetFocus();
+								end
+							</OnTabPressed>
+							<OnEnterPressed>
+								this:ClearFocus();
+							</OnEnterPressed>
+						</Scripts>
+					</EditBox>
+
+					<EditBox name="MI2B_BrowseItemName" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="90" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_BrowseItemNameText" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="3" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnTabPressed>
+								if ( IsShiftKeyDown() ) then
+									MI2B_BrowseMobValueC:SetFocus();
+								else
+									MI2B_BrowseLocation:SetFocus();
+								end
+							</OnTabPressed>
+							<OnEnterPressed>
+								MI2B_RefreshBrowseList();
+								--BrowseNoResultsText:SetText(BROWSE_NO_RESULTS);		
+								this:ClearFocus();
+							</OnEnterPressed>
+						</Scripts>
+						<FontString inherits="ChatFontNormal" bytes="64"/>
+					</EditBox>
+
+					<EditBox name="MI2B_BrowseLocation" autoFocus="false" inherits="InputBoxTemplate">
+						<Size>
+							<AbsDimension x="98" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MI2B_BrowseLocText" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="3" y="-4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnTabPressed>
+								if ( IsShiftKeyDown() ) then
+									MI2B_BrowseItemName:SetFocus();
+								else
+									MI2B_BrowseName:SetFocus();
+								end
+							</OnTabPressed>
+							<OnEnterPressed>
+								MI2B_RefreshBrowseList();
+								--BrowseNoResultsText:SetText(BROWSE_NO_RESULTS);		
+								this:ClearFocus();
+							</OnEnterPressed>
+						</Scripts>
+						<FontString inherits="ChatFontNormal" bytes="64"/>
+					</EditBox>
+
+					<Button name="MI2B_ListSearchButton" inherits="UIPanelButtonTemplate" text="SEARCH">
+						<Size>
+							<AbsDimension x="80" y="22"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="10" y="-45"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								MI2B_RefreshBrowseList();
+							</OnClick>
+						</Scripts>
+					</Button>
+
+
+				</Frames>
+			</Frame>
+		</Frames>
+	</Frame>
+			<Button	name="MI2B_OpenBrowserButton" inherits="UIPanelButtonTemplate" parent="MI2_MainOptionsFrame" text="MI2 Browser">
+				<Size>
+					<AbsDimension x="96" y="22"/>
+				</Size>
+				<Scripts>
+					<OnClick> 
+						if (MI2B_BrowseFrame:IsVisible()) then
+							MI2B_BrowseFrame:Hide();
+						else
+							MI2B_RefreshBrowseList();
+						end
+					</OnClick>
+				</Scripts>
+			</Button>
+
+</Ui>
